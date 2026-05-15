@@ -1,0 +1,39 @@
+\@francais 
+\babel@toc {english}{}\relax 
+\@francais 
+\babel@toc {french}{}\relax 
+\contentsline {chapter}{\tocchapter {Chapitre}{}{Résumé}}{iii}{chapter*.1}%
+\@anglais 
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\tocchapter {Chapter}{}{Abstract}}{iv}{chapter*.2}%
+\@francais 
+\babel@toc {french}{}\relax 
+\contentsline {chapter}{\tocchapter {Chapitre}{}{Liste des tableaux}}{vii}{chapter*.2}%
+\contentsline {chapter}{\tocchapter {Chapitre}{}{Table des figures}}{viii}{chapter*.2}%
+\contentsline {chapter}{\tocchapter {Chapitre}{}{Liste des sigles et des abréviations}}{ix}{chapter*.3}%
+\contentsline {chapter}{\tocchapter {Chapitre}{}{Liste des symboles}}{xi}{chapter*.4}%
+\contentsline {chapter}{\tocchapter {Chapitre}{}{Remerciements}}{xiv}{chapter*.5}%
+\contentsline {chapter}{\tocchapter {Chapitre}{1}{Introduction}}{1}{chapter.1}%
+\contentsline {chapter}{\tocchapter {Chapitre}{2}{Préliminaires théoriques}}{2}{chapter.2}%
+\contentsline {section}{\tocsection {}{2.1}{Hamiltonien général en physique de la matière condensée}}{2}{section.2.1}%
+\contentsline {subsection}{\tocsubsection {}{2.1.1}{Approximation de Born-Oppenheimer}}{4}{subsection.2.1.1}%
+\contentsline {section}{\tocsection {}{2.2}{Partie électronique : théorie de la fonctionnelle de la densité}}{6}{section.2.2}%
+\contentsline {subsection}{\tocsubsection {}{2.2.1}{Théorèmes de Hohenberg et Kohn}}{6}{subsection.2.2.1}%
+\contentsline {subsection}{\tocsubsection {}{2.2.2}{Méthode de Kohn-Sham}}{8}{subsection.2.2.2}%
+\contentsline {subsection}{\tocsubsection {}{2.2.3}{Fonctionnelles d'échange-corrélation}}{13}{subsection.2.2.3}%
+\contentsline {subsection}{\tocsubsection {}{2.2.4}{Pseudo-potentiels}}{19}{subsection.2.2.4}%
+\contentsline {subsection}{\tocsubsection {}{2.2.5}{Ondes planes, grilles et résolution des équations de Kohn-Sham}}{22}{subsection.2.2.5}%
+\contentsline {subsection}{\tocsubsection {}{2.2.6}{Résultats pour le graphène}}{28}{subsection.2.2.6}%
+\contentsline {section}{\tocsection {}{2.3}{Partie ionique : les phonons et la théorie de la fonctionnelle de la densité perturbative}}{28}{section.2.3}%
+\contentsline {subsection}{\tocsubsection {}{2.3.1}{Approximation harmonique}}{29}{subsection.2.3.1}%
+\contentsline {subsection}{\tocsubsection {}{2.3.2}{Quantification des vibrations du réseau : phonons}}{29}{subsection.2.3.2}%
+\contentsline {subsection}{\tocsubsection {}{2.3.3}{Théorie de la fonctionnelle de la densité perturbative}}{29}{subsection.2.3.3}%
+\contentsline {subsection}{\tocsubsection {}{2.3.4}{Résultats pour le graphène}}{29}{subsection.2.3.4}%
+\contentsline {section}{\tocsection {}{2.4}{Fonctions de Wannier}}{29}{section.2.4}%
+\contentsline {subsection}{\tocsubsection {}{2.4.1}{Définitions de base}}{29}{subsection.2.4.1}%
+\contentsline {subsection}{\tocsubsection {}{2.4.2}{Calculs des fonctions de Wannier}}{29}{subsection.2.4.2}%
+\contentsline {subsection}{\tocsubsection {}{2.4.3}{Interpolation de Wannier}}{29}{subsection.2.4.3}%
+\contentsline {section}{\tocsection {}{2.5}{Photons}}{29}{section.2.5}%
+\contentsline {subsection}{\tocsubsection {}{2.5.1}{Quantification du champ électromagnétique}}{29}{subsection.2.5.1}%
+\contentsline {subsection}{\tocsubsection {}{2.5.2}{Couplage électron-photon}}{29}{subsection.2.5.2}%
+\contentsline {chapter}{\tocappendix {Annexe}{}{Bibliographie}}{30}{appendix*.6}%

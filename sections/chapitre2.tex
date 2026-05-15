@@ -1,0 +1,505 @@
+% !TEX root = ../master_thesis.tex
+\chapter{Préliminaires théoriques}
+Dans ce chapitre, nous détaillons les fondements théoriques qui sont nécessaires pour comprendre la théorie de la spectroscopie Raman et les travaux de ce mémoire. Nous partons de l'Hamiltonien général d'un système de matière condensée, les difficultés et complications que sa résolution amènent, ainsi que la nécessité de faire des approximations. Cela nous amène à découpler le problème en deux parties : une partie électronique et une partie ionique. Nous verrons comment résoudre ces deux parties. Nous introduisons également les fonctions de Wannier qui nous seront fort utiles dans les calculs numériques de ce mémoire. Finalement, nous introduisons brièvement la théorie quantique de la lumière et comment cette dernière se couple aux électrons du système. 
+\section{Hamiltonien général en physique de la matière condensée}
+\label{sec:2.1}
+Toutes l'information d'un système quantique est contenue dans la fonction d'onde $\Psi$ et sa connaissance nous donne accès à toutes les propriétés du système. Pour la trouver, il faut résoudre l'équation de Schrödinger
+\begin{equation}
+    H\Psi = E\Psi,
+\end{equation}
+où $H$ est l'opérateur qui représente l'énergie totale du système et $E$ est l'énergie totale. Les systèmes qui nous intéressent sont des solides composés d'atomes arrangés périodiquement sur un réseau cristallin et ces atomes sont constitués d'électrons chargés négativement et de noyaux chargés positivement. Ce sont généralement les électrons de valence des atomes qui contribuent aux propriétés physiques et aux réactions chimiques. Les électrons de coeur, fortement liés aux noyaux et peu sensibles à l'environnement chimique, sont traités conjointement avec les noyaux pour former ce que nous appelons des ions.  Les ions ont une masse $M_I$ qui est la même que celle des noyaux correspondants puisque les électrons ont une masse négligeable comparée à celle des noyaux et une pseudo-charge $Z_I$ qui est la charge du noyau diminuée de celles des électrons de coeur. Les constituants d'un solide sont tous électriquement chargés donc ils interagissent mutuellement par l'entremise d'un potentiel de Coulomb. L'Hamiltonien général qui représente un ensemble de $N_e$ électrons et $N_i$ ions est donné par
+\begin{equation}
+\begin{split}
+    H &= -\sum_{i=1}^{N_e}\frac{\hbar^2}{2m_e}\nabla_i^2
+        -\sum_{I=1}^{N_i}\frac{\hbar^2}{2M_I}\nabla_I^2
+        +\frac{1}{2}\sum_{\substack{IJ \\ I\neq J}}^{N_i}
+        \frac{Z_IZ_Je^2}{4\pi\varepsilon_0|\rv_I-\rv_J|} \\
+      &\quad +\frac{1}{2}\sum_{\substack{ij \\ i\neq j}}
+        \frac{e^2}{4\pi\varepsilon_0|\rv_i-\rv_j|}+\sum_{i=1}^{N_e}V_\text{ext}(\rv_i).
+\end{split}
+\label{eqn:c1_H_general}
+\end{equation}
+Ici, $i=1,\dots,N_e$ indexe les $N_e$ électrons, $\rv_i$ leur position, $m_e$ leur masse et $-e$ leur charge ($e>0$). L'indice $I=1,\dots,N_i$ désigne les $N_I$ ions, $\rv_I$ leur position, $M_I$ leur masse et $Z_I$ leur pseudo-charge. Nous reconnaissons, dans l'ordre, l'énergie cinétique des électrons, l'énergie cinétique des ions, la répulsion Coulombienne entre les ions, la répulsion Coulombienne entre les électrons et finalement l'attraction Coulombienne entre les électrons et les ions, que nous avons remplacé par une forme plus générale $V_\text{ext}(\rv)$. Le potentiel externe inclut l'interaction des électrons avec tous les ions et sera remplacé par un pseudo-potentiel dans la section \ref{sec:PP}. Pour spécifier un solide en particulier, il faut donner la position des $N_i$ ions $\{\rv_I\}$ ainsi que leur composition chimique \textit{i.e.} leur masse et leur pseudo-charge. Finalement, nous notons que l'Hamiltonien ci-haut n'est que la forme la plus simple possible. De fait, il se peut qu'il y ait d'autres termes qui contribuent à l'énergie du système \textit{e.g.} un champ magnétique, un couplage spin-orbite, un couplage entre les électrons et les vibrations des ions, ou encore un couplage entre les électrons et les impuretés présentes dans le cristal. Dans ce mémoire, nous verrons comment traiter des termes supplémentaires aux chapitres \ref{chap:4} et \ref{chap:5}, mais pour l'instant concentrons-nous sur la forme plus simple.
+
+Bien qu'il soit relativement facile de poser le problème, sa résolution l'est beaucoup moins. Nous faisons face ici à un problème à $N=N_e+N_i$ corps qui sont tous couplés entre eux par l'interaction Coulombienne entre les particules chargées. La fonction d'onde du système $\Psi(\{\rv_i\},\{\rv_I\})$ est une fonction à $3N$ variables qui s'obtient en résolvant une équation différentielle partielle à $3N$ variables couplées. Cela laisse présager des difficultés. Imaginons un instant que nous avons un système de 10 noyaux et électrons -- 10 particules au total -- et que nous discrétisons l'espace dans une grille de $10\times10\times10=10^3$ points. La fonction d'onde dépend de la position des 10 particules simultanément : il faut $(10^3)^{10}=10^{30}$ points pour écrire la fonction d'onde. Pour la stocker en mémoire avec des nombres complexes en double précision (16 octets par point), il faut $10^{30}\times 16$ octets $=1.6\times 10^{31}$ octets. Pour mettre ce nombre gigantesque en perspective, la totalité des données stockées par l'humanité est estimée à environ $10^{23}$ octets \cite{hilbertWorldsTechnologicalCapacity2011}. Il faudrait donc 100 millions de fois plus de stockage que tout ce que l'humanité a jamais enregistré pour stocker une fonction d'onde pour dix particules! Notons que nous n'avons même pas encore tenté de résoudre le problème, on parle simplement de représenter la solution en mémoire! Et encore, ce n'est pas tout : un solide macroscopique a de l'ordre de $10^{23}$ atomes par cm$^{3}$ \cite{alloulIntroductionPhysicsElectrons2011a} et le nombre d'octets de mémoire augmente exponentiellement avec le nombres de particules. De plus, nous voulons généralement des grilles beaucoup plus fines que $10^3$ points. Clairement, de par la complexité cauchemardesque du problème, une solution directe de l'équation de Schrödinger pour un solide macroscopique est tout simplement impossible. Il est nécessaire de réduire la complexité du problème en introduisant des approximations.
+\subsection{Approximation de Born-Oppenheimer}
+Une partie de la complexité vient du fait qu'il y a deux types de particules qui s'attirent mutuellement en raison de leur charge opposée : les électrons et les ions. Or, les ions ont généralement une masse beaucoup plus grande que les électrons ($M_I/m_e \approx 10^4$--$10^5$). Les électrons, beaucoup plus légers, peuvent suivre les noyaux de façon quasi-instantanée. C'est-à-dire que les électrons restent dans leur état fondamental lors d'un déplacement des noyaux. Dans le jargon, nous disons que les électrons suivent les ions \textit{adiabatiquement}. Du point de vue des électrons, cela veut dire que les noyaux sont quasi-statiques. Il est donc possible de découpler le problème en deux parties : une partie électronique avec des positions ionique fixes\footnote{Bien sûr, dans la vraie vie les ions ne sont pas fixes. Ils oscillent autour d'une position d'équilibre à cause de la température notamment. Nous discutons des limitations de l'approximation de Born-Oppenheimer à la fin de cette section.} et une partie ionique qui se résout une fois le problème électronique résolu. C'est l'approximation adiabatique de Born-Oppenheimer \cite{bornZurQuantentheorieMolekeln1927}. Mathématiquement, ce découplage entre les degrés de libertés électroniques et ceux des noyaux se traduit par la séparation de la fonction totale $\Psi$ en un produit de fonction d'onde électronique et ionique
+\begin{equation}
+    \Psi(\{\rv_i\},\{\rv_I\})=\psi(\{\rv_i\};\{\rv_I\})\phi(\{\rv_I\}),
+    \label{eqn:c1_BO}
+\end{equation}
+où $\psi(\{\rv_i\};\{\rv_I\})$ est une fonction d'onde pûrement électronique et $\phi(\{\rv_I\})$ est une fonction d'onde pûrement ionique. Nous incluons les coordonnées ioniques $\{\rv_I\}$ dans la fonction d'onde électronique après le point-virgule pour expliciter le fait que le problème électronique doit être résolu pour des positions ioniques fixes. Ce ne sont que des paramètres pour la fonction d'onde électronique. 
+
+L'Hamiltonien se sépare également en deux parties : $H=H_e+H_i$. Pour la partie électronique, les ions sont fixes donc nous négligeons leur énergie cinétique et le problème à résoudre est
+\begin{equation}
+    H_e\psi(\{\rv_i\};\{\rv_I\})=E_e\psi(\{\rv_i\};\{\rv_I\}),
+    \label{eqn:c1_problème_électronique}
+\end{equation}
+où l'Hamiltonien électronique est
+\begin{equation}
+    H_e=\underbrace{-\sum_{i=1}^{N_e}\frac{\hbar^2}{2m_e}\nabla_i^2}_{\equiv T}+\underbrace{\frac{1}{2}\sum_{\substack{ij \\ i\neq j}}^{N_e}\frac{e^2}{4\pi\varepsilon_0|\rv_i-\rv_j|}}_{\equiv V_\text{int}}+\sum_{i=1}^{N_e}V_\text{ext}(\rv_i),
+    \label{eqn:c1_He}
+\end{equation}
+où nous avons défini l'énergie cinétique des électrons par $T$ et l'interaction mutuelle entre eux par $V_\text{int}$. Une fois le problème électronique résolu, nous permettons aux ions de bouger et nous résolvons le problème ionique
+\begin{equation}
+    H_i\phi(\{\rv_I\})=E\phi(\{\rv_I\}),
+    \label{eqn:c1_problème_ionique}
+\end{equation}
+où l'Hamiltonien ionique est
+\begin{equation}
+    H_i = -\sum_{I=1}^{N_1}\frac{\hbar^2}{2M_I}\nabla_I^2+\underbrace{\frac{1}{2}\sum_{\substack{IJ \\ I\neq J}}^{N_i}\frac{Z_IZ_Je^2}{4\pi\varepsilon_0|\rv_I-\rv_J|}+E_e}_{\equiv U}.
+    \label{eqn:c1_Hi}
+\end{equation}
+Nous avons introduit ici le potentiel effectif des ions $U$. Il contient la répulsion Coulombienne des ions ainsi que l'énergie du niveau fondamental des électrons $E_e$. Ce sont les électrons qui assurent la cohésion entre les ions : sans eux, la répulsion Coulombienne entre les ions ne serait pas compensée et aucun solide stable ne pourrait exister. L'approximation de Born-Oppenheimer ayant découplé le problème en deux parties indépendantes, nous nous consacrons dans la section~\ref{sec:2.2} à la résolution de la partie électronique via la théorie de la fonctionnelle de la densité, puis dans la section~\ref{sec:2.3} à la partie ionique via la théorie de la fonctionnelle de la densité perturbative.
+
+Pour terminer cette section nous mentionnons que l'approximation de Born-Oppenheimer est une excellente approximation dans la plupart des situations, mais elle a ses limites. Comme nous résolvons le problème électronique pour des positions ioniques fixes, elle néglige le couplage entre les électrons et les vibrations des ions -- le couplage électron-phonon -- qui est responsable, entre autres, de la diffusion Raman. Elle devient également invalide lorsque le gap entre l'état fondamental et le premier état excité des électrons est plus petit que l'énergie caractéristique des vibrations ioniques \cite{pisanaBornOppenheimerBreakdownGraphene2007}. Ceci est particulièrement pertinent pour le graphène qui a un gap de zéro aux points $\Kv$ et $\Kv'$ de la zone de Brillouin, ce qui est nécessairement plus petit que toute énergie de vibration 
+ionique non nulle, violant ainsi systématiquement la condition de 
+validité de Born-Oppenheimer. Il y a deux façons de traiter ces effets non-adiabatiques : rester dans l'approximation adiabatique de Born-Oppenheimer et traiter les corrections non-adiabatiques perturbativement ou bien ne pas faire l'approximation adiabatique et utiliser la formulation plus générale de Born et Huang \cite{bornDynamicalTheoryCrystal1998} qui développe la fonction d'onde exacte sur la base complète des états électroniques. Tous les travaux dans ce mémoire sont faits dans le régime de Born-Oppenheimer et les corrections non-adiabatiques, qui sont non négligeables pour le graphène, sont incluses perturbativement dans le chapitre \ref{chap:eph} sur le couplage électron-phonon.
+\section{Partie électronique : théorie de la fonctionnelle de la densité}
+\label{sec:2.2}
+Dans cette section nous nous attaquons au problème électronique défini par l'Hamiltonien de l'équation \ref{eqn:c1_He}, que nous répétons ici par soucis d'exhaustivité
+\begin{equation}
+    H_e = T+V_\text{int}+\sum_{i=1}^{N_e}V_\text{ext}(\rv_i).
+\end{equation}
+Le problème, qui ne contient plus les degrés de liberté ioniques, est \textit{a priori} plus facile à résoudre que le problème initial. Cependant, en inspectant l'Hamiltonien de plus près, nous voyons tout de suite que ce n'est pas le cas : le deuxième terme, \textit{i.e.} la répulsion électrique entre les électrons, couple tous les électrons du système entre eux et les mêmes arguments utilisés à la section \ref{sec:2.1} sur le stockage de la fonction d'onde en mémoire s'appliquent malheureusement ici. L'histoire derrière les électrons en interaction est extrêmement riche. Les physiciens et chimistes ont passé des décennies à développer des méthodes de calcul permettant de traiter ce problème : des méthodes basées sur les fonctions d'onde telles que les méthodes d'Hartree \cite{hartreeWaveMechanicsAtom1928,hartreeWaveMechanicsAtom1928a} et d'Hartree-Fock \cite{fockNaeherungsmethodeZurLoesung1930,slaterNoteHartreesMethod1930,diracQuantumMechanicsManyelectron1929}, des méthodes ultra-sophistiquées basées sur les fonctions de Green \cite{martinTheoryManyParticleSystems1959,AbrikosovAAGorkov} héritées des premiers travaux sur l'électrodynamique quantique ou encore des méthodes stochastiques comme le Monte-Carlo quantique \cite{ceperleyGroundStateElectron1980}. Parmi toutes ces méthodes, une a révolutionné le domaine de la structure électronique : la théorie de la fonctionelle de la densité (DFT, de l'anglais \textit{Density Functional Theory}). Les arguments présentés ici suivent ceux du livre de référence de Richard M. Martin \cite{martinElectronicStructureBasic2004} et ceux de l'ouvrage de Steven M. Girvin et Kun Yang \cite{girvinModernCondensedMatter2019}. 
+\subsection{Théorèmes de Hohenberg et Kohn}
+Les fondements de la DFT ont été édifiés par Pierre Hohenberg et Walter Kohn (HK) dans leur article de 1964 \cite{hohenbergInhomogeneousElectronGas1964} où ils énoncent et prouvent les deux théorèmes ci-bas. Le premier théorème de HK se lit : 
+\begin{theo}
+    \label{thm:hk1}
+    Pour n'importe quel système de particules en interaction sujettes à un potentiel externe $V_\text{ext}(\rv)$, le potentiel externe est uniquement déterminé, sauf pour une constante, par la densité de l'état fondamental $n_0(\rv)$.
+\end{theo}
+\noindent
+Ce théorème est facilement prouvé par l'absurde en invoquant le principe variationnel de la mécanique quantique. On peut imaginer comment un potentiel externe peut donner lieu à une certaine configuration électronique et donc une densité $n(\rv)$. Le premier théorème HK démontre que le chemin inverse est tout aussi vrai, \textit{i.e.} il y a une bijection entre le potentiel externe et la densité électronique de l'état fondamental. Un corollaire très important découle de ce premier théorème:
+\begin{cor}
+    \label{cor:hk1}
+    Comme l'Hamiltonien est complètement déterminé par la densité électronique hormis un décalage constant de l'énergie, il suit que les fonctions d'onde à plusieurs corps pour tous les états (fondamental et excités) sont déterminées. Par conséquent, toutes les propriétés du système sont complètement déterminées par la densité de l'état fondamental $n_0(\rv)$.
+\end{cor}
+\noindent
+C'est une avancée conceptuelle et théorique exceptionnelle puisque au lieu de déterminer les propriétés d'un système à partir de la fonction d'onde $\psi(\{\rv_i\})$, une fonction de $3N_e$ variables dont la complexité croit exponentiellement avec le nombre d'électrons $N_e$ (qui est un nombre extrêmement grand pour un solide macroscopique), nous pouvons déterminer les propriétés du système à partir de la densité de l'état fondamental $n(\rv)$, une fonction qui ne dépend que de trois variables, peu importe le nombre d'électrons! À première vue cela est étonnant, car la densité électronique est normalement calculée à partir de la fonction d'onde
+\begin{equation}
+    n(\rv)=N_e\int d^3\rv_2\dots d^3\rv_{N_e}|\psi(\rv,\rv_2,\dots,\rv_{N_e})|^2,
+\end{equation}
+où l'intégration se fait sur toutes les coordonnées électroniques sauf une ($\rv\equiv\rv_1$ ici, qui est un choix arbitraire). De plus, le premier théorème de HK ne fournit pas de prescription pour déterminer la densité sans faire appel à la fonction d'onde à plusieurs corps. À ce stade, il semble que nous n'ayons pas fait beaucoup de progrès. Le deuxième théorème de HK et son corollaire se lisent : 
+\begin{theo}
+    \label{thm:hk2}
+    Il est possible de définir une fonctionnelle universelle pour l'énergie $E[n]$ en termes de la densité électronique $n(\rv)$ qui est valide pour n'importe quel $V_\text{ext}(\rv)$. Pour chaque $V_\text{ext}(\rv)$, l'énergie exacte de l'état fondamental du système est le minimum global de cette fonctionnelle et la densité qui la minimise est celle de l'état fondamental $n_0(\rv)$. 
+\end{theo}
+\begin{cor}
+    \label{cor:hk2}
+    La fonctionelle E[n] à elle seule suffit à déterminer l'énergie et la densité exactes de l'état fondamental. 
+\end{cor}
+\noindent
+Le terme \textit{fonctionnelle} ici fait référence à une application de l'espace des fonctions vers les nombres réels, contrairement aux \textit{fonctions} qui sont des applications des nombres réels vers des nombres réels. Nous utilisons des crochets pour écrire une fonctionnelle $E[n]$ et des parenthèses pour écrire une fonction $n(\rv)$. L'idée est que puisque toutes les propriétés du système sont déterminées par la densité selon le premier théorème de HK, toutes ces propriétés, incluant l'énergie totale, peuvent être écrites comme étant une fonctionnelle de la densité $n(\rv)$
+\begin{align}
+    E[n]&=\bra{\psi[n]}T+V_\text{int}\ket{\psi[n]}+\int d^3\rv\,V_\text{ext}(\rv)n(\rv),\notag\\
+    &= T[n]+V_\text{int}[n]+\int d^3\rv\,V_\text{ext}(\rv)n(\rv),\notag\\
+    &\equiv F_\text{HK}[n]+\int d^3\rv\,V_\text{ext}(\rv)n(\rv).
+\end{align}
+Ici, nous avons défini la fonctionnelle de HK, $F_\text{HK}\equiv T+V_\text{int}$, qui ne dépend que de l'énergie cinétique et l'énergie d'interaction électron-électron du système d'électrons. Comme cette fonctionnelle ne dépend pas de paramètre externe, elle est universelle dans le sens qu'elle est la même pour tous les systèmes d'électrons, peu importe le potentiel externe : la configuration des ions, un champ électrique, ou toute autre perturbation externe. En théorie, nous pouvons déterminer la densité de l'état fondamental en minimisant la fonctionnelle d'énergie $E[n]$ (théorème de HK II), puis utiliser cette densité pour calculer n'importe quelles propriétés du système (théorème de HK I), pourvu que nous connaissions la forme de la fonctionnelle $F_\text{HK}$. En pratique, la forme exacte de $F_\text{HK}$ n'est pas connue et étant donné qu'elle est la même pour tous les systèmes d'électrons interagissants, il est attendu que cette fonctionnelle soit d'une complexité fantastique. Il va sans dire que quiconque trouverait sa forme exacte meriterait certainement un prix Nobel. Le deuxième théorème de HK nous fournit donc une prescription pour déterminer la densité de l'état fondamental du système, mais n'offre aucune piste pour calculer la fonctionnelle $F_\text{HK}$ dans laquelle toute la complexité du problème à été reléguée. Encore une fois, il semble que nous n'ayons pas fait beaucoup de progrès.
+\vspace{-9pt}
+\subsection{Méthode de Kohn-Sham}
+Quelques mois après la publication de l'article de HK, Walter Kohn et Lu Jeu Sham (KS) publient un article \cite{kohnSelfConsistentEquationsIncluding1965} en 1965 dans lequel ils proposent une approche pratique pour contourner le problème de la fonctionnelle universelle $F_\text{HK}$ et posent les équations qui sont à la base des calculs DFT actuels.\\
+\noindent
+\textbf{Système auxiliaire de Kohn-Sham}
+
+Le génie de KS se trouve dans l'idée d'introduire un système auxiliaire -- le système auxiliaire de KS -- de $N_e$ électrons \textit{sans interaction} soumis à un potentiel effectif local $V_\text{eff}(\rv)$ choisi de sorte que la densité électronique de ce système auxiliaire soit identique à celle du système réel en interaction et de résoudre le problème dans ce système auxiliaire. Le premier théorème de HK  garantit l'existence de ce potentiel effectif puisqu'il établit une bijection entre le potentiel externe et la densité de l'état fondamental. Ce système est beaucoup plus facile à traiter puisque en l'absence d'interaction entre les électrons, la fonction d'onde à plusieurs corps se factorise en un déterminant de Slater (un produit antisymétrisé, comme l'exige la statistique de Fermi-Dirac pour les électrons) de $N_e$ fonctions d'onde électronique à un corps $\psi_i(\rv)$. Puisque les électrons sont tous découplés dans le système auxiliaire, la densité de ce système n'est que la somme du carré des fonctions d'onde à un corps
+\begin{equation}
+    \label{eqn:c1_nKS}
+    n(\rv) = \sum_{i=1}^{N_e}|\psi_i(\rv)|^2=n_0(\rv),
+\end{equation}
+où nous avons explicité que la densité du système auxiliaire doit être la même que le système réel en interaction. Il est également facile de calculer exactement l'énergie cinétique d'un système d'électrons non-interagissants, elle correspond à la somme de l'énergie cinétique de chaque particule: 
+\begin{equation}
+    \label{eqn:c1_TS}
+    T_\text{S}=-\frac{\hbar^2}{2m_e}\sum_{i=1}^{N_e}\bra{\psi_i}\nabla^2\ket{\psi_i}.
+\end{equation}
+Bien sûr, ce terme n'est pas tout à fait égal à l'énergie cinétique d'un système d'électrons en interaction. KS ont aussi inclus l'énergie d'interaction électron-électron de manière effective dans leur système auxiliaire en calculant l'énergie d'Hartree \cite{hartreeWaveMechanicsAtom1928,hartreeWaveMechanicsAtom1928a,fockNaeherungsmethodeZurLoesung1930}
+\begin{equation}
+    \label{eqn:c1_EH}
+    E_\text{H}[n]=\frac{1}{2}\int d^3\rv\,d^3\rv'\,\frac{e^2}{4\pi\varepsilon_0}\frac{n(\rv)n(\rv')}{|\rv-\rv'|}.
+\end{equation}
+L'énergie d'Hartree correspond à l'énergie classique de Coulomb de 
+l'interaction d'une densité de charge avec elle-même. C'est une 
+approximation de champ moyen de la vraie interaction électron-électron. Le terme d'Hartree contient notamment une contribution non physique d'auto-interaction : un électron interagissant avec sa propre densité de charge. Il est évident que nous faisons des erreurs en remplaçant $T[n]$ et $V_\text{int}[n]$ par $T_\text{S}[n]$ et $E_\text{H}[n]$ dans la fonctionnelle universelle $F_\text{HK}$. Pour pallier ces erreurs, KS ont introduit la fonctionnelle d'échange-corrélation (XC) $E_\text{XC}[n]$ qui contient toutes les corrections d'interaction électron-électron qu'il faut apporter à $T_\text{S}[n]$ et $E_\text{H}[n]$ pour retomber sur la fonctionnelle $F_\text{HK}$ exacte. Dans la méthode de KS, la fonctionnelle universelle s'écrit
+\begin{equation}
+    \label{eqb:c1_FHK_KS}
+    F_\text{HK}[n]=T_\text{S}[n]+E_\text{H}[n]+E_\text{XC}[n],
+\end{equation}
+de sorte que l'énergie totale s'écrit maintenant
+\begin{equation}
+    \label{eqn:c1_EKS}
+    E_\text{KS}[n]=T_\text{S}[n]+E_\text{H}[n]+E_\text{XC}[n]+\int d^3\rv\,V_\text{ext}(\rv)n(\rv).
+\end{equation}
+Nous avons atteint notre objectif qui était de traiter les complications engendrées par la fonctionnelle universelle. Cependant, les célébrations sont de courte durée, car il est bien clair que toute la complexité du problème à plusieurs corps en interaction a encore une fois été reléguée, cette fois dans la fonctionnelle XC $E_\text{XC}[n]$. En théorie, la formulation de la DFT est exacte, pourvu que nous trouvions la forme exacte de la fonctionnelle XC. En pratique, la forme exacte de cette fonctionnelle n'est pas connue et étant donné qu'elle aussi est une fonctionnelle universelle, on s'attend à une forme remarquablement complexe. Quiconque trouverait sa forme exacte mériterait certainement un deuxième prix Nobel. Heureusement, il a été contasté qu'il existe des approximations à la fonctionnelle XC qui donnent de très bon résultats. Une partie du succès retentissant de la DFT dans la détermination de propriétés de matériaux à partir des premiers principes est dûe au développement de bonnes approximations pour $E_\text{XC}$ et ce développement est d'ailleurs encore aujourd'hui un domaine de recherche très actif. Nous discutons brièvement des approximations les plus courantes ainsi que celle utilisée pour les calculs de ce mémoire dans la section \ref{sec:XC}. Finalement, un mot sur la signification d'\textit{échange} et \textit{corrélation}. Les électrons sont soumis à deux types de \og corrélations \fg. En premier lieu, il y a les corrélations dues à l'interaction Coulombienne qui vont au delà de l'approximation de champ moyen de Hartree : c'est ce que nous appelons la \textit{corrélation}. En second lieu, il y a aussi le principe d'exclusion de Pauli qui repousse les électrons même en absence d'interaction Coulombienne : c'est ce que nous appelons l'\textit{échange}, une \og corrélation\fg  \,d'origine purement statistique due à la nature fermionique des électrons.\\
+\begin{figure}[t]
+    \centering
+    \input{tikz/ks.tex}
+    \caption[Représentation schématique du système auxiliaire de Kohn-Sham.]{Représentation schématisé du système auxiliaire de Kohn-Sham. La notation HK$_0$ désigne les théorèmes de HK appliqués au système auxiliaire non-interagissant. La flèche double KS donne la connexion entre les deux systèmes de sorte que chaque boîte du schéma soit reliée à toutes les autres. En conséquence, la solution du système auxiliaire donne, en théorie, toutes les propriétés du système à plusieurs corps en interaction. Figure adaptée de \cite{martinElectronicStructureBasic2004}.}
+    \label{fig:ks}
+\end{figure}
+\noindent
+\textbf{Équations de Kohn-Sham}
+
+Le deuxième théorème de HK garantit que l'énergie de l'état fondamental du système auxiliaire de KS est le minimum de la fonctionnelle d'énergie $E_\text{KS}[n]$ définie dans l'équation \ref{eqn:c1_EKS} et la densité qui la minimise est celle de l'état fondamental $n_0(\rv)$. La solution du système de KS est donc un problème de minimisation par rapport à la densité (ou, alternativement, le potentiel effectif $V_\text{eff}(\rv)$). Puisque $T_S$ est explicitement une fonctionnelle des fonctions d'ondes à un corps et tous les autres termes sont des fonctionnelles de la densité, nous pouvons varier la fonctionnelle d'énergie par rapport aux fonctions d'onde et utiliser la règle de dérivation en chaine pour arriver à l'équation variationnelle
+\begin{equation}
+    \label{eqn:c1_Evar}
+    \frac{\delta E_\text{KS}}{\delta\psi^*_i(\rv)}=\frac{\delta T_\text{S}}{\delta\psi^*_i(\rv)}+\left[\frac{\delta}{\delta n(\rv)}\int d^3\rv\,V_\text{ext}(\rv)n(\rv)+\frac{\delta E_\text{H}}{\delta n(\rv)}+\frac{\delta E_\text{XC}}{\delta n(\rv)}\right]\frac{\delta n(\rv)}{\delta\psi^*_i(\rv)}=0
+\end{equation}
+où les fonctions d'onde sont soumises aux contraintes d'orthonormalisation
+\begin{equation}
+    \label{eqn:c1_psi_contrainte}
+    \bra{\psi_i}\ket{\psi_j}=\delta_{ij}.
+\end{equation}
+En calculant les dérivées fonctionnelles dans l'équation \ref{eqn:c1_Evar} et en imposant les contraintes de l'équation \ref{eqn:c1_psi_contrainte}, nous arrivons aux fameuses équations de KS
+\begin{equation}
+    \label{eqn:c1_KS}
+    H_\text{KS}\psi_i=\varepsilon_i\psi_i,
+\end{equation}
+où $\varepsilon_i$ est l'énergie de la fonction d'onde a un électron $\psi_i$ et $H_\text{KS}$ est l'Hamiltonien effectif de KS
+\begin{equation}
+    \label{eqn:c1_HKS}
+    H_\text{KS}=-\frac{\hbar^2}{2m_e}\nabla^2+V_\text{KS}(\rv).
+\end{equation}
+Il est important de souligner ici que $H_\text{KS}$ est un Hamiltonien effectif à une particule : c'est la grande simplification de la méthode de KS. Le problème à $N_e$ corps en interaction a été reformulé en un problème de $N_e$ équations indépendantes à une seule particule. Autrement dit, les arguments de la section \ref{sec:2.1} menant à une complexité variant exponentiellement avec le nombre d'électrons $N_e$ ne s'appliquent plus! En effet, un problème avec $N_e$ équations indépendantes a une complexité qui varie linéairement avec $N_e$. C'est cette réduction exponentielle de la complexité qui rend les calculs DFT praticables. Chaque électron ne dépend que la densité électronique via le potentiel effectif de KS $V_\text{KS}(\rv)$ qui est définit comme étant
+\begin{align}
+    \label{eqn:c1_VKS}
+    V_\text{KS}(\rv)&=V_\text{ext}(\rv)+\frac{\delta E_\text{H}}{\delta n(\rv)}+\frac{\delta E_\text{XC}}{\delta n(\rv)}\notag\\
+    &=V_\text{ext}(\rv)+V_\text{H}(\rv)+V_\text{XC}(\rv),
+\end{align}
+et est le minimum du potentiel effectif du système auxiliaire $V_\text{eff}(\rv)|_\text{min}=V_\text{KS}(\rv)$, \textit{i.e.} est le potentiel effectif évalué à la densité de l'état fondamental. Le deuxième théorème de HK garantit que la densité de l'état fondamental détermine uniquement le potentiel au minimum, de sorte qu'il existe toujours un potentiel de KS unique pour n'importe quel système d'électrons en interaction donné.
+
+Une fois la fonctionnelle XC choisie, nous pouvons résoudre les équations de KS pour la densité de l'état fondamental. Cependant, nous voyons que ces équations sont implicites : le potentiel $V_\text{KS}(\rv)$ dépend de la densité $n_0(\rv)$ via $V_\text{H}(\rv)$ et $V_\text{XC}(\rv)$, mais la densité est elle-même obtenue en résolvant les équations KS avec ce même potentiel. Le problème est circulaire et doit être résolu de manière auto-cohérente. Cette boucle d'autocohérence se nomme la méthode du champ auto-cohérent (SCF) et illustrée à la figure \ref{fig:scf} : 
+\begin{enumerate}
+    \item Commencer avec une estimation initiale de la densité $n_\text{in}(\rv)$,
+    \item Calculer le potentiel effectif 
+    \[V_\text{eff}(\rv)=V_\text{ext}(\rv)+V_\text{H}(\rv)+V_\text{XC}(\rv),\]
+    \item Résoudre les équations de KS pour obtenir les fonctions d'onde à une particule $\psi_i$
+    \[\left(-\frac{\hbar^2}{2m_e}\nabla^2+V_\text{eff}(\rv)\right)\psi_i=\varepsilon_i\psi_i,\]
+    \item Calculer la nouvelle densité à partir des fonctions d'onde $\psi_i$
+    \[n_\text{out}(\rv)=\sum_{i=1}^{N_e}|\psi_i(\rv)|^2,\]
+    \item Si la différence entre $n_\text{in}$ et $n_\text{out}$ est inférieure à une tolérance spécifiée, passer à l'étape 6. Autrement, répéter les étapes 3-5,
+    \item Calculer les propriétés de l'état fondamental du système.
+\end{enumerate}
+\begin{figure}[t]
+    \centering
+    \input{tikz/scf.tex}
+    \caption[Représentation schématique du cycle SCF pour la solution des équation Kohn-Sham.]{Représentation schématique du cycle SCF pour la solution des équation Kohn-Sham. Figure adaptée de \cite{martinElectronicStructureBasic2004}.}
+    \label{fig:scf}
+\end{figure}
+En pratique, utiliser directement la nouvelle densité en entrée de la prochaine itération mène à des instabilités numériques. En effet, la boucle SCF est plus stable et converge plus vite lorsqu'on utilise un mélange de $n_\text{in}$ et $n_\text{out}$ pour construire la nouvelle densité d'entrée. C'est ce que nous appelons un schéma de \textit{mixing} : plus de détails à la section \ref{sec:PW}. Par convention, nous mettons $V_\text{KS}$ dans les équations formelles de KS (résultat convergé) et $V_\text{eff}$ dans la boucle SCF puisque le résultat n'est pas convergé. Une fois la boucle SCF terminée, nous avons la densité de l'état fondamental et les fonctions d'onde à un corps $\psi_i$ et il est possible de calculer toutes les propriétés de l'état fondamental des électrons, confirmant ainsi le corollaire du premier théorème de HK.
+
+Nous notons également que les énergies $\varepsilon_i$ des fonctions d'onde a un électron $\psi_i(\rv)$, \textit{i.e.} les valeurs propres de KS, n'ont pas de signification physique. En effet, les valeurs propres ne sont \textit{pas} les énergies nécessaires pour ajouter ou retirer des électrons du système à plusieurs corps en interaction. Ce sont formellement des multiplicateurs de Lagrange introduit pour satisfaire la contrainte d'orthonormalisation. Il n'y a qu'une exception : la plus haute valeur propre correspond à moins l'énergie d'ionisation $-I$, un résultat connu sous le nom de théorème de Janak \cite{janakProof1978}. Néanmoins, en pratique, ces valeurs propres sont bien définies dans la cadre de la théorie de KS ont sont utilisées pour extraire de l'information physique, notamment pour calculer les structures de bandes électroniques et les densités d'états. Cet usage est un abus formel de la théorie, dont la manifestation la plus connue est la sous-estimation systématique du grap électronique par la DFT, \textit{i.e.} la différence en énergie entre le dernier état occupé et le premier état inoccupé, par rapport aux valeurs expérimentales \cite{perdewPhysicalContentExact1983,shamDensityFunctionalTheoryEnergy1983}.
+
+Le succès extraordinaire de la méthode de KS est dûe à la séparation du problème d'électron en interaction en deux parties : les équations découplées traitables de KS et le succès des approximations des termes XC $E_\text{XC}[n]$ et $V_\text{XC}(\rv)$ qui sont le sujet de la prochaine section, la section \ref{sec:XC}. Les articles de HK \cite{hohenbergInhomogeneousElectronGas1964} et de KS \cite{kohnSelfConsistentEquationsIncluding1965} sont toujours parmi les plus cités de la \textit{Physical Review}.
+\subsection{Fonctionnelles d'échange-corrélation}
+\label{sec:XC}
+Le succès remarquable de la DFT comme méthode de choix pour le calcul des propriétés des matériaux repose en grande partie sur le développement d'approximations pour la fonctionnelle d'échange-corrélation (XC) $E_\text{XC}[n]$ qui sont précises pour un grande variété de systèmes. Le choix de l'approximation pour la fonctionnelle XC a une influence significative sur les résultats des calculs DFT et elles sont organisées en une hiérarchie -- l'échelle de Jacob introduite par Perdew \cite{perdewJacobsLadderDensity2001} illustrée dans la figure \ref{fig:jacob} -- où chaque échelon incorpore davantage d'information sur la densité électronique, gagnant en précision au prix d'un coût computationel accru. Dans cette section, nous présenterons brièvement les deux premiers échelons de cette hiérarchie et justifierons notre choix de la fonctionnelle utilisée pour tous les calculs de ce mémoire. 
+\begin{figure}[h]
+    \centering
+    \input{tikz/jacob_ladder.tex}
+    \caption[L'échelle de Jacob des approximations pour la fonctionnelle d'échange-corrélation.]{L'échelle de Jacob des approximations pour la fonctionnelle d'échange-corrélation. Chaque échelon de l'échelle incorpore davantage d'information sur le système électronique gagnant en précision au prix d'un coût computationel accru. Le deuxième échelon est illustré en couleur, car nous utilisons une fonctionnelle de ce niveau pour tous les calculs de ce mémoire. Figure adaptée de \cite{perdewJacobsLadderDensity2001}.}
+    \label{fig:jacob}
+\end{figure}
+Le nom \og \textit{échelle de Jacob} \fg\, est une référence biblique : Jacob rève d'une échelle qui relie la Terre au Paradis. Perdew utilise cette métaphore : la Terre est le monde sans la DFT (la méthode d'Hartree), le Paradis est la solution exacte et chaque échelon nous rapproche du ciel.\\
+\noindent
+\textbf{Premier échelon : approximation de la densité locale}
+
+Le premier échelon de l'échelle de Jacob est l'approximation de la densité locale (LDA, de l'anglais \textit{Local Density Approximation}) proposée par Kohn et Sham eux-mêmes dans leur article fondateur de 1965 \cite{kohnSelfConsistentEquationsIncluding1965}. L'idée centrale de la LDA est d'approximer localement la fonctionnelle XC par celle d'un gaz d'électrons interagissants homogène de même densité
+\begin{equation}
+    E_\text{XC}^\text{LDA}[n]=\int d^3\rv\,n(\rv)\,\varepsilon_\text{XC}^\text{hom}(n),
+    \label{eqn:c1_LDA}
+\end{equation}
+où $\varepsilon_\text{XC}^\text{hom}(n)$ est l'énergie d'échange-corrélation par électron (c'est une densité d'énergie) d'un gaz d'électrons interagissants homogène de densité $n$. La densité d'énergie d'échange-corrélation d'un gaz d'électrons homogène peut être écrite comme la somme de deux contributions : une contribution d'échange $\varepsilon_\text{X}^\text{hom}(n)$ et une partie de corrélation $\varepsilon_\text{C}^\text{hom}(n)$
+\begin{equation}
+    \varepsilon_\text{XC}^\text{hom}(n)=\varepsilon_\text{X}^\text{hom}(n)+\varepsilon_\text{C}^\text{hom}(n).
+    \label{eqn:c1_exc}
+\end{equation}
+La partie d'échange est connue analytiquement \cite{martinElectronicStructureBasic2004} pour le gaz d'électrons homogène et est donnée par
+\begin{equation}
+    \varepsilon_\text{X}^\text{hom}(n)=-\frac{3}{4\pi}\left(\frac{9\pi}{4}\right)^{1/3}\frac{1}{r_s},
+    \label{eqn:c1_ex}
+\end{equation}
+où $r_s$ est le rayon de Wigner-Seitz, défini comme le rayon de la sphère contenant en moyenne un électron pour un gaz de densité $n$
+\begin{equation}
+    r_s = \left(\frac{3}{4\pi n}\right)^{1/3},
+    \label{eqn:c1_rs}
+\end{equation}
+et qui est le paramètre naturel pour caractérisé la densité d'un gaz d'électrons homogène. Les deux dernières expression sont données en unités atomiques de Hartree ($\hbar=m_e=e=4\pi\varepsilon_0=1$). La partie de corrélation $\varepsilon_\text{C}^\text{hom}(n)$ de la densité d'énergie d'échange-corrélation du gaz, quant à elle, n'est pas connue analytiquement. Elle a été calculée, à haute précision, par Ceperley et Alder \cite{ceperleyGroundStateElectron1980} avec la méthode stochastique Monte-Carlo quantique pour différentes valeurs de $r_s$, puis a été ajustée analytiquement par Perdew et Zunger \cite{perdewSelfinteractionCorrectionDensityfunctional1981} par une expression paramétrique en $r_s$ valide sur tout le domaine de densité. Nous référons le lecteur à cet article pour les valeurs explicites de ces paramètres. 
+
+Malgré son apparente simplicité, la LDA connaît un succès remarquable pour une grande variété de systèmes, en particulier les métaux et les semi-conducteurs. Cependant, elle souffre de plusieurs limitations. Premièrement, elle tend à surlier les atomes, phénomène que nous appelons \textit{overbinding}, qui se manifeste par une sous-estimation des constantes du réseau de $1-3\%$ \cite{perdewAtomsMoleculesSolids1992}. Deuxièmement, elle sous-estime systématiquement le gap électronique des isolants et des semi-conducteurs \cite{perdewPhysicalContentExact1983,shamDensityFunctionalTheoryEnergy1983}. Troisièmement, la LDA ne peut décrire les interactions de type van der Waals, qui sont des interactions non-locales à longue portée, absentes par construction dans une fonctionnelle locale \cite{grimmeAccurateDescriptionVan2004,rapcewiczFluctuationAttractionCondensed1991}. Finalement, elle échoue pour les systèmes à forte corrélation électronique, tels que les isolants de Mott, les oxydes de métaux de transition et les terres rares \cite{BasisElectronTheory,imadaMetalinsulatorTransitions1998}. Dans ces systèmes, les électrons des orbitales atomiques $d$ et $f$ sont fortement localisés et leur interaction Coulombienne est si forte qu'elle ne peut pas être traitée de manière perturbative. La LDA prédit, à tort, ces matériaux comme étant des métaux, alors qu'ils sont des isolants expérimentalement. Des méthodes plus sophistiquées, appliquées par-dessus la DFT, comme la DFT+U \cite{anisimovBandTheoryMott1991} ou bien la théorie du champ moyen dynamique (DMFT, de l'anglais \textit{Dynamical Mean Field Theory}) \cite{georgesDynamicalMeanfieldTheory1996} sont nécessaires pour traiter correctement ces systèmes. Ces limitations ont motivé le développement du deuxième échelon de l'échelle de Jacob : l'approximation du gradient généralisé (GGA, de l'anglais \textit{Generalized Gradient Approximation}).\\
+\noindent
+\textbf{Deuxième échelon : approximation du gradient généralisé et la PBE}
+
+L'idée centrale de la GGA est d'aller au-delà de la LDA en incorporant non seulement la densité locale $n(\rv)$, mais aussi son gradient $\nabla n(\rv)$, afin de tenir compte de l'inhomogénéité de la densité électronique
+\begin{equation}
+    E_\text{XC}^\text{GGA}[n]=\int d^3\rv\,n(\rv)\,\left[\varepsilon_\text{X}^\text{hom}(n)\,F_\text{X}(n,\nabla n)+\varepsilon_\text{C}^\text{hom}(n)\,F_\text{C}(n,\nabla n)\right],
+\end{equation}
+où $F_\text{X}$ et $F_\text{C}$ sont les facteurs d'amplification adimensionnels pour l'échange et la corrélation respectivement qui encodent la correction due au gradient et qui vaut $1$ dans la limite de la LDA. Puisque le gradient $\nabla n(\rv)$ encode la variation de la densité au voisinage infinitésimal de $\rv$, la GGA n'est plus 
+strictement locale comme la LDA, mais elle n'est pas non-locale 
+au sens propre du terme non plus. On dit qu'elle est 
+\textit{semi-locale} : elle dépend de la densité et de ses 
+variations locales, mais pas de régions éloignées de $\rv$. La densité d'énergie $\varepsilon_\text{XC}^\text{hom}(n)=\varepsilon_\text{X}^\text{hom}(n)+\varepsilon_\text{C}^\text{hom}(n)$ est de nouveau la densité d'énergie d'échange-corrélation d'un gaz d'électrons homogène et est calculée exactement de la même façon que pour la LDA. Les facteurs d'amplification $F_\text{X}$ et $F_\text{C}$ sont construits de façon à satisfaire un ensemble de conditions exactes connues sur la fonctionnelle XC sans paramètres ajustables empiriques et leur forme fonctionnelle dépend de la fonctionnelle GGA choisie. 
+
+La fonctionnelle GGA la plus répandue est celle développée par Perdew, Burke et Ernzerhof\footnote{Matthias Ernzerhof est un professeur titulaire au département de chimie de l'Université de Montréal.} (PBE) \cite{perdewGeneralizedGradientApproximation1996a}. La fonctionnelle XC PBE donne de très bons résultats pour un vaste ensemble de systèmes, en particulier les solides périodiques, à de moindres coûts computationnels \cite{kurthMolecularSolidstateTests1999}. Pour ces raisons, la fonctionnelle XC PBE est utilisée dans tous les calculs DFT de ce mémoire et nous présentons les expressions propres à la PBE dans cette section, sans toutefois entrer dans les dérivations. Le lecteur est référé à l'article \cite{perdewGeneralizedGradientApproximation1996a} pour tous les détails. En unités atomiques d'Hartree, le facteur de correction pour l'échange est donné par
+\begin{equation}
+    F_\text{X}(n,\nabla n)=1+\kappa-\frac{\kappa}{1+\mu s^2/\kappa},
+    \label{eqn:c1_FX}
+\end{equation}
+où le paramètre $s$ est proportionnel au gradient de la densité
+\begin{equation}
+    s=\frac{|\nabla n|}{2k_Fn}.
+\end{equation}
+Ici, $\kappa$ et $\mu$ sont des paramètres à déterminer à partir des contraintes et $k_F=(3\pi^2n)^{1/3}$ est le vecteur d'onde de Fermi pour un gaz d'électrons uniforme. Lorsque nous négligeons le gradient de la densité, c'est-à-dire quand $s=0$, nous avons que $F_\text{X}=1$ et nous retrouvons bien la LDA pour l'échange. Similairement, le facteur de correction pour la corrélation $F_\text{C}$ est une correction à la LDA et est donné, en unités atomiques d'Hartree, par
+\begin{equation}
+    \label{eqn:c1_FC}
+    F_\text{C}(n,\nabla n) = 1+H(t)/\varepsilon_\text{C}^\text{hom}(n).
+\end{equation}
+La fonction $H(t)$ est définie comme étant
+\begin{equation}
+    H(t) = \gamma\phi^3\log\left(1+\frac{\beta}{\gamma}t^2\left[\frac{1+At^2}{1+At^2+A^2t^4}\right]\right),
+    \label{eqn:c1_H(t)}
+\end{equation}
+où le paramètre $t$ est un autre paramètre proportionnel au gradient de la densité
+\begin{equation}
+    t = \frac{|\nabla n|}{2\phi k_Sn}.
+\end{equation}
+Ici, $\gamma$ et $\beta$ sont d'autres paramètres à déterminer à l'aide des contraintes, $k_S=(4k_F/\pi)^{1/2}$ est le vecteur d'onde écranté de Thomas-Fermi, et les quantités $\phi$ et $A$ sont données par
+\begin{align}
+    \phi &= \frac{(1+\zeta)^{2/3}+(1-\zeta)^{2/3}}{2},\\
+    A &= \frac{\beta}{\gamma}\left[\exp\left(-\frac{\varepsilon_\text{C}^\text{hom}}{\gamma\phi^3}\right)-1\right]^{-1},
+\end{align}
+où $\zeta=(n_\uparrow-n_\downarrow)/n $ est la polarisation en spin. Pour les systèmes non-polarisés en spin comme le graphène que nous étudions dans ce mémoire : $n_\uparrow = n_\downarrow$ et donc $\zeta=0$ ce qui veut dire que $\phi=1$. Encore une fois, si on ignore le gradient de la densité, c'est-à-dire quand $t=0$, nous avons que $H(t=0)=0$ et que $F_\text{C}=1$ et nous retombons sur la LDA. Il est important de comprendre que la fonctionnelle XC PBE ne dépend pas de données empiriques, malgré ce que les paramètres à déterminer $\kappa, \mu,\gamma$ et $\beta$ peuvent laisser présager. En effet, ces paramètres sont déterminés à partir de conditions théoriques que doivent satisfaire les termes d'échange et de corrélation. Ces conditions sont explicitées dans l'article original PBE \cite{perdewGeneralizedGradientApproximation1996a} et pour satisfaire ces contraintes, les paramètres doivent prendre les valeurs approximatives $\kappa=0.804$, $\mu=0.21951$, $\gamma=0.031091$ et $\beta=0.066725$. La fonctionnelle XC PBE est ainsi entièrement déterminée par la théorie, sans ajustement empirique.
+
+La PBE corrige l'\textit{overbinding} systématique de la LDA, mais tend à légèrement surestimer les constantes du réseau là où la LDA les sous-estime \cite{mounetFirstprinciplesDeterminationStructural2005a}. Pour le graphène, les deux fonctionnelles donnent des résultats raisonnables pour les propriétés dans le plan, la PBE étant généralement préférée pour les propriétés électroniques et de vibrations du réseau. Cependant, la PBE souffre des mêmes autres problèmes que la LDA. Premièrement, la PBE sous-estime toujours le gap électronique. C'est une limitation fondamentale de toutes les fonctionnelles locales ou semi-locales. Notons que ce n'est pas un problème pour le graphène : la PBE (et la LDA d'ailleurs) reproduit parfaitement le gap de zéro du graphène, non pas parce que la PBE décrit exactement les effets d'échange et de corrélation, mais parce que les cônes de Dirac aux points $\Kv$ et $\Kv'$ de la zone de Brillouin du graphène sont protégés par les symétries du réseau hexagonal, indépendamment de la fonctionnelle XC utilisée\footnote{En fait, même un simple modèle tight-binding, qui néglige complètement l'interaction électron-électron, reproduit également les cônes de Dirac du graphène. Cela confirme que cette propriété ne peut être due aux effets d'échange et de corrélation et est purement d'origine géométrique.}. Deuxièmement, la PBE ne peut pas plus décrire les interactions de type van der Waals que la LDA, car la PBE n'est pas non-locale. Cela ne pose pas de problème pour le graphène, où les interactions van der Waals sont négligeables. Cependant, nous devons considérer les interactions van der Waals si nous étudions le graphène à plusieurs couches, du graphène bi-couche au graphite, ce qui n'est pas le cas dans ce mémoire. Troisièmement, la PBE n'est pas plus équipée pour traiter des systèmes avec une forte corrélation électronique que la LDA. Cela ne pose pas non plus de problème pour le graphène, dont les propriétés électroniques sont largement dominées par les électrons $\pi$ des orbitales $p_z$ du carbone, qui sont délocalisés et faiblement corrélés.\\
+\noindent
+\textbf{Échelons supérieurs}
+
+Nous terminons cette section en discutant brièvement des échelons supérieurs de l'échelle de Jacob. Sur le troisième échelon, nous retrouvons les fonctionnelles meta-GGA, comme SCAN \cite{sunStronglyConstrainedAppropriately2015} et r$^2$SCAN \cite{furnessAccurateNumericallyEfficient2020}, qui incorporent en plus la densité d'énergie cinétique $\tau(\rv)=\sum_i|\nabla \psi_i(\rv)|^2$, qui peut être considérée comme une correction à la GGA avec la deuxième dérivée de la densité. Cette correction permet aux fonctionnelles meta-GGA de mieux distinguer les différents types de liaisons chimiques et de mieux décrire les constantes du réseau. Sur le quatrième échelon, nous avons les fonctionnelles hybrides, comme HSE06 \cite{heydHybridFunctionalsBased2003} et PBE0 \cite{adamoReliableDensityFunctional1999}, qui incorporent une fraction d'échange exacte, ce qui améliore significativement la description des gaps électroniques, sans toutefois régler le problème complètement. Finalement, les méthodes au sommet de l'échelle peuvent capturer les interactions de type van der Waals à longue portée grâce à leur caractère non-local. Cela étant dit, les fonctionnelles des échelons supérieurs à la GGA apportent des corrections qui sont négligeables pour le graphène à un coût computationnel qui est prohibitif pour les super-cellules nécessaires à l'étude des défauts dans le graphène, d'où notre choix de prendre la PBE pour les calculs de ce mémoire. De plus, même les méthodes au haut de l'échelle ne peuvent pas traiter correctement les systèmes fortement corrélés et le gap électronique. Les systèmes fortement corrélés nécessitent des approches qui vont au-delà du paradigme standard de la DFT, comme la DFT+U ou la DMFT, tel que mentionné précédemment. La correction la plus rigoureuse au problème du gap électronique est l'approximation GW \cite{hedinNewMethodCalculating1965}, qui traite les effets d'échange et de corrélation via la fonction de Green $G$ et l'interaction de Coulomb écrantée $W$. Cette méthode donne des gaps en excellent accord avec les expériences et il sera probablement nécessaire de corriger les valeurs propres de KS $\varepsilon_i$ obtenues par la DFT avec la PBE à l'aide de la GW pour une description quantitative et précise des intensités Raman résonnantes.
+\subsection{Pseudo-potentiels}
+\label{sec:PP}
+Bien que la méthode de KS réduise considérablement la complexité du problème à plusieurs corps, les calculs DFT pour des systèmes réalistes restent coûteux. Il y a deux sources importantes de cette complexité. Premièrement, même si la complexité du problème varie maintenant linéairement avec le nombre d'électrons $N_e$ dans la méthode de KS, ce nombre est extrêmement grand (environ $10^{23}$ par cm$^3$ pour un solide macroscopique \cite{alloulIntroductionPhysicsElectrons2011a}) ce qui rend la solution des équations de KS numériquement difficile. Nous verrons comment contourner ce problème dans la section \ref{sec:PW}. L'autre source de complexité est la nature des fonctions d'onde électroniques. Nous traitons ce deuxième problème dans cette section.
+
+Le potentiel externe $V_\text{ext}(\rv)$, qui décrit l'interaction de Coulomb entre les électrons et les noyaux, diverge en $1/r$ au voisinage des ions. Cette singularité génère des états de c\oe ur fortement oscillants près des noyaux. Les fonctions d'onde des électrons de valence, responsables des propriétés physiques et chimiques d'intérêt, héritent à leur tour de ces oscillations rapides afin de satisfaire la condition d'orthonormalité avec les états de c\oe ur. Ces électrons de c\oe ur, fortement liés aux noyaux et chimiquement inertes, contribuent peu aux propriétés d'intérêt et augmentent le coût des calculs. L'approximation des pseudo-potentiels \cite{phillipsEnergyBandInterpolationScheme1958,phillipsNewMethodCalculating1959} résout ces deux problèmes simultanément en exploitant l'approximation des c\oe urs gelés introduite à la section \ref{sec:2.1}. Les électrons de c\oe ur sont absorbés dans les noyaux pour former les ions et leur effet sur les électrons de valence est encodé dans un pseudo-potentiel $V_\text{PP}(\rv)$ qui remplace le potentiel de Coulomb divergent par un potentiel plus lisse. Cette approximation réduit à la fois le nombre d'électrons à traiter explicitement en ignorant les électrons de c\oe ur et simplifie la structure des fonctions d'onde des électrons de valence, accélérant ainsi les calculs de plusieurs ordres de grandeur. 
+
+La théorie des pseudo-potentiels est un domaine de recherche très actif et une grande variété ont été développés depuis les travaux pionniers de Phillips et Kleinman \cite{phillipsNewMethodCalculating1959}. On distingue principalement trois grandes catégories : les pseudo-potentiels à conservation de norme (NC, de l'anglais \textit{Norm-Conserving}) \cite{hamannNormConservingPseudopotentials1979}, les pseudo-potentiels \textit{ultrasoft} de Vanderbilt \cite{vanderbiltSoftSelfconsistentPseudopotentials1990} et la méthode des ondes augmentées projetées (PAW, de l'anglais \textit{Projector Augmented Waves}) de Blöchl \cite{blochlProjectorAugmentedwaveMethod1994}. Pour tous les calculs effectués dans ce mémoire nous utilisons des pseudo-potentiels de NC de la famille ONCV (de l'anglais \textit{Optimized Norm-Conserving Vanderbilt}) tirés de la bibliothèque PseudoDojo \cite{vansettenPseudoDojoTrainingGrading2018}, qui offrent un excellent compromis entre précision et efficacité computationnelle.
+
+\noindent
+\textbf{Pseudo-potentiels ONCV}\\
+L'idée centrale de l'approximation des pseudo-potentiels est de remplacer le potentiel externe $V_\text{ext}(\rv)$ dans les équations de KS \eqref{eqn:c1_KS}-\eqref{eqn:c1_VKS} par un pseudo-potentiel total
+\begin{equation}
+    V_\text{PP}(\rv)=\sum_\alpha V^{(\alpha)}_\text{PP}(\rv-\bm{\tau}_\alpha),
+    \label{eqn:c2_ppapprox}
+\end{equation}
+où la somme porte sur tous les ions $\alpha$ situés aux positions $\bm{\tau}_\alpha$ de la cellule unitaire. Chaque $V^{(\alpha)}_\text{PP}$ est un opérateur non-local qui dépend du type d'ion $\alpha$ et qui est composé d'une partie locale et d'une partie non-locale
+\begin{eqnarray}
+    V_\text{PP}^{(\alpha)}(\rv)=V^{(\alpha)}_\text{PPL}(\rv)+V^{(\alpha)}_\text{PPNL}.
+    \label{eqn:c2_vppalpha}
+\end{eqnarray}
+La partie locale $V_\text{PPL}(\rv)$ est un potentiel central à symétrie sphérique plus lisse qu'un potentiel de Coulomb, tandis que la partie non-locale $V_\text{PPNL}$ agit différemment selon le moment angulaire orbital $\ell$ des électrons de valence. Les pseudo-potentiels NC modernes sont construits en suivant la procédure décrite par \cite{hamannNormConservingPseudopotentials1979,hamannGeneralizedNormconservingPseudopotentials1989,troullierEfficientPseudopotentialsPlanewave1991}. Les pseudo-potentiels NC satisfont la condition de conservation de norme 
+\begin{equation}
+    \int_0^{r_c}dr\,|\psi_\ell^\text{PP}(r)|^2r^2=\int_0^{r_c}dr\,|\psi_\ell^\text{AE}(r)|^2r^2,
+    \label{eqn:c2_nc}
+\end{equation}
+où $\psi_\ell^\text{AE}(r)$ est la fonction d'onde de valence que nous obtiendrions si nous résolvions les équations de KS avec le vrai potentiel de Coulomb et en traitant tous les électrons explicitement (l'indice AE vient de l'anglais \textit{All Electrons}), $\psi_\ell^\text{PP}(r)$ est la fonction d'onde obtenue en résolvant le problème dans l'approximation des pseudo-potentiels et $r_c$ est un rayon de coupure. Le pseudo-potentiel est choisi de sorte que $\psi_\ell^\text{PP}(r)$ coïncide exactement avec $\psi_\ell^\text{AE}(r)$ pour $r>r_c$, qu'elle soit lisse et sans n\oe ud pour $r<r_c$ et qu'elle satisfasse la condition de conservation de norme (équation \eqref{eqn:c2_nc}) pour un pseudo-potentiel NC. Cette condition garantit que la densité de charge dans la région de c\oe ur ($r<r_c$) soit correctement reproduite ce qui garantit un bon potentiel électrostatique à l'extérieur de $r_c$ de par le théorème de Gauss. De plus, cette condition garantit une bonne transférabilité : le pseudo-potentiel est adapté à plusieurs environnements chimiques et pas seulement pour la configuration atomique de référence utilisée pour le construire. Dans les codes DFT modernes, la forme séparable proposée par Kleinman et Bylander (KB) \cite{kleinmanEfficaciousFormModel1982} pour les pseudo-potentiels NC est généralement employée, car elle réduit radicalement le nombre d'opérations nécessaires pour l'application de la partie non-locale de l'Hamiltonien, ainsi que la mémoire nécessaire pour stocker l'opérateur. Dans la forme de KB, l'interaction entre les électrons de valence et un ion de type $\alpha$ est décrite par le pseudo-potentiel
+\begin{eqnarray}
+    V^{(\alpha)}_\text{PP}(\rv) = V^{(\alpha)}_\text{PPL}(\rv)+\underbrace{\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}}_{=V_\text{PPNL}^{(\alpha)}},
+    \label{eqn:c1_VKB}
+\end{eqnarray}
+\begin{figure}[t]
+    \centering
+    \includegraphics{figures/KB_projectors_C.pdf}
+    \caption[llustration de la partie locale et non-locale du pseudo-potentiel pour un atome
+    de carbone.]{Illustration de la partie locale et non-locale du pseudo-potentiel pour un atome de carbone. (a) Comparaison entre la partie locale du pseudo-potentiel $V_\text{PPL}(r)$ et le potentiel de Coulomb $-Z_\text{val}/r$ où $Z_\text{val}=4$ est la charge des électrons de valence du carbone. Notons que $V_\text{PPL}(r)$ corrige la divergence du potentiel de Coulomb à l'origine. (b) Partie radiale des projecteurs de KB $\beta_{i\ell}(r)$, qui s'annulent au-delà des rayons de coupure $r_c^{(s)}$ et $r_c^{(p)}$. Le
+    pseudo-potentiel est de type ONCV \textit{stringent} pour la fonctionnelle XC PBE, tiré de la bibliothèque PseudoDojo 
+    \cite{vansettenPseudoDojoTrainingGrading2018}.}
+    \label{fig:KB}
+\end{figure}
+où $V_\text{PPL}(\rv)$ est la partie purement locale du pseudo-potentiel, soit un potentiel de Coulomb $1/r$ loin de la région de c\oe ur et une forme plus lisse dans la région de c\oe ur. Dans la partie non-locale, $\ell$ est le nombre quantique de moment cinétique orbital, $m$ est le nombre quantique magnétique ($m=-\ell,\dots,\ell-1,\ell$) et $i$ représente les multiples projecteurs par canal $\ell$. C'est précisément ce qui distingue les pseudo-potentiels ONCV des NC 
+classiques : ces derniers ne possèdent qu'un seul projecteur par canal $\ell$ (pas d'indice $i$), tandis que les ONCV en utilisent plusieurs, ce qui permet d'obtenir des pseudo-fonctions d'onde plus lisses. Les énergies de KB, $E_{i\ell}^{(\alpha)}$, mesurent la force de la partie non-locale par rapport à la partie locale. Les projecteurs de KB, $\beta_{i\ell m}^{(\alpha)}(\rv)=\bra{\rv}\ket{\beta_{i\ell m}^{(\alpha)}}$, sont des fonctions à courtes portées centrées sur l'atome $\alpha$. La partie angulaire des projecteurs de KB s'exprime en termes d'harmoniques sphériques $Y_\ell^m(\theta,\phi)$ et la partie radiale est indépendante du nombre quantique magnétique $m$
+\begin{equation}
+    \beta_{i\ell m}^{(\alpha)}(\rv)=\frac{1}{|\rv-\bm{\tau}_\alpha|}\beta_{i\ell}^{(\alpha)}(|\rv-\bm{\tau}_\alpha|)Y_{\ell}^m(\theta,\phi),
+    \label{eqn:c1_betar}
+\end{equation}
+où $\theta\in[0,\pi]$ est l'angle polaire et $\phi\in[0,2\pi]$ est l'angle azimuthal du vecteur $|\rv-\bm{\tau}_\alpha|$. La partie locale ainsi que la partie radiale du projecteur de KB du pseudo-potentiel pour un atome de carbone sont illustrés à la figure \ref{fig:KB}.
+
+Comme les pseudo-potentiels se séparent en une partie locale et une partie non-locale, le potentiel de KS, $V_\text{KS}$, (alternativement, le potentiel effectif $V_\text{eff}$) aussi se sépare en deux parties :
+\begin{equation}
+    V_\text{KS}(\rv) = V_\text{L}(\rv)+V_\text{NL},
+    \label{eqn:c2_VKS_lnl}
+\end{equation}
+où la partie locale du potentiel est donnée par la somme des termes d'Hartree, d'échange-corrélation et de la partie locale du pseudo-potentiel
+\begin{align}
+    V_\text{L}(\rv)&=V_\text{H}(\rv)+V_\text{XC}(\rv)+V_\text{PPL}(\rv)\notag\\
+    &=V_\text{H}(\rv)+V_\text{XC}(\rv)+\sum_\alpha V_\text{PPL}^{(\alpha)}(\rv-\bm{\tau}_\alpha),
+    \label{eqn:c2_VL}
+\end{align}
+et la partie non-locale est due à la partie non-locale du pseudo-potentiel
+\begin{equation}
+    V_\text{NL}=\sum_\alpha V_\text{PPNL}^{(\alpha)}=\sum_\alpha\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}.
+    \label{eqn:c2_VNL}
+\end{equation}
+Nous aurons besoin de ces expressions lors du calcul des élements de matrice de couplage électron-défaut dans le chapitre \ref{chap:défauts}.
+\subsection{Ondes planes, grilles et résolution des équations de Kohn-Sham}
+\label{sec:PW}
+Une fois que les pseudo-potentiels des ions du système ont été spécifiés et la fonctionnelle d'échange-corrélation a été choisie, nous avons en principe tous les ingrédients nécessaires pour résoudre les équations de Kohn-Sham. Chaque itération du cycle SCF dans la résolution des équations de KS est un problème aux valeurs propres pour obtenir les valeurs propres de KS, $\varepsilon_i$, et les fonctions d'onde à un électron de KS, $\psi_i(\rv)$, pour calculer la nouvelle densité $n_\text{out}(\rv)$. Cela requiert de diagonaliser la matrice Hamiltonienne $H_\text{KS}$, une opération dont le coût computationnel croît rapidement avec la taille du système. Pour un solide périodique, il serait en principe nécessaire de diagonaliser $H_\text{KS}$ pour un nombre macroscopique d'électrons ($\sim 10^{23}$ par cm$^3$ \cite{alloulIntroductionPhysicsElectrons2011a}) ce qui est numériquement impossible. La clé pour contourner ce problème réside dans le fait que les solides cristallins, comme le graphène, sont des systèmes hautement symétriques. En particulier, les symétries de translation discrète du cristal, exploitées par le théorème de Bloch, permettent de décomposer le problème en une collection de problèmes indépendants de taille beaucoup plus réduite. Les symétries du groupe ponctuel du cristal permettent quant à elles de réduire davantage le nombre de problèmes à résoudre. Dans cette section nous voyons comment les codes DFT modernes exploitent les symétries et résolvent les équations de KS en pratique.\\
+\noindent
+\textbf{Théorème de Bloch}
+
+Les solides cristallins sont des répétitions d'une unité de base : la cellule unitaire. Les cellules unitaires dans le solide sont identifiées par un vecteur du réseau $\Rv_\ell$, où $\ell$ (à ne pas confondre avec le nombre quantique du moment cinétique orbital) représente un triplet d'entiers $(n_1,n_2,n_3)$
+\begin{equation}
+    \Rv_\ell = n_1\av_1+n_2\av_2+n_3\av_3,
+    \label{eqn:c2_Rl}
+\end{equation}
+et les vecteurs $\av_i$ sont les vecteurs primitifs du réseau qui définissent une cellule unitaire du solide. Puisque ces cellules unitaires sont toutes identiques, le potentiel de Kohn-Sham est le même dans toutes les cellules, \textit{i.e.} il est périodique avec la même périodicité que le solide. En d'autres termes, $V_\text{KS}$ est invariant sous une translation par un vecteur du réseau
+\begin{equation}
+    V_\text{KS}(\rv+\Rv_\ell) = V_\text{KS}(\rv)\quad \forall\,\,\,\ell,
+    \label{eqn:c2_VRl}
+\end{equation}
+et il suit que l'Hamiltonien est invariant sous une translation discrète d'un vecteur du réseau comme le terme d'énergie cinétique est invariant sous n'importe quelle translation. L'invariance et les symétries d'un Hamiltonien ont des conséquences profondes en mécanique quantique : si un opérateur $O$ laisse l'Hamiltonien d'un système invariant, \textit{i.e.} $OHO^{-1}=H$, nous pouvons montrer que cet opérateur commute avec l'Hamiltonien  $[H,O]=0$ et il est possible de diagonaliser $O$ et $H$ simultanément. Par exemple, si un Hamiltonien est invariant sous n'importe quelle translation (symétrie continue), il suit que cet Hamiltonien commute avec l'opérateur qui génère les translations dans l'espace : la quantité de mouvement, et que les états propres de la quantité de mouvement (les ondes planes $\exp(i\kv\cdot\rv)$) sont aussi des états propres de l'Hamiltonien. L'Hamiltonien du solide cristallin n'est pas invariant sous n'importe quelle translation, mais il l'est sous les translations discrètes d'un vecteur du réseau. Dans ce cas, les états propres de la quantité de mouvement ne sont pas aussi des états propres de l'Hamiltonien, mais nous pouvons nous attendre à ce que le problème soit plus facile à résoudre dans l'espace réciproque, soit l'ensemble des points $\kv$. À cet effet, nous définissons le réseau réciproque du cristal, qui est un ensemble de points dans l'espace réciproque étiquetés par les vecteurs
+\begin{equation}
+    \Gv = m_1\bv_1+m_2\bv_2+m_3\bv_3,
+    \label{eqn:c2_G}
+\end{equation}
+où les $m_i$ sont des entiers. Les vecteurs $\Gv$ sont les vecteurs du réseau réciproque et les vecteurs $\bv_i$ sont les vecteurs primitifs du réseau réciproque et satisfont la relation d'orthogonalité avec les vecteurs primitifs du réseau
+\begin{equation}
+    \av_i\cdot\bv_j=2\pi\delta_{ij}.
+    \label{eqn:c2_ab}
+\end{equation}
+Comme la symétrie de translation est discrète, la quantité de mouvement $\mathbf{p}$ n'est pas conservée, mais le quasi-moment $\hbar\kv$ (aussi appelé \textit{crystal momentum} en anglais, qui n'est \textit{pas} la quantité de mouvement usuelle) est conservé modulo un vecteur du réseau $\Gv$. Les états propres du cristal ne sont pas des ondes planes, mais il fut démontré par Félix Bloch, alors doctorant sous la supervision de Werner Heisenberg, dans un article de 1929 \cite{blochUeberQuantenmechanikElektronen1929} que la fonction d'onde d'une particule dans un potentiel périodique (ou bien, de manière équivalente, une particule avec un Hamiltonien invariant sous translations discrètes) se factorise en un produit d'une onde plane et d'une fonction périodique
+\begin{equation}
+    \psi_{n\kv}(\rv)=e^{i\kv\cdot\rv}u_{n\kv}(\rv),
+    \label{eqn:c2_bloch_thm}
+\end{equation}
+où la fonction périodique de Bloch est invariante sous n'importe quelle translation d'un vecteur du réseau
+\begin{equation}
+    u_{n\kv}(\rv+\Rv_\ell) = u_{n\kv}(\rv)\quad\forall\,\,\,\ell,
+\end{equation}
+un résultat connu sous le nom de théorème de Bloch. Puisque la fonction périodique de Bloch est la même dans toutes les cellules, il suffit de résoudre le problème pour $u_{n\kv}$ dans une cellule unitaire seulement et de reproduire la solution par périodicité dans le reste du solide. Cela est une avancée conceptuelle qu'on ne saurait surestimer : au lieu de résoudre le problème pour le solide dans son entier avec un nombre d'électrons \textit{a priori} infini, nous n'avons qu'à résoudre le problème dans une cellule primitive, qui contient un nombre fini d'électrons (huit électrons de valence pour le graphène, soit quatre pour chacun des deux atomes de carbone dans la cellule unitaire).
+
+Comme le quasi-moment $\hbar\kv$ est conservé modulo un vecteur du réseau réciproque $\Gv$, nous pouvons restreindre l'espace réciproque à la première zone de Brillouin (BZ, de l'anglais \textit{Brillouin Zone}), qui est l'ensemble des $\kv$ de l'espace réciproque plus proches de l'origine $\Gv=0$ que de n'importe quel autre vecteur du réseau réciproque, et étiqueter les états propres et valeurs propres par $\kv$. N'importe quel point $\kv'$ en dehors de la première BZ peut être ramené dans la première BZ par une translation d'un vecteur $\Gv$ approprié
+\begin{equation}
+    \kv=\kv'+\Gv,
+\end{equation}
+où $\kv$ est dans la première BZ. Une fois que tous les points $\kv$ de l'espace réciproque sont repliés dans la première BZ, il y a bien sûr plusieurs états propres et valeurs propres par $\kv$. Pour différencier ces solutions, nous utilisons l'indice de bande $n=1,2,\dots$ pour étiqueter les états propres $\psi_{n\kv}$, en ordre croissant d'énergie $\varepsilon_{n\kv}$. En utilisant la factorisation de la fonction d'onde prescrite par le théorème de Bloch dans les équations de Kohn-Sham \eqref{eqn:c1_KS}-\eqref{eqn:c1_VKS} nous arrivons aux équations de KS en terme de $u_{n\kv}$
+\begin{equation}
+    \left(-\frac{\hbar^2}{2m_e}(-i\nabla+\kv)^2+V_\text{KS}(\rv)\right)u_{n\kv}(\rv)=\varepsilon_{n\kv}u_{n\kv}(\rv).
+    \label{eqn:c2_uKS}
+\end{equation}
+En pratique, cette équation est diagonalisée pour $u_{n\kv}$ et $\varepsilon_{n\kv}$ et la fonction d'onde est calculée simplement en multipliant $u_{n\kv}$ par la phase $e^{i\kv\cdot\rv}$. Une autre conséquence importante de la conservation du quasi-moment est que l'hamiltonien ne couple pas les différents $\kv$ de la première BZ — cela est évident dans l'équation \eqref{eqn:c2_uKS} où $\kv$ apparaît comme un paramètre fixe. Le problème peut donc être résolu indépendamment pour chaque $\kv$, ce qui se prête bien à une parallélisation pour accélérer les calculs.
+\\ 
+\noindent
+\textbf{Base d'ondes planes}
+
+Comme la fonction périodique de Bloch est invariante sous translation des vecteurs du réseau cristallin $\Rv_\ell$, il est possible de faire son expansion en série de Fourier sur les vecteurs $\Gv$ du réseau réciproque
+\begin{equation}
+    u_{n\kv}(\rv)=\frac{1}{\sqrt{\Omega_\text{BvK}}}\sum_{\Gv}C_{n\kv}(\Gv)e^{i\Gv\cdot\rv},
+    \label{eqn:c2_uPW}
+\end{equation}
+où $\Omega_\text{BvK}$ est le volume du cristal et $C_{n\kv}(\Gv)$ sont les coefficients de l'expansion en série de Fourier. En utilisant cette expansion et le théorème de Bloch de l'équation \eqref{eqn:c2_bloch_thm}, la fonction d'onde à un électron de Kohn-Sham s'écrit
+\begin{equation}
+    \psi_{n\kv}(\rv)=\frac{1}{\sqrt{\Omega_\text{BvK}}}\sum_{\Gv}C_{n\kv}(\Gv)e^{i(\kv+\Gv)\cdot\rv}.
+    \label{eqn:c2_psiPW}
+\end{equation}
+La fonction d'onde est donc une combinaison linéaire d'ondes planes \textit{i.e.} elle est écrite dans une base d'ondes planes. C'est un choix de base et en principe, nous pourrions choisir n'importe quelle base pour faire l'expansion de la fonction d'onde. En pratique, pour les solides périodiques, la base d'ondes planes est un choix naturel pour plusieurs raisons : les ondes planes forment une base complète et orthonormée -- c'est à dire que nous pouvons représenter n'importe quelle fonction avec suffisamment d'ondes planes, c'est une base avantageuse pour les systèmes périodiques, comme les solides cristallins, et finalement, les ondes planes permettent d'effectuer des transformées de Fourier rapides (FFT, de l'anglais \textit{Fast Fourier Transform}) qui permettent de passer entre l'espace réel et l'espace réciproque de manière extrêmement efficace numériquement. Concrêtement, Le problème de trouver la partie périodique de Bloch est maintenant devenu un problème pour trouver les coefficients de l'expansion en ondes planes $C_{n\kv}(\Gv)$. Formellement, il faut un nombre infini d'ondes planes pour représenter exactement la fonction d'onde. En pratique, nous ne pouvons représenter un nombre infini sur un ordinateur, il faut donc tronquer la série de l'équation \eqref{eqn:c2_psiPW}. À cet effet, nous introduisons une coupure d'énergie cinétique $E_\text{cut}$ des ondes planes, de sorte que nous ne gardons que les ondes planes identifiées par $\Gv$ avec une énergie cinétique inférieure ou égale à $E_\text{cut}$
+\begin{equation}
+    \frac{\hbar^2}{2m_e}|\kv+\Gv|^2\leq E_\text{cut}.
+    \label{eqn:c2_Ecut}
+\end{equation}
+Une coupure d'énergie cinétique plus élevée augmente la précision des calculs à un coût numérique plus élevé. Un désavantage de la représentation de la fonction d'onde dans une base d'ondes planes est qu'il faut un très grand nombre d'ondes planes pour représenter une fonction qui oscille rapidement, comme les fonctions d'onde des électrons de valence proche de la région de c\oe ur pour un potentiel externe de Coulomb. Heureusement, l'approximation des pseudo-potentiels introduite à la section \ref{sec:PP} règle ce problème en remplaçant le potentiel externe par un pseudo-potentiel de sorte que la fonction d'onde des électrons de valence est lisse proche de la région de c\oe ur et peut être représentée efficacement par des ondes planes.
+
+Finalement, nous souhaitons que les fonctions d'onde soient orthonormales sur l'ensemble du système, soit le volume du cristal $\Omega_\text{BvK}$ 
+\begin{equation}
+    \int_{\Omega_\text{BvK}}d^3\rv\,\psi_{n\kv}^*(\rv)\psi_{n'\kv'}(\rv)=\delta_{nn'}\delta_{\kv\kv'}.
+    \label{eqn:c2_psi_norm}
+\end{equation}
+En remplaçant les fonctions d'onde par leur expansion en ondes planes \eqref{eqn:c2_psiPW}, nous pouvons montrer que les coefficients d'expansion satisfont la relation
+\begin{equation}
+    \sum_\Gv C_{n\kv}^*(\Gv)C_{n'\kv}(\Gv)=\delta_{nn'}.
+    \label{eqn:c2_C_norm}
+\end{equation}
+Avec cette convention, nous avons que la partie périodique de Bloch est normalisée sur le volume du cristal
+\begin{equation}
+    \int_{\Omega_\text{BvK}}d^3\rv\, u^*_{n\kv}(\rv)u_{n'\kv}(\rv)=\delta_{nn'}.
+    \label{eqn:c2_u_norm}
+\end{equation}
+Notons que les parties périodiques de Bloch ne sont pas orthogonales pour différents $\kv$ puisqu'elles satisfont des équations aux valeurs propres différentes, tel que mentionné plus haut. Nous avons maintenant tous les ingrédients nécessaires pour écrire les équations de KS dans un base d'ondes planes. En substituant l'expansion en ondes planes \eqref{eqn:c2_uPW} dans les équations de KS pour $u_{n\kv}$ \eqref{eqn:c2_uKS}, nous obtenons un problème aux valeurs propres matriciel pour les coefficients $C_{n\kv}(\Gv)$ -- c'est ce problème que les codes DFT modernes résolvent numériquement à chaque itération du cycle SCF.\\
+\noindent
+\textbf{Équations de Kohn-Sham dans la base d'ondes planes}
+
+En substituant l'expansion \eqref{eqn:c2_uPW} dans l'équation \eqref{eqn:c2_uKS}, en utilisant l'expansion de $V_\text{KS}(\rv)$ en série de Fourier 
+\begin{equation}
+    V_\text{KS}(\rv)=\sum_{\Gv}\tilde{V}_\text{KS}(\Gv)e^{i\Gv\cdot\rv},
+\end{equation}
+et en intégrant sur le volume du cristal $\Omega_\text{BvK}$, nous obtenons les équations de KS dans la base d'ondes planes
+\begin{equation}
+    \sum_{\Gv'}\left(\frac{\hbar^2}{2m_e}|\kv+\Gv|^2\delta_{\Gv\Gv'}+\tilde{V}_\text{KS}(\Gv-\Gv')\right)C_{n\kv}(\Gv')=\varepsilon_{n\kv}C_{n\kv}(\Gv).
+    \label{eqn:c2_KSPW}
+\end{equation}
+Notons que l'expansion en série de Fourier du potentiel de KS ne se fait qu'avec les vecteurs du réseau réciproque $\Gv$, car $V_\text{KS}$ est invariant sous une translation par un vecteur du réseau cristallin $\Rv_\ell$. L'équation de KS dans la base d'ondes planes, l'équation \eqref{eqn:c2_KSPW}, est formellement un problème aux valeurs propres matriciel $H_{\Gv\Gv'}\mathbf{C}=\varepsilon\mathbf{C}$, où la matrice Hamiltonienne est donnée par
+\begin{equation}
+    H_{\Gv\Gv'}=\frac{\hbar^2}{2m_e}|\kv+\Gv|^2\delta_{\Gv\Gv'}+\tilde{V}_\text{KS}(\Gv-\Gv').
+    \label{eqn:c2_HGG}
+\end{equation}
+Cette matrice Hamiltonienne est de taille $N_\text{PW}\times N_\text{PW}$, où $N_\text{PW}$ est le nombre d'ondes planes déterminé par la coupure d'énergie cinétique $E_\text{cut}$ de l'équation \eqref{eqn:c2_Ecut} et dépend généralement du point $\kv$ considéré. Le paramètre $E_\text{cut}$ contrôle donc la taille du problème aux valeurs propres à résoudre à chaque itération du cycle SCF. En pratique, $N_\text{PW}$ peut atteindre plusieurs milliers à plusieurs dizaines de milliers d'ondes planes selon le système et la précision souhaitée. Notons également que la matrice Hamiltonienne dépend de $\kv$ et doit être construite pour chaque $\kv$ de la première BZ. Le potentiel $\tilde{V}_\text{KS}(\Gv-\Gv')$ est mis à jour à chaque itération du cycle SCF à partir de la nouvelle densité $n_\text{out}(\rv)$ que nous décrivons en détail dans ce qui suit et est illustré à la figure \ref{fig:scf_PW}. Le cycle SCF dans la base d'onde plane se déroule comme suit:
+\begin{enumerate}
+    \item Commencer avec une estimation de la densité initiale $n_\text{in}(\rv)$.
+    \item Transformer la densité d'entrée dans l'espace réciproque à l'aide d'une FFT:
+    \begin{equation*}
+        n_\text{in}(\rv) \xrightarrow{\text{FFT}} \tilde{n}_\text{in}(\Gv).
+    \end{equation*}
+    \item Calculer les composantes de Fourier de la partie locale du potentiel de KS. La partie de Hartree est obtenue directement dans l'espace réciproque via l'équation de Poisson
+    \begin{equation*}
+        \tilde{V}_\text{H}(\Gv)=\frac{4\pi e^2}{|\Gv|^2}\tilde{n}_\text{in}(\Gv),
+    \end{equation*}
+    la partie d'échange-corrélation $\tilde{V}_\text{XC}(\Gv)$ est obtenue par la FFT de $V_\text{XC}[n_\text{in}(\rv)]$ calculé dans l'espace réel, et la partie locale du pseudo-potentiel $\tilde{V}_\text{PPL}(\Gv)$ est précalculée en faisant la FFT de $V_\text{PPL}(\rv)$, qui ne dépend pas de la densité. La partie locale est assemblée dans l'espace réciproque par la somme de ces trois termes
+    \begin{equation*}
+        \tilde{V}_\text{L}(\Gv) = \tilde{V}_\text{H}(\Gv)+\tilde{V}_\text{XC}(\Gv)+\tilde{V}_\text{PPL}(\Gv).
+    \end{equation*}
+    \item Précalculer la partie non-locale du potentiel de KS, car elle ne dépend pas de la densité
+    \begin{equation*}
+        \tilde{V}_\text{NL}(\Gv, \Gv')=\sum_\alpha\sum_{i\ell m}\tilde{\beta}_{i\ell m}^{(\alpha)}(\kv+\Gv)E_{i\ell}^{(\alpha)}\tilde{\beta}^{*(\alpha)}_{i\ell m}(\kv+\Gv').
+    \end{equation*}
+    La dérivation de cette expression est présentée dans le chapitre \ref{chap:défauts} dans le contexte du calcul des éléments de matrice électron-défaut.
+    \item Construire la matrice Hamiltonienne pour chaque point $\kv$ de la première BZ
+    \begin{equation*}
+        H_{\Gv\Gv'}=\frac{\hbar^2}{2m_e}|\kv+\Gv|^2\delta_{\Gv\Gv'}+\tilde{V}_\text{L}(\Gv-\Gv')+\tilde{V}_\text{NL}(\Gv,\Gv'),
+    \end{equation*}
+    et diagonaliser pour obtenir les coefficients $C_{n\kv}(\Gv)$ et les valeurs propres $\varepsilon_{n\kv}$. La diagonalisation se fait itérativement à l'aide d'algorithmes de sous-espace tels que Davidson ou LOBPCG.
+    \item Calculer les fonctions d'ondes dans l'espace réel à partir des coefficients des ondes planes à l'aide d'une FFT inverse
+    \begin{equation*}
+        C_{n\kv}(\Gv)\xrightarrow{\text{FFT}^{-1}}\psi_{n\kv}(\rv).
+    \end{equation*}
+    \item Calculer la nouvelle densité électronique à partir des fonctions d'onde dans l'espace réel
+    \begin{equation*}
+        n_\text{out}(\rv)=\sum_{n\kv}f_{n\kv}|\psi_{n\kv}(\rv)|^2,
+    \end{equation*}
+    où $f_{n\kv}$ est un facteur d'occupation.
+    \item Constuire la nouvelle densité d'entrée à partir de $n_\text{in}$ et $n_\text{out}$ via un schéma de \textit{mixing}.
+    \item Si la différence entre $n_\text{in}$ et $n_\text{out}$ est inférieure à une tolérance spécifiée, passer à l'étape 10. Autrement, retourner à l'étape 2. 
+    \item Calculer les propriétés de l'état fondamental.
+\end{enumerate}
+\noindent
+\textbf{Schéma de \textit{mixing}}
+\\
+\noindent
+\textbf{Facteur d'occupation et \textit{smearing}}
+\\
+\noindent
+\textbf{Échantillonage de la zone de Brillouin}
+
+\subsection{Résultats pour le graphène}
+\section{Partie ionique : les phonons et la théorie de la fonctionnelle de la densité perturbative}
+\label{sec:2.3}
+À l'instar de son homologue électronique, le problème ionique n'est pas moins complexe à résoudre que le problème initial. Le coupable est encore une fois l'interaction mutuelle entre tous les ions qui se trouve dans le potentiel effectif $U$.
+\subsection{Approximation harmonique}
+\subsection{Quantification des vibrations du réseau : phonons}
+\subsection{Théorie de la fonctionnelle de la densité perturbative}
+\subsection{Résultats pour le graphène}
+
+\section{Fonctions de Wannier}
+\subsection{Définitions de base}
+\subsection{Calculs des fonctions de Wannier}
+\subsection{Interpolation de Wannier}
+
+\section{Photons}
+\subsection{Quantification du champ électromagnétique}
+\subsection{Couplage électron-photon}

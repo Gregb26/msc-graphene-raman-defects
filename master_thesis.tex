@@ -1,0 +1,385 @@
+% !TEX root = master_thesis.tex
+\documentclass[12pt,maitrise]{dms}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes}
+\usepackage[style=numeric, sorting=none, backend=biber, url=false, citestyle=numeric-comp]{biblatex}
+\addbibresource{master_thesis.bib}
+
+\usepackage{lmodern}
+\DeclareSymbolFont{largesymbols}{OMX}{cmex}{m}{n}
+\raggedbottom
+
+\francais % or
+%%\anglais
+%%
+%%\usepackage[english,frenchb]{babel}
+
+\def\sloppy{%
+  \tolerance 500%  %9999 dans LaTeX ordinaire, mauvaise idée.
+  \emergencystretch 3em%
+  \hfuzz .5pt
+  \vfuzz\hfuzz}
+\sloppy   %appel de \sloppy pour le document
+%%\fussy  %ou \fussy
+
+%% Packages 
+\usepackage{graphicx,amssymb,subfigure}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{physics}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[labelfont=bf, width=\linewidth]{caption}
+\usepackage{hyperref} 
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5}
+\hypersetup{colorlinks=true,allcolors=darkblue}
+\usepackage{hypcap}   
+\usepackage{bookmark} 
+\usepackage{bm}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, shadows, positioning, shapes.geometric}
+
+
+\AtBeginDocument{%                 
+  \setlength{\abovedisplayskip}{6pt}%
+  \setlength{\belowdisplayskip}{6pt}%
+  \setlength{\abovedisplayshortskip}{3pt}%
+  \setlength{\belowdisplayshortskip}{3pt}%
+}
+
+%%\hypersetup{
+%%  pdftitle = {Vers la simulation du spectre Raman résonant du graphène avec des défauts à partir des premiers principes},
+%%  pdfauthor = {Grégoire Barrette},
+%%  pdfsubject = {Calcul des propriétés de matériaux à l'aide de la théorie de la fonctionnelle de la densité},
+%%  pdfkeywords = {Graphène, théorie de la fonctionnelle de la densité, spectroscopie Raman, interaction lumière-matière, interaction électron-phonon, physique de la matière condensée, défauts, calculs ab initio, théorie de la fonctionnelle de la densité perturbative, fonctions de Wanniers, self-énergie.}
+%%}
+
+%\newtheorem{cor}{\corollaryname}[section]
+%\newtheorem{theo}[cor]{\theoremname}
+%\newtheorem{prop}[cor]{Proposition}
+%\newtheorem{lem}[cor]{\lemmaname}
+%\theoremstyle{definition}
+%\newtheorem{deff}[cor]{\definitionname}
+%\newtheorem{ex}[cor]{\examplename}
+%\newtheorem{rem}[cor]{\remarkname}
+%\newtheorem{algo}[cor]{\algoname}
+
+
+%%%
+%%% Si vous préférez que les corollaires, définitions, théorèmes,
+%%% etc. soient numérotés séparément, utilisez plutôt un bloc de
+%%% commandes de la forme :
+%%%
+
+\newtheorem{cor}{\corollaryname}[section]
+\newtheorem{deff}{\definitionname}[section]
+\newtheorem{ex}{\examplename}[section]
+\newtheorem{lem}{\lemmaname}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{rem}{\remarkname}[section]
+\newtheorem{theo}{\theoremname}[section]
+
+\numberwithin{equation}{section}
+\numberwithin{table}{chapter}
+\numberwithin{figure}{chapter}
+
+%%\makeindex
+
+%% \usepackage[onehalfspacing]{setspace}
+ % ou
+\renewcommand{\baselinestretch}{1.286} %Interligne et demi (environ 18pt (12pt+6pt) entre les lignes)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%                                     %%%%%%%%%%%%%
+%%%%%%%%%% D é b u t    d u    d o c u m e n t %%%%%%%%%%%%%
+%%%%%%%%%%                                     %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\pagenumbering{roman}
+
+%%------------------------------------------------- %
+%%              pages i et ii                       %
+%%------------------------------------------------- %
+\title{Vers la simulation du spectre Raman résonant du graphène avec des défauts à partir des premiers principes}
+
+\author{Grégoire Barrette}
+
+\copyrightyear{2026}
+
+\department{Département de physique}
+
+\date{31 août 2026} %Date du DÉPÔT INITIAL (ou du 2e dépôt s'il y a corrections majeures)
+
+\sujet{Physique}
+%%\orientation{orientation}%Ce champ est optionnel
+%%
+%% Voici les disciplines possibles (voir avec votre directeur):
+%% \sujet{statistique},
+%% \sujet{mathématiques}, \orientation{mathématiques appliquées},
+%% \orientation{mathématiques fondamentales}
+%% \orientation{mathématiques de l'ingénieur} et
+%% \orientation{mathématiques appliquées}
+
+\president{Nom du président du jury}
+
+\directeur{Michel Côté}
+
+%%\codirecteur{Nom du 1er codirecteur}         % s'il y a lieu
+%%\codirecteurs{Nom du 2e codirecteur}         % s'il y a lieu
+
+\membrejury{Nom du membre de jury}
+
+%%\examinateur{Nom de l'examinateur externe}   %obligatoire pour la these
+
+%% \membresjury{Deuxième membre du jury}  % s'il y a lieu
+
+%%  \plusmembresjury{Troisième membre du jury}    % s'il y a lieu
+
+%%\repdoyen{Nom du représentant du doyen} %(thèse seulement)
+
+
+\pdfbookmark[chapter]{Couverture}{PageUn}
+
+\maketitle
+\maketitle
+
+%%------------------------------------------------- %
+%%                Résumé.                           %
+%%------------------------------------------------- %
+
+\francais
+\chapter*{Résumé}
+
+Résumé (un maximum de 250 mots (1 page) pour les mémoires et 500 mots (2 pages) pour les thèses).
+
+{\bf Mots-cl\'es:} graphène, spectroscopie Raman résonante, théorie de la fonctionnelle de la densité, couplage électron-phonon, couplage électron-défaut, fonctions de Wannier, théorie de la fonctionnelle de la densité perturbative, calculs \textit{ab initio}, physique de la matière condensée.
+
+%%------------------------------------------------- %
+%%                  Abstract                        %
+%%------------------------------------------------- %
+
+\anglais
+\chapter*{Abstract}
+
+Abstract (maximum 250 words (1 page) for master thesis and 500 words (2 pages) for PhD thesis).
+
+{\bf Keywords:} Graphene, resonant Raman spectroscopy, density functional theory, electron-phonon coupling, electron-defect coupling, Wannier functions, density functional perturbation theory, \text{ab initio} calculations, condensed matter physics.
+
+%%------------------------------------------------- %
+%%             Table des matières                   %
+%%------------------------------------------------- %
+%%\anglais
+\francais
+%% TABLE DES MATIÈRES
+\cleardoublepage
+\pdfbookmark[chapter]{\contentsname}{toc}  % Crée un bouton sur
+                                           % la bar de navigation
+\tableofcontents
+%\cleardoublepage
+\listoftables
+%\cleardoublepage
+\listoffigures
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LISTE DES SIGLES ET ABRÉVIATION %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Liste des sigles et des abréviations}
+ % Option de colonnes: definir \colun ou \coldeux
+%%% Exemple
+%%% \def\colun{\bf} % Première colonne en gras
+%%%  Pour numéroté les entrées, on peut faire
+%%% \newcount\abbrlist
+%%% \abbrlist=0
+%%% \def\plusun{\global\advance\abbrlist by 1\relax}
+%%% \def\colun{\plusun\the\abbrlist. }
+\def\coldeux{\relax}
+\def\linestretch{3pt}
+\begin{twocolumnlist}{.2\textwidth}{.7\textwidth}
+ BvK & Born-von-Karman, se référant aux conditions de bord de Born-von-Karman ou le cristal de Born-von-Karman\\
+ BZ & Zone de Brillouin, de l'anglais \textit{Brillouin Zone}\\
+ DFT & Théorie de la fonctionnelle de la densité, de l'anglais
+      \textit{Density Functional Theory}\\
+ DFPT & Théorie de la fonctionnelle de la densité perturbative, de l'anglais \textit{Density Functional Perturbation Theory}\\
+ FFT & Transformée de Fourier rapide, de l'anglais \textit{Fast Fourier Transform}\\
+ GGA & Approximation du gradient généralisé, de l'anglais \textit{Generalized Gradient Approximation}\\
+ DMFT & Théorie du champ moyen dynamique, de l'anglais \textit{Dynamical Mean Field Theory}\\
+ HK & Hohenberg et Kohn, se référant aux théorèmes de Hohenberg et Kohn\\
+ KB & Kleinman et Bylander, se référant à la forme séparable de Kleinman et Bylander pour les pseudo-potentiels à conservation de norme\\
+ KS & Kohn-Sham, se référant à la méthode de Kohn-Sham\\
+ LDA & Approximation de la densité locale, de l'anglais \textit{Local Density Approximation}\\
+ NC & Conservation de norme, de l'anglais \textit{Norm-Conserving}\\
+ NSCF & Méthode du champ non-auto-cohérent, de l'anglais \textit{Non Self Consistent Field}\\
+ ONCV & Conservation de norme optimisé de Vanderbilt, se référant aux pseudo-potentiels à conservation de norme optimisé de Vanderbilt (de l'anglais \textit{Optimized Norm-Conserving Vanderbilt})\\
+ PBE & Perdew-Burke-Ernzerhof, se référant à la fonctionnelle d'échange-corrélation Perdew-Burke-Ernzerhof\\
+ SCF & Méthode du champ auto-cohérent, de l'anglais \textit{Self Consistent Field}\\
+ XC & Échange-corrélation, se référant à la fonctionnelle ou l'énergie d'échange-corrélation\\
+\end{twocolumnlist}
+
+%%------------------------------------------------- %
+%%              liste des symboles                  %
+%%------------------------------------------------- %
+\chapter*{Liste des symboles}
+\begin{twocolumnlist}{.2\textwidth}{.7\textwidth}
+    & \large\textbf{Généraux}\\
+    $e$ & Charge élementaire : $1.60217663\times 10^{-19}$ C\\
+    $\varepsilon_0$ & Permittivité du vide : $8.8541878188\times 10^{-12}$ F m$^{-1}$\\
+    $\hbar$ & Constante de Planck réduite : $1.054571817\times 10^{-34}$ Js\\
+    $k_B$ & Constante de Boltzmann : $1.380649\times 10^{-23}$ m$^2$ kg s$^{-2}$ K$^{-1}$\\
+    $T$ & Température en Kelvins\\
+    $\beta$ & Inverse de l'énergie thermale associée à la température : $\beta = 1 /k_BT$\\
+    & \\
+
+    & \large\textbf{Réseau cristallin}\\
+    $\av_i$ & Vecteurs primitifs du réseau cristallin\\
+    $\bv_i$ & Vecteurs primitifs du réseau réciproque du cristal\\
+    $\Gv$ & Vecteurs du réseau réciproque du cristal\\
+    $\Omega_\text{BvK}$ & Volume du cristal (ou du super-cristal de Born-Von-Karman)\\
+    $\Omega_\text{uc}$ & Volume de la cellule primitive\\
+    $\Omega_\text{sc}$ & Volume de la super-cellule\\
+    $N_\text{uc}$ & Nombre de cellules primitives dans le cristal\\ 
+    $\Rv_\ell$ & Vecteurs du réseau cristallin qui identifie la cellule primitive $\ell$ \\
+    $\bm{\tau}_\alpha$ & Position de l'atome $\alpha$ dans une cellule unitaire\\
+    & \\
+
+    & \large\textbf{Électrons}\\
+    $\kv$ & Vecteur d'onde ou quasi-moment d'un électron\\
+    $n$ & Indice de bande d'un électron\\
+    $\varepsilon_{n\kv}$ & Énergie d'un électron dans le formalisme de Kohn-Sham\\
+    $\ket{\psi_{n\kv}}$ & État quantique de Bloch d'un électron dans le formalisme de Kohn-Sham\\
+    $\ket{u_{n\kv}}$ & Partie périodique de l'état de Bloch d'un électron\\
+    $\ket{n\kv}$ & État quantique d'une onde plane électronique\\
+    $C_{n\kv}(\Gv)$ & Coefficient de l'expansion en ondes planes des états de Bloch électronique\\
+    \\$c^\dag_{n\kv}\,(c_{n\kv})$ & Opérateur de création (destruction) d'un électron\\
+
+    & \\
+
+    & \large\textbf{Phonons et photons}\\
+    $\qv$ & Vecteur d'onde ou quasi-moment d'un phonon ou d'un photon\\
+    $\lambda$ & Polarisation d'un photon\\
+    $\nu$ & Branche d'un phonon\\
+    $\mathbf{e}_{\lambda\qv}$ & Vecteur de polarisation d'un photon\\
+    $\mathbf{e}_{\nu\qv}$ & Vecteur de polarisation d'un phonon \\
+    $\omega_{\lambda\qv}$ & Fréquence d'un photon\\
+    $\omega_{\nu\qv}$ & Fréquence d'un phonon\\
+    $b_{\lambda\qv}^\dag\,(b_{\lambda\qv})$ & Opérateur de création (destruction) d'un photon\\
+    $b_{\nu\qv}^\dag\,(b_{\nu\qv})$ & Opérateur de création (destruction) d'un phonon\\
+    $A_{\nu\qv}$ & Opérateur proportionel aux déplacements d'un phonon : $A_{\nu\qv}=b_{\nu\qv}+b^\dag_{\nu-\qv}$\\
+    & \\
+
+    & \large\textbf{Interactions}\\
+    $g_{nm\lambda}(\kv,\qv)$ & Élément de matrice de couplage électron-photon\\
+    $g_{nm\nu}(\kv,\qv)$ & Élément de matrice de couplage électron-phonon\\
+    $M_{nm}(\kv,\kv')$ & Élément de matrice de couplage électron-défaut\\
+    & \\
+
+    & \large\textbf{Fonctions de Green et \textit{self}-énergie} \\
+    $\mathcal{D}(\nu\mathbf{q},\tau-\tau')$ & Fonction de Green de Matsubara pour les phonons en interaction dans le temps imaginaire\\
+    $\mathcal{D}(\nu\mathbf{q},i\nu_m)$ & Fonction de Green de Matsubara pour les phonons en interaction aux fréquences de Matsubara\\
+    $\mathcal{D}^{(0)}(\nu\mathbf{q},\tau-\tau')$ & Fonction de Green de Matsubara pour les phonons libres dans le temps imaginaire\\
+    $\mathcal{D}^{(0)}(\nu\mathbf{q},i\nu_m)$ & Fonction de Green de Matsubara pour les phonons libres aux fréquences de Matsubara\\
+    $\mathcal{G}(n\mathbf{k}, \tau-\tau')$ & Fonction de Green de Matsubara pour les électrons en interaction dans le temps imaginaire\\
+    $\mathcal{G}(n\mathbf{k}, i\omega_m)$ & Fonction de Green de Matsubara pour les électrons en interaction aux fréquences de Matsubara\\
+    $\mathcal{G}_\text{ed}(n\mathbf{k}, \tau-\tau')$ & Fonction de Green de Matsubara pour les électrons en interaction avec des défauts dans le temps imaginaire\\
+    $\mathcal{G}_\text{ed}(n\mathbf{k}, i\omega_m)$ & Fonction de Green de Matsubara pour les électrons en interaction avec des défauts aux fréquences de Matsubara\\
+    $\mathcal{G}_\text{eph}(n\mathbf{k}, \tau-\tau')$ & Fonction de Green de Matsubara pour les électrons en interaction avec des phonons dans le temps imaginaire\\
+    $\mathcal{G}_\text{eph}(n\mathbf{k}, i\omega_m)$ & Fonction de Green de Matsubara pour les électrons en interaction avec des phonons aux fréquences de Matsubara\\
+    $\mathcal{G}^{(0)}(n\mathbf{k}, \tau-\tau')$ & Fonction de Green de Matsubara pour les électrons libres dans le temps imaginaire\\
+    $\mathcal{G}^{(0)}(n\mathbf{k}, i\omega_m)$ & Fonction de Green de Matsubara pour les électrons libres aux fréquences de Matsubara\\
+    $i\omega_m$ & Fréquence de Matsubara fermionique\\
+    $i\nu_m$ & Fréquence de Matsubara bosonique\\
+    $\Pi(\nu\mathbf{q},\omega)$ & \textit{Self}-énergie des phonons due aux interactions avec les électrons\\
+    $\Sigma_\text{ed}(n\kv,\omega)$ & \textit{Self}-énergie des électrons due aux interactions avec les défauts\\
+    $\Sigma_\text{eph}(n\kv,\omega)$ & \textit{Self}-énergie des électrons due aux interactions avec les phonons\\
+    $S(\beta)$ & Matrice $S$ dans le formalisme de Matsubara\\
+    $T_{n\kv,n'\kv'}$ & Matrice $T$ pour le couplage des électrons avec un seul défaut\\
+
+    & \\
+    & \large\textbf{Hamiltoniens}\\
+    $H$ & Hamiltonien général\\
+    $H_0$ & Hamiltonien libre général\\
+    $H_\text{e}$ & Hamiltonien électronique\\
+    $H_\text{ed}$ & Hamiltonien de couplage électron-défaut\\
+    $H_\text{eem}$ & Hamiltonien de couplage électron-photon\\
+    $H_\text{em}$ & Hamiltonien des photons libres\\  
+    $H_\text{eph}$ & Hamiltonien de couplage électron-phonon\\
+    $H_\text{i}$ & Hamiltonien ioniques\\
+    $H_\text{int}$ & Hamiltonien d'interaction général\\
+    $H_\text{KS}$ & Hamiltonien de Kohn-Sham dans le formalisme de la théorie de la fonctionnelle de la densité\\
+    $H_\text{ph}$ & Hamiltonien des phonons libres\\
+\end{twocolumnlist}
+
+%%------------------------------------------------- %
+%%            Remerciements                         %
+%%------------------------------------------------- %
+\chapter*{Remerciements}
+
+Je remercie plusieurs individus.
+
+ %
+ % Fin des pages liminaires.  À partir d'ici, les
+ % premières pages des chapitres ne doivent pas
+ % être numérotées
+ %
+
+\NoChapterPageNumber
+\cleardoublepage
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                  %
+%%             TEXTE DU MÉMOIRE                     %
+%%                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{sections/chapitre1}
+\include{sections/chapitre2}
+%\include{sections/chapitre3}
+%\include{sections/chapitre4}
+%\include{sections/chapitre5}
+%\include{sections/chapitre6}
+
+%%--------------%
+%%     index    %
+%%--------------%
+
+%%\printindex
+
+%%------------------------------------------------- %
+%%         références --- bibliographie             %
+%%------------------------------------------------- %
+
+  % Enlever les commentaires de la prochaine commande si vous préférez que le
+  % chapitre s'appelle « Références » plutôt que « Bibliographie » (au choix selon le contexte).
+%% \let\bibname=\refname
+
+%% Lorsque vous serez prêt à faire afficher votre bibliographie
+%% et vos références, enlevez les commandaires des commandes suivantes
+%% et donnez le nom de votre fichier .bib à la commande \bibliography{..}
+%% (consultez l'exemple au besoin).  Vous pouvez utiliser le style de votre
+%% choix.
+%\bibliographystyle{amsplain-french}     % Le style de la bibliographie. Notons que
+                                        % les extensions ne sont pas données pour ces deux fichiers.
+%%\def\bibname{R\'ef\'erences} % Nom obligatoire de la section des références.
+                                              % On utilise \'e car le é cause des problèmes
+                                              % dans la table des matière
+%% ENGLISH
+ %\def\bibname{References}
+%\bibliography{ref}     % La base de données contenant des entrées bibliographiques.
+                                    % Seules celles référencées dans le texte seront ajoutées
+                                    % \`a la bibliographie.
+
+%%------------------------------------------------- %
+%%                   Annexe                         %
+%%------------------------------------------------- %
+
+\appendix
+
+%\include{sections/annexe1}
+%\include{sections/annexe2}
+%\include{sections/annexe3}
+
+\printbibliography
+\end{document}
+\endinput

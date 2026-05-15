@@ -1,0 +1,65 @@
+\begin{tikzpicture}[
+    rung/.style={
+        draw=black,
+        fill=gray!15,
+        rounded corners=4pt,
+        minimum width=12cm,
+        minimum height=1.0cm,
+        align=center,
+        font=\small
+    },
+    arrow/.style={
+        -{Stealth[length=8pt]},
+        line width=1.5pt
+    },
+    label/.style={
+        font=\small,
+        align=center
+    }
+]
+
+% ---- rungs (bottom to top) ----
+\node[rung] (lda)  at (0,0)
+    {\textbf{LDA} --- approximation de la densité locale\\
+     $n(\rv)$};
+
+\node[rung,fill=darkblue!15] (gga)  at (0,1.5)
+    {\textbf{GGA} --- approximation du gradient généralisé\\
+     $n(\rv)$ et $\nabla n(\rv)$};
+
+\node[rung] (mgga) at (0,3.0)
+    {\textbf{meta-GGA} --- densité d'énergie cinétique\\
+     $n(\rv), \nabla n(\rv)$ et $\tau(\rv)$};
+
+\node[rung] (hyb)  at (0,4.5)
+    {\textbf{Hybrides} --- échange exact\\};
+
+\node[rung] (rpa)  at (0,6.0)
+    {\textbf{RPA / Double hybrides} --- corrélation non-locale\\
+     Fonctionnelles dépendant des états inoccupés};
+
+% ---- ground and heaven ----
+\node[draw=black, fill=gray!15, rounded corners=4pt,
+      minimum width=12cm, minimum height=0.7cm,
+      align=center, font=\small] (earth) at (0,-1.1)
+    {Théorie de Hartree};
+
+\node[draw=black, fill=gray!15, rounded corners=4pt,
+      minimum width=12cm, minimum height=0.7cm,
+      align=center, font=\small] (heaven) at (0,7.1)
+    {Solution exacte};
+
+% ---- ladder poles ----
+\draw[line width=2pt, black] (-5.5,-0.75) -- (-5.5,6.75);
+\draw[line width=2pt, black] ( 5.5,-0.75) -- ( 5.5,6.75);
+
+% ---- vertical arrows ----
+\draw[arrow, black] (-7.0,-0.55) -- (-7.0,6.75)
+    node[midway, left=4pt, label]
+    {Précision\\croissante};
+
+\draw[arrow, black] (7.0,6.75) -- (7.0,-0.55)
+    node[midway, right=4pt, label]
+    {Coût\\décroissant};
+
+\end{tikzpicture}

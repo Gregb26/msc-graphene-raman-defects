@@ -1,0 +1,2516 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{hilbertWorldsTechnologicalCapacity2011}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=d6d70547b5fd0405774d5bedbf82bcd8}{%
+           family={Hilbert},
+           familyi={H\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=27e7c9db1a4437456f07c10c0a43b490}{%
+           family={López},
+           familyi={L\bibinitperiod},
+           given={Priscila},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, N.Y.}%
+      }
+      \strng{namehash}{cefa2ffe0fe9ee61a7dff47409c5fa68}
+      \strng{fullhash}{cefa2ffe0fe9ee61a7dff47409c5fa68}
+      \strng{fullhashraw}{cefa2ffe0fe9ee61a7dff47409c5fa68}
+      \strng{bibnamehash}{cefa2ffe0fe9ee61a7dff47409c5fa68}
+      \strng{authorbibnamehash}{cefa2ffe0fe9ee61a7dff47409c5fa68}
+      \strng{authornamehash}{cefa2ffe0fe9ee61a7dff47409c5fa68}
+      \strng{authorfullhash}{cefa2ffe0fe9ee61a7dff47409c5fa68}
+      \strng{authorfullhashraw}{cefa2ffe0fe9ee61a7dff47409c5fa68}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We estimated the world's technological capacity to store, communicate, and compute information, tracking 60 analog and digital technologies during the period from 1986 to 2007. In 2007, humankind was able to store 2.9 × 10(20) optimally compressed bytes, communicate almost 2 × 10(21) bytes, and carry out 6.4 × 10(18) instructions per second on general-purpose computers. General-purpose computing capacity grew at an annual rate of 58\%. The world's capacity for bidirectional telecommunication grew at 28\% per year, closely followed by the increase in globally stored information (23\%). Humankind's capacity for unidirectional information diffusion through broadcasting channels has experienced comparatively modest annual growth (6\%). Telecommunication has been dominated by digital technologies since 1990 (99.9\% in digital format in 2007), and the majority of our technological memory has been in digital format since the early 2000s (94\% digital in 2007).}
+      \field{day}{1}
+      \field{eprinttype}{pubmed}
+      \field{issn}{1095-9203}
+      \field{journaltitle}{Science}
+      \field{langid}{english}
+      \field{month}{4}
+      \field{number}{6025}
+      \field{shortjournal}{Science}
+      \field{title}{The World's Technological Capacity to Store, Communicate, and Compute Information}
+      \field{volume}{332}
+      \field{year}{2011}
+      \field{dateera}{ce}
+      \field{pages}{60\bibrangedash 65}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1126/science.1200970
+      \endverb
+      \verb{eprint}
+      \verb 21310967
+      \endverb
+    \endentry
+    \entry{alloulIntroductionPhysicsElectrons2011a}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=0425dff528e8fccbc98afa7fa534a01d}{%
+           family={Alloul},
+           familyi={A\bibinitperiod},
+           given={Henri},
+           giveni={H\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=4744a4b0566ca997b077623cf3479801}{%
+           family={Lyle},
+           familyi={L\bibinitperiod},
+           given={Stephen},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Berlin ; Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer/Sci-Tech/Trade}%
+      }
+      \strng{namehash}{0425dff528e8fccbc98afa7fa534a01d}
+      \strng{fullhash}{0425dff528e8fccbc98afa7fa534a01d}
+      \strng{fullhashraw}{0425dff528e8fccbc98afa7fa534a01d}
+      \strng{bibnamehash}{0425dff528e8fccbc98afa7fa534a01d}
+      \strng{authorbibnamehash}{0425dff528e8fccbc98afa7fa534a01d}
+      \strng{authornamehash}{0425dff528e8fccbc98afa7fa534a01d}
+      \strng{authorfullhash}{0425dff528e8fccbc98afa7fa534a01d}
+      \strng{authorfullhashraw}{0425dff528e8fccbc98afa7fa534a01d}
+      \strng{editorbibnamehash}{4744a4b0566ca997b077623cf3479801}
+      \strng{editornamehash}{4744a4b0566ca997b077623cf3479801}
+      \strng{editorfullhash}{4744a4b0566ca997b077623cf3479801}
+      \strng{editorfullhashraw}{4744a4b0566ca997b077623cf3479801}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Ce manuel vise à permettre aux lecteurs de comprendre les aspects fondamentaux sous-jacents aux phénomènes macroscopiques quantiques dans les solides, principalement à travers les techniques expérimentales et les résultats modernes. L'approche classique des électrons indépendants pour décrire la structure électronique en termes de bandes d'énergie aide à expliquer l'apparition de métaux, d'isolateurs et de semi-conducteurs. Il est souligné que la supraconductivité et le magnétisme ne peuvent être compris qu'en prenant en compte les interactions entre les électrons. Le texte retrace les observations expérimentales qui ont révélé les principales propriétés des supraconducteurs et ont été essentielles pour suivre son origine physique. Bien que les concepts fondamentaux soient soulignés, ceux qui sont nécessaires pour décrire les applications de haute technologie, présentes ou futures, sont également soulignés. Les ensembles de problèmes impliquent des approches expérimentales et des outils qui soutiennent une compréhension pratique des matériaux et de leur comportement.}
+      \field{isbn}{978-3-642-13564-4}
+      \field{langid}{Anglais}
+      \field{pagetotal}{618}
+      \field{title}{Introduction to the Physics of Electrons in Solids}
+      \field{year}{2011}
+      \field{dateera}{ce}
+    \endentry
+    \entry{bornZurQuantentheorieMolekeln1927}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=bad172b2c82dbccc8e126f5da73356ce}{%
+           family={Born},
+           familyi={B\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=0d4bfc7ceea303cb148c907baabcd66c}{%
+           family={Oppenheimer},
+           familyi={O\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{d67cb7db9fe99d3f0ed3cf56f7b0c2c0}
+      \strng{fullhash}{d67cb7db9fe99d3f0ed3cf56f7b0c2c0}
+      \strng{fullhashraw}{d67cb7db9fe99d3f0ed3cf56f7b0c2c0}
+      \strng{bibnamehash}{d67cb7db9fe99d3f0ed3cf56f7b0c2c0}
+      \strng{authorbibnamehash}{d67cb7db9fe99d3f0ed3cf56f7b0c2c0}
+      \strng{authornamehash}{d67cb7db9fe99d3f0ed3cf56f7b0c2c0}
+      \strng{authorfullhash}{d67cb7db9fe99d3f0ed3cf56f7b0c2c0}
+      \strng{authorfullhashraw}{d67cb7db9fe99d3f0ed3cf56f7b0c2c0}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0003-3804, 1521-3889}
+      \field{journaltitle}{Annalen der Physik}
+      \field{langid}{english}
+      \field{month}{1}
+      \field{number}{20}
+      \field{shortjournal}{Annalen der Physik}
+      \field{title}{Zur {{Quantentheorie}} Der {{Molekeln}}}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{389}
+      \field{year}{1927}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{457\bibrangedash 484}
+      \range{pages}{28}
+      \verb{doi}
+      \verb 10.1002/andp.19273892002
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/NVXYPESE/Born and Oppenheimer - 1927 - Zur Quantentheorie der Molekeln.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://onlinelibrary.wiley.com/doi/10.1002/andp.19273892002
+      \endverb
+      \verb{url}
+      \verb https://onlinelibrary.wiley.com/doi/10.1002/andp.19273892002
+      \endverb
+    \endentry
+    \entry{pisanaBornOppenheimerBreakdownGraphene2007}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=7a79e25934743c7b0c981d524da81661}{%
+           family={Pisana},
+           familyi={P\bibinitperiod},
+           given={Simone},
+           giveni={S\bibinitperiod}}}%
+        {{hash=8c2690776de302e4098d7405bf6393de}{%
+           family={Lazzeri},
+           familyi={L\bibinitperiod},
+           given={Michele},
+           giveni={M\bibinitperiod}}}%
+        {{hash=cc36d828b931c8ecb09996b0c0b4cd86}{%
+           family={Casiraghi},
+           familyi={C\bibinitperiod},
+           given={Cinzia},
+           giveni={C\bibinitperiod}}}%
+        {{hash=5df2650a470aefa3a59e53338c2e0bb1}{%
+           family={Novoselov},
+           familyi={N\bibinitperiod},
+           given={Kostya\bibnamedelima S.},
+           giveni={K\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=ef560f39abdb26f8914e69f5699efa90}{%
+           family={Geim},
+           familyi={G\bibinitperiod},
+           given={Andre\bibnamedelima K.},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=19893984959b197ece73d135bcd3f758}{%
+           family={Ferrari},
+           familyi={F\bibinitperiod},
+           given={Andrea\bibnamedelima C.},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=10f05ef61dea941f44620ab6ca249da6}{%
+           family={Mauri},
+           familyi={M\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{cdfda3540b0429eb328748ca41a25a8b}
+      \strng{fullhash}{76b644f7f820876338dad38790e5cf1b}
+      \strng{fullhashraw}{76b644f7f820876338dad38790e5cf1b}
+      \strng{bibnamehash}{cdfda3540b0429eb328748ca41a25a8b}
+      \strng{authorbibnamehash}{cdfda3540b0429eb328748ca41a25a8b}
+      \strng{authornamehash}{cdfda3540b0429eb328748ca41a25a8b}
+      \strng{authorfullhash}{76b644f7f820876338dad38790e5cf1b}
+      \strng{authorfullhashraw}{76b644f7f820876338dad38790e5cf1b}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The Born-Oppenheimer approximation (BO) has proven effective for the accurate determination of chemical reactions, molecular dynamics and phonon frequencies in a wide range of metallic systems. Graphene, recently discovered in the free state, is a zero band-gap semiconductor, which becomes a metal if the Fermi energy is tuned applying a gate-voltage Vg. Graphene electrons near the Fermi energy have twodimensional massless dispersions, described by Dirac cones. Here we show that a change in Vg induces a stiffening of the Raman G peak (i.e. the zone-center E2g optical phonon), which cannot be described within BO. Indeed, the E2g vibrations cause rigid oscillations of the Dirac-cones in the reciprocal space. If the electrons followed adiabatically the Dirac-cone oscillations, no change in the phonon frequency would be observed. Instead, since the electron-momentum relaxation near the Fermi level is much slower than the phonon motion, the electrons do not follow the Dirac-cone displacements. This invalidates BO and results in the observed phonon stiffening. This spectacular failure of BO is quite significant since BO has been the fundamental paradigm to determine crystal vibrations from the early days of quantum mechanics.}
+      \field{eprinttype}{arXiv}
+      \field{issn}{1476-1122, 1476-4660}
+      \field{journaltitle}{Nature Materials}
+      \field{month}{3}
+      \field{number}{3}
+      \field{shortjournal}{Nature Mater}
+      \field{title}{Born-{{Oppenheimer Breakdown}} in {{Graphene}}}
+      \field{urlday}{28}
+      \field{urlmonth}{4}
+      \field{urlyear}{2026}
+      \field{volume}{6}
+      \field{year}{2007}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{198\bibrangedash 201}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1038/nmat1846
+      \endverb
+      \verb{eprint}
+      \verb cond-mat/0611714
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/N5VVMQGG/Pisana et al. - 2007 - Born-Oppenheimer Breakdown in Graphene.pdf;/Users/gregou/Zotero/storage/FP49N6NV/0611714.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/cond-mat/0611714
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/cond-mat/0611714
+      \endverb
+      \keyw{Condensed Matter - Materials Science,Condensed Matter - Mesoscale and Nanoscale Physics}
+    \endentry
+    \entry{bornDynamicalTheoryCrystal1998}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=f3c12b2ab192a232977c790c202ae18a}{%
+           family={Born},
+           familyi={B\bibinitperiod},
+           given={Max},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d00246b1153ed058a9db188c365474ca}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Kun},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Oxford, New York}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{301261da326e599648547bab974bc636}
+      \strng{fullhash}{301261da326e599648547bab974bc636}
+      \strng{fullhashraw}{301261da326e599648547bab974bc636}
+      \strng{bibnamehash}{301261da326e599648547bab974bc636}
+      \strng{authorbibnamehash}{301261da326e599648547bab974bc636}
+      \strng{authornamehash}{301261da326e599648547bab974bc636}
+      \strng{authorfullhash}{301261da326e599648547bab974bc636}
+      \strng{authorfullhashraw}{301261da326e599648547bab974bc636}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{At the time of its publication this classic text, co-written by the Nobel Laureate Max Born, represented the definitive account of the subject and in many ways it still does. The book begins with a general discussion of the statistical mechanics of ideal lattices, leading to the electric polarizability and to the scattering of light. It then provides detailed discussions of long lattice waves, thermal properties, and optical properties. , At the time of its publication this classic text, co-written by the Nobel Laureate Max Born, represented the definitive account of the subject and in many ways it still does. The book begins with a general discussion of the statistical mechanics of ideal lattices, leading to the electric polarizability and to the scattering of light. It then provides detailed discussions of long lattice waves, thermal properties, and optical properties.}
+      \field{day}{5}
+      \field{isbn}{978-0-19-850369-9}
+      \field{month}{11}
+      \field{pagetotal}{432}
+      \field{series}{Oxford {{Classic Texts}} in the {{Physical Sciences}}}
+      \field{title}{Dynamical {{Theory}} of {{Crystal Lattices}}}
+      \field{year}{1998}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/L9ZZRFF7/dynamical-theory-of-crystal-lattices-9780198503699.html
+      \endverb
+    \endentry
+    \entry{hartreeWaveMechanicsAtom1928}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=ef83d4dc8a30fe4456be4321cd8ad41b}{%
+           family={Hartree},
+           familyi={H\bibinitperiod},
+           given={D.\bibnamedelimi R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{fullhash}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{fullhashraw}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{bibnamehash}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{authorbibnamehash}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{authornamehash}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{authorfullhash}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{authorfullhashraw}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \field{extraname}{1}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The paper is concerned with the practical determination of the characteristic values and functions of the wave equation of Schrodinger for a non-Coulomb central field, for which the potential is given as a function of the distance r from the nucleus.The method used is to integrate a modification of the equation outwards from initial conditions corresponding to a solution finite at r = 0, and inwards from initial conditions corresponding to a solution zero at r = ∞, with a trial value of the parameter (the energy) whose characteristic values are to be determined; the values of this parameter for which the two solutions fit at some convenient intermediate radius are the characteristic values required, and the solutions which so fit are the characteristic functions (§§ 2, 10).Modifications of the wave equation suitable for numerical work in different parts of the range of r are given (§§ 2, 3, 5), also exact equations for the variation of a solution with a variation in the potential or of the trial value of the energy (§ 4); the use of these variation equations in preference to a complete new integration of the equation for every trial change of field or of the energy parameter avoids a great deal of numerical work.For the range of r where the deviation from a Coulomb field is inappreciable, recurrence relations between different solutions of the wave equations which are zero at r = ∞, and correspond to terms with different values of the effective and subsidiary quantum numbers, are given and can be used to avoid carrying out the integration in each particular case (§§ 6, 7).Formulae for the calculation of first order perturbations due to the relativity variation of mass and to the spinning electron are given (§ 8).The method used for integrating the equations numerically is outlined (§ 9).}
+      \field{issn}{1469-8064, 0305-0041}
+      \field{journaltitle}{Mathematical Proceedings of the Cambridge Philosophical Society}
+      \field{langid}{english}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{The {{Wave Mechanics}} of an {{Atom}} with a {{Non-Coulomb Central Field}}. {{Part I}}. {{Theory}} and {{Methods}}}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{24}
+      \field{year}{1928}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{89\bibrangedash 110}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1017/S0305004100011919
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cambridge.org/core/journals/mathematical-proceedings-of-the-cambridge-philosophical-society/article/abs/wave-mechanics-of-an-atom-with-a-noncoulomb-central-field-part-i-theory-and-methods/C9417AC1CEC84B934C1EA4C4B8401FEF
+      \endverb
+      \verb{url}
+      \verb https://www.cambridge.org/core/journals/mathematical-proceedings-of-the-cambridge-philosophical-society/article/abs/wave-mechanics-of-an-atom-with-a-noncoulomb-central-field-part-i-theory-and-methods/C9417AC1CEC84B934C1EA4C4B8401FEF
+      \endverb
+    \endentry
+    \entry{hartreeWaveMechanicsAtom1928a}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=ef83d4dc8a30fe4456be4321cd8ad41b}{%
+           family={Hartree},
+           familyi={H\bibinitperiod},
+           given={D.\bibnamedelimi R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{fullhash}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{fullhashraw}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{bibnamehash}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{authorbibnamehash}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{authornamehash}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{authorfullhash}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \strng{authorfullhashraw}{ef83d4dc8a30fe4456be4321cd8ad41b}
+      \field{extraname}{2}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The methods of solution of the wave equation for a central field given in the previous paper are applied to various atoms. For the core electrons, the details of the interaction of the electrons in a single nk group are neglected, but an approximate correction is made for the fact that the distributed charge of an electron does not contribute to the field acting on itself (§2).For a given atom the object of the work is to find a field such that the solutions of the wave equation for the core electrons in this field (corrected as just mentioned for each core electron) give a distribution of charge which reproduces the field. This is called the self-consistent field, and the process of finding it is one of successive approximation (§ 3).Approximations to the self-consistent field have been found for He (§ 4), Rb+ (§ 5), Na+, Cl− (§ 9). For He the energy parameter for the solution of the wave equation for one electron in the self-consistent field of the nucleus and the other corresponds to an ionisation potential of 24·85 volts (observed 24·6 volts); this agreement suggests that for other atoms the values of the energy parameter in the self-consistent field (corrected for each core electron) will probably give good approximations to the X-ray terms (§4).The most extensive work has been carried out for Rb+. The distribution of charge given by the wave functions in the self-consistent field is compared with the distribution calculated by other methods (§ 6). The values of X-ray and optical terms calculated from the self-consistent field show satisfactory agreement with those observed (§ 7).The wave mechanical analogue of the case in which on the orbital model an internal and an external orbit of the same energy are possible is discussed (§ 8).}
+      \field{issn}{1469-8064, 0305-0041}
+      \field{journaltitle}{Mathematical Proceedings of the Cambridge Philosophical Society}
+      \field{langid}{english}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{The {{Wave Mechanics}} of an {{Atom}} with a {{Non-Coulomb Central Field}}. {{Part II}}. {{Some Results}} and {{Discussion}}}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{24}
+      \field{year}{1928}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{111\bibrangedash 132}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1017/S0305004100011920
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cambridge.org/core/journals/mathematical-proceedings-of-the-cambridge-philosophical-society/article/abs/wave-mechanics-of-an-atom-with-a-noncoulomb-central-field-part-ii-some-results-and-discussion/5916E7A0DEC0A051B435688BE2ACD57E
+      \endverb
+      \verb{url}
+      \verb https://www.cambridge.org/core/journals/mathematical-proceedings-of-the-cambridge-philosophical-society/article/abs/wave-mechanics-of-an-atom-with-a-noncoulomb-central-field-part-ii-some-results-and-discussion/5916E7A0DEC0A051B435688BE2ACD57E
+      \endverb
+    \endentry
+    \entry{fockNaeherungsmethodeZurLoesung1930}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=7fc5683b97a276f7da2093c62445cdd8}{%
+           family={Fock},
+           familyi={F\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{7fc5683b97a276f7da2093c62445cdd8}
+      \strng{fullhash}{7fc5683b97a276f7da2093c62445cdd8}
+      \strng{fullhashraw}{7fc5683b97a276f7da2093c62445cdd8}
+      \strng{bibnamehash}{7fc5683b97a276f7da2093c62445cdd8}
+      \strng{authorbibnamehash}{7fc5683b97a276f7da2093c62445cdd8}
+      \strng{authornamehash}{7fc5683b97a276f7da2093c62445cdd8}
+      \strng{authorfullhash}{7fc5683b97a276f7da2093c62445cdd8}
+      \strng{authorfullhashraw}{7fc5683b97a276f7da2093c62445cdd8}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Das Variationsprinzip ∫δ¯Ψ(L − E) Ψdτ=0 (L=Energieoperator) liefert, bekanntlich die Wellengleichung im Konfigurationsraum. Es wird gezeigt, daß der Ansatz Ψ=ψ1 (χ1) ψ2 (χ1)... ψN(χN) (N=Anzahl der Elektronen) zu den Gleichungen der Hartreeschen Theorie des „selfconsistent field“ führt. Dieser Ansatz hat aber nicht die richtige Symmetrie. In dem wichtigen Spezialfall der „völligen Entartung des Termsystems“ kann aber Ψ durch ėin Produkt zweier Determinanten [Formel (50) des Textes] approximiert werden. Die entsprechende Rechnung wird durchgeführt. Die Gleichungen, die sich für ψi(χ) ergeben, enthalten „Austauschglieder“ und können als Eulersche Gleichungen eines dreidimensionalen Variationsproblems mit der Energie als Wirkungsintegral [Formel (93)] aufgefaßt werden. Die Gleichungen sind nicht wesentlich komplizierter als die von Hartree, dürften aber viel genauere Resultate ergeben. Zum Schluß wird eine Formel für die Intensitäten angegeben, die- Glieder enthält, welche einer „Umgruppierung“ der inneren Elektronen bei einem Quantensprung entsprechen.}
+      \field{day}{1}
+      \field{issn}{0044-3328}
+      \field{journaltitle}{Zeitschrift für Physik}
+      \field{langid}{ngerman}
+      \field{month}{1}
+      \field{number}{1}
+      \field{shortjournal}{Z. Physik}
+      \field{title}{Näherungsmethode zur Lösung des quantenmechanischen Mehrkörperproblems}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{61}
+      \field{year}{1930}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{126\bibrangedash 148}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1007/BF01340294
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/NE794D5R/Fock - 1930 - Näherungsmethode zur Lösung des quantenmechanischen Mehrkörperproblems.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/BF01340294
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/BF01340294
+      \endverb
+    \endentry
+    \entry{slaterNoteHartreesMethod1930}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=2680effb67f4c8cd7c73443f7af7dbe9}{%
+           family={Slater},
+           familyi={S\bibinitperiod},
+           given={J.\bibnamedelimi C.},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{2680effb67f4c8cd7c73443f7af7dbe9}
+      \strng{fullhash}{2680effb67f4c8cd7c73443f7af7dbe9}
+      \strng{fullhashraw}{2680effb67f4c8cd7c73443f7af7dbe9}
+      \strng{bibnamehash}{2680effb67f4c8cd7c73443f7af7dbe9}
+      \strng{authorbibnamehash}{2680effb67f4c8cd7c73443f7af7dbe9}
+      \strng{authornamehash}{2680effb67f4c8cd7c73443f7af7dbe9}
+      \strng{authorfullhash}{2680effb67f4c8cd7c73443f7af7dbe9}
+      \strng{authorfullhashraw}{2680effb67f4c8cd7c73443f7af7dbe9}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{15}
+      \field{journaltitle}{Physical Review}
+      \field{month}{1}
+      \field{number}{2}
+      \field{shortjournal}{Phys. Rev.}
+      \field{title}{Note on {{Hartree}}'s {{Method}}}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{35}
+      \field{year}{1930}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{210\bibrangedash 211}
+      \range{pages}{2}
+      \verb{doi}
+      \verb 10.1103/PhysRev.35.210.2
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/YC2A8K2E/PhysRev.35.210.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.35.210.2
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.35.210.2
+      \endverb
+    \endentry
+    \entry{diracQuantumMechanicsManyelectron1929}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=59342ede3a101402b34939644b51ad06}{%
+           family={Dirac},
+           familyi={D\bibinitperiod},
+           given={Paul\bibnamedelimb Adrien\bibnamedelima Maurice},
+           giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{59342ede3a101402b34939644b51ad06}
+      \strng{fullhash}{59342ede3a101402b34939644b51ad06}
+      \strng{fullhashraw}{59342ede3a101402b34939644b51ad06}
+      \strng{bibnamehash}{59342ede3a101402b34939644b51ad06}
+      \strng{authorbibnamehash}{59342ede3a101402b34939644b51ad06}
+      \strng{authornamehash}{59342ede3a101402b34939644b51ad06}
+      \strng{authorfullhash}{59342ede3a101402b34939644b51ad06}
+      \strng{authorfullhashraw}{59342ede3a101402b34939644b51ad06}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The general theory of quantum mechanics is now almost complete, the imperfections that still remain being in connection with the exact fitting in of the theory with relativity ideas. These give rise to difficulties only when high-speed particles are involved, and are therefore of no importance in the consideration of atomic and molecular structure and ordinary chemical reactions, in which it is, indeed, usually sufficiently accurate if one neglects relativity variation of mass with velocity and assumes only Coulomb forces between the various electrons and atomic nuclei. The underlying physical laws necessary for the mathematical theory of a large part of physics and the whole of chemistry are thus completely known, and the difficulty is only that the exact application of these laws leads to equations much too complicated to be soluble. It there fore becomes desirable that approximate practical methods of applying quantum mechanics should be developed, which can lead to an explanation of the main features of complex atomic systems without too much computation. Already before the arrival of quantum mechanics there existed a theory of atomic structure, based on Bohr’s ideas of quantised orbits, which was fairly successful in a wide field. To get agreement with experiment it was found necessary to introduce the spin of the electron, giving a doubling in the number of orbits of an electron in an atom. With the help of this spin and Pauli’s exclusion principle, a satisfactory theory of multiplet terms was obtained when one made the additional assumption that the electrons in an atom all set themselves with their spins parallel or antiparallel. If s denoted the magnitude of the resultant spin angular momentum, this s was combined vectorially with the resultant orbital angular momentum l to give a multiplet of multiplicity 2s + 1. The fact that one had to make this additional assumption was, however, a serious disadvantage, as no theoretical reasons to support it could be given. It seemed to show that there were large forces coupling the spin vectors of the electrons in an atom, much larger forces than could be accounted for as due to the interaction of the magnetic moments of the electrons. The position was thus that there was empirical evidence in favour of these large forces, but that their theoretical nature was quite unknown.}
+      \field{day}{6}
+      \field{issn}{0950-1207}
+      \field{journaltitle}{Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character}
+      \field{month}{4}
+      \field{number}{792}
+      \field{shortjournal}{Proc. A}
+      \field{title}{Quantum Mechanics of Many-Electron Systems}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{123}
+      \field{year}{1929}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{714\bibrangedash 733}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1098/rspa.1929.0094
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/4SAKS84U/Dirac - 1929 - Quantum mechanics of many-electron systems.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1098/rspa.1929.0094
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1098/rspa.1929.0094
+      \endverb
+    \endentry
+    \entry{martinTheoryManyParticleSystems1959}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=923c988bb9a2679516939a35d9fbd453}{%
+           family={Martin},
+           familyi={M\bibinitperiod},
+           given={Paul\bibnamedelima C.},
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=b980b4d50e299f1778272e6120f86baf}{%
+           family={Schwinger},
+           familyi={S\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{a4333f1686e2d7af55bd6904099924f3}
+      \strng{fullhash}{a4333f1686e2d7af55bd6904099924f3}
+      \strng{fullhashraw}{a4333f1686e2d7af55bd6904099924f3}
+      \strng{bibnamehash}{a4333f1686e2d7af55bd6904099924f3}
+      \strng{authorbibnamehash}{a4333f1686e2d7af55bd6904099924f3}
+      \strng{authornamehash}{a4333f1686e2d7af55bd6904099924f3}
+      \strng{authorfullhash}{a4333f1686e2d7af55bd6904099924f3}
+      \strng{authorfullhashraw}{a4333f1686e2d7af55bd6904099924f3}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This is the first of a series of papers dealing with many-particle systems from a unified, nonperturbative point of view. It contains derivations and discussions of various field-theoretical techniques which will be applied in subsequent papers. In a short introduction the general method of approach is summarized, and its relationship to other field-theoretic problems indicated. In the second section the macroscopic properties of the spectra of many-particle systems are described. Asymptotic evaluations are performed which characterize these macroscopic features in terms of intensive parameters, and the relationship of these parameters to thermodynamics is discussed. The special characteristics of the ground state are shown to follow as a limiting case of the asymptotic evaluations. The third section is devoted to the time-dependent field correlation functions, or Green's functions, which describe the microscopic behavior of a multiparticle system. These functions are defined, and related to intensive macroscopic variables when the energy and number of particles are large. Spectral representations and other properties of various one-particle Green's functions are derived. In the fourth section the treatment of non-equilibrium processes is considered. As a particular example, the electromagnetic properties of a system are expressed in terms of the special two-particle Green's function which describes current correlation. The discussion yields specifically a fluctuation-dissipation theorem, a sum rule for conductivity, and certain dispersion relations. The fifth section deals with the differential equations which determine the Green's functions. The boundary conditions that characterize the Green's function equations are exhibited without reference to adiabatic decoupling. A method for solving the equations approximately, by treating the correlations among successively larger numbers of particles, is considered. The first approximation in this sequence is shown to yield a generalized Hartree-like equation. A related, but rigorous, identity for the single-particle Green's function is then derived. A second approximation, which takes certain two-particle correlations into account, is shown to produce various additional effects: The interaction between particles is altered in a manner characterized by the intensive macroscopic parameters, and the modification and spread of the energy-momentum relation come into play. In the final section compact formal expressions for the Green's functions and other physical quantities are derived. Alternative equations and systematic approximations for the Green's functions are obtained.}
+      \field{day}{15}
+      \field{journaltitle}{Physical Review}
+      \field{month}{9}
+      \field{number}{6}
+      \field{shortjournal}{Phys. Rev.}
+      \field{title}{Theory of {{Many-Particle Systems}}. {{I}}}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{115}
+      \field{year}{1959}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1342\bibrangedash 1373}
+      \range{pages}{32}
+      \verb{doi}
+      \verb 10.1103/PhysRev.115.1342
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/JB7JH2ZC/PhysRev.115.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.115.1342
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.115.1342
+      \endverb
+    \endentry
+    \entry{AbrikosovAAGorkov}{online}{}{}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labeltitlesource}{title}
+      \field{title}{Abrikosov, {{A}}.{{A}}., {{Gorkov}}, {{L}}.{{P}}. and {{Dzyaloshinski}}, {{I}}.{{E}}. (1963) {{Methods}} of {{Quantum Field Theory}} in {{Statistical Physics}}. {{In Silverman}}, {{R}}.{{A}}., {{Ed}}., {{Prentice-Hall}}, {{Inc}}., {{Englewood Cliffs}}. - {{References}} - {{Scientific Research Publishing}}}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.scirp.org/%28S%28lz5mqp453edsnp55rrgjct55%29%29/reference/referencespapers?referenceid=1907822
+      \endverb
+      \verb{url}
+      \verb https://www.scirp.org/%28S%28lz5mqp453edsnp55rrgjct55%29%29/reference/referencespapers?referenceid=1907822
+      \endverb
+    \endentry
+    \entry{ceperleyGroundStateElectron1980}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=3c490cc7617ee5d51e32cde2220a0add}{%
+           family={Ceperley},
+           familyi={C\bibinitperiod},
+           given={D.\bibnamedelimi M.},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=59a00579ab78019787401780d3d13eca}{%
+           family={Alder},
+           familyi={A\bibinitperiod},
+           given={B.\bibnamedelimi J.},
+           giveni={B\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{2f43048f89a84f2ac129cabbc722af97}
+      \strng{fullhash}{2f43048f89a84f2ac129cabbc722af97}
+      \strng{fullhashraw}{2f43048f89a84f2ac129cabbc722af97}
+      \strng{bibnamehash}{2f43048f89a84f2ac129cabbc722af97}
+      \strng{authorbibnamehash}{2f43048f89a84f2ac129cabbc722af97}
+      \strng{authornamehash}{2f43048f89a84f2ac129cabbc722af97}
+      \strng{authorfullhash}{2f43048f89a84f2ac129cabbc722af97}
+      \strng{authorfullhashraw}{2f43048f89a84f2ac129cabbc722af97}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{An exact stochastic simulation of the Schroedinger equation for charged bosons and fermions has been used to calculate the correlation energies, to locate the transitions to their respective crystal phases at zero temperature within 10\%, and to establish the stability at intermediate densities of a ferromagnetic fluid of electrons.}
+      \field{day}{18}
+      \field{journaltitle}{Physical Review Letters}
+      \field{month}{8}
+      \field{number}{7}
+      \field{shortjournal}{Phys. Rev. Lett.}
+      \field{title}{Ground {{State}} of the {{Electron Gas}} by a {{Stochastic Method}}}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{45}
+      \field{year}{1980}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{566\bibrangedash 569}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.45.566
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/KC73QWKT/PhysRevLett.45.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.45.566
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.45.566
+      \endverb
+    \endentry
+    \entry{martinElectronicStructureBasic2004}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=a7400824f190fa020763ff41d573646b}{%
+           family={Martin},
+           familyi={M\bibinitperiod},
+           given={Richard\bibnamedelima M.},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cambridge}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{a7400824f190fa020763ff41d573646b}
+      \strng{fullhash}{a7400824f190fa020763ff41d573646b}
+      \strng{fullhashraw}{a7400824f190fa020763ff41d573646b}
+      \strng{bibnamehash}{a7400824f190fa020763ff41d573646b}
+      \strng{authorbibnamehash}{a7400824f190fa020763ff41d573646b}
+      \strng{authornamehash}{a7400824f190fa020763ff41d573646b}
+      \strng{authorfullhash}{a7400824f190fa020763ff41d573646b}
+      \strng{authorfullhashraw}{a7400824f190fa020763ff41d573646b}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The study of the electronic structure of materials is at a momentous stage, with the emergence of computational methods and theoretical approaches. Many properties of materials can now be determined directly from the fundamental equations for the electrons, providing insights into critical problems in physics, chemistry, and materials science. This book provides a unified exposition of the basic theory and methods of electronic structure, together with instructive examples of practical computational methods and real-world applications. Appropriate for both graduate students and practising scientists, this book describes the approach most widely used today, density functional theory, with emphasis upon understanding the ideas, practical methods and limitations. Many references are provided to original papers, pertinent reviews, and widely available books. Included in each chapter is a short list of the most relevant references and a set of exercises that reveal salient points and challenge the reader.}
+      \field{shorttitle}{Electronic {{Structure}}}
+      \field{title}{Electronic {{Structure}}: {{Basic Theory}} and {{Practical Methods}}}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{year}{2004}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1017/CBO9780511805769
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/7U4IBZVE/DDFE838DED61D7A402FDF20D735BC63A.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cambridge.org/core/books/electronic-structure/DDFE838DED61D7A402FDF20D735BC63A
+      \endverb
+      \verb{url}
+      \verb https://www.cambridge.org/core/books/electronic-structure/DDFE838DED61D7A402FDF20D735BC63A
+      \endverb
+    \endentry
+    \entry{girvinModernCondensedMatter2019}{online}{}{}
+      \name{author}{2}{}{%
+        {{hash=d2edc8376799680465079dd95c70572e}{%
+           family={Girvin},
+           familyi={G\bibinitperiod},
+           given={Steven\bibnamedelima M.},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=04cc6d0239cfc00b9fc2271650728b3d}{%
+           family={Yang},
+           familyi={Y\bibinitperiod},
+           given={Kun},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Cambridge Aspire website}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{d32227a4402b7b0ba8a24541c83277e9}
+      \strng{fullhash}{d32227a4402b7b0ba8a24541c83277e9}
+      \strng{fullhashraw}{d32227a4402b7b0ba8a24541c83277e9}
+      \strng{bibnamehash}{d32227a4402b7b0ba8a24541c83277e9}
+      \strng{authorbibnamehash}{d32227a4402b7b0ba8a24541c83277e9}
+      \strng{authornamehash}{d32227a4402b7b0ba8a24541c83277e9}
+      \strng{authorfullhash}{d32227a4402b7b0ba8a24541c83277e9}
+      \strng{authorfullhashraw}{d32227a4402b7b0ba8a24541c83277e9}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Modern Condensed Matter Physics brings together the most important advances in the field of recent decades. It provides instructors teaching graduate-level condensed matter courses with a comprehensive and in-depth textbook that will prepare graduate students for research or further study as well as reading more advanced and specialized books and research literature in the field. This textbook covers the basics of crystalline solids as well as analogous optical lattices and photonic crystals, while discussing cutting-edge topics such as disordered systems, mesoscopic systems, many-body systems, quantum magnetism, Bose–Einstein condensates, quantum entanglement, and superconducting quantum bits. Students are provided with the appropriate mathematical background to understand the topological concepts that have been permeating the field, together with numerous physical examples ranging from the fractional quantum Hall effect to topological insulators, the toric code, and majorana fermions. Exercises, commentary boxes, and appendices afford guidance and feedback for beginners and experts alike.}
+      \field{day}{27}
+      \field{isbn}{9781316480649}
+      \field{langid}{english}
+      \field{month}{2}
+      \field{title}{Modern {{Condensed Matter Physics}}}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1017/9781316480649
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/Q4EF5R3K/F0A27AC5DEA8A40EA6EA5D727ED8B14E.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cambridge.org/highereducation/books/modern-condensed-matter-physics/F0A27AC5DEA8A40EA6EA5D727ED8B14E
+      \endverb
+      \verb{url}
+      \verb https://www.cambridge.org/highereducation/books/modern-condensed-matter-physics/F0A27AC5DEA8A40EA6EA5D727ED8B14E
+      \endverb
+    \endentry
+    \entry{hohenbergInhomogeneousElectronGas1964}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=40ea553b503fe0418f7f07689980cd95}{%
+           family={Hohenberg},
+           familyi={H\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=5d41414fe0631332e20a859e66a25627}{%
+           family={Kohn},
+           familyi={K\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{7d5f8c830aae8dc4c996b32459939beb}
+      \strng{fullhash}{7d5f8c830aae8dc4c996b32459939beb}
+      \strng{fullhashraw}{7d5f8c830aae8dc4c996b32459939beb}
+      \strng{bibnamehash}{7d5f8c830aae8dc4c996b32459939beb}
+      \strng{authorbibnamehash}{7d5f8c830aae8dc4c996b32459939beb}
+      \strng{authornamehash}{7d5f8c830aae8dc4c996b32459939beb}
+      \strng{authorfullhash}{7d5f8c830aae8dc4c996b32459939beb}
+      \strng{authorfullhashraw}{7d5f8c830aae8dc4c996b32459939beb}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper deals with the ground state of an interacting electron gas in an external potential 𝑣⁡(r). It is proved that there exists a universal functional of the density, 𝐹⁡[𝑛⁡(r)], independent of 𝑣⁡(r), such that the expression 𝐸≡∫𝑣⁡(r)⁢𝑛⁡(r)𝑑r +𝐹⁡[𝑛⁡(r)] has as its minimum value the correct ground-state energy associated with 𝑣⁡(r). The functional 𝐹⁡[𝑛⁡(r)] is then discussed for two situations: (1) 𝑛⁡(r) =𝑛0 +̃𝑛⁡(r), ̃𝑛𝑛0 ≪1, and (2) 𝑛⁡(r) =𝜙⁡(r𝑟0) with 𝜙 arbitrary and 𝑟0 →∞. In both cases 𝐹 can be expressed entirely in terms of the correlation energy and linear and higher order electronic polarizabilities of a uniform electron gas. This approach also sheds some light on generalized Thomas-Fermi methods and their limitations. Some new extensions of these methods are presented.}
+      \field{day}{9}
+      \field{issue}{3B}
+      \field{journaltitle}{Physical Review}
+      \field{month}{11}
+      \field{shortjournal}{Phys. Rev.}
+      \field{title}{Inhomogeneous {{Electron Gas}}}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{136}
+      \field{year}{1964}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{B864\bibrangedash B871}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1103/PhysRev.136.B864
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/VISF6JFU/Hohenberg and Kohn - 1964 - Inhomogeneous Electron Gas.pdf;/Users/gregou/Zotero/storage/K6EB7F6L/PhysRev.136.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.136.B864
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.136.B864
+      \endverb
+    \endentry
+    \entry{kohnSelfConsistentEquationsIncluding1965}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=5d41414fe0631332e20a859e66a25627}{%
+           family={Kohn},
+           familyi={K\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod}}}%
+        {{hash=408fdc9dce7e09d891fdc02bb87d27d9}{%
+           family={Sham},
+           familyi={S\bibinitperiod},
+           given={L.\bibnamedelimi J.},
+           giveni={L\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{52da45566c0310e12ed857c5012d1622}
+      \strng{fullhash}{52da45566c0310e12ed857c5012d1622}
+      \strng{fullhashraw}{52da45566c0310e12ed857c5012d1622}
+      \strng{bibnamehash}{52da45566c0310e12ed857c5012d1622}
+      \strng{authorbibnamehash}{52da45566c0310e12ed857c5012d1622}
+      \strng{authornamehash}{52da45566c0310e12ed857c5012d1622}
+      \strng{authorfullhash}{52da45566c0310e12ed857c5012d1622}
+      \strng{authorfullhashraw}{52da45566c0310e12ed857c5012d1622}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{From a theory of Hohenberg and Kohn, approximation methods for treating an inhomogeneous system of interacting electrons are developed. These methods are exact for systems of slowly varying or high density. For the ground state, they lead to self-consistent equations analogous to the Hartree and Hartree-Fock equations, respectively. In these equations the exchange and correlation portions of the chemical potential of a uniform electron gas appear as additional effective potentials. (The exchange portion of our effective potential differs from that due to Slater by a factor of 23.) Electronic systems at finite temperatures and in magnetic fields are also treated by similar methods. An appendix deals with a further correction for systems with short-wavelength density oscillations.}
+      \field{day}{15}
+      \field{issue}{4A}
+      \field{journaltitle}{Physical Review}
+      \field{month}{11}
+      \field{shortjournal}{Phys. Rev.}
+      \field{title}{Self-{{Consistent Equations Including Exchange}} and {{Correlation Effects}}}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{140}
+      \field{year}{1965}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{A1133\bibrangedash A1138}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1103/PhysRev.140.A1133
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/87KBWHRW/Kohn and Sham - 1965 - Self-Consistent Equations Including Exchange and Correlation Effects.pdf;/Users/gregou/Zotero/storage/ZDRAKEP9/PhysRev.140.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.140.A1133
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.140.A1133
+      \endverb
+    \endentry
+    \entry{janakProof1978}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=921f7b0946c0fb6f0681c49bb5dcd2aa}{%
+           family={Janak},
+           familyi={J\bibinitperiod},
+           given={J.\bibnamedelimi F.},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{921f7b0946c0fb6f0681c49bb5dcd2aa}
+      \strng{fullhash}{921f7b0946c0fb6f0681c49bb5dcd2aa}
+      \strng{fullhashraw}{921f7b0946c0fb6f0681c49bb5dcd2aa}
+      \strng{bibnamehash}{921f7b0946c0fb6f0681c49bb5dcd2aa}
+      \strng{authorbibnamehash}{921f7b0946c0fb6f0681c49bb5dcd2aa}
+      \strng{authornamehash}{921f7b0946c0fb6f0681c49bb5dcd2aa}
+      \strng{authorfullhash}{921f7b0946c0fb6f0681c49bb5dcd2aa}
+      \strng{authorfullhashraw}{921f7b0946c0fb6f0681c49bb5dcd2aa}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{It is shown that the variation of the total energy, as constructed in density-functional theory, with respect to an orbital occupation is equal to the eigenvalue of that orbital, independent of the detailed form of the exchange-correlation functional. This leads to a rigorous connection between the ground-state energies of 𝑁- and (𝑁 +1)-particle systems, which is useful in the calculation of certain excitation energies.}
+      \field{day}{15}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{12}
+      \field{number}{12}
+      \field{shortjournal}{Phys. Rev. B}
+      \field{title}{Proof {{That}} \{\$\textbackslash frac\{\textbackslash partial {{E}}\}\{\textbackslash partial N\_i\} = \textbackslash varepsilon\_i\$\} in {{Density-Functional Theory}}}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{18}
+      \field{year}{1978}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{7165\bibrangedash 7168}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.18.7165
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/VUWAM2V8/PhysRevB.18.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.18.7165
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.18.7165
+      \endverb
+    \endentry
+    \entry{perdewPhysicalContentExact1983}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=49bd2640f858f16dfcddcc404b026f30}{%
+           family={Perdew},
+           familyi={P\bibinitperiod},
+           given={John\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=879073f1d92dc1d18f4a8628b6811b28}{%
+           family={Levy},
+           familyi={L\bibinitperiod},
+           given={Mel},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{3de977ad718fef823d0befdf80400ddf}
+      \strng{fullhash}{3de977ad718fef823d0befdf80400ddf}
+      \strng{fullhashraw}{3de977ad718fef823d0befdf80400ddf}
+      \strng{bibnamehash}{3de977ad718fef823d0befdf80400ddf}
+      \strng{authorbibnamehash}{3de977ad718fef823d0befdf80400ddf}
+      \strng{authornamehash}{3de977ad718fef823d0befdf80400ddf}
+      \strng{authorfullhash}{3de977ad718fef823d0befdf80400ddf}
+      \strng{authorfullhashraw}{3de977ad718fef823d0befdf80400ddf}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The local-density approximation for the exchange-correlation potential understimates the fundamental band gaps of semiconductors and insulators by about 40\%. It is argued here that underestimation of the gap width is also to be expected from the unknown exact potential of Kohn-Sham density-functional theory, because of derivative discontinuities of the exchange-correlation energy. The need for an energy-dependent potential in band theory is emphasized. The center of the gap, however, is predicted exactly by the Kohn-Sham band structure.}
+      \field{day}{14}
+      \field{journaltitle}{Physical Review Letters}
+      \field{month}{11}
+      \field{number}{20}
+      \field{shortjournal}{Phys. Rev. Lett.}
+      \field{shorttitle}{Physical {{Content}} of the {{Exact Kohn-Sham Orbital Energies}}}
+      \field{title}{Physical {{Content}} of the {{Exact Kohn-Sham Orbital Energies}}: {{Band Gaps}} and {{Derivative Discontinuities}}}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{51}
+      \field{year}{1983}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1884\bibrangedash 1887}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.51.1884
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/FURAIIZA/PhysRevLett.51.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.51.1884
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.51.1884
+      \endverb
+    \endentry
+    \entry{shamDensityFunctionalTheoryEnergy1983}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=408fdc9dce7e09d891fdc02bb87d27d9}{%
+           family={Sham},
+           familyi={S\bibinitperiod},
+           given={L.\bibnamedelimi J.},
+           giveni={L\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=164ff11d2fbfbe56e48e80f3518f0865}{%
+           family={Schlüter},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{f7bd7ad7c709a69822ee483e56cbcaea}
+      \strng{fullhash}{f7bd7ad7c709a69822ee483e56cbcaea}
+      \strng{fullhashraw}{f7bd7ad7c709a69822ee483e56cbcaea}
+      \strng{bibnamehash}{f7bd7ad7c709a69822ee483e56cbcaea}
+      \strng{authorbibnamehash}{f7bd7ad7c709a69822ee483e56cbcaea}
+      \strng{authornamehash}{f7bd7ad7c709a69822ee483e56cbcaea}
+      \strng{authorfullhash}{f7bd7ad7c709a69822ee483e56cbcaea}
+      \strng{authorfullhashraw}{f7bd7ad7c709a69822ee483e56cbcaea}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The energy-band gap of an insulator is obtained from the eigenvalues of the one-particle density-functional equation for the ground state and a finite correction due to the discontinuity of the functional derivative of the exchange and correlation energy. This correction is expressed in terms of the improper self-energy and the density-functional exchange-correlation potential. It is evaluated for a two-plane-wave model including exchange only.}
+      \field{day}{14}
+      \field{journaltitle}{Physical Review Letters}
+      \field{month}{11}
+      \field{number}{20}
+      \field{shortjournal}{Phys. Rev. Lett.}
+      \field{title}{Density-{{Functional Theory}} of the {{Energy Gap}}}
+      \field{urlday}{8}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{51}
+      \field{year}{1983}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1888\bibrangedash 1891}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.51.1888
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/PGWSJX94/PhysRevLett.51.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.51.1888
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.51.1888
+      \endverb
+    \endentry
+    \entry{perdewJacobsLadderDensity2001}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=49bd2640f858f16dfcddcc404b026f30}{%
+           family={Perdew},
+           familyi={P\bibinitperiod},
+           given={John\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=7beee164535cfc7b709a1bfa6c811215}{%
+           family={Schmidt},
+           familyi={S\bibinitperiod},
+           given={Karla},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{1cf990962be460f3b69d74d52b7c067d}
+      \strng{fullhash}{1cf990962be460f3b69d74d52b7c067d}
+      \strng{fullhashraw}{1cf990962be460f3b69d74d52b7c067d}
+      \strng{bibnamehash}{1cf990962be460f3b69d74d52b7c067d}
+      \strng{authorbibnamehash}{1cf990962be460f3b69d74d52b7c067d}
+      \strng{authornamehash}{1cf990962be460f3b69d74d52b7c067d}
+      \strng{authorfullhash}{1cf990962be460f3b69d74d52b7c067d}
+      \strng{authorfullhashraw}{1cf990962be460f3b69d74d52b7c067d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The ground-state energy and density of a many-electron system are often calculated by Kohn-Sham density functional theory. We describe a ladder of approximations for the exchange-correlation energy as a functional of the electron density. At the lowest rung of this ladder, the contribution to the energy from a volume element of 3-dimensional space is determined by the local density there. Higher rungs or levels incorporate increasingly complex ingredients constructed from the density or the Kohn-Sham orbitals in or around this volume element. We identify which additional exact conditions can be satisfied at each level, and discuss the extent to which the functionals at each level may be constructed without empirical input. We also discuss the research that remains to be done at the exact-exchange level, and present our "dreams of a final theory." "Jacob left Beer-sheba and went toward Haran. He came to a certain place and stayed there for the night, because the sun had set. Taking one of the stones of the place, he put it under his head and lay down in that place. And he dreamed that there was a ladder set up on the earth, the top of it reaching to heaven; and the angels of God were ascending and descending on it."}
+      \field{issn}{0094-243X}
+      \field{journaltitle}{Density Functional Theory and its Application to Materials}
+      \field{langid}{english}
+      \field{month}{7}
+      \field{title}{Jacob's Ladder of Density Functional Approximations for the Exchange-Correlation Energy}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{577}
+      \field{year}{2001}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 20}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1063/1.1390175
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/LQSIPYTW/abstract.html
+      \endverb
+      \verb{urlraw}
+      \verb https://ui.adsabs.harvard.edu/abs/2001AIPC..577....1P/abstract
+      \endverb
+      \verb{url}
+      \verb https://ui.adsabs.harvard.edu/abs/2001AIPC..577....1P/abstract
+      \endverb
+    \endentry
+    \entry{perdewSelfinteractionCorrectionDensityfunctional1981}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=83fcd29c53fe9c35eb17b7323352cb83}{%
+           family={Perdew},
+           familyi={P\bibinitperiod},
+           given={J.\bibnamedelimi P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=4731eeb587695ea77704fc49ebd64436}{%
+           family={Zunger},
+           familyi={Z\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{ab7356533978411af0d7fc4de4f4669a}
+      \strng{fullhash}{ab7356533978411af0d7fc4de4f4669a}
+      \strng{fullhashraw}{ab7356533978411af0d7fc4de4f4669a}
+      \strng{bibnamehash}{ab7356533978411af0d7fc4de4f4669a}
+      \strng{authorbibnamehash}{ab7356533978411af0d7fc4de4f4669a}
+      \strng{authornamehash}{ab7356533978411af0d7fc4de4f4669a}
+      \strng{authorfullhash}{ab7356533978411af0d7fc4de4f4669a}
+      \strng{authorfullhashraw}{ab7356533978411af0d7fc4de4f4669a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The exact density functional for the ground-state energy is strictly self-interaction-free (i.e., orbitals demonstrably do not self-interact), but many approximations to it, including the local-spin-density (LSD) approximation for exchange and correlation, are not. We present two related methods for the self-interaction correction (SIC) of any density functional for the energy; correction of the self-consistent one-electron potenial follows naturally from the variational principle. Both methods are sanctioned by the Hohenberg-Kohn theorem. Although the first method introduces an orbital-dependent single-particle potential, the second involves a local potential as in the Kohn-Sham scheme. We apply the first method to LSD and show that it properly conserves the number content of the exchange-correlation hole, while substantially improving the description of its shape. We apply this method to a number of physical problems, where the uncorrected LSD approach produces systematic errors. We find systematic improvements, qualitative as well as quantitative, from this simple correction. Benefits of SIC in atomic calculations include (i) improved values for the total energy and for the separate exchange and correlation pieces of it, (ii) accurate binding energies of negative ions, which are wrongly unstable in LSD, (iii) more accurate electron densities, (iv) orbital eigenvalues that closely approximate physical removal energies, including relaxation, and (v) correct longrange behavior of the potential and density. It appears that SIC can also remedy the LSD underestimate of the band gaps in insulators (as shown by numerical calculations for the rare-gas solids and CuCl), and the LSD overestimate of the cohesive energies of transition metals. The LSD spin splitting in atomic Ni and 𝑠 −𝑑 interconfigurational energies of transition elements are almost unchanged by SIC. We also discuss the admissibility of fractional occupation numbers, and present a parametrization of the electron-gas correlation energy at any density, based on the recent results of Ceperley and Alder.}
+      \field{day}{15}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{5}
+      \field{number}{10}
+      \field{shortjournal}{Phys. Rev. B}
+      \field{title}{Self-Interaction Correction to Density-Functional Approximations for Many-Electron Systems}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{23}
+      \field{year}{1981}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{5048\bibrangedash 5079}
+      \range{pages}{32}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.23.5048
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/8QUUJIW9/Perdew and Zunger - 1981 - Self-interaction correction to density-functional approximations for many-electron systems.pdf;/Users/gregou/Zotero/storage/AMT7Q5IV/PhysRevB.23.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.23.5048
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.23.5048
+      \endverb
+    \endentry
+    \entry{perdewAtomsMoleculesSolids1992}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=49bd2640f858f16dfcddcc404b026f30}{%
+           family={Perdew},
+           familyi={P\bibinitperiod},
+           given={John\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=24cf2837e84ec9fcbc6bd5e8f24a49d8}{%
+           family={Chevary},
+           familyi={C\bibinitperiod},
+           given={J.\bibnamedelimi A.},
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=6e571469f8864ed09af8f16844492faa}{%
+           family={Vosko},
+           familyi={V\bibinitperiod},
+           given={S.\bibnamedelimi H.},
+           giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=3d3dbd3a56143d14e03998cdfc46a65d}{%
+           family={Jackson},
+           familyi={J\bibinitperiod},
+           given={Koblar\bibnamedelima A.},
+           giveni={K\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=adbc08ca6989f7404db9e79e17e8ff62}{%
+           family={Pederson},
+           familyi={P\bibinitperiod},
+           given={Mark\bibnamedelima R.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=f3bd2b33281831e6def9b997a0bfde29}{%
+           family={Singh},
+           familyi={S\bibinitperiod},
+           given={D.\bibnamedelimi J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=6171db60598bebfa66b9b7bb6d10501f}{%
+           family={Fiolhais},
+           familyi={F\bibinitperiod},
+           given={Carlos},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{8c918234d2e8f80ab3a3ee1d5c8b3db5}
+      \strng{fullhash}{ea154f2d2493a58d4b9b1305a1066aa3}
+      \strng{fullhashraw}{ea154f2d2493a58d4b9b1305a1066aa3}
+      \strng{bibnamehash}{8c918234d2e8f80ab3a3ee1d5c8b3db5}
+      \strng{authorbibnamehash}{8c918234d2e8f80ab3a3ee1d5c8b3db5}
+      \strng{authornamehash}{8c918234d2e8f80ab3a3ee1d5c8b3db5}
+      \strng{authorfullhash}{ea154f2d2493a58d4b9b1305a1066aa3}
+      \strng{authorfullhashraw}{ea154f2d2493a58d4b9b1305a1066aa3}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Generalized gradient approximations (GGA’s) seek to improve upon the accuracy of the local-spin-density (LSD) approximation in electronic-structure calculations. Perdew and Wang have developed a GGA based on real-space cutoff of the spurious long-range components of the second-order gradient expansion for the exchange-correlation hole. We have found that this density functional performs well in numerical tests for a variety of systems: (1) Total energies of 30 atoms are highly accurate. (2) Ionization energies and electron affinities are improved in a statistical sense, although significant interconfigurational and interterm errors remain. (3) Accurate atomization energies are found for seven hydrocarbon molecules, with a rms error per bond of 0.1 eV, compared with 0.7 eV for the LSD approximation and 2.4 eV for the Hartree-Fock approximation. (4) For atoms and molecules, there is a cancellation of error between density functionals for exchange and correlation, which is most striking whenever the Hartree-Fock result is furthest from experiment. (5) The surprising LSD underestimation of the lattice constants of Li and Na by 3–4 \% is corrected, and the magnetic ground state of solid Fe is restored. (6) The work function, surface energy (neglecting the long-range contribution), and curvature energy of a metallic surface are all slightly reduced in comparison with LSD. Taking account of the positive long-range contribution, we find surface and curvature energies in good agreement with experimental or exact values. Finally, a way is found to visualize and understand the nonlocality of exchange and correlation, its origins, and its physical effects.}
+      \field{day}{15}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{9}
+      \field{number}{11}
+      \field{shortjournal}{Phys. Rev. B}
+      \field{shorttitle}{Atoms, Molecules, Solids, and Surfaces}
+      \field{title}{Atoms, Molecules, Solids, and Surfaces: {{Applications}} of the Generalized Gradient Approximation for Exchange and Correlation}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{46}
+      \field{year}{1992}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{6671\bibrangedash 6687}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.46.6671
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/JVZ8B2FV/PhysRevB.46.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.46.6671
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.46.6671
+      \endverb
+    \endentry
+    \entry{grimmeAccurateDescriptionVan2004}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=3a2585af369dbd4150db746c63177b0c}{%
+           family={Grimme},
+           familyi={G\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{3a2585af369dbd4150db746c63177b0c}
+      \strng{fullhash}{3a2585af369dbd4150db746c63177b0c}
+      \strng{fullhashraw}{3a2585af369dbd4150db746c63177b0c}
+      \strng{bibnamehash}{3a2585af369dbd4150db746c63177b0c}
+      \strng{authorbibnamehash}{3a2585af369dbd4150db746c63177b0c}
+      \strng{authornamehash}{3a2585af369dbd4150db746c63177b0c}
+      \strng{authorfullhash}{3a2585af369dbd4150db746c63177b0c}
+      \strng{authorfullhashraw}{3a2585af369dbd4150db746c63177b0c}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{An empirical method to account for van der Waals interactions in practical calculations with the density functional theory (termed DFT-D) is tested for a wide variety of molecular complexes. As in previous schemes, the dispersive energy is described by damped interatomic potentials of the form C6R−6. The use of pure, gradient-corrected density functionals (BLYP and PBE), together with the resolution-of-the-identity (RI) approximation for the Coulomb operator, allows very efficient computations for large systems. Opposed to previous work, extended AO basis sets of polarized TZV or QZV quality are employed, which reduces the basis set superposition error to a negligible extend. By using a global scaling factor for the atomic C6 coefficients, the functional dependence of the results could be strongly reduced. The “double counting” of correlation effects for strongly bound complexes is found to be insignificant if steep damping functions are employed. The method is applied to a total of 29 complexes of atoms and small molecules (Ne, CH4, NH3, H2O, CH3F, N2, F2, formic acid, ethene, and ethine) with each other and with benzene, to benzene, naphthalene, pyrene, and coronene dimers, the naphthalene trimer, coronene · H2O and four H-bonded and stacked DNA base pairs (AT and GC). In almost all cases, very good agreement with reliable theoretical or experimental results for binding energies and intermolecular distances is obtained. For stacked aromatic systems and the important base pairs, the DFT-D-BLYP model seems to be even superior to standard MP2 treatments that systematically overbind. The good results obtained suggest the approach as a practical tool to describe the properties of many important van der Waals systems in chemistry. Furthermore, the DFT-D data may either be used to calibrate much simpler (e.g., force-field) potentials or the optimized structures can be used as input for more accurate ab initio calculations of the interaction energies. © 2004 Wiley Periodicals, Inc. J Comput Chem 25: 1463–1473, 2004}
+      \field{issn}{1096-987X}
+      \field{journaltitle}{Journal of Computational Chemistry}
+      \field{langid}{ngerman}
+      \field{number}{12}
+      \field{title}{Accurate description of van der Waals complexes by density functional theory including empirical corrections}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{25}
+      \field{year}{2004}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1463\bibrangedash 1473}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1002/jcc.20078
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/BBBRTF3C/jcc.html
+      \endverb
+      \verb{urlraw}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.20078
+      \endverb
+      \verb{url}
+      \verb https://onlinelibrary.wiley.com/doi/abs/10.1002/jcc.20078
+      \endverb
+      \keyw{density functional theory,empirical corrections,van der Waals complexes}
+    \endentry
+    \entry{rapcewiczFluctuationAttractionCondensed1991}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=8bb310964b71e52239a2154e51cca9ae}{%
+           family={Rapcewicz},
+           familyi={R\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=61250c14134c39a8345b4a271c7df68e}{%
+           family={Ashcroft},
+           familyi={A\bibinitperiod},
+           given={N.\bibnamedelimi W.},
+           giveni={N\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{0a2ba44be5f6fb5a627f43dd9be040de}
+      \strng{fullhash}{0a2ba44be5f6fb5a627f43dd9be040de}
+      \strng{fullhashraw}{0a2ba44be5f6fb5a627f43dd9be040de}
+      \strng{bibnamehash}{0a2ba44be5f6fb5a627f43dd9be040de}
+      \strng{authorbibnamehash}{0a2ba44be5f6fb5a627f43dd9be040de}
+      \strng{authornamehash}{0a2ba44be5f6fb5a627f43dd9be040de}
+      \strng{authorfullhash}{0a2ba44be5f6fb5a627f43dd9be040de}
+      \strng{authorfullhashraw}{0a2ba44be5f6fb5a627f43dd9be040de}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{By exploiting the analogy between the correlation charge surrounding an electron in an interacting electron gas and the electronic charge localized about nuclei in condensed atomic systems, we are led to a functional approach which partially preserves the nonlocality of fluctuations in an inhomogeneous system. In this way, the van der Waals and Axilrod-Teller interactions are determined solely from the fluctuation properties of the electron gas. The approach gives further insight into the local-density approximation.}
+      \field{day}{15}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{8}
+      \field{number}{8}
+      \field{shortjournal}{Phys. Rev. B}
+      \field{shorttitle}{Fluctuation Attraction in Condensed Matter}
+      \field{title}{Fluctuation Attraction in Condensed Matter: {{A}} Nonlocal Functional Approach}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{44}
+      \field{year}{1991}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{4032\bibrangedash 4035}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.44.4032
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/6WI4TTPZ/PhysRevB.44.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.44.4032
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.44.4032
+      \endverb
+    \endentry
+    \entry{BasisElectronTheory}{article}{}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Download Citation | The Basis of the Electron Theory of Metals, with Special Reference to the Transition Metals | It is shown that the collective electron and London-Heitler models are not to be regarded as different approximations to the same exact wave... | Find, read and cite all the research you need on ResearchGate}
+      \field{issn}{0370-1298}
+      \field{journaltitle}{ResearchGate}
+      \field{langid}{english}
+      \field{title}{The {{Basis}} of the {{Electron Theory}} of {{Metals}}, with {{Special Reference}} to the {{Transition Metals}}}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/47QU58KZ/231152382_The_Basis_of_the_Electron_Theory_of_Metals_with_Special_Reference_to_the_Transition_M.html
+      \endverb
+      \verb{urlraw}
+      \verb https://www.researchgate.net/publication/231152382_The_Basis_of_the_Electron_Theory_of_Metals_with_Special_Reference_to_the_Transition_Metals
+      \endverb
+      \verb{url}
+      \verb https://www.researchgate.net/publication/231152382_The_Basis_of_the_Electron_Theory_of_Metals_with_Special_Reference_to_the_Transition_Metals
+      \endverb
+    \endentry
+    \entry{imadaMetalinsulatorTransitions1998}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=96ab653248af9fd5ceb2d00a72772791}{%
+           family={Imada},
+           familyi={I\bibinitperiod},
+           given={Masatoshi},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2b0e66933cdc22d02b0f39c12a2588d7}{%
+           family={Fujimori},
+           familyi={F\bibinitperiod},
+           given={Atsushi},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e44f7c42ea91aab567a98bd7c7c21544}{%
+           family={Tokura},
+           familyi={T\bibinitperiod},
+           given={Yoshinori},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{f4242f4ce23c4a1db1a0e77c0fa9d51d}
+      \strng{fullhash}{f4242f4ce23c4a1db1a0e77c0fa9d51d}
+      \strng{fullhashraw}{f4242f4ce23c4a1db1a0e77c0fa9d51d}
+      \strng{bibnamehash}{f4242f4ce23c4a1db1a0e77c0fa9d51d}
+      \strng{authorbibnamehash}{f4242f4ce23c4a1db1a0e77c0fa9d51d}
+      \strng{authornamehash}{f4242f4ce23c4a1db1a0e77c0fa9d51d}
+      \strng{authorfullhash}{f4242f4ce23c4a1db1a0e77c0fa9d51d}
+      \strng{authorfullhashraw}{f4242f4ce23c4a1db1a0e77c0fa9d51d}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Metal-insulator transitions are accompanied by huge resistivity changes, even over tens of orders of magnitude, and are widely observed in condensed-matter systems. This article presents the observations and current understanding of the metal-insulator transition with a pedagogical introduction to the subject. Especially important are the transitions driven by correlation effects associated with the electron-electron interaction. The insulating phase caused by the correlation effects is categorized as the Mott Insulator. Near the transition point the metallic state shows fluctuations and orderings in the spin, charge, and orbital degrees of freedom. The properties of these metals are frequently quite different from those of ordinary metals, as measured by transport, optical, and magnetic probes. The review first describes theoretical approaches to the unusual metallic states and to the metal-insulator transition. The Fermi-liquid theory treats the correlations that can be adiabatically connected with the noninteracting picture. Strong-coupling models that do not require Fermi-liquid behavior have also been developed. Much work has also been done on the scaling theory of the transition. A central issue for this review is the evaluation of these approaches in simple theoretical systems such as the Hubbard model and 𝑡 −𝐽 models. Another key issue is strong competition among various orderings as in the interplay of spin and orbital fluctuations. Experimentally, the unusual properties of the metallic state near the insulating transition have been most extensively studied in 𝑑-electron systems. In particular, there is revived interest in transition-metal oxides, motivated by the epoch-making findings of high-temperature superconductivity in cuprates and colossal magnetoresistance in manganites. The article reviews the rich phenomena of anomalous metallicity, taking as examples Ti, V, Cr, Mn, Fe, Co, Ni, Cu, and Ru compounds. The diverse phenomena include strong spin and orbital fluctuations, mass renormalization effects, incoherence of charge dynamics, and phase transitions under control of key parameters such as band filling, bandwidth, and dimensionality. These parameters are experimentally varied by doping, pressure, chemical composition, and magnetic fields. Much of the observed behavior can be described by the current theory. Open questions and future problems are also extracted from comparison between experimental results and theoretical achievements.}
+      \field{day}{1}
+      \field{journaltitle}{Reviews of Modern Physics}
+      \field{month}{10}
+      \field{number}{4}
+      \field{shortjournal}{Rev. Mod. Phys.}
+      \field{title}{Metal-Insulator Transitions}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{70}
+      \field{year}{1998}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1039\bibrangedash 1263}
+      \range{pages}{225}
+      \verb{doi}
+      \verb 10.1103/RevModPhys.70.1039
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/HNC8M7V9/RevModPhys.70.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/RevModPhys.70.1039
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/RevModPhys.70.1039
+      \endverb
+    \endentry
+    \entry{anisimovBandTheoryMott1991}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=cd8ca80dce5d78d898c1b4a2e0fe35fd}{%
+           family={Anisimov},
+           familyi={A\bibinitperiod},
+           given={Vladimir\bibnamedelima I.},
+           giveni={V\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=127413ab3ea48923b80fac77d07a851f}{%
+           family={Zaanen},
+           familyi={Z\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=61501a2787cfb80a5f9922e0b6ef54b6}{%
+           family={Andersen},
+           familyi={A\bibinitperiod},
+           given={Ole\bibnamedelima K.},
+           giveni={O\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{0902fb5240677eedf7e036a3a00abdba}
+      \strng{fullhash}{0902fb5240677eedf7e036a3a00abdba}
+      \strng{fullhashraw}{0902fb5240677eedf7e036a3a00abdba}
+      \strng{bibnamehash}{0902fb5240677eedf7e036a3a00abdba}
+      \strng{authorbibnamehash}{0902fb5240677eedf7e036a3a00abdba}
+      \strng{authornamehash}{0902fb5240677eedf7e036a3a00abdba}
+      \strng{authorfullhash}{0902fb5240677eedf7e036a3a00abdba}
+      \strng{authorfullhashraw}{0902fb5240677eedf7e036a3a00abdba}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We propose a form for the exchange-correlation potential in local-density band theory, appropriate for Mott insulators. The idea is to use the ‘‘constrained-local-density-approximation’’ Hubbard parameter U as the quantity relating the single-particle potentials to the magnetic- (and orbital-) order parameters. Our energy functional is that of the local-density approximation plus the mean-field approximation to the remaining part of the U term. We argue that such a method should make sense, if one accepts the Hubbard model and the success of constrained-local-density-approximation parameter calculations. Using this ab initio scheme, we find that all late-3d-transition-metal monoxides, as well as the parent compounds of the high-𝑇𝑐 compounds, are large-gap magnetic insulators of the charge-transfer type. Further, the method predicts that LiNiO2 is a low-spin ferromagnet and NiS a local-moment p-type metal. The present version of the scheme fails for the early-3d-transition-metal monoxides and for the late 3d transition metals.}
+      \field{day}{15}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{7}
+      \field{number}{3}
+      \field{shortjournal}{Phys. Rev. B}
+      \field{shorttitle}{Band Theory and {{Mott}} Insulators}
+      \field{title}{Band Theory and {{Mott}} Insulators: {{Hubbard U}} Instead of {{Stoner I}}}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{44}
+      \field{year}{1991}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{943\bibrangedash 954}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.44.943
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/EZI92VKH/PhysRevB.44.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.44.943
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.44.943
+      \endverb
+    \endentry
+    \entry{georgesDynamicalMeanfieldTheory1996}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=a3fd2f2b22938dc53c1d195381d71109}{%
+           family={Georges},
+           familyi={G\bibinitperiod},
+           given={Antoine},
+           giveni={A\bibinitperiod}}}%
+        {{hash=627180cd0517be2323caf5b86bcebeee}{%
+           family={Kotliar},
+           familyi={K\bibinitperiod},
+           given={Gabriel},
+           giveni={G\bibinitperiod}}}%
+        {{hash=d1a9093d8a8328c6f6bfb02fba161d48}{%
+           family={Krauth},
+           familyi={K\bibinitperiod},
+           given={Werner},
+           giveni={W\bibinitperiod}}}%
+        {{hash=a77351af4be331234d6ee203069ec1ed}{%
+           family={Rozenberg},
+           familyi={R\bibinitperiod},
+           given={Marcelo\bibnamedelima J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{4b5ac052648e507d5c9155f4814c8166}
+      \strng{fullhash}{f7d19b3ecf02d702b02c86fbccf0d656}
+      \strng{fullhashraw}{f7d19b3ecf02d702b02c86fbccf0d656}
+      \strng{bibnamehash}{4b5ac052648e507d5c9155f4814c8166}
+      \strng{authorbibnamehash}{4b5ac052648e507d5c9155f4814c8166}
+      \strng{authornamehash}{4b5ac052648e507d5c9155f4814c8166}
+      \strng{authorfullhash}{f7d19b3ecf02d702b02c86fbccf0d656}
+      \strng{authorfullhashraw}{f7d19b3ecf02d702b02c86fbccf0d656}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We review the dynamical mean-field theory of strongly correlated electron systems which is based on a mapping of lattice models onto quantum impurity models subject to a self-consistency condition. This mapping is exact for models of correlated electrons in the limit of large lattice coordination (or infinite spatial dimensions). It extends the standard mean-field construction from classical statistical mechanics to quantum problems. We discuss the physical ideas underlying this theory and its mathematical derivation. Various analytic and numerical techniques that have been developed recently in order to analyze and solve the dynamical mean-field equations are reviewed and compared to each other. The method can be used for the determination of phase diagrams (by comparing the stability of various types of long-range order), and the calculation of thermodynamic properties, one-particle Green's functions, and response functions. We review in detail the recent progress in understanding the Hubbard model and the Mott metal-insulator transition within this approach, including some comparison to experiments on three-dimensional transition-metal oxides. We present an overview of the rapidly developing field of applications of this method to other systems. The present limitations of the approach, and possible extensions of the formalism are finally discussed. Computer programs for the numerical implementation of this method are also provided with this article.}
+      \field{day}{1}
+      \field{journaltitle}{Reviews of Modern Physics}
+      \field{month}{1}
+      \field{number}{1}
+      \field{shortjournal}{Rev. Mod. Phys.}
+      \field{title}{Dynamical Mean-Field Theory of Strongly Correlated Fermion Systems and the Limit of Infinite Dimensions}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{68}
+      \field{year}{1996}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{13\bibrangedash 125}
+      \range{pages}{113}
+      \verb{doi}
+      \verb 10.1103/RevModPhys.68.13
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/4AJLSG45/RevModPhys.68.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/RevModPhys.68.13
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/RevModPhys.68.13
+      \endverb
+    \endentry
+    \entry{perdewGeneralizedGradientApproximation1996a}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=49bd2640f858f16dfcddcc404b026f30}{%
+           family={Perdew},
+           familyi={P\bibinitperiod},
+           given={John\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \strng{namehash}{49bd2640f858f16dfcddcc404b026f30}
+      \strng{fullhash}{49bd2640f858f16dfcddcc404b026f30}
+      \strng{fullhashraw}{49bd2640f858f16dfcddcc404b026f30}
+      \strng{bibnamehash}{49bd2640f858f16dfcddcc404b026f30}
+      \strng{authorbibnamehash}{49bd2640f858f16dfcddcc404b026f30}
+      \strng{authornamehash}{49bd2640f858f16dfcddcc404b026f30}
+      \strng{authorfullhash}{49bd2640f858f16dfcddcc404b026f30}
+      \strng{authorfullhashraw}{49bd2640f858f16dfcddcc404b026f30}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physical Review Letters}
+      \field{number}{18}
+      \field{shortjournal}{Phys. Rev. Lett.}
+      \field{title}{Generalized {{Gradient Approximation Made Simple}}}
+      \field{volume}{77}
+      \field{year}{1996}
+      \field{dateera}{ce}
+      \field{pages}{3865\bibrangedash 3868}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.77.3865
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/6SB2EUV8/PhysRevLett.77.html
+      \endverb
+    \endentry
+    \entry{kurthMolecularSolidstateTests1999}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=416d60b4c497057998f5d07d60e580f6}{%
+           family={Kurth},
+           familyi={K\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=49bd2640f858f16dfcddcc404b026f30}{%
+           family={Perdew},
+           familyi={P\bibinitperiod},
+           given={John\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=fef50c1d147547388540d8e7dc3f7a3b}{%
+           family={Blaha},
+           familyi={B\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{2ede2ebc50bcdbf399552da50e624fca}
+      \strng{fullhash}{2ede2ebc50bcdbf399552da50e624fca}
+      \strng{fullhashraw}{2ede2ebc50bcdbf399552da50e624fca}
+      \strng{bibnamehash}{2ede2ebc50bcdbf399552da50e624fca}
+      \strng{authorbibnamehash}{2ede2ebc50bcdbf399552da50e624fca}
+      \strng{authornamehash}{2ede2ebc50bcdbf399552da50e624fca}
+      \strng{authorfullhash}{2ede2ebc50bcdbf399552da50e624fca}
+      \strng{authorfullhashraw}{2ede2ebc50bcdbf399552da50e624fca}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{0020-7608, 1097-461X}
+      \field{journaltitle}{International Journal of Quantum Chemistry}
+      \field{langid}{english}
+      \field{number}{4--5}
+      \field{shortjournal}{Int. J. Quant. Chem.}
+      \field{shorttitle}{Molecular and Solid-State Tests of Density Functional Approximations}
+      \field{title}{Molecular and Solid-State Tests of Density Functional Approximations: {{LSD}}, {{GGAs}}, and Meta-{{GGAs}}}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{75}
+      \field{year}{1999}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{889\bibrangedash 909}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1002/(SICI)1097-461X(1999)75:4/5<889::AID-QUA54>3.0.CO;2-8
+      \endverb
+      \verb{urlraw}
+      \verb https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1097-461X(1999)75:4/5<889::AID-QUA54>3.0.CO;2-8
+      \endverb
+      \verb{url}
+      \verb https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1097-461X(1999)75:4/5%3C889::AID-QUA54%3E3.0.CO;2-8
+      \endverb
+    \endentry
+    \entry{mounetFirstprinciplesDeterminationStructural2005a}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=c11e8ad8e35ca000416abc5208ac02e9}{%
+           family={Mounet},
+           familyi={M\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod}}}%
+        {{hash=789148b9644893e2b07e550eec09d89c}{%
+           family={Marzari},
+           familyi={M\bibinitperiod},
+           given={Nicola},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{812344dad32edbc9ce95edd8f0902f87}
+      \strng{fullhash}{812344dad32edbc9ce95edd8f0902f87}
+      \strng{fullhashraw}{812344dad32edbc9ce95edd8f0902f87}
+      \strng{bibnamehash}{812344dad32edbc9ce95edd8f0902f87}
+      \strng{authorbibnamehash}{812344dad32edbc9ce95edd8f0902f87}
+      \strng{authornamehash}{812344dad32edbc9ce95edd8f0902f87}
+      \strng{authorfullhash}{812344dad32edbc9ce95edd8f0902f87}
+      \strng{authorfullhashraw}{812344dad32edbc9ce95edd8f0902f87}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The structural, dynamical, and thermodynamic properties of diamond, graphite and layered derivatives (graphene, rhombohedral graphite) are computed using a combination of density-functional theory total-energy calculations and density-functional perturbation theory lattice dynamics in the generalized gradient approximation. Overall, very good agreement is found for the structural properties and phonon dispersions, with the exception of the 𝑐/𝑎 ratio in graphite and the associated elastic constants and phonon dispersions. Both the 𝐶33 elastic constant and the 𝛤 to 𝐴 phonon dispersions are brought to close agreement with available data once the experimental 𝑐/𝑎 is chosen for the calculations. The vibrational free energy and the thermal expansion, the temperature dependence of the elastic moduli and the specific heat are calculated using the quasiharmonic approximation. Graphite shows a distinctive in-plane negative thermal-expansion coefficient that reaches its lowest value around room temperature, in very good agreement with experiments. Thermal contraction in graphene is found to be three times as large; in both cases, bending acoustic modes are shown to be responsible for the contraction, in a direct manifestation of the membrane effect predicted by Lifshitz over 50years ago. Stacking directly affects the bending modes, explaining the large numerical difference between the thermal-contraction coefficients in graphite and graphene, notwithstanding their common physical origin.}
+      \field{day}{31}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{5}
+      \field{number}{20}
+      \field{shortjournal}{Phys. Rev. B}
+      \field{title}{First-Principles Determination of the Structural, Vibrational and Thermodynamic Properties of Diamond, Graphite, and Derivatives}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{71}
+      \field{year}{2005}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{205214}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.71.205214
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/K6AMLN35/Mounet and Marzari - 2005 - First-principles determination of the structural, vibrational and thermodynamic properties of diamon.pdf;/Users/gregou/Zotero/storage/HCZSAI4M/PhysRevB.71.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.71.205214
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.71.205214
+      \endverb
+    \endentry
+    \entry{sunStronglyConstrainedAppropriately2015}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=a41e9944590c5acae5c314ea7c27e388}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Jianwei},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4c3a81a7cf7c5ad3cd2a7d8a28d5376e}{%
+           family={Ruzsinszky},
+           familyi={R\bibinitperiod},
+           given={Adrienn},
+           giveni={A\bibinitperiod}}}%
+        {{hash=49bd2640f858f16dfcddcc404b026f30}{%
+           family={Perdew},
+           familyi={P\bibinitperiod},
+           given={John\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \strng{namehash}{6548fe4e129d7e99ae2a904b504c9df7}
+      \strng{fullhash}{6548fe4e129d7e99ae2a904b504c9df7}
+      \strng{fullhashraw}{6548fe4e129d7e99ae2a904b504c9df7}
+      \strng{bibnamehash}{6548fe4e129d7e99ae2a904b504c9df7}
+      \strng{authorbibnamehash}{6548fe4e129d7e99ae2a904b504c9df7}
+      \strng{authornamehash}{6548fe4e129d7e99ae2a904b504c9df7}
+      \strng{authorfullhash}{6548fe4e129d7e99ae2a904b504c9df7}
+      \strng{authorfullhashraw}{6548fe4e129d7e99ae2a904b504c9df7}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{14}
+      \field{issn}{0031-9007, 1079-7114}
+      \field{journaltitle}{Physical Review Letters}
+      \field{langid}{english}
+      \field{month}{7}
+      \field{number}{3}
+      \field{shortjournal}{Phys. Rev. Lett.}
+      \field{title}{Strongly {{Constrained}} and {{Appropriately Normed Semilocal Density Functional}}}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{115}
+      \field{year}{2015}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{036402}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.115.036402
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.115.036402
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.115.036402
+      \endverb
+    \endentry
+    \entry{furnessAccurateNumericallyEfficient2020}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=6a1142c32f14c0294276a8ef2f3ebdd6}{%
+           family={Furness},
+           familyi={F\bibinitperiod},
+           given={James\bibnamedelima W.},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=653a64594aaaed8aba82eefb1057a889}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Aaron\bibnamedelima D.},
+           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=fbf9e66ae21ccb28dc3b6bdc70bfe661}{%
+           family={Ning},
+           familyi={N\bibinitperiod},
+           given={Jinliang},
+           giveni={J\bibinitperiod}}}%
+        {{hash=49bd2640f858f16dfcddcc404b026f30}{%
+           family={Perdew},
+           familyi={P\bibinitperiod},
+           given={John\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=a41e9944590c5acae5c314ea7c27e388}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Jianwei},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{015835c272804af667347f9dc5701871}
+      \strng{fullhash}{64eb4ac050f0919881f07751272bc5d6}
+      \strng{fullhashraw}{64eb4ac050f0919881f07751272bc5d6}
+      \strng{bibnamehash}{015835c272804af667347f9dc5701871}
+      \strng{authorbibnamehash}{015835c272804af667347f9dc5701871}
+      \strng{authornamehash}{015835c272804af667347f9dc5701871}
+      \strng{authorfullhash}{64eb4ac050f0919881f07751272bc5d6}
+      \strng{authorfullhashraw}{64eb4ac050f0919881f07751272bc5d6}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The recently proposed rSCAN functional [ J. Chem. Phys. 2019 150, 161101] is a regularized form of the SCAN functional [ Phys. Rev. Lett. 2015 115, 036402] that improves SCAN's numerical performance at the expense of breaking constraints known from the exact exchange-correlation functional. We construct a new meta-generalized gradient approximation by restoring exact constraint adherence to rSCAN. The resulting functional maintains rSCAN's numerical performance while restoring the transferable accuracy of SCAN.}
+      \field{day}{1}
+      \field{eprinttype}{pubmed}
+      \field{issn}{1948-7185}
+      \field{journaltitle}{The Journal of Physical Chemistry Letters}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{number}{19}
+      \field{shortjournal}{J Phys Chem Lett}
+      \field{title}{Accurate and {{Numerically Efficient r2SCAN Meta-Generalized Gradient Approximation}}}
+      \field{volume}{11}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{pages}{8208\bibrangedash 8215}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1021/acs.jpclett.0c02405
+      \endverb
+      \verb{eprint}
+      \verb 32876454
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/YS4HVF4N/Furness et al. - 2020 - Accurate and Numerically Efficient r2SCAN Meta-Generalized Gradient Approximation.pdf
+      \endverb
+    \endentry
+    \entry{heydHybridFunctionalsBased2003}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=909fb582a5a71abd7bfaeda4ae535d9f}{%
+           family={Heyd},
+           familyi={H\bibinitperiod},
+           given={Jochen},
+           giveni={J\bibinitperiod}}}%
+        {{hash=6b833ff9ec8eab914a2c220f704345e5}{%
+           family={Scuseria},
+           familyi={S\bibinitperiod},
+           given={Gustavo\bibnamedelima E.},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=ccb694b80578a814211265eb307fdcde}{%
+           family={Ernzerhof},
+           familyi={E\bibinitperiod},
+           given={Matthias},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{ee7ee8855c4bb7c25de68916716e8867}
+      \strng{fullhash}{ee7ee8855c4bb7c25de68916716e8867}
+      \strng{fullhashraw}{ee7ee8855c4bb7c25de68916716e8867}
+      \strng{bibnamehash}{ee7ee8855c4bb7c25de68916716e8867}
+      \strng{authorbibnamehash}{ee7ee8855c4bb7c25de68916716e8867}
+      \strng{authornamehash}{ee7ee8855c4bb7c25de68916716e8867}
+      \strng{authorfullhash}{ee7ee8855c4bb7c25de68916716e8867}
+      \strng{authorfullhashraw}{ee7ee8855c4bb7c25de68916716e8867}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Hybrid density functionals are very successful in describing a wide range of molecular properties accurately. In large molecules and solids, however, calculating the exact (Hartree–Fock) exchange is computationally expensive, especially for systems with metallic characteristics. In the present work, we develop a new hybrid density functional based on a screened Coulomb potential for the exchange interaction which circumvents this bottleneck. The results obtained for structural and thermodynamic properties of molecules are comparable in quality to the most widely used hybrid functionals. In addition, we present results of periodic boundary condition calculations for both semiconducting and metallic single wall carbon nanotubes. Using a screened Coulomb potential for Hartree–Fock exchange enables fast and accurate hybrid calculations, even of usually difficult metallic systems. The high accuracy of the new screened Coulomb potential hybrid, combined with its computational advantages, makes it widely applicable to large molecules and periodic systems.}
+      \field{day}{8}
+      \field{issn}{0021-9606}
+      \field{journaltitle}{The Journal of Chemical Physics}
+      \field{month}{5}
+      \field{number}{18}
+      \field{shortjournal}{J. Chem. Phys.}
+      \field{title}{Hybrid Functionals Based on a Screened {{Coulomb}} Potential}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{118}
+      \field{year}{2003}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{8207\bibrangedash 8215}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1063/1.1564060
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1063/1.1564060
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1063/1.1564060
+      \endverb
+    \endentry
+    \entry{adamoReliableDensityFunctional1999}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=a086ce279acd38e0811d69d3a52d0fb0}{%
+           family={Adamo},
+           familyi={A\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+        {{hash=358a7a1086c2895496d63896c15fecbb}{%
+           family={Barone},
+           familyi={B\bibinitperiod},
+           given={Vincenzo},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{256f58aaac46da928b7777a9862ced1d}
+      \strng{fullhash}{256f58aaac46da928b7777a9862ced1d}
+      \strng{fullhashraw}{256f58aaac46da928b7777a9862ced1d}
+      \strng{bibnamehash}{256f58aaac46da928b7777a9862ced1d}
+      \strng{authorbibnamehash}{256f58aaac46da928b7777a9862ced1d}
+      \strng{authornamehash}{256f58aaac46da928b7777a9862ced1d}
+      \strng{authorfullhash}{256f58aaac46da928b7777a9862ced1d}
+      \strng{authorfullhashraw}{256f58aaac46da928b7777a9862ced1d}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We present an analysis of the performances of a parameter free density functional model (PBE0) obtained combining the so called PBE generalized gradient functional with a predefined amount of exact exchange. The results obtained for structural, thermodynamic, kinetic and spectroscopic (magnetic, infrared and electronic) properties are satisfactory and not far from those delivered by the most reliable functionals including heavy parameterization. The way in which the functional is derived and the lack of empirical parameters fitted to specific properties make the PBE0 model a widely applicable method for both quantum chemistry and condensed matter physics.}
+      \field{day}{1}
+      \field{issn}{0021-9606}
+      \field{journaltitle}{The Journal of Chemical Physics}
+      \field{month}{4}
+      \field{number}{13}
+      \field{shortjournal}{J. Chem. Phys.}
+      \field{shorttitle}{Toward Reliable Density Functional Methods without Adjustable Parameters}
+      \field{title}{Toward Reliable Density Functional Methods without Adjustable Parameters: {{The PBE0}} Model}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{110}
+      \field{year}{1999}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{6158\bibrangedash 6170}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1063/1.478522
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/IG9H5P4W/1.html
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1063/1.478522
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1063/1.478522
+      \endverb
+    \endentry
+    \entry{hedinNewMethodCalculating1965}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=9134706f2e736350257c0e1b72a6e624}{%
+           family={Hedin},
+           familyi={H\bibinitperiod},
+           given={Lars},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{9134706f2e736350257c0e1b72a6e624}
+      \strng{fullhash}{9134706f2e736350257c0e1b72a6e624}
+      \strng{fullhashraw}{9134706f2e736350257c0e1b72a6e624}
+      \strng{bibnamehash}{9134706f2e736350257c0e1b72a6e624}
+      \strng{authorbibnamehash}{9134706f2e736350257c0e1b72a6e624}
+      \strng{authornamehash}{9134706f2e736350257c0e1b72a6e624}
+      \strng{authorfullhash}{9134706f2e736350257c0e1b72a6e624}
+      \strng{authorfullhashraw}{9134706f2e736350257c0e1b72a6e624}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{3A}
+      \field{journaltitle}{Physical Review}
+      \field{shortjournal}{Phys. Rev.}
+      \field{title}{New {{Method}} for {{Calculating}} the {{One-Particle Green}}'s {{Function}} with {{Application}} to the {{Electron-Gas Problem}}}
+      \field{volume}{139}
+      \field{year}{1965}
+      \field{dateera}{ce}
+      \field{pages}{A796\bibrangedash A823}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1103/PhysRev.139.A796
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/MGLDUFWQ/PhysRev.139.html
+      \endverb
+    \endentry
+    \entry{phillipsEnergyBandInterpolationScheme1958}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=0bc1fb335c8faed26612fbc2ab395aad}{%
+           family={Phillips},
+           familyi={P\bibinitperiod},
+           given={James\bibnamedelima C.},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{0bc1fb335c8faed26612fbc2ab395aad}
+      \strng{fullhash}{0bc1fb335c8faed26612fbc2ab395aad}
+      \strng{fullhashraw}{0bc1fb335c8faed26612fbc2ab395aad}
+      \strng{bibnamehash}{0bc1fb335c8faed26612fbc2ab395aad}
+      \strng{authorbibnamehash}{0bc1fb335c8faed26612fbc2ab395aad}
+      \strng{authornamehash}{0bc1fb335c8faed26612fbc2ab395aad}
+      \strng{authorfullhash}{0bc1fb335c8faed26612fbc2ab395aad}
+      \strng{authorfullhashraw}{0bc1fb335c8faed26612fbc2ab395aad}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this paper an interpolation scheme is developed that depends on only a few parameters. This is done by observing that the effective potential for electrons near the Fermi level can be split into two parts, the part due to the core, and the part due to the other valence electrons. It is assumed that for semiconductors the relative effect of the core is small, so that it can be replaced by an effective repulsive potential. In this way two-parameter pseudopotentials are constructed for diamond and Si that give good agreement with orthogonalized plane wave calculations and experiment at special points of the Brillouin zone, and also yield reasonable results for the bands at other points of the zone. A by-product of the calculations is the discovery of an error in the model for the valence bands of Si near the center of the zone proposed by Dresselhaus. A compromise model is proposed in good agreement with theory and experiment. Good results are obtained for Ge with a three-parameter pseudopotential. Finally, the many experimental facts that have been deduced about the band structures of Si and Ge are augmented by the results of the pseudopotential calculations to yield fairly accurate (𝛿⁢𝐸 ≲0.05 ry) sketches of the energy bands of these crystals along the [100] and [111] directions in the neighborhood of the energy gap.}
+      \field{day}{1}
+      \field{journaltitle}{Physical Review}
+      \field{month}{11}
+      \field{number}{3}
+      \field{shortjournal}{Phys. Rev.}
+      \field{title}{Energy-{{Band Interpolation Scheme Based}} on a {{Pseudopotential}}}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{112}
+      \field{year}{1958}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{685\bibrangedash 695}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1103/PhysRev.112.685
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/ZWGIK25W/PhysRev.112.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.112.685
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.112.685
+      \endverb
+    \endentry
+    \entry{phillipsNewMethodCalculating1959}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=0bc1fb335c8faed26612fbc2ab395aad}{%
+           family={Phillips},
+           familyi={P\bibinitperiod},
+           given={James\bibnamedelima C.},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=3329a71b83d0907d996e917e3cb2934c}{%
+           family={Kleinman},
+           familyi={K\bibinitperiod},
+           given={Leonard},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{4795645e4c92775061fecb17e4ee0e4c}
+      \strng{fullhash}{4795645e4c92775061fecb17e4ee0e4c}
+      \strng{fullhashraw}{4795645e4c92775061fecb17e4ee0e4c}
+      \strng{bibnamehash}{4795645e4c92775061fecb17e4ee0e4c}
+      \strng{authorbibnamehash}{4795645e4c92775061fecb17e4ee0e4c}
+      \strng{authornamehash}{4795645e4c92775061fecb17e4ee0e4c}
+      \strng{authorfullhash}{4795645e4c92775061fecb17e4ee0e4c}
+      \strng{authorfullhashraw}{4795645e4c92775061fecb17e4ee0e4c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{For metals and semiconductors the calculation of crystal wave functions is simplest in a plane wave representation. However, in order to obtain rapid convergence it is necessary that the valence electron wave functions be made orthogonal to the core wave functions. Herring satisfied this requirement by choosing as basis functions "orthogonalized plane waves." It is here shown that advantage can be taken of crystal symmetry to construct wave functions 𝜙𝛼 which are best described as the smooth part of symmetrized Bloch functions. The wave equation satisfied by 𝜙𝛼 contains an additional term of simple character which corresponds to the usual complicated orthogonalization terms and has a simple physical interpretation as an effective repulsive potential. Qualitative estimates of this potential in analytic form are presented. Several examples are worked out which display the cancellation between attractive and repulsive potentials in the core region which is responsible for rapid convergence of orthogonalized plane wave calculations for 𝑠 states; the slower convergence of 𝑝 states is also explained. The formalism developed here can also be regarded as a rigorous formulation of the "empirical potential" approach within the one-electron framework; the present results are compared with previous approaches. The method can be applied equally well to the calculation of wave functions in molecules.}
+      \field{day}{15}
+      \field{journaltitle}{Physical Review}
+      \field{month}{10}
+      \field{number}{2}
+      \field{shortjournal}{Phys. Rev.}
+      \field{title}{New {{Method}} for {{Calculating Wave Functions}} in {{Crystals}} and {{Molecules}}}
+      \field{urlday}{11}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{116}
+      \field{year}{1959}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{287\bibrangedash 294}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1103/PhysRev.116.287
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/4X6TTDTJ/PhysRev.116.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.116.287
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRev.116.287
+      \endverb
+    \endentry
+    \entry{hamannNormConservingPseudopotentials1979}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=04bbe60a9183b1f06643d3d20346ce07}{%
+           family={Hamann},
+           familyi={H\bibinitperiod},
+           given={D.\bibnamedelimi R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=164ff11d2fbfbe56e48e80f3518f0865}{%
+           family={Schlüter},
+           familyi={S\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=eb463c112ebf392a09d44cbf50d8cdac}{%
+           family={Chiang},
+           familyi={C\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{8c4e9cee594f816faa319d8ad5a77524}
+      \strng{fullhash}{8c4e9cee594f816faa319d8ad5a77524}
+      \strng{fullhashraw}{8c4e9cee594f816faa319d8ad5a77524}
+      \strng{bibnamehash}{8c4e9cee594f816faa319d8ad5a77524}
+      \strng{authorbibnamehash}{8c4e9cee594f816faa319d8ad5a77524}
+      \strng{authornamehash}{8c4e9cee594f816faa319d8ad5a77524}
+      \strng{authorfullhash}{8c4e9cee594f816faa319d8ad5a77524}
+      \strng{authorfullhashraw}{8c4e9cee594f816faa319d8ad5a77524}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A very simple procedure to extract pseudopotentials from ab initio atomic calculations is presented. The pseudopotentials yield exact eigenvalues and nodeless eigenfunctions which agree with atomic wave functions beyond a chosen radius 𝓇𝑐. Moreover, logarithmic derivatives of real and pseudo wave functions and their first energy derivatives agree for 𝓇 {$>$}𝓇𝑐 guaranteeing excellent transferability of the pseudopotentials.}
+      \field{day}{12}
+      \field{journaltitle}{Physical Review Letters}
+      \field{month}{11}
+      \field{number}{20}
+      \field{shortjournal}{Phys. Rev. Lett.}
+      \field{title}{Norm-{{Conserving Pseudopotentials}}}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{43}
+      \field{year}{1979}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1494\bibrangedash 1497}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.43.1494
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/A62A6LBU/PhysRevLett.43.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.43.1494
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.43.1494
+      \endverb
+    \endentry
+    \entry{vanderbiltSoftSelfconsistentPseudopotentials1990}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=6cf0349c9e37966090a18d7b10ada26c}{%
+           family={Vanderbilt},
+           familyi={V\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{6cf0349c9e37966090a18d7b10ada26c}
+      \strng{fullhash}{6cf0349c9e37966090a18d7b10ada26c}
+      \strng{fullhashraw}{6cf0349c9e37966090a18d7b10ada26c}
+      \strng{bibnamehash}{6cf0349c9e37966090a18d7b10ada26c}
+      \strng{authorbibnamehash}{6cf0349c9e37966090a18d7b10ada26c}
+      \strng{authornamehash}{6cf0349c9e37966090a18d7b10ada26c}
+      \strng{authorfullhash}{6cf0349c9e37966090a18d7b10ada26c}
+      \strng{authorfullhashraw}{6cf0349c9e37966090a18d7b10ada26c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A new approach to the construction of first-principles pseudopotentials is described. The method allows transferability to be improved systematically while holding the cutoff radius fixed, even for large cutoff radii. Novel features are that the pseudopotential itself becomes charge-state dependent, the usual norm-conservation constraint does not apply, and a generalized eigenproblem is introduced. The potentials have a separable form well suited for plane-wave solid-state calculations, and show promise for application to first-row and transition-metal systems.}
+      \field{day}{15}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{4}
+      \field{number}{11}
+      \field{shortjournal}{Phys. Rev. B}
+      \field{title}{Soft Self-Consistent Pseudopotentials in a Generalized Eigenvalue Formalism}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{41}
+      \field{year}{1990}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{7892\bibrangedash 7895}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.41.7892
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/HU3NRFRE/PhysRevB.41.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.41.7892
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.41.7892
+      \endverb
+    \endentry
+    \entry{blochlProjectorAugmentedwaveMethod1994}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=0e5ab72a1a8b5e06579c9db59404c0f3}{%
+           family={Blöchl},
+           familyi={B\bibinitperiod},
+           given={P.\bibnamedelimi E.},
+           giveni={P\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{0e5ab72a1a8b5e06579c9db59404c0f3}
+      \strng{fullhash}{0e5ab72a1a8b5e06579c9db59404c0f3}
+      \strng{fullhashraw}{0e5ab72a1a8b5e06579c9db59404c0f3}
+      \strng{bibnamehash}{0e5ab72a1a8b5e06579c9db59404c0f3}
+      \strng{authorbibnamehash}{0e5ab72a1a8b5e06579c9db59404c0f3}
+      \strng{authornamehash}{0e5ab72a1a8b5e06579c9db59404c0f3}
+      \strng{authorfullhash}{0e5ab72a1a8b5e06579c9db59404c0f3}
+      \strng{authorfullhashraw}{0e5ab72a1a8b5e06579c9db59404c0f3}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{An approach for electronic structure calculations is described that generalizes both the pseudopotential method and the linear augmented-plane-wave (LAPW) method in a natural way. The method allows high-quality first-principles molecular-dynamics calculations to be performed using the original fictitious Lagrangian approach of Car and Parrinello. Like the LAPW method it can be used to treat first-row and transition-metal elements with affordable effort and provides access to the full wave function. The augmentation procedure is generalized in that partial-wave expansions are not determined by the value and the derivative of the envelope function at some muffin-tin radius, but rather by the overlap with localized projector functions. The pseudopotential approach based on generalized separable pseudopotentials can be regained by a simple approximation.}
+      \field{day}{15}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{12}
+      \field{number}{24}
+      \field{shortjournal}{Phys. Rev. B}
+      \field{title}{Projector Augmented-Wave Method}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{50}
+      \field{year}{1994}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{17953\bibrangedash 17979}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.50.17953
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/4IJ5BDDX/PhysRevB.50.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.50.17953
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.50.17953
+      \endverb
+    \endentry
+    \entry{vansettenPseudoDojoTrainingGrading2018}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=dd733beb2bb9aba9d3bc8d03a67d8ab6}{%
+           family={Van\bibnamedelima Setten},
+           familyi={V\bibinitperiod\bibinitdelim S\bibinitperiod},
+           given={M.J.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=1ee1e6f5b01e157e94b8a880d95869dc}{%
+           family={Giantomassi},
+           familyi={G\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2bcf2550eb4ca69a1850eb4213baec10}{%
+           family={Bousquet},
+           familyi={B\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+        {{hash=77a585a7889c55859ab5d68246beb5df}{%
+           family={Verstraete},
+           familyi={V\bibinitperiod},
+           given={M.J.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=04bbe60a9183b1f06643d3d20346ce07}{%
+           family={Hamann},
+           familyi={H\bibinitperiod},
+           given={D.R.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=5d553090bc08a6bf776c2cd40708af7b}{%
+           family={Gonze},
+           familyi={G\bibinitperiod},
+           given={X.},
+           giveni={X\bibinitperiod}}}%
+        {{hash=be18d772eb1aaba8e010fdb6270063bf}{%
+           family={Rignanese},
+           familyi={R\bibinitperiod},
+           given={G.-M.},
+           giveni={G\bibinithyphendelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{df2d9dcccffbe054b4381a399fc5fc0a}
+      \strng{fullhash}{655f643a4fc2553b3a5e5f07bcb1bd8f}
+      \strng{fullhashraw}{655f643a4fc2553b3a5e5f07bcb1bd8f}
+      \strng{bibnamehash}{df2d9dcccffbe054b4381a399fc5fc0a}
+      \strng{authorbibnamehash}{df2d9dcccffbe054b4381a399fc5fc0a}
+      \strng{authornamehash}{df2d9dcccffbe054b4381a399fc5fc0a}
+      \strng{authorfullhash}{655f643a4fc2553b3a5e5f07bcb1bd8f}
+      \strng{authorfullhashraw}{655f643a4fc2553b3a5e5f07bcb1bd8f}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{First-principles calculations in crystalline structures are often performed with a planewave basis set. To make the number of basis functions tractable two approximations are usually introduced: core electrons are frozen and the diverging Coulomb potential near the nucleus is replaced by a smoother expression. The norm-conserving pseudopotential was the first successful method to apply these approximations in a fully ab initio way. Later on, more efficient and more exact approaches were developed based on the ultrasoft and the projector augmented wave formalisms. These formalisms are however more complex and developing new features in these frameworks is usually more difficult than in the normconserving framework. Most of the existing tables of norm-conserving pseudopotentials, generated long ago, do not include the latest developments, are not systematically tested or are not designed primarily for high precision. In this paper, we present our PseudoDojo framework for developing and testing full tables of pseudopotentials, and demonstrate it with a new table generated with the ONCVPSP approach. The PseudoDojo is an open source project, building on the AbiPy package, for developing and systematically testing pseudopotentials. At present it contains 7 different batteries of tests executed with ABINIT, which are performed as a function of the energy cutoff. The results of these tests are then used to provide hints for the energy cutoff for actual production calculations. Our final set contains 141 pseudopotentials split into a standard and a stringent accuracy table. In total around 70,000 calculations were performed to test the pseudopotentials. The process of developing the final table led to new insights into the effects of both the core-valence partitioning and the non-linear core corrections on the stability, convergence, and transferability of norm-conserving pseudopotentials. The PseudoDojo hence provides a set of pseudopotentials and general purpose tools for further testing and development, focusing on highly accurate calculations and their use in the development of ab initio packages. The pseudopotential files are available on the PseudoDojo web-interface pseudo-dojo.org under the name NC (ONCVPSP) v0.4 in the psp8, UPF2, and PSML 1.1 formats. The webinterface also provides the inputs, which are compatible with the 3.3.1 and higher versions of ONCVPSP. All tests have been performed with ABINIT 8.4.}
+      \field{issn}{00104655}
+      \field{journaltitle}{Computer Physics Communications}
+      \field{langid}{english}
+      \field{month}{5}
+      \field{shortjournal}{Computer Physics Communications}
+      \field{shorttitle}{The {{PseudoDojo}}}
+      \field{title}{The {{PseudoDojo}}: {{Training}} and Grading a 85 Element Optimized Norm-Conserving Pseudopotential Table}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{226}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{39\bibrangedash 54}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1016/j.cpc.2018.01.012
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/Q7EALJSY/Van Setten et al. - 2018 - The PseudoDojo Training and grading a 85 element optimized norm-conserving pseudopotential table.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0010465518300250
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0010465518300250
+      \endverb
+    \endentry
+    \entry{hamannGeneralizedNormconservingPseudopotentials1989}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=04bbe60a9183b1f06643d3d20346ce07}{%
+           family={Hamann},
+           familyi={H\bibinitperiod},
+           given={D.\bibnamedelimi R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{04bbe60a9183b1f06643d3d20346ce07}
+      \strng{fullhash}{04bbe60a9183b1f06643d3d20346ce07}
+      \strng{fullhashraw}{04bbe60a9183b1f06643d3d20346ce07}
+      \strng{bibnamehash}{04bbe60a9183b1f06643d3d20346ce07}
+      \strng{authorbibnamehash}{04bbe60a9183b1f06643d3d20346ce07}
+      \strng{authornamehash}{04bbe60a9183b1f06643d3d20346ce07}
+      \strng{authorfullhash}{04bbe60a9183b1f06643d3d20346ce07}
+      \strng{authorfullhashraw}{04bbe60a9183b1f06643d3d20346ce07}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A method is introduced for computing norm-conserving pseudopotentials from all-electron atom potentials at arbitrary energies, rather than at bound-state energies only, as in existing methods. This is shown to introduce considerable additional flexibility and convenience in constructing these potentials, and in dealing with certain ‘‘problem’’ atoms. As an example of such a case, pseudopotential and all-electron calculations of the electronic structure and structural energy of bulk BaSe are compared.}
+      \field{day}{15}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{8}
+      \field{number}{5}
+      \field{shortjournal}{Phys. Rev. B}
+      \field{title}{Generalized Norm-Conserving Pseudopotentials}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{40}
+      \field{year}{1989}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{2980\bibrangedash 2987}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.40.2980
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.40.2980
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.40.2980
+      \endverb
+    \endentry
+    \entry{troullierEfficientPseudopotentialsPlanewave1991}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=b09410b0a8b6f33b06ce6b42b82f87e3}{%
+           family={Troullier},
+           familyi={T\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+        {{hash=959b41dc7f7f41a761a41fb02cdfc0c1}{%
+           family={Martins},
+           familyi={M\bibinitperiod},
+           given={José\bibnamedelima Luís},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{8e73cc5edc993b42c30fe1edab2eb25a}
+      \strng{fullhash}{8e73cc5edc993b42c30fe1edab2eb25a}
+      \strng{fullhashraw}{8e73cc5edc993b42c30fe1edab2eb25a}
+      \strng{bibnamehash}{8e73cc5edc993b42c30fe1edab2eb25a}
+      \strng{authorbibnamehash}{8e73cc5edc993b42c30fe1edab2eb25a}
+      \strng{authornamehash}{8e73cc5edc993b42c30fe1edab2eb25a}
+      \strng{authorfullhash}{8e73cc5edc993b42c30fe1edab2eb25a}
+      \strng{authorfullhashraw}{8e73cc5edc993b42c30fe1edab2eb25a}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We present a simple procedure to generate first-principles norm-conserving pseudopotentials, which are designed to be smooth and therefore save computational resources when used with a plane-wave basis. We found that these pseudopotentials are extremely efficient for the cases where the plane-wave expansion has a slow convergence, in particular, for systems containing first-row elements, transition metals, and rare-earth elements. The wide applicability of the pseudopotentials are exemplified with plane-wave calculations for copper, zinc blende, diamond, α-quartz, rutile, and cerium.}
+      \field{day}{15}
+      \field{journaltitle}{Physical Review B}
+      \field{month}{1}
+      \field{number}{3}
+      \field{shortjournal}{Phys. Rev. B}
+      \field{title}{Efficient Pseudopotentials for Plane-Wave Calculations}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{43}
+      \field{year}{1991}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1993\bibrangedash 2006}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1103/PhysRevB.43.1993
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/H24DEUIN/PhysRevB.43.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.43.1993
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevB.43.1993
+      \endverb
+    \endentry
+    \entry{kleinmanEfficaciousFormModel1982}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=3329a71b83d0907d996e917e3cb2934c}{%
+           family={Kleinman},
+           familyi={K\bibinitperiod},
+           given={Leonard},
+           giveni={L\bibinitperiod}}}%
+        {{hash=0f2fa06f1cbb74da0591eea7ffbdf7c1}{%
+           family={Bylander},
+           familyi={B\bibinitperiod},
+           given={D.\bibnamedelimi M.},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{2774e9c9eb72ddb9fa4fee6a46ed010c}
+      \strng{fullhash}{2774e9c9eb72ddb9fa4fee6a46ed010c}
+      \strng{fullhashraw}{2774e9c9eb72ddb9fa4fee6a46ed010c}
+      \strng{bibnamehash}{2774e9c9eb72ddb9fa4fee6a46ed010c}
+      \strng{authorbibnamehash}{2774e9c9eb72ddb9fa4fee6a46ed010c}
+      \strng{authornamehash}{2774e9c9eb72ddb9fa4fee6a46ed010c}
+      \strng{authorfullhash}{2774e9c9eb72ddb9fa4fee6a46ed010c}
+      \strng{authorfullhashraw}{2774e9c9eb72ddb9fa4fee6a46ed010c}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A simple way has been discovered to put model pseudopotentials, 𝑉⁡(→r) =𝛴lm⁢|𝑌lm〉𝑉𝑙⁡(𝑟) ×〈𝑌lm|, into a form which reduces the number of integrals of 𝑉⁡(→r) required for an energyband calculation from mn⁢(𝑛+1)2 to mn for each 𝑙 in the sum (where 𝑛 is the number of plane waves used in the expansion and 𝑚 the number of points in the Brillouin zone at which the calculation is performed). The new form may be chosen to improve the accuracy of the pseudopotential when used in other chemical environments.}
+      \field{day}{17}
+      \field{journaltitle}{Physical Review Letters}
+      \field{month}{5}
+      \field{number}{20}
+      \field{shortjournal}{Phys. Rev. Lett.}
+      \field{title}{Efficacious {{Form}} for {{Model Pseudopotentials}}}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2026}
+      \field{volume}{48}
+      \field{year}{1982}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1425\bibrangedash 1428}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.48.1425
+      \endverb
+      \verb{file}
+      \verb /Users/gregou/Zotero/storage/BL3YG5XH/PhysRevLett.48.html
+      \endverb
+      \verb{urlraw}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.48.1425
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.48.1425
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

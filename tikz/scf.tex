@@ -1,0 +1,30 @@
+\begin{tikzpicture}[
+    node distance=0.6cm,
+    box/.style={rectangle, draw=black, rounded corners, text centered, 
+                minimum width=9cm, minimum height=0.9cm, 
+                fill=gray!15},
+    decision/.style={diamond, draw=black, text centered, aspect=3,
+                     fill=darkblue!15, minimum width=9cm, minimum height=0.9cm,
+                     inner sep=2pt},
+    arrow/.style={->, >=stealth, thick, color=black}
+]
+
+\node[box] (init)  {Densité initiale $n_\text{in}(\rv)$};
+\node[box, below=of init] (veff)  {Calculer $V_\text{eff}(\rv)=V_\text{ext}(\rv)+V_\text{H}(\rv)+V_\text{XC}(\rv)$};
+\node[box, below=of veff] (ks)    {Résoudre les équations de KS $\rightarrow \psi_i, \varepsilon_i$};
+\node[box, below=of ks]   (nout)  {Calculer $n_\text{out}(\rv)=\sum_{i=1}^{N_e}|\psi_i(\rv)|^2$};
+\node[decision, below=of nout] (conv) {$n_\text{out}\approx n_\text{in}$?};
+\node[box, below=0.6cm of conv] (prop) {Calculer les propriétés de l'état fondamental};
+
+\draw[arrow] (init) -- (veff);
+\draw[arrow] (veff) -- (ks);
+\draw[arrow] (ks)   -- (nout);
+\draw[arrow] (nout) -- (conv);
+\draw[arrow] (conv) -- node[right] {Oui} (prop);
+
+% Flèche Non corrigée
+\draw[arrow] (conv.west) -- ++(-2,0) 
+    node[midway, above] {Non} 
+    |- (veff.west);
+
+\end{tikzpicture}

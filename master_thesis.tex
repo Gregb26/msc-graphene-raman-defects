@@ -111,17 +111,9 @@
 
 \department{Département de physique}
 
-\date{31 août 2026} %Date du DÉPÔT INITIAL (ou du 2e dépôt s'il y a corrections majeures)
+\date{31 août 2026} 
 
 \sujet{Physique}
-%%\orientation{orientation}%Ce champ est optionnel
-%%
-%% Voici les disciplines possibles (voir avec votre directeur):
-%% \sujet{statistique},
-%% \sujet{mathématiques}, \orientation{mathématiques appliquées},
-%% \orientation{mathématiques fondamentales}
-%% \orientation{mathématiques de l'ingénieur} et
-%% \orientation{mathématiques appliquées}
 
 \president{Nom du président du jury}
 
@@ -131,15 +123,6 @@
 %%\codirecteurs{Nom du 2e codirecteur}         % s'il y a lieu
 
 \membrejury{Nom du membre de jury}
-
-%%\examinateur{Nom de l'examinateur externe}   %obligatoire pour la these
-
-%% \membresjury{Deuxième membre du jury}  % s'il y a lieu
-
-%%  \plusmembresjury{Troisième membre du jury}    % s'il y a lieu
-
-%%\repdoyen{Nom du représentant du doyen} %(thèse seulement)
-
 
 \pdfbookmark[chapter]{Couverture}{PageUn}
 
@@ -171,15 +154,14 @@ Abstract (maximum 250 words (1 page) for master thesis and 500 words (2 pages) f
 %%------------------------------------------------- %
 %%             Table des matières                   %
 %%------------------------------------------------- %
-%%\anglais
 \francais
-%% TABLE DES MATIÈRES
 \cleardoublepage
-\pdfbookmark[chapter]{\contentsname}{toc}  % Crée un bouton sur
-                                           % la bar de navigation
+\pdfbookmark[chapter]{\contentsname}{toc} 
 \tableofcontents
+
 %\cleardoublepage
 \listoftables
+
 %\cleardoublepage
 \listoffigures
 
@@ -187,16 +169,9 @@ Abstract (maximum 250 words (1 page) for master thesis and 500 words (2 pages) f
 %% LISTE DES SIGLES ET ABRÉVIATION %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter*{Liste des sigles et des abréviations}
- % Option de colonnes: definir \colun ou \coldeux
-%%% Exemple
-%%% \def\colun{\bf} % Première colonne en gras
-%%%  Pour numéroté les entrées, on peut faire
-%%% \newcount\abbrlist
-%%% \abbrlist=0
-%%% \def\plusun{\global\advance\abbrlist by 1\relax}
-%%% \def\colun{\plusun\the\abbrlist. }
 \def\coldeux{\relax}
 \def\linestretch{3pt}
+
 \begin{twocolumnlist}{.2\textwidth}{.7\textwidth}
  BvK & Born-von-Karman, se référant aux conditions de bord de Born-von-Karman ou le cristal de Born-von-Karman\\
  BZ & Zone de Brillouin, de l'anglais \textit{Brillouin Zone}\\
@@ -318,12 +293,6 @@ Abstract (maximum 250 words (1 page) for master thesis and 500 words (2 pages) f
 
 Je remercie plusieurs individus.
 
- %
- % Fin des pages liminaires.  À partir d'ici, les
- % premières pages des chapitres ne doivent pas
- % être numérotées
- %
-
 \NoChapterPageNumber
 \cleardoublepage
 \pagenumbering{arabic}
@@ -333,12 +302,13 @@ Je remercie plusieurs individus.
 %%             TEXTE DU MÉMOIRE                     %
 %%                                                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \include{sections/chapitre1}
 \include{sections/chapitre2}
-%\include{sections/chapitre3}
-%\include{sections/chapitre4}
-%\include{sections/chapitre5}
-%\include{sections/chapitre6}
+\include{sections/chapitre3}
+\include{sections/chapitre4}
+\include{sections/chapitre5}
+\include{sections/chapitre6}
 
 %%--------------%
 %%     index    %
@@ -347,39 +317,15 @@ Je remercie plusieurs individus.
 %%\printindex
 
 %%------------------------------------------------- %
-%%         références --- bibliographie             %
-%%------------------------------------------------- %
-
-  % Enlever les commentaires de la prochaine commande si vous préférez que le
-  % chapitre s'appelle « Références » plutôt que « Bibliographie » (au choix selon le contexte).
-%% \let\bibname=\refname
-
-%% Lorsque vous serez prêt à faire afficher votre bibliographie
-%% et vos références, enlevez les commandaires des commandes suivantes
-%% et donnez le nom de votre fichier .bib à la commande \bibliography{..}
-%% (consultez l'exemple au besoin).  Vous pouvez utiliser le style de votre
-%% choix.
-%\bibliographystyle{amsplain-french}     % Le style de la bibliographie. Notons que
-                                        % les extensions ne sont pas données pour ces deux fichiers.
-%%\def\bibname{R\'ef\'erences} % Nom obligatoire de la section des références.
-                                              % On utilise \'e car le é cause des problèmes
-                                              % dans la table des matière
-%% ENGLISH
- %\def\bibname{References}
-%\bibliography{ref}     % La base de données contenant des entrées bibliographiques.
-                                    % Seules celles référencées dans le texte seront ajoutées
-                                    % \`a la bibliographie.
-
-%%------------------------------------------------- %
 %%                   Annexe                         %
 %%------------------------------------------------- %
 
 \appendix
 
-\include{sections/annexe_pbe}
-%\include{sections/annexe1}
-%\include{sections/annexe2}
-%\include{sections/annexe3}
+\include{sections/annexe1}
+\include{sections/annexe2}
+\include{sections/annexe3}
+\include{sections/annexe4}
 
 \printbibliography
 \end{document}

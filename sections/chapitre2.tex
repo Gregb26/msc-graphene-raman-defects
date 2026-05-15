@@ -55,8 +55,9 @@ Nous avons introduit ici le potentiel effectif des ions $U$. Il contient la rép
 Pour terminer cette section nous mentionnons que l'approximation de Born-Oppenheimer est une excellente approximation dans la plupart des situations, mais elle a ses limites. Comme nous résolvons le problème électronique pour des positions ioniques fixes, elle néglige le couplage entre les électrons et les vibrations des ions -- le couplage électron-phonon -- qui est responsable, entre autres, de la diffusion Raman. Elle devient également invalide lorsque le gap entre l'état fondamental et le premier état excité des électrons est plus petit que l'énergie caractéristique des vibrations ioniques \cite{pisanaBornOppenheimerBreakdownGraphene2007}. Ceci est particulièrement pertinent pour le graphène qui a un gap de zéro aux points $\Kv$ et $\Kv'$ de la zone de Brillouin, ce qui est nécessairement plus petit que toute énergie de vibration 
 ionique non nulle, violant ainsi systématiquement la condition de 
 validité de Born-Oppenheimer. Il y a deux façons de traiter ces effets non-adiabatiques : rester dans l'approximation adiabatique de Born-Oppenheimer et traiter les corrections non-adiabatiques perturbativement ou bien ne pas faire l'approximation adiabatique et utiliser la formulation plus générale de Born et Huang \cite{bornDynamicalTheoryCrystal1998} qui développe la fonction d'onde exacte sur la base complète des états électroniques. Tous les travaux dans ce mémoire sont faits dans le régime de Born-Oppenheimer et les corrections non-adiabatiques, qui sont non négligeables pour le graphène, sont incluses perturbativement dans le chapitre \ref{chap:eph} sur le couplage électron-phonon.
-\section{Partie électronique : théorie de la fonctionnelle de la densité}
-\label{sec:2.2}
+
+\section{Partie électronique : théorie de la fonctionnelle de la densité}\label{sec:2.2}
+
 Dans cette section nous nous attaquons au problème électronique défini par l'Hamiltonien de l'équation \ref{eqn:c1_He}, que nous répétons ici par soucis d'exhaustivité
 \begin{equation}
     H_e = T+V_\text{int}+\sum_{i=1}^{N_e}V_\text{ext}(\rv_i).
@@ -210,7 +211,7 @@ Le premier échelon de l'échelle de Jacob est l'approximation de la densité lo
     E_\text{XC}^\text{LDA}[n]=\int d^3\rv\,n(\rv)\,\varepsilon_\text{XC}^\text{hom}(n),
     \label{eqn:c1_LDA}
 \end{equation}
-où $\varepsilon_\text{XC}^\text{hom}(n)$ est l'énergie d'échange-corrélation du gaz d'électrons. La densité d'énergie d'échange-corrélation du gaz d'électrons peut être décomposée en une contribution d'échange et une contribution de corrélation : la partie d'échange est connue analytiquement \cite{martinElectronicStructureBasic2004}, tandis que la partie de corrélation a été calculée numériquement par Ceperley et Alder \cite{ceperleyGroundStateElectron1980} puis paramétrée par Perdew et Zunger \cite{perdewSelfinteractionCorrectionDensityfunctional1981}.
+où $\varepsilon_\text{XC}^\text{hom}(n)$ est la densité d'énergie d'échange-corrélation du gaz d'électrons homogène\footnote{Homogène signifie ici que la densité est la même partout dans le gaz : $n(\rv)=n$. La densité d'énergie d'échange-corrélation du gaz $\varepsilon_\text{XC}^\text{hom}(n)$ n'est pas une fonctionnelle, car $n$ n'est plus une fonction, d'où les parenthèses.}. Cette densité d'énergie peut être décomposée en une contribution d'échange et une contribution de corrélation : la partie d'échange est connue analytiquement \cite{martinElectronicStructureBasic2004}, tandis que la partie de corrélation a été calculée numériquement par Ceperley et Alder \cite{ceperleyGroundStateElectron1980} puis paramétrée par Perdew et Zunger \cite{perdewSelfinteractionCorrectionDensityfunctional1981}.
 
 Malgré sa simplicité, la LDA connaît un succès remarquable pour les métaux et les semi-conducteurs. Elle souffre cependant de plusieurs limitations : elle tend à sous-estimer les constantes du réseau (\textit{overbinding}) \cite{perdewAtomsMoleculesSolids1992}, sous-estime systématiquement les gaps électroniques \cite{perdewPhysicalContentExact1983,shamDensityFunctionalTheoryEnergy1983} et ne peut décrire les interactions de van der Waals \cite{grimmeAccurateDescriptionVan2004,rapcewiczFluctuationAttractionCondensed1991} ni les systèmes à forte corrélation électronique \cite{BasisElectronTheory,imadaMetalinsulatorTransitions1998,anisimovBandTheoryMott1991,georgesDynamicalMeanfieldTheory1996}. Ces limitations ont motivé le développement du deuxième échelon.\\
 \noindent
@@ -228,34 +229,50 @@ Notons finalement que la sous-estimation du gap électronique demeure une limita
 
 \subsection{Pseudo-potentiels}\label{sec:PP}
 
-Bien que la méthode de KS réduise considérablement la complexité du problème à plusieurs corps, les calculs DFT pour des systèmes réalistes restent coûteux. Il y a deux sources importantes de cette complexité. Premièrement, même si la complexité du problème varie maintenant linéairement avec le nombre d'électrons $N_e$ dans la méthode de KS, ce nombre est extrêmement grand (environ $10^{23}$ par cm$^3$ pour un solide macroscopique \cite{alloulIntroductionPhysicsElectrons2011a}) ce qui rend la solution des équations de KS numériquement difficile. Nous verrons comment contourner ce problème dans la section \ref{sec:PW}. L'autre source de complexité est la nature des fonctions d'onde électroniques. Nous traitons ce deuxième problème dans cette section.
+Le potentiel externe $V_\text{ext}(\rv)$, qui décrit l'interaction de Coulomb entre les électrons et les noyaux, diverge en $1/r$ au voisinage des ions. Cette singularité génère des états de c\oe ur fortement oscillants près des noyaux, auxquels les fonctions d'onde des électrons de valence héritent d'oscillations rapides afin de satisfaire à la condition d'orthonormalité. Ces électrons de c\oe ur, fortement liés aux noyaux et chimiquement inertes, contribuent peu aux propriétés d'intérêt et augmentent considérablement le coût des calculs. L'approximation des pseudo-potentiels~\cite{phillipsEnergyBandInterpolationScheme1958,phillipsNewMethodCalculating1959} résout ces deux problèmes simultanément : les électrons de c\oe ur sont absorbés dans les noyaux pour former les ions et leur effet sur les électrons de valence est encodé dans un pseudo-potentiel $V_\text{PP}(\rv)$ qui remplace le potentiel de Coulomb divergent par un potentiel plus lisse, réduisant à la fois le nombre d'électrons à traiter explicitement et la complexité des fonctions d'onde de valence.
 
-Le potentiel externe $V_\text{ext}(\rv)$, qui décrit l'interaction de Coulomb entre les électrons et les noyaux, diverge en $1/r$ au voisinage des ions. Cette singularité génère des états de c\oe ur fortement oscillants près des noyaux. Les fonctions d'onde des électrons de valence, responsables des propriétés physiques et chimiques d'intérêt, héritent à leur tour de ces oscillations rapides afin de satisfaire la condition d'orthonormalité avec les états de c\oe ur. Ces électrons de c\oe ur, fortement liés aux noyaux et chimiquement inertes, contribuent peu aux propriétés d'intérêt et augmentent le coût des calculs. L'approximation des pseudo-potentiels \cite{phillipsEnergyBandInterpolationScheme1958,phillipsNewMethodCalculating1959} résout ces deux problèmes simultanément en exploitant l'approximation des c\oe urs gelés introduite à la section \ref{sec:2.1}. Les électrons de c\oe ur sont absorbés dans les noyaux pour former les ions et leur effet sur les électrons de valence est encodé dans un pseudo-potentiel $V_\text{PP}(\rv)$ qui remplace le potentiel de Coulomb divergent par un potentiel plus lisse. Cette approximation réduit à la fois le nombre d'électrons à traiter explicitement en ignorant les électrons de c\oe ur et simplifie la structure des fonctions d'onde des électrons de valence, accélérant ainsi les calculs de plusieurs ordres de grandeur. 
-
-La théorie des pseudo-potentiels est un domaine de recherche très actif et une grande variété ont été développés depuis les travaux pionniers de Phillips et Kleinman \cite{phillipsNewMethodCalculating1959}. On distingue principalement trois grandes catégories : les pseudo-potentiels à conservation de norme (NC, de l'anglais \textit{Norm-Conserving}) \cite{hamannNormConservingPseudopotentials1979}, les pseudo-potentiels \textit{ultrasoft} de Vanderbilt \cite{vanderbiltSoftSelfconsistentPseudopotentials1990} et la méthode des ondes augmentées projetées (PAW, de l'anglais \textit{Projector Augmented Waves}) de Blöchl \cite{blochlProjectorAugmentedwaveMethod1994}. Pour tous les calculs effectués dans ce mémoire nous utilisons des pseudo-potentiels de NC de la famille ONCV (de l'anglais \textit{Optimized Norm-Conserving Vanderbilt}) tirés de la bibliothèque PseudoDojo \cite{vansettenPseudoDojoTrainingGrading2018}, qui offrent un excellent compromis entre précision et efficacité computationnelle.
-
-\noindent
-\textbf{Pseudo-potentiels ONCV}\\
-L'idée centrale de l'approximation des pseudo-potentiels est de remplacer le potentiel externe $V_\text{ext}(\rv)$ dans les équations de KS \eqref{eqn:c1_KS}-\eqref{eqn:c1_VKS} par un pseudo-potentiel total
-\begin{equation}
-    V_\text{PP}(\rv)=\sum_\alpha V^{(\alpha)}_\text{PP}(\rv-\bm{\tau}_\alpha),
-    \label{eqn:c2_ppapprox}
-\end{equation}
-où la somme porte sur tous les ions $\alpha$ situés aux positions $\bm{\tau}_\alpha$ de la cellule unitaire. Chaque $V^{(\alpha)}_\text{PP}$ est un opérateur non-local qui dépend du type d'ion $\alpha$ et qui est composé d'une partie locale et d'une partie non-locale
-\begin{eqnarray}
-    V_\text{PP}^{(\alpha)}(\rv)=V^{(\alpha)}_\text{PPL}(\rv)+V^{(\alpha)}_\text{PPNL}.
-    \label{eqn:c2_vppalpha}
-\end{eqnarray}
-La partie locale $V_\text{PPL}(\rv)$ est un potentiel central à symétrie sphérique plus lisse qu'un potentiel de Coulomb, tandis que la partie non-locale $V_\text{PPNL}$ agit différemment selon le moment angulaire orbital $\ell$ des électrons de valence. Les pseudo-potentiels NC modernes sont construits en suivant la procédure décrite par \cite{hamannNormConservingPseudopotentials1979,hamannGeneralizedNormconservingPseudopotentials1989,troullierEfficientPseudopotentialsPlanewave1991}. Les pseudo-potentiels NC satisfont la condition de conservation de norme 
+On distingue principalement trois grandes catégories de pseudo-potentiels : les pseudo-potentiels à conservation de norme (NC, de l'anglais \textit{Norm-Conserving}) \cite{hamannNormConservingPseudopotentials1979}, les pseudo-potentiels \textit{ultrasoft} de Vanderbilt \cite{vanderbiltSoftSelfconsistentPseudopotentials1990} et la méthode des ondes augmentées projetées (PAW, de l'anglais \textit{Projector Augmented Waves}) de Blöchl \cite{blochlProjectorAugmentedwaveMethod1994}. Pour tous les calculs effectués dans ce mémoire nous utilisons des pseudo-potentiels de NC de la famille ONCV (de l'anglais \textit{Optimized Norm-Conserving Vanderbilt}) tirés de la bibliothèque PseudoDojo \cite{vansettenPseudoDojoTrainingGrading2018}, qui offrent un excellent compromis entre précision et efficacité computationnelle. Les pseudo-potentiels NC satisfont la condition de conservation de la norme
 \begin{equation}
     \int_0^{r_c}dr\,|\psi_\ell^\text{PP}(r)|^2r^2=\int_0^{r_c}dr\,|\psi_\ell^\text{AE}(r)|^2r^2,
     \label{eqn:c2_nc}
 \end{equation}
-où $\psi_\ell^\text{AE}(r)$ est la fonction d'onde de valence que nous obtiendrions si nous résolvions les équations de KS avec le vrai potentiel de Coulomb et en traitant tous les électrons explicitement (l'indice AE vient de l'anglais \textit{All Electrons}), $\psi_\ell^\text{PP}(r)$ est la fonction d'onde obtenue en résolvant le problème dans l'approximation des pseudo-potentiels et $r_c$ est un rayon de coupure. Le pseudo-potentiel est choisi de sorte que $\psi_\ell^\text{PP}(r)$ coïncide exactement avec $\psi_\ell^\text{AE}(r)$ pour $r>r_c$, qu'elle soit lisse et sans n\oe ud pour $r<r_c$ et qu'elle satisfasse la condition de conservation de norme (équation \eqref{eqn:c2_nc}) pour un pseudo-potentiel NC. Cette condition garantit que la densité de charge dans la région de c\oe ur ($r<r_c$) soit correctement reproduite ce qui garantit un bon potentiel électrostatique à l'extérieur de $r_c$ de par le théorème de Gauss. De plus, cette condition garantit une bonne transférabilité : le pseudo-potentiel est adapté à plusieurs environnements chimiques et pas seulement pour la configuration atomique de référence utilisée pour le construire. Dans les codes DFT modernes, la forme séparable proposée par Kleinman et Bylander (KB) \cite{kleinmanEfficaciousFormModel1982} pour les pseudo-potentiels NC est généralement employée, car elle réduit radicalement le nombre d'opérations nécessaires pour l'application de la partie non-locale de l'Hamiltonien, ainsi que la mémoire nécessaire pour stocker l'opérateur. Dans la forme de KB, l'interaction entre les électrons de valence et un ion de type $\alpha$ est décrite par le pseudo-potentiel
-\begin{eqnarray}
-    V^{(\alpha)}_\text{PP}(\rv) = V^{(\alpha)}_\text{PPL}(\rv)+\underbrace{\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}}_{=V_\text{PPNL}^{(\alpha)}},
+où $\psi_\ell^\text{AE}(r)$ est la fonction d'onde de valence que nous obtiendrions si nous résolvions les équations de KS avec le vrai potentiel de Coulomb et en traitant tous les électrons explicitement (l'indice AE vient de l'anglais \textit{All Electrons}), $\psi_\ell^\text{PP}(r)$ est la fonction d'onde obtenue en résolvant le problème dans l'approximation des pseudo-potentiels et $r_c$ est un rayon de coupure au-delà duquel les deux fonctions d'onde coïncident exactement. Cette condition garantit la bonne reproduction de la densité de charge dans la région de c\oe ur ainsi qu'une bonne transférabilité du pseudo-potentiel à différents environnements chimiques~\cite{hamannGeneralizedNormconservingPseudopotentials1989,troullierEfficientPseudopotentialsPlanewave1991}.\\
+
+\noindent
+\textbf{Pseudo-potentiels ONCV et forme de Kleinman-Bylander}
+
+Dans les codes DFT modernes, la forme séparable proposée par Kleinman et Bylander (KB)~\cite{kleinmanEfficaciousFormModel1982} pour les pseudo-potentiels NC est généralement employée, car elle réduit radicalement le nombre d'opérations nécessaires pour l'application de la partie non-locale de l'Hamiltonien, ainsi que la mémoire nécessaire pour stocker l'opérateur. Dans l'approximation des pseudo-potentiels, l'interaction des électrons de valence avec les ions est remplacée par un pseudo-potentiel total
+\begin{equation}
+    V_\text{PP}(\rv)=\sum_\alpha V_\text{PP}^{(\alpha)}(\rv-\bm{\tau}_\alpha),
+    \label{eqn:c2_pp_approx}
+\end{equation}
+où la somme court sur tous les ions $\alpha$ de la cellule unitaire et $\bm{\tau}_\alpha$ dénote leur position. Dans la forme de KB, chaque contribution ionique se décompose en une partie locale et une partie non-locale
+\begin{equation}
+    V^{(\alpha)}_\text{PP}(\rv) = V^{(\alpha)}_\text{PPL}(\rv)+\underbrace{\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}}_{=V_\text{PPNL}^{(\alpha)}}.
     \label{eqn:c1_VKB}
-\end{eqnarray}
+\end{equation}
+La partie locale $V_\text{PPL}(\rv)$ est un potentiel central à symétrie sphérique qui reproduit le potentiel de Coulomb $-Z_\text{val}/r$ loin de la région de c\oe ur et est plus lisse à l'intérieur. Dans la partie non-locale, $\ell$ est le nombre quantique de moment cinétique orbital, $m=-\ell,\dots,\ell$ est le nombre quantique magnétique et $i$ indexe les multiples projecteurs par canal $\ell$. C'est précisément ce qui distingue les ONCV des NC classiques, qui ne possèdent qu'un seul projecteur par canal. Les énergies de KB $E_{i\ell}^{(\alpha)}$ mesurent la force de la partie non-locale par rapport à la partie locale et les projecteurs de KB $\beta_{i\ell m}^{(\alpha)}(\rv)=\bra{\rv}\ket{\beta_{i\ell m}^{(\alpha)}}$ sont des fonctions à courte portée centrées sur l'ion $\alpha$, dont la structure est
+\begin{equation}
+    \beta_{i\ell m}^{(\alpha)}(\rv)=\frac{1}{|\rv-\bm{\tau}_\alpha|}\beta_{i\ell}^{(\alpha)}(|\rv-\bm{\tau}_\alpha|)Y_{\ell}^m(\theta,\phi),
+    \label{eqn:c2_betar}
+\end{equation}
+où $Y_\ell^m(\theta, \phi)$ sont les harmoniques sphériques et $\theta$ et $\phi$ sont les angles en coordonnées sphériques du vecteur $\rv-\bm{\tau}_\alpha$. La partie locale et les projecteurs radiaux du pseudo-potentiel ONCV pour un atome de carbone sont illustrés à la figure~\ref{fig:KB}.
+
+La décomposition du pseudo-potentiel en une partie locale et une partie non-locale se répercute directement sur le potentiel de KS, qui lui aussi se sépare en deux parties : 
+\begin{equation}
+    V_\text{KS}(\rv)=V_\text{L}(\rv)+V_\text{NL},
+    \label{eqn:c2_VKS_lnl}
+\end{equation}
+où la partie locale du potentiel regroupe les contributions d'Hartree, d'échange-corrélation et la partie locale du pseudo-potentiel
+\begin{equation}
+    V_\text{L}(\rv) = V_\text{H}(\rv)+V_\text{XC}(\rv)+\sum_\alpha V_\text{PPL}^{(\alpha)}(\rv-\bm{\tau}_\alpha),
+    \label{eqn:c2_VL}
+\end{equation}
+et la partie non-locale est entièrement due aux projecteurs de KB
+\begin{equation}
+    V_\text{NL}=\sum_\alpha\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}.
+\end{equation}
+Nous aurons besoin de ces expressions lors du calcul des éléments de matrice de couplage électron-défaut au chapitre \ref{chap:défauts}, ainsi que pour la solution des équations de KS, présentée dans la prochaine section.
 \begin{figure}[t]
     \centering
     \includegraphics{figures/KB_projectors_C.pdf}
@@ -265,31 +282,7 @@ où $\psi_\ell^\text{AE}(r)$ est la fonction d'onde de valence que nous obtiendr
     \cite{vansettenPseudoDojoTrainingGrading2018}.}
     \label{fig:KB}
 \end{figure}
-où $V_\text{PPL}(\rv)$ est la partie purement locale du pseudo-potentiel, soit un potentiel de Coulomb $1/r$ loin de la région de c\oe ur et une forme plus lisse dans la région de c\oe ur. Dans la partie non-locale, $\ell$ est le nombre quantique de moment cinétique orbital, $m$ est le nombre quantique magnétique ($m=-\ell,\dots,\ell-1,\ell$) et $i$ représente les multiples projecteurs par canal $\ell$. C'est précisément ce qui distingue les pseudo-potentiels ONCV des NC 
-classiques : ces derniers ne possèdent qu'un seul projecteur par canal $\ell$ (pas d'indice $i$), tandis que les ONCV en utilisent plusieurs, ce qui permet d'obtenir des pseudo-fonctions d'onde plus lisses. Les énergies de KB, $E_{i\ell}^{(\alpha)}$, mesurent la force de la partie non-locale par rapport à la partie locale. Les projecteurs de KB, $\beta_{i\ell m}^{(\alpha)}(\rv)=\bra{\rv}\ket{\beta_{i\ell m}^{(\alpha)}}$, sont des fonctions à courtes portées centrées sur l'atome $\alpha$. La partie angulaire des projecteurs de KB s'exprime en termes d'harmoniques sphériques $Y_\ell^m(\theta,\phi)$ et la partie radiale est indépendante du nombre quantique magnétique $m$
-\begin{equation}
-    \beta_{i\ell m}^{(\alpha)}(\rv)=\frac{1}{|\rv-\bm{\tau}_\alpha|}\beta_{i\ell}^{(\alpha)}(|\rv-\bm{\tau}_\alpha|)Y_{\ell}^m(\theta,\phi),
-    \label{eqn:c1_betar}
-\end{equation}
-où $\theta\in[0,\pi]$ est l'angle polaire et $\phi\in[0,2\pi]$ est l'angle azimuthal du vecteur $|\rv-\bm{\tau}_\alpha|$. La partie locale ainsi que la partie radiale du projecteur de KB du pseudo-potentiel pour un atome de carbone sont illustrés à la figure \ref{fig:KB}.
 
-Comme les pseudo-potentiels se séparent en une partie locale et une partie non-locale, le potentiel de KS, $V_\text{KS}$, (alternativement, le potentiel effectif $V_\text{eff}$) aussi se sépare en deux parties :
-\begin{equation}
-    V_\text{KS}(\rv) = V_\text{L}(\rv)+V_\text{NL},
-    \label{eqn:c2_VKS_lnl}
-\end{equation}
-où la partie locale du potentiel est donnée par la somme des termes d'Hartree, d'échange-corrélation et de la partie locale du pseudo-potentiel
-\begin{align}
-    V_\text{L}(\rv)&=V_\text{H}(\rv)+V_\text{XC}(\rv)+V_\text{PPL}(\rv)\notag\\
-    &=V_\text{H}(\rv)+V_\text{XC}(\rv)+\sum_\alpha V_\text{PPL}^{(\alpha)}(\rv-\bm{\tau}_\alpha),
-    \label{eqn:c2_VL}
-\end{align}
-et la partie non-locale est due à la partie non-locale du pseudo-potentiel
-\begin{equation}
-    V_\text{NL}=\sum_\alpha V_\text{PPNL}^{(\alpha)}=\sum_\alpha\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}.
-    \label{eqn:c2_VNL}
-\end{equation}
-Nous aurons besoin de ces expressions lors du calcul des élements de matrice de couplage électron-défaut dans le chapitre \ref{chap:défauts}.
 \subsection{Ondes planes, grilles et résolution des équations de Kohn-Sham}
 \label{sec:PW}
 Une fois que les pseudo-potentiels des ions du système ont été spécifiés et la fonctionnelle d'échange-corrélation a été choisie, nous avons en principe tous les ingrédients nécessaires pour résoudre les équations de Kohn-Sham. Chaque itération du cycle SCF dans la résolution des équations de KS est un problème aux valeurs propres pour obtenir les valeurs propres de KS, $\varepsilon_i$, et les fonctions d'onde à un électron de KS, $\psi_i(\rv)$, pour calculer la nouvelle densité $n_\text{out}(\rv)$. Cela requiert de diagonaliser la matrice Hamiltonienne $H_\text{KS}$, une opération dont le coût computationnel croît rapidement avec la taille du système. Pour un solide périodique, il serait en principe nécessaire de diagonaliser $H_\text{KS}$ pour un nombre macroscopique d'électrons ($\sim 10^{23}$ par cm$^3$ \cite{alloulIntroductionPhysicsElectrons2011a}) ce qui est numériquement impossible. La clé pour contourner ce problème réside dans le fait que les solides cristallins, comme le graphène, sont des systèmes hautement symétriques. En particulier, les symétries de translation discrète du cristal, exploitées par le théorème de Bloch, permettent de décomposer le problème en une collection de problèmes indépendants de taille beaucoup plus réduite. Les symétries du groupe ponctuel du cristal permettent quant à elles de réduire davantage le nombre de problèmes à résoudre. Dans cette section nous voyons comment les codes DFT modernes exploitent les symétries et résolvent les équations de KS en pratique.\\

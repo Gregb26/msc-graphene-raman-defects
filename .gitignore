@@ -1,0 +1,23 @@
+# Fichiers compilés LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.blg
+*.bbl
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.vrb
+*.bbl-SAVE-ERROR
+# Dossier de build
+build/
+out/
+
+# *.pdf

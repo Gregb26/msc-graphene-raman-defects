@@ -1,0 +1,35 @@
+\chapter{Expression explicites de la fonctionnelle PBE}\label{annexe:pbe}
+Dans cette annexe, nous donnons les expressions explicites propres à la fonctionnelle d'échange-corrélation PBE \cite{perdewGeneralizedGradientApproximation1996a} que nous utilisons dans tous les calculs de ce mémoire. Toutes les expressions données ici sont écrites dans les unités atomiques d'Hartee, où
+\begin{equation}
+    \hbar = e = 4\pi\varepsilon_0 = m_e = 1.
+    \label{eqn:a1_unités_hartree}
+\end{equation}
+l'échange est donné par
+\begin{equation}
+    F_\text{X}(n,\nabla n)=1+\kappa-\frac{\kappa}{1+\mu s^2/\kappa},
+    \label{eqn:c1_FX}
+\end{equation}
+où le paramètre $s$ est proportionnel au gradient de la densité
+\begin{equation}
+    s=\frac{|\nabla n|}{2k_Fn}.
+\end{equation}
+Ici, $\kappa$ et $\mu$ sont des paramètres à déterminer à partir des contraintes et $k_F=(3\pi^2n)^{1/3}$ est le vecteur d'onde de Fermi pour un gaz d'électrons uniforme. Lorsque nous négligeons le gradient de la densité, c'est-à-dire quand $s=0$, nous avons que $F_\text{X}=1$ et nous retrouvons bien la LDA pour l'échange. Similairement, le facteur de correction pour la corrélation $F_\text{C}$ est une correction à la LDA et est donné, en unités atomiques d'Hartree, par
+\begin{equation}
+    \label{eqn:c1_FC}
+    F_\text{C}(n,\nabla n) = 1+H(t)/\varepsilon_\text{C}^\text{hom}(n).
+\end{equation}
+La fonction $H(t)$ est définie comme étant
+\begin{equation}
+    H(t) = \gamma\phi^3\log\left(1+\frac{\beta}{\gamma}t^2\left[\frac{1+At^2}{1+At^2+A^2t^4}\right]\right),
+    \label{eqn:c1_H(t)}
+\end{equation}
+où le paramètre $t$ est un autre paramètre proportionnel au gradient de la densité
+\begin{equation}
+    t = \frac{|\nabla n|}{2\phi k_Sn}.
+\end{equation}
+Ici, $\gamma$ et $\beta$ sont d'autres paramètres à déterminer à l'aide des contraintes, $k_S=(4k_F/\pi)^{1/2}$ est le vecteur d'onde écranté de Thomas-Fermi, et les quantités $\phi$ et $A$ sont données par
+\begin{align}
+    \phi &= \frac{(1+\zeta)^{2/3}+(1-\zeta)^{2/3}}{2},\\
+    A &= \frac{\beta}{\gamma}\left[\exp\left(-\frac{\varepsilon_\text{C}^\text{hom}}{\gamma\phi^3}\right)-1\right]^{-1},
+\end{align}
+où $\zeta=(n_\uparrow-n_\downarrow)/n $ est la polarisation en spin. Pour les systèmes non-polarisés en spin comme le graphène que nous étudions dans ce mémoire : $n_\uparrow = n_\downarrow$ et donc $\zeta=0$ ce qui veut dire que $\phi=1$. Encore une fois, si on ignore le gradient de la densité, c'est-à-dire quand $t=0$, nous avons que $H(t=0)=0$ et que $F_\text{C}=1$ et nous retombons sur la LDA. Il est important de comprendre que la fonctionnelle XC PBE ne dépend pas de données empiriques, malgré ce que les paramètres à déterminer $\kappa, \mu,\gamma$ et $\beta$ peuvent laisser présager. En effet, ces paramètres sont déterminés à partir de conditions théoriques que doivent satisfaire les termes d'échange et de corrélation. Ces conditions sont explicitées dans l'article original PBE \cite{perdewGeneralizedGradientApproximation1996a} et pour satisfaire ces contraintes, les paramètres doivent prendre les valeurs approximatives $\kappa=0.804$, $\mu=0.21951$, $\gamma=0.031091$ et $\beta=0.066725$. La fonctionnelle XC PBE est ainsi entièrement déterminée par la théorie, sans ajustement empirique.

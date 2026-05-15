@@ -52,15 +52,43 @@ avec l'Hamiltonien ionique
     H_i = -\sum_{I=1}^{N_i}\frac{\hbar^2}{2M_I}\nabla_I^2+\underbrace{\frac{1}{2}\sum_{\substack{IJ \\ I\neq J}}^{N_i}\frac{Z_IZ_Je^2}{4\pi\varepsilon_0|\rv_I-\rv_J|}+E_e}_{\equiv U}.
     \label{eqn:c2_Hi}
 \end{equation}
-où le potentiel ionique effectif $U$ regroupe la répulsion Coulombienne entre les ions et l'énergie de l'état fondamental électronique, qui assure la cohésion du solide. L'approximation de Born-Oppenheimer ayant découplé le problème en deux parties, nous nous consacrons dans la section~\ref{sec:2.2} à la résolution de la partie électronique via la théorie de la fonctionnelle de la densité, puis dans la section~\ref{sec:2.3} à la partie ionique via la théorie de la fonctionnelle de la densité perturbative.
+où le potentiel ionique effectif $U$ regroupe la répulsion Coulombienne entre les ions et l'énergie de l'état fondamental électronique $E_e$, qui assure la cohésion du solide. L'approximation de Born-Oppenheimer ayant découplé le problème en deux parties, nous nous consacrons dans la section~\ref{sec:2.2} à la résolution de la partie électronique via la théorie de la fonctionnelle de la densité, puis dans la section~\ref{sec:2.3} à la partie ionique via la théorie de la fonctionnelle de la densité perturbative.
 
 Finalement, l'approximation de Born-Oppenheimer a ses limites. Elle néglige par construction le couplage entre les électron et les vibrations des ions (le couplage électron-phonon), responsable entre autres de la diffusion Raman. Elle devient également invalide lorsque le gap électronique est plus petit que l'énergie caractéristique des vibrations ioniques~\cite{pisanaBornOppenheimerBreakdownGraphene2007}. Cette condition est systématiquement violée dans le graphène, puisque le gap est nul au point $\Kv$ de la zone de Brillouin. Il y a deux façons de corriger ces effets non-adiabatiques : ne pas faire l'approximation adiabatique et utiliser le formalisme de Born-Huang~\cite{bornDynamicalTheoryCrystal1998} ou bien ajouter les corrections non-adiabatiques perturbativement à l'approximation de Born-Oppenheimer. Nous employons cette dernière stratégie dans le chapitre~\ref{chap:défauts} pour traiter les corrections non-adiabatiques, qui sont non-négligeables dans le graphène.
 
-\subsection{Symétries du réseau cristallin et théroème de Bloch}\label{sec:2.1.2}
+\subsection{Symétries du réseau cristallin et théorème de Bloch}\label{sec:2.1.2}
+
+Une autre simplification majeure vient du fait que les solides cristallins sont des systèmes hautement symétriques. Ils sont des répétitions périodiques d'une unité de base : la cellule unitaire. Nous identifions les cellules unitaires par les vecteurs du réseau cristallin $\Rv_\ell$, où $\ell$ est un triplet d'entiers $(n_1,n_2,n_3)$
+\begin{equation}
+    \Rv_\ell = n_1\av_1+n_2\av_2+n_3\av_3.
+    \label{eqn:c2_Rl}
+\end{equation}
+Ici, les vecteurs $\av_i$ sont les vecteurs primitifs du réseau cristallin et définissent la cellule unitaire. Comme toutes les cellules du solide sont les mêmes, il suit que l'Hamiltonien est invariant sous une translation discrète d'un vecteur du réseau. Il est généralement favorable de travailler de l'espace réciproque -- l'ensemble de points $\kv$ -- pour exploiter la symétrie de translation d'un système. À cet effet, nous introduisons le réseau réciproque, qui est un ensemble de points dans l'espace réciproque étiquetés par les vecteurs du réseau réciproque $\Gv$
+\begin{equation}
+    \Gv = m_1\bv_1+m_2\bv_2+m_3\bv_3,
+    \label{eqn:c2_G}
+\end{equation}
+où les $m_i$ sont des entiers et les $\bv_i$ sont les vecteurs primitifs du réseau réciproque qui satisfont la condition suivante
+\begin{equation}
+    \av_i\cdot\bv_j=2\pi\delta_{ij}.
+\end{equation}
+Il fut démontré par Félix Bloch~\cite{blochUeberQuantenmechanikElektronen1929}, alors doctorant sous la supervision de Werner Heisenberg, que la fonction d'onde d'une particule évoluant avec un Hamiltonien invariant sous translation discrète se factorise en un produit d'une onde plane et une fonction périodique
+\begin{equation}
+    \psi_{n\kv}=e^{i\kv\cdot\rv}u_{n\kv}(\rv),
+    \label{eqn:c2_bloch_thm}
+\end{equation}
+où la fonction périodique de Bloch possède la même invariance sous une translation discrète d'un vecteur du réseau que l'Hamiltonien
+\begin{equation}
+    u_{n\kv}(\rv+\Rv_\ell)=u_{n\kv}(\rv),
+    \label{eqn:c2_unk}
+\end{equation}
+un résultat connu sous le nom de théorème de Bloch. Les vecteurs $\kv$ sont conservés modulo un vecteur du réseau réciproque $\Gv$, une conséquence directe de la symétrie de translation discrète. De ce fait, il est possible de restreindre l'espace réciproque à la première zone de Brillouin (BZ, de l'anglais \textit{Brillouin Zone}), soit l'ensemble de points $\kv$ plus proches de $\Gv=\mathbf{0}$ que de tout autre vecteur du réseau réciproque. N'importe quel point $\kv$ en dehors de la première BZ peut être replié dans la première BZ par une translation d'un vecteur $\Gv$. Pour distinguer les multiples solutions au même $\kv$ de la première BZ, nous avons introduit l'indice de bande $n$. Finalement, comme la fonction $u_{n\kv}(\rv)$ est la même dans toutes les cellules, il est possible de résoudre le problème dans une cellule unitaire seulement et reproduire la solution dans tout le solide par périodicité. En d'autres termes, au lieu de résoudre le problème pour le solide en son entier avec un nombre \textit{a priori} infini d'électrons et d'ions, le théorème de Bloch nous permet de restreindre le problème à une cellule unitaire avec un nombre fini d'électrons et d'ions, ce qui réduit énormément la complexité du calcul. 
+
+Hormis la symétrie de translation discrète, les solides cristallins possèdent également des symétries ponctuelles -- rotations, inversions et réflexions -- qui forment le groupe de points $\mathcal{G}$. De plus, pour les systèmes non-magnétiques, la symétrie d'inversion du temps rend les points $\kv$ et $-\kv$ équivalents. Ces deux symétries combinées permettent de restreindre les calculs à la zone de Brillouin irréductible (IBZ, de l'anglais \textit{Irreducible Brillouin Zone}), soit le sous-ensemble de points $\kv$ non-équivalents. Pour le graphène, dont le groupe de points est $D_{6h}$~\cite{dresselhausPhysicalPropertiesCarbon1998,castronetoElectronicPropertiesGraphene2009}, l'IBZ représente $1/24$ de la BZ totale, ce qui réduit considérablement le coût numérique des intégrations sur la BZ.
 
 \section{Partie électronique : théorie de la fonctionnelle de la densité}\label{sec:2.2}
 
-Dans cette section nous nous attaquons au problème électronique défini par l'Hamiltonien de l'équation \ref{eqn:c1_He}, que nous répétons ici par soucis d'exhaustivité
+Dans cette section nous nous attaquons au problème électronique défini par l'Hamiltonien de l'équation \ref{eqn:c2_He}, que nous répétons ici par soucis d'exhaustivité
 \begin{equation}
     H_e = T+V_\text{int}+\sum_{i=1}^{N_e}V_\text{ext}(\rv_i).
 \end{equation}
@@ -223,7 +251,7 @@ L'idée centrale de la GGA est d'aller au-delà de la LDA en incorporant non seu
 \begin{equation}
     E_\text{XC}^\text{GGA}[n]=\int d^3\rv\,n(\rv)\,\left[\varepsilon_\text{X}^\text{hom}(n)\,F_\text{X}(n,\nabla n)+\varepsilon_\text{C}^\text{hom}(n)\,F_\text{C}(n,\nabla n)\right],
 \end{equation}
-où $F_\text{X}$ et $F_\text{C}$ sont les facteurs d'amplification adimensionnels pour l'échange et la corrélation respectivement qui encodent la correction due au gradient et $\varepsilon_\text{X/C}^\text{hom}(n)$ est de nouveau la densité d'énergie d'échange/corrélation d'un gaz d'électrons homogène. La fonctionnelle GGA la plus répandue est celle développée par Perdew, Burke et Ernzerhof\footnote{Matthias Ernzerhof est un professeur titulaire au département de chimie de l'Université de Montréal.}~\cite{perdewGeneralizedGradientApproximation1996a}, dont les facteurs d'amplification sont construits à partir de conditions exactes connues sur la fonctionnelle XC, sans paramètres empiriques. Les expressions explicites de la PBE se trouvent dans l'annexe~\ref{annexe:pbe} et nous réferons le lecteur à l'article original pour les dérivations.
+où $F_\text{X}$ et $F_\text{C}$ sont les facteurs d'amplification adimensionnels pour l'échange et la corrélation respectivement qui encodent la correction due au gradient et $\varepsilon_\text{X/C}^\text{hom}(n)$ est de nouveau la densité d'énergie d'échange/corrélation d'un gaz d'électrons homogène. La fonctionnelle GGA la plus répandue est celle développée par Perdew, Burke et Ernzerhof\footnote{Matthias Ernzerhof est un professeur titulaire au département de chimie de l'Université de Montréal.} (PBE)~\cite{perdewGeneralizedGradientApproximation1996a}, dont les facteurs d'amplification sont construits à partir de conditions exactes connues sur la fonctionnelle XC, sans paramètres empiriques. Les expressions explicites de la PBE se trouvent dans l'annexe~\ref{annexe:pbe} et nous réferons le lecteur à l'article original pour les dérivations. Nous utilisons cette fonctionnelle pour tous les calculs de ce mémoire.
 
 La PBE corrige l'\textit{overbinding} systématique de la LDA et donne de très bons résultats à moindre coût computationnel~\cite{kurthMolecularSolidstateTests1999,mounetFirstprinciplesDeterminationStructural2005a}, ce qui en fait une fonctionnelle de choix pour ce mémoire. Pour le graphène, la PBE décrit correctement les propriétés électroniques et vibrationnelles. En particulier, la PBE reproduit fidèlement le gap nul du graphène : les cônes de Dirac au point $\Kv$ de la zone Brillouin\footnote{Non pas parce que la PBE reproduit exactement les effets d'échange-corrélation, mais parce que les cônes de Dirac sont protégés par la symmétrie du réseau hexagonal. En effet, même un simple modèle \textit{tight-binding}, qui néglige complètement les interactions électron-électron, reproduit les cônes de Dirac. C'est une propriété d'origine purement géométrique.}. Les interactions de van der Waals, toujours absentes dans la PBE, sont négligeables pour le graphène monocouche étudié ici. De plus, les électrons $\pi$ des orbitales $p_z$ du carbone, qui dominent largement les propriétés électroniques du graphène, sont délocalisés et faiblement corrélés, ce qui rend la PBE tout à fait appropriée.  Les fonctionnelles des échelons supérieurs apportent des corrections négligeables aux systèmes de graphènes étudiés dans ce mémoire, à un coût computationnel prohibitif pour les super-cellules nécessaires à la modélisation des défauts, ce qui renforce notre choix de la PBE.
 

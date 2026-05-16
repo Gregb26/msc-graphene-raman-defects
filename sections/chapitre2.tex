@@ -136,15 +136,15 @@ Quelques mois après la publication de l'article de HK, Walter Kohn et Lu Jeu Sh
 
 \noindent\textbf{Système auxiliaire de Kohn-Sham}
 
-Le génie de KS se trouve dans l'idée d'introduire un système auxiliaire -- le système auxiliaire de KS -- de $N_e$ électrons \textit{sans interaction} soumis à un potentiel effectif local $V_\text{eff}(\rv)$ choisi de sorte que la densité électronique de ce système auxiliaire soit identique à celle du système réel en interaction et de résoudre le problème dans ce système auxiliaire. Le premier théorème de HK  garantit l'existence de ce potentiel effectif puisqu'il établit une bijection entre le potentiel externe et la densité de l'état fondamental. Ce système est beaucoup plus facile à traiter puisque en l'absence d'interaction entre les électrons, la fonction d'onde à plusieurs corps se factorise en un déterminant de Slater de $N_e$ fonctions d'onde à un corps $\psi_{n\kv}(\rv)$. La correspondance entre le système auxiliaire et le vrai système à plusieurs corps est illustré dans la figure~\ref{fig:ks}. La densité du système auxiliaire n'est que la somme du carré des fonctions d'onde à un corps
+Le génie de KS se trouve dans l'idée d'introduire un système auxiliaire -- le système auxiliaire de KS -- de $N_e$ électrons \textit{sans interaction} soumis à un potentiel effectif local $V_\text{eff}(\rv)$ choisi de sorte que la densité électronique de ce système auxiliaire soit identique à celle du système réel en interaction et de résoudre le problème dans ce système auxiliaire. Rappelons que $N_e$ signifie maintenant le nombre d'électrons dans une cellule unitaire et non dans le solide en son entier. Le premier théorème de HK  garantit l'existence de ce potentiel effectif puisqu'il établit une bijection entre le potentiel externe et la densité de l'état fondamental. Ce système est beaucoup plus facile à traiter puisque en l'absence d'interaction entre les électrons, la fonction d'onde à plusieurs corps se factorise en un déterminant de Slater de $N_e$ fonctions d'onde à un corps $\psi_{n\kv}(\rv)$. La correspondance entre le système auxiliaire et le vrai système à plusieurs corps est illustré dans la figure~\ref{fig:ks}. La densité du système auxiliaire n'est que la somme du carré des fonctions d'onde à un corps
 \begin{equation}
     \label{eqn:c2_nKS}
-    n(\rv) = \sum_{n\kv}^{\text{occ}}|\psi_{n\kv}(\rv)|^2=n_0(\rv),
+    n(\rv) = 2\sum_{n\kv}^{\text{occ}}|\psi_{n\kv}(\rv)|^2=n_0(\rv),
 \end{equation}
-où nous avons explicité que la densité du système auxiliaire doit être la même que le système réel en interaction et la somme court sur tous les états électroniques étiquetés par $(n\kv)$ occupés. L'énergie cinétique d'un système d'électron non-interagissant est aussi calculable exactement : elle correspond à la somme de l'énergie cinétique de chaque particule 
+où nous avons explicité que la densité du système auxiliaire doit être la même que le système réel en interaction. Le facteur de 2 tient compte de la dégénerescence en spin des états électroniques pour un système non polarisé en spin. La somme court sur tous les états électroniques étiquetés par $(n\kv)$ occupés. L'énergie cinétique d'un système d'électron non-interagissant est aussi calculable exactement : elle correspond à la somme de l'énergie cinétique de chaque particule 
 \begin{equation}
     \label{eqn:c2_TS}
-    T_\text{S}=-\frac{\hbar^2}{2m_e}\sum_{n\kv}^{\text{occ}}\bra{\psi_{n\kv}}\nabla^2\ket{\psi_{n\kv}}.
+    T_\text{S}=-\frac{\hbar^2}{2m_e}2\sum_{n\kv}^{\text{occ}}\bra{\psi_{n\kv}}\nabla^2\ket{\psi_{n\kv}}.
 \end{equation}
 KS ont aussi inclus l'énergie d'interaction électron-électron de manière effective via l'énergie d'Hartree~\cite{hartreeWaveMechanicsAtom1928,hartreeWaveMechanicsAtom1928a,fockNaeherungsmethodeZurLoesung1930}
 \begin{equation}
@@ -174,7 +174,7 @@ Nous avons atteint notre objectif qui était de traiter les complications engend
 
 \noindent\textbf{Équations de Kohn-Sham}
 
-Le deuxième théorème de HK garantit que l'énergie de l'état fondamental du système auxiliaire de KS est le minimum de la fonctionnelle d'énergie $E_\text{KS}[n]$ définie dans l'équation \ref{eqn:c1_EKS} et la densité qui la minimise est celle de l'état fondamental $n_0(\rv)$. En minimisant cette fonctionnelle par rapport aux fonctions d'onde sous la contrainte d'orthonormalisation $\bra{\psi_{n\kv}}\ket{\psi_{n'\kv'}}=\delta_{nn'}\delta_{\kv\kv'}$, nous arrivons aux fameuses équations de KS
+Le deuxième théorème de HK garantit que l'énergie de l'état fondamental du système auxiliaire de KS est le minimum de la fonctionnelle d'énergie $E_\text{KS}[n]$ définie dans l'équation \eqref{eqn:c2_EKS} et la densité qui la minimise est celle de l'état fondamental $n_0(\rv)$. En minimisant cette fonctionnelle par rapport aux fonctions d'onde sous la contrainte d'orthonormalisation $\bra{\psi_{n\kv}}\ket{\psi_{n'\kv'}}=\delta_{nn'}\delta_{\kv\kv'}$, nous arrivons aux fameuses équations de KS
 \begin{equation}
     \label{eqn:c2_KS}
     H_\text{KS}\psi_{n\kv}=\varepsilon_{n\kv}\psi_{n\kv},
@@ -182,7 +182,7 @@ Le deuxième théorème de HK garantit que l'énergie de l'état fondamental du 
 où $\varepsilon_{n\kv}$ est l'énergie de la fonction d'onde à un électron $\psi_{n\kv}$ et $H_\text{KS}$ est l'Hamiltonien effectif à un électron de KS
 \begin{equation}
     \label{eqn:c2_HKS}
-    H_\text{KS}=-\frac{\hbar^2}{2m_e}\nabla^2+V_\text{KS}(\rv).
+    H_\text{KS}=-\frac{\hbar^2}{2m_e}\nabla^2+V_\text{KS}(\rv),
 \end{equation}
 avec le potentiel effectif de KS
 \begin{align}
@@ -242,10 +242,9 @@ On distingue principalement trois grandes catégories de pseudo-potentiels : les
     \int_0^{r_c}dr\,|\psi_\ell^\text{PP}(r)|^2r^2=\int_0^{r_c}dr\,|\psi_\ell^\text{AE}(r)|^2r^2,
     \label{eqn:c2_nc}
 \end{equation}
-où $\psi_\ell^\text{AE}(r)$ est la fonction d'onde de valence que nous obtiendrions si nous résolvions les équations de KS avec le vrai potentiel de Coulomb et en traitant tous les électrons explicitement (l'indice AE vient de l'anglais \textit{All Electrons}), $\psi_\ell^\text{PP}(r)$ est la fonction d'onde obtenue en résolvant le problème dans l'approximation des pseudo-potentiels et $r_c$ est un rayon de coupure au-delà duquel les deux fonctions d'onde coïncident exactement. Cette condition garantit la bonne reproduction de la densité de charge dans la région de c\oe ur ainsi qu'une bonne transférabilité du pseudo-potentiel à différents environnements chimiques~\cite{hamannGeneralizedNormconservingPseudopotentials1989,troullierEfficientPseudopotentialsPlanewave1991}.\\
+où $\psi_\ell^\text{AE}(r)$ est la fonction d'onde de valence que nous obtiendrions si nous résolvions les équations de KS avec le vrai potentiel de Coulomb et en traitant tous les électrons explicitement (l'indice AE vient de l'anglais \textit{All Electrons}), $\psi_\ell^\text{PP}(r)$ est la fonction d'onde obtenue en résolvant le problème dans l'approximation des pseudo-potentiels et $r_c$ est un rayon de coupure au-delà duquel les deux fonctions d'onde coïncident exactement. Cette condition garantit la bonne reproduction de la densité de charge dans la région de c\oe ur ainsi qu'une bonne transférabilité du pseudo-potentiel à différents environnements chimiques~\cite{hamannGeneralizedNormconservingPseudopotentials1989,troullierEfficientPseudopotentialsPlanewave1991}.
 
-\noindent
-\textbf{Pseudo-potentiels ONCV et forme de Kleinman-Bylander}
+\noindent\textbf{Pseudo-potentiels ONCV et forme de Kleinman-Bylander}
 
 Dans les codes DFT modernes, la forme séparable proposée par Kleinman et Bylander (KB)~\cite{kleinmanEfficaciousFormModel1982} pour les pseudo-potentiels NC est généralement employée, car elle réduit radicalement le nombre d'opérations nécessaires pour l'application de la partie non-locale de l'Hamiltonien, ainsi que la mémoire nécessaire pour stocker l'opérateur. Dans l'approximation des pseudo-potentiels, l'interaction des électrons de valence avec les ions est remplacée par un pseudo-potentiel total
 \begin{equation}
@@ -289,73 +288,35 @@ Nous aurons besoin de ces expressions lors du calcul des éléments de matrice d
     \label{fig:KB}
 \end{figure}
 
-\subsection{Ondes planes, grilles et résolution des équations de Kohn-Sham}
-\label{sec:PW}
-Une fois que les pseudo-potentiels des ions du système ont été spécifiés et la fonctionnelle d'échange-corrélation a été choisie, nous avons en principe tous les ingrédients nécessaires pour résoudre les équations de Kohn-Sham. Chaque itération du cycle SCF dans la résolution des équations de KS est un problème aux valeurs propres pour obtenir les valeurs propres de KS, $\varepsilon_i$, et les fonctions d'onde à un électron de KS, $\psi_i(\rv)$, pour calculer la nouvelle densité $n_\text{out}(\rv)$. Cela requiert de diagonaliser la matrice Hamiltonienne $H_\text{KS}$, une opération dont le coût computationnel croît rapidement avec la taille du système. Pour un solide périodique, il serait en principe nécessaire de diagonaliser $H_\text{KS}$ pour un nombre macroscopique d'électrons ($\sim 10^{23}$ par cm$^3$ \cite{alloulIntroductionPhysicsElectrons2011a}) ce qui est numériquement impossible. La clé pour contourner ce problème réside dans le fait que les solides cristallins, comme le graphène, sont des systèmes hautement symétriques. En particulier, les symétries de translation discrète du cristal, exploitées par le théorème de Bloch, permettent de décomposer le problème en une collection de problèmes indépendants de taille beaucoup plus réduite. Les symétries du groupe ponctuel du cristal permettent quant à elles de réduire davantage le nombre de problèmes à résoudre. Dans cette section nous voyons comment les codes DFT modernes exploitent les symétries et résolvent les équations de KS en pratique.\\
-\noindent
-\textbf{Théorème de Bloch}
+\subsection{Base d'ondes planes et résolution des équations de Kohn-Sham dans l'espace réciproque}\label{sec:PW}
 
-Les solides cristallins sont des répétitions d'une unité de base : la cellule unitaire. Les cellules unitaires dans le solide sont identifiées par un vecteur du réseau $\Rv_\ell$, où $\ell$ (à ne pas confondre avec le nombre quantique du moment cinétique orbital) représente un triplet d'entiers $(n_1,n_2,n_3)$
-\begin{equation}
-    \Rv_\ell = n_1\av_1+n_2\av_2+n_3\av_3,
-    \label{eqn:c2_Rl}
-\end{equation}
-et les vecteurs $\av_i$ sont les vecteurs primitifs du réseau qui définissent une cellule unitaire du solide. Puisque ces cellules unitaires sont toutes identiques, le potentiel de Kohn-Sham est le même dans toutes les cellules, \textit{i.e.} il est périodique avec la même périodicité que le solide. En d'autres termes, $V_\text{KS}$ est invariant sous une translation par un vecteur du réseau
-\begin{equation}
-    V_\text{KS}(\rv+\Rv_\ell) = V_\text{KS}(\rv)\quad \forall\,\,\,\ell,
-    \label{eqn:c2_VRl}
-\end{equation}
-et il suit que l'Hamiltonien est invariant sous une translation discrète d'un vecteur du réseau comme le terme d'énergie cinétique est invariant sous n'importe quelle translation. L'invariance et les symétries d'un Hamiltonien ont des conséquences profondes en mécanique quantique : si un opérateur $O$ laisse l'Hamiltonien d'un système invariant, \textit{i.e.} $OHO^{-1}=H$, nous pouvons montrer que cet opérateur commute avec l'Hamiltonien  $[H,O]=0$ et il est possible de diagonaliser $O$ et $H$ simultanément. Par exemple, si un Hamiltonien est invariant sous n'importe quelle translation (symétrie continue), il suit que cet Hamiltonien commute avec l'opérateur qui génère les translations dans l'espace : la quantité de mouvement, et que les états propres de la quantité de mouvement (les ondes planes $\exp(i\kv\cdot\rv)$) sont aussi des états propres de l'Hamiltonien. L'Hamiltonien du solide cristallin n'est pas invariant sous n'importe quelle translation, mais il l'est sous les translations discrètes d'un vecteur du réseau. Dans ce cas, les états propres de la quantité de mouvement ne sont pas aussi des états propres de l'Hamiltonien, mais nous pouvons nous attendre à ce que le problème soit plus facile à résoudre dans l'espace réciproque, soit l'ensemble des points $\kv$. À cet effet, nous définissons le réseau réciproque du cristal, qui est un ensemble de points dans l'espace réciproque étiquetés par les vecteurs
-\begin{equation}
-    \Gv = m_1\bv_1+m_2\bv_2+m_3\bv_3,
-    \label{eqn:c2_G}
-\end{equation}
-où les $m_i$ sont des entiers. Les vecteurs $\Gv$ sont les vecteurs du réseau réciproque et les vecteurs $\bv_i$ sont les vecteurs primitifs du réseau réciproque et satisfont la relation d'orthogonalité avec les vecteurs primitifs du réseau
-\begin{equation}
-    \av_i\cdot\bv_j=2\pi\delta_{ij}.
-    \label{eqn:c2_ab}
-\end{equation}
-Comme la symétrie de translation est discrète, la quantité de mouvement $\mathbf{p}$ n'est pas conservée, mais le quasi-moment $\hbar\kv$ (aussi appelé \textit{crystal momentum} en anglais, qui n'est \textit{pas} la quantité de mouvement usuelle) est conservé modulo un vecteur du réseau $\Gv$. Les états propres du cristal ne sont pas des ondes planes, mais il fut démontré par Félix Bloch, alors doctorant sous la supervision de Werner Heisenberg, dans un article de 1929 \cite{blochUeberQuantenmechanikElektronen1929} que la fonction d'onde d'une particule dans un potentiel périodique (ou bien, de manière équivalente, une particule avec un Hamiltonien invariant sous translations discrètes) se factorise en un produit d'une onde plane et d'une fonction périodique
+Dans cette section, nous voyons comment résoudre les équations de Kohn-Sham en pratique dans l'espace réciproque. À cet effet, il est nécessaire de faire l'expansion de la fonction d'onde dans une base complète. Pour les solides cristallins, une base naturelle est celle des ondes planes, puisqu'elle exploite la symétrie de translation discrète des cristaux.
+
+\noindent\textbf{Base d'ondes planes}
+
+D'après le théorème de Bloch (cf. section~\ref{sec:2.1.2}), les fonctions d'onde de KS prennent la forme
 \begin{equation}
     \psi_{n\kv}(\rv)=e^{i\kv\cdot\rv}u_{n\kv}(\rv),
-    \label{eqn:c2_bloch_thm}
+    \label{eqn:c2_bloch_pt2}
 \end{equation}
-où la fonction périodique de Bloch est invariante sous n'importe quelle translation d'un vecteur du réseau
-\begin{equation}
-    u_{n\kv}(\rv+\Rv_\ell) = u_{n\kv}(\rv)\quad\forall\,\,\,\ell,
-\end{equation}
-un résultat connu sous le nom de théorème de Bloch. Puisque la fonction périodique de Bloch est la même dans toutes les cellules, il suffit de résoudre le problème pour $u_{n\kv}$ dans une cellule unitaire seulement et de reproduire la solution par périodicité dans le reste du solide. Cela est une avancée conceptuelle qu'on ne saurait surestimer : au lieu de résoudre le problème pour le solide dans son entier avec un nombre d'électrons \textit{a priori} infini, nous n'avons qu'à résoudre le problème dans une cellule primitive, qui contient un nombre fini d'électrons (huit électrons de valence pour le graphène, soit quatre pour chacun des deux atomes de carbone dans la cellule unitaire).
-
-Comme le quasi-moment $\hbar\kv$ est conservé modulo un vecteur du réseau réciproque $\Gv$, nous pouvons restreindre l'espace réciproque à la première zone de Brillouin (BZ, de l'anglais \textit{Brillouin Zone}), qui est l'ensemble des $\kv$ de l'espace réciproque plus proches de l'origine $\Gv=0$ que de n'importe quel autre vecteur du réseau réciproque, et étiqueter les états propres et valeurs propres par $\kv$. N'importe quel point $\kv'$ en dehors de la première BZ peut être ramené dans la première BZ par une translation d'un vecteur $\Gv$ approprié
-\begin{equation}
-    \kv=\kv'+\Gv,
-\end{equation}
-où $\kv$ est dans la première BZ. Une fois que tous les points $\kv$ de l'espace réciproque sont repliés dans la première BZ, il y a bien sûr plusieurs états propres et valeurs propres par $\kv$. Pour différencier ces solutions, nous utilisons l'indice de bande $n=1,2,\dots$ pour étiqueter les états propres $\psi_{n\kv}$, en ordre croissant d'énergie $\varepsilon_{n\kv}$. En utilisant la factorisation de la fonction d'onde prescrite par le théorème de Bloch dans les équations de Kohn-Sham \eqref{eqn:c1_KS}-\eqref{eqn:c1_VKS} nous arrivons aux équations de KS en terme de $u_{n\kv}$
-\begin{equation}
-    \left(-\frac{\hbar^2}{2m_e}(-i\nabla+\kv)^2+V_\text{KS}(\rv)\right)u_{n\kv}(\rv)=\varepsilon_{n\kv}u_{n\kv}(\rv).
-    \label{eqn:c2_uKS}
-\end{equation}
-En pratique, cette équation est diagonalisée pour $u_{n\kv}$ et $\varepsilon_{n\kv}$ et la fonction d'onde est calculée simplement en multipliant $u_{n\kv}$ par la phase $e^{i\kv\cdot\rv}$. Une autre conséquence importante de la conservation du quasi-moment est que l'hamiltonien ne couple pas les différents $\kv$ de la première BZ — cela est évident dans l'équation \eqref{eqn:c2_uKS} où $\kv$ apparaît comme un paramètre fixe. Le problème peut donc être résolu indépendamment pour chaque $\kv$, ce qui se prête bien à une parallélisation pour accélérer les calculs.
-\\ 
-\noindent
-\textbf{Base d'ondes planes}
-
-Comme la fonction périodique de Bloch est invariante sous translation des vecteurs du réseau cristallin $\Rv_\ell$, il est possible de faire son expansion en série de Fourier sur les vecteurs $\Gv$ du réseau réciproque
+où la fonction périodique de Bloch possède la même périodicité que le solide : $u_{n\kv}(\rv+\Rv_\ell) = u_{n\kv}(\rv)$. Grâce à cette invariance sous translation discrète par un vecteur du réseau cristallin, il est possible de faire son expansion en série de Fourier avec les vecteurs $\Gv$ du réseau réciproque seulement
 \begin{equation}
     u_{n\kv}(\rv)=\frac{1}{\sqrt{\Omega_\text{BvK}}}\sum_{\Gv}C_{n\kv}(\Gv)e^{i\Gv\cdot\rv},
     \label{eqn:c2_uPW}
 \end{equation}
-où $\Omega_\text{BvK}$ est le volume du cristal et $C_{n\kv}(\Gv)$ sont les coefficients de l'expansion en série de Fourier. En utilisant cette expansion et le théorème de Bloch de l'équation \eqref{eqn:c2_bloch_thm}, la fonction d'onde à un électron de Kohn-Sham s'écrit
+où $\Omega_\text{BvK}$ est le volume du cristal et $C_{n\kv}(\Gv)$ sont les coefficients de l'expansion en série de Fourier, de sorte que la fonction d'onde de KS s'écrit comme une combinaison linéaire d'ondes planes
 \begin{equation}
     \psi_{n\kv}(\rv)=\frac{1}{\sqrt{\Omega_\text{BvK}}}\sum_{\Gv}C_{n\kv}(\Gv)e^{i(\kv+\Gv)\cdot\rv}.
     \label{eqn:c2_psiPW}
 \end{equation}
-La fonction d'onde est donc une combinaison linéaire d'ondes planes \textit{i.e.} elle est écrite dans une base d'ondes planes. C'est un choix de base et en principe, nous pourrions choisir n'importe quelle base pour faire l'expansion de la fonction d'onde. En pratique, pour les solides périodiques, la base d'ondes planes est un choix naturel pour plusieurs raisons : les ondes planes forment une base complète et orthonormée -- c'est à dire que nous pouvons représenter n'importe quelle fonction avec suffisamment d'ondes planes, c'est une base avantageuse pour les systèmes périodiques, comme les solides cristallins, et finalement, les ondes planes permettent d'effectuer des transformées de Fourier rapides (FFT, de l'anglais \textit{Fast Fourier Transform}) qui permettent de passer entre l'espace réel et l'espace réciproque de manière extrêmement efficace numériquement. Concrêtement, Le problème de trouver la partie périodique de Bloch est maintenant devenu un problème pour trouver les coefficients de l'expansion en ondes planes $C_{n\kv}(\Gv)$. Formellement, il faut un nombre infini d'ondes planes pour représenter exactement la fonction d'onde. En pratique, nous ne pouvons représenter un nombre infini sur un ordinateur, il faut donc tronquer la série de l'équation \eqref{eqn:c2_psiPW}. À cet effet, nous introduisons une coupure d'énergie cinétique $E_\text{cut}$ des ondes planes, de sorte que nous ne gardons que les ondes planes identifiées par $\Gv$ avec une énergie cinétique inférieure ou égale à $E_\text{cut}$
+La base d'onde plane est un choix naturel pour les solides périodiques : elle est complète, orthonormée, et compatible avec les transformées de Fourier rapides (FFT, de l'anglais \textit{Fast Fourier Transform}) qui permettent de passer efficacement entre l'espace réel et l'espace réciproque. Le problème se réduit donc à la détermination des coefficients $C_{n\kv}(\Gv)$.
+
+Formellement, il faut un nombre infini d'ondes planes pour représenter la fonction d'onde. En pratique, nous tronquons la série en introduisant une énergie de coupure $E_\text{cut}$ telle que seules les ondes planes satisfaisant
 \begin{equation}
     \frac{\hbar^2}{2m_e}|\kv+\Gv|^2\leq E_\text{cut}.
     \label{eqn:c2_Ecut}
 \end{equation}
-Une coupure d'énergie cinétique plus élevée augmente la précision des calculs à un coût numérique plus élevé. Un désavantage de la représentation de la fonction d'onde dans une base d'ondes planes est qu'il faut un très grand nombre d'ondes planes pour représenter une fonction qui oscille rapidement, comme les fonctions d'onde des électrons de valence proche de la région de c\oe ur pour un potentiel externe de Coulomb. Heureusement, l'approximation des pseudo-potentiels introduite à la section \ref{sec:PP} règle ce problème en remplaçant le potentiel externe par un pseudo-potentiel de sorte que la fonction d'onde des électrons de valence est lisse proche de la région de c\oe ur et peut être représentée efficacement par des ondes planes.
+sont retenues. Une valeur de $E_\text{cut}$ plus élevée améliore la précision des calculs au prix d'un coût numérique plus grand. Notons qu'un très grand nombre d'ondes planes seraient nécessaires pour représenter les oscillations rapides des fonctions d'onde près des noyaux. Heureusement, ce problème est résolu par l'approximation des pseudo-potentiels (cf. section~\ref{sec:PP}), qui garantit des fonctions d'onde lisses dans la région de c\oe ur.
 
 Finalement, nous souhaitons que les fonctions d'onde soient orthonormales sur l'ensemble du système, soit le volume du cristal $\Omega_\text{BvK}$ 
 \begin{equation}
@@ -367,30 +328,31 @@ En remplaçant les fonctions d'onde par leur expansion en ondes planes \eqref{eq
     \sum_\Gv C_{n\kv}^*(\Gv)C_{n'\kv}(\Gv)=\delta_{nn'}.
     \label{eqn:c2_C_norm}
 \end{equation}
-Avec cette convention, nous avons que la partie périodique de Bloch est normalisée sur le volume du cristal
-\begin{equation}
-    \int_{\Omega_\text{BvK}}d^3\rv\, u^*_{n\kv}(\rv)u_{n'\kv}(\rv)=\delta_{nn'}.
-    \label{eqn:c2_u_norm}
-\end{equation}
-Notons que les parties périodiques de Bloch ne sont pas orthogonales pour différents $\kv$ puisqu'elles satisfont des équations aux valeurs propres différentes, tel que mentionné plus haut. Nous avons maintenant tous les ingrédients nécessaires pour écrire les équations de KS dans un base d'ondes planes. En substituant l'expansion en ondes planes \eqref{eqn:c2_uPW} dans les équations de KS pour $u_{n\kv}$ \eqref{eqn:c2_uKS}, nous obtenons un problème aux valeurs propres matriciel pour les coefficients $C_{n\kv}(\Gv)$ -- c'est ce problème que les codes DFT modernes résolvent numériquement à chaque itération du cycle SCF.\\
-\noindent
-\textbf{Équations de Kohn-Sham dans la base d'ondes planes}
+Nous avons maintenant tous les ingrédients nécessaires pour écrire les équations de KS dans la base d'ondes planes et les résoudre formellement.
 
-En substituant l'expansion \eqref{eqn:c2_uPW} dans l'équation \eqref{eqn:c2_uKS}, en utilisant l'expansion de $V_\text{KS}(\rv)$ en série de Fourier 
+\noindent\textbf{Équations de Kohn-Sham dans la base d'ondes planes}
+
+Nous souhaitons écrire les équations de KS (équations \eqref{eqn:c2_KS}--\eqref{eqn:c2_VKS}) dans la base d'ondes planes. Premièrement, en substituant la forme de Bloch pour la fonction d'onde, nous obtenons les équations de KS en termes de $u_{n\kv}(\rv)$,
+\begin{equation}
+    \left(-\frac{\hbar^2}{2m_e}(\nabla+i\kv)^2+V_\text{KS}(\rv)\right)u_{n\kv}(\rv)=\varepsilon_{n\kv}u_{n\kv}(\rv),
+    \label{eqn:c2_UKS}
+\end{equation}
+Ensuite, en utilisant l'expansion de $u_{n\kv}(\rv)$ en ondes planes (équation \eqref{eqn:c2_uPW}) dans l'équation précédente et en utilisant l'expansion de $V_\text{KS}(\rv)$ en série de Fourier 
 \begin{equation}
     V_\text{KS}(\rv)=\sum_{\Gv}\tilde{V}_\text{KS}(\Gv)e^{i\Gv\cdot\rv},
+    \label{eqn:c2_VKSG}
 \end{equation}
-et en intégrant sur le volume du cristal $\Omega_\text{BvK}$, nous obtenons les équations de KS dans la base d'ondes planes
+nous obtenons les équations de KS dans la base d'ondes planes
 \begin{equation}
     \sum_{\Gv'}\left(\frac{\hbar^2}{2m_e}|\kv+\Gv|^2\delta_{\Gv\Gv'}+\tilde{V}_\text{KS}(\Gv-\Gv')\right)C_{n\kv}(\Gv')=\varepsilon_{n\kv}C_{n\kv}(\Gv).
     \label{eqn:c2_KSPW}
 \end{equation}
-Notons que l'expansion en série de Fourier du potentiel de KS ne se fait qu'avec les vecteurs du réseau réciproque $\Gv$, car $V_\text{KS}$ est invariant sous une translation par un vecteur du réseau cristallin $\Rv_\ell$. L'équation de KS dans la base d'ondes planes, l'équation \eqref{eqn:c2_KSPW}, est formellement un problème aux valeurs propres matriciel $H_{\Gv\Gv'}\mathbf{C}=\varepsilon\mathbf{C}$, où la matrice Hamiltonienne est donnée par
+Notons que l'expansion en série de Fourier du potentiel de KS ne se fait qu'avec les vecteurs du réseau réciproque $\Gv$, car $V_\text{KS}$ est aussi invariant sous une translation par un vecteur du réseau cristallin $\Rv_\ell$. L'équation de KS dans la base d'ondes planes, l'équation \eqref{eqn:c2_KSPW}, est formellement un problème aux valeurs propres matriciel $H^{(\kv)}_{\Gv\Gv'}\mathbf{C}=\varepsilon\mathbf{C}$, où la matrice Hamiltonienne est donnée par
 \begin{equation}
-    H_{\Gv\Gv'}=\frac{\hbar^2}{2m_e}|\kv+\Gv|^2\delta_{\Gv\Gv'}+\tilde{V}_\text{KS}(\Gv-\Gv').
+    H^{(\kv)}_{\Gv\Gv'}=\frac{\hbar^2}{2m_e}|\kv+\Gv|^2\delta_{\Gv\Gv'}+\tilde{V}_\text{KS}(\Gv-\Gv').
     \label{eqn:c2_HGG}
 \end{equation}
-Cette matrice Hamiltonienne est de taille $N_\text{PW}\times N_\text{PW}$, où $N_\text{PW}$ est le nombre d'ondes planes déterminé par la coupure d'énergie cinétique $E_\text{cut}$ de l'équation \eqref{eqn:c2_Ecut} et dépend généralement du point $\kv$ considéré. Le paramètre $E_\text{cut}$ contrôle donc la taille du problème aux valeurs propres à résoudre à chaque itération du cycle SCF. En pratique, $N_\text{PW}$ peut atteindre plusieurs milliers à plusieurs dizaines de milliers d'ondes planes selon le système et la précision souhaitée. Notons également que la matrice Hamiltonienne dépend de $\kv$ et doit être construite pour chaque $\kv$ de la première BZ. Le potentiel $\tilde{V}_\text{KS}(\Gv-\Gv')$ est mis à jour à chaque itération du cycle SCF à partir de la nouvelle densité $n_\text{out}(\rv)$ que nous décrivons en détail dans ce qui suit et est illustré à la figure \ref{fig:scf_PW}. Le cycle SCF dans la base d'onde plane se déroule comme suit:
+Cette matrice Hamiltonienne est de taille $N_\text{PW}\times N_\text{PW}$, où $N_\text{PW}$ est le nombre d'ondes planes déterminé par la coupure d'énergie cinétique $E_\text{cut}$ de l'équation \eqref{eqn:c2_Ecut} et dépend généralement du point $\kv$ considéré. Le paramètre $E_\text{cut}$ contrôle donc la taille du problème aux valeurs propres à résoudre à chaque itération du cycle SCF. En pratique, $N_\text{PW}$ peut atteindre plusieurs milliers à plusieurs dizaines de milliers d'ondes planes selon le système et la précision souhaitée. Notons également que la matrice Hamiltonienne dépend de $\kv$ et doit être construite pour chaque $\kv$ de la première IBZ. Le potentiel $\tilde{V}_\text{KS}(\Gv-\Gv')$ est mis à jour à chaque itération du cycle SCF à partir de la nouvelle densité $n_\text{out}(\rv)$ que nous décrivons en détail dans ce qui suit et est illustré à la figure \ref{fig:scf_PW}. Le cycle SCF dans la base d'ondes planes se déroule comme suit:
 \begin{enumerate}
     \item Commencer avec une estimation de la densité initiale $n_\text{in}(\rv)$.
     \item Transformer la densité d'entrée dans l'espace réciproque à l'aide d'une FFT:
@@ -405,14 +367,14 @@ Cette matrice Hamiltonienne est de taille $N_\text{PW}\times N_\text{PW}$, où $
     \begin{equation*}
         \tilde{V}_\text{L}(\Gv) = \tilde{V}_\text{H}(\Gv)+\tilde{V}_\text{XC}(\Gv)+\tilde{V}_\text{PPL}(\Gv).
     \end{equation*}
-    \item Précalculer la partie non-locale du potentiel de KS, car elle ne dépend pas de la densité
+    \item Précalculer la partie non-locale du potentiel de KS pour chaque $\kv$, car elle ne dépend pas de la densité
     \begin{equation*}
-        \tilde{V}_\text{NL}(\Gv, \Gv')=\sum_\alpha\sum_{i\ell m}\tilde{\beta}_{i\ell m}^{(\alpha)}(\kv+\Gv)E_{i\ell}^{(\alpha)}\tilde{\beta}^{*(\alpha)}_{i\ell m}(\kv+\Gv').
+        \tilde{V}_\text{NL}^{(\kv)}(\Gv, \Gv')=\sum_\alpha\sum_{i\ell m}\tilde{\beta}_{i\ell m}^{(\alpha)}(\kv+\Gv)E_{i\ell}^{(\alpha)}\tilde{\beta}^{*(\alpha)}_{i\ell m}(\kv+\Gv').
     \end{equation*}
     La dérivation de cette expression est présentée dans le chapitre \ref{chap:défauts} dans le contexte du calcul des éléments de matrice électron-défaut.
     \item Construire la matrice Hamiltonienne pour chaque point $\kv$ de la première BZ
     \begin{equation*}
-        H_{\Gv\Gv'}=\frac{\hbar^2}{2m_e}|\kv+\Gv|^2\delta_{\Gv\Gv'}+\tilde{V}_\text{L}(\Gv-\Gv')+\tilde{V}_\text{NL}(\Gv,\Gv'),
+        H^{(\kv)}_{\Gv\Gv'}=\frac{\hbar^2}{2m_e}|\kv+\Gv|^2\delta_{\Gv\Gv'}+\tilde{V}_\text{L}(\Gv-\Gv')+\tilde{V}^{(\kv)}_\text{NL}(\Gv,\Gv'),
     \end{equation*}
     et diagonaliser pour obtenir les coefficients $C_{n\kv}(\Gv)$ et les valeurs propres $\varepsilon_{n\kv}$. La diagonalisation se fait itérativement à l'aide d'algorithmes de sous-espace tels que Davidson ou LOBPCG.
     \item Calculer les fonctions d'ondes dans l'espace réel à partir des coefficients des ondes planes à l'aide d'une FFT inverse
@@ -424,8 +386,8 @@ Cette matrice Hamiltonienne est de taille $N_\text{PW}\times N_\text{PW}$, où $
         n_\text{out}(\rv)=\sum_{n\kv}f_{n\kv}|\psi_{n\kv}(\rv)|^2,
     \end{equation*}
     où $f_{n\kv}$ est un facteur d'occupation.
-    \item Constuire la nouvelle densité d'entrée à partir de $n_\text{in}$ et $n_\text{out}$ via un schéma de \textit{mixing}.
-    \item Si la différence entre $n_\text{in}$ et $n_\text{out}$ est inférieure à une tolérance spécifiée, passer à l'étape 10. Autrement, retourner à l'étape 2. 
+    \item Construire la nouvelle densité d'entrée à partir de $n_\text{in}$ et $n_\text{out}$ via un schéma de \textit{mixing}, \textit{e.g.} Pulay ou DIIS.
+    \item Si la différence entre $n_\text{in}$ et $n_\text{out}$ est inférieure à une tolérance spécifiée, ou d'autres critères de convergence sont satisfaits, passer à l'étape 10. Autrement, retourner à l'étape 2. 
     \item Calculer les propriétés de l'état fondamental.
 \end{enumerate}
 \noindent

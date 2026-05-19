@@ -139,12 +139,12 @@ Quelques mois après la publication de l'article de HK, Walter Kohn et Lu Jeu Sh
 Le génie de KS se trouve dans l'idée d'introduire un système auxiliaire -- le système auxiliaire de KS -- de $N_e$ électrons \textit{sans interaction} soumis à un potentiel effectif local $V_\text{eff}(\rv)$ choisi de sorte que la densité électronique de ce système auxiliaire soit identique à celle du système réel en interaction et de résoudre le problème dans ce système auxiliaire. Rappelons que $N_e$ signifie maintenant le nombre d'électrons dans une cellule unitaire et non dans le solide en son entier. Le premier théorème de HK  garantit l'existence de ce potentiel effectif puisqu'il établit une bijection entre le potentiel externe et la densité de l'état fondamental. Ce système est beaucoup plus facile à traiter puisque en l'absence d'interaction entre les électrons, la fonction d'onde à plusieurs corps se factorise en un déterminant de Slater de $N_e$ fonctions d'onde à un corps $\psi_{n\kv}(\rv)$. La correspondance entre le système auxiliaire et le vrai système à plusieurs corps est illustré dans la figure~\ref{fig:ks}. La densité du système auxiliaire n'est que la somme du carré des fonctions d'onde à un corps
 \begin{equation}
     \label{eqn:c2_nKS}
-    n(\rv) = 2\sum_{n\kv}^{\text{occ}}|\psi_{n\kv}(\rv)|^2=n_0(\rv),
+    n(\rv) = 2\sum_{n\kv} f_{n\kv}|\psi_{n\kv}(\rv)|^2=n_0(\rv),
 \end{equation}
-où nous avons explicité que la densité du système auxiliaire doit être la même que le système réel en interaction. Le facteur de 2 tient compte de la dégénerescence en spin des états électroniques pour un système non polarisé en spin. La somme court sur tous les états électroniques étiquetés par $(n\kv)$ occupés. L'énergie cinétique d'un système d'électron non-interagissant est aussi calculable exactement : elle correspond à la somme de l'énergie cinétique de chaque particule 
+où nous avons explicité que la densité du système auxiliaire doit être la même que le système réel en interaction. Le facteur de 2 tient compte de la dégénerescence en spin des états électroniques pour un système non polarisé en spin et $f_{n\kv}$ est un facteur d'occupation qui s'assure que seuls les états électroniques occupés contribuent à la densité. L'énergie cinétique d'un système d'électron non-interagissant est aussi calculable exactement : elle correspond à la somme de l'énergie cinétique de chaque particule 
 \begin{equation}
     \label{eqn:c2_TS}
-    T_\text{S}=-\frac{\hbar^2}{2m_e}2\sum_{n\kv}^{\text{occ}}\bra{\psi_{n\kv}}\nabla^2\ket{\psi_{n\kv}}.
+    T_\text{S}=-\frac{\hbar^2}{2m_e}2\sum_{n\kv}f_{n\kv}\bra{\psi_{n\kv}}\nabla^2\ket{\psi_{n\kv}}.
 \end{equation}
 KS ont aussi inclus l'énergie d'interaction électron-électron de manière effective via l'énergie d'Hartree~\cite{hartreeWaveMechanicsAtom1928,hartreeWaveMechanicsAtom1928a,fockNaeherungsmethodeZurLoesung1930}
 \begin{equation}
@@ -309,7 +309,7 @@ où $\Omega_\text{BvK}$ est le volume du cristal et $C_{n\kv}(\Gv)$ sont les coe
     \psi_{n\kv}(\rv)=\frac{1}{\sqrt{\Omega_\text{BvK}}}\sum_{\Gv}C_{n\kv}(\Gv)e^{i(\kv+\Gv)\cdot\rv}.
     \label{eqn:c2_psiPW}
 \end{equation}
-La base d'onde plane est un choix naturel pour les solides périodiques : elle est complète, orthonormée, et compatible avec les transformées de Fourier rapides (FFT, de l'anglais \textit{Fast Fourier Transform}) qui permettent de passer efficacement entre l'espace réel et l'espace réciproque. Le problème se réduit donc à la détermination des coefficients $C_{n\kv}(\Gv)$.
+La base d'onde plane est un choix naturel pour les solides périodiques~\cite{carUnifiedApproachMolecular1985,martinElectronicStructureBasic2004} : elle est complète, orthonormée, et compatible avec les transformées de Fourier rapides (FFT, de l'anglais \textit{Fast Fourier Transform}) qui permettent de passer efficacement entre l'espace réel et l'espace réciproque. Le problème se réduit donc à la détermination des coefficients $C_{n\kv}(\Gv)$.
 
 Formellement, il faut un nombre infini d'ondes planes pour représenter la fonction d'onde. En pratique, nous tronquons la série en introduisant une énergie de coupure $E_\text{cut}$ telle que seules les ondes planes satisfaisant
 \begin{equation}
@@ -376,7 +376,7 @@ Cette matrice Hamiltonienne est de taille $N_\text{PW}\times N_\text{PW}$, où $
     \begin{equation*}
         H^{(\kv)}_{\Gv\Gv'}=\frac{\hbar^2}{2m_e}|\kv+\Gv|^2\delta_{\Gv\Gv'}+\tilde{V}_\text{L}(\Gv-\Gv')+\tilde{V}^{(\kv)}_\text{NL}(\Gv,\Gv'),
     \end{equation*}
-    et diagonaliser pour obtenir les coefficients $C_{n\kv}(\Gv)$ et les valeurs propres $\varepsilon_{n\kv}$. La diagonalisation se fait itérativement à l'aide d'algorithmes de sous-espace tels que Davidson ou LOBPCG.
+    et diagonaliser pour obtenir les coefficients $C_{n\kv}(\Gv)$ et les valeurs propres $\varepsilon_{n\kv}$. La diagonalisation se fait itérativement à l'aide d'algorithmes de sous-espace.
     \item Calculer les fonctions d'ondes dans l'espace réel à partir des coefficients des ondes planes à l'aide d'une FFT inverse
     \begin{equation*}
         C_{n\kv}(\Gv)\xrightarrow{\text{FFT}^{-1}}\psi_{n\kv}(\rv).
@@ -385,21 +385,81 @@ Cette matrice Hamiltonienne est de taille $N_\text{PW}\times N_\text{PW}$, où $
     \begin{equation*}
         n_\text{out}(\rv)=\sum_{n\kv}f_{n\kv}|\psi_{n\kv}(\rv)|^2,
     \end{equation*}
-    où $f_{n\kv}$ est un facteur d'occupation.
-    \item Construire la nouvelle densité d'entrée à partir de $n_\text{in}$ et $n_\text{out}$ via un schéma de \textit{mixing}, \textit{e.g.} Pulay ou DIIS.
+    \item Construire la nouvelle densité d'entrée à partir de $n_\text{in}$ et $n_\text{out}$ via un schéma de \textit{mixing}.
     \item Si la différence entre $n_\text{in}$ et $n_\text{out}$ est inférieure à une tolérance spécifiée, ou d'autres critères de convergence sont satisfaits, passer à l'étape 10. Autrement, retourner à l'étape 2. 
     \item Calculer les propriétés de l'état fondamental.
 \end{enumerate}
-\noindent
-\textbf{Schéma de \textit{mixing}}
-\\
-\noindent
-\textbf{Facteur d'occupation et \textit{smearing}}
-\\
-\noindent
-\textbf{Échantillonage de la zone de Brillouin}
+Nous détaillons maintenant les ingrédients clés de ce cycle: les algorithmes de diagonalisation (étape 5), le facteur d'occupation (étape 7), le schéma de \textit{mixing} (étape 8) et l'échantillonage de la BZ, c'est-dire-comment choisir les points $\kv$ pour construire la matrice Hamiltonienne.
 
-\subsection{Résultats pour le graphène}
+\noindent\textbf{Algorithmes de diagonalisation itératifs}
+
+À l'étape 5 de chaque itération du cycle SCF, il faut diagonaliser la matrice Hamiltonnienne $H^{(\kv)}(\Gv,\Gv')$ de taille $N_\text{PW}\times N_\text{PW}$ pour chaque point $\kv$ de la BZ. Une diagonalisation exacte par des méthodes directes a un coût variant en $N_\text{PW}^3$ ce qui est prohibitif pour des systèmes où il faut plusieurs dizaines de millieurs d'ondes planes. Heureusement, seules les $N_\text{bandes}\ll N_\text{PW}$ valeurs propres les plus basses sont nécessaires pour construire la densité électronique, car seuls les états occupés contribuent à la densité. Une première famille de méthodes itératives est celle du gradient conjugué~\cite{hestenesMethodsConjugateGradients}, qui minimise l'énergie de chaque état $\psi_{n\kv}$ individuellement dans l'espace des ondes planes par descente de gradient préconditionné. Une deuxième famille, plus permormante en pratique, est celle des méthodes de sous-espace itératives : l'algorithme de Davidson~\cite{davidsonIterativeCalculationFew1975} part d'un sous-espace de petite dimension et l'enrichit itérativement en ajoutant des vecteurs de correction jusqu'à la convergence des valeurs propres cibles. L'algorithme LOBPCG~\cite{OptimalPreconditionedEigensolver} (de l'anglais \textit{Locally Optimal Block Preconditioned Conjugate Gradient}) opère sur une bloc de vecteurs simultanément et est particulièrement efficace sur des architectures parallèles. Ces méthodes ramènes le coût computationel à $\mathcal{O}(N_\text{PW} N_\text{bandes}^2)$, une réduction considérable de la complexité. 
+
+\noindent\textbf{Facteur d'occupation et \textit{smearing}}
+
+Le calcul de la densité électronique à l'étape 7 de chaque itération du cycle SCF requiert une somme de tous les états occupés de la BZ. Pour un isolant et un semi-conducteur, dont le gap électronique différencie clairement les états occupés des états inoccupés, le facteur d'occupation est simplement une fonction de Heaviside
+\begin{equation}
+    f_ {n\kv}=\Theta(\varepsilon_F-\varepsilon_{n\kv}),
+    \label{eqn:c2_smearing_heaviside}
+\end{equation}
+où $\varepsilon_F$ est l'énergie de Fermi (l'énergie de l'état le plus haut en énergie occupé). Pour les métaux et les semi-métaux qui ne possèdent pas de gap, l'histoire se complique. Le niveau de Fermi traverse des bandes et la fonction Heaviside est discontinue à la surface de Fermi : un petit changement de $\varepsilon_F$ entre deux itérations du cycle SCF peut faire basculer des états d'occupés à non-occupés, introduisant des discontinuités dans la densité et déstabilisant le cycle. Pour remédier à ce problème, nous remplaçons la fonction de Heaviside par une fonction d'occupation lissée $f_{n\kv}(\sigma)$ paramétrée par un facteur d'élargissment $\sigma$, qui joue un peu le rôle de la température pour l'occupation des états électroniques. Cette température n'est pas physique et introduit des erreurs dans les calculs, en échange d'une convergence plus rapide. Il existe plusieurs formes de $f_{n\kv}$. La plus naturelle est la distribution de Fermi-Dirac
+\begin{equation}
+    f_{n\kv}^\text{FD}(\sigma)=\frac{1}{e^{(\varepsilon_{n\kv}-\varepsilon_F)/\sigma}+1},
+    \label{eqn:c2_smearing_FD}
+\end{equation}
+puisque les électrons sont particules fermioniques et obéissent à la statistique de Fermi-Dirac à température finie, avec $\sigma=k_B T$ jouant le rôle de la température. La distribution de Fermi-Dirac fait une erreur de l'ordre de $e^{-1/\sigma}$. Un autre choix est le \textit{smearing} Gaussien
+\begin{equation}
+    f_{n\kv}^\text{G}(\sigma)=\frac{1}{2}\left[1-\erf\left(\frac{\varepsilon_{n\kv}-\varepsilon_F}{\sigma}\right)\right],
+    \label{eqn:c2_smearing_gaussien}
+\end{equation}
+où erf est la fonction d'erreur, soit la primitive de la Gaussienne. Le \textit{smearing} Gaussien fait une erreur de l'ordre de $\sigma^2$. Methfessel et Paxton (MP)~\cite{methfesselHighprecisionSamplingBrillouinzone1989} ont systématiquement amélioré le \textit{smearing} Gaussien en ajoutant des corrections polynomiales
+\begin{equation}
+    f_{n\kv}^\text{MP}(\sigma)=\frac{1}{2}\left[1-\erf\left(\frac{\varepsilon_{n\kv}-\varepsilon_F}{\sigma}\right)\right]+\sum_{n=1}^NA_nH_{2n-1}\left(\frac{\varepsilon_{n\kv}-\varepsilon_F}{\sigma}\right)e^{-(\varepsilon_{n\kv}-\varepsilon_F)^2/\sigma^2},
+    \label{eqn:c2_smearing_MP}
+\end{equation}
+où $H_n$ sont les polynômes d'Hermite et $A_n$ sont des coéfficients choisis de sorte que l'erreur est de l'ordre de $\sigma^{2N+2}$. Dans la très grande majorité des cas, $N=1$ est utilisé. Notons que le \textit{smearing} MP n'est pas une vraie fonction d'occupation : elle peut prendre des valeurs négatives ou supérieures à 1 pour des grands $\sigma$. Finalement, le \textit{smearing} de Marzari-Vanderbilt (MV)~\cite{marzariThermalContractionDisordering1999}, aussi appelé \textit{cold smearing},
+\begin{equation}
+    f_{n\kv}^{\text{MV}}(\sigma)=\frac{1}{2}\left[1-\erf\left(\frac{\varepsilon_{n\kv}-\varepsilon_F}{\sigma}\right)\right]+\frac{1}{\sqrt{2\pi}}\left(\frac{\varepsilon_{n\kv}-\varepsilon_F}{\sigma}\right)e^{-((\varepsilon_{n\kv}-\varepsilon_F)/\sigma+1/\sqrt{2})^2},
+    \label{eqn:c2_smearing_MV}
+\end{equation}
+fait une erreur de l'ordre de $\sigma^2$. Cependant, le décalage de $1/\sqrt{2}$ est choisi de sorte que le facteur d'occupation MV reste dans l'intervalle $[0,1]$ ce qui est physiquement sensé et minimise l'erreur sur l'énergie libre. \textit{A priori}, il n'y pas de prescription pour choisir le schéma de \textit{smearing} pour un système donné. Il faut tester chaque schéma individuellement afin d'identifier celui 
+qui converge le plus rapidement vers la limite $\sigma\to 0$, ce que 
+nous faisons à la section~\ref{sec:electron_results}.
+
+\noindent\textbf{Schéma de \textit{mixing}}
+
+À l'étape 8 de chaque itération du cycle SCF, la densité de sortie $n_\text{out}(\rv)$ est généralement différente de la densité d'entrée $n_\text{in}(\rv)$. Utiliser directement la densité de sortie comme nouvelle densité d'entrée mène typiquement à des oscillations ou à la divergence du cycle. Pour assurer la convergence, il est nécessaire de construire la nouvelle densité en combinant $n_\text{in}$ et $n_\text{out}$ via un schéma de \textit{mixing}. Le plus simple est le \textit{mixing} linéaire
+\begin{equation}
+    n_\text{in}^{(i+1)}(\rv)=(1-\beta)n_\text{in}^{(i)}(\rv)+\beta n_\text{out}^{(i)}(\rv),
+    \label{eqn:c2_mixing_lineaire}
+\end{equation}
+où $\beta\in[0,1]$ est le paramètre de \textit{mixing}. Un petit $\beta$ stabilise le cycle, mais ralentit la convergence, tandis qu'un $\beta$ plus grand accélère la convergence, mais risque de déstabiliser le cycle. Le choix de $\beta$ par essai-erreur et généralement suffisant puisque la même valeur de $\beta$ s'applique pour plusieurs systèmes similaires. Des schémas plus sophistiqués exploitent l'historique des itérations précédentes pour accélérer la convergence : le \textit{mixing} de Pulay~\cite{pulayConvergenceAccelerationIterative1980} (aussi connu sous le nom de DIIS, de l'anglais \textit{Direct Inversion in the Iterative Subspace}) minimise le résidu $R^{(i)}=n_\text{out}^{(i)}-n_\text{in}^{(i)}$ dans le sous-espace engendré par les itérations
+précédentes, tandis que la méthode de Broyden~\cite{Broyden1965Class} construit une approximation du Jacobien inverse du résidu. 
+
+Pour les systèmes métalliques et semi-métalliques comme le graphène, le cycle SCF est sujet au problème de \textit{charge sloshing} : une instabilité où la densité électronique oscille entre les itérations plutôt que de converger, particulièrement prononcé pour les états proches du niveau de Fermi. Un paramètre $\beta$ plus petit atténue ce problème au prix d'une convergence plus lente, tandis que les schémas de Pulay et Broyden sont un peu plus efficaces que le \textit{mixing} linéaire en préconditionnant implicitement le résidu via l'historique des itérations. Pour ces raisons, nous utilisons le schéma de Broyden avec un $\beta=0.3$, ce qui est relativement petit.
+
+\noindent\textbf{Échantillonnage de la zone de Brillouin}
+
+Finalement, il faut construire la matrice Hamiltonienne, en théorie, à chaque point-$\kv$ de la BZ. En pratique, il faut un nombre infini de points-$\kv$ pour échantillonner la BZ dans son entièreté. Bien sûr, il n'est pas possible de résoudre le problème numériquement pour un nombre infini de points : il faut discrétiser la BZ sur une grille de taille finie et choisir cette grille de sorte que l'erreur effectuée est la plus petite possible pour un nombre de points donné. Il faut aussi discrétiser la BZ pour effectuer des intégrales sur la BZ. Une intégrale générale sur la BZ est approximée par la somme
+\begin{equation}
+    g = \frac{1}{N_\kv}\sum_{n\kv}^\text{BZ}g_n(\kv)
+    \label{eqn:c2_BZintegration}
+\end{equation}
+où $g_n(\kv)$ est une fonction générale et $N_\kv$ est le nombre de points-$\kv$ dans la BZ une fois celle-ci discrétisée. Un exemple de ce genre de somme est le calcul de la densité électronique à partir des fonctions d'onde, l'équation~\eqref{eqn:c2_nKS}. La méthode d'échantillonnage de la BZ la plus utilisée est celle proposée par Monkhorst et Pack (MP)~\cite{monkhorstSpecialPointsBrillouinzone1976}, car elle donne une grille uniforme déterminée par une formule simple qui fonctionne pour n'importe quel solide cristallin
+\begin{equation}
+    \kv_{n_1,n_2,n_3}=\sum_{i=1}^3\frac{2n_i-N_i-1}{2N_i}\bv_i +\mathbf{s},
+    \label{eqn:c2_MP}
+\end{equation}
+où $n_i =1,2,\dots, N_i$ et $N_i$ est le nombre de points dans la direction $\bv_i$, tandis que $\mathbf{s}$ est un paramètre qui décale la grille. Généralement, une grille centrée sur le point $\Gamma$ de la BZ (centrée sur l'origine, donc $\mathbf{s}=\mathbf{0})$ est employée. Qui plus est, tel que mentionné à la section~\ref{sec:2.1.2}, il est possible d'exploiter les symétries du cristal pour réduire le nombre de points-$\kv$ nécessaires à l'évaluation de quantités définies par la somme de l'équation~\eqref{eqn:c2_BZintegration}. En effet, si une opération de symétrie $R$ relie deux points $\kv$  et $\kv'=R\kv$ de la BZ, il suit que $g_n(R\kv)=g_n(\kv)$ pour toute fonction scalaire $g_n$. Il est utile de définir les poids $w_\kv$ comme étant le nombre de points-$\kv$ de la BZ complète équivalents au poin- $\kv$ de l'IBZ, divisé par le nombre total de points $N_\kv$. Avec les poids, la somme de l'équation~\eqref{eqn:c2_BZintegration} est équivalente à 
+\begin{equation}
+    g = \sum_{n\kv}^{\text{IBZ}}w_\kv g_n(\kv),
+    \label{eqn:c2_IBZintegration}
+\end{equation}
+où la somme est sur tous les points-$\kv$ de l'IBZ, contrairement à la somme précédente, qui est sur la BZ au complet. Pour le graphène, dont le groupe de points est $D_{6h}$ et pour qui la symétrie d'inversion du temps s'applique, l'IBZ représente $1/24$ de la BZ totale, tel que mentionné à la section~\ref{sec:2.1.2}. Normalement, nous commençons par générer la grille uniforme et complète en utilisant la formule de MP de l'équation~\eqref{eqn:c2_MP} puis nous la réduisons à l'aide des symétries du groupe de points et l'inversion du temps.
+
+Nous avons maintenant tous les ingrédients nécessaires pour comprendre et réaliser des calculs DFT dans une base d'ondes planes avec des pseudo-potentiels. Nous présentons nos résultats DFT de l'état fondamental des électrons dans une feuille de graphène parfait dans la prochaine section, la section~\ref{sec:electron_results}.
+
+\subsection{Résultats pour le graphène}\label{sec:electron_results}
 \section{Partie ionique : les phonons et la théorie de la fonctionnelle de la densité perturbative}
 \label{sec:2.3}
 À l'instar de son homologue électronique, le problème ionique n'est pas moins complexe à résoudre que le problème initial. Le coupable est encore une fois l'interaction mutuelle entre tous les ions qui se trouve dans le potentiel effectif $U$.

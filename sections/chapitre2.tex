@@ -128,7 +128,7 @@ Le terme \textit{fonctionnelle} ici fait référence à une application de l'esp
     &= T[n]+V_\text{int}[n]+\int d^3\rv\,V_\text{ext}(\rv)n(\rv),\notag\\
     &\equiv F_\text{HK}[n]+\int d^3\rv\,V_\text{ext}(\rv)n(\rv).
 \end{align}
-Ici, nous avons défini la fonctionnelle de HK, $F_\text{HK}\equiv T+V_\text{int}$, qui ne dépend que de l'énergie cinétique et l'énergie d'interaction électron-électron du système d'électrons. Comme cette fonctionnelle ne dépend pas de paramètre externe, elle est universelle dans le sens qu'elle est la même pour tous les systèmes d'électrons, peu importe le potentiel externe : la configuration des ions, un champ électrique, ou toute autre perturbation externe. En théorie, nous pouvons déterminer la densité de l'état fondamental en minimisant la fonctionnelle d'énergie $E[n]$ (théorème de HK II), puis utiliser cette densité pour calculer n'importe quelles propriétés du système (théorème de HK I), pourvu que nous connaissions la forme de la fonctionnelle $F_\text{HK}$. En pratique, la forme exacte de $F_\text{HK}$ n'est pas connue et étant donné qu'elle est la même pour tous les systèmes d'électrons interagissants, il est attendu que cette fonctionnelle soit d'une complexité fantastique. Il va sans dire que quiconque trouverait sa forme exacte meriterait certainement un prix Nobel. Le deuxième théorème de HK nous fournit donc une prescription pour déterminer la densité de l'état fondamental du système, mais n'offre aucune piste pour calculer la fonctionnelle $F_\text{HK}$ dans laquelle toute la complexité du problème à été reléguée. Encore une fois, il semble que nous n'ayons pas fait beaucoup de progrès.
+Ici, nous avons défini la fonctionnelle de HK, $F_\text{HK}\equiv T+V_\text{int}$, qui ne dépend que de l'énergie cinétique et l'énergie d'interaction électron-électron du système d'électrons. Comme cette fonctionnelle ne dépend pas de paramètre externe, elle est universelle dans le sens qu'elle est la même pour tous les systèmes d'électrons, peu importe le potentiel externe : la configuration des ions, un champ électrique, ou toute autre perturbation externe. En théorie, nous pouvons déterminer la densité de l'état fondamental en minimisant la fonctionnelle d'énergie $E[n]$ (théorème de HK II), puis utiliser cette densité pour calculer n'importe quelles propriétés du système (théorème de HK I), pourvu que nous connaissions la forme de la fonctionnelle $F_\text{HK}$. En pratique, la forme exacte de $F_\text{HK}$ n'est pas connue et étant donné qu'elle est la même pour tous les systèmes d'électrons interagissants, il est attendu que cette fonctionnelle soit d'une complexité fantastique. Il va sans dire que quiconque trouverait sa forme exacte mériterait certainement un prix Nobel. Le deuxième théorème de HK nous fournit donc une prescription pour déterminer la densité de l'état fondamental du système, mais n'offre aucune piste pour calculer la fonctionnelle $F_\text{HK}$ dans laquelle toute la complexité du problème a été reléguée. Encore une fois, il semble que nous n'ayons pas fait beaucoup de progrès.
 
 \subsection{Méthode de Kohn-Sham}\label{sec:2.2.2}
 
@@ -141,7 +141,7 @@ Le génie de KS se trouve dans l'idée d'introduire un système auxiliaire -- le
     \label{eqn:c2_nKS}
     n(\rv) = 2\sum_{n\kv} f_{n\kv}|\psi_{n\kv}(\rv)|^2=n_0(\rv),
 \end{equation}
-où nous avons explicité que la densité du système auxiliaire doit être la même que le système réel en interaction. Le facteur de 2 tient compte de la dégénerescence en spin des états électroniques pour un système non polarisé en spin et $f_{n\kv}$ est un facteur d'occupation qui s'assure que seuls les états électroniques occupés contribuent à la densité. L'énergie cinétique d'un système d'électron non-interagissant est aussi calculable exactement : elle correspond à la somme de l'énergie cinétique de chaque particule 
+où nous avons explicité que la densité du système auxiliaire doit être la même que le système réel en interaction. Le facteur de 2 tient compte de la dégénérescence en spin des états électroniques pour un système non polarisé en spin et $f_{n\kv}$ est un facteur d'occupation qui s'assure que seuls les états électroniques occupés contribuent à la densité. L'énergie cinétique d'un système d'électron non-interagissant est aussi calculable exactement : elle correspond à la somme de l'énergie cinétique de chaque particule 
 \begin{equation}
     \label{eqn:c2_TS}
     T_\text{S}=-\frac{\hbar^2}{2m_e}2\sum_{n\kv}f_{n\kv}\bra{\psi_{n\kv}}\nabla^2\ket{\psi_{n\kv}}.
@@ -172,6 +172,7 @@ Nous avons atteint notre objectif qui était de traiter les complications engend
     \label{fig:ks}
 \end{figure}
 
+\newpage
 \noindent\textbf{Équations de Kohn-Sham}
 
 Le deuxième théorème de HK garantit que l'énergie de l'état fondamental du système auxiliaire de KS est le minimum de la fonctionnelle d'énergie $E_\text{KS}[n]$ définie dans l'équation \eqref{eqn:c2_EKS} et la densité qui la minimise est celle de l'état fondamental $n_0(\rv)$. En minimisant cette fonctionnelle par rapport aux fonctions d'onde sous la contrainte d'orthonormalisation $\bra{\psi_{n\kv}}\ket{\psi_{n'\kv'}}=\delta_{nn'}\delta_{\kv\kv'}$, nous arrivons aux fameuses équations de KS
@@ -204,7 +205,7 @@ Le choix de l'approximation pour la fonctionnelle d'échange-corrélation (XC) $
 \begin{figure}[h]
     \centering
     \input{tikz/jacob_ladder.tex}
-    \caption[L'échelle de Jacob des approximations pour la fonctionnelle d'échange-corrélation.]{L'échelle de Jacob des approximations pour la fonctionnelle d'échange-corrélation. Chaque échelon de l'échelle incorpore davantage d'information sur le système électronique gagnant en précision au prix d'un coût computationel accru. Le deuxième échelon est mis en évidence, car nous utilisons une fonctionnelle de ce niveau pour tous les calculs de ce mémoire. Figure adaptée de \cite{perdewJacobsLadderDensity2001}.}
+    \caption[L'échelle de Jacob des approximations pour la fonctionnelle d'échange-corrélation.]{L'échelle de Jacob des approximations pour la fonctionnelle d'échange-corrélation. Chaque échelon de l'échelle incorpore davantage d'information sur le système électronique gagnant en précision au prix d'un coût computationnel accru. Le deuxième échelon est mis en évidence, car nous utilisons une fonctionnelle de ce niveau pour tous les calculs de ce mémoire. Figure adaptée de \cite{perdewJacobsLadderDensity2001}.}
     \label{fig:jacob}
 \end{figure}
 
@@ -227,7 +228,7 @@ L'idée centrale de la GGA est d'aller au-delà de la LDA en incorporant non seu
 \begin{equation}
     E_\text{XC}^\text{GGA}[n]=\int d^3\rv\,n(\rv)\,\left[\varepsilon_\text{X}^\text{hom}(n)\,F_\text{X}(n,\nabla n)+\varepsilon_\text{C}^\text{hom}(n)\,F_\text{C}(n,\nabla n)\right],
 \end{equation}
-où $F_\text{X}$ et $F_\text{C}$ sont les facteurs d'amplification adimensionnels pour l'échange et la corrélation respectivement qui encodent la correction due au gradient et $\varepsilon_\text{X/C}^\text{hom}(n)$ est de nouveau la densité d'énergie d'échange/corrélation d'un gaz d'électrons homogène. La fonctionnelle GGA la plus répandue est celle développée par Perdew, Burke et Ernzerhof\footnote{Matthias Ernzerhof est un professeur titulaire au département de chimie de l'Université de Montréal.} (PBE)~\cite{perdewGeneralizedGradientApproximation1996a}, dont les facteurs d'amplification sont construits à partir de conditions exactes connues sur la fonctionnelle XC, sans paramètres empiriques. Les expressions explicites de la PBE se trouvent dans l'annexe~\ref{annexe:pbe} et nous réferons le lecteur à l'article original pour les dérivations. Nous utilisons cette fonctionnelle pour tous les calculs de ce mémoire.
+où $F_\text{X}$ et $F_\text{C}$ sont les facteurs d'amplification adimensionnels pour l'échange et la corrélation respectivement qui encodent la correction due au gradient et $\varepsilon_\text{X/C}^\text{hom}(n)$ est de nouveau la densité d'énergie d'échange/corrélation d'un gaz d'électrons homogène. La fonctionnelle GGA la plus répandue est celle développée par Perdew, Burke et Ernzerhof\footnote{Matthias Ernzerhof est un professeur titulaire au département de chimie de l'Université de Montréal.} (PBE)~\cite{perdewGeneralizedGradientApproximation1996a}, dont les facteurs d'amplification sont construits à partir de conditions exactes connues sur la fonctionnelle XC, sans paramètres empiriques. Les expressions explicites de la PBE se trouvent dans l'annexe~\ref{annexe:pbe} et nous référons le lecteur à l'article original pour les dérivations. Nous utilisons cette fonctionnelle pour tous les calculs de ce mémoire.
 
 La PBE corrige l'\textit{overbinding} systématique de la LDA et donne de très bons résultats à moindre coût computationnel~\cite{kurthMolecularSolidstateTests1999,mounetFirstprinciplesDeterminationStructural2005a}, ce qui en fait une fonctionnelle de choix pour ce mémoire. Pour le graphène, la PBE décrit correctement les propriétés électroniques et vibrationnelles. En particulier, la PBE reproduit fidèlement le gap nul du graphène : les cônes de Dirac au point $\Kv$ de la zone Brillouin\footnote{Non pas parce que la PBE reproduit exactement les effets d'échange-corrélation, mais parce que les cônes de Dirac sont protégés par la symmétrie du réseau hexagonal. En effet, même un simple modèle \textit{tight-binding}, qui néglige complètement les interactions électron-électron, reproduit les cônes de Dirac. C'est une propriété d'origine purement géométrique.}. Les interactions de van der Waals, toujours absentes dans la PBE, sont négligeables pour le graphène monocouche étudié ici. De plus, les électrons $\pi$ des orbitales $p_z$ du carbone, qui dominent largement les propriétés électroniques du graphène, sont délocalisés et faiblement corrélés, ce qui rend la PBE tout à fait appropriée.  Les fonctionnelles des échelons supérieurs apportent des corrections négligeables aux systèmes de graphènes étudiés dans ce mémoire, à un coût computationnel prohibitif pour les super-cellules nécessaires à la modélisation des défauts, ce qui renforce notre choix de la PBE. L'article PBE \cite{perdewGeneralizedGradientApproximation1996a} est encore aujourd'hui l'un des plus cités de la \textit{Physical Review}.
 
@@ -263,6 +264,16 @@ La partie locale $V_\text{PPL}(\rv)$ est un potentiel central à symétrie sphé
 \end{equation}
 où $Y_\ell^m(\theta, \phi)$ sont les harmoniques sphériques et $\theta$ et $\phi$ sont les angles en coordonnées sphériques du vecteur $\rv-\bm{\tau}_\alpha$. La partie locale et les projecteurs radiaux du pseudo-potentiel ONCV pour un atome de carbone sont illustrés à la figure~\ref{fig:KB}.
 
+\begin{figure}[t]
+    \centering
+    \includegraphics{figures/KB_projectors_C.pdf}
+    \caption[Illustration de la partie locale et non-locale du pseudo-potentiel pour un atome
+    de carbone.]{Illustration de la partie locale et non-locale du pseudo-potentiel pour un atome de carbone. (a) Comparaison entre la partie locale du pseudo-potentiel $V_\text{PPL}(r)$ et le potentiel de Coulomb $-Z_\text{val}/r$ où $Z_\text{val}=4$ est la charge des électrons de valence du carbone. Notons que $V_\text{PPL}(r)$ corrige la divergence du potentiel de Coulomb à l'origine. (b) Partie radiale des projecteurs de KB $\beta_{i\ell}(r)$, qui s'annulent au-delà des rayons de coupure $r_c^{(s)}$ et $r_c^{(p)}$. Le
+    pseudo-potentiel est de type ONCV \textit{stringent} pour la fonctionnelle XC PBE, tiré de la bibliothèque PseudoDojo 
+    \cite{vansettenPseudoDojoTrainingGrading2018}.}
+    \label{fig:KB}
+\end{figure}
+
 La décomposition du pseudo-potentiel en une partie locale et une partie non-locale se répercute directement sur le potentiel de KS, qui lui aussi se sépare en deux parties : 
 \begin{equation}
     V_\text{KS}(\rv)=V_\text{L}(\rv)+V_\text{NL},
@@ -278,15 +289,6 @@ et la partie non-locale est entièrement due aux projecteurs de KB
     V_\text{NL}=\sum_\alpha\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}.
 \end{equation}
 Nous aurons besoin de ces expressions lors du calcul des éléments de matrice de couplage électron-défaut au chapitre \ref{chap:défauts}, ainsi que pour la solution des équations de KS, présentée dans la prochaine section.
-\begin{figure}[t]
-    \centering
-    \includegraphics{figures/KB_projectors_C.pdf}
-    \caption[Illustration de la partie locale et non-locale du pseudo-potentiel pour un atome
-    de carbone.]{Illustration de la partie locale et non-locale du pseudo-potentiel pour un atome de carbone. (a) Comparaison entre la partie locale du pseudo-potentiel $V_\text{PPL}(r)$ et le potentiel de Coulomb $-Z_\text{val}/r$ où $Z_\text{val}=4$ est la charge des électrons de valence du carbone. Notons que $V_\text{PPL}(r)$ corrige la divergence du potentiel de Coulomb à l'origine. (b) Partie radiale des projecteurs de KB $\beta_{i\ell}(r)$, qui s'annulent au-delà des rayons de coupure $r_c^{(s)}$ et $r_c^{(p)}$. Le
-    pseudo-potentiel est de type ONCV \textit{stringent} pour la fonctionnelle XC PBE, tiré de la bibliothèque PseudoDojo 
-    \cite{vansettenPseudoDojoTrainingGrading2018}.}
-    \label{fig:KB}
-\end{figure}
 
 \subsection{Base d'ondes planes et résolution des équations de Kohn-Sham dans l'espace réciproque}\label{sec:PW}
 
@@ -391,15 +393,16 @@ Cette matrice Hamiltonienne est de taille $N_\text{PW}\times N_\text{PW}$, où $
 \end{enumerate}
 \begin{figure}[t]
     \centering
+    \hspace{2.5cm}
     \input{tikz/ks_pw.tex}
     \caption[Représentation schématique du cycle SCF pour la résolution des équations de KS dans la base d'ondes planes.]{Représentation schématique du cycle SCF pour la résolution des équations de KS dans la base d'ondes planes.}
     \label{fig:scf_PW}
 \end{figure}
-Nous détaillons maintenant les ingrédients clés de ce cycle: les algorithmes de diagonalisation (étape 5), le facteur d'occupation (étape 7), le schéma de \textit{mixing} (étape 8) et l'échantillonage de la BZ, c'est-dire-comment choisir les points $\kv$ pour construire la matrice Hamiltonienne.
+Nous détaillons maintenant les ingrédients clés de ce cycle: les algorithmes de diagonalisation (étape 5), le facteur d'occupation (étape 7), le schéma de \textit{mixing} (étape 8) et l'échantillonnage de la BZ, c'est-à-dire comment choisir les points $\kv$ pour construire la matrice Hamiltonienne.
 
 \noindent\textbf{Algorithmes de diagonalisation itératifs}
 
-À l'étape 5 de chaque itération du cycle SCF, il faut diagonaliser la matrice Hamiltonnienne $H^{(\kv)}(\Gv,\Gv')$ de taille $N_\text{PW}\times N_\text{PW}$ pour chaque point $\kv$ de la BZ. Une diagonalisation exacte par des méthodes directes a un coût variant en $N_\text{PW}^3$ ce qui est prohibitif pour des systèmes où il faut plusieurs dizaines de millieurs d'ondes planes. Heureusement, seules les $N_\text{bandes}\ll N_\text{PW}$ valeurs propres les plus basses sont nécessaires pour construire la densité électronique, car seuls les états occupés contribuent à la densité. Une première famille de méthodes itératives est celle du gradient conjugué~\cite{hestenesMethodsConjugateGradients}, qui minimise l'énergie de chaque état $\psi_{n\kv}$ individuellement dans l'espace des ondes planes par descente de gradient préconditionné. Une deuxième famille, plus permormante en pratique, est celle des méthodes de sous-espace itératives : l'algorithme de Davidson~\cite{davidsonIterativeCalculationFew1975} part d'un sous-espace de petite dimension et l'enrichit itérativement en ajoutant des vecteurs de correction jusqu'à la convergence des valeurs propres cibles. L'algorithme LOBPCG~\cite{OptimalPreconditionedEigensolver} (de l'anglais \textit{Locally Optimal Block Preconditioned Conjugate Gradient}) opère sur une bloc de vecteurs simultanément et est particulièrement efficace sur des architectures parallèles. Ces méthodes ramènes le coût computationel à $\mathcal{O}(N_\text{PW} N_\text{bandes}^2)$, une réduction considérable de la complexité. 
+À l'étape 5 de chaque itération du cycle SCF, il faut diagonaliser la matrice Hamiltonnienne $H^{(\kv)}(\Gv,\Gv')$ de taille $N_\text{PW}\times N_\text{PW}$ pour chaque point $\kv$ de la BZ. Une diagonalisation exacte par des méthodes directes a un coût variant en $N_\text{PW}^3$ ce qui est prohibitif pour des systèmes où il faut plusieurs dizaines de milliers d'ondes planes. Heureusement, seules les $N_\text{bandes}\ll N_\text{PW}$ valeurs propres les plus basses sont nécessaires pour construire la densité électronique, car seuls les états occupés contribuent à la densité. Une première famille de méthodes itératives est celle du gradient conjugué~\cite{hestenesMethodsConjugateGradients}, qui minimise l'énergie de chaque état $\psi_{n\kv}$ individuellement dans l'espace des ondes planes par descente de gradient préconditionné. Une deuxième famille, plus performante en pratique, est celle des méthodes de sous-espace itératives : l'algorithme de Davidson~\cite{davidsonIterativeCalculationFew1975} part d'un sous-espace de petite dimension et l'enrichit itérativement en ajoutant des vecteurs de correction jusqu'à la convergence des valeurs propres cibles. L'algorithme LOBPCG~\cite{OptimalPreconditionedEigensolver} (de l'anglais \textit{Locally Optimal Block Preconditioned Conjugate Gradient}) opère sur une bloc de vecteurs simultanément et est particulièrement efficace sur des architectures parallèles. Ces méthodes ramènent le coût computationnel à $\mathcal{O}(N_\text{PW} N_\text{bandes}^2)$, une réduction considérable de la complexité. 
 
 \noindent\textbf{Facteur d'occupation et \textit{smearing}}
 
@@ -408,7 +411,7 @@ Le calcul de la densité électronique à l'étape 7 de chaque itération du cyc
     f_ {n\kv}=\Theta(\varepsilon_F-\varepsilon_{n\kv}),
     \label{eqn:c2_smearing_heaviside}
 \end{equation}
-où $\varepsilon_F$ est l'énergie de Fermi (l'énergie de l'état le plus haut en énergie occupé). Pour les métaux et les semi-métaux qui ne possèdent pas de gap, l'histoire se complique. Le niveau de Fermi traverse des bandes et la fonction Heaviside est discontinue à la surface de Fermi : un petit changement de $\varepsilon_F$ entre deux itérations du cycle SCF peut faire basculer des états d'occupés à non-occupés, introduisant des discontinuités dans la densité et déstabilisant le cycle. Pour remédier à ce problème, nous remplaçons la fonction de Heaviside par une fonction d'occupation lissée $f_{n\kv}(\sigma)$ paramétrée par un facteur d'élargissment $\sigma$, qui joue un peu le rôle de la température pour l'occupation des états électroniques. Cette température n'est pas physique et introduit des erreurs dans les calculs, en échange d'une convergence plus rapide. Il existe plusieurs formes de $f_{n\kv}$. La plus naturelle est la distribution de Fermi-Dirac
+où $\varepsilon_F$ est l'énergie de Fermi (l'énergie de l'état le plus haut en énergie occupé). Pour les métaux et les semi-métaux qui ne possèdent pas de gap, l'histoire se complique. Le niveau de Fermi traverse des bandes et la fonction Heaviside est discontinue à la surface de Fermi : un petit changement de $\varepsilon_F$ entre deux itérations du cycle SCF peut faire basculer des états d'occupés à non-occupés, introduisant des discontinuités dans la densité et déstabilisant le cycle. Pour remédier à ce problème, nous remplaçons la fonction de Heaviside par une fonction d'occupation lissée $f_{n\kv}(\sigma)$ paramétrée par un facteur d'élargissement $\sigma$, qui joue un peu le rôle de la température pour l'occupation des états électroniques. Cette température n'est pas physique et introduit des erreurs dans les calculs, en échange d'une convergence plus rapide. Il existe plusieurs formes de $f_{n\kv}$. La plus naturelle est la distribution de Fermi-Dirac
 \begin{equation}
     f_{n\kv}^\text{FD}(\sigma)=\frac{1}{e^{(\varepsilon_{n\kv}-\varepsilon_F)/\sigma}+1},
     \label{eqn:c2_smearing_FD}
@@ -423,7 +426,7 @@ où erf est la fonction d'erreur, soit la primitive de la Gaussienne. Le \textit
     f_{n\kv}^\text{MP}(\sigma)=\frac{1}{2}\left[1-\erf\left(\frac{\varepsilon_{n\kv}-\varepsilon_F}{\sigma}\right)\right]+\sum_{n=1}^NA_nH_{2n-1}\left(\frac{\varepsilon_{n\kv}-\varepsilon_F}{\sigma}\right)e^{-(\varepsilon_{n\kv}-\varepsilon_F)^2/\sigma^2},
     \label{eqn:c2_smearing_MP}
 \end{equation}
-où $H_n$ sont les polynômes d'Hermite et $A_n$ sont des coéfficients choisis de sorte que l'erreur est de l'ordre de $\sigma^{2N+2}$. Dans la très grande majorité des cas, $N=1$ est utilisé. Notons que le \textit{smearing} MP n'est pas une vraie fonction d'occupation : elle peut prendre des valeurs négatives ou supérieures à 1 pour des grands $\sigma$. Finalement, le \textit{smearing} de Marzari-Vanderbilt (MV)~\cite{marzariThermalContractionDisordering1999}, aussi appelé \textit{cold smearing},
+où $H_n$ sont les polynômes d'Hermite et $A_n$ sont des coefficients choisis de sorte que l'erreur est de l'ordre de $\sigma^{2N+2}$. Dans la très grande majorité des cas, $N=1$ est utilisé. Notons que le \textit{smearing} MP n'est pas une vraie fonction d'occupation : elle peut prendre des valeurs négatives ou supérieures à 1 pour des grands $\sigma$. Finalement, le \textit{smearing} de Marzari-Vanderbilt (MV)~\cite{marzariThermalContractionDisordering1999}, aussi appelé \textit{cold smearing},
 \begin{equation}
     f_{n\kv}^{\text{MV}}(\sigma)=\frac{1}{2}\left[1-\erf\left(\frac{\varepsilon_{n\kv}-\varepsilon_F}{\sigma}\right)\right]+\frac{1}{\sqrt{2\pi}}\left(\frac{\varepsilon_{n\kv}-\varepsilon_F}{\sigma}\right)e^{-((\varepsilon_{n\kv}-\varepsilon_F)/\sigma+1/\sqrt{2})^2},
     \label{eqn:c2_smearing_MV}
@@ -439,7 +442,7 @@ nous faisons à la section~\ref{sec:electron_results}.
     n_\text{in}^{(i+1)}(\rv)=(1-\beta)n_\text{in}^{(i)}(\rv)+\beta n_\text{out}^{(i)}(\rv),
     \label{eqn:c2_mixing_lineaire}
 \end{equation}
-où $\beta\in[0,1]$ est le paramètre de \textit{mixing}. Un petit $\beta$ stabilise le cycle, mais ralentit la convergence, tandis qu'un $\beta$ plus grand accélère la convergence, mais risque de déstabiliser le cycle. Le choix de $\beta$ par essai-erreur et généralement suffisant puisque la même valeur de $\beta$ s'applique pour plusieurs systèmes similaires. Des schémas plus sophistiqués exploitent l'historique des itérations précédentes pour accélérer la convergence : le \textit{mixing} de Pulay~\cite{pulayConvergenceAccelerationIterative1980} (aussi connu sous le nom de DIIS, de l'anglais \textit{Direct Inversion in the Iterative Subspace}) minimise le résidu $R^{(i)}=n_\text{out}^{(i)}-n_\text{in}^{(i)}$ dans le sous-espace engendré par les itérations
+où $\beta\in[0,1]$ est le paramètre de \textit{mixing}. Un petit $\beta$ stabilise le cycle, mais ralentit la convergence, tandis qu'un $\beta$ plus grand accélère la convergence, mais risque de déstabiliser le cycle. Le choix de $\beta$ par essai-erreur est généralement suffisant puisque la même valeur de $\beta$ s'applique pour plusieurs systèmes similaires. Des schémas plus sophistiqués exploitent l'historique des itérations précédentes pour accélérer la convergence : le \textit{mixing} de Pulay~\cite{pulayConvergenceAccelerationIterative1980} (aussi connu sous le nom de DIIS, de l'anglais \textit{Direct Inversion in the Iterative Subspace}) minimise le résidu $R^{(i)}=n_\text{out}^{(i)}-n_\text{in}^{(i)}$ dans le sous-espace engendré par les itérations
 précédentes, tandis que la méthode de Broyden~\cite{Broyden1965Class} construit une approximation du Jacobien inverse du résidu. 
 
 Pour les systèmes métalliques et semi-métalliques comme le graphène, le cycle SCF est sujet au problème de \textit{charge sloshing} : une instabilité où la densité électronique oscille entre les itérations plutôt que de converger, particulièrement prononcé pour les états proches du niveau de Fermi. Un paramètre $\beta$ plus petit atténue ce problème au prix d'une convergence plus lente, tandis que les schémas de Pulay et Broyden sont un peu plus efficaces que le \textit{mixing} linéaire en préconditionnant implicitement le résidu via l'historique des itérations. Pour ces raisons, nous utilisons le schéma de Broyden avec un $\beta=0.3$, ce qui est relativement petit.
@@ -463,22 +466,139 @@ où $n_i =1,2,\dots, N_i$ et $N_i$ est le nombre de points dans la direction $\b
 \end{equation}
 où la somme est sur tous les points-$\kv$ de l'IBZ, contrairement à la somme précédente, qui est sur la BZ au complet. Pour le graphène, dont le groupe de points est $D_{6h}$ et pour qui la symétrie d'inversion du temps s'applique, l'IBZ représente $1/24$ de la BZ totale, tel que mentionné à la section~\ref{sec:2.1.2}. Normalement, nous commençons par générer la grille uniforme et complète en utilisant la formule de MP de l'équation~\eqref{eqn:c2_MP} puis nous la réduisons à l'aide des symétries du groupe de points et l'inversion du temps.
 
-Nous avons maintenant tous les ingrédients nécessaires pour comprendre et réaliser des calculs DFT dans une base d'ondes planes avec des pseudo-potentiels. Nous présentons nos résultats DFT de l'état fondamental des électrons dans une feuille de graphène parfait dans la prochaine section, la section~\ref{sec:electron_results}.
+Nous avons maintenant tous les ingrédients nécessaires pour comprendre et réaliser des calculs DFT dans une base d'ondes planes avec des pseudo-potentiels. Nous présentons nos résultats DFT de l'état fondamental des électrons dans une feuille de graphène parfaite dans la prochaine section, la section~\ref{sec:electron_results}.
 
 \subsection{Résultats pour le graphène}\label{sec:electron_results}
+
+Tous les calculs de cette section ont été réalisés avec le logiciel \texttt{Quantum ESPRESSO}~\cite{giannozziQUANTUMESPRESSOModular2009,giannozziAdvancedCapabilitiesMaterials2017,giannozziQuantumESPRESSOExascale2020}, qui implémente la DFT dans une base d'ondes planes avec des pseudo-potentiels ONCV. Nous utilisons également la fonctionnelle d'échange-corrélation PBE~\cite{perdewGeneralizedGradientApproximation1996a}, le pseudo-potentiel ONCV \textit{stringent} pour le carbone tiré de la bibliothèque PseudoDojo~\cite{vansettenPseudoDojoTrainingGrading2018}, l'algorithme de diagonalisation itératif de sous espace de Davidson~\cite{davidsonIterativeCalculationFew1975} ainsi que le schéma de \textit{mixing} de Broyden avec un paramètre $\beta=0.3$ pour limiter le \textit{charge sloshing} dans le graphène et un critère de convergence SCF de $10^{-14}$ Ry sur la variation de la densité électronique entre deux itérations. Notons que ces paramètres sont des paramètres de contrôle qui n'affectent que la vitesse de convergence du cycle SCF et la stabilité numérique, sans affecter le résultat final. Les autres paramètres comme la coupure d'énergie des ondes planes $E_\text{cut}$, la densité de l'échantillonnage de la BZ ainsi que le schéma de \textit{smearing} et le facteur d'élargissement $\sigma$, sont des paramètres physiques et affectent directement la précision du résultat. Pour choisir les valeurs optimales, il est nécessaire de faire un test de convergence, c'est-à-dire faire un balayage de plusieurs valeurs et choisir celles pour lesquelles l'énergie totale est sous une tolérance acceptée. Généralement, une tolérance acceptable pour des bonnes propriétés électroniques et vibrationnelles est une variation d'énergie totale  inférieure à 1 meV/atome. Pour des quantités physiques plus sensibles, comme l'intensité Raman, un seuil de tolérance de 0.1 meV/atome est préférable. Nous utilisons ce dernier seuil et nous présentons les résultats des tests de convergence pour ces paramètres à la figure~\ref{fig:convergence}. De plus, le paramètre de maille du graphène utilisé dans tous les calculs est $a=2.466$ \AA, obtenu par relaxation de la structure cristalline avec la fonctionnelle PBE. Cette valeur est en bon accord avec la valeur expérimentale de $a=2.46$ \AA~\cite{bosakElasticitySinglecrystallineGraphite2007a} et la légère surestimation de $0.006$ \AA~est typique de la PBE~\cite{mounetFirstprinciplesDeterminationStructural2005b}.
 
 \begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_convergence.pdf}
-    \caption[Étude de convergence sur divers paramètres affectant la convergence de l'état fondamental des électrons dans une feuille de graphène parfaite.]{Étude de convergence sur divers paramètres affectant la convergence de l'état fondamental des électrons dans une feuille de graphène parfaite. (a) Étude de convergence sur l'énergie de coupure des ondes planes pour une grille MP de points-$\kv$ modérément dense $12\times12\times1$. (b) Étude de convergence sur la densité de l'échantillonnage de la BZ à l'aide de grille MP de points-$\kv$ à $E_\text{cut}=100$ Ry optimal. (c) Étude de convergence croisée sur la coupure d'énergie des ondes planes pour la grille MP optimale de $27\times27\times1$. (d) Étude de convergence sur les différents schémas de \textit{smearing} à différentes valeurs de la pseudo-température $\sigma$, calculée avec la grille MP de $27\times27\times1$ optimale et à $E_\text{cut}=100$ Ry optimal.}
+    \caption[Étude de convergence sur divers paramètres affectant la convergence de l'état fondamental des électrons dans une feuille de graphène parfaite.]{Étude de convergence sur divers paramètres affectant la convergence de l'état fondamental des électrons dans une feuille de graphène parfaite. (a) Étude de convergence sur l'énergie de coupure des ondes planes pour une grille MP de points-$\kv$ modérément dense $12\times12\times1$. (b) Étude de convergence sur la densité de l'échantillonnage de la BZ à l'aide de grilles MP de points-$\kv$ à $E_\text{cut}=100$ Ry optimal. (c) Étude de convergence croisée sur la coupure d'énergie des ondes planes pour la grille MP optimale de $27\times27\times1$. (d) Étude de convergence sur les différents schémas de \textit{smearing} à différentes valeurs de la pseudo-température $\sigma$, calculée avec la grille MP de $27\times27\times1$ optimale et à $E_\text{cut}=100$ Ry optimal. Tous les calculs ont été réalisés avec la fonctionnelle XC PBE et le pseudo-potentiel ONCV \textit{stringent} pour le carbone tiré de la bibliothèque PseudoDojo~\cite{vansettenPseudoDojoTrainingGrading2018}.}
     \label{fig:convergence}
 \end{figure}
 
-\section{Partie ionique : les phonons et la théorie de la fonctionnelle de la densité perturbative}
-\label{sec:2.3}
-À l'instar de son homologue électronique, le problème ionique n'est pas moins complexe à résoudre que le problème initial. Le coupable est encore une fois l'interaction mutuelle entre tous les ions qui se trouve dans le potentiel effectif $U$.
+Premièrement, le test de convergence par rapport à la coupure d'énergie des ondes planes $E_\text{cut}$ pour une grille $\kv$ MP modérément dense de $12\times12\times1$ est illustré à la figure~\ref{fig:convergence} (a). L'énergie totale est variationnelle par rapport à $E_\text{cut}$ et donc on s'attend à une décroissance monotone de l'énergie pour des énergies de coupures croissantes. En observant cette figure, nous voyons bien la décroissance monotone et nous voyons que le premier $E_\text{cut}$ qui tombe sous le seuil de 0.1 meV/atome est $E_\text{cut}=100$ Ry. Nous choisissons donc cette valeur comme étant le $E_\text{cut}$ optimal pour les électrons. Ensuite, nous faisons le test de convergence pour la densité de l'échantillonnage de la BZ, avec $E_\text{cut}$ fixé à sa valeur optimale de 100 Ry, à la figure~\ref{fig:convergence} (b). L'énergie n'est pas variationnelle par rapport à la densité d'échantillonnage, ce qui est reflété dans la figure. Cependant, l'échantillonnage de la BZ a une forte influence sur l'énergie totale : pour les métaux et les semi-métaux, les points-$\kv$ proches du niveau de Fermi contribuent plus à l'énergie, il est donc important de bien échantillonner proche du niveau de Fermi. Pour le graphène, il est critique d'avoir le point $\Kv=(1/3, 1/3, 0)$ dans sa grille, donc des grilles MP qui sont des multiples de 3. En observant la figure~\ref{fig:convergence} (b), nous voyons que la première grille sous le seuil de 0.1 meV/atome est la grille $24\times24\times1$. Malgré cela, nous avons choisi la grille $27\times27\times1$, car elle offre un échantillonnage plus dense proche du niveau Fermi et réduit l'énergie significativement à un coût computationnel légèrement accru. De plus, dans certains systèmes, les convergences pour $E_\text{cut}$ et la grille MP ne sont pas indépendantes. Pour vérifier cela, nous avons un autre test de convergence sur $E_\text{cut}$, cette fois-ci avec la grille MP optimale de $27\times27\times1$. Le résultat se trouve dans la figure~\ref{fig:convergence} (c) et nous pouvons voir que la courbe converge vers la même valeur, confirmant que les deux paramètres sont indépendants dans ce système. Finalement, le test de convergence par rapport aux schémas de \textit{smearing} et le facteur d'élargissement $\sigma$ est présenté dans la figure~\ref{fig:convergence} (d), pour $E_\text{cut}$ et la grille MP fixés à leur valeur optimale. Nous voyons que le \textit{smearing} de Fermi-Dirac est celui qui converge le moins vite et ne descend jamais sous le seuil. Le schéma Gaussien, quant à lui, converge plus vite que Fermi-Dirac, s'approchant du seuil, sans toutefois le franchir. Pour finir, nous voyons que les schémas de Methfessel-Paxton et de Marzari-Vanderbilt sont assez similaires, avec Methfessel-Paxton qui converge marginalement plus vite, et sont les deux significativement meilleurs que les schémas de Fermi-Dirac et Gaussien. Les deux descendent en dessous du seuil pour $\sigma=0.01$ Ry. Nous avons choisi d'utiliser le schéma de Marzari-Vanderbilt avec $\sigma=0.01$ Ry, car contrairement à Methfessel-Paxton, ce schéma reste dans l'intervalle physique $[0,1]$ ce qui est particulièrement important pour la stabilité du cycle SCF et est plus robuste aux perturbations que nous allons inclure dans la feuille de graphène. En résumé, les paramètres optimaux retenus pour l'état fondamental 
+des électrons sont $E_\text{cut}=100$ Ry, une grille $\kv$ MP 
+$27\times27\times1$ et le \textit{smearing} de Marzari-Vanderbilt 
+avec $\sigma=0.01$ Ry.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_ebands_edos.pdf}
+    \caption[Structure de bandes et densité d'états électronique pour une feuille de graphène parfaite.]{Structure de bandes et densité d'états électronique pour une feuille de graphène parfaite à partir d'un calcul SCF préalable avec les paramètres convergés de la figure~\ref{fig:convergence} : la fonctionnelle XC PBE, le pseudo-potentiel ONCV \textit{stringent} PseudoDojo pour le carbone, $E_\text{cut}=100$ Ry, une grille MP $27\times27\times1$ et du \textit{smearing} MV avec $\sigma=0.01$ Ry. (a) Structure de bandes du graphène parfait calculée le long du chemin $\Gamma\to K\to M\to\Gamma$ de la BZ avec $60$ points par segment. Seules les 16 premières bandes sont illustrées. (b) Densité d'états électronique calculée sur une grille MP plus dense de $96\times96\times1$ et  avec un élargissement Gaussien de $\sigma=0.01$ Ry.}
+    \label{fig:resultats_electrons}
+\end{figure}
+
+Avec ces paramètres, les équations de KS sont résolues de manière autocohérente pour converger la densité en suivant la prescription de la figure~\ref{fig:scf_PW}. Une fois la densité convergée, le potentiel de KS $V_\text{KS}$ est calculé, puis l'Hamiltonien de KS $H_\text{KS}$ est construit sur n'importe quelle grille ou chemin dans l'espace $\kv$,  puis est diagonalisé une dernière fois pour les valeurs propres $\varepsilon_{n\kv}$ et les fonctions d'onde $\psi_{n\kv}(\rv)$. Les valeurs propres sont tracées en fonction des points$-\kv$ sur un chemin unidimensionnel dans la BZ qui passe par des points d'intérêt de haute symétrie. Les valeurs propres peuvent également être utilisées pour calculer la densité d'états électroniques (DOS, de l'anglais \textit{Density of States})
+\begin{equation}
+    D(\varepsilon)=\sum_{n\kv}\delta(\varepsilon-\varepsilon_{n\kv})
+    \label{eqn:c2_edos}
+\end{equation}
+qui représente le nombre d'états électroniques par unité d'énergie disponibles à l'énergie $\varepsilon$. En pratique, la fonction delta est remplacée par une Gaussienne avec un facteur d'élargissement $\sigma$, puisqu'il n'est pas possible de représenter une fonction delta numériquement. Ce facteur joue un peu le même rôle que le facteur d'élargissement pour le \textit{smearing}, nous lui attribuons donc le même symbole. Intégrer la DOS sur les états occupés donne le nombre d'électrons dans la cellule unitaire $N_e$:
+\begin{equation}
+    \int_{-\infty}^{\varepsilon_F}d\varepsilon\,D(\varepsilon)=N_e,
+    \label{eqn:c2_dos_int}
+\end{equation}
+ce qui donne 8 pour le graphène. 
+
+La structure de bandes et la densité d'états électronique pour une feuille de graphène parfaite sont illustrées dans la figure~\ref{fig:resultats_electrons}. La structure de bandes est représentée dans la figure~\ref{fig:resultats_electrons} (a). L'état fondamental a été calculé avec les paramètres donnés plus haut dans cette section, puis l'Hamiltonien a été diagonalisé le long du chemin $\Gamma\to K\to M\to\Gamma$ avec 60 points par segment. Nous voyons les trois bandes $\sigma-sp^2$ plus basses en énergie et la bande $\pi-p_z$ qui touche linéairement la bande $\pi^*-p_z$ au niveau de Fermi et au point $\Kv$ de la BZ. C'est le cône de Dirac. La dispersion linéaire au point de Dirac donne lieu à une vitesse de Fermi $v_F\approx10^6$ m/s~\cite{castronetoElectronicPropertiesGraphene2009,novoselovTwodimensionalGasMassless2005} qui témoigne de la mobilité très élevée des électrons dans le graphène.
+
+La DOS est représentée dans la figure~\ref{fig:resultats_electrons} (b). Elle a été calculée sur une grille MP plus dense de $96\times96\times1$ et un facteur d'élargissement $\sigma=0.01$ Ry a été utilisé. La partie colorée représente les états occupés et nous voyons bien que la densité d'états est nulle à l'énergie de Fermi, ce qui confirme que le graphène parfait est un semi-métal avec un gap nul au point de Dirac à température nulle. Pour toute température $T>0$, l'agitation thermique peuple continuellement la bande $\pi^*$, ce qui explique que le graphène est conducteur à température finie. Nous voyons également que les singularités de Van Hove~\cite{dresselhausPhysicalPropertiesCarbon1998,BassaniParraviciniElectronic} (les pics dans la DOS aux points d'inflexion de la structure de bandes au point $\mathbf{M}$) sont bien reproduites. Ces résultats sont en excellent accord avec les calculs DFT-PBE de la littérature~\cite{castronetoElectronicPropertiesGraphene2009}.
+
+\section{Partie ionique : les phonons et la théorie de la fonctionnelle de la densité perturbative}\label{sec:2.3}
+À l'instar de son homologue électronique, le problème ionique n'est pas moins complexe à résoudre que le problème initial. Le coupable est encore une fois l'interaction mutuelle entre tous les ions qui se trouve dans le potentiel effectif $U$. Ce problème est toutefois moins difficile à résoudre que le problème électronique, car les ions peuvent être traités semi-classiquement, contrairement aux électrons qui sont des particules quantiques. Dans cette section, nous résolvons le problème ionique dans 
+l'approximation harmonique et quantifions les vibrations du 
+réseau en quasiparticules appelées \textit{phonons}. Nous 
+introduisons ensuite brièvement le couplage électron-phonon 
+et présentons les résultats des propriétés vibrationnelles 
+du graphène parfait.
+
 \subsection{Approximation harmonique}
+Une fois que le problème électronique est résolu avec \textit{e.g.} la DFT, nous permettons aux ions de bouger, ou plus précisément d'osciller autour de leur position d'équilibre. Pour décrire les positions ioniques, nous utilisons un indice composé $I=\ell\alpha$, où $\ell$ identifie la cellule unitaire située à $\Rv_\ell$ et $\alpha$ indexe les ions situés à $\bm{\tau}_\alpha$ dans la cellule unitaire, de sorte que leur position s'écrit maintenant
+\begin{equation}
+    \rv_{\ell\alpha}=\Rv_\ell+\bm{\tau}_\alpha+\mathbf{u}_{\ell\alpha},
+    \label{eqn:c2_rla}
+\end{equation}
+où $\mathbf{u}_{\ell\alpha}$ est le déplacement autour de l'équilibre de l'ion $\alpha$ dans la cellule $\ell$. Avec cette notation, le problème à résoudre est maintenant
+\begin{equation}
+    H_i=-\sum_{\ell\alpha}\frac{\hbar^2}{2M_\alpha}\nabla^2_{\rv_{\ell\alpha}}+U.
+    \label{eqn:c2_Hila}
+\end{equation}
+Le potentiel effectif $U$ contient le couplage entre tous les ions et l'énergie de l'état fondamental des électrons. Pour contourner les difficultés qui lui sont associées, il est utile de supposer que les déplacements des ions $\mathbf{u}_{\ell\alpha}$ sont petits et de faire l'expansion en série de Taylor du potentiel autour de la position d'équilibre
+\begin{equation}
+    U\approx \frac{1}{2}\sum_{\ell\alpha\mu}\sum_{\ell'\alpha'\mu'}C_{\ell\alpha\mu,\ell'\alpha'\mu'}u_{\ell\alpha\mu}u_{\ell'\alpha'\mu'},
+\end{equation}
+où $\mu=x,y,z$ dénote les composantes des vecteurs. Le terme d'ordre zéro n'est qu'une constante et a été ignoré. Le terme de premier ordre, qui est la dérivée du potentiel à l'équilibre, est proportionnel à la force exercée sur les ions, qui est nulle par définition à l'équilibre. Dans le terme de deuxième ordre, nous avons défini la matrice des constantes de forces interatomiques (IFC, de l'anglais \textit{Interatomic Force Constants})
+\begin{equation}
+    C_{\ell\alpha\mu,\ell'\alpha'\mu'}\equiv \frac{\partial^2U}{\partial u_{\ell\alpha\mu}\partial u_{\ell'\alpha'\mu'}}\bigg\rvert_{\mathbf{u}=\mathbf{0}}.
+    \label{eqn:c2_IFC}
+\end{equation}
+Tronquer la série après le deuxième terme donne lieu à l'approximation harmonique, qui remplace l'interaction mutuelle complexe par une interaction beaucoup plus simple où chaque ion est vu comme étant relié à tous les autres par des ressorts de constantes de rappel données par les IFCs. Nous voulons résoudre pour les déplacements des ions $u_{\ell\alpha\mu}$. Pour se faire, nous pouvons utilisé la deuxième loi de Newton
+\begin{equation}
+    F_{\ell\alpha\mu}=M_\alpha \frac{\partial ^2 u_{\ell\alpha\mu}}{\partial t^2}=-\frac{\partial U}{\partial u_{\ell\alpha\mu}},
+\end{equation}
+d'où la description semi-classique. En supposant des déplacements sous forme d'ondes planes, justifiée par l'approximation harmonique, $u_{\ell\alpha\mu}=u_{\alpha\mu}(\qv)e^{i(\qv\cdot\Rv_\ell-\omega t)}$, nous obtenons les équations de motion pour les ions
+\begin{equation}
+    \omega_{\nu\qv}^2e_{\alpha\mu}^{(\nu)}(\qv)=\sum_{\alpha'\mu'}D_{\alpha\mu,\alpha'\mu'}(\qv)e_{\alpha'\mu'}^{(\nu)}(\qv).
+    \label{eqn:c2_ionsEOM}
+\end{equation}
+Ici, nous avons défini la matrice dynamique, qui est reliée à la transformée de Fourier de la matrice des IFCs
+\begin{equation}
+    D_{\alpha\mu,\alpha'\mu'}(\qv)\equiv\frac{1}{\sqrt{M_\alpha M_{\alpha'}}}\sum_{\Rv_\ell}C_{\alpha\mu,\alpha'\mu'}(\Rv_\ell)e^{i\qv\cdot\Rv_\ell},
+    \label{eqn:c2_D}
+\end{equation}
+et les déplacements pondérés en masse $e_{\alpha\mu}^{(\nu)}(\qv) = \sqrt{M_\alpha}u_{\alpha\mu}(\qv)$. L'équation \eqref{eqn:c2_ionsEOM} est une équation aux valeurs propres pour les fréquences de phonon $\omega_{\nu\qv}$ et les modes normaux des déplacements $e_{\alpha\mu}^{(\nu)}(\qv)$. Pour un système avec $p$ ions dans la cellule unitaire, la matrice dynamique est une matrice $3p\times 3p$ et nous utilisons l'indice $\nu=1,\dots,3p$ pour étiqueter les $3p$ valeurs et modes normaux. Nous disons que $\nu$ est l'indice de branche de phonons. Une fois la matrice dynamique diagonalisée, nous avons les fréquences de phonons en main et le déplacement atomique total est une combinaison linéaire des modes normaux
+\begin{equation}
+    u_{\ell\alpha\mu}=\frac{1}{\sqrt{N_\text{uc}M_\alpha}}\sum_{\nu\qv}Q_{\nu\qv}e_{\alpha\mu}^{(\nu)}(\qv)e^{i(\qv\cdot\Rv_\ell-\omega t)},
+    \label{eqn:c2_uQ}
+\end{equation}
+où les coefficients $Q_{\nu\qv}$ sont à déterminer et $N_\text{uc}$ est le nombre de cellules unitaires dans le solide. Notons également que la matrice dynamique étant symétrique, ces vecteurs propres, les modes normaux, sont orthonormaux entre eux. Les déplacements atomiques sont des quantités réelles ce qui imposent
+\begin{equation}
+    Q^*_{\nu\qv}=Q_{\nu-\qv},
+\end{equation}
+et
+\begin{equation}
+    e^{*(\nu)}_{\alpha\mu}(\qv)=e^{(\nu)}_{\alpha\mu}(-\qv).
+\end{equation}
+
+La description semi-classique de l'approximation harmonique donne 
+accès aux fréquences de vibration $\omega_{\nu\qv}$ et aux modes 
+normaux $e_{\alpha\mu}^{(\nu)}(\qv)$, mais ne suffit pas pour 
+décrire les propriétés quantiques des vibrations du réseau. En 
+effet, les expériences montrent que les vibrations n'échangent 
+de l'énergie qu'en paquets discrets $\hbar\omega_{\nu\qv}$ avec 
+la lumière et les neutrons — une propriété fondamentalement 
+quantique. De plus, la spectroscopie Raman, au cœur de ce 
+mémoire, est un processus de création et d'annihilation de 
+quasiparticules vibrationnelles, ce qui nécessite une description 
+quantique. Il est donc nécessaire de quantifier les vibrations 
+du réseau, ce que nous faisons dans la prochaine section.
+
 \subsection{Quantification des vibrations du réseau : phonons}
+
+Dans l'approximation harmonique, l'Hamiltonien des ions prend la forme plus simple
+\begin{equation}
+    H_i = \sum_{\ell\alpha\mu}\frac{p_{\ell\alpha\mu}^2}{2M_\alpha}+\frac{1}{2}\sum_{\ell\alpha\mu}\sum_{\ell'\alpha'\mu'}C_{\ell\alpha\mu,\ell'\alpha'\mu'}u_{\ell\alpha\mu}u_{\ell'\alpha'\mu'}.
+\end{equation}
+En utilsant le développement des déplacements atomiques en combinaison linéaire des modes normaux (l'équation~\eqref{eqn:c2_uQ}) et son équivalent pour le moment conjugué $p_{\ell\alpha\mu}=M_\alpha\dot{u}_{\ell\alpha\mu}$, nous obtenons l'Hamiltonien dans l'espace réciproque
+\begin{equation}
+    H_i = \frac{1}{2}\sum_{\nu\qv}\left(\dot{Q}_{\nu\qv}\dot{Q}_{\nu-\qv}+\omega_{\nu\qv}^2Q_{\nu\qv}Q_{\nu-\qv}\right),
+\end{equation}
+qui est une somme d'oscillateurs harmoniques indépendants. La quantification des vibrations des ions suit la procédure standard de la quantification canonique : les coordonnées normales $Q_{\nu\qv}$ et leurs moments conjugués $P_{\nu\qv}=\dot{Q}_{\nu\qv}$ sont promus au rang d'opérateurs quantiques satisfaisant les relations de commutation canoniques
+\begin{equation}
+    [Q_{\nu\qv},P_{\nu'\qv'}]=i\hbar\delta_{\nu\nu'}\delta_{\qv\qv'}.
+\end{equation}
+De manière analogue à l'oscillateur harmonique quantique simple, en introduisant les opérateurs de création $b^\dag_{\nu\qv}$ et d'annihilation $b_{\nu\qv}$ d'un phonon de branche $\nu$ et de vecteur d'onde $\qv$
+\begin{equation}
+    b_{\nu\qv}=\sqrt{\frac{\omega_{\nu\qv}}{2\hbar}}\left(Q_{\nu\qv}+\frac{i}{\omega_{\nu\qv}}P_{\nu\qv}\right),
+\end{equation}
+l'Hamiltonien harmonique prend la forme élégante
+\begin{equation}
+    H_\text{ph}=\sum_{\nu\qv}\hbar\omega_{\nu\qv}\left(b_{\nu\qv}^\dag b_{\nu\qv}+\frac{1}{2}\right),
+\end{equation}
+qui est formellement identique à une somme d'oscillateurs harmoniques idépendants.
 \subsection{Théorie de la fonctionnelle de la densité perturbative}
 \subsection{Couplage électron-phonon}
 \subsection{Résultats pour le graphène}

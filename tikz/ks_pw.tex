@@ -1,0 +1,95 @@
+\begin{tikzpicture}[
+    box/.style={rectangle, draw=black, rounded corners,
+                fill=gray!15, minimum width=6.5cm,
+                minimum height=1.3cm, align=center, font=\small, inner sep=6pt},
+    sidebox/.style={rectangle, draw=black, rounded corners,
+                fill=gray!15, minimum width=3.8cm,
+                minimum height=0.85cm, align=center, font=\small},
+    decision/.style={diamond, draw=black, fill=darkblue!15,
+                     aspect=3, align=center, font=\small},
+    arrow/.style={->, >=stealth, thick},
+    label/.style={font=\small, midway},
+]
+
+\def\sep{1.55}
+
+% ---- Nœuds principaux ----
+\node[box] (nin)    at (0,  0)           {$n_\text{in}^{(i)}(\rv)$};
+\node[font=\scriptsize\bfseries, anchor=north west] 
+    at (nin.north west) {(1)};
+
+\node[box] (ninG)   at (0, -1*\sep)      {$\tilde{n}_\text{in}(\Gv)$};
+\node[font=\scriptsize\bfseries, anchor=north west] 
+    at (ninG.north west) {(2)};
+
+\node[box] (VL)     at (0, -2*\sep)      {$\tilde{V}_\text{L}(\Gv)
+                                           =\tilde{V}_\text{H}(\Gv)
+                                           +\tilde{V}_\text{XC}(\Gv)
+                                           +\tilde{V}_\text{PPL}(\Gv)$};
+\node[font=\scriptsize\bfseries, anchor=north west] 
+    at (VL.north west) {(3)};
+
+\node[box] (H)      at (0, -3.3*\sep)    {$H^{(\kv)}_{\Gv\Gv'}
+                                           \;\longrightarrow\;
+                                           C_{n\kv}(\Gv),\;
+                                           \varepsilon_{n\kv}$};
+\node[font=\scriptsize\bfseries, anchor=north west] 
+    at (H.north west) {(5)};
+
+\node[box] (psi)    at (0, -4.6*\sep)    {$\psi_{n\kv}(\rv)$};
+\node[font=\scriptsize\bfseries, anchor=north west] 
+    at (psi.north west) {(6)};
+
+\node[box] (nout)   at (0, -5.6*\sep)    {$n_\text{out}(\rv)
+                                           =\sum_{n\kv}f_{n\kv}
+                                           |\psi_{n\kv}(\rv)|^2$};
+\node[font=\scriptsize\bfseries, anchor=north west] 
+    at (nout.north west) {(7)};
+
+\node[box] (mix)    at (0, -6.6*\sep)    {Mixing $\;\longrightarrow\;
+                                           n_\text{in}^{(i+1)}(\rv)$};
+\node[font=\scriptsize\bfseries, anchor=north west] 
+    at (mix.north west) {(8)};
+
+\node[decision](conv) at (0, -7.8*\sep)  {Convergé?};
+\node[box] (props)  at (0, -9.2*\sep)    {Propriétés de l'état fondamental};
+\node[font=\scriptsize\bfseries, anchor=north west] 
+    at (props.north west) {(10)};
+
+% ---- Nœuds latéraux (précalculés) ----
+\node[sidebox] (VPPL) at (6.2, -2*\sep)
+    {$\tilde{V}_\text{PPL}(\Gv)$\\(précalculé)};
+\node[font=\scriptsize\bfseries, anchor=north west] 
+    at (VPPL.north west) {(3)};
+\node[sidebox] (VNL)  at (6.2, -3.3*\sep)
+    {$\tilde{V}_\text{NL}^{(\kv)}(\Gv,\Gv')$\\(précalculé)};
+\node[font=\scriptsize\bfseries, anchor=north west] 
+    at (VNL.north west) {(4)};
+
+% ---- Flèches flux principal ----
+\draw[arrow] (nin)   -- (ninG)
+    node[label, right] {FFT};
+\draw[arrow] (ninG)  -- (VL);
+\draw[arrow] (VL)    -- (H);
+\draw[arrow] (VPPL)  -- (VL);
+\draw[arrow] (VNL)   -- (H);
+\draw[arrow] (H)     -- (psi)
+    node[label, right] {FFT$^{-1}$};
+\draw[arrow] (psi)   -- (nout);
+\draw[arrow] (nout)  -- (mix);
+\draw[arrow] (mix)   -- (conv);
+\draw[arrow] (conv)  -- (props)
+    node[label, right] {Oui};
+
+% ---- Flèche de retour (boucle SCF) ----
+\draw[arrow] (conv.west)
+    -- ++(-2.5, 0)
+    |- (nin.west)
+    node[pos=0.01, right, font=\small] {Non};
+
+% ---- Rectangle délimitant la boucle SCF ----
+\draw[dashed, gray, rounded corners]
+    (-4.0, 1.15) rectangle (4.0, -7.15*\sep);
+\node[font=\small\itshape, gray] at (-2.8, 0.85) {Boucle SCF};
+
+\end{tikzpicture}

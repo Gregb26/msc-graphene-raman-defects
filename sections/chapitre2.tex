@@ -281,7 +281,7 @@ Nous aurons besoin de ces expressions lors du calcul des éléments de matrice d
 \begin{figure}[t]
     \centering
     \includegraphics{figures/KB_projectors_C.pdf}
-    \caption[llustration de la partie locale et non-locale du pseudo-potentiel pour un atome
+    \caption[Illustration de la partie locale et non-locale du pseudo-potentiel pour un atome
     de carbone.]{Illustration de la partie locale et non-locale du pseudo-potentiel pour un atome de carbone. (a) Comparaison entre la partie locale du pseudo-potentiel $V_\text{PPL}(r)$ et le potentiel de Coulomb $-Z_\text{val}/r$ où $Z_\text{val}=4$ est la charge des électrons de valence du carbone. Notons que $V_\text{PPL}(r)$ corrige la divergence du potentiel de Coulomb à l'origine. (b) Partie radiale des projecteurs de KB $\beta_{i\ell}(r)$, qui s'annulent au-delà des rayons de coupure $r_c^{(s)}$ et $r_c^{(p)}$. Le
     pseudo-potentiel est de type ONCV \textit{stringent} pour la fonctionnelle XC PBE, tiré de la bibliothèque PseudoDojo 
     \cite{vansettenPseudoDojoTrainingGrading2018}.}
@@ -389,6 +389,12 @@ Cette matrice Hamiltonienne est de taille $N_\text{PW}\times N_\text{PW}$, où $
     \item Si la différence entre $n_\text{in}$ et $n_\text{out}$ est inférieure à une tolérance spécifiée, ou d'autres critères de convergence sont satisfaits, passer à l'étape 10. Autrement, retourner à l'étape 2. 
     \item Calculer les propriétés de l'état fondamental.
 \end{enumerate}
+\begin{figure}[t]
+    \centering
+    \input{tikz/ks_pw.tex}
+    \caption[Représentation schématique du cycle SCF pour la résolution des équations de KS dans la base d'ondes planes.]{Représentation schématique du cycle SCF pour la résolution des équations de KS dans la base d'ondes planes.}
+    \label{fig:scf_PW}
+\end{figure}
 Nous détaillons maintenant les ingrédients clés de ce cycle: les algorithmes de diagonalisation (étape 5), le facteur d'occupation (étape 7), le schéma de \textit{mixing} (étape 8) et l'échantillonage de la BZ, c'est-dire-comment choisir les points $\kv$ pour construire la matrice Hamiltonienne.
 
 \noindent\textbf{Algorithmes de diagonalisation itératifs}
@@ -407,7 +413,7 @@ où $\varepsilon_F$ est l'énergie de Fermi (l'énergie de l'état le plus haut 
     f_{n\kv}^\text{FD}(\sigma)=\frac{1}{e^{(\varepsilon_{n\kv}-\varepsilon_F)/\sigma}+1},
     \label{eqn:c2_smearing_FD}
 \end{equation}
-puisque les électrons sont particules fermioniques et obéissent à la statistique de Fermi-Dirac à température finie, avec $\sigma=k_B T$ jouant le rôle de la température. La distribution de Fermi-Dirac fait une erreur de l'ordre de $e^{-1/\sigma}$. Un autre choix est le \textit{smearing} Gaussien
+puisque les électrons sont des particules fermioniques et obéissent à la statistique de Fermi-Dirac à température finie, avec $\sigma=k_B T$ jouant le rôle de la température. La distribution de Fermi-Dirac fait une erreur de l'ordre de $e^{-1/\sigma}$. Un autre choix est le \textit{smearing} Gaussien
 \begin{equation}
     f_{n\kv}^\text{G}(\sigma)=\frac{1}{2}\left[1-\erf\left(\frac{\varepsilon_{n\kv}-\varepsilon_F}{\sigma}\right)\right],
     \label{eqn:c2_smearing_gaussien}
@@ -450,7 +456,7 @@ où $g_n(\kv)$ est une fonction générale et $N_\kv$ est le nombre de points-$\
     \kv_{n_1,n_2,n_3}=\sum_{i=1}^3\frac{2n_i-N_i-1}{2N_i}\bv_i +\mathbf{s},
     \label{eqn:c2_MP}
 \end{equation}
-où $n_i =1,2,\dots, N_i$ et $N_i$ est le nombre de points dans la direction $\bv_i$, tandis que $\mathbf{s}$ est un paramètre qui décale la grille. Généralement, une grille centrée sur le point $\Gamma$ de la BZ (centrée sur l'origine, donc $\mathbf{s}=\mathbf{0})$ est employée. Qui plus est, tel que mentionné à la section~\ref{sec:2.1.2}, il est possible d'exploiter les symétries du cristal pour réduire le nombre de points-$\kv$ nécessaires à l'évaluation de quantités définies par la somme de l'équation~\eqref{eqn:c2_BZintegration}. En effet, si une opération de symétrie $R$ relie deux points $\kv$  et $\kv'=R\kv$ de la BZ, il suit que $g_n(R\kv)=g_n(\kv)$ pour toute fonction scalaire $g_n$. Il est utile de définir les poids $w_\kv$ comme étant le nombre de points-$\kv$ de la BZ complète équivalents au poin- $\kv$ de l'IBZ, divisé par le nombre total de points $N_\kv$. Avec les poids, la somme de l'équation~\eqref{eqn:c2_BZintegration} est équivalente à 
+où $n_i =1,2,\dots, N_i$ et $N_i$ est le nombre de points dans la direction $\bv_i$, tandis que $\mathbf{s}$ est un paramètre qui décale la grille. Généralement, une grille centrée sur le point $\Gamma$ de la BZ (centrée sur l'origine, donc $\mathbf{s}=\mathbf{0})$ est employée. Qui plus est, tel que mentionné à la section~\ref{sec:2.1.2}, il est possible d'exploiter les symétries du cristal pour réduire le nombre de points-$\kv$ nécessaires à l'évaluation de quantités définies par la somme de l'équation~\eqref{eqn:c2_BZintegration}. En effet, si une opération de symétrie $R$ relie deux points $\kv$  et $\kv'=R\kv$ de la BZ, il suit que $g_n(R\kv)=g_n(\kv)$ pour toute fonction scalaire $g_n$. Il est utile de définir les poids $w_\kv$ comme étant le nombre de points-$\kv$ de la BZ complète équivalents au point-$\kv$ de l'IBZ, divisé par le nombre total de points $N_\kv$. Avec les poids, la somme de l'équation~\eqref{eqn:c2_BZintegration} est équivalente à 
 \begin{equation}
     g = \sum_{n\kv}^{\text{IBZ}}w_\kv g_n(\kv),
     \label{eqn:c2_IBZintegration}
@@ -460,12 +466,21 @@ où la somme est sur tous les points-$\kv$ de l'IBZ, contrairement à la somme p
 Nous avons maintenant tous les ingrédients nécessaires pour comprendre et réaliser des calculs DFT dans une base d'ondes planes avec des pseudo-potentiels. Nous présentons nos résultats DFT de l'état fondamental des électrons dans une feuille de graphène parfait dans la prochaine section, la section~\ref{sec:electron_results}.
 
 \subsection{Résultats pour le graphène}\label{sec:electron_results}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_convergence.pdf}
+    \caption[Étude de convergence sur divers paramètres affectant la convergence de l'état fondamental des électrons dans une feuille de graphène parfaite.]{Étude de convergence sur divers paramètres affectant la convergence de l'état fondamental des électrons dans une feuille de graphène parfaite. (a) Étude de convergence sur l'énergie de coupure des ondes planes pour une grille MP de points-$\kv$ modérément dense $12\times12\times1$. (b) Étude de convergence sur la densité de l'échantillonnage de la BZ à l'aide de grille MP de points-$\kv$ à $E_\text{cut}=100$ Ry optimal. (c) Étude de convergence croisée sur la coupure d'énergie des ondes planes pour la grille MP optimale de $27\times27\times1$. (d) Étude de convergence sur les différents schémas de \textit{smearing} à différentes valeurs de la pseudo-température $\sigma$, calculée avec la grille MP de $27\times27\times1$ optimale et à $E_\text{cut}=100$ Ry optimal.}
+    \label{fig:convergence}
+\end{figure}
+
 \section{Partie ionique : les phonons et la théorie de la fonctionnelle de la densité perturbative}
 \label{sec:2.3}
 À l'instar de son homologue électronique, le problème ionique n'est pas moins complexe à résoudre que le problème initial. Le coupable est encore une fois l'interaction mutuelle entre tous les ions qui se trouve dans le potentiel effectif $U$.
 \subsection{Approximation harmonique}
 \subsection{Quantification des vibrations du réseau : phonons}
 \subsection{Théorie de la fonctionnelle de la densité perturbative}
+\subsection{Couplage électron-phonon}
 \subsection{Résultats pour le graphène}
 
 \section{Fonctions de Wannier}

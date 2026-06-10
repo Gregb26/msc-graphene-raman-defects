@@ -12,7 +12,7 @@ Toute l'information d'un système quantique est contenue dans la fonction d'onde
 où $\hat{H}$ est l'opérateur qui représente l'énergie totale du système et $E$ est l'énergie totale. Les systèmes qui nous intéressent sont des solides cristallins composés d'atomes arrangés périodiquement sur un réseau cristallin. Ces atomes sont constitués d'électrons de valence, responsables des propriétés physiques et chimiques d'intérêt, et d'électrons de c\oe ur, fortement liés aux noyaux et chimiquement inertes. Ces derniers sont traités conjointement avec les noyaux pour former des ions de masses $M_{I}$ et de pseudo-charge $Z_{I}$. Tous ces constituants sont électriquement chargés et interagissent mutuellement par l'entremise d'un potentiel de Coulomb. L'Hamiltonien général qui représente un ensemble de $N_e$ électrons et $N_i$ ions est donné par
 \begin{equation}
 \begin{split}
-    H &= -\sum_{i=1}^{N_e}\frac{\hbar^2}{2m_e}\nabla_i^2
+    \hat{H} &= -\sum_{i=1}^{N_e}\frac{\hbar^2}{2m_e}\nabla_i^2
         -\sum_{I=1}^{N_i}\frac{\hbar^2}{2M_I}\nabla_I^2
         +\frac{1}{2}\sum_{\substack{IJ \\ I\neq J}}^{N_i}
         \frac{Z_IZ_Je^2}{4\pi\varepsilon_0|\rv_I-\rv_J|} \\
@@ -32,24 +32,24 @@ Une première simplification majeure provient du rapport entre la masse des ions
     \Psi(\{\rv_i\},\{\rv_I\})=\psi(\{\rv_i\};\{\rv_I\})\phi(\{\rv_I\}),
     \label{eqn:c2_BO}
 \end{equation}
-où $\psi(\{\rv_i\};\{\rv_I\})$ est la fonction d'onde électronique, résolue pour des positions ioniques $\{\rv_I\}$ fixes (qui jouent le rôle de paramètres) et $\phi(\{\rv_I\})$ est la fonction d'onde ionique\footnote{Bien sûr, dans la vraie vie, les ions ne sont pas fixes. Ils oscillent autour d'une position d'équilibre à cause de la température notamment. Cela a un effet sur les électrons, qui sera traité perturbativement dans le chapitre~\ref{chap:eph} sur le couplage électron-phonon. Nous discutons des limitations de l'approximation adiabatique à la fin de cette section.}. L'Hamiltonien se sépare également en deux parties : $H=H_e+H_i$. Le problème électronique, résolu pour des positions ioniques fixes, est
+où $\psi(\{\rv_i\};\{\rv_I\})$ est la fonction d'onde électronique, résolue pour des positions ioniques $\{\rv_I\}$ fixes (qui jouent le rôle de paramètres) et $\phi(\{\rv_I\})$ est la fonction d'onde ionique\footnote{Bien sûr, dans la vraie vie, les ions ne sont pas fixes. Ils oscillent autour d'une position d'équilibre à cause de la température notamment. Cela a un effet sur les électrons, qui sera traité perturbativement dans le chapitre~\ref{chap:eph} sur le couplage électron-phonon. Nous discutons des limitations de l'approximation adiabatique à la fin de cette section.}. L'Hamiltonien se sépare également en deux parties : $\hat{H}=\hat{H}_e+\hat{H}_i$. Le problème électronique, résolu pour des positions ioniques fixes, est
 \begin{equation}
-    H_e\psi(\{\rv_i\};\{\rv_I\})=E_e\psi(\{\rv_i\};\{\rv_I\}),
+    \hat{H_e}\psi(\{\rv_i\};\{\rv_I\})=E_e\psi(\{\rv_i\};\{\rv_I\}),
     \label{eqn:c2_problème_électronique}
 \end{equation}
 avec l'Hamiltonien électronique
 \begin{equation}
-    H_e=\underbrace{-\sum_{i=1}^{N_e}\frac{\hbar^2}{2m_e}\nabla_i^2}_{\equiv T}+\underbrace{\frac{1}{2}\sum_{\substack{ij \\ i\neq j}}^{N_e}\frac{e^2}{4\pi\varepsilon_0|\rv_i-\rv_j|}}_{\equiv V_\text{int}}+\sum_{i=1}^{N_e}V_\text{ext}(\rv_i),
+    \hat{H}_e=\underbrace{-\sum_{i=1}^{N_e}\frac{\hbar^2}{2m_e}\nabla_i^2}_{\equiv \hat{T}}+\underbrace{\frac{1}{2}\sum_{\substack{ij \\ i\neq j}}^{N_e}\frac{e^2}{4\pi\varepsilon_0|\rv_i-\rv_j|}}_{\equiv \hat{V}_\text{int}}+\sum_{i=1}^{N_e}V_\text{ext}(\rv_i),
     \label{eqn:c2_He}
 \end{equation}
 Une fois le problème électronique résolu, le problème ionique devient
 \begin{equation}
-    H_i\phi(\{\rv_I\})=E\phi(\{\rv_I\}),
+    \hat{H}_i\phi(\{\rv_I\})=E\phi(\{\rv_I\}),
     \label{eqn:c2_problème_ionique}
 \end{equation}
 avec l'Hamiltonien ionique
 \begin{equation}
-    H_i = -\sum_{I=1}^{N_i}\frac{\hbar^2}{2M_I}\nabla_I^2+\underbrace{\frac{1}{2}\sum_{\substack{IJ \\ I\neq J}}^{N_i}\frac{Z_IZ_Je^2}{4\pi\varepsilon_0|\rv_I-\rv_J|}+E_e}_{\equiv U}.
+    \hat{H}_i = -\sum_{I=1}^{N_i}\frac{\hbar^2}{2M_I}\nabla_I^2+\underbrace{\frac{1}{2}\sum_{\substack{IJ \\ I\neq J}}^{N_i}\frac{Z_IZ_Je^2}{4\pi\varepsilon_0|\rv_I-\rv_J|}+E_e}_{\equiv U}.
     \label{eqn:c2_Hi}
 \end{equation}
 où le potentiel ionique effectif $U$ regroupe la répulsion Coulombienne entre les ions et l'énergie de l'état fondamental électronique $E_e$, qui assure la cohésion du solide. L'approximation de Born-Oppenheimer ayant découplé le problème en deux parties, nous nous consacrons dans la section~\ref{sec:2.2} à la résolution de la partie électronique via la théorie de la fonctionnelle de la densité, puis dans la section~\ref{sec:2.3} à la partie ionique via la théorie de la fonctionnelle de la densité perturbative.
@@ -90,7 +90,7 @@ Hormis la symétrie de translation discrète, les solides cristallins possèdent
 
 Dans cette section nous nous attaquons au problème électronique défini par l'Hamiltonien de l'équation \ref{eqn:c2_He}, que nous répétons ici par souci d'exhaustivité
 \begin{equation}
-    H_e = T+V_\text{int}+\sum_{i=1}^{N_e}V_\text{ext}(\rv_i).
+    \hat{H}_e = \hat{T}+\hat{V}_\text{int}+\sum_{i=1}^{N_e}V_\text{ext}(\rv_i).
 \end{equation}
 Le problème, qui ne contient plus les degrés de liberté ioniques, est \textit{a priori} plus facile à résoudre que le problème initial. Cependant, en inspectant l'Hamiltonien de plus près, nous voyons tout de suite que ce n'est pas le cas : le deuxième terme, \textit{i.e.} la répulsion électrique entre les électrons, couple tous les électrons du système entre eux et les mêmes arguments utilisés à la section \ref{sec:2.1} s'appliquent malheureusement ici. Les physiciens et chimistes ont développé de nombreuses méthodes pour traiter ce problème : des méthodes basées sur les fonctions d'onde comme Hartree~\cite{hartreeWaveMechanicsAtom1928,hartreeWaveMechanicsAtom1928a} et Hartree-Fock~\cite{fockNaeherungsmethodeZurLoesung1930,slaterNoteHartreesMethod1930,diracQuantumMechanicsManyelectron1929}, sur les fonctions de Green~\cite{martinTheoryManyParticleSystems1959,AbrikosovAAGorkov} ou encore des méthodes stochastiques comme le Monte-Carlo quantique \cite{ceperleyGroundStateElectron1980}. Parmi toutes ces méthodes, une a révolutionné le domaine de la structure électronique : la théorie de la fonctionnelle de la densité (DFT, de l'anglais \textit{Density Functional Theory}). Les arguments présentés ici suivent ceux du livre de référence de Richard M. Martin \cite{martinElectronicStructureBasic2004} et ceux de l'ouvrage de Steven M. Girvin et Kun Yang \cite{girvinModernCondensedMatter2019}. 
 
@@ -124,7 +124,7 @@ où l'intégration se fait sur toutes les coordonnées électroniques sauf une (
 \noindent
 Le terme \textit{fonctionnelle} ici fait référence à une application de l'espace des fonctions vers les nombres réels, contrairement aux \textit{fonctions} qui sont des applications des nombres réels vers des nombres réels. Nous utilisons des crochets pour écrire une fonctionnelle $E[n]$ et des parenthèses pour écrire une fonction $n(\rv)$. L'idée est que puisque toutes les propriétés du système sont déterminées par la densité selon le premier théorème de HK, toutes ces propriétés, incluant l'énergie totale, peuvent être écrites comme étant une fonctionnelle de la densité $n(\rv)$
 \begin{align}
-    E[n]&=\bra{\psi[n]}T+V_\text{int}\ket{\psi[n]}+\int d^3\rv\,V_\text{ext}(\rv)n(\rv),\notag\\
+    E[n]&=\bra{\psi[n]}\hat{T}+\hat{V}_\text{int}\ket{\psi[n]}+\int d^3\rv\,V_\text{ext}(\rv)n(\rv),\notag\\
     &= T[n]+V_\text{int}[n]+\int d^3\rv\,V_\text{ext}(\rv)n(\rv),\notag\\
     &\equiv F_\text{HK}[n]+\int d^3\rv\,V_\text{ext}(\rv)n(\rv).
 \end{align}
@@ -178,12 +178,12 @@ Nous avons atteint notre objectif qui était de traiter les complications engend
 Le deuxième théorème de HK garantit que l'énergie de l'état fondamental du système auxiliaire de KS est le minimum de la fonctionnelle d'énergie $E_\text{KS}[n]$ définie dans l'équation \eqref{eqn:c2_EKS} et la densité qui la minimise est celle de l'état fondamental $n_0(\rv)$. En minimisant cette fonctionnelle par rapport aux fonctions d'onde sous la contrainte d'orthonormalisation $\bra{\psi_{n\kv}}\ket{\psi_{n'\kv'}}=\delta_{nn'}\delta_{\kv\kv'}$, nous arrivons aux fameuses équations de KS
 \begin{equation}
     \label{eqn:c2_KS}
-    H_\text{KS}\psi_{n\kv}=\varepsilon_{n\kv}\psi_{n\kv},
+    \hat{H}_\text{KS}\psi_{n\kv}=\varepsilon_{n\kv}\psi_{n\kv},
 \end{equation}
 où $\varepsilon_{n\kv}$ est l'énergie de la fonction d'onde à un électron $\psi_{n\kv}$ et $H_\text{KS}$ est l'Hamiltonien effectif à un électron de KS
 \begin{equation}
     \label{eqn:c2_HKS}
-    H_\text{KS}=-\frac{\hbar^2}{2m_e}\nabla^2+V_\text{KS}(\rv),
+    \hat{H}_\text{KS}=-\frac{\hbar^2}{2m_e}\nabla^2+V_\text{KS}(\rv),
 \end{equation}
 avec le potentiel effectif de KS
 \begin{align}
@@ -260,7 +260,7 @@ Dans les codes DFT modernes, la forme séparable proposée par Kleinman et Bylan
 \end{equation}
 où la somme court sur tous les ions $\alpha$ de la cellule unitaire et $\bm{\tau}_\alpha$ dénote leur position. Dans la forme de KB, chaque contribution ionique se décompose en une partie locale et une partie non-locale
 \begin{equation}
-    V^{(\alpha)}_\text{PP}(\rv) = V^{(\alpha)}_\text{PPL}(\rv)+\underbrace{\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}}_{=V_\text{PPNL}^{(\alpha)}}.
+    V^{(\alpha)}_\text{PP}(\rv) = V^{(\alpha)}_\text{PPL}(\rv)+\underbrace{\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}}_{=\hat{V}_\text{PPNL}^{(\alpha)}}.
     \label{eqn:c1_VKB}
 \end{equation}
 La partie locale $V_\text{PPL}(\rv)$ est un potentiel central à symétrie sphérique qui reproduit le potentiel de Coulomb $-Z_\text{val}/r$ loin de la région de c\oe ur et est plus lisse à l'intérieur. Dans la partie non-locale, $\ell$ est le nombre quantique de moment cinétique orbital, $m=-\ell,\dots,\ell$ est le nombre quantique magnétique et $i$ indexe les multiples projecteurs par canal $\ell$. C'est précisément ce qui distingue les ONCV des NC classiques, qui ne possèdent qu'un seul projecteur par canal. Les énergies de KB $E_{i\ell}^{(\alpha)}$ mesurent la force de la partie non-locale par rapport à la partie locale et les projecteurs de KB $\beta_{i\ell m}^{(\alpha)}(\rv)=\bra{\rv}\ket{\beta_{i\ell m}^{(\alpha)}}$ sont des fonctions à courte portée centrées sur l'ion $\alpha$, dont la structure est
@@ -292,7 +292,7 @@ où la partie locale du potentiel regroupe les contributions d'Hartree, d'échan
 \end{equation}
 et la partie non-locale est entièrement due aux projecteurs de KB
 \begin{equation}
-    V_\text{NL}=\sum_\alpha\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}.
+    \hat{V}_\text{NL}=\sum_\alpha\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}.
 \end{equation}
 Nous aurons besoin de ces expressions lors du calcul des éléments de matrice de couplage électron-défaut au chapitre \ref{chap:défauts}, ainsi que pour la solution des équations de KS, présentée dans la prochaine section.
 
@@ -517,52 +517,40 @@ La DOS est représentée dans la figure~\ref{fig:resultats_electrons} (b). Elle 
 À l'instar de son homologue électronique, le problème ionique n'est pas moins complexe à résoudre que le problème initial. Le coupable est encore une fois l'interaction mutuelle entre tous les ions qui se trouve dans le potentiel effectif $U$. Ce problème est toutefois plus accessible que le problème électronique, car les ions sont beaucoup plus massifs que les électrons, ce qui confine leur fonction d'onde à des régions très localisées autour de leur position d'équilibre\footnote{Ce raisonnement ne s'applique pas aux ions les plus légers du tableau périodique comme l'hydrogène.}. Cette localisation permet de traiter les ions semi-classiquement et leur dynamique est gouvernée par les équations de Newton. Cependant, la spectroscopie Raman implique des processus d'émission et d'absorption de quanta d'énergie vibrationnelle qui nécessitent une description quantique. Dans cette section, nous résolvons le problème ionique avec une approche semi-classique dans l'approximation harmonique, puis nous quantifions les vibrations des ions pour avoir une théorie quantique. Nous présentons aussi brièvement le couplage entre les électrons et les quanta de vibrations des ions : le couplage électron-phonon, indispensable pour la spectroscopie Raman. Finalement, nous présentons nos résultats des propriétés vibrationnelles du graphène parfait.
 
 \subsection{Approximation harmonique}
-Une fois que le problème électronique est résolu avec \textit{e.g.} la DFT, nous permettons aux ions de bouger, ou plus précisément d'osciller autour de leur position d'équilibre. Pour décrire les positions ioniques, nous utilisons un indice composé $I=\ell\alpha$, où $\ell$ identifie la cellule unitaire située à $\Rv_\ell$ et $\alpha$ indexe les ions situés à $\bm{\tau}_\alpha$ dans la cellule unitaire, de sorte que leur position s'écrit maintenant
+Une fois que le problème électronique est résolu avec \textit{e.g.} la DFT, nous permettons aux ions de bouger, ou plus précisément d'osciller autour de leur position d'équilibre. Pour décrire les positions ioniques, nous utilisons un indice composé $I=l\alpha$, où $l$ identifie la cellule unitaire située à $\Rv_l$ et $\alpha$ indexe les ions situés à $\bm{\tau}_\alpha$ dans la cellule unitaire, de sorte que leur position s'écrit maintenant
 \begin{equation}
-    \rv_{\ell\alpha}=\Rv_\ell+\bm{\tau}_\alpha+\mathbf{u}_{\ell\alpha},
+    \rv_{l\alpha}=\Rv_l+\bm{\tau}_\alpha+\mathbf{u}_{\ell\alpha},
     \label{eqn:c2_rla}
 \end{equation}
-où $\mathbf{u}_{\ell\alpha}$ est le déplacement autour de l'équilibre de l'ion $\alpha$ dans la cellule $\ell$. Avec cette notation, le problème à résoudre est maintenant
+où $\mathbf{u}_{l\alpha}$ est le déplacement autour de l'équilibre de l'ion $\alpha$ dans la cellule $\l$. Avec cette notation, le problème à résoudre est maintenant
 \begin{equation}
-    H_i=-\sum_{\ell\alpha}\frac{\hbar^2}{2M_\alpha}\nabla^2_{\rv_{\ell\alpha}}+U.
+    \hat{H}_i=-\sum_{l\alpha}\frac{\hbar^2}{2M_\alpha}\nabla^2_{\rv_{l\alpha}}+U.
     \label{eqn:c2_Hila}
 \end{equation}
-Le potentiel effectif $U$ contient le couplage entre tous les ions et l'énergie de l'état fondamental des électrons. Pour contourner les difficultés qui lui sont associées, il est utile de supposer que les déplacements des ions $\mathbf{u}_{\ell\alpha}$ sont petits et de faire l'expansion en série de Taylor du potentiel autour de la position d'équilibre et de tronquer après le deuxième ordre
+Le potentiel effectif $U$ contient le couplage entre tous les ions et l'énergie de l'état fondamental des électrons. Pour contourner les difficultés qui lui sont associées, il est utile de supposer que les déplacements des ions $\mathbf{u}_{l\alpha}$ sont petits et de faire l'expansion en série de Taylor du potentiel autour de la position d'équilibre et de tronquer après le deuxième ordre
 \begin{equation}
-    U\approx \frac{1}{2}\sum_{\ell\alpha\mu}\sum_{\ell'\alpha'\mu'}C_{\ell\alpha\mu,\ell'\alpha'\mu'}u_{\ell\alpha\mu}u_{\ell'\alpha'\mu'},
+    U\approx \frac{1}{2}\sum_{l\alpha\mu}\sum_{l'\alpha'\mu'}C_{l\alpha\mu,l'\alpha'\mu'}u_{l\alpha\mu}u_{l'\alpha'\mu'},
 \end{equation}
 où $\mu=x,y,z$ dénote les composantes des vecteurs. Le terme d'ordre zéro n'est qu'une constante et a été ignoré. Le terme de premier ordre, qui est la dérivée du potentiel à l'équilibre, est proportionnel à la force exercée sur les ions, qui est nulle par définition à l'équilibre. Dans le terme de deuxième ordre, nous avons défini la matrice des constantes de force interatomiques (IFC, de l'anglais \textit{Interatomic Force Constants})
 \begin{equation}
-    C_{\ell\alpha\mu,\ell'\alpha'\mu'}\equiv \frac{\partial^2U}{\partial u_{\ell\alpha\mu}\partial u_{\ell'\alpha'\mu'}}\bigg\rvert_{\mathbf{u}=\mathbf{0}}.
+    C_{l\alpha\mu,l'\alpha'\mu'}\equiv \frac{\partial^2U}{\partial u_{l\alpha\mu}\partial u_{l'\alpha'\mu'}}\bigg\rvert_{\mathbf{u}=\mathbf{0}}.
     \label{eqn:c2_IFC}
 \end{equation}
-Tronquer la série après le deuxième ordre donne lieu à l'approximation harmonique, qui remplace l'interaction mutuelle complexe par une interaction beaucoup plus simple où chaque ion est vu comme étant relié à tous les autres par des ressorts de constantes de rappel données par les IFCs. Nous voulons résoudre pour les déplacements des ions $u_{\ell\alpha\mu}$. Pour se faire, nous pouvons utiliser la deuxième loi de Newton
+Tronquer la série après le deuxième ordre donne lieu à l'approximation harmonique, qui remplace l'interaction mutuelle complexe par une interaction beaucoup plus simple où chaque ion est vu comme étant relié à tous les autres par des ressorts de constantes de rappel données par les IFCs. Nous voulons résoudre pour les déplacements des ions $u_{l\alpha\mu}$. Pour se faire, nous pouvons utiliser la deuxième loi de Newton
 \begin{equation}
-    F_{\ell\alpha\mu}=M_\alpha \frac{\partial ^2 u_{\ell\alpha\mu}}{\partial t^2}=-\frac{\partial U}{\partial u_{\ell\alpha\mu}},
+    F_{l\alpha\mu}=M_\alpha \frac{\partial ^2 u_{l\alpha\mu}}{\partial t^2}=-\frac{\partial U}{\partial u_{l\alpha\mu}},
 \end{equation}
-d'où la description semi-classique. En supposant des déplacements sous forme d'ondes planes, justifiée par l'approximation harmonique, $u_{\ell\alpha\mu}=u_{\alpha\mu}(\qv)e^{i(\qv\cdot\Rv_\ell-\omega t)}$, nous obtenons les équations de mouvement pour les ions
+d'où la description semi-classique. En supposant des déplacements sous forme d'ondes planes, justifiée par l'approximation harmonique, $u_{l\alpha\mu}=u_{\alpha\mu}(\qv)e^{i(\qv\cdot\Rv_l-\omega t)}$, nous obtenons les équations de mouvement pour les ions
 \begin{equation}
     \omega_{\nu\qv}^2e_{\alpha\mu}^{(\nu)}(\qv)=\sum_{\alpha'\mu'}D_{\alpha\mu,\alpha'\mu'}(\qv)e_{\alpha'\mu'}^{(\nu)}(\qv).
     \label{eqn:c2_ionsEOM}
 \end{equation}
 Ici, nous avons défini la matrice dynamique, qui est reliée à la transformée de Fourier de la matrice des IFCs
 \begin{equation}
-    D_{\alpha\mu,\alpha'\mu'}(\qv)\equiv\frac{1}{\sqrt{M_\alpha M_{\alpha'}}}\sum_{\Rv_\ell}C_{\alpha\mu,\alpha'\mu'}(\Rv_\ell)e^{i\qv\cdot\Rv_\ell},
+    D_{\alpha\mu,\alpha'\mu'}(\qv)\equiv\frac{1}{\sqrt{M_\alpha M_{\alpha'}}}\sum_{\Rv_l}C_{\alpha\mu,\alpha'\mu'}(\Rv_l)e^{i\qv\cdot\Rv_l},
     \label{eqn:c2_D}
 \end{equation}
-et les déplacements pondérés en masse $e_{\alpha\mu}^{(\nu)}(\qv) = \sqrt{M_\alpha}u_{\alpha\mu}(\qv)$. L'équation \eqref{eqn:c2_ionsEOM} est une équation aux valeurs propres pour les fréquences de phonon $\omega_{\nu\qv}$ et les modes normaux des déplacements $e_{\alpha\mu}^{(\nu)}(\qv)$. Pour un système avec $p$ ions dans la cellule unitaire, la matrice dynamique est une matrice $3p\times 3p$ et nous utilisons l'indice $\nu=1,\dots,3p$ pour étiqueter les $3p$ valeurs et modes normaux. Cet indice, l'indice de branche, joue un rôle analogue à l'indice de bande $n$ des électrons. Une fois la matrice dynamique diagonalisée, nous avons les fréquences de phonons en main et le déplacement atomique total est une combinaison linéaire des modes normaux
-\begin{equation}
-    \mathbf{u}_{\ell\alpha}=\frac{1}{\sqrt{N_\text{uc}M_\alpha}}\sum_{\nu\qv}Q_{\nu\qv}\mathbf{e}_{\alpha}^{(\nu)}(\qv)e^{i(\qv\cdot\Rv_\ell-\omega t)},
-    \label{eqn:c2_uQ}
-\end{equation}
-où les coefficients $Q_{\nu\qv}$ --- les coordonnées normales --- sont à déterminer et $N_\text{uc}$ est le nombre de cellules unitaires dans le solide. Notons également que la matrice dynamique étant symétrique, ses vecteurs propres, les modes normaux, sont orthonormaux entre eux. Les déplacements atomiques sont des quantités réelles ce qui imposent
-\begin{equation}
-    Q^*_{\nu\qv}=Q_{\nu-\qv},
-\end{equation}
-et
-\begin{equation}
-    e^{*(\nu)}_{\alpha\mu}(\qv)=e^{(\nu)}_{\alpha\mu}(-\qv).
-\end{equation}
+et les déplacements pondérés en masse $e_{\alpha\mu}^{(\nu)}(\qv) = \sqrt{M_\alpha}u_{\alpha\mu}(\qv)$. L'équation \eqref{eqn:c2_ionsEOM} est une équation aux valeurs propres pour les fréquences de phonon $\omega_{\nu\qv}$ et les modes normaux des déplacements $e_{\alpha\mu}^{(\nu)}(\qv)$. Pour un système avec $p$ ions dans la cellule unitaire, la matrice dynamique est une matrice $3p\times 3p$ et nous utilisons l'indice $\nu=1,\dots,3p$ pour étiqueter les $3p$ valeurs et modes normaux. Cet indice, l'indice de branche, joue un rôle analogue à l'indice de bande $n$ des électrons.
 
 La description semi-classique de l'approximation harmonique donne 
 accès aux fréquences de vibration $\omega_{\nu\qv}$ et aux modes 
@@ -581,23 +569,23 @@ du réseau, ce que nous faisons dans la prochaine section.
 
 Dans l'approximation harmonique, l'Hamiltonien des ions prend la forme plus simple
 \begin{equation}
-    H_i = \sum_{\ell\alpha\mu}\frac{p_{\ell\alpha\mu}^2}{2M_\alpha}+\frac{1}{2}\sum_{\ell\alpha\mu}\sum_{\ell'\alpha'\mu'}C_{\ell\alpha\mu,\ell'\alpha'\mu'}u_{\ell\alpha\mu}u_{\ell'\alpha'\mu'}.
+    \hat{H}_i = \sum_{l\alpha\mu}\frac{p_{l\alpha\mu}^2}{2M_\alpha}+\frac{1}{2}\sum_{l\alpha\mu}\sum_{l'\alpha'\mu'}C_{l\alpha\mu,l'\alpha'\mu'}u_{l\alpha\mu}u_{l'\alpha'\mu'}.
 \end{equation}
-En utilisant le développement des déplacements atomiques en combinaison linéaire des modes normaux (l'équation~\eqref{eqn:c2_uQ}) et son équivalent pour le moment conjugué $p_{\ell\alpha\mu}=M_\alpha\dot{u}_{\ell\alpha\mu}$, nous obtenons l'Hamiltonien dans l'espace réciproque
+En utilisant le développement des déplacements atomiques en combinaison linéaire des modes normaux et son équivalent pour le moment conjugué $p_{l\alpha\mu}=M_\alpha\dot{u}_{l\alpha\mu}$, nous obtenons l'Hamiltonien dans l'espace réciproque
 \begin{equation}
-    H_i = \frac{1}{2}\sum_{\nu\qv}\left(\dot{Q}_{\nu\qv}\dot{Q}_{\nu-\qv}+\omega_{\nu\qv}^2Q_{\nu\qv}Q_{\nu-\qv}\right),
+    \hat{H}_i = \frac{1}{2}\sum_{\nu\qv}\left(\dot{Q}_{\nu\qv}\dot{Q}_{\nu-\qv}+\omega_{\nu\qv}^2Q_{\nu\qv}Q_{\nu-\qv}\right),
 \end{equation}
-qui est une somme d'oscillateurs harmoniques, où tous les modes sauf $(\nu\qv)$ et $(\nu-\qv)$ sont découplés. La quantification des vibrations des ions suit la procédure standard de la quantification canonique : les coordonnées normales $Q_{\nu\qv}$ et leurs moments conjugués $P_{\nu\qv}=\dot{Q}_{\nu\qv}$ sont promus au rang d'opérateurs quantiques satisfaisant les relations de commutation canoniques
+qui est une somme d'oscillateurs harmoniques. La quantification des vibrations des ions suit la procédure standard de la quantification canonique : les coordonnées normales $Q_{\nu\qv}$ et leurs moments conjugués $P_{\nu\qv}=\dot{Q}_{\nu\qv}$ sont promus au rang d'opérateurs quantiques satisfaisant les relations de commutation canoniques
 \begin{equation}
-    [Q_{\nu\qv},P_{\nu'\qv'}]=i\hbar\delta_{\nu\nu'}\delta_{\qv\qv'}.
+    [\hat{Q}_{\nu\qv},\hat{P}_{\nu'\qv'}]=i\hbar\delta_{\nu\nu'}\delta_{\qv\qv'}.
 \end{equation}
-Ensuite, de manière analogue à l'oscillateur harmonique quantique simple, nous introduisons les opérateurs de création $b^\dag_{\nu\qv}$ et d'annihilation $b_{\nu\qv}$
+Ensuite, de manière analogue à l'oscillateur harmonique quantique simple, nous introduisons les opérateurs de création $\hat{b}^\dag_{\nu\qv}$ et d'annihilation $\hat{b}_{\nu\qv}$
 \begin{equation}
-    b_{\nu\qv}=\sqrt{\frac{\omega_{\nu\qv}}{2\hbar}}\left(Q_{\nu\qv}+\frac{i}{\omega_{\nu\qv}}P_{\nu\qv}\right),
+    \hat{b}_{\nu\qv}=\sqrt{\frac{\omega_{\nu\qv}}{2\hbar}}\left(\hat{Q}_{\nu\qv}+\frac{i}{\omega_{\nu\qv}}\hat{P}_{\nu\qv}\right),
 \end{equation}
-avec $b^\dag_{\nu\qv}=(b_{\nu\qv})^\dag$ et où $b^\dag_{\nu\bv}\,(b_{\nu\qv})$ crée (détruit) une quasiparticule dans la branche $\nu$ avec un vecteur d'onde $\qv$. Ces quasiparticules associées aux excitations des vibrations des ions sont les \textit{phonons}. Un phonon dans la branche $\nu$ et avec un vecteur d'onde $\qv$ a une énergie $\hbar\omega_{\nu\qv}$ et un quasi-moment $\hbar\qv$. Avec cette transformation canonique, l'Hamiltonien harmonique prend la forme élégante
+avec $\hat{b}^\dag_{\nu\qv}=(\hat{b}_{\nu\qv})^\dag$ et où $\hat{b}^\dag_{\nu\bv}\,(\hat{b}_{\nu\qv})$ crée (détruit) une quasiparticule dans la branche $\nu$ avec un vecteur d'onde $\qv$. Ces quasiparticules associées aux excitations des vibrations des ions sont les \textit{phonons}. Un phonon dans la branche $\nu$ et avec un vecteur d'onde $\qv$ a une énergie $\hbar\omega_{\nu\qv}$ et un quasi-moment $\hbar\qv$. Avec cette transformation canonique, l'Hamiltonien harmonique prend la forme élégante
 \begin{equation}
-    H_\text{ph}=\sum_{\nu\qv}\hbar\omega_{\nu\qv}\left(b_{\nu\qv}^\dag b_{\nu\qv}+\frac{1}{2}\right).
+    \hat{H}_\text{ph}=\sum_{\nu\qv}\hbar\omega_{\nu\qv}\left(\hat{b}_{\nu\qv}^\dag \hat{b}_{\nu\qv}+\frac{1}{2}\right).
 \end{equation}
 qui est l'Hamiltonien des phonons libres. Les valeurs propres de cet Hamiltonien sont
 \begin{equation}
@@ -605,25 +593,25 @@ qui est l'Hamiltonien des phonons libres. Les valeurs propres de cet Hamiltonien
 \end{equation}
 où $n_{\nu\qv}=0,1,2,\dots$ est le nombre d'occupation du mode $(\nu\qv)$. Le terme $\hbar\omega_{\nu\qv}/2$ est l'énergie du point zéro, puisque les ions oscillent même à $T=0$, une conséquence directe du principe d'incertitude d'Heisenberg. Les états propres de cet Hamiltonien sont les états de Fock $\ket{n_{\nu\qv}}$, sur lesquels les opérateurs de création et d'annihilation agissent comme
 \begin{align}
-    b^\dag_{\nu\qv}\ket{n_{\nu\qv}}&=\sqrt{n_{\nu\qv}+1}\ket{n_{\nu\qv}+1},\label{eqn:c2_bn}\\
-    b_{\nu\qv}\ket{n_{\nu\qv}}&=\sqrt{n_{\nu\qv}}\ket{n_{\nu\qv}-1}.\label{eqn:c2_bndag}\\
+    \hat{b}^\dag_{\nu\qv}\ket{n_{\nu\qv}}&=\sqrt{n_{\nu\qv}+1}\ket{n_{\nu\qv}+1},\label{eqn:c2_bn}\\
+    \hat{b}_{\nu\qv}\ket{n_{\nu\qv}}&=\sqrt{n_{\nu\qv}}\ket{n_{\nu\qv}-1}.\label{eqn:c2_bndag}\\
 \end{align}
 Il est facile de montrer, à l'aide des relations de commutations canoniques, que les opérateurs de phonons commutent entre eux
 \begin{align}
-    [b_{\nu\qv},b_{\nu'\qv'}^\dag]&=\delta_{\nu\nu'}\delta_{\qv\qv'},\\
-    [b_{\nu\qv},b_{\nu'\qv'}]&=0,\\
-    [b_{\nu\qv}^\dag,b_{\nu'\qv'}^\dag]&=0.
+    [\hat{b}_{\nu\qv},\hat{b}_{\nu'\qv'}^\dag]&=\delta_{\nu\nu'}\delta_{\qv\qv'},\\
+    [\hat{b}_{\nu\qv},\hat{b}_{\nu'\qv'}]&=0,\\
+    [\hat{b}_{\nu\qv}^\dag,\hat{b}_{\nu'\qv'}^\dag]&=0.
 \end{align}
 Les phonons obéissent donc la statistique d'échange de Bose-Einstein et sont des quasiparticules bosoniques de sorte que leur nombre d'occupation moyen à température $T$ est donné par la distribution de Bose-Einstein
 \begin{equation}
-    \langle n_{\nu\qv}\rangle =\frac{1}{e^{\hbar\omega_{\nu\qv}/k_BT}-1}.
+    \langle \hat{n}_{\nu\qv}\rangle =\frac{1}{e^{\hbar\omega_{\nu\qv}/k_BT}-1},
 \end{equation}
-Finalement, les équations~\eqref{eqn:c2_bn}-\eqref{eqn:c2_bndag} pour les opérateur de phonons peuvent être inversées pour écrire les coordonnées normales en termes des opérateurs de phonons
+où $\hat{n}_{\nu\qv}=\hat{b}^\dag_{\nu\qv}\hat{b}_{\nu\qv}$. Finalement, les équations~\eqref{eqn:c2_bn}-\eqref{eqn:c2_bndag} pour les opérateur de phonons peuvent être inversées pour écrire les coordonnées normales en termes des opérateurs de phonons
 \begin{align}
-    Q_{\nu\qv}&=\sqrt{\frac{\hbar}{2\omega_{\nu\qv}}}A_{\nu\qv}\label{eqn:c2_Qn},\\
-    A_{\nu\qv}&=b_{\nu\qv}+b_{\nu-\qv}^\dag,\label{eqn:c2_An}
+    \hat{Q}_{\nu\qv}&=\sqrt{\frac{\hbar}{2\omega_{\nu\qv}}}\hat{A}_{\nu\qv}\label{eqn:c2_Qn},\\
+    \hat{A}_{\nu\qv}&=\hat{b}_{\nu\qv}+\hat{b}_{\nu-\qv}^\dag,\label{eqn:c2_An}
 \end{align}
-où nous avons défini l'opérateur $A_{\nu\qv}$ qui est proportionnel au mode de déplacement et qui nous sera utile lorsque nous discuterons du couplage entre les électrons et les phonons au chapitre \ref{chap:eph}.
+où nous avons défini l'opérateur $\hat{A}_{\nu\qv}$ qui est proportionnel au mode de déplacement et qui nous sera utile lorsque nous discuterons du couplage entre les électrons et les phonons au chapitre \ref{chap:eph}.
 
 Les phonons sont donc complètement caractérisés par leur vecteur d'onde $\qv$, leur branche $\nu$, leur fréquence $\omega_{\nu\qv}$ et leur vecteur de polarisation $\mathbf{e}^{(\nu)}(\qv)$. Pour obtenir ces quantités, il est nécessaire de calculer la matrice dynamique $D_{\alpha\mu,\alpha'\mu'}(\qv)$ (équation~\eqref{eqn:c2_D}), qui requiert à son tour le calcul de la matrice des IFCs $C_{\ell\alpha\mu,\ell'\alpha'\mu'}$ (équation~\eqref{eqn:c2_IFC}). Cette dernière correspond aux dérivées secondes du potentiel effectif $U$ par rapport aux déplacements ioniques. Il existe deux approches principales pour calculer les IFCs à partir des premiers principes. La première est la méthode des phonons gelés (\textit{frozen phonons}), qui consiste à déplacer légèrement les ions autour de leur position d'équilibre et à calculer numériquement les dérivées via un schéma de différence finie. Cette méthode est conceptuellement simple à implémenter, mais nécessite un calcul SCF complet pour chaque déplacement et est limitée aux vecteurs $\qv$ commensurables avec la supercellule utilisée, ce qui rend les calculs coûteux. La deuxième approche, plus élégante et plus efficace, est de calculer les deuxièmes dérivées à l'aide de la théorie de la perturbation en mécanique quantique dans le cadre de la DFT : la théorie de la fonctionnelle de la densité perturbative (DFPT), que nous présentons dans la prochaine section.
 
@@ -640,37 +628,37 @@ où $X^{(0)}$ est la quantité $X$ en l'absence de la perturbation  et $X^{(n)}$
 \begin{equation}
     X^{(n)}=\frac{\partial^n X}{\partial\lambda^n}\bigg\rvert_{\lambda=0}.\label{eqn:c2_Xn}
 \end{equation}
-La théorie de la perturbation en mécanique quantique offre donc un moyen de calculer des dérivées par rapport à la perturbation sans avoir à faire de différences finies. Cette méthode est particulièrement efficace lorsque la perturbation est petite par rapport aux énergies caractéristiques du système, soit quand $\lambda$ est petit, et qu'il est possible de tronquer l'expansion de l'équation~\eqref{eqn:c2_X} après le premier ou le deuxième ordre.
+Cette méthode est particulièrement efficace lorsque la perturbation est petite par rapport aux énergies caractéristiques du système, soit quand $\lambda$ est petit, et qu'il est possible de tronquer l'expansion de l'équation~\eqref{eqn:c2_X} après le premier ou le deuxième ordre.
 
-Pour des électrons en interaction traités dans le cadre de la DFT, les quantités $X$ qui nous intéressent sont l'Hamiltonien de KS $H_\text{KS}$, les valeurs propres de KS $\varepsilon_{n\kv}$, les fonctions d'onde de KS $\ket{\psi_{n\kv}}$ ainsi que la densité $n(\rv)$. Nous avons déjà résolu le problème pour le système en absence de perturbation, ce n'est que l'équation de KS pour le système non-perturbé
+Pour des électrons en interaction traités dans le cadre de la DFT, les quantités $X$ qui nous intéressent sont l'Hamiltonien de KS $\hat{H}_\text{KS}$, les valeurs propres de KS $\varepsilon_{n\kv}$, les fonctions d'onde de KS $\ket{\psi_{n\kv}}$ ainsi que la densité $n(\rv)$. Nous avons déjà résolu le problème pour le système en absence de perturbation, ce n'est que l'équation de KS pour le système non-perturbé
 \begin{equation}
-    H_\text{KS}^{(0)}\ket{\psi_{n\kv}^{(0)}}=\varepsilon_{n\kv}^{(0)}\ket{\psi_{n\kv}^{(0)}}.
+    \hat{H}_\text{KS}^{(0)}\ket{\psi_{n\kv}^{(0)}}=\varepsilon_{n\kv}^{(0)}\ket{\psi_{n\kv}^{(0)}}.
     \label{eqn:c2_KSnonperturbe}
 \end{equation}
 Le théorème $2n+1$~\cite{dalgarnoPerturbationCalculationProperties1958,gonzeDensityfunctionalApproachNonlinearresponse1989,gonzeAdiabaticDensityfunctionalPerturbation1995,baroniPhononsRelatedCrystal2001a} stipule que pour obtenir la correction d'ordre $2n+1$ à l'énergie totale (donc la dérivée d'ordre $2n+1$), seules les corrections d'ordre $n$ aux fonctions d'onde sont nécessaires. 
 Dans le contexte d'une perturbation due à des phonons, pour calculer la matrice IFC, qui est une deuxième dérivée de l'énergie totale, nous n'avons besoin que de la correction de premier ordre aux fonctions d'onde. Pour la trouver, il faut considérer l'équation de KS pour le système perturbé
 \begin{equation}
-    H_\text{KS}\ket{\psi_{n\kv}}=\varepsilon_{n\kv}\ket{\psi_{n\kv}}
+    \hat{H}_\text{KS}\ket{\psi_{n\kv}}=\varepsilon_{n\kv}\ket{\psi_{n\kv}}
 \end{equation}
 et faire l'expansion des quantités présentes en utilisant l'expansion de l'équation~\eqref{eqn:c2_X}. En ne retenant que les termes proportionnels à $\lambda$ et en utilisant l'équation de KS non-perturbée (équation~\eqref{eqn:c2_KSnonperturbe}), nous obtenons la célèbre équation de Sternheimer~\cite{gonzeAdiabaticDensityfunctionalPerturbation1995}
 \begin{equation}
-    \left(H^{(0)}_\text{KS}-\varepsilon_{n\kv}^{(0)}\right)\ket{\psi_{n\kv}^{(1)}}=-\left(H^{(1)}_\text{KS}-\varepsilon^{(1)}_{n\kv}\right)\ket{\psi^{(0)}_{n\kv}},
+    \left(\hat{H}^{(0)}_\text{KS}-\varepsilon_{n\kv}^{(0)}\right)\ket{\psi_{n\kv}^{(1)}}=-\left(\hat{H}^{(1)}_\text{KS}-\varepsilon^{(1)}_{n\kv}\right)\ket{\psi^{(0)}_{n\kv}},
     \label{eqn:c2_sternheimer}
 \end{equation}
-sujette à la contrainte de normalisation $\bra{\psi_{n\kv}^{(0)}}\ket{\psi_{n\kv}^{(1)}}=0$. L'opérateur $H^{(0)}_\text{KS}-\varepsilon_{n\kv}^{(0)}$ n'est pas inversible, puisqu'il a $\ket{\psi_{n\kv}^{(0)}}$ comme état propre de valeur propre nulle. La solution $\ket{\psi_{n\kv}^{(1)}}$ n'est donc définie qu'à une composante parallèle à $\ket{\psi_{n\kv}^{(0)}}$ près. Cette composante est précisément fixée par le choix de normalisation $\bra{\psi_{n\kv}^{(0)}}\ket{\psi_{n\kv}^{(1)}}=0$ : seule la projection de $\ket{\psi_{n\kv}^{(1)}}$ sur l'espace des états vides est inconnue. Pour exploiter ce fait, nous introduisons le projecteur sur les états vides (de conduction):
+sujette à la contrainte de normalisation $\bra{\psi_{n\kv}^{(0)}}\ket{\psi_{n\kv}^{(1)}}=0$. L'opérateur $\hat{H}^{(0)}_\text{KS}-\varepsilon_{n\kv}^{(0)}$ n'est pas inversible, puisqu'il a $\ket{\psi_{n\kv}^{(0)}}$ comme état propre de valeur propre nulle. La solution $\ket{\psi_{n\kv}^{(1)}}$ n'est donc définie qu'à une composante parallèle à $\ket{\psi_{n\kv}^{(0)}}$ près. Cette composante est précisément fixée par le choix de normalisation $\bra{\psi_{n\kv}^{(0)}}\ket{\psi_{n\kv}^{(1)}}=0$ : seule la projection de $\ket{\psi_{n\kv}^{(1)}}$ sur l'espace des états vides est inconnue. Pour exploiter ce fait, nous introduisons le projecteur sur les états vides (de conduction):
 \begin{equation}
-    P_c = 1-P_v = 1-\sum_{m}f_{m\kv}\ket{\psi_{m\kv}^{(0)}}\bra{\psi_{m\kv}^{(0)}}.
+    \hat{P}_c = 1-\hat{P}_v = 1-\sum_{m}f_{m\kv}\ket{\psi_{m\kv}^{(0)}}\bra{\psi_{m\kv}^{(0)}}.
 \end{equation}
-En appliquant $P_c$ sur l'équation de Sternheimer~\eqref{eqn:c2_sternheimer} en notant que $P_c\ket{\psi_{n\kv}^{(0)}}=0$ annihile le terme en $\varepsilon_{n\kv}^{(1)}$, nous obtenons la forme effectivement résolue en pratique de l'équation de Sternheimer
+En appliquant $\hat{P}_c$ sur l'équation de Sternheimer~\eqref{eqn:c2_sternheimer} en notant que $\hat{P}_c\ket{\psi_{n\kv}^{(0)}}=0$ annihile le terme en $\varepsilon_{n\kv}^{(1)}$, nous obtenons la forme effectivement résolue en pratique de l'équation de Sternheimer
 \begin{equation}
-    \left(H^{(0)}_\text{KS}-\varepsilon_{n\kv}^{(0)}\right)\ket{\psi_{n\kv}^{(1)}}=- P_c H_{\text{KS}}^{(1)}\ket{\psi_{n\kv}^{(0)}}.
+    \left(\hat{H}^{(0)}_\text{KS}-\varepsilon_{n\kv}^{(0)}\right)\ket{\psi_{n\kv}^{(1)}}=- \hat{P}_c \hat{H}_{\text{KS}}^{(1)}\ket{\psi_{n\kv}^{(0)}}.
     \label{eqn:c2_sternheimer_proj}
 \end{equation} 
 Sous cette forme, l'opérateur du membre de gauche, restreint à l'espace vide, est non-singulier et inversible par une méthode itérative. Surtout, la correction à la fonction d'onde $\ket{\psi_{n\kv}^{(1)}}$ s'obtient sans jamais évaluer explicitement la somme sur les états non-occupés ni la correction à l'énergie $\varepsilon_{n\kv}^{(1)}$. C'est un avantage considérable de la DFPT par rapport à la théorie de la perturbation par somme sur les états ordinaire et qui rend la DFPT pratiquable à des systèmes comportant un grand nombre de bandes~\cite{baroniPhononsRelatedCrystal2001a}. 
 
 La correction de premier ordre à la fonction d'onde s'obtient donc en résolvant l'équation de Sternheimer projetée~\eqref{eqn:c2_sternheimer_proj}, pourvu que nous connaissions la correction de premier ordre à l'Hamiltonien $H_\text{KS}^{(1)}$. Cette dernière s'obtient en prenant la dérivée de l'Hamiltonien par rapport à la perturbation~\eqref{eqn:c2_Xn}. Dans l'Hamiltonien de KS perturbé, le potentiel externe dépend directement de la perturbation, tandis que les potentiels d'Hartree et d'échange-corrélation dépendent implicitement de la perturbation au travers de la densité :
 \begin{equation}
-    H_\text{KS}^{(1)}=\frac{\partial H_\text{KS}}{\partial \lambda}\bigg\rvert_{\lambda=0}=\frac{\partial V_\text{ext}}{\partial\lambda}\bigg\rvert_{\lambda=0}+\int d^3\rv'\,\frac{\delta V_\text{H}(\rv)}{\delta n(\rv')}n^{(1)}(\rv')+\int d^3\rv'\,\frac{\delta V_\text{XC}(\rv)}{\delta n(\rv')}n^{(1)}(\rv'),
+    \hat{H}_\text{KS}^{(1)}=\frac{\partial \hat{H}_\text{KS}}{\partial \lambda}\bigg\rvert_{\lambda=0}=\frac{\partial V_\text{ext}}{\partial\lambda}\bigg\rvert_{\lambda=0}+\int d^3\rv'\,\frac{\delta V_\text{H}(\rv)}{\delta n(\rv')}n^{(1)}(\rv')+\int d^3\rv'\,\frac{\delta V_\text{XC}(\rv)}{\delta n(\rv')}n^{(1)}(\rv'),
     \label{eqn:c2_H1}
 \end{equation} 
 où $n^{(1)}(\rv)=\partial n(\rv)/\partial \lambda$ est la correction de premier ordre à la densité due à la perturbation. Pour la trouver, il suffit de partir de l'équation pour la densité~\eqref{eqn:c2_nKS}
@@ -689,11 +677,7 @@ Les équations \eqref{eqn:c2_sternheimer_proj}-\eqref{eqn:c2_H1}-\eqref{eqn:c2_n
 
 Nous avons traité jusqu'ici d'une perturbation générale paramétrée par $\lambda$. Nous spécialisons maintenant ce formalisme au cas qui nous intéresse, celui où la perturbation est le déplacement des ions hors de leur position d'équilibre -- les phonons. La position de l'ion $\alpha$ dans la cellule $l$ s'écrit $\rv_{l\alpha}=\Rv_l +\bm{\tau}_{\alpha}+\mathbf{u}_{l\alpha}$. Ce sont les composantes cartésiennes $u_{l\alpha\mu}$ ($\mu=x,y,z$) du déplacement qui jouent désormais le rôle du paramètre $\lambda$. Parmi les termes de l'Hamiltonien de Kohn-Sham, seul le potentiel externe (qui est remplacé par un pseudo-potentiel, \textit{c.f.} la section~\ref{sec:PP}) dépend explicitement des déplacements ioniques. Les potentiels d'Hartree et d'échange-corrélation n'en dépendent qu'implicitement, au travers de la densité.
 
-Le déplacement d'un ion brise la symétrie de translation discrète du solide, rendant le théorème de Bloch invalide. Une approche directe exigerait de travailler dans une supercellule suffisamment grande pour contenir la perturbation : c'est la méthode des phonons gelés (\emph{frozen phonon}). Cette approche est coûteuse numériquement et ne donne accès qu'aux phonons dont la longueur d'onde est commensurable avec la supercellule employée. La DFPT contourne ces difficultés en exploitant le caractère ondulatoire des vibrations. Tout déplacement ionique peut se décomposer en modes monochromatiques de vecteur d'onde $\qv$
-\begin{equation}
-    u_{l\alpha\mu}=\frac{1}{\sqrt{NM_\alpha}}\sum_{\nu\qv}Q_{\nu\qv}e_{\alpha\mu}^{(\nu)}(\qv)e^{i\qv\cdot\Rv_l},
-\end{equation}
-et une perturbation périodique de vecteur d'onde $\qv$ ne couple entre eux que les états de Bloch $\kv$ et $\kv+\qv$ --- l'analogue du théorème de Bloch pour la réponse linéaire. Il en découle que chaque vecteur $\qv$ peut être traité indépendamment par un cycle autocohérent restreint à la cellule unitaire et de coût numérique comparable à un calcul SCF de l'état fondamental des électrons. Surtout, cela vaut pour un $\qv$ arbitraire et non seulement pour ceux commensurables avec une supercellule, ce qui constitue l'avantage décisif de la DFPT sur la méthode de phonons gelés. Cependant, les fréquences $\omega_{\nu\qv}$ et les vecteurs de polarisation $e_{\alpha\mu}^{(\nu)}(\qv)$ sont précisément les quantités que nous cherchons à calculer. En pratique, nous appliquons $3p$ perturbations élémentaires indépendantes, où $p$ est le nombre d'atomes dans la cellule unitaire, de la forme
+Le déplacement d'un ion brise la symétrie de translation discrète du solide, rendant le théorème de Bloch invalide. Une approche directe exigerait de travailler dans une supercellule suffisamment grande pour contenir la perturbation : c'est la méthode des phonons gelés (\emph{frozen phonon}). Cette approche est coûteuse numériquement et ne donne accès qu'aux phonons dont la longueur d'onde est commensurable avec la supercellule employée. La DFPT contourne ces difficultés en exploitant le caractère ondulatoire des vibrations. Pour $p$ atomes dans le cellule unitaire, nous appliquons $3p$ perturbations de la forme
 \begin{equation}
     u_{l\alpha\mu}(\qv)=u_{\alpha\mu}e^{i\qv\cdot \Rv_l}.
 \end{equation}
@@ -701,22 +685,22 @@ Pour chaque perturbation élémentaire $(\qv,\alpha,\mu)$, nous définissons la 
 \begin{equation}
     \Delta_{\qv\alpha\mu}V_\text{PP}(\rv)\equiv\sum_{l}\frac{\partial V_\text{PP}^{(\alpha)}}{\partial u_{l\alpha\mu}}e^{i\qv\cdot\Rv_l}.
 \end{equation}
-Pour un pseudo-potentiel avec une partie locale et une partie non-locale séparable, les deux contributions se traitent séparément. La correction à la fonction d'onde induite par ce mode, notée $\Delta_{\qv\alpha\mu}\psi_{n\kv}$, a une composante sur les états en $\kv+\qv$, conformément au caractère monochromatique de la perturbation. La correction à la densité s'en déduit par
+Pour un pseudo-potentiel avec une partie locale et une partie non-locale séparable, les deux contributions se traitent séparément. La correction à la fonction d'onde induite par ce mode, notée $\Delta_{\qv\alpha\mu}\psi_{n\kv}$, s'obtient en résolvant l'équation de Sternheimer projetée~\eqref{eqn:c2_sternheimer_proj}
 \begin{equation}
-    \Delta_{\qv\alpha\mu}n(\rv)=4\Re\sum_{n\kv}f_{n\kv}\psi^{*(0)}_{n\kv}(\rv)\Delta_{\qv\alpha\mu}\psi_{n\kv}(\rv),
-    \label{eqn:c2_n1_phonon}
-\end{equation}
-et l'équation de Sternheimer projetée~\eqref{eqn:c2_sternheimer_proj} prend la forme
-\begin{equation}
-    \left(H^{(0)}_\text{KS}-\varepsilon_{n\kv}^{(0)}\right)\ket{\Delta_{\qv\alpha\mu}\psi_{n\kv}}=-P_c\Delta_{\qv\alpha\mu}H_\text{KS}\ket{\psi_{n\kv}^{(0)}},
+    \left(\hat{H}^{(0)}_\text{KS}-\varepsilon_{n\kv}^{(0)}\right)\ket{\Delta_{\qv\alpha\mu}\psi_{n\kv}}=-\hat{P}_c\Delta_{\qv\alpha\mu}\hat{H}_\text{KS}\ket{\psi_{n\kv}^{(0)}},
     \label{eqn:c2_Sternheimer_phonon}
 \end{equation}
 où la correction à l'Hamiltonien est donnée par 
 \begin{equation}
-    \Delta_{\qv\alpha\mu}H_\text{KS} =\Delta_{\qv\alpha\mu} V_\text{PP}+\int d^3\rv'\,\Delta_{\qv\alpha\mu}n(\rv')\frac{\delta V_\text{H}(\rv)}{\delta n(\rv')}+\int d^3\rv'\,\Delta_{\qv\alpha\mu}n(\rv')\frac{\delta V_\text{XC}(\rv)}{\delta n(\rv')}.
+    \Delta_{\qv\alpha\mu}\hat{H}_\text{KS} =\Delta_{\qv\alpha\mu} V_\text{PP}+\int d^3\rv'\,\Delta_{\qv\alpha\mu}n(\rv')\frac{\delta V_\text{H}(\rv)}{\delta n(\rv')}+\int d^3\rv'\,\Delta_{\qv\alpha\mu}n(\rv')\frac{\delta V_\text{XC}(\rv)}{\delta n(\rv')}.
     \label{eqn:c2_H1_phonon}
 \end{equation}
-Ces trois dernières équations (équations~\eqref{eqn:c2_n1_phonon}--\eqref{eqn:c2_H1_phonon}) sont à résoudre de manière autocohérente en suivant le cycle SCF de la section précédente.
+La correction à la densité s'en déduit par
+\begin{equation}
+    \Delta_{\qv\alpha\mu}n(\rv)=4\Re\sum_{n\kv}f_{n\kv}\psi^{*(0)}_{n\kv}(\rv)\Delta_{\qv\alpha\mu}\psi_{n\kv}(\rv),
+    \label{eqn:c2_n1_phonon}
+\end{equation}
+Ces trois dernières équations (équations~\eqref{eqn:c2_Sternheimer_phonon}--\eqref{eqn:c2_n1_phonon}) sont à résoudre de manière autocohérente en suivant le cycle SCF de la section précédente.
 
 Une fois le cycle convergé, nous disposons de $\Delta_{\qv\alpha\mu}n$ et $\ket{\Delta_{\qv\alpha\mu}\psi_{n\kv}}$ et l'objectif est de calculer les constantes de force interatomiques, définies par la dérivée seconde de l'énergie totale par rapport aux déplacements~\eqref{eqn:c2_IFC}. Dans l'espace réciproque, l'élément $(\alpha\mu,\alpha'\mu')$ de la matrice des constantes de force au vecteur $\qv$ est
 \begin{equation}
@@ -751,7 +735,7 @@ ainsi. Pour chaque vecteur $\qv$ de la grille et chaque perturbation
     \item Construire la correction à l'Hamiltonien 
     $\Delta_{\qv\alpha\mu}H_\text{KS}$ via 
     l'équation~\eqref{eqn:c2_H1_phonon}
-    \[\Delta_{\qv\alpha\mu}H_\text{KS} = 
+    \[\Delta_{\qv\alpha\mu}\hat{H}_\text{KS} = 
     \Delta_{\qv\alpha\mu}V_\text{PP}
     +\int d^3\rv'\,
     \frac{\delta V_\text{H}(\rv)}{\delta n(\rv')}
@@ -765,9 +749,9 @@ ainsi. Pour chaque vecteur $\qv$ de la grille et chaque perturbation
 
     \item Résoudre l'équation de Sternheimer 
     projetée~\eqref{eqn:c2_Sternheimer_phonon}
-    \[\left(H^{(0)}_\text{KS}-\varepsilon_{n\kv}^{(0)}\right)
+    \[\left(\hat{H}^{(0)}_\text{KS}-\varepsilon_{n\kv}^{(0)}\right)
     \ket{\Delta_{\qv\alpha\mu}\psi_{n\kv}}=
-    -P_c\,\Delta_{\qv\alpha\mu}H_\text{KS}
+    -\hat{P}_c\,\Delta_{\qv\alpha\mu}\hat{H}_\text{KS}
     \ket{\psi_{n\kv}^{(0)}}\]
     pour tous les états occupés $n\kv$, afin d'obtenir les 
     corrections aux fonctions d'onde 
@@ -869,11 +853,11 @@ et
 
 Comme les matrices $U^{(\kv)}$ constituent un degré de liberté arbitraire pour les WF, cette liberté de jauge des états de Bloch rend les WF non-uniques. Différents choix des $U^{(\kv)}$ produisent des WF différentes, mais physiquement équivalentes, avec des degré de localisation très différents. Pour que l'interpolation de Wannier soit aussi efficace que possible, nous cherchons les WF les plus localisées possible. Marzari et Vanderbilt~\cite{marzariMaximallyLocalizedGeneralized1997} propose de fixer $U^{(\kv)}$ en minimisant la fonctionnelle de \textit{spread}
 \begin{equation}
-    \Omega = \sum_n\left[\langle r^2\rangle_n - \langle \rv \rangle^2_n\right],
+    \Omega = \sum_n\left[\langle \hat{r}^2\rangle_n - \langle \hat{\rv} \rangle^2_n\right],
 \end{equation}
 où 
 \begin{equation}
-    \langle r^2\rangle_n = \bra{\mathbf{0}n}r^2\ket{\mathbf{0}n},\qquad\langle \rv \rangle_n = \bra{\mathbf{0}n}\rv\ket{\mathbf{0}n},
+    \langle \hat{r}^2\rangle_n = \bra{\mathbf{0}n}\hat{r}^2\ket{\mathbf{0}n},\qquad\langle \hat{\rv} \rangle_n = \bra{\mathbf{0}n}\hat{\rv}\ket{\mathbf{0}n},
 \end{equation}
 sont respectivement la dispersion quadratique moyenne et le centre de la WF $\ket{\mathbf{0}n}$. Les WF obtenues par cette minimisation sont appelées les fonctions de Wannier maximalement localisées (MLWF) et constituent le standard utilisé dans les schémas d'interpolation avec des fonctions de Wannier. Dans la prochaine section, nous voyons comment calculer les MLWF à partir des fonctions de Bloch $\ket{\psi_{n\kv}}$.
 
@@ -884,13 +868,13 @@ Continuous avec le cas où nous considérons un sous-ensemble de $J$ bandes isol
 \end{equation}
 où
 \begin{equation}
-    \Omega_I = \sum_n \left[ \bra{\mathbf{0}n}r^2\ket{\mathbf{0}n} - 
-    \sum_{\Rv m}\left|\bra{\Rv m}\rv\ket{\mathbf{0}n}\right|^2 \right]
+    \Omega_I = \sum_n \left[ \bra{\mathbf{0}n}\hat{r}^2\ket{\mathbf{0}n} - 
+    \sum_{\Rv m}\left|\bra{\Rv m}\hat{\rv}\ket{\mathbf{0}n}\right|^2 \right]
 \end{equation}
 est invariant sous toute transformation de jauge $U^{(\kv)}$, et
 \begin{equation}
     \widetilde{\Omega} = \sum_n \sum_{\Rv m \neq \mathbf{0}n}
-    \left|\bra{\Rv m}\rv\ket{\mathbf{0}n}\right|^2
+    \left|\bra{\Rv m}\hat{\rv}\ket{\mathbf{0}n}\right|^2
 \end{equation}
 est la partie dépendante de la jauge. Puisque $\Omega_I$ est fixe, minimiser le \textit{spread} $\Omega$ revient à minimiser $\widetilde{\Omega}$ uniquement. Pour l'évaluer explicitement, nous devons représenter l'opérateur position dans l'espace réciproque par différences finies sur la grille $\kv$. À cet effet, nous introduisons la matrice de recouvrement entre les états de Bloch voisins sur la grille 
 \begin{equation}
@@ -898,15 +882,15 @@ est la partie dépendante de la jauge. Puisque $\Omega_I$ est fixe, minimiser le
 \end{equation}
 où $\bv$ sont les vecteurs connectant chaque point $\kv$ à ses voisins sur la grille et $u_{n\kv}$ est la partie périodique de la fonction de Bloch. Cette matrice est l'objet central de la minimisation, car elle encode la variation des états de Bloch dans l'espace réciproque et est directement reliée à l'opérateur position. En effet, en utilisant la définition de la matrice $M^{(\kv,\bv)}$, il est possible de montrer que le centre et la dispersion quadratique moyenne de la WF $\ket{\mathbf{0}n}$ s'expriment comme
 \begin{align}
-    \langle \rv\rangle_n &= -\frac{1}{N_\kv}\sum_{\kv\bv}w_\bv\bv\Im\log M_{nn}^{\kv,\bv},\label{eqn:c3_rn}\\
-    \langle r^2\rangle_n &= \frac{1}{N_\kv}\sum_{\kv\bv}w_\bv\left[\left(1-|M_{nn}^{\kv,\bv}|^2\right)+\left(\Im\log M_{nn}^{\kv,\bv}\right)^2\right],
+    \langle \hat{\rv}\rangle_n &= -\frac{1}{N_\kv}\sum_{\kv\bv}w_\bv\bv\Im\log M_{nn}^{\kv,\bv},\label{eqn:c3_rn}\\
+    \langle \hat{r}^2\rangle_n &= \frac{1}{N_\kv}\sum_{\kv\bv}w_\bv\left[\left(1-|M_{nn}^{\kv,\bv}|^2\right)+\left(\Im\log M_{nn}^{\kv,\bv}\right)^2\right],
 \end{align}
 où $w_\bv$ sont des poids qui dépendent du nombre de voisins et de la géométrie de la grille. Il s'ensuit que $\widetilde{\Omega}$ s'exprime entièrement en fonction de la matrice $M^{\kv,\bv}$ 
 \begin{equation}
-    \widetilde{\Omega}=\frac{1}{N_\kv}\sum_{\kv\bv}w_\bv\sum_{m\neq n}|M_{mn}^{\kv,\bv}|^2+\frac{1}{N_\kv}\sum_{\kv\bv}w_\bv\sum_n\left(-\Im\log M_{nn}^{\kv,\bv}-\bv\cdot\langle \rv\rangle_n\right),
+    \widetilde{\Omega}=\frac{1}{N_\kv}\sum_{\kv\bv}w_\bv\sum_{m\neq n}|M_{mn}^{\kv,\bv}|^2+\frac{1}{N_\kv}\sum_{\kv\bv}w_\bv\sum_n\left(-\Im\log M_{nn}^{\kv,\bv}-\bv\cdot\langle \hat{\rv}\rangle_n\right),
     \label{eqn:c3_omega_tilde}
 \end{equation}
-où $\langle\rv\rangle_n$ est donné en termes de $M^{(\kv,\bv)}$ par l'équation~\eqref{eqn:c3_rn}. Ainsi, une fois que la matrice $M^{\kv,\bv}$ est calculée par le code DFT, aucune autre interaction avec les fonctions de Bloch n'est nécessaire. La minimisation de $\widetilde{\Omega}$ est effectuée par une descente de gradient dans l'espace des matrices unitaires. Le gradient de $\widetilde{\Omega}$ par rapport à $U^{(\kv)}$ est calculé analytiquement en fonction de $M^{(\kv,\bv)}$. Pour que la matrice $U^{(\kv)}$ reste unitaire au long de la minimisation, nous prenons la partie anti-hermitienne du gradient
+où $\langle\hat{\rv}\rangle_n$ est donné en termes de $M^{(\kv,\bv)}$ par l'équation~\eqref{eqn:c3_rn}. Ainsi, une fois que la matrice $M^{\kv,\bv}$ est calculée par le code DFT, aucune autre interaction avec les fonctions de Bloch n'est nécessaire. La minimisation de $\widetilde{\Omega}$ est effectuée par une descente de gradient dans l'espace des matrices unitaires. Le gradient de $\widetilde{\Omega}$ par rapport à $U^{(\kv)}$ est calculé analytiquement en fonction de $M^{(\kv,\bv)}$. Pour que la matrice $U^{(\kv)}$ reste unitaire au long de la minimisation, nous prenons la partie anti-hermitienne du gradient
 \begin{equation}
     \mathcal{A}^{(\kv)}=\frac{1}{2}\left(\frac{\partial \widetilde{\Omega}}{\partial U^{(\kv)}}-\left(\frac{\partial \widetilde{\Omega}}{\partial U^{(\kv)}}\right)^\dag\right),
 \end{equation}
@@ -914,7 +898,7 @@ qui définit la direction de descente. La mise à jour de $U^{(\kv)}$ est alors
 \begin{equation}
    U^{(\kv)}\rightarrow U^{(\kv)}e^{\alpha \mathcal{A}^{(\kv)}},
 \end{equation}
-où $\alpha$ est le pas de descente. La matrice $M_{mn}^{(\kv,\bv)}$ est mise à jour avec la nouvelle matrice $U_{mn}^{(\kv)}$
+où $\alpha$ est le pas de descente. La matrice $M^{(\kv,\bv)}$ est mise à jour avec la nouvelle matrice $U^{(\kv)}$
 \begin{equation}
     M^{(\kv,\bv)}\rightarrow U^{(\kv)\dag} M^{(\kv,\bv)}U^{(\kv+\bv)},
 \end{equation}
@@ -967,6 +951,16 @@ où $\ket{\Rv n,\mathbf{0} n'}=\ket{\Rv n}\otimes \ket{\mathbf{0} n'}$. L'interp
     V_{mm',nn'}(\kv,\kv')=\sum_{\Rv\Rv'}e^{i(\kv\cdot\Rv - \kv'\cdot\Rv')}V_{mm',nn'}(\Rv,\Rv').\label{eqn:c3_2binterp}
 \end{equation}
 Si l'opérateur décroît rapidement avec $|\Rv|$ et $|\Rv'|$, seuls quelques vecteurs $\Rv$ et $\Rv'$ sont nécessaires pour converger la somme de l'équation~\eqref{eqn:c3_2binterp}, rendant l'évaluation de cette somme extrêmement efficace, même pour des grilles ultra denses. Nous utilisons cette technique pour interpoler les éléments de matrice de couplage électron-défaut et électron-phonon sur des grilles $\kv$ et $\qv$ denses. 
+
+\noindent\textbf{Interpolation de l'Hamiltonien électronique à l'aide des MLWF}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_band_interp.pdf}
+    \caption[]{}
+    \label{fig:band_interp}
+\end{figure}
+
 
 \section{Photons}\label{sec:photon}
 La spectroscopie Raman étant un processus de diffusion inélastique de la lumière, les photons y jouent un rôle central : un photon incident est absorbé par le système électronique, lequel émet un photon diffusé à une fréquence différente après avoir échangé de l'énergie avec un phonon. Ces processus de diffusions microscopiques requièrent une description quantique du champ électromagnétique, ainsi que l'expression du couplage entre les électrons et les photons, que nous introduisons brièvement dans cette section.

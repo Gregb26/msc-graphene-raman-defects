@@ -522,7 +522,7 @@ Une fois que le problème électronique est résolu avec \textit{e.g.} la DFT, n
     \rv_{l\alpha}=\Rv_l+\bm{\tau}_\alpha+\mathbf{u}_{\ell\alpha},
     \label{eqn:c2_rla}
 \end{equation}
-où $\mathbf{u}_{l\alpha}$ est le déplacement autour de l'équilibre de l'ion $\alpha$ dans la cellule $\l$. Avec cette notation, le problème à résoudre est maintenant
+où $\mathbf{u}_{l\alpha}$ est le déplacement autour de l'équilibre de l'ion $\alpha$ dans la cellule $l$. Avec cette notation, le problème à résoudre est maintenant
 \begin{equation}
     \hat{H}_i=-\sum_{l\alpha}\frac{\hbar^2}{2M_\alpha}\nabla^2_{\rv_{l\alpha}}+U.
     \label{eqn:c2_Hila}
@@ -536,7 +536,7 @@ où $\mu=x,y,z$ dénote les composantes des vecteurs. Le terme d'ordre zéro n'e
     C_{l\alpha\mu,l'\alpha'\mu'}\equiv \frac{\partial^2U}{\partial u_{l\alpha\mu}\partial u_{l'\alpha'\mu'}}\bigg\rvert_{\mathbf{u}=\mathbf{0}}.
     \label{eqn:c2_IFC}
 \end{equation}
-Tronquer la série après le deuxième ordre donne lieu à l'approximation harmonique, qui remplace l'interaction mutuelle complexe par une interaction beaucoup plus simple où chaque ion est vu comme étant relié à tous les autres par des ressorts de constantes de rappel données par les IFCs. Nous voulons résoudre pour les déplacements des ions $u_{l\alpha\mu}$. Pour se faire, nous pouvons utiliser la deuxième loi de Newton
+Tronquer la série après le deuxième ordre donne lieu à l'approximation harmonique, qui remplace l'interaction mutuelle complexe par une interaction beaucoup plus simple où chaque ion est vu comme étant relié à tous les autres par des ressorts de constantes de rappel données par les IFCs. Nous voulons résoudre pour les déplacements des ions $u_{l\alpha\mu}$. Pour ce faire, nous pouvons utiliser la deuxième loi de Newton
 \begin{equation}
     F_{l\alpha\mu}=M_\alpha \frac{\partial ^2 u_{l\alpha\mu}}{\partial t^2}=-\frac{\partial U}{\partial u_{l\alpha\mu}},
 \end{equation}
@@ -587,33 +587,18 @@ avec $\hat{b}^\dag_{\nu\qv}=(\hat{b}_{\nu\qv})^\dag$ et où $\hat{b}^\dag_{\nu\b
 \begin{equation}
     \hat{H}_\text{ph}=\sum_{\nu\qv}\hbar\omega_{\nu\qv}\left(\hat{b}_{\nu\qv}^\dag \hat{b}_{\nu\qv}+\frac{1}{2}\right).
 \end{equation}
-qui est l'Hamiltonien des phonons libres. Les valeurs propres de cet Hamiltonien sont
-\begin{equation}
-    E = \sum_{\nu\qv}\hbar\omega_{\nu\qv}\left(n_{\nu\qv}+\frac{1}{2}\right),
-\end{equation}
-où $n_{\nu\qv}=0,1,2,\dots$ est le nombre d'occupation du mode $(\nu\qv)$. Le terme $\hbar\omega_{\nu\qv}/2$ est l'énergie du point zéro, puisque les ions oscillent même à $T=0$, une conséquence directe du principe d'incertitude d'Heisenberg. Les états propres de cet Hamiltonien sont les états de Fock $\ket{n_{\nu\qv}}$, sur lesquels les opérateurs de création et d'annihilation agissent comme
-\begin{align}
-    \hat{b}^\dag_{\nu\qv}\ket{n_{\nu\qv}}&=\sqrt{n_{\nu\qv}+1}\ket{n_{\nu\qv}+1},\label{eqn:c2_bn}\\
-    \hat{b}_{\nu\qv}\ket{n_{\nu\qv}}&=\sqrt{n_{\nu\qv}}\ket{n_{\nu\qv}-1}.\label{eqn:c2_bndag}\\
-\end{align}
-Il est facile de montrer, à l'aide des relations de commutations canoniques, que les opérateurs de phonons commutent entre eux
-\begin{align}
-    [\hat{b}_{\nu\qv},\hat{b}_{\nu'\qv'}^\dag]&=\delta_{\nu\nu'}\delta_{\qv\qv'},\\
-    [\hat{b}_{\nu\qv},\hat{b}_{\nu'\qv'}]&=0,\\
-    [\hat{b}_{\nu\qv}^\dag,\hat{b}_{\nu'\qv'}^\dag]&=0.
-\end{align}
-Les phonons obéissent donc la statistique d'échange de Bose-Einstein et sont des quasiparticules bosoniques de sorte que leur nombre d'occupation moyen à température $T$ est donné par la distribution de Bose-Einstein
+qui est l'Hamiltonien des phonons libres. Les opérateurs de phonons satisfont les relations de commutation bosoniques de sorte qu'ils obéissent à la statistique de Bose-Einstein et que leur nombre d'occupation moyen à température $T$ est donné par la distribution de Bose-Einstein
 \begin{equation}
     \langle \hat{n}_{\nu\qv}\rangle =\frac{1}{e^{\hbar\omega_{\nu\qv}/k_BT}-1},
 \end{equation}
-où $\hat{n}_{\nu\qv}=\hat{b}^\dag_{\nu\qv}\hat{b}_{\nu\qv}$. Finalement, les équations~\eqref{eqn:c2_bn}-\eqref{eqn:c2_bndag} pour les opérateur de phonons peuvent être inversées pour écrire les coordonnées normales en termes des opérateurs de phonons
+où $\hat{n}_{\nu\qv}=\hat{b}^\dag_{\nu\qv}\hat{b}_{\nu\qv}$. Finalement, les équations pour les opérateurs de phonons peuvent être inversées pour écrire les coordonnées normales en termes des opérateurs de phonons
 \begin{align}
     \hat{Q}_{\nu\qv}&=\sqrt{\frac{\hbar}{2\omega_{\nu\qv}}}\hat{A}_{\nu\qv}\label{eqn:c2_Qn},\\
     \hat{A}_{\nu\qv}&=\hat{b}_{\nu\qv}+\hat{b}_{\nu-\qv}^\dag,\label{eqn:c2_An}
 \end{align}
 où nous avons défini l'opérateur $\hat{A}_{\nu\qv}$ qui est proportionnel au mode de déplacement et qui nous sera utile lorsque nous discuterons du couplage entre les électrons et les phonons au chapitre \ref{chap:eph}.
 
-Les phonons sont donc complètement caractérisés par leur vecteur d'onde $\qv$, leur branche $\nu$, leur fréquence $\omega_{\nu\qv}$ et leur vecteur de polarisation $\mathbf{e}^{(\nu)}(\qv)$. Pour obtenir ces quantités, il est nécessaire de calculer la matrice dynamique $D_{\alpha\mu,\alpha'\mu'}(\qv)$ (équation~\eqref{eqn:c2_D}), qui requiert à son tour le calcul de la matrice des IFCs $C_{\ell\alpha\mu,\ell'\alpha'\mu'}$ (équation~\eqref{eqn:c2_IFC}). Cette dernière correspond aux dérivées secondes du potentiel effectif $U$ par rapport aux déplacements ioniques. Il existe deux approches principales pour calculer les IFCs à partir des premiers principes. La première est la méthode des phonons gelés (\textit{frozen phonons}), qui consiste à déplacer légèrement les ions autour de leur position d'équilibre et à calculer numériquement les dérivées via un schéma de différence finie. Cette méthode est conceptuellement simple à implémenter, mais nécessite un calcul SCF complet pour chaque déplacement et est limitée aux vecteurs $\qv$ commensurables avec la supercellule utilisée, ce qui rend les calculs coûteux. La deuxième approche, plus élégante et plus efficace, est de calculer les deuxièmes dérivées à l'aide de la théorie de la perturbation en mécanique quantique dans le cadre de la DFT : la théorie de la fonctionnelle de la densité perturbative (DFPT), que nous présentons dans la prochaine section.
+Les phonons sont donc complètement caractérisés par leur vecteur d'onde $\qv$, leur branche $\nu$, leur fréquence $\omega_{\nu\qv}$ et leur vecteur de polarisation $\mathbf{e}^{(\nu)}(\qv)$. Pour obtenir ces quantités, il est nécessaire de calculer la matrice dynamique $D_{\alpha\mu,\alpha'\mu'}(\qv)$ (équation~\eqref{eqn:c2_D}), qui requiert à son tour le calcul de la matrice des IFCs $C_{\ell\alpha\mu,\ell'\alpha'\mu'}$ (équation~\eqref{eqn:c2_IFC}). Il existe deux approches principales pour calculer les IFCs à partir des premiers principes. La première est la méthode des phonons gelés (\textit{frozen phonons}), qui consiste à déplacer légèrement les ions autour de leur position d'équilibre et à calculer numériquement les dérivées via un schéma de différence finie. Cette méthode est conceptuellement simple à implémenter, mais nécessite un calcul SCF complet pour chaque déplacement et est limitée aux vecteurs $\qv$ commensurables avec la supercellule utilisée, ce qui rend les calculs coûteux. La deuxième approche, plus élégante et plus efficace, est de calculer les deuxièmes dérivées à l'aide de la théorie de la perturbation en mécanique quantique dans le cadre de la DFT : la théorie de la fonctionnelle de la densité perturbative (DFPT), que nous présentons dans la prochaine section.
 
 \subsection{Théorie de la fonctionnelle de la densité perturbative}\label{sec:dfpt}
 L'idée centrale est de considérer les vibrations ioniques --- les phonons --- comme une perturbation externe sur les électrons et d'effectuer des calculs de théorie de la perturbation dans le cadre de la DFT, une méthode qui se nomme théorie de la fonctionnelle de la densité perturbative (DFPT)~\cite{baroniPhononsRelatedCrystal2001a,baroniGreensfunctionApproachLinear1987,gonzeDensityfunctionalApproachNonlinearresponse1989,savrasovLinearresponseTheoryLattice1996}. La DFPT fut développée au cours des années 1990 et s'applique à n'importe quelle perturbation externe sur les électrons, faisant d'elle une méthode très générale. Dans cette section nous voyons brièvement les bases de la théorie de la perturbation dans le cadre de la DFT et de son application aux phonons.
@@ -671,13 +656,13 @@ de faire l'expansion~\eqref{eqn:c2_X} des fonctions d'onde et de ne conserver qu
     \label{eqn:c2_n1}
 \end{equation}
 
-Les équations \eqref{eqn:c2_sternheimer_proj}-\eqref{eqn:c2_H1}-\eqref{eqn:c2_n1} forment un ensemble d'équations autocohérentes à résoudre pour la correction de premier ordre à la fonction d'onde. Pour la trouver, il faut résoudre l'équation de Sternheimer projetée~\eqref{eqn:c2_sternheimer_proj}. Pour résoudre cette équation, nous avons besoin de la correction au premier ordre de l'Hamiltonien, qui s'obtient en résolvant l'équation~\eqref{eqn:c2_H1}. Pour résoudre cette dernière, il faut la correction de premier ordre à la densité en résolvant l'équation~\eqref{eqn:c2_n1}, pour laquelle nous avons besoin de la correction de premier ordre à la fonction d'onde, l'objet que nous tentions de trouver en premier lieu. La résolution de ce cycle admet une forme similaire au cycle SCF de la DFT classique.
+Les équations \eqref{eqn:c2_sternheimer_proj}-\eqref{eqn:c2_H1}-\eqref{eqn:c2_n1} forment un ensemble d'équations autocohérentes à résoudre pour la correction de premier ordre à la fonction d'onde. Pour la trouver, il faut résoudre l'équation de Sternheimer projetée~\eqref{eqn:c2_sternheimer_proj}. Pour résoudre cette équation, nous avons besoin de la correction au premier ordre de l'Hamiltonien, qui s'obtient en résolvant l'équation~\eqref{eqn:c2_H1}. Pour résoudre cette dernière, il faut la correction de premier ordre à la densité en résolvant l'équation~\eqref{eqn:c2_n1}, pour laquelle nous avons besoin de la correction de premier ordre à la fonction d'onde, la quantité recherchée initialement. La résolution de ce cycle admet une forme similaire au cycle SCF de la DFT classique.
 
 \noindent\textbf{Perturbation par vibration ionique}
 
 Nous avons traité jusqu'ici d'une perturbation générale paramétrée par $\lambda$. Nous spécialisons maintenant ce formalisme au cas qui nous intéresse, celui où la perturbation est le déplacement des ions hors de leur position d'équilibre -- les phonons. La position de l'ion $\alpha$ dans la cellule $l$ s'écrit $\rv_{l\alpha}=\Rv_l +\bm{\tau}_{\alpha}+\mathbf{u}_{l\alpha}$. Ce sont les composantes cartésiennes $u_{l\alpha\mu}$ ($\mu=x,y,z$) du déplacement qui jouent désormais le rôle du paramètre $\lambda$. Parmi les termes de l'Hamiltonien de Kohn-Sham, seul le potentiel externe (qui est remplacé par un pseudo-potentiel, \textit{c.f.} la section~\ref{sec:PP}) dépend explicitement des déplacements ioniques. Les potentiels d'Hartree et d'échange-corrélation n'en dépendent qu'implicitement, au travers de la densité.
 
-Le déplacement d'un ion brise la symétrie de translation discrète du solide, rendant le théorème de Bloch invalide. Une approche directe exigerait de travailler dans une supercellule suffisamment grande pour contenir la perturbation : c'est la méthode des phonons gelés (\emph{frozen phonon}). Cette approche est coûteuse numériquement et ne donne accès qu'aux phonons dont la longueur d'onde est commensurable avec la supercellule employée. La DFPT contourne ces difficultés en exploitant le caractère ondulatoire des vibrations. Pour $p$ atomes dans le cellule unitaire, nous appliquons $3p$ perturbations de la forme
+Le déplacement d'un ion brise la symétrie de translation discrète du solide, rendant le théorème de Bloch invalide. Une approche directe exigerait de travailler dans une supercellule suffisamment grande pour contenir la perturbation : c'est la méthode des phonons gelés (\emph{frozen phonon}). Cette approche est coûteuse numériquement et ne donne accès qu'aux phonons dont la longueur d'onde est commensurable avec la supercellule employée. La DFPT contourne ces difficultés en exploitant le caractère ondulatoire des vibrations. Pour $p$ atomes dans la cellule unitaire, nous appliquons $3p$ perturbations de la forme
 \begin{equation}
     u_{l\alpha\mu}(\qv)=u_{\alpha\mu}e^{i\qv\cdot \Rv_l}.
 \end{equation}
@@ -730,7 +715,7 @@ ainsi. Pour chaque vecteur $\qv$ de la grille et chaque perturbation
     \item Partir des fonctions d'onde et de la densité non-perturbées 
     $\ket{\psi_{n\kv}^{(0)}}$ et $n^{(0)}$, solutions du cycle SCF 
     non-perturbé, et initialiser la correction à la densité à 
-    $\Delta_{\qv\alpha\mu}n=0$.
+    $\Delta_{\qv\alpha\mu}n_\text{in}=0$.
 
     \item Construire la correction à l'Hamiltonien 
     $\Delta_{\qv\alpha\mu}H_\text{KS}$ via 
@@ -743,7 +728,7 @@ ainsi. Pour chaque vecteur $\qv$ de la grille et chaque perturbation
     +\int d^3\rv'\,
     \frac{\delta V_\text{XC}(\rv)}{\delta n(\rv')}
     \,\Delta_{\qv\alpha\mu}n(\rv').\]
-    Au premier passage, $\Delta_{\qv\alpha\mu}n=0$ et l'on a 
+    Au premier passage, $\Delta_{\qv\alpha\mu}n_\text{in}=0$ et l'on a 
     simplement $\Delta_{\qv\alpha\mu}H_\text{KS}=
     \Delta_{\qv\alpha\mu}V_\text{PP}$.
 
@@ -776,6 +761,7 @@ ainsi. Pour chaque vecteur $\qv$ de la grille et chaque perturbation
     $\widetilde{C}^\text{el}_{\alpha\mu,\alpha'\mu'}(\qv)$ via 
     l'équation~\eqref{eqn:c2_IFCq} pour toutes les paires 
     $(\alpha'\mu')$.
+    \[    \widetilde{C}^\text{el}_{\alpha\mu,\alpha'\mu'}(\qv)= \int d^3\rv\,\Delta_{\qv\alpha\mu}n(\rv)\Delta_{\qv\alpha'\mu'}V_\text{PP}(\rv)+\int d^3\rv\,n^{(0)}(\rv)\Delta_{\qv\alpha\mu}\Delta_{\qv\alpha'\mu'}V_\text{PP}(\rv).\]
 \end{enumerate}
 Une fois les $3p$ perturbations élémentaires traitées et la 
 contribution ion-ion $\widetilde{C}^\text{ion}$ ajoutée, la 
@@ -820,38 +806,38 @@ reflétant la structure de bande de phonons du panneau~(a).
 Tel que mentionné dans le chapitre~\ref{chap:Raman}, les équations d'intensité Raman sont particulièrement difficile à converger et requièrent des grilles $\kv$ et $\qv$ extrêmement denses~\cite{lazzeriFirstPrinciplesCalculationVibrational2003,gilletFirstprinciplesStudyExcitonic2013a,bagheriHighthroughputComputationRaman2023}. En pratique, obtenir les quantités électroniques avec la DFT et les quantités de phonons avec la DFPT sur des grilles aussi denses est computationnellement prohibitif. Pour contourner ce problème, nous pouvons interpoler les quantités obtenues par la DFT et la DFPT sur des grilles plus denses. Il existe plusieurs schémas d'interpolation : l'interpolation de Fourier~\cite{madsenBoltzTraP2ProgramInterpolating2018}, un calcul NSCF pour les quantités électroniques~\cite{bruninPhononlimitedElectronMobility2020}, le \textit{double padding}~\cite{bruninPhononlimitedElectronMobility2020}, le \textit{zero padding}, l'interpolation linéaire~\cite{liElectricalTransportLimited2015} et l'interpolation avec des fonctions de Wannier (WF)~\cite{ponceEPWElectronphononCoupling2016}. Nous utilisons cette dernière technique pour interpoler toutes les quantités nécessaires sur des grilles assez denses pour converger l'intensité Raman. 
 
 Les WF offrent deux avantages considérables : une interpolation efficace qui permet l'interpolation sur des grilles ultra denses et la capacité de respecter la physique du système interpolé. Les WF fournissent une base localisée et cette localisation garantit que les éléments de matrice calculés dans cette base décroissent rapidement avec la distance, de sorte qu'une transformée de Fourier tronquée suffit pour reproduire fidèlement n'importe quelle propriété sur une grille arbitrairement dense et ce à faible coût numérique. De plus, la transformation vers les WF étant exacte et unitaire, les propriétés interpolées coïncident exactement avec les résultats \textit{ab initio} sur la grille originale. Ces aspects s'appliquent autant aux propriétés électroniques, aux propriétés vibrationnelles (phonons), aux propriétés des défauts et aux propriétés de couplage électron-phonon, faisant de l'interpolation de Wannier une technique efficace et générale. En plus de leur utilité pour l'interpolation, les fonctions de Wannier sont utilisées pour faire des modèle \textit{tight binding} effectif \textit{ab initio} qui servent d'entrée pour la DMFT~\cite{lechermannDynamicalMeanfieldTheory2006} et sont à la base de la théorie moderne de la polarisation~\cite{king-smithTheoryPolarizationCrystalline1993,restaMacroscopicPolarizationCrystalline1994}. Dans cette section, nous introduisons ce schéma d'interpolation.
+
 \subsection{Définitions de base}
-Les WF ont été introduites pour la première fois par Wannier~\cite{wannierStructureElectronicExcitation1937} pour étudier les niveaux d'excitation d'un électron dans un cristal. Premièrement, considérons le cas plus simple d'une seule bande $n$ isolée de toutes les autres. Une WF pour la bande $n$ et localisée dans la cellule unitaire identifiée par le vecteur du réseau $\Rv$ est dénotée par $\ket{\Rv n}$ et est définie par la transformée de Fourier des états de Bloch $\ket{\psi_{n\kv}}$ pour cette bande 
+Les WF ont été introduites pour la première fois par
+Wannier~\cite{wannierStructureElectronicExcitation1937} pour étudier
+les niveaux d'excitation d'un électron dans un cristal. Tout comme
+les fonctions de Bloch $\ket{\psi_{n\kv}}$, les WF forment une base
+complète pour décrire les électrons dans un solide périodique.  Nous considérons
+un sous-espace de $J$ bandes parmi les $N_b$ bandes calculées par
+la DFT, pouvant contenir des dégénérescences et des croisements.
+Une WF pour l'état $n$ localisée dans la cellule unitaire identifiée
+par le vecteur du réseau $\Rv$ est dénotée $\ket{\Rv n}$ et est
+définie par
 \begin{equation}
-    \ket{\Rv n} = \frac{1}{N_\kv}\sum_\kv e^{-i\kv\cdot\Rv}\ket{\psi_{n\kv}},
+    \ket{\Rv n} = \frac{1}{N_\kv}\sum_\kv e^{-i\kv\cdot\Rv}
+    \sum_{m=1}^{N_b} U_{mn}^{(\kv)}\ket{\psi_{m\kv}},
     \label{eqn:c3_wf_1W}
 \end{equation}
-où $N_\kv$ est le nombre de points $\kv$ dans la grille \textit{ab initio}. La transformation inverse est donnée par
+où $U^{(\kv)}$ est une matrice $N_b\times J$ à colonnes orthonormées,
+périodique dans l'espace réciproque, et $N_\kv$ est le nombre de
+points $\kv$ dans la grille \textit{ab initio}. La transformation
+inverse reconstruit la projection des états de Bloch sur le
+sous-espace des $J$ WF
 \begin{equation}
-    \ket{\psi_{n\kv}}=\sum_\Rv e^{i\kv\cdot\Rv}\ket{\Rv n}.
+    \ket{\tilde{\psi}_{n\kv}}=\sum_\Rv e^{i\kv\cdot\Rv}
+    \sum_{m=1}^{J} U_{mn}^{(\kv)\dag}\ket{\Rv m}.
     \label{eqn:c3_wf_1B}
 \end{equation}
-Ces transformations entre les états de Bloch et de Wannier sont clairement unitaires et donc ces deux bases fournissent une description valide du système et sont porteuses des mêmes informations. Cependant, les WF ne sont pas uniques. Cette propriété découle du fait que les fonctions de Bloch ont une liberté de jauge. En effet, nous pouvons remplacer
-\begin{equation}
-    \ket{\tilde{\psi}_{n\kv}} = e^{i\phi_n(\kv)}\ket{\psi_{n\kv}},
-    \label{eqn:c3_wf_1gauge}
-\end{equation}
-sans changer les propriétés physiques du système, où $\phi_n(\kv)$ est n'importe quelle fonction réelle et périodique dans l'espace réciproque. Nous imposons toutefois une jauge lisse, c'est-à-dire que $\nabla_\kv\ket{\tilde{\psi}_{n\kv}}$ est bien définie pour tous les $\kv$, ce qui assure des WF localisées. Ceci est typique des transformées de Fourier : plus l'objet est lisse dans l'espace réciproque, plus il sera localisé dans l'espace réel et \textit{vice versa}.
-
-Avant d'aborder le problème de non-unicité, il est utile de relaxer la condition que la bande $n$ soit une bande isolée et de considérer un sous-espace de $J$ bandes qui restent séparées des bandes en dessous et au-dessus du sous-espace. Il peut y avoir des dégénérescences et des croisements dans le sous-espace. Les observables physiques dans ce sous-espace de bandes sont invariants sous n'importe quelle transformation unitaire parmi les $J$ états de Bloch, il est donc naturel de généraliser la notion de transformation de jauge de l'équation~\eqref{eqn:c3_wf_1gauge} à
-\begin{equation}
-    \ket{\tilde{\psi}_{n\kv}}=\sum_{m=1}^J U_{mn}^{(\kv)}\ket{\psi_{m\kv}},
-\end{equation}
-où $U^{(\kv)}$ est une matrice unitaire de dimension $J\times J$ et périodique dans l'espace réciproque. L'équation~\eqref{eqn:c3_wf_1gauge} est le cas spécial d'une matrice $U^{(\kv)}$ diagonale. Marzari et Vanderbilt~\cite{marzariMaximallyLocalizedGeneralized1997} ont montré que les transformations entre les WF et les états de Bloch, équations~\eqref{eqn:c3_wf_1W}--\eqref{eqn:c3_wf_1B}, se généralisent à
-\begin{equation}
-    \ket{\Rv n} = \frac{1}{N_\kv}\sum_{\kv}e^{-i\kv\cdot\Rv}\sum_{m=1}^JU_{mn}^{(\kv)}\ket{\psi_{m\kv}},
-\end{equation}
-et
-\begin{equation}
-    \ket{\psi_{n\kv}}=\sum_{\Rv}e^{i\kv\cdot\Rv}\sum_{m=1}^J U_{mn}^{(\kv)\dag}\ket{\Rv m}.
-\end{equation}
-
-Comme les matrices $U^{(\kv)}$ constituent un degré de liberté arbitraire pour les WF, cette liberté de jauge des états de Bloch rend les WF non-uniques. Différents choix des $U^{(\kv)}$ produisent des WF différentes, mais physiquement équivalentes, avec des degré de localisation très différents. Pour que l'interpolation de Wannier soit aussi efficace que possible, nous cherchons les WF les plus localisées possible. Marzari et Vanderbilt~\cite{marzariMaximallyLocalizedGeneralized1997} propose de fixer $U^{(\kv)}$ en minimisant la fonctionnelle de \textit{spread}
+Notons que l'information contenue dans les $N_b - J$ bandes exclues est
+perdue. Les WF ne sont pas uniques puisque $U^{(\kv)}$ constitue un degré
+de liberté arbitraire --- différents choix produisent des WF
+physiquement équivalentes, mais avec des degrés de localisation
+très différents. Pour que l'interpolation de Wannier soit aussi efficace que possible, nous cherchons les WF les plus localisées possible. Marzari et Vanderbilt~\cite{marzariMaximallyLocalizedGeneralized1997} proposent de fixer $U^{(\kv)}$ en minimisant la fonctionnelle de \textit{spread}
 \begin{equation}
     \Omega = \sum_n\left[\langle \hat{r}^2\rangle_n - \langle \hat{\rv} \rangle^2_n\right],
 \end{equation}
@@ -862,7 +848,7 @@ où
 sont respectivement la dispersion quadratique moyenne et le centre de la WF $\ket{\mathbf{0}n}$. Les WF obtenues par cette minimisation sont appelées les fonctions de Wannier maximalement localisées (MLWF) et constituent le standard utilisé dans les schémas d'interpolation avec des fonctions de Wannier. Dans la prochaine section, nous voyons comment calculer les MLWF à partir des fonctions de Bloch $\ket{\psi_{n\kv}}$.
 
 \subsection{Calculs des fonctions de Wannier}
-Continuous avec le cas où nous considérons un sous-ensemble de $J$ bandes isolées de toutes les autres bandes. Dans ce cas, la matrice $U^{(\kv)}$ est carrée de dimension $J$ et la minimisation de $\Omega$ est bien définie. Il est utile de décomposer le spread en deux contributions~\cite{marzariMaximallyLocalizedGeneralized1997}
+Continuons avec le cas où nous considérons un sous-ensemble de $J$ bandes isolées de toutes les autres bandes. Il est utile de décomposer le \textit{spread} en deux contributions~\cite{marzariMaximallyLocalizedGeneralized1997}
 \begin{equation}
     \Omega = \Omega_I + \widetilde{\Omega},
 \end{equation}
@@ -890,7 +876,7 @@ où $w_\bv$ sont des poids qui dépendent du nombre de voisins et de la géomét
     \widetilde{\Omega}=\frac{1}{N_\kv}\sum_{\kv\bv}w_\bv\sum_{m\neq n}|M_{mn}^{\kv,\bv}|^2+\frac{1}{N_\kv}\sum_{\kv\bv}w_\bv\sum_n\left(-\Im\log M_{nn}^{\kv,\bv}-\bv\cdot\langle \hat{\rv}\rangle_n\right),
     \label{eqn:c3_omega_tilde}
 \end{equation}
-où $\langle\hat{\rv}\rangle_n$ est donné en termes de $M^{(\kv,\bv)}$ par l'équation~\eqref{eqn:c3_rn}. Ainsi, une fois que la matrice $M^{\kv,\bv}$ est calculée par le code DFT, aucune autre interaction avec les fonctions de Bloch n'est nécessaire. La minimisation de $\widetilde{\Omega}$ est effectuée par une descente de gradient dans l'espace des matrices unitaires. Le gradient de $\widetilde{\Omega}$ par rapport à $U^{(\kv)}$ est calculé analytiquement en fonction de $M^{(\kv,\bv)}$. Pour que la matrice $U^{(\kv)}$ reste unitaire au long de la minimisation, nous prenons la partie anti-hermitienne du gradient
+où $\langle\hat{\rv}\rangle_n$ est donné en termes de $M^{(\kv,\bv)}$ par l'équation~\eqref{eqn:c3_rn}. Ainsi, une fois que la matrice $M^{\kv,\bv}$ est calculée par le code DFT, aucune autre interaction avec les fonctions de Bloch n'est nécessaire. La minimisation de $\widetilde{\Omega}$ est effectuée par une descente de gradient dans l'espace des matrices. Le gradient de $\widetilde{\Omega}$ par rapport à $U^{(\kv)}$ est calculé analytiquement en fonction de $M^{(\kv,\bv)}$. Pour que la matrice $U^{(\kv)}$ garde ses propriétés au long de la minimisation, nous prenons la partie anti-hermitienne du gradient
 \begin{equation}
     \mathcal{A}^{(\kv)}=\frac{1}{2}\left(\frac{\partial \widetilde{\Omega}}{\partial U^{(\kv)}}-\left(\frac{\partial \widetilde{\Omega}}{\partial U^{(\kv)}}\right)^\dag\right),
 \end{equation}
@@ -906,61 +892,62 @@ et $\widetilde{\Omega}$ est mise à jour avec l'équation~\eqref{eqn:c3_omega_ti
 \begin{equation}
     A^{(\kv)}_{mn} = \bra{\psi_{m\kv}}\ket{g_n}.
 \end{equation}
-La matrice initiale $U^{(\kv)}$ est obtenue par décomposition en valeurs singulières (SVD) de $A^{(\kv)}$. Ce choix garantit que la matrice initiale est unitaire et le plus proche possible des projections physiques, ce qui stabilise la convergence des MLWF. Le choix des fonctions d'essai $g_n$ requiert une connaissance \textit{a priori} de la physique du système. Par exemple, pour étudier les électrons de valence dans un métal de transition, un bon choix d'essai serait les orbitales atomiques $d$. Pour un système avec une géométrie tétraédrique, des fonctions d'essai de type $sp^3$ sont un bon choix. Pour le graphène, si nous voulons avoir les MLWF pour les 3 plus basses bandes de valence ($\sigma$), il faut des fonctions d'essai de type $sp^2$. Pour la plus haute bande de valence ($\pi$) et la plus basse bande de conduction ($\pi^*$), il faut des orbitales $p_z$. 
+La matrice initiale $U^{(\kv)}$ est obtenue par décomposition en valeurs singulières (SVD) de $A^{(\kv)}$. Ce choix garantit que la matrice initiale est le plus proche possible des projections physiques, ce qui stabilise la convergence des MLWF. Le choix des fonctions d'essai $g_n$ requiert une connaissance \textit{a priori} de la physique du système. Par exemple, pour étudier les électrons de valence dans un métal de transition, un bon choix d'essai serait les orbitales atomiques $d$. Pour un système avec une géométrie tétraédrique, des fonctions d'essai de type $sp^3$ sont un bon choix. Pour le graphène, si nous voulons avoir les MLWF pour les 3 plus basses bandes de valence ($\sigma$), il faut des fonctions d'essai de type $sp^2$. Pour la plus haute bande de valence ($\pi$) et la plus basse bande de conduction ($\pi^*$), il faut des orbitales $p_z$. 
 
 \noindent\textbf{Bandes enchevêtrées}
 
 Dans le cas d'un métal ou d'un semimétal, les bandes d'intérêt (proche du niveau de Fermi) croisent d'autres bandes et il est impossible d'isoler proprement un sous-espace de $J$ bandes pour tous les $\kv$. Ceci est particulièrement important pour le graphène, car la bande de conduction au niveau de Fermi ($\pi^*$) est enchevêtrée avec plusieurs bandes de plus haute énergie qui ne nous intéressent pas (voir la structure de bande à la figure~\ref{fig:resultats_electrons}--(a)). Pour pallier ce problème, Souza, Marzari et Vanderbilt~\cite{souzaMaximallylocalizedWannierFunctions2001} ont généralisé la procédure au cas de bandes enchevêtrées en introduisant une étape préalable de \textit{disentanglement}.
 
-L'idée est de sélectionner, parmi un ensemble de $J'>J$ bandes contenues dans une fenêtre d'énergie extérieure, un sous-espace lisse de dimension $J$ qui varie continûment avec $\kv$. Ce sous-espace est caractérisé par une matrice rectangulaire $U^{\text{dis},(\kv)}$ de dimension $J'\times J$
+L'idée est de sélectionner, parmi un ensemble de $J'>J$ bandes contenues dans une fenêtre d'énergie extérieure, un sous-espace lisse de dimension $J$ qui varie continûment avec $\kv$. Ce sous-espace est caractérisé par une matrice rectangulaire $U^{\text{dis},(\kv)}$ de dimension $N_b\times J$
 \begin{equation}
-    \ket{\tilde{\psi}_{n\kv}}=\sum_{m=1}^{J'}U_{mn}^{\text{dis},(\kv)}\ket{\psi_{n\kv}}\qquad n=1,\dots,J.
+    \ket{\tilde{\psi}_{n\kv}}=\sum_{m=1}^{N_b}U_{mn}^{\text{dis},(\kv)}\ket{\psi_{m\kv}}\qquad n=1,\dots,J.
 \end{equation}
-Contrairement au cas de bandes isolées où $\Omega_I$ est fixe, il dépend ici du choix du sous-espace et peut être minimisé. Le sous-espace optimal est obtenu en minimisant $\Omega_I$ par rapport à $U^{\text{dis},(\kv)}$ avec une procédure similaire à la minimisation de $\widetilde{\Omega}$ par rapport à $U^{(\kv)}$. En pratique, il est possible de spécifier une deuxième fenêtre, la fenêtre gelée, dans laquelle les bandes DFT sont reproduites exactement par les MLWF. Ces bandes sont incluses telles quelles dans le sous-espace optimal pour tous les $\kv$ et la minimisation de $\Omega_I$ ne porte que sur les états en dehors de la fenêtre gelée (mais toujours dans la fenêtre extérieure). La fenêtre gelée est particulièrement utile pour figer les bandes proche du niveau de Fermi, lesquelles nous voulons reproduire exactement. Une fois le sous-espace optimal extrait et $U^{\text{dis},(\kv)}$ trouvé, la matrice $U^{(\kv)}$ est calculée en minimisant $\widetilde{\Omega}$ en suivant la procédure décrite plus haut. La matrice unitaire de transformation totale est le produit des deux matrices
+Contrairement au cas de bandes isolées où $\Omega_I$ est fixe, il dépend ici du choix du sous-espace et peut être minimisé. Le sous-espace optimal est obtenu en minimisant $\Omega_I$ par rapport à $U^{\text{dis},(\kv)}$ avec une procédure similaire à la minimisation de $\widetilde{\Omega}$ par rapport à $U^{(\kv)}$. En pratique, il est possible de spécifier une deuxième fenêtre, la fenêtre gelée, dans laquelle les bandes DFT sont reproduites exactement par les MLWF. Ces bandes sont incluses telles quelles dans le sous-espace optimal pour tous les $\kv$ et la minimisation de $\Omega_I$ ne porte que sur les états en dehors de la fenêtre gelée (mais toujours dans la fenêtre extérieure). La fenêtre gelée est particulièrement utile pour figer les bandes proche du niveau de Fermi, lesquelles nous voulons reproduire exactement. Une fois le sous-espace optimal extrait et $U^{\text{dis},(\kv)}$ trouvé, la matrice $U^{(\kv)}$ est calculée en minimisant $\widetilde{\Omega}$ dans ce sous-espace en suivant la procédure décrite plus haut. Cette fois-ci, la matrice $U^{(\kv)}$ est carrée de dimension $J\times J$. La matrice de transformation totale est le produit des deux matrices
 \begin{equation}
     \tilde{U}^{(\kv)} = U^{\text{dis},(\kv)}U^{(\kv)},
 \end{equation}
-qui est une matrice rectangulaire $J'\times J$ et les MLWF finales sont
+et est une matrice rectangulaire $N_b\times J$. Les MLWF avec la procédure de \textit{disentanglement} sont
 \begin{equation}
-    \ket{\Rv n}=\frac{1}{N_\kv}\sum_{\kv}e^{-i\kv\cdot\Rv}\sum_{m=1}^{J'}\tilde{U}^{(\kv)}_{mn}\ket{\psi_{m\kv}}.\label{eqn:c3_mlwf}
+    \ket{\Rv n}=\frac{1}{N_\kv}\sum_{\kv}e^{-i\kv\cdot\Rv}\sum_{m=1}^{N_b}\tilde{U}^{(\kv)}_{mn}\ket{\psi_{m\kv}}.\label{eqn:c3_mlwf}
 \end{equation}
 
 \subsection{Interpolation de Wannier}
-Une fois les MLWF obtenues, il est possible d'interpoler les quantités calculées sur la grille \textit{ab initio} vers une grille arbitrairement dense. L'idée centrale est de transformer la quantité d'intérêt dans la base des MLWF, où cette quantité est localisée dans l'espace réel, puis de la transformer de retour dans l'espace réciproque sur la grille dense par transformée de Fourier. Nous distinguons deux cas : les opérateurs à un corps et à deux corps. 
+Une fois les MLWF obtenues pour les bandes d'intérêt, il est possible d'interpoler les quantités calculées sur la grille \textit{ab initio} vers une grille arbitrairement dense. L'idée centrale est de transformer la quantité d'intérêt dans la base des MLWF, où cette quantité est localisée dans l'espace réel, puis de la transformer de retour dans l'espace réciproque sur la grille dense par transformée de Fourier. 
+Nous utilisons cette méthode d'interpolation pour avoir toutes les quantités sur des grilles denses nécessaires à l'évaluation de l'intensité Raman résonnante. 
 
-\noindent\textbf{Opérateur à un corps}
-
-Pour un opérateur à un corps $\hat{O}$ comme l'Hamiltonien électronique de KS ou l'opérateur vitesse, les éléments de matrice dans la base des MLWF sont
+Commençons par le cas prototypique de l'Hamiltonien électronique pour l'interpolation des valeurs propres $\varepsilon_{n\kv}$. Lorsque le problème est résolu avec la DFT, nous avons l'Hamiltonien dans la base de Bloch sur une grille modérément dense $\kv_c$
 \begin{equation}
-    O_{mn}(\Rv)=\bra{\mathbf{0}m}\hat{O}\ket{\Rv n},
+    H_{mn}(\kv_c) = \bra{\psi_{m\kv_c}}\hat{H}_\text{KS}\ket{\psi_{n\kv_c}}.
 \end{equation}
-et les MLWF sont obtenues à partir des fonctions de Bloch selon l'équation~\eqref{eqn:c3_mlwf}. L'interpolation sur une grille $\kv'$ arbitraire s'obtient via une transformée de Fourier discrète
+L'Hamiltonien est diagonal dans l'indice de bande dans cette base. Ensuite, nous transformons l'Hamiltonien dans la base des MLWF à l'aide des matrices $U^{(\kv_c)}$ (ou des matrices $\tilde{U}^{(\kv_c)}$ si des bandes sont enchevêtrées)
 \begin{equation}
-    O_{mn}(\kv') = \sum_{\Rv} e^{i\kv'\cdot\Rv}O_{mn}(\Rv).\label{eqn:c3_1binterp} 
+    H_{mn}(\Rv) = \frac{1}{N_{\kv_c}}\sum_{\kv_c}e^{-i\kv_c\cdot\Rv}\left[U^{\dag(\kv_c)}H(\kv_c)U^{(\kv_c)}\right]_{mn}.
 \end{equation}
-Si l'opérateur $\hat{O}$ est localisé dans l'espace réel, c'est-à-dire si $O_{mn}(\Rv)$ décroît rapidement avec $|\Rv|$, il est possible de tronquer la série de Fourier de l'équation~\eqref{eqn:c3_1binterp} après quelques $\Rv$ seulement, rendant l'évaluation de cette somme extrêmement efficace, même pour des grilles $\kv'$ ultra denses. Nous utilisons cette technique pour interpoler les valeurs propres de l'Hamiltonien électronique $\varepsilon_{n\kv}$ et les valeurs propres de la matrice dynamique $\omega_{\nu\qv}^2$ sur des grilles $\kv$ et $\qv$ denses.
-
-\noindent\textbf{Opérateurs à deux corps}
-
-Pour un opérateur à deux corps $\hat{V}$, comme le potentiel induit par un défaut dans un solide, les éléments de matrice dans la base des MLWF sont
+Ensuite, l'Hamiltonien est reconstruit dans l'espace réciproque sur une grille $\kv_f$ arbitraire via une transformée de Fourier discrète 
 \begin{equation}
-    V_{mm',nn'}(\Rv,\Rv') = \bra{\mathbf{0}m,\Rv'm'}\hat{V}\ket{\Rv n,\mathbf{0}n'},
+    H_{mn}(\kv_f) = \sum_\Rv e^{i\kv_f\cdot\Rv}H_{mn}(\Rv).
 \end{equation}
-où $\ket{\Rv n,\mathbf{0} n'}=\ket{\Rv n}\otimes \ket{\mathbf{0} n'}$. L'interpolation sur une grille ($\kv,\kv'$) arbitraire s'obtient via une double transformée de Fourier discrète
+Maintenant, l'Hamiltonien est une matrice $J\times J$ qui n'est pas nécessairement diagonale. Toute l'information sur les bandes exclues a été perdue. Pour obtenir les valeurs propres interpolées sur la grille dense, il suffit de diagonaliser la matrice $H_{mn}(\kv_f)$. En même temps, nous obtenons la matrice $V_{mn}^{(\kv_f)}$ de dimension $J\times J$ qui contient les vecteurs propres de $H_{mn}(\kv_f)$. Cette matrice est importante pour l'interpolation de tous les autres opérateurs autre que l'Hamiltonien. 
+
+Pour un opérateur général $\hat{O}$ dont nous connaissons la représentation dans la base des fonctions de Bloch $O_{mn}(\kv_c)=\bra{\psi_{m\kv_c}}\hat{O}\ket{\psi_{n\kv_c}}$ sur une grille modérément dense, l'interpolation de Wannier suit une procédure similaire à celle pour l'Hamiltonien. Nous commençons par le transformer dans la base des MLWF
 \begin{equation}
-    V_{mm',nn'}(\kv,\kv')=\sum_{\Rv\Rv'}e^{i(\kv\cdot\Rv - \kv'\cdot\Rv')}V_{mm',nn'}(\Rv,\Rv').\label{eqn:c3_2binterp}
+    O_{mn}(\Rv)=\frac{1}{N_{\kv_c}}\sum_{\kv_c} e^{-i\kv_c\cdot\Rv}\left[U^{\dag(\kv_c)}O(\kv_c)U^{(\kv_c)}\right]_{mn}.
 \end{equation}
-Si l'opérateur décroît rapidement avec $|\Rv|$ et $|\Rv'|$, seuls quelques vecteurs $\Rv$ et $\Rv'$ sont nécessaires pour converger la somme de l'équation~\eqref{eqn:c3_2binterp}, rendant l'évaluation de cette somme extrêmement efficace, même pour des grilles ultra denses. Nous utilisons cette technique pour interpoler les éléments de matrice de couplage électron-défaut et électron-phonon sur des grilles $\kv$ et $\qv$ denses. 
-
-\noindent\textbf{Interpolation de l'Hamiltonien électronique à l'aide des MLWF}
-
-\begin{figure}[t]
+Ensuite, l'opérateur est reconstruit dans l'espace réciproque sur une grille $\kv_f$ arbitraire par l'inverse de la transformation 
+\begin{equation}
+    O_{mn}(\kv_f) = \sum_{\Rv}e^{i\kv_f\cdot\Rv}\left[V^{(\kv_f)}O(\Rv)V^{\dag (\kv_f)}\right]_{mn},
+\end{equation}
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/fig_band_interp.pdf}
-    \caption[]{}
+    \caption[Comparaison entre la structure de bandes DFT et l'interpolation de la structure de bandes du graphène parfait à l'aide des MLWF.]{Comparaison entre la structure de bandes DFT et l'interpolation de la structure de bandes du graphène parfait à l'aide des MLWF. La fenêtre gelée dans laquelle les bandes sont reproduites exactement en illustrée en vert. La fenêtre extérieure est représentée en bleu. Le calcul DFT de la structure de bandes à été calculée avec \texttt{Quantum ESPRESSO} avec les paramètres donnés à la section~\ref{sec:electron_results}. Les MLWF pour les 5 bandes de plus basse énergie pour le graphène ont été obtenues avec \texttt{Wannier90}.}
     \label{fig:band_interp}
 \end{figure}
+où $V^{(\kv_f)}$ est la matrice des vecteurs propres de l'Hamiltonien interpolé sur la grille dense. Notons que la multiplication par $V^{(\kv_f)}$ est nécessaire pour ramener les opérateurs dans la jauge de Bloch.  En effet, après une simple transformée de Fourier de $H_{mn}(\Rv)$ vers l'espace réciproque, l'Hamiltonien obtenu $H_{mn}(\kv_f)$ n'est pas diagonal, ce qui indique que nous ne sommes pas dans la jauge de Bloch. Pour y revenir, on diagonalise $H_{mn}(\kv_f)$, ce qui fournit les vecteurs propres $V^{(\kv_f)}$. Tout opérateur général $\hat{O}$ est ensuite ramené dans cette jauge via la transformation par $V^{(\kv_f)}$, comme indiqué dans l'équation ci-dessus. Si l'opérateur $O(\Rv)$ est bien localisé dans l'espace réel, \textit{i.e.} s'il décroît rapidement avec $|\Rv|$, la somme sur les vecteurs de réseau peut être tronquée après quelques termes, rendant l'interpolation extrêmement efficace même sur des grilles très denses.
 
+
+Nous terminons cette section avec un exemple de l'interpolation de Wannier appliquée à l'Hamiltonien d'une feuille de graphène parfaite. L'Hamiltonien est diagonalisé sur la grille \textit{ab initio} modérément dense par un calcul SCF avec le code DFT \texttt{Quantum ESPRESSO} et les paramètres déterminés à la section~\ref{sec:electron_results}. Ensuite, les MLWF pour les 5 bandes les plus basses en énergie du graphène et l'Hamiltonien dans la base des MLWF sont calculées avec le logiciel \texttt{Wannier90}~\cite{mostofiWannier90ToolObtaining2008,mostofiUpdatedVersionWannier902014,pizziWannier90CommunityCode2020}. L'Hamiltonien est reconstruit et diagonalisé dans l'espace réciproque  sur le même chemin que la structure de bandes DFT pour comparer les deux. La comparaison est illustrée dans la figure~\ref{fig:band_interp}. Nous voyons que les bandes DFT sont exactement reproduites dans la fenêtre gelée (illustrée en vert). La fenêtre extérieure (en bleu) contient les bandes qui participent à l'extraction du sous-espace optimal de 5 bandes. 
+Finalement, nous notons que \texttt{Wannier90} a besoin d'une grille $\kv$ uniforme, \textit{i.e.} qui n'est pas réduite par symétrie. La procédure habituelle est de faire le calcul SCF DFT sur la grille réduite par symétrie, puis de refaire un calcul NSCF, peu coûteux numériquement, sur une grille de même densité mais non réduite par symétrie.
 
 \section{Photons}\label{sec:photon}
 La spectroscopie Raman étant un processus de diffusion inélastique de la lumière, les photons y jouent un rôle central : un photon incident est absorbé par le système électronique, lequel émet un photon diffusé à une fréquence différente après avoir échangé de l'énergie avec un phonon. Ces processus de diffusions microscopiques requièrent une description quantique du champ électromagnétique, ainsi que l'expression du couplage entre les électrons et les photons, que nous introduisons brièvement dans cette section.
@@ -1003,7 +990,7 @@ où dans la troisième égalité les fonctions de Bloch ont été écrites en te
 où $\mu=x,y,z$ identifie les coordonnées cartésiennes des vecteurs.
 
 \section{Hamiltonien complet en deuxième quantification}
-Avant de continuer avec le reste du mémoire, il vaut la peine de faire une petite pause pour récapituler le grand nombre de concepts théoriques qui ont été vus dans ce chapitre. Nous avons un système de graphène avec des défauts et trois types de particules élémentaires qui interagissent entre elles. L'Hamiltonien total de ce système se décompose en une partie libre et une partie d'interaction
+Avant de conclure ce chapitre, il vaut la peine de faire une petite pause pour récapituler le grand nombre de concepts théoriques qui ont été vus dans ce chapitre. Nous avons un système de graphène avec des défauts et trois types de particules élémentaires qui interagissent entre elles. L'Hamiltonien total de ce système se décompose en une partie libre et une partie d'interaction
 \begin{equation}
     \hat{H} = \hat{H}_0+\hat{H}_\text{int}.
 \end{equation}

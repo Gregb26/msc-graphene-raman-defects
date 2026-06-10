@@ -126,8 +126,8 @@
 
 \pdfbookmark[chapter]{Couverture}{PageUn}
 
-%\maketitle
-%\maketitle
+\maketitle
+\maketitle
 
 %%------------------------------------------------- %
 %%                Résumé.                           %
@@ -145,28 +145,28 @@
 \francais
 \cleardoublepage
 \pdfbookmark[chapter]{\contentsname}{toc} 
-%\tableofcontents
+\tableofcontents
 
-%\cleardoublepage
-%\listoftables
+\cleardoublepage
+\listoftables
 
-%\cleardoublepage
-%\listoffigures
+\cleardoublepage
+\listoffigures
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LISTE DES SIGLES ET ABRÉVIATION %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\include{pages_liminaires/sigles_abbréviations}
+\include{pages_liminaires/sigles_abbréviations}
 
 %%------------------------------------------------- %
 %%              liste des symboles                  %
 %%------------------------------------------------- %
-%\include{pages_liminaires/symboles}
+\include{pages_liminaires/symboles}
 
 %%------------------------------------------------- %
 %%            Remerciements                         %
 %%------------------------------------------------- %
-%\include{pages_liminaires/remerciements}
+\include{pages_liminaires/remerciements}
 
 \NoChapterPageNumber
 \cleardoublepage
@@ -178,12 +178,12 @@
 %%                                                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\include{sections/chapitre1}
-\include{sections/chapitre2}
-%\include{sections/chapitre3}
-%\include{sections/chapitre4}
-%\include{sections/chapitre5}
-%\include{sections/chapitre6}
+\include{chapitres/introduction}
+\include{chapitres/raman}
+\include{chapitres/théorie}
+\include{chapitres/défauts}
+\include{chapitres/eph}
+\include{chapitres/conclusion}
 
 %%--------------%
 %%     index    %
@@ -196,12 +196,12 @@
 %%------------------------------------------------- %
 
 \appendix
+\include{annexes/pbe}
+\include{annexes/défauts}
+\include{annexes/eph}
+\include{annexes/paramètres}
 
-%\include{sections/annexe1}
-%\include{sections/annexe2}
-%\include{sections/annexe3}
-%\include{sections/annexe4}
 
-%\printbibliography
+\printbibliography
 \end{document}
 \endinput

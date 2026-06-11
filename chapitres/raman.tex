@@ -1,5 +1,111 @@
 \chapter{Fondements théoriques de la spectroscopie Raman}\label{chap:Raman}
-Dans ce chapitre nous détaillons les équations à résoudre simuler l'intensité Raman résonante de matériaux ave des défauts. 
-\section{Théorie macroscopique semi-classique de la spectroscopie Raman}
+Dans ce chapitre, nous détaillons les équations à résoudre pour simuler l'intensité Raman résonante de matériaux avec des défauts. Nous commençons par une description semi-classique de la diffusion Raman pour introduire les concepts fondamentaux, puis nous développons la théorie quantique complète à partir de la règle d'or de Fermi et de la théorie des perturbations au troisième et quatrième ordre. Cette approche nous permet d'exprimer l'intensité Raman résonante en termes des quantités calculables \textit{ab initio} : les valeurs propres électroniques $\varepsilon_{n\kv}$, les fréquences de phonons $\omega_{\nu\qv}$ et les éléments de matrice de couplage électron-photon (chapitre~\ref{chap:théorie}), les éléments de matrice de couplage électron-défaut (chapitre~\ref{chap:défauts}) et électron-phonon (chapitre~\ref{chap:eph}). La diffusion Raman dans le graphène est particulièrement riche : en raison de la structure de bandes linéaire au point de Dirac, les processus résonnants dominent et donnent lieu à des signatures spectrales très sensibles aux défauts, au dopage et à la contrainte mécanique, faisant du graphène un système modèle idéal pour tester notre approche.
 
-\section{Théorie microscoscopique quantique de la spectroscopie Raman}
+\section{Théorie semi-classique de la spectroscopie Raman}
+La spectroscopie Raman est une technique de caractérisation optique non-destructive basée sur la diffusion inélastique de la lumière. Lorsqu'un faisceau lumineux incident frappe un échantillon, la grande majorité de la lumière est transmise ou absorbée. Une toute petite fraction de cette lumière est diffusée dans toutes les directions par des inhomogénéités dans l'échantillon. Ces inhomogénéités peuvent être statiques, comme des défauts, ou peuvent être dynamiques, comme les vibrations des ions du réseau (les phonons). De cette lumière diffusée, une grande partie est diffusée élastiquement (sans changement de fréquence), c'est la diffusion de Rayleigh~\cite{RayleighLightSky}. Le reste de la lumière, diffusée inélastiquement (avec changement de fréquence), donne lieu à la diffusion Raman~\cite{ramanNewTypeSecondary1928}. Ce changement de fréquence est directement relié aux excitations vibrationnelles de l'échantillon et constitue ainsi une empreinte digitale de sa structure atomique, de ses propriétés mécaniques et de ses défauts. Les développements de cette section suivent ceux des ouvrages~\cite{yuFundamentalsSemiconductorsPhysics2010,cardonaLightScatteringSolids1982,cardonaLightScatteringSolids1983,SymmetrySpectroscopy}.
+
+\subsection{Théorie macroscopique de la diffusion inélastique de la lumière}
+Pour l'analyse semi-classique de la diffusion Raman, nous considérons une source lumineuse monochromatique de fréquence incidente $\omega_L$ et de vecteur d'onde $\qv_L$. Cette lumière est décrite par un champ électrique sinusoïdal
+\begin{equation}
+    \mathbf{E}_i(\rv,t) = \mathbf{E}_0(\qv_L,\omega_L)\cos(\qv_L\cdot\rv-\omega_L t),
+\end{equation}
+où $\mathbf{E}_0(\qv_L, \omega_L)=E_0(\qv_L,\omega_L)\mathbf{e}_L$ est l'amplitude du champ électrique incident et $\mathbf{e}_L$ est la polarisation de la lumière incidente. Cette lumière irradie un échantillon d'un matériau avec une susceptibilité électrique $\chi$ et induit une polarisation 
+\begin{equation}
+    \mathbf{P}(\qv_L,\omega_L) \approx \chi(\qv_L,\omega_L)\mathbf{E}_0(\qv_L,\omega_L).\label{P_ind}
+\end{equation}
+Ici, nous faisons deux hypothèses simplificatrices : la susceptibilité est isotrope de sorte qu'elle se réduit à un scalaire et la réponse du matériau est linéaire en champ électrique, valide dans le régime des faibles intensités lumineuses. Dans le cas général, $\bm{\chi}$ est un tenseur d'ordre 2 et la polarisation induite contient des termes non-linéaires en $\mathbf{E}_0$, responsables des effets d'optique non-linéaire. La susceptibilité dépend des détails microscopiques du matériau ; à température finie, les vibrations ioniques excitées thermiquement (les phonons) créent des fluctuations dans la susceptibilité. Nous discutons des vibrations ioniques en détails dans la section~\ref{sec:phonons}. Pour l'instant, supposons que les vibrations ioniques associées aux phonons sont sinusoïdales
+\begin{equation}
+    \mathbf{Q}(\rv,t)=\mathbf{Q}(\qv, \omega)\cos(\qv\cdot\rv-\omega t),\label{Q}
+\end{equation}
+avec une fréquence $\omega$, un vecteur d'onde $\qv$ et une amplitude $\mathbf{Q}(\qv,\omega)$. Tel que mentionné, ces vibrations affectent la susceptibilité $\chi$. En supposant que les fréquences électroniques caractéristiques qui déterminent $\chi$ sont beaucoup plus grandes que $\omega$ (ce qui est généralement vrai), de sorte que nous pouvons prendre $\chi$ comme une fonction de $\mathbf{Q}$ et faire son expansion en puissance de $\mathbf{Q}$
+\begin{equation}
+    \chi(\qv_L,\omega_L) = \chi_0(\qv_L,\omega_L) + \left(\frac{\partial \chi}{\partial \mathbf{Q}}\right)\bigg\rvert_{\mathbf{Q=0}}\mathbf{Q}(\rv,t)+\dots\label{chi_exp}
+\end{equation}
+À température ambiente, l'amplitude des vibrations ioniques est beaucoup plus petite que la constante du réseau et il est possible de tronquer après le deuxième terme. Le premier terme $\chi_0$ est la susceptibilité du matériau en l'absence de fluctuations. Le deuxième terme représente une susceptibilité oscillante induite par les vibrations ioniques. En remplaçant l'expansion~\eqref{chi_exp} dans l'équation~\eqref{P_ind}, nous obtenons une expression pour la polarisation du matériau
+\begin{equation}
+    \mathbf{P}(\rv,t,\mathbf{Q}) = \mathbf{P}_0(\rv,t)+\mathbf{P}_\text{ind}(\rv,t,\mathbf{Q}),
+\end{equation}
+où
+\begin{equation}
+    \mathbf{P}_0(\rv,t) = \chi_0(\qv_L,\omega_L)\mathbf{E}_0(\qv_L,\omega_L)\cos(\qv_L\cdot\rv -\omega_L t),
+\end{equation}
+est la polarisation due à la lumière incidente. Une polarisation oscillante de fréquence $\omega_L$ émet de la lumière de même fréquence $\omega_L$~\cite{JacksonJD1999}. Ce terme correspond à la diffusion élastique de Rayleigh. Le deuxième terme
+\begin{equation}
+    \mathbf{P}_\text{ind}(\rv,t,\mathbf{Q})=\left(\frac{\partial \chi}{\partial\mathbf{Q}}\right)\bigg\rvert_{\mathbf{Q=0}}\mathbf{Q}(\rv,t)\mathbf{E}_0(\qv_L,\omega_L)\cos(\qv_L\cdot\rv-\omega_L t),
+\end{equation}
+est la polarisation induite par l'interaction entre la lumière incidente et les vibrations ioniques. Pour trouver sa fréquence et son vecteur d'onde, nous remplaçons $\mathbf{Q}$ par son expression~\eqref{Q} et utilisons l'identité trigonométrique $\cos(x)\cos(y)=[\cos(x+y)+\cos(x-y)]/2$, pour obtenir
+\begin{equation}
+    \begin{split}
+    \mathbf{P}_\text{ind}(\rv,t,\mathbf{Q}) &= \frac{1}{2}\left(\frac{\partial \chi}{\partial\mathbf{Q}}\right)\bigg\rvert_{\mathbf{Q=0}}\mathbf{Q}(\qv,\omega)\mathbf{E}_0(\qv_L,\omega_L)\\
+    &\times\left\{\cos[(\qv_L+\qv)\cdot\rv-(\omega_L+\omega)t]+\cos[(\qv_L-\qv)\cdot\rv-(\omega_L-\omega)t]\right\}
+    \end{split}.\label{P_Raman}
+\end{equation}
+La polarisation induite par l'interaction lumière-matière est donc une superposition de deux ondes sinusoïdales : une onde décalée de type \textit{Stokes} avec une fréquence $\omega_S=(\omega_L-\omega)$ et un vecteur d'onde $\qv_S=(\qv_L-\qv)$, ainsi qu'une onde décalée \textit{anti-Stokes} de fréquence $\omega_{AS}=(\omega_L+\omega)$ et de vecteur d'onde $\qv_{AS}=(\qv_L+\qv)$. La lumière produite par la radiation de ces deux polarisations induites est connue sous le nom de lumière diffusée Stokes et anti-Stokes respectivement. La différence entre la fréquence de la lumière diffusée et de la lumière incidente est $\pm\omega$, soit la fréquence du phonon. Cette différence est appelée le décalage Raman et les spectres Raman sont généralement des graphiques de l'intensité de la lumière diffusée par rapport au décalage Raman. Le spectre Raman est composé de pics d'intensité situés au décalage Stokes et anti-Stokes.
+
+Remarquons que la fréquence et le vecteur d'onde sont tous deux conservés dans ces processus de diffusion. Une conséquence de la conservation du vecteur d'onde est que, comme les photons visibles ont des vecteurs d'onde $|\qv_L|\sim 10^{-2}$ nm$^{-1}$ beaucoup plus petits que ceux des vibrations ioniques caractéristiques à l'échelle de la zone de Brillouin $|\Gv|\sim 10$ nm$^{-1}$, le vecteur d'onde du phonon impliqué est restreint à $\qv\approx 0$. Ainsi, la diffusion Raman à un phonon ne sonde que les phonons au centre de la zone de Brillouin, au point $\Gamma$. Pour sonder des phonons $\qv\neq 0$, il faut soit impliquer plusieurs phonons, soit briser la conservation du vecteur d'onde par la présence de défauts dans le matériau.
+
+Il n'est pas trop difficile d'inclure des processus de diffusion à plusieurs phonons dans la théorie : il suffit d'inclure plus de puissances du déplacement des phonons dans l'expansion de la susceptibilité~\eqref{chi_exp}. Par exemple, garder le terme de deuxième ordre donne lieu à des polarisations induites avec des fréquences décalées de la fréquence incidente par $\pm\omega_1\pm\omega_2$, où $\omega_1 > \omega_2$ sont les fréquences des deux phonons impliqués. Ces polarisations induites donnent lieu à la diffusion Raman à deux phonons. Pour deux phonons différents, le pic au décalage $\omega_1+\omega_2$ est appelé le mode de \textit{combinaison}, tandis que le pic au décalage $\omega_1-\omega_2$ est le mode de \textit{différence}. Si les deux phonons sont identiques, le pic Raman s'appelle un \textit{overtone}. Cette fois-ci, la conservation du vecteur d'onde implique que le vecteur d'onde total des phonons est conservé, soit que $\qv_1\pm\qv_2\approx 0$. Pour un pic \textit{overtone}, cela implique que $\qv_1\approx-\qv_2$, \textit{i.e.} les deux phonons ont des vecteurs d'onde égaux et opposés, ce qui permet de sonder des phonons à $\qv\neq 0$ sans nécessiter de défauts. L'inclusion de défauts dans la théorie semi-classique et plus ardue ; il faut la théorie quantique pour décrire quantitivement l'effet des défauts sur le spectre Raman d'un matériau.
+
+\subsection{Tenseur Raman et règles de sélection}
+Nous avons vu que la polarisation induite par l'interaction lumière-matière dans un matériau~\eqref{P_Raman} est responsable du spectre Raman. Cependant, cette polarisation induite est non-nulle seulement si la quantité $\partial\chi/\partial\mathbf{Q}$ est non-nulle : elle joue un rôle central dans la sélection des phonons actifs en Raman. En généralisant la susceptibilité à un tenseur d'ordre 2 $\chi_{ij}$, cette quantité est un tenseur d'ordre 3. En le contractant avec le déplacement du phonon nous obtenons le tenseur Raman de rang 2
+\begin{equation}
+    \mathcal{R}_{ij}(\omega)=\sum_k\left(\frac{\partial\chi_{ij}}{\partial Q_k}\right)\bigg\rvert_{Q_k=0}\hat{Q}_k(\omega),
+\end{equation}
+où  $\hat{Q}_k$ est la composante cartésienne $k$ du vecteur unitaire $\hat{\mathbf{Q}}=\mathbf{Q}/|\mathbf{Q}|$ et nous avons fait l'approximation $\qv\approx 0$. Le tenseur Raman détermine l'intensité de la lumière diffusée pour des polarisations données de photons incident et diffusé. La polarisation induite dans le matériau rayonne un champ électrique dont la composante selon la polarisation du photon diffusé $\mathbf{e}_S$ est proportionnelle à $\mathbf{e}_S\cdot\mathbf{P}_\text{ind} \sim \mathbf{e}_S\cdot\bm{\mathcal{R}}\cdot\mathbf{e}_L$. L'intensité de la lumière diffusée, proportionnelle au module carré du champ rayonné, s'écrit alors
+\begin{equation}
+    I(\omega) \sim \left|\mathbf{e}_S\cdot\bm{\mathcal{R}}(\omega)\cdot\mathbf{e}_L\right|^2 = \left|\sum_{ij}e_S^{(i)}\mathcal{R}_{ij}(\omega)e_L^{(j)}\right|^2.
+\end{equation}
+Cette équation est le résultat central de la théorie semi-classique : elle montre que l'intensité Raman d'un mode dépend de la géométrie de l'expérience via les polarisations $\mathbf{e}_L$ et $\mathbf{e}_S$ et de la symétrie du mode de vibration via la structure du tenseur Raman $\bm{\mathcal{R}}$. En particulier, si l'intensité s'annule pour un mode de phonon pour toutes les combinaisons de polarisations, le mode est dit \textit{inactif} en Raman : aucune géométrie ne permet de l'observer. Inversement, un mode \textit{actif} peut être visible ou invisible selon la polarisation choisie, ce qui permet d'identifier expérimentalement la symétrie des modes de phonons en variant les polarisations. 
+
+La structure du tenseur Raman est entièrement déterminée par la symétrie du matériau et du mode de vibration. La susceptibilité se transforme comme un tenseur symétrique de rang 2 sous les opérations de groupe de points du cristal, c'est-à-dire comme les fonctions quadratiques $x^2, y^2, z^2, xy, xz$ et $yz$. La dérivée $\partial\chi_{ij}/\partial Q$ est donc non-nulle seulement si le mode $Q$ se transforme lui aussi selon un représentation irréductible contenant au moins une de ces fonctions quadratiques. Cette condition constitue la règle de sélection Raman : un mode de vibration est actif en Raman si et seulement si sa représentation irréductible contient les composantes du tenseur symétrique de rang 2. Les tables de caractères~\cite{SymmetrySpectroscopy} permettent de vérifier cette condition pour chaque mode et donnent directement la forme du tenseur Raman associé.
+
+Appliquons cette règle au graphène, dont le groupe de points est $D_{6h}$. Avec 2 atomes dans la cellule unitaire, le graphène possède 6 modes de phonons au point $\Gamma$, qui se décomposent en représentations irréductibles de $D_{6h}$ comme
+\begin{equation}
+    \Gamma_\text{vib} = A_{2u}\oplus B_{2g}\oplus E_{1u}\oplus E_{2g},
+\end{equation}
+où $A_{2u}$ (mode ZA) et $E_{1u}$ (modes TA et LA, doublement dégénérés) sont les trois modes acoustiques, $B_{2g}$ est le mode optique hors plan (ZO) et $E_{2g}$ regroupe les deux modes optiques dans le plan (TO et LO) dégénérés à $\Gamma$. En consultant la table de caractères de $D_{6h}$~\cite{GroupTheory2008} illustrée au tableau~\ref{tab:D6h}, seule la représentation $E_{2g}$ contient des fonctions quadratiques, soit $(x^2-y^2, xy)$ : c'est le seul mode actif du graphène au premier ordre. Ce mode, de fréquence $\sim 1580$ cm$^{-1}$, est responsable du pic G qui est la signature Raman la plus connue du graphène. Tous les autres modes de phonons du graphène sont inactifs en Raman à $\Gamma$. 
+
+\begin{table}[t]
+\centering
+\caption[Table de caractères du groupe de points $D_{6h}$.]{Table de 
+caractères du groupe de points $D_{6h}$. Les deux dernières colonnes 
+donnent les fonctions linéaires et quadratiques se transformant selon 
+chaque représentation irréductible. Les représentations Raman actives 
+sont celles dont les fonctions quadratiques sont non-nulles ($A_{1g}$, 
+$E_{1g}$, $E_{2g}$) et les représentations actives en infrarouge sont 
+celles contenant les fonctions linéaires ($A_{2u}$, $E_{1u}$). Adapté 
+de~\cite{GroupTheory2008}.}
+\label{tab:D6h}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|rrrrrrrrrrrr|c|c}
+\hline\hline
+$D_{6h}$ & $E$ & $2C_6$ & $2C_3$ & $C_2$ & $3C_2'$ & $3C_2''$ & $i$ & 
+$2S_3$ & $2S_6$ & $\sigma_h$ & $3\sigma_d$ & $3\sigma_v$ & lin. & quad. \\
+\hline
+$A_{1g}$ & 1 &  1 &  1 &  1 &  1 &  1 &  1 &  1 &  1 &  1 &  1 &  1 & & $x^2+y^2$, $z^2$ \\
+$A_{2g}$ & 1 &  1 &  1 &  1 & $-1$ & $-1$ &  1 &  1 &  1 &  1 & $-1$ & $-1$ & $R_z$ & \\
+$B_{1g}$ & 1 & $-1$ &  1 & $-1$ &  1 & $-1$ &  1 & $-1$ &  1 & $-1$ &  1 & $-1$ & & \\
+$B_{2g}$ & 1 & $-1$ &  1 & $-1$ & $-1$ &  1 &  1 & $-1$ &  1 & $-1$ & $-1$ &  1 & & \\
+$E_{1g}$ & 2 &  1 & $-1$ & $-2$ &  0 &  0 &  2 &  1 & $-1$ & $-2$ &  0 &  0 & $(R_x,R_y)$ & $(xz,yz)$ \\
+$E_{2g}$ & 2 & $-1$ & $-1$ &  2 &  0 &  0 &  2 & $-1$ & $-1$ &  2 &  0 &  0 & & $(x^2-y^2,xy)$ \\
+$A_{1u}$ & 1 &  1 &  1 &  1 &  1 &  1 & $-1$ & $-1$ & $-1$ & $-1$ & $-1$ & $-1$ & & \\
+$A_{2u}$ & 1 &  1 &  1 &  1 & $-1$ & $-1$ & $-1$ & $-1$ & $-1$ & $-1$ &  1 &  1 & $z$ & \\
+$B_{1u}$ & 1 & $-1$ &  1 & $-1$ &  1 & $-1$ & $-1$ &  1 & $-1$ &  1 & $-1$ &  1 & & \\
+$B_{2u}$ & 1 & $-1$ &  1 & $-1$ & $-1$ &  1 & $-1$ &  1 & $-1$ &  1 &  1 & $-1$ & & \\
+$E_{1u}$ & 2 &  1 & $-1$ & $-2$ &  0 &  0 & $-2$ & $-1$ &  1 &  2 &  0 &  0 & $(x,y)$ & \\
+$E_{2u}$ & 2 & $-1$ & $-1$ &  2 &  0 &  0 & $-2$ &  1 &  1 & $-2$ &  0 &  0 & & \\
+\hline\hline
+\end{tabular}}
+\end{table}
+
+\subsection{Limites de la théorie semi-classique}
+
+La théorie semi-classique présentée dans cette section capture plusieurs aspects essentiels de la spectroscopie Raman : elle prédit correctement les fréquences Stokes et anti-Stokes, les règles de conservation de la fréquence et du vecteur d'onde, ainsi que les règles de sélection qui déterminent quels modes sont actifs. Elle souffre toutefois de plusieurs limitations fondamentales. 
+
+Premièrement, la théorie des groupes détermine la \textit{forme} du tenseur Raman, mais pas sa \textit{valeur}. En pratique, le tenser Raman peut être calculé \textit{ab initio} comme une dérivée troisième de l'énergie totale à l'aide de la DFPT et du théorème $2n+1$~\cite{lazzeriFirstPrinciplesCalculationVibrational2003}, mais cette approche n'est valide que hors résonnance et dans l'approximation de Placzek, où la fréquence de la lumière incidente est loin de toute transition électronique. Cette condition n'est jamais satisfaite dans le graphène : en raison du gap nul aux points de Dirac, il existe toujours des transitions électroniques réelles à la fréquence du laser et la diffusion Raman y est intrinsèquement \textit{résonante}.
+
+Deuxièmement, la théorie semi-classique prédit des intensités Stokes et anti-Stokes comparables, puisque l'amplitude $\mathbf{Q}(\qv,\omega)$ apparaît de manière identique dans les deux termes de l'équation~\eqref{P_Raman}. Expérimentalement, le rapport des intensités suit plutôt $I_{AS}/I_S\sim e^{-\hbar\omega/k_BT}$ et le signal anti-Sotkes disparaît à basse température. Ce comportement est purement quantique : le processus anti-Stokes requiert l'annihilation d'un phonon thermiquement peuplé, un processus qui est supprimé à basse température. Le processus Stokes requiert la création d'un phonon et peut avoir lieu à n'importe quelle température.
+
+Finalement, la théorie semi-classique ne fournit aucune prescription quantitative pour traiter les défauts, qui sont au c\oe ur de ce mémoire. Le pic D du graphène résulte d'une processus microscopique précis : l'absorption d'un photon, la diffusion d'un électron par un phonon, la diffusion par un défaut, puis l'émission d'un photon. La description de ce processus nécessite la théorie des perturbations quantique à un ordre élevé. Pour toutes ces raisons, nous développons dans la prochaine section la théorie quantique complète de la diffusion Raman résonnante pour des systèmes avec des défauts. 
+
+\section{Théorie quantique de la spectroscopie Raman}

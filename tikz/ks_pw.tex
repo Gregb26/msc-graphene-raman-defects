@@ -11,7 +11,7 @@
     label/.style={font=\small, midway},
 ]
 
-\def\sep{1.55}
+\def\sep{1.6}
 
 % ---- Nœuds principaux ----
 \node[box] (nin)    at (0,  0)           {$n_\text{in}^{(i)}(\rv)$};
@@ -90,6 +90,6 @@
 % ---- Rectangle délimitant la boucle SCF ----
 \draw[dashed, gray, rounded corners]
     (-4.0, 1.15) rectangle (4.0, -7.15*\sep);
-\node[font=\small\itshape, gray] at (-2.8, 0.85) {Boucle SCF};
+\node[font=\small\itshape, gray] at (-2.8, 0.85) {Boucle DFT};
 
 \end{tikzpicture}

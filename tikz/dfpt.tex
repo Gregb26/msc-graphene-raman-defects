@@ -1,0 +1,123 @@
+% Figure : cycle autocohérent DFPT pour les phonons (fig:scf_phonon)
+% Même style que le diagramme SCF électronique.
+% Notation : \Delta \equiv \Delta_{\qv\alpha\mu} dans les boîtes pour alléger.
+\begin{tikzpicture}[
+    box/.style={rectangle, draw=black, rounded corners,
+                fill=gray!15, minimum width=6.5cm,
+                minimum height=1.3cm, align=center, font=\small, inner sep=6pt},
+    sidebox/.style={rectangle, draw=black, rounded corners,
+                fill=gray!15, minimum width=3.8cm,
+                minimum height=0.85cm, align=center, font=\small},
+    decision/.style={diamond, draw=black, fill=darkblue!15,
+                     aspect=3, align=center, font=\small},
+    arrow/.style={->, >=stealth, thick},
+    label/.style={font=\small, midway},
+]
+
+\def\sep{1.55}
+
+% ---- Nœuds principaux ----
+\node[box] (dnin)   at (0,  0)
+    {$\Delta n_\text{in}^{(i)}(\rv)$};
+\node[font=\scriptsize\bfseries, anchor=north west]
+    at (dnin.north west) {(1)};
+
+\node[box] (dH)     at (0, -1.3*\sep)
+    {$\Delta\hat{H}_\text{KS}
+       = \Delta V_\text{PP}
+       + \displaystyle\int d^3\rv'\,\Delta n(\rv')\,
+         \frac{\delta\!\left[V_\text{H}+V_\text{XC}\right]\!(\rv)}
+              {\delta n(\rv')}$};
+\node[font=\scriptsize\bfseries, anchor=north west]
+    at (dH.north west) {(3)};
+
+\node[box] (stern)  at (0, -2.7*\sep)
+    {Sternheimer projetée :\\[2pt]
+     $\left(\hat{H}_\text{KS}-\varepsilon_{n\kv}\right)
+      \ket{\Delta\psi_{n\kv}}
+      = -\hat{P}_c\,\Delta\hat{H}_\text{KS}\ket{\psi_{n\kv}}$};
+\node[font=\scriptsize\bfseries, anchor=north west]
+    at (stern.north west) {(5)};
+
+\node[box] (dnout)  at (0, -4.1*\sep)
+    {$\Delta n_\text{out}(\rv)
+       = 4\Re\displaystyle\sum_{n\kv} f_{n\kv}\,
+         \psi^*_{n\kv}(\rv)\,\Delta\psi_{n\kv}(\rv)$};
+\node[font=\scriptsize\bfseries, anchor=north west]
+    at (dnout.north west) {(6)};
+
+\node[box] (mix)    at (0, -5.3*\sep)
+    {Mixing $\;\longrightarrow\;\Delta n_\text{in}^{(i+1)}(\rv)$};
+\node[font=\scriptsize\bfseries, anchor=north west]
+    at (mix.north west) {(7)};
+
+\node[decision] (conv) at (0, -6.5*\sep) {Convergé?};
+
+\node[box] (cel)    at (0, -8.0*\sep)
+    {$\widetilde{C}^\text{el}_{\alpha\mu,\alpha'\mu'}(\qv)
+      = \displaystyle\int d^3\rv\,\Delta n(\rv)\,\Delta' V_\text{PP}(\rv)
+      + \displaystyle\int d^3\rv\,n(\rv)\,\Delta\Delta' V_\text{PP}(\rv)$};
+\node[font=\scriptsize\bfseries, anchor=north west]
+    at (cel.north west) {(8)};
+
+\node[box] (dyn)    at (0, -9.4*\sep)
+    {$D_{\alpha\mu,\alpha'\mu'}(\qv)
+      = \dfrac{1}{\sqrt{M_\alpha M_{\alpha'}}}\,
+        \widetilde{C}_{\alpha\mu,\alpha'\mu'}(\qv)$};
+\node[font=\scriptsize\bfseries, anchor=north west]
+    at (dyn.north west) {(9)};
+
+\node[box] (freq)   at (0, -10.8*\sep)
+    {Fréquences $\omega_{\qv\nu}$ et polarisations $e_{\qv\nu}$};
+\node[font=\scriptsize\bfseries, anchor=north west]
+    at (freq.north west) {(10)};
+
+% ---- Nœuds latéraux (précalculés) ----
+\node[sidebox] (dVPP) at (6.8, -1.3*\sep)
+    {$\Delta V_\text{PP}(\rv)$\\(précalculé)};
+\node[font=\scriptsize\bfseries, anchor=north west]
+    at (dVPP.north west) {(2)};
+
+\node[sidebox] (gs)   at (6.8, -2.7*\sep)
+    {$\psi_{n\kv},\;\varepsilon_{n\kv},\;n(\rv)$\\(calcul SCF préalable)};
+\node[font=\scriptsize\bfseries, anchor=north west]
+    at (gs.north west) {(4)};
+
+% ---- Flèches flux principal ----
+\draw[arrow] (dnin)  -- (dH);
+\draw[arrow] (dH)    -- (stern);
+\draw[arrow] (stern) -- (dnout);
+\draw[arrow] (dnout) -- (mix);
+\draw[arrow] (mix)   -- (conv);
+\draw[arrow] (conv)  -- (cel)
+    node[label, right] {Oui};
+\draw[arrow] (cel)   -- (dyn)
+    node[label, right] {$+\;\widetilde{C}^\text{ion}$};
+\draw[arrow] (dyn)   -- (freq)
+    node[label, right] {Diagonalisation};
+
+% ---- Flèches latérales ----
+\draw[arrow] (dVPP)  -- (dH);
+\draw[arrow] (gs)    -- (stern);
+
+% ---- Flèche de retour (boucle autocohérente) ----
+\draw[arrow] (conv.west)
+    -- ++(-2.9, 0)
+    |- (dnin.west)
+    node[pos=0.01, right, font=\small] {Non};
+
+% ---- Rectangle délimitant la boucle ----
+\draw[dashed, gray, rounded corners]
+    (-4.6, 1.2) rectangle (4.6, -5.85*\sep);
+\node[font=\small\itshape, gray] at (-3.0, 0.92)
+    {Boucle DFPT};
+
+% ---- Note : cycle répété pour chaque perturbation ----
+\node[font=\scriptsize\itshape, gray, align=left, anchor=west]
+    at (5.2, -5.3*\sep)
+    {Boucle DFPT répétée pour \\chaque perturbation $(\qv\alpha\mu)$\\
+     et chaque $\qv\in$ IBZ.\\[2pt]
+     Notation : $\Delta\equiv\Delta_{\qv\alpha\mu}$,\\
+     $\Delta'\equiv\Delta_{\qv\alpha'\mu'}$};
+
+\end{tikzpicture}

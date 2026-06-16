@@ -1,0 +1,94 @@
+% Macro diagramme phonon-defaut, meme style que le code original.
+%  - boucle ellipse a=1.2 b=1.0
+%  - photons : dashed, labels omega_L / omega_S
+%  - vertex photon : cercle blanc rayon 0.18
+%  - VERTEX PHONON : cercle blanc rayon 0.18 + phonon snake sortant (label)
+%  - VERTEX DEFAUT : cercle blanc rayon 0.2 + croix (X), pas de ligne externe
+%
+% #1 cx  #2 cy
+% #3 angle vertex PHONON  #4 dir phonon (up/down)  #5 label phonon
+% #6 angle vertex DEFAUT  #7 dir cote du X label (up/down) -- ignore, pas de ligne
+% #8 (inutilise, garder vide)  #9 etiquette
+\newcommand{\diagpd}[9]{%
+\begin{scope}[shift={(#1,#2)},
+    line/.style={thick},
+    >=Stealth,
+    fermion/.style={
+      postaction={decorate},
+      decoration={markings, mark=at position 0.55 with {\arrow{Stealth}}}
+    }]
+  % boucle
+  \draw[line, fermion] (-1.2,0) arc (180:90:1.2 and 1.0);
+  \draw[line, fermion] (0,1.0) arc (90:0:1.2 and 1.0);
+  \draw[line, fermion] (1.2,0) arc (0:-90:1.2 and 1.0);
+  \draw[line, fermion] (0,-1.0) arc (-90:-180:1.2 and 1.0);
+
+  % vertex photon gauche
+  \draw[fill=white] (-1.2,0) circle (0.18);
+  \draw[line, dashed] (-2.8,0) -- (-1.38,0);
+  \node[above] at (-2.1,0) {$\omega_L$};
+  % vertex photon droit
+  \draw[fill=white] (1.2,0) circle (0.18);
+  \draw[line, dashed] (1.38,0) -- (2.8,0);
+  \node[above] at (2.1,0) {$\omega_S$};
+
+  % --- vertex PHONON ---
+  \coordinate (pp) at ({1.2*cos(#3)},{1.0*sin(#3)});
+  \draw[fill=white] ($(pp)+(-0.18,-0.18)$) rectangle ($(pp)+(0.18,0.18)$);
+  \ifthenelse{\equal{#4}{up}}{%
+    \draw[line, decorate, decoration={snake, amplitude=0.8mm, segment length=3mm}]
+      ($(pp)+(0.13,0.13)$) -- ($(pp)+(1.0,0.85)$);
+    \node[above] at ($(pp)+(1.0,0.9)$) {#5};
+  }{%
+    \draw[line, decorate, decoration={snake, amplitude=0.8mm, segment length=3mm}]
+      ($(pp)+(0.13,-0.13)$) -- ($(pp)+(1.0,-0.85)$);
+    \node[below] at ($(pp)+(1.0,-0.9)$) {#5};
+  }
+
+  % --- vertex DEFAUT (croix dans un cercle, pas de ligne externe) ---
+  \coordinate (dd) at ({1.2*cos(#6)},{1.0*sin(#6)});
+  \draw[fill=white] (dd) circle (0.2);
+  \draw[line width=1pt] ($(dd)+(-0.14,-0.14)$) -- ($(dd)+(0.14,0.14)$);
+  \draw[line width=1pt] ($(dd)+(-0.14,0.14)$) -- ($(dd)+(0.14,-0.14)$);
+
+  % etiquette
+  \node[font=\small\bfseries] at (-2.8,1.4) {#9};
+\end{scope}%
+}
+
+\begin{tikzpicture}
+
+  \def\xL{-4.7}
+  \def\xR{4.9}
+  \def\rA{-2.6}
+  \def\rB{-7.0}
+  \def\rC{-11.4}
+  \def\rD{-15.8}
+
+  \begin{scope}[on background layer]
+    \fill[gray!12] (1.7,0.6) rectangle (9.2,-18.4);
+  \end{scope}
+
+  % ====== COLONNE GAUCHE : ee, hh (meme porteur) ======
+  % Convention : phonon sur un porteur, defaut sur le MEME porteur.
+  % 1 = phonon avant defaut (temporellement, gauche), 2 = defaut avant phonon.
+  %
+  % ee1 : electron(haut). phonon a gauche-haut (120), defaut a droite-haut (60)
+  \diagpd{\xL}{\rA}{120}{up}{$\omega_{\nu-\qv}$}{60}{up}{}{ee1}
+  % ee2 : ordre inverse -> defaut a gauche-haut, phonon a droite-haut
+  \diagpd{\xL}{\rB}{60}{up}{$\omega_{\nu-\qv}$}{120}{up}{}{ee2}
+  % hh1 : trou(bas). phonon a gauche-bas (240), defaut a droite-bas (300)
+  \diagpd{\xL}{\rC}{240}{down}{$\omega_{\nu-\qv}$}{300}{down}{}{hh1}
+  % hh2 : ordre inverse
+  \diagpd{\xL}{\rD}{300}{down}{$\omega_{\nu-\qv}$}{240}{down}{}{hh2}
+
+  % ====== COLONNE DROITE : eh, he (porteurs mixtes) ======
+  % eh1 : phonon sur electron (haut, 90), defaut sur trou (bas, 300)
+  \diagpd{\xR}{\rA}{90}{up}{$\omega_{\nu-\qv}$}{300}{down}{}{eh1}
+  % eh2 : phonon sur electron (haut, 90), defaut sur trou (bas, 240)
+  \diagpd{\xR}{\rB}{90}{up}{$\omega_{\nu-\qv}$}{240}{down}{}{eh2}
+  % he1 : phonon sur trou (bas, 270), defaut sur electron (haut, 120)
+  \diagpd{\xR}{\rC}{270}{down}{$\omega_{\nu-\qv}$}{120}{up}{}{he1}
+  % he2 : phonon sur trou (bas, 270), defaut sur electron (haut, 60)
+  \diagpd{\xR}{\rD}{270}{down}{$\omega_{\nu-\qv}$}{60}{up}{}{he2}
+\end{tikzpicture}

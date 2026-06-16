@@ -1,0 +1,44 @@
+% Figure : règles de Feynman pour la diffusion Raman (fig:feynman_rules)
+% Compatible pdflatex. Nécessite \usetikzlibrary{decorations.pathmorphing,arrows.meta}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    line/.style={thick},
+    >=Stealth,
+]
+
+% ===================== Colonne gauche : propagateurs =====================
+
+% --- Photon : ligne pointillée ---
+\draw[line, dashed] (0,4) -- (2,4);
+\node[anchor=west] at (2.3,4) {Photon};
+
+% --- Électron/trou : ligne pleine avec flèche ---
+\draw[line, fermion] (0,3) -- (2,3);
+\node[anchor=west] at (2.3,3) {Électron};
+
+% --- Phonon : ligne ondulée ---
+\draw[line, decorate, decoration={snake, amplitude=1.2mm, segment length=4mm}]
+    (0,2) -- (2,2);
+\node[anchor=west] at (2.3,2) {Phonon};
+
+% ===================== Colonne droite : vertex =====================
+
+% --- Vertex électron-photon : cercle ---
+
+\draw[fill=white] (7,4) circle (0.2);
+\node[anchor=west] at (7.3,4) {Couplage électron-photon $\hat{H}_\text{eem}$};
+
+% --- Vertex électron-défaut : cercle avec croix ---
+\draw[fill=white] (7,3) circle (0.2);
+\draw[line width=1pt] (6.92,2.92) -- (7.08,3.08);
+\draw[line width=1pt] (6.92,3.08) -- (7.08,2.92);
+\node[anchor=west] at (7.3,3) {Couplage électron-défaut $\hat{H}_\text{ed}$};
+
+% --- Vertex électron-phonon : carré ---
+\def\halfside{0.2} % ajuste cette valeur pour la taille du carré
+\draw[fill=white] (7-\halfside,2-\halfside) rectangle (7+\halfside,2+\halfside);
+\node[anchor=west] at (7.3,2) {Couplage électron-phonon $\hat{H}_\text{eph}$};
+
+\end{tikzpicture}
+\end{figure}

@@ -1,7 +1,7 @@
 \chapter{Fondements théoriques de la spectroscopie Raman}\label{chap:Raman}
-Dans ce chapitre, nous détaillons les équations à résoudre pour simuler l'intensité Raman résonante de matériaux avec des défauts. Nous commençons par une description semi-classique de la diffusion Raman pour introduire les concepts fondamentaux, puis nous développons la théorie quantique complète à partir de la règle d'or de Fermi et de la théorie des perturbations au troisième et quatrième ordre. Cette approche nous permet d'exprimer l'intensité Raman résonante en termes des quantités calculables \textit{ab initio} : les valeurs propres électroniques $\varepsilon_{n\kv}$, les fréquences de phonons $\omega_{\nu\qv}$ et les éléments de matrice de couplage électron-photon (chapitre~\ref{chap:théorie}), les éléments de matrice de couplage électron-défaut (chapitre~\ref{chap:défauts}) et électron-phonon (chapitre~\ref{chap:eph}). La diffusion Raman dans le graphène est particulièrement riche : en raison de la structure de bandes linéaire au point de Dirac, les processus résonnants dominent et donnent lieu à des signatures spectrales très sensibles aux défauts, au dopage et à la contrainte mécanique, faisant du graphène un système modèle idéal pour tester notre approche.
+Dans ce chapitre, nous détaillons les équations à résoudre pour simuler l'intensité Raman résonante de matériaux avec des défauts. Nous commençons par une description semi-classique de la diffusion Raman pour introduire les concepts fondamentaux, puis nous développons la théorie quantique complète à partir de la règle d'or de Fermi et de la théorie des perturbations au troisième et quatrième ordre. Cette approche nous permet d'exprimer l'intensité Raman résonante en termes des quantités calculables \textit{ab initio} : les valeurs propres électroniques $\varepsilon_{n\kv}$, les fréquences de phonons $\omega_{\nu\qv}$ et les éléments de matrice de couplage électron-photon (chapitre~\ref{chap:théorie}), les éléments de matrice de couplage électron-défaut (chapitre~\ref{chap:défauts}) et électron-phonon (chapitre~\ref{chap:eph}). 
 
-\section{Théorie semi-classique de la spectroscopie Raman}
+\section{Théorie semi-classique de la spectroscopie Raman}\label{sec:rama_classique}
 La spectroscopie Raman est une technique de caractérisation optique non-destructive basée sur la diffusion inélastique de la lumière. Lorsqu'un faisceau lumineux incident frappe un échantillon, la grande majorité de la lumière est transmise ou absorbée. Une toute petite fraction de cette lumière est diffusée dans toutes les directions par des inhomogénéités dans l'échantillon. Ces inhomogénéités peuvent être statiques, comme des défauts, ou peuvent être dynamiques, comme les vibrations des ions du réseau (les phonons). De cette lumière diffusée, une grande partie est diffusée élastiquement (sans changement de fréquence), c'est la diffusion de Rayleigh~\cite{RayleighLightSky}. Le reste de la lumière, diffusée inélastiquement (avec changement de fréquence), donne lieu à la diffusion Raman~\cite{ramanNewTypeSecondary1928}. Ce changement de fréquence est directement relié aux excitations vibrationnelles de l'échantillon et constitue ainsi une empreinte digitale de sa structure atomique, de ses propriétés mécaniques et de ses défauts. Les développements de cette section suivent ceux des ouvrages~\cite{yuFundamentalsSemiconductorsPhysics2010,cardonaLightScatteringSolids1982,cardonaLightScatteringSolids1983,SymmetrySpectroscopy}.
 
 \subsection{Théorie macroscopique de la diffusion inélastique de la lumière}
@@ -13,15 +13,15 @@ où $\mathbf{E}_0(\qv_L, \omega_L)=E_0(\qv_L,\omega_L)\mathbf{e}_L$ est l'amplit
 \begin{equation}
     \mathbf{P}(\qv_L,\omega_L) \approx \chi(\qv_L,\omega_L)\mathbf{E}_0(\qv_L,\omega_L).\label{P_ind}
 \end{equation}
-Ici, nous faisons deux hypothèses simplificatrices : la susceptibilité est isotrope de sorte qu'elle se réduit à un scalaire et la réponse du matériau est linéaire en champ électrique, valide dans le régime des faibles intensités lumineuses. Dans le cas général, $\bm{\chi}$ est un tenseur d'ordre 2 et la polarisation induite contient des termes non-linéaires en $\mathbf{E}_0$, responsables des effets d'optique non-linéaire. La susceptibilité dépend des détails microscopiques du matériau ; à température finie, les vibrations ioniques excitées thermiquement (les phonons) créent des fluctuations dans la susceptibilité. Nous discutons des vibrations ioniques en détails dans la section~\ref{sec:phonons}. Pour l'instant, supposons que les vibrations ioniques associées aux phonons sont sinusoïdales
+Ici, nous faisons deux hypothèses simplificatrices : la susceptibilité est isotrope de sorte qu'elle se réduit à un scalaire et la réponse du matériau est linéaire en champ électrique, valide dans le régime des faibles intensités lumineuses. Dans le cas général, $\bm{\chi}$ est un tenseur d'ordre 2 et la polarisation induite contient des termes non-linéaires en $\mathbf{E}_0$, responsables des effets d'optique non-linéaire. La susceptibilité dépend des détails microscopiques du matériau ; à température finie, les vibrations ioniques excitées thermiquement (les phonons) créent des fluctuations dans la susceptibilité. Pour l'instant, supposons que les vibrations ioniques associées aux phonons sont sinusoïdales
 \begin{equation}
     \mathbf{Q}(\rv,t)=\mathbf{Q}(\qv, \omega)\cos(\qv\cdot\rv-\omega t),\label{Q}
 \end{equation}
-avec une fréquence $\omega$, un vecteur d'onde $\qv$ et une amplitude $\mathbf{Q}(\qv,\omega)$. Tel que mentionné, ces vibrations affectent la susceptibilité $\chi$. En supposant que les fréquences électroniques caractéristiques qui déterminent $\chi$ sont beaucoup plus grandes que $\omega$ (ce qui est généralement vrai), de sorte que nous pouvons prendre $\chi$ comme une fonction de $\mathbf{Q}$ et faire son expansion en puissance de $\mathbf{Q}$
+avec une fréquence $\omega$, un vecteur d'onde $\qv$ et une amplitude $\mathbf{Q}(\qv,\omega)$. Supposons que les fréquences électroniques caractéristiques qui déterminent $\chi$ sont beaucoup plus grandes que $\omega$ (ce qui est généralement vrai), de sorte que nous pouvons prendre $\chi$ comme une fonction de $\mathbf{Q}$ et faire son expansion en série de Taylor autour de l'équilibre
 \begin{equation}
-    \chi(\qv_L,\omega_L) = \chi_0(\qv_L,\omega_L) + \left(\frac{\partial \chi}{\partial \mathbf{Q}}\right)\bigg\rvert_{\mathbf{Q=0}}\mathbf{Q}(\rv,t)+\dots\label{chi_exp}
+    \chi(\qv_L,\omega_L,\mathbf{Q}) = \chi_0(\qv_L,\omega_L) + \left(\frac{\partial \chi}{\partial \mathbf{Q}}\right)\bigg\rvert_{\mathbf{Q=0}}\mathbf{Q}(\rv,t)+\dots\label{chi_exp}
 \end{equation}
-À température ambiente, l'amplitude des vibrations ioniques est beaucoup plus petite que la constante du réseau et il est possible de tronquer après le deuxième terme. Le premier terme $\chi_0$ est la susceptibilité du matériau en l'absence de fluctuations. Le deuxième terme représente une susceptibilité oscillante induite par les vibrations ioniques. En remplaçant l'expansion~\eqref{chi_exp} dans l'équation~\eqref{P_ind}, nous obtenons une expression pour la polarisation du matériau
+À température ambiante, l'amplitude des vibrations ioniques est beaucoup plus petite que la constante du réseau et il est possible de tronquer après le deuxième terme. Le premier terme $\chi_0$ est la susceptibilité du matériau en l'absence de fluctuations. Le deuxième terme représente une susceptibilité oscillante induite par les vibrations ioniques. En remplaçant l'expansion~\eqref{chi_exp} dans l'équation~\eqref{P_ind}, nous obtenons une expression pour la polarisation du matériau
 \begin{equation}
     \mathbf{P}(\rv,t,\mathbf{Q}) = \mathbf{P}_0(\rv,t)+\mathbf{P}_\text{ind}(\rv,t,\mathbf{Q}),
 \end{equation}
@@ -29,7 +29,7 @@ où
 \begin{equation}
     \mathbf{P}_0(\rv,t) = \chi_0(\qv_L,\omega_L)\mathbf{E}_0(\qv_L,\omega_L)\cos(\qv_L\cdot\rv -\omega_L t),
 \end{equation}
-est la polarisation due à la lumière incidente. Une polarisation oscillante de fréquence $\omega_L$ émet de la lumière de même fréquence $\omega_L$~\cite{JacksonJD1999}. Ce terme correspond à la diffusion élastique de Rayleigh. Le deuxième terme
+est la polarisation due à la lumière incidente. Une polarisation oscillante de fréquence $\omega_L$ émet de la lumière de même fréquence $\omega_L$~\cite{JacksonJD1999} par radiation, ce qui correspond à la diffusion élastique de Rayleigh. Le deuxième terme
 \begin{equation}
     \mathbf{P}_\text{ind}(\rv,t,\mathbf{Q})=\left(\frac{\partial \chi}{\partial\mathbf{Q}}\right)\bigg\rvert_{\mathbf{Q=0}}\mathbf{Q}(\rv,t)\mathbf{E}_0(\qv_L,\omega_L)\cos(\qv_L\cdot\rv-\omega_L t),
 \end{equation}
@@ -40,11 +40,11 @@ est la polarisation induite par l'interaction entre la lumière incidente et les
     &\times\left\{\cos[(\qv_L+\qv)\cdot\rv-(\omega_L+\omega)t]+\cos[(\qv_L-\qv)\cdot\rv-(\omega_L-\omega)t]\right\}
     \end{split}.\label{P_Raman}
 \end{equation}
-La polarisation induite par l'interaction lumière-matière est donc une superposition de deux ondes sinusoïdales : une onde décalée de type \textit{Stokes} avec une fréquence $\omega_S=(\omega_L-\omega)$ et un vecteur d'onde $\qv_S=(\qv_L-\qv)$, ainsi qu'une onde décalée \textit{anti-Stokes} de fréquence $\omega_{AS}=(\omega_L+\omega)$ et de vecteur d'onde $\qv_{AS}=(\qv_L+\qv)$. La lumière produite par la radiation de ces deux polarisations induites est connue sous le nom de lumière diffusée Stokes et anti-Stokes respectivement. La différence entre la fréquence de la lumière diffusée et de la lumière incidente est $\pm\omega$, soit la fréquence du phonon. Cette différence est appelée le décalage Raman et les spectres Raman sont généralement des graphiques de l'intensité de la lumière diffusée par rapport au décalage Raman. Le spectre Raman est composé de pics d'intensité situés au décalage Stokes et anti-Stokes.
+La polarisation induite par l'interaction lumière-matière est donc une superposition de deux ondes sinusoïdales : une onde décalée de type \textit{Stokes} avec une fréquence $\omega_S=(\omega_L-\omega)$ et un vecteur d'onde $\qv_S=(\qv_L-\qv)$, ainsi qu'une onde décalée \textit{anti-Stokes} de fréquence $\omega_{AS}=(\omega_L+\omega)$ et de vecteur d'onde $\qv_{AS}=(\qv_L+\qv)$. La lumière produite par la radiation de ces deux polarisations induites est connue sous le nom de lumière diffusée Stokes et anti-Stokes respectivement. La différence entre la fréquence de la lumière diffusée et de la lumière incidente est $\pm\omega$, soit la fréquence du phonon. Cette différence est appelée le décalage Raman et les spectres Raman sont généralement des graphiques de l'intensité de la lumière diffusée par rapport au décalage Raman. Le spectre Raman est composé de pics d'intensité situés au décalage Stokes et anti-Stokes. La fréquence diffusée dans le processus Stokes est diminuée de la fréquence du phonon : c'est un processus de création de phonons. Pour le processus anti-Stokes, où la fréquence diffusée est augmentée de la fréquence du phonon, c'est un processus d'annihilation de phonons. 
 
-Remarquons que la fréquence et le vecteur d'onde sont tous deux conservés dans ces processus de diffusion. Une conséquence de la conservation du vecteur d'onde est que, comme les photons visibles ont des vecteurs d'onde $|\qv_L|\sim 10^{-2}$ nm$^{-1}$ beaucoup plus petits que ceux des vibrations ioniques caractéristiques à l'échelle de la zone de Brillouin $|\Gv|\sim 10$ nm$^{-1}$, le vecteur d'onde du phonon impliqué est restreint à $\qv\approx 0$. Ainsi, la diffusion Raman à un phonon ne sonde que les phonons au centre de la zone de Brillouin, au point $\Gamma$. Pour sonder des phonons $\qv\neq 0$, il faut soit impliquer plusieurs phonons, soit briser la conservation du vecteur d'onde par la présence de défauts dans le matériau.
+Remarquons que la fréquence et le vecteur d'onde sont tous deux conservés dans ces processus de diffusion. Une conséquence de la conservation du vecteur d'onde est que, comme les photons visibles ont des vecteurs d'onde $|\qv_L|\sim 10^{-2}$ nm$^{-1}$ beaucoup plus petits que ceux des vibrations ioniques caractéristiques à l'échelle de la zone de Brillouin $|\qv_\text{BZ}|\sim 10$ nm$^{-1}$, le vecteur d'onde du phonon impliqué est restreint à $\qv\approx 0$. Ainsi, la diffusion Raman à un phonon ne sonde que les phonons au centre de la zone de Brillouin, au point $\Gamma$. Pour sonder des phonons $\qv\neq 0$, il faut soit impliquer plusieurs phonons, soit briser la conservation du vecteur d'onde par la présence de défauts dans le matériau.
 
-Il n'est pas trop difficile d'inclure des processus de diffusion à plusieurs phonons dans la théorie : il suffit d'inclure plus de puissances du déplacement des phonons dans l'expansion de la susceptibilité~\eqref{chi_exp}. Par exemple, garder le terme de deuxième ordre donne lieu à des polarisations induites avec des fréquences décalées de la fréquence incidente par $\pm\omega_1\pm\omega_2$, où $\omega_1 > \omega_2$ sont les fréquences des deux phonons impliqués. Ces polarisations induites donnent lieu à la diffusion Raman à deux phonons. Pour deux phonons différents, le pic au décalage $\omega_1+\omega_2$ est appelé le mode de \textit{combinaison}, tandis que le pic au décalage $\omega_1-\omega_2$ est le mode de \textit{différence}. Si les deux phonons sont identiques, le pic Raman s'appelle un \textit{overtone}. Cette fois-ci, la conservation du vecteur d'onde implique que le vecteur d'onde total des phonons est conservé, soit que $\qv_1\pm\qv_2\approx 0$. Pour un pic \textit{overtone}, cela implique que $\qv_1\approx-\qv_2$, \textit{i.e.} les deux phonons ont des vecteurs d'onde égaux et opposés, ce qui permet de sonder des phonons à $\qv\neq 0$ sans nécessiter de défauts. L'inclusion de défauts dans la théorie semi-classique et plus ardue ; il faut la théorie quantique pour décrire quantitivement l'effet des défauts sur le spectre Raman d'un matériau.
+Il n'est pas trop difficile d'inclure des processus de diffusion à plusieurs phonons dans la théorie : il suffit d'inclure plus de puissances du déplacement des phonons dans l'expansion de la susceptibilité~\eqref{chi_exp}. Par exemple, garder le terme de deuxième ordre donne lieu à des polarisations induites avec des fréquences décalées de la fréquence incidente par $\pm\omega_1\pm\omega_2$, où $\omega_1 > \omega_2$ sont les fréquences des deux phonons impliqués. Ces polarisations induites donnent lieu à la diffusion Raman à deux phonons. Pour deux phonons différents, le pic au décalage $\omega_1+\omega_2$ est appelé le mode de \textit{combinaison}, tandis que le pic au décalage $\omega_1-\omega_2$ est le mode de \textit{différence}. Si les deux phonons sont identiques, le pic Raman s'appelle un \textit{overtone}. Cette fois-ci, la conservation du vecteur d'onde implique que le vecteur d'onde total des phonons est conservé, soit que $\qv_1\pm\qv_2\approx 0$. Pour un pic \textit{overtone}, cela implique que $\qv_1\approx-\qv_2$, \textit{i.e.} les deux phonons ont des vecteurs d'onde égaux et opposés, ce qui permet de sonder des phonons à $\qv\neq 0$ sans nécessiter de défauts. L'inclusion de défauts dans la théorie semi-classique est plus ardue ; il faut la théorie quantique pour décrire quantitativement l'effet des défauts sur le spectre Raman d'un matériau.
 
 \subsection{Tenseur Raman et règles de sélection}
 Nous avons vu que la polarisation induite par l'interaction lumière-matière dans un matériau~\eqref{P_Raman} est responsable du spectre Raman. Cependant, cette polarisation induite est non-nulle seulement si la quantité $\partial\chi/\partial\mathbf{Q}$ est non-nulle : elle joue un rôle central dans la sélection des phonons actifs en Raman. En généralisant la susceptibilité à un tenseur d'ordre 2 $\chi_{ij}$, cette quantité est un tenseur d'ordre 3. En le contractant avec le déplacement du phonon nous obtenons le tenseur Raman de rang 2
@@ -57,13 +57,17 @@ où  $\hat{Q}_k$ est la composante cartésienne $k$ du vecteur unitaire $\hat{\m
 \end{equation}
 Cette équation est le résultat central de la théorie semi-classique : elle montre que l'intensité Raman d'un mode dépend de la géométrie de l'expérience via les polarisations $\mathbf{e}_L$ et $\mathbf{e}_S$ et de la symétrie du mode de vibration via la structure du tenseur Raman $\bm{\mathcal{R}}$. En particulier, si l'intensité s'annule pour un mode de phonon pour toutes les combinaisons de polarisations, le mode est dit \textit{inactif} en Raman : aucune géométrie ne permet de l'observer. Inversement, un mode \textit{actif} peut être visible ou invisible selon la polarisation choisie, ce qui permet d'identifier expérimentalement la symétrie des modes de phonons en variant les polarisations. 
 
-La structure du tenseur Raman est entièrement déterminée par la symétrie du matériau et du mode de vibration. La susceptibilité se transforme comme un tenseur symétrique de rang 2 sous les opérations de groupe de points du cristal, c'est-à-dire comme les fonctions quadratiques $x^2, y^2, z^2, xy, xz$ et $yz$. La dérivée $\partial\chi_{ij}/\partial Q$ est donc non-nulle seulement si le mode $Q$ se transforme lui aussi selon un représentation irréductible contenant au moins une de ces fonctions quadratiques. Cette condition constitue la règle de sélection Raman : un mode de vibration est actif en Raman si et seulement si sa représentation irréductible contient les composantes du tenseur symétrique de rang 2. Les tables de caractères~\cite{SymmetrySpectroscopy} permettent de vérifier cette condition pour chaque mode et donnent directement la forme du tenseur Raman associé.
+La structure du tenseur Raman est entièrement déterminée par la symétrie du matériau et du mode de vibration. La susceptibilité se transforme comme un tenseur symétrique de rang 2 sous les opérations de groupe de points du cristal, c'est-à-dire comme les fonctions quadratiques $x^2, y^2, z^2, xy, xz$ et $yz$. La dérivée $\partial\chi_{ij}/\partial Q$ est donc non-nulle seulement si le mode $Q$ se transforme lui aussi selon une représentation irréductible contenant au moins une de ces fonctions quadratiques. Cette condition constitue la règle de sélection Raman : un mode de vibration est actif en Raman si et seulement si sa représentation irréductible contient les composantes du tenseur symétrique de rang 2. Les tables de caractères~\cite{SymmetrySpectroscopy} permettent de vérifier cette condition pour chaque mode et donnent directement la forme du tenseur Raman associé.
 
 Appliquons cette règle au graphène, dont le groupe de points est $D_{6h}$. Avec 2 atomes dans la cellule unitaire, le graphène possède 6 modes de phonons au point $\Gamma$, qui se décomposent en représentations irréductibles de $D_{6h}$ comme
 \begin{equation}
     \Gamma_\text{vib} = A_{2u}\oplus B_{2g}\oplus E_{1u}\oplus E_{2g},
 \end{equation}
-où $A_{2u}$ (mode ZA) et $E_{1u}$ (modes TA et LA, doublement dégénérés) sont les trois modes acoustiques, $B_{2g}$ est le mode optique hors plan (ZO) et $E_{2g}$ regroupe les deux modes optiques dans le plan (TO et LO) dégénérés à $\Gamma$. En consultant la table de caractères de $D_{6h}$~\cite{GroupTheory2008} illustrée au tableau~\ref{tab:D6h}, seule la représentation $E_{2g}$ contient des fonctions quadratiques, soit $(x^2-y^2, xy)$ : c'est le seul mode actif du graphène au premier ordre. Ce mode, de fréquence $\sim 1580$ cm$^{-1}$, est responsable du pic G qui est la signature Raman la plus connue du graphène. Tous les autres modes de phonons du graphène sont inactifs en Raman à $\Gamma$. 
+où $A_{2u}$ (mode ZA) et $E_{1u}$ (modes TA et LA, doublement dégénérés) sont les trois modes acoustiques, $B_{2g}$ est le mode optique hors plan (ZO) et $E_{2g}$ regroupe les deux modes optiques dans le plan (TO et LO) dégénérés à $\Gamma$. En consultant la table de caractères de $D_{6h}$~\cite{GroupTheory2008} illustrée au tableau~\ref{tab:D6h}, seule la représentation $E_{2g}$ parmi celles de $\Gamma_\text{vib}$ contient des fonctions quadratiques, soit $(x^2-y^2, xy)$ : c'est le seul mode actif du graphène au premier ordre. Ce mode, de fréquence $\sim 1582$ cm$^{-1}$, est responsable du pic $G$ qui est la signature Raman la plus connue du graphène~\cite{ferrariRamanSpectroscopyAmorphous2004}. Tous les autres modes de phonons du graphène sont inactifs en Raman au premier ordre.
+
+Toutefois, le graphène présente d'autres pics Raman au deuxième ordre~\cite{mohiuddinUniaxialStrainGraphene2009,ferrariRamanSpectroscopyVersatile2013a,dresselhausRamanSpectroscopyIsolated2002}. Deux types de processus différents sont responsables de ces pics. Le premier est l'excitation d'un phonon à $\qv\neq 0$ due à la présence de défauts dans le graphène. Ces processus, appelés \textit{phonon-défaut}, donnent lieu au pic $D$ très étudié à $\sim 1350$ cm$^{-1}$~\cite{tuinstraRamanSpectrumGraphite1970,ferrariInterpretationRamanSpectra2000,ferrariResonantRamanSpectroscopy2001} et à des pics moins intenses comme le pic $D'$ à $\sim 1600$ cm$^{-1}$~\cite{nemanichFirstSecondorderRaman1979} et le pic $D''$ à $\sim 1100$ cm$^{-1}$~\cite{luccheseQuantifyingIoninducedDefects2010,martinsferreiraEvolutionRamanSpectra2010}. Le deuxième type, appelé \textit{deux-phonons}, correspond à l'excitation de deux phonons avec un vecteur d'onde opposé $\qv$
+et $-\qv$. Ces processus donnent lieu au pic intense $2D$ à $\sim 2700$ cm$^{-1}$~\cite{ferrariRamanSpectrumGraphene2006} (qui est un \textit{overtone} de la ligne $D$) et les pics $D+D''$ à $\sim 2450$ cm$^{-1}$ et $2D'$ à $\sim 3200$ cm$^{-1}$~\cite{berciaudProbingIntrinsicProperties2009}.
+
 
 \begin{table}[t]
 \centering
@@ -102,10 +106,243 @@ $E_{2u}$ & 2 & $-1$ & $-1$ &  2 &  0 &  0 & $-2$ &  1 &  1 & $-2$ &  0 &  0 & & 
 
 La théorie semi-classique présentée dans cette section capture plusieurs aspects essentiels de la spectroscopie Raman : elle prédit correctement les fréquences Stokes et anti-Stokes, les règles de conservation de la fréquence et du vecteur d'onde, ainsi que les règles de sélection qui déterminent quels modes sont actifs. Elle souffre toutefois de plusieurs limitations fondamentales. 
 
-Premièrement, la théorie des groupes détermine la \textit{forme} du tenseur Raman, mais pas sa \textit{valeur}. En pratique, le tenser Raman peut être calculé \textit{ab initio} comme une dérivée troisième de l'énergie totale à l'aide de la DFPT et du théorème $2n+1$~\cite{lazzeriFirstPrinciplesCalculationVibrational2003}, mais cette approche n'est valide que hors résonnance et dans l'approximation de Placzek, où la fréquence de la lumière incidente est loin de toute transition électronique. Cette condition n'est jamais satisfaite dans le graphène : en raison du gap nul aux points de Dirac, il existe toujours des transitions électroniques réelles à la fréquence du laser et la diffusion Raman y est intrinsèquement \textit{résonante}.
+Premièrement, la théorie des groupes détermine la \textit{forme} du tenseur Raman, mais pas sa \textit{valeur}. En pratique, le tenseur Raman peut être calculé \textit{ab initio} comme une dérivée troisième de l'énergie totale à l'aide de la DFPT et du théorème $2n+1$~\cite{lazzeriFirstPrinciplesCalculationVibrational2003}, mais cette approche n'est valide que hors résonance et dans l'approximation de Placzek, où la fréquence de la lumière incidente est loin de toute transition électronique. Cette condition n'est jamais satisfaite dans le graphène : en raison du gap nul aux points de Dirac, il existe toujours des transitions électroniques réelles à la fréquence du laser et la diffusion Raman y est intrinsèquement \textit{résonante}. De plus, il est significativement plus difficile de faire la théorie des groupes pour les processus deux-phonons et carrément impossible pour les processus phonon-défaut, puisque la symétrie de translation est explicitement brisée par les défauts. 
 
-Deuxièmement, la théorie semi-classique prédit des intensités Stokes et anti-Stokes comparables, puisque l'amplitude $\mathbf{Q}(\qv,\omega)$ apparaît de manière identique dans les deux termes de l'équation~\eqref{P_Raman}. Expérimentalement, le rapport des intensités suit plutôt $I_{AS}/I_S\sim e^{-\hbar\omega/k_BT}$ et le signal anti-Sotkes disparaît à basse température. Ce comportement est purement quantique : le processus anti-Stokes requiert l'annihilation d'un phonon thermiquement peuplé, un processus qui est supprimé à basse température. Le processus Stokes requiert la création d'un phonon et peut avoir lieu à n'importe quelle température.
+Deuxièmement, la théorie semi-classique prédit des intensités Stokes et anti-Stokes comparables, puisque l'amplitude $\mathbf{Q}(\qv,\omega)$ apparaît de manière identique dans les deux termes de l'équation~\eqref{P_Raman}. Expérimentalement, le rapport des intensités suit plutôt $I_{AS}/I_S\sim e^{-\hbar\omega/k_BT}$ et le signal anti-Stokes disparaît à basse température~\cite{cardonaLightScatteringSolids1982,cardonaLightScatteringSolids1983}. Ce comportement est purement quantique : le processus anti-Stokes requiert l'annihilation d'un phonon thermiquement peuplé, un processus qui est supprimé à basse température. Le processus Stokes requiert la création d'un phonon et peut avoir lieu à n'importe quelle température.
 
-Finalement, la théorie semi-classique ne fournit aucune prescription quantitative pour traiter les défauts, qui sont au c\oe ur de ce mémoire. Le pic D du graphène résulte d'une processus microscopique précis : l'absorption d'un photon, la diffusion d'un électron par un phonon, la diffusion par un défaut, puis l'émission d'un photon. La description de ce processus nécessite la théorie des perturbations quantique à un ordre élevé. Pour toutes ces raisons, nous développons dans la prochaine section la théorie quantique complète de la diffusion Raman résonnante pour des systèmes avec des défauts. 
+Finalement, la théorie semi-classique ne fournit aucune prescription quantitative pour traiter les défauts, qui sont au c\oe ur de ce mémoire. Par exemple, le pic $D$ du graphène résulte d'un processus microscopique précis : l'absorption d'un photon, la diffusion d'un électron par un phonon, la diffusion par un défaut, puis l'émission d'un photon. La description de ce processus nécessite la théorie des perturbations quantique au quatrième ordre. Pour toutes ces raisons, nous développons dans la prochaine section la théorie quantique complète de la diffusion Raman résonante pour des systèmes avec des défauts. 
 
-\section{Théorie quantique de la spectroscopie Raman}
+\section{Théorie quantique de la spectroscopie Raman}\label{sec:raman_quantique}
+Dans cette section, nous développons la théorie quantique de la spectroscopie Raman avec l'aide de la théorie des perturbations en mécanique quantique et de l'Hamiltonien d'interaction $\hat{H}_\text{int}$ de la section~\ref{sec:hamiltonien}.
+\subsection{Diffusion Raman au premier ordre}\label{sec:Raman_premier_ordre}
+L'intensité de la diffusion Raman au premier ordre (un phonon) en fonction de la fréquence de photon diffusé $\omega$ est donnée par la règle d'or de Fermi généralisée au troisième ordre~\cite{heitlerQuantumTheoryRadiation1954}
+\begin{equation}
+    I(\omega) = \frac{2\pi}{\hbar}\sum_f|\bra{f}S\ket{i}|^2\delta(\varepsilon_f-\varepsilon_i),\label{fermi3}
+\end{equation}
+où $\ket{i}$ et $\ket{f}$ représentent les états initiaux et finaux, d'énergie $\varepsilon_i$ et $\varepsilon_f$ respectivement. Nous devons spécifier ces états pour les trois types de sous-systèmes : 
+\begin{itemize}
+    \item les photons incidents et diffusés, de fréquence $\omega_L$ et $\omega_S$ respectivement;
+    \item les électrons dans le matériau ;
+    \item les phonons impliqués dans la diffusion.
+\end{itemize}
+Dans l'état initial $\ket{i}$, avant la diffusion, nous supposons qu'il y a un photon de fréquence $\omega_L $, aucun photon de fréquence $\omega_S$ et $N_{\nu\qv}$ phonons. Nous supposons également que les électrons sont dans leur état fondamental, c'est-à-dire que les bandes de valence sont complètement remplies et les bandes de conduction sont vides. Nous écrivons cet état comme $\ket{i}=\ket{1_{\omega_L}}\otimes\ket{N_{\nu\qv}}\otimes\ket{\text{GS}}$. Nous ne considérons que le processus Stokes, qui correspond à l'émission d'un phonon par le système électronique. Dans l'état final $\ket{f}$, après la diffusion Raman Stokes, il n'y a plus de photon de fréquence $\omega_L$, un photon de fréquence $\omega_S$, $N_{\nu\qv} +1_{\omega_{\nu\qv=0}}$ phonons et les électrons restent inchangés, de sorte que $\ket{f}=\ket{1_{\omega_S}}\otimes\ket{N_{\nu\qv}+1_{\omega_{\nu\qv=0}}}\otimes\ket{\text{GS}}$. \textit{A priori}, il semble que la diffusion ne fait pas intervenir les électrons, ce qui doit être faux puisque l'interaction entre les photons et phonons est généralement très faible et la diffusion de photons par des phonons n'a jamais été observée expérimentalement \cite{yuFundamentalsSemiconductorsPhysics2010}. Plutôt, les photons incidents se couplent fortement et uniquement aux électrons par l'entremise de l'Hamiltonien de couplage électron-photon $\hat{H}_\text{eem}$ introduit à la section~\ref{sec:photon}. Au premier ordre, la diffusion Raman se déroule en trois étapes
+\begin{enumerate}
+    \item Le photon incident excite le matériau dans un état intermédiaire $\ket{a}$ en créant une paire électron-trou via $\hat{H}_\text{eem}$.
+    \item Cette paire électron-trou est diffusée dans un autre état intermédiaire $\ket{b}$ par un phonon via l'Hamiltonien de couplage électron-phonon $\hat{H}_\text{eph}$.
+    \item La paire électron-trou dans l'état $\ket{b}$ se recombine et émet le photon diffusé via $\hat{H}_\text{eem}$.
+\end{enumerate}
+Ainsi, les électrons servent d'intermédiaires à la diffusion Raman des phonons, même s'ils demeurent inchangés après le processus. Le lecteur malin peut se demander pourquoi nous n'incluons pas la possibilité de diffuser sur un défaut avec $\hat{H}_\text{ed}$ dans l'étape 2. La raison est que les défauts que nous considérons dans ce mémoire sont statiques ($\omega=0$) et ne peuvent pas changer la fréquence de la lumière incidente : ces processus contribuent à la diffusion Rayleigh et doivent être exclus de la diffusion Raman.
+
+Le processus Raman décrit plus haut comporte trois vertex d'interaction : il s'agit donc d'un processus perturbatif de troisième ordre. Cependant, les deux vertex électron-photon sont toujours présents dans un processus Raman et sont donc implicitement comptés dans toute description du spectre ; c'est pourquoi on qualifie plutôt l'ordre d'un processus Raman par le nombre de phonons impliqués -- ainsi, le processus à un phonon décrit ci-dessus est dit de \textit{premier ordre}. Tant que les couplages électron-photon et électron-phonon demeurent faibles, l'intensité Raman peut être calculée avec la règle d'or de Fermi~\eqref{fermi3}. Cela étant dit, énumérer tous les termes intervenant dans un tel calcul de perturbation n'est pas une tâche triviale\footnote{Nous le faisons explicitement pour les phonons et les défauts au deuxième ordre. Le lecteur intéressé peut consulter les annexes~\ref{annexe:défauts} et~\ref{annexe:eph} pour se convaincre de la lourdeur (et de l'ennui) d'une telle procédure pour des ordres supérieurs à deux.}. Cela se fait généralement de manière systématique à l'aide des diagrammes de Feynman, qui représentent les processus de diffusion sous forme graphique et se traduisent directement en expressions physiques selon des règles bien définies --- les règles de Feynman. Dans le cas de la diffusion Raman, ces règles se déclinent comme suit :
+\begin{itemize}
+    \item Les particules et les quasiparticules comme les photons, les phonons, les électrons et les trous sont représentées par des lignes, aussi appelés des \textit{propagateurs}, tel qu'illustré à la figure~\ref{fig:règles_Raman}. Les propagateurs peuvent être étiquetés par des vecteurs d'onde, fréquences, polarisation, \textit{etc}.
+    \item Les interactions entre deux particules ou quasiparticules est représentées par une intersection de leur propagateur, aussi appelé un \textit{vertex}. Différents symboles sont utilisés pour identifier différents types de couplages, tel qu'illustré à la figure~\ref{fig:règles_Raman}.
+    \item Les propagateurs sont dotés d'une flèche qui indique si une excitation est créée ou détruite à un vertex. Une flèche pointant vers un vertex dénote une annihilation, tandis qu'une flèche sortant d'un vertex représente une création.
+    \item Les vertex d'interaction sont ordonnés de gauche à droite en ordre croissant dans le temps.
+    \item Les quantités intermédiaires (fréquence, vecteur d'onde, état intermédiaire) doivent être sommées ou intégrées.
+    \item Une fois qu'un diagramme est tracé pour un processus en particulier, tous les autres processus possibles sont dérivés en permutant l'ordre temporel des vertex d'interaction.
+\end{itemize}
+Les symboles utilisés pour tracer les diagrammes de Feynman pour la diffusion Raman sont illustrés dans la figure~\ref{fig:règles_Raman}.
+\begin{figure}[h]
+    \centering
+    \input{tikz/règles_Raman.tex}
+    \caption[Règles de Feynman pour la diffusion Raman.]{Règles de Feynman pour la diffusion Raman.}
+    \label{fig:règles_Raman}
+\end{figure}
+
+\noindent Le processus de diffusion Raman décrit plus haut dans cette section est illustré sous forme de diagramme de Feynman dans la figure~\ref{fig:e1}.
+\begin{figure}[h]
+    \centering
+    \input{tikz/e1.tex}
+    \caption[Diagramme de Feynman pour un des processus de diffusion Raman à un phonon.]{Diagramme de Feynman pour un des processus de diffusion Raman à un phonon. L'électron émet un phonon de fréquence $\omega_\nu$.} 
+    \label{fig:e1}
+\end{figure}
+Ce diagramme représente le processus où un photon incident de fréquence $\omega_L$ est absorbé et crée une paire d'électron-trou. L'électron est représenté par le propagateur avec la flèche vers la droite et le trou par un propagateur avec une flèche vers la gauche. D'une certaine manière, le trou se propage dans le sens inverse du temps. Cette paire se propage dans le matériau et l'électron diffuse en créant un phonon de fréquence $\omega_\nu$ (processus Stokes). La paire électron-trou se recombine en émettant un photon de fréquence $\omega_S$, qui est reliée à la fréquence incidente par $\omega_S = \omega_L - \omega_\nu$, de sorte que le décalage Raman Stokes est $\omega_\nu$.
+
+
+Les autres diagrammes s'obtiennent en permutant l'ordre temporel des trois vertex, donnant $3!=6$ ordres possibles~\cite{yuFundamentalsSemiconductorsPhysics2010}. Cependant, seul l'ordre où l'absorption du photon incident précède l'émission du phonon, elle-même précédant l'émission du photon diffusé, donne lieu à des dénominateurs énergétiques pouvant s'annuler -- c'est-à-dire à des processus résonants. Les cinq autres ordres temporels, dits anti-résonants, ont des dénominateurs qui ne s'annulent jamais et sont fortement supprimés en régime résonant, qui est précisément le régime pertinent pour le graphène. Nous ne retenons donc que cet ordre temporel. En revanche, nous distinguons explicitement le diagramme où l'électron diffuse sur le phonon (figure~\ref{fig:e1}) de celui où c'est le trou (figure~\ref{fig:h1}), car ces deux contributions interfèrent de manière non triviale en régime résonant.
+\begin{figure}[h]
+    \centering
+    \input{tikz/h1.tex}
+    \caption[L'autre diagramme de Feynman pour la diffusion Raman à un phonon.]{L'autre diagramme de Feynman pour la diffusion Raman à un phonon. Le trou émet un phonon de fréquence $\omega_\nu$.}
+    \label{fig:h1}
+\end{figure}
+Une fois que tous les diagrammes de Feynman possibles ont été tracés, la prochaine étape est d'utiliser les règles de Feynman pour les traduire en équations. Voyons comment cela se fait en détail avec le diagramme de la figure~\ref{fig:e1}. Le premier  vertex de photon introduit un terme de la forme
+\begin{equation}
+    \bra{a}\hat{H}_\text{eem}\ket{i},
+\end{equation}
+où $\ket{i}$ est l'état initial d'énergie $\hbar\omega_i$ et $\ket{a}$ est un état électronique intermédiaire d'énergie $\varepsilon_a$. Le propagateur entre le premier vertex de photon et le vertex de phonon contribue une fonction de Green pour l'état intermédiaire
+\begin{equation}
+     G_a(\omega_L)\bra{a}\hat{H}_\text{eem}\ket{i}
+\end{equation}
+où la fonction de Green est renormalisée par les interactions
+\begin{equation}
+    G_a(\omega_L) = \left[\hbar\omega_L-\varepsilon_a -\Sigma_a(\omega_L)\right]^{-1}
+\end{equation}
+au travers de la self-énergie $\Sigma_a$. La self-énergie se décompose en une partie réelle et une partie imaginaire : $\Sigma_a = \Sigma_a' + i \Sigma_a''$. La partie réelle renormalise l'énergie de l'état $\ket{a}$ 
+
+\begin{equation}
+    \tilde{\varepsilon}_a=\varepsilon_a +\Sigma_a'
+\end{equation} 
+tandis que la partie imaginaire introduit un taux d'amortissement pour les excitations de cet état 
+\begin{equation}
+    \Gamma_a =-2\Sigma_a'',
+\end{equation}
+et qui est relié au temps de vie par $\tau_a = \hbar/\Gamma_a$. Nous approximons le taux d'amortissement d'une paire électron-trou comme la somme du taux pour l'électron et le trou. Nous avons
+\begin{equation}
+    \frac{\bra{a}\hat{H}_\text{eem}\ket{i}}{(\hbar\omega_L-\tilde{\varepsilon}_a-i\frac{\Gamma_a}{2})}.
+\end{equation}
+Le vertex de phonon et le propagateur entre ce vertex et le deuxième vertex de photon donne un terme de la forme
+\begin{equation}
+    \frac{\bra{b}\hat{H}_\text{eph}\ket{a}\bra{a}\hat{H}_\text{eem}\ket{i}}{(\hbar\omega_L-\tilde{\varepsilon}_b-i\frac{\Gamma_b}{2})(\hbar\omega_L -\tilde{\varepsilon}_a-i\frac{\Gamma_a}{2})}.
+\end{equation}
+Finalement, le dernier vertex de photon contribue
+\begin{equation}
+    \frac{\bra{f}\hat{H}_\text{eem}\ket{b}\bra{b}\hat{H}_\text{eph}\ket{a}\bra{a}\hat{H}_\text{eem}\ket{i}}{(\hbar\omega_L-\tilde{\varepsilon}_b-i\frac{\Gamma_b}{2})(\hbar\omega_L -\tilde{\varepsilon}_a-i\frac{\Gamma_a}{2})}.
+\end{equation}
+L'intensité Raman associée à ce diagramme s'obtient avec la règle d'or de Fermi~\eqref{fermi3}, en se souvenant qu'il faut faire la somme sur les états intermédiaires
+\begin{eqnarray}
+    I(\omega_L)d\omega = \frac{2\pi}{\hbar}\left|\sum_{ab}\frac{\bra{f}\hat{H}_\text{eem}\ket{b}\bra{b}\hat{H}_\text{eph}\ket{a}\bra{a}\hat{H}_\text{eem}\ket{i}}{(\hbar\omega_L-\tilde{\varepsilon}_b-i\frac{\Gamma_b}{2})(\hbar\omega_L -\tilde{\varepsilon}_a-i\frac{\Gamma_a}{2})}\right|^2\delta(\varepsilon_f-\varepsilon_i)\label{I_general},
+\end{eqnarray}
+où la somme sur les états finaux $\ket{f}$ a disparu, car l'état final est contraint par le processus Raman lui même. L'expression~\eqref{I_general} est très générale et nous la spécifions au cas du graphène dans ce qui suit. Premièrement, pour la fonction delta, l'état final avec un photon $\omega_S$, $N_{\nu\qv}+1_{\nu\qv=0}$ phonons et les électrons dans leur état fondamental a une énergie
+\begin{equation}
+    \varepsilon_f = \hbar\omega_S +  N_{\nu\qv}\hbar\omega_{\nu\qv} +\hbar\omega_{\nu\qv=0}+ \varepsilon_\text{GS},
+\end{equation}
+L'état initial qui contient un photon $\omega_L$, $N_{\nu\qv}$ phonons et les électrons dans leur état fondamental a une énergie
+\begin{equation}
+    \varepsilon_i =\hbar\omega_L+N_{\nu\qv}\hbar\omega_{\nu\qv} +\varepsilon_\text{GS},
+\end{equation}
+de sorte que la différence entre les deux états est
+\begin{equation}
+    \varepsilon_f-\varepsilon_i = \hbar\omega_S - \hbar\omega_L +\hbar\omega_{\nu\qv=0}.
+\end{equation}
+Nous pouvons aussi évaluer explicitement les éléments de matrice. Pour le premier, l'état $\ket{a}$ est un état avec un électron qui a été promu dans la bande de conduction ($\pi^*$) d'énergie $\tilde{\varepsilon}_{\pi^*\kv}$ et un trou dans la bande de valence ($\pi$) d'énergie $-\tilde{\varepsilon}_{\pi\kv}$, de sorte que $\tilde{\varepsilon}_{a}=\tilde{\varepsilon}_{\pi^*\kv}-\tilde{\varepsilon}_{\pi\kv}$. En utilisant la forme de $\hat{H}_\text{eem}$~\eqref{H_eem}, le premier élément de matrice se lit
+\begin{equation}
+    \bra{a}\hat{H}_\text{eem}\ket{i} = \sum_{mn\kv'}\sum_{\lambda}g_{mn}^{(\lambda)}(\kv')\bra{a}\hat{c}^\dag_{m\kv'}\hat{c}_{n\kv'}\hat{a}_\lambda\ket{i},
+\end{equation}
+où nous n'avons gardé que le terme de $\hat{H}_\text{eem}$ proportionnel à $\hat{a}_\lambda$, car ce terme correspond à l'absorption d'un photon par le système électronique. Cet élément se calcule en développant les états $\ket{a}$ et $\ket{i}$:
+\begin{equation}
+    \bra{a}\hat{H}_\text{eem}\ket{i} = \sum_{mn\kv'}\sum_{\lambda}g_{mn}^{(\lambda)}(\kv')\bra{N_{\nu\qv}}\ket{N_{\nu\qv}}\bra{0}\hat{a}_{\lambda}\ket{1_{\omega_L}}\bra{\pi^*\kv}\hat{c}_{m\kv'}^\dag\hat{c}_{n\kv'}\ket{\text{GS}},
+\end{equation}
+La partie phononique donne trivialement l'unité. La partie photonique est non-nulle seulement si $\hat{a}_\lambda$ détruit le photon $\omega_L$, ce qui fixe la polarisation à la polarisation incidente $\lambda=\lambda_L$. Finalement, pour la partie électronique, $\ket{\pi^*\kv}$ dénote l'état excité où il y a un électron dans la bande $\pi^*$ et un trou dans la bande $\pi$. Pour que l'élément de matrice soit non-nul, il faut que $\hat{c}_{n\kv}$ crée un trou dans la bande $\pi$ à $\kv$, ce qui fixe $n=\pi$ et il faut que $\hat{c}_{m\kv}^\dag$ crée un électron dans la bande $\pi^*$ à $\kv$, ce qui fixe $m=\pi^*$, tout en fixant $\kv'=\kv$. En rassemblant toutes ces parties, nous obtenons l'élément de matrice
+\begin{equation}
+    \bra{a}\hat{H}_\text{eem}\ket{i}=g_{\pi^*\pi}^{(\lambda_L)}(\kv).
+\end{equation}
+Pour le deuxième élément de matrice, nous utilisons l'Hamiltonien $\hat{H}_\text{eph}$~\eqref{H_eph} en ne gardant que le terme proportionnel à l'émission d'un phonon. L'état $\ket{b}$ est un état avec un électron dans la bande $\pi^*$ qui a émis un phonon d'énergie $\hbar\omega_{\nu\qv=0}$ ($\qv\approx 0$ pour la diffusion Raman à un phonon) et un trou dans la bande $\pi$, de sorte que $\tilde{\varepsilon}_b = \tilde{\varepsilon}_{\pi^*\kv}+\hbar\omega_{\nu\qv=0}-\tilde{\varepsilon}_{\pi\kv}$. Le deuxième élément de matrice se calcule en développant les états $\ket{a}$ et $\ket{b}$
+\begin{equation}
+    \bra{b}\hat{H}_\text{eph}\ket{a} = \sum_{mn\kv'}\sum_{\nu'\qv'}g_{mn}^{(\nu')}(\kv',\qv')\bra{N_{\nu\qv}+1_{\nu\qv=0}}\hat{b}^\dag_{\nu'\qv'}\ket{N_{\nu\qv}}\bra{0}\ket{0}\bra{\pi^*\kv}\hat{c}^\dag_{m\kv'+\qv'}\hat{c}_{n\kv'}\ket{\pi^*\kv}.
+\end{equation}
+La partie phononique est non-nulle seulement si $\hat{b}^\dag_{\nu'\qv'}$ crée un phonon dans la branche $\nu$ avec $\qv=0$, ce qui fixe $\nu'=\nu$ et $\qv'=0$. L'élément de matrice donne alors $\sqrt{N_{\nu'\qv'}+1}\delta_{\nu\nu'}\delta_{\qv'0}$. La partie photonique donne trivialement l'unité. La partie électronique est non-nulle seulement si $n=m=\pi^*$, $\kv'=\kv$ et $\qv'=0$. Cela donne
+\begin{equation}
+    \bra{b}\hat{H}_\text{eph}\ket{a} = \sqrt{N_{\nu\qv=0}+1}g_{\pi^*\pi^*}^{(\nu)}(\kv, \qv=0).
+\end{equation}
+Finalement, nous évaluons le dernier élément de matrice en ne gardant que la partie de $\hat{H}_\text{eem}$ qui est proportionnelle à $\hat{a}^\dag_{\lambda}$, car c'est un processus de création d'un photon. Cet élément s'obtient en développant les états $\ket{b}$ et $\ket{f}$:
+\begin{equation}
+    \bra{f}\hat{H}_\text{eem}\ket{b} = \sum_{mn\kv'}\sum_{\lambda}g_{mn}^{(\lambda)}(\kv')\bra{N_{\nu\qv}+1_{\nu\qv=0}}\ket{N_{\nu\qv}+1_{\nu\qv=0}}\bra{1_{\omega_S}}\hat{a}_{\lambda}^\dag\ket{0}\bra{\text{GS}}\hat{c}_{m\kv'}^\dag\hat{c}_{n\kv'}\ket{\pi^*\kv}.
+\end{equation}
+La partie phononique est trivialement l'unité. La partie photonique est non-nulle seulement si $\hat{a}_\lambda^\dag$ crée un photon de fréquence $\omega_S$ et de polarisation $\lambda_S$, ce qui fixe $\lambda$. La partie électronique est non-nulle si $\hat{c}_{n\kv'}$ détruit l'électron dans la bande $\pi^*$ à $\kv$, ce qui fixe $n=\pi^*$ et $\kv'=\kv$ et si $\hat{c}_{m\kv'}^\dag$ comble le trou dans la bande $\pi$ à $\kv$, ce qui fixe $m=\pi$ et $\kv'=\kv$. Nous avons alors
+\begin{equation}
+    \bra{f}\hat{H}_\text{eem}\ket{b} = g_{\pi\pi^*}^{(\lambda_S)}(\kv).
+\end{equation}
+En regroupant toutes ces parties et en sommant sur les états intermédiaires nous avons que l'intensité Raman en fonction de la lumière diffusée est donnée par
+\begin{equation}
+    \begin{split}
+    I(\omega_S) = &\left(\frac{2\pi}{\hbar}\right)\sum_{\nu}\left|\sum_{\kv}\frac{g_{\pi\pi^*}^{(\lambda_S)}(\kv)g_{\pi^*\pi^*}^{(\nu)}(\kv,\qv=0)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}-\hbar\omega_{\nu\qv=0}+\tilde{\varepsilon}_{\pi\kv}-i\frac{\Gamma_b}{2})(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}+\tilde{\varepsilon}_{\pi\kv}-i\frac{\Gamma_a}{2})}\right|^2\\
+    &\times(N_{\nu\qv=0}+1)\delta(\hbar\omega_L-\hbar\omega_S-\hbar\omega_{\nu\qv=0}),
+    \end{split}
+\end{equation}
+si le diagramme de la figure~\ref{fig:e1} était le seul qui contribuait à l'intensité Raman. En réalité, le diagramme de la figure~\ref{fig:h1} contribue également et son amplitude s'obtient de la même façon, la seule différence étant que c'est le trou qui émet le phonon. L'intensité Raman totale au premier ordre s'obtient comme la somme des amplitudes de ces deux diagrammes
+\begin{equation}
+    \begin{split}
+        I(\omega_S) = \left(\frac{2\pi}{\hbar}\right)\sum_\nu\bigg\rvert&\sum_\kv\frac{g_{\pi\pi^*}^{(\lambda_S)}(\kv)g_{\pi^*\pi^*}^{(\nu)}(\kv,\qv=0)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}-\hbar\omega_{\nu\qv=0}+\tilde{\varepsilon}_{\pi\kv}-i\frac{\Gamma_b}{2})(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}+\tilde{\varepsilon}_{\pi\kv}-i\frac{\Gamma_a}{2})}\\
+        +&\sum_\kv\frac{g_{\pi\pi^*}^{(\lambda_S)}(\kv)g_{\pi\pi}^{(\nu)}(\kv,\qv=0)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}-\hbar\omega_{\nu\qv=0}+\tilde{\varepsilon}_{\pi\kv}-i\frac{\Gamma_b}{2})(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}+\tilde{\varepsilon}_{\pi\kv}-i\frac{\Gamma_a}{2})}\bigg\rvert^2\\
+        \times&(N_{\nu\qv=0}+1)\delta(\hbar\omega_L-\hbar\omega_S-\hbar\omega_{\nu\qv=0})\label{I_1phonon}.
+    \end{split}
+\end{equation}
+Cette expression donne le pic $G$ du graphène. Les autres pics s'obtiennent au deuxième ordre. Nous parlons de Raman résonant lorsqu'un (ou plusieurs) des dénominateurs de l'équation~\eqref{I_1phonon} s'annule, ce qui arrive lorsque l'énergie de la lumière incidente coïncide avec l'énergie d'une transition électronique. 
+
+\subsection{Diffusion Raman au deuxième ordre}
+La diffusion Raman est beaucoup plus riche au deuxième ordre.
+Nous distinguons deux cas différents : les processus \textit{deux-phonons} avec deux vertex de phonon et les processus \textit{phonon-défaut} avec un vertex de phonon et un vertex de défaut. Les processus avec deux vertex de défaut ne contribuent pas à la diffusion Raman, car ils ne peuvent pas diffuser inélastiquement la lumière incidente. La conservation du vecteur d'onde dans les processus \textit{deux-phonons} impose que la quantité de mouvement \textit{totale} des phonons soit nulle, ce qui autorise des phonons avec des vecteurs non nuls, mais égaux et opposés : $\qv$ et $-\qv$. Ces processus permettent donc de sonder les propriétés vibrationnelles du matériau partout dans la BZ, contrairement au premier ordre, et donnent lieu aux pics $2D$, $D+D''$ et $2D'$. La présence de défauts dans les processus \textit{phonon-défaut} brise explicitement la conservation de la quantité de mouvement, ce qui autorise un phonon de vecteur d'onde $\qv$ arbitraire ; ces processus permettent de sonder les défauts et les phonons dans toute la BZ du matériau. Ils donnent lieu aux pics $D$, $D'$ et $D''$.
+
+Les pics associés à la diffusion Raman au deuxième ordre sont généralement beaucoup plus faibles que le pic $G$ du premier ordre. Pour la plupart des matériaux, les états intermédiaires sont des états virtuels qui ne conservent pas l'énergie, et les dénominateurs des amplitudes sont généralement non nuls. Le graphène constitue une exception notable, où, au deuxième ordre, deux de ces dénominateurs (ou plus) peuvent s'annuler simultanément, ce qui rehausse fortement l'intensité de ces pics. On parle alors de Raman doublement résonant. La résonance se produit lorsque l'énergie de la lumière incidente $\varepsilon_L$ est égale à l'énergie d'excitation électronique $\varepsilon_{\pi^*\kv} - \varepsilon_{\pi\kv}$. Cette condition est toujours satisfaite dans le graphène grâce à sa dispersion linéaire et sans gap près du niveau de Fermi : pour toute énergie de laser dans le visible, il existe un vecteur d'onde $\kv$ vérifiant la condition de résonance. C'est cette propriété singulière de la structure de bandes qui fait du graphène un système modèle pour l'étude de la diffusion Raman résonante, et qui rend ses pics du deuxième ordre exceptionnellement intenses, parfois comparables au pic $G$. La position et l'intensité de ces pics dépendent par ailleurs de l'énergie du laser incident, une signature caractéristique de la double résonance qui les distingue des pics du premier ordre. Dans ce qui suit, nous détaillons les équations à résoudre pour simuler l'intensité Raman au deuxième ordre. 
+
+Les huit diagrammes \textit{deux-phonons} possibles sont illustrés à la figure~\ref{fig:pp} : 
+
+\newpage
+\begin{figure}[H]
+    \centering
+    \input{tikz/pp.tex}
+    \caption[Diagrammes contribuant à la diffusion Raman \textit{deux-phonons}.]{Diagrammes contribuant à la diffusion Raman \textit{deux-phonons}. Les deux phonons doivent avoir un vecteur d'onde égal et opposé de par la conservation du vecteur d'onde. Figure adaptée de~\cite{venezuelaTheoryDoubleresonantRaman2011}.}
+    \label{fig:pp}
+\end{figure}
+
+\newpage\noindent
+Les processus \textit{phonon-défaut} (pd) sont illustrés dans la figure~\ref{fig:pd}  
+\begin{figure}[h]
+    \centering
+    \input{tikz/pd.tex}
+    \caption[Diagrammes contribuant à la diffusion Raman \textit{phonon-défaut}]{Diagrammes contribuant à la diffusion Raman \textit{phonon-défaut}. La présence de défauts brise explicitement la conservation du vecteur d'onde $\qv$. Figure adaptée de~\cite{venezuelaTheoryDoubleresonantRaman2011}.}
+    \label{fig:pd}
+\end{figure}
+\newpage\noindent
+Ces 16 diagrammes sont traduits en expressions mathématiques suivant les règles de Feynman de la figure~\ref{fig:règles_Raman}, puis les éléments de matrice sont évalués suivant la procédure décrite dans la section~\ref{sec:Raman_premier_ordre}. L'intensité Raman en fonction de la fréquence $\omega_S$ de la lumière diffusée s'obtient via la règle d'or de Fermi généralisée au quatrième ordre et est la somme des amplitudes de tous les diagrammes~\cite{venezuelaTheoryDoubleresonantRaman2011,graziottoTheoryInfraredDoubleresonance2024}: 
+\begin{equation}
+    \begin{split}
+    I(\omega_S) &= \frac{1}{N_\qv}\sum_{\nu\mu\qv}I^{pp}_{\nu\mu\qv}\delta(\hbar\omega_L-\hbar\omega_S-\hbar\omega_{\nu-\qv}-\hbar\omega_{\mu\qv})(N_{\nu-\qv}+1)(N_{\mu\qv}+1)\\
+    &+ \frac{1}{N_\qv}\sum_{\nu\qv}I^{pd}_{\nu\qv}\delta(\hbar\omega_L-\hbar\omega_S-\hbar\omega_{\nu-\qv})(N_{\nu-\qv}+1),
+    \end{split}\label{Raman_2nd}
+\end{equation}
+où
+\begin{equation}
+    I^{pp}_{\nu\mu\qv} = \left|\frac{1}{N_\kv}\sum_{\alpha\kv}K^{pp}_\alpha(\kv,\qv,\nu,\mu)\right|^2\label{I_pp}
+\end{equation} 
+est l'intensité des diagrammes \textit{deux-phonons} de la figure~\ref{fig:pp} et
+\begin{equation}
+    I^{pd}_{\nu\qv} = N_d\left|\frac{1}{N_\kv}\sum_{\beta\kv}K^{pd}_\beta (\kv,\qv,\nu)\right|^2,\label{I_pd}
+\end{equation}
+est l'intensité des diagrammes \textit{phonon-défaut} de la figure~\ref{fig:pd}. Ici, $N_d$ est le nombre moyen de défauts dans une cellule du matériau et nous assumons que les contributions de défauts sur des sites différents s'ajoutent de manière incohérente puisqu'ils sont distribués aléatoirement. Les indices $\alpha,\beta$ identifient les 8 différents processus : \textit{ee1, ee2, hh1, hh2, eh1, eh2, he1, he2}, représentés dans les figures~\ref{fig:pp} et~\ref{fig:pd}. Les expressions explicites des amplitudes de diffusion Raman doublement résonante $K^{pp}(\kv,\qv,\nu,\mu)$ et $K^{pd}(\kv,\qv,\nu)$ sont données dans l'annexe~\ref{annexe:Raman} et nous donnons deux exemples ici:
+\begin{align}
+    K_{ee1}^{pp} = \frac{g^{(\lambda_S)}_{\pi\pi^*}(\kv)g^{(\mu)}_{\pi^*\pi^*}(\kv, \kv+\qv)g_{\pi^*\pi^*}^{(\nu)}(\kv+\qv,\kv)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\varepsilon_L-\tilde{\varepsilon}_\kv^{\pi^*}+\tilde{\varepsilon}_\kv^\pi-\hbar\omega_{-\qv}^\nu-\hbar\omega_\qv^\mu-i\frac{\Gamma_c}{2})(\varepsilon_L-\tilde{\varepsilon}_{\kv+\qv}^{\pi^*}+\tilde{\varepsilon}_\kv^\pi-\hbar\omega_{-\qv}^\nu-i\frac{\Gamma_b}{2})(\varepsilon_L-\tilde{\varepsilon}_\kv^{\pi^*}+\tilde{\varepsilon}_{\kv}^\pi-i\frac{\Gamma_a}{2})}\label{K_ee1^pp}\\
+    K_{ee1}^{pd} = \frac{g^{(\lambda_S)}_{\pi\pi^*}(\kv)M_{\pi^*\pi^*}(\kv,\kv+\qv)g^{(\nu)}_{\pi^*\pi^*}(\kv+\qv,\kv)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\varepsilon_L-\tilde{\varepsilon}^{\pi^*}_\kv+\tilde{\varepsilon}^\pi_\kv-\hbar\omega_ {-\qv}^\nu-i\frac{\Gamma_c}{2})(\varepsilon_L-\tilde{\varepsilon}_{\kv+\qv}^{\pi^*}+\tilde{\varepsilon}_\kv^\pi-\hbar\omega_{-\qv}^\nu-i\frac{\Gamma_b}{2})(\varepsilon_L-\tilde{\varepsilon}_\kv^{\pi^*}+\tilde{\varepsilon}_\kv^\pi-i\frac{\Gamma_a}{2})}\label{K_ee1^pd}
+\end{align}
+où nous avons changé légèrement la notation de $\varepsilon_{n\kv}=\varepsilon_\kv^n$ et $\omega_{\nu\qv} = \omega_\qv^\nu$ et avons défini $\varepsilon_L=\hbar\omega_L$ pour que les dénominateurs puissent rentrer sur une ligne.
+
+L'équation~\eqref{K_ee1^pp} correspond au diagramme \textit{deux-phonons} \textit{ee1} de la figure~\ref{fig:pp}. Initialement, la lumière incidente d'énergie $\varepsilon_L$ et de polarisation $\lambda_L$ crée une paire électron-trou à $\kv$, avec une amplitude donnée par l'élément de matrice $g_{\pi^*\pi}^{(\lambda_L)}(\kv)$. Cet état intermédiaire a une énergie $\tilde{\varepsilon}_{\pi^*\kv}-\tilde{\varepsilon}_{\pi\kv}$. Deuxièmement, l'électron excité est diffusé dans l'état $\kv+\qv$ en émettant un phonon avec $-\qv$, avec une amplitude donnée par $g_{\pi^*\pi^*}^{(\nu)}(\kv+\qv,\kv)$. Cet état a une énergie $\tilde{\varepsilon}_{\pi^*\kv+\qv}-\tilde{\varepsilon}_{\pi\kv}+\hbar\omega_{\nu-\qv}$. Ensuite, l'électron excité à $\kv+\qv$ retourne dans l'état $\kv$ en émettant un phonon avec $\qv$, avec une amplitude $g_{\pi^*\pi^*}^{(\mu)}(\kv,\kv+\qv)$. Cet état à une énergie $\tilde{\varepsilon}_{\pi^*\kv}-\tilde{\varepsilon}_{\pi\kv}+\hbar\omega_{\mu\qv}+\hbar\omega_{\nu-\qv}$. Finalement, l'électron et le trou se recombinent à $\kv$ en émettant un photon de polarisation $\lambda_S$, avec une amplitude $g^{(\lambda_S)}_{\pi\pi^*}(\kv)$.
+
+L'équation~\eqref{K_ee1^pd} correspond au diagramme \textit{phonon-défaut} \textit{ee1} de la figure~\ref{fig:pd} et est similaire au diagramme de l'équation~\eqref{K_ee1^pp}. Initialement, la lumière incidente d'énergie $\varepsilon_L$ et polarisation $\lambda_L$ crée une paire électron-trou à $\kv$ avec une amplitude $g_{\pi^*\pi}^{(\lambda_L)}(\kv)$. Cet état intermédiaire a une énergie $\tilde{\varepsilon}_{\pi^*\kv}-\tilde{\varepsilon}_{\pi\kv}$. Deuxièmement, l'électron excité est diffusé dans l'état $\kv+\qv$ en émettant un phonon avec $-\qv$, avec une amplitude $g_{\pi^*\pi^*}^{(\nu)}(\kv+\qv,\kv)$. L'énergie de cet état intermédiaire est $\tilde{\varepsilon}_{\pi^*\kv+\qv}-\tilde{\varepsilon}_{\pi\kv}+\hbar\omega_{\nu-\qv}$. Ensuite, l'électron retourne à l'état $\kv$ en diffusant sur un défaut avec une amplitude $M_{\pi^*\pi^*}(\kv,\kv+\qv)$. Cet état intermédiaire a une énergie $\tilde{\varepsilon}_{\pi^*\kv}-\tilde{\varepsilon}_{\pi\kv}+\hbar\omega_{\nu-\qv}$. Finalement, l'électron et le trou se recombinent à $\kv$ en émettant un photon de polarisation $\lambda_S$ avec une amplitude $g_{\pi\pi^*}^{(\lambda_S)}(\kv)$.
+
+Les sommes de l'équation~\ref{Raman_2nd} s'effectuent sur une grille uniforme de $N_\qv$ vecteurs d'onde de phonon dans la BZ et sur toutes les branches $\nu$ et $\mu$. Dans la limite $N_\qv\to\infty$, $\delta(\omega)$ est une distribution de Dirac. En pratique, $N_\qv\sim 100\times 100 $ et $\delta(\omega)$ est approximée comme une Lorentzienne ou une Gaussienne. Les sommes des équations~\eqref{I_pp} et~\eqref{I_pd} sont évaluées sur des grilles $\kv$ suffisamment denses pour assurer la convergence de l'intensité Raman. Cela nécessite des grilles avec un nombre de points entre $N_\kv\sim 500\times 500$ et $N_\kv\sim 1000\times 1000$. Le lecteur saisit peut-être mieux, à ce stade, la nécessité d'interpoler les quantités calculées \textit{ab initio} sur de telles grilles à l'aide des fonctions de Wannier. De plus, nous considérons généralement des phonons avec $\hbar\omega_{\nu\kv}\gg k_BT$, de sorte que $N_{\nu\qv}\sim 0$ et il est valable d'ignorer les processus anti-Stokes. Dans la prochaine section, nous décrivons les ingrédients nécessaires pour calculer l'intensité Raman au premier et deuxième ordres.
+
+\subsection{Liste d'épicerie pour calculer l'intensité Raman}\label{sec:liste}
+Les équations~\eqref{I_1phonon} et~\eqref{Raman_2nd} donnent la recette pour calculer l'intensité Raman résonante du graphène avec défauts à partir de quantités calculées \textit{ab initio}. Ces dernières constituent les ingrédients nécessaires pour mener à bien cette recette, et nous pouvons en dresser la liste un peu à la manière d'une liste d'épicerie :
+\begin{itemize}
+    \item les quantités électroniques $\varepsilon_{n\kv}$ et $\ket{\psi_{n\kv}}$;
+    \item les quantités phononiques $\omega_{\nu\qv}$ et $\mathbf{e}^{(\nu)}_\qv$;
+    \item les éléments de matrice de couplage électron-photon $g_{mn}^{(\lambda)}(\kv)$ dans l'approximation dipolaire;
+    \item les éléments de matrice de couplage électron-défaut $M_{mn}(\kv',\kv)$;
+    \item les éléments de matrice de couplage électron-phonon $g_{mn}^{(\nu)}(\kv+\qv,\kv)$;
+    \item la \textit{self}-énergie électronique $\Sigma_{n\kv}=\Sigma_{n\kv}'+i\Sigma_{n\kv}''$ pour la renormalisation des valeurs propres électroniques ($\Sigma_{n\kv}'$) et pour les taux d'amortissement ($\Gamma_{n\kv}=-2\Sigma_{n\kv}''$);
+    \item la \textit{self}-énergie phononique $\Pi_{\nu\qv} = \Pi_{\nu\qv}'+i\Pi_{\nu\qv}''$ pour les corrections non adiabatiques négligées par l'approximation de Born-Oppenheimer.
+\end{itemize}
+Les quantités électroniques ont été obtenues sur une grille \textit{ab initio} modérément dense à l'aide de la DFT dans la section~\ref{sec:électrons}. Les valeurs propres $\varepsilon_{n\kv}$ ont été interpolées sur des grilles ultra denses grâce aux MLWF de la section~\ref{sec:wannier}. Il serait nécessaire de corriger ces valeurs propres avec la méthode $GW$ avant de calculer l'intensité Raman. Les quantités phononiques ont été obtenues sur une grille \textit{ab initio} modérément dense avec la DFPT dans la section~\ref{sec:phonons}, puis ont été interpolées sur des grilles ultra denses grâce à un schéma d'interpolation de Fourier qui exploite la localisation des constantes de force dans l'espace réel. Finalement, nous avons également vu comment calculer les éléments de matrice de couplage électron-photon dans l'approximation dipolaire avec une contraction de la polarisation du photon et de l'opérateur vitesse obtenu sur une grille ultra dense grâce aux MLWF dans la section~\ref{sec:photon}.
+
+La \textit{self}-énergie électronique $\Sigma_{n\kv}$ est l'objet qui encode les effets des interactions sur les électrons. Elle peut être décomposée en une contribution pour chaque type d'interaction
+\begin{equation}
+    \Sigma_{n\kv} = \Sigma_{n\kv}^\text{ee} + \Sigma_{n\kv}^\text{ed} + \Sigma_{n\kv}^\text{eph},
+\end{equation}
+où nous retrouvons, dans l'ordre, la contribution due aux interactions électron-électron au-delà de la DFT, la contribution due aux interactions électron-défaut et celle due aux interactions électron-phonon. De façon similaire, le taux d'amortissement se décompose également en trois contributions
+\begin{equation}
+    \Gamma_{n\kv} = \Gamma_{n\kv}^\text{ee}+\Gamma_{n\kv}^\text{ed}+\Gamma_{n\kv}^\text{eph}.
+\end{equation}
+La contribution due aux interactions électron-électron qui vont au-delà de la corrélation capturée par la DFT sera incluse grâce à la méthode $GW$ et est ignorée dans le présent travail.
+
+Le chapitre~\ref{chap:défauts} traite de tout ce qui est en lien avec le couplage électron-défaut, soit les éléments de matrice $M_{mn}(\kv',\kv)$, la \textit{self}-énergie électronique due au couplage électron-défaut $\Sigma_{n\kv}^\text{ed}$ et le taux d'amortissement $\Gamma_{n\kv}^\text{ed}$. Nous y verrons comment calculer ces quantités à partir des premiers principes et les interpoler sur des grilles ultra denses avec les MLWF. Le chapitre~\ref{chap:eph} traite de tout ce qui est en lien avec le couplage électron-phonon, soit les éléments de matrice $g_{mn}^{(\nu)}(\kv+\qv, \kv)$, la \textit{self}-énergie électronique due au couplage électron-phonon $\Sigma_{n\kv}^\text{eph}$, le taux d'amortissement $\Gamma_{n\kv}^\text{eph}$ ainsi que la \textit{self}-énergie phononique $\Pi_{\nu\qv}$. Nous y verrons comment calculer toutes ces quantités à partir des premiers principes et les interpoler sur des grilles ultra denses grâce aux MLWF.
+
+\section{Conclusion}
+Dans ce chapitre, nous avons construit le cadre théorique nécessaire à la simulation \textit{ab initio} de l'intensité Raman résonante du graphène en présence des défauts. Nous sommes partis de la théorie semi-classique, qui rend compte des fréquences Stokes et anti-Stokes, des règles de conservation de l'énergie et des règles de sélections à travers le tenseur Raman, mais qui ne détermine que la forme de ce dernier et échoue à décrire qualitativement les processus résonants et assistés par les défauts. Pour lever ces limitations, nous avons développé la théorie quantique de la diffusion Raman à partir de la règle d'or de Fermi et de la théorie des perturbations, en représentant les processus de diffusion par de diagrammes de Feynman. Cette démarche nous a menés aux équations~\eqref{I_1phonon} et~\eqref{Raman_2nd}, qui expriment l'intensité Raman au premier et au deuxième ordre. 
+
+Le résultat central de ce chapitre est que ces expressions donnent l'intensité Raman résonnante entièrement en fonction de quantités calculables à partir des premiers principes. Là où la théorie semi-classique ne fournissait que la forme du tenseur Raman, la théorie quantique en donne la valeur, ouvrant la voie à une prédiction du spectre sans paramètre ajustable. 
+
+
+

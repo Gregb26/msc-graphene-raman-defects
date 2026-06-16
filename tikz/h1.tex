@@ -1,0 +1,65 @@
+% Figure : diagramme de Feynman pour la diffusion Raman au premier ordre
+% Compatible pdflatex.
+% Préambule requis :
+%   \usepackage{tikz}
+%   \usetikzlibrary{decorations.pathmorphing}
+%   \usetikzlibrary{decorations.markings}
+%   \usetikzlibrary{arrows.meta}
+%
+% Style réutilisable pour une ligne de fermion avec flèche au milieu :
+%   \tikzset{
+%     fermion/.style={
+%       postaction={decorate},
+%       decoration={markings, mark=at position 0.5 with {\arrow{Stealth}}}
+%     }
+%   }
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    line/.style={thick},
+    >=Stealth,
+    fermion/.style={
+      postaction={decorate},
+      decoration={markings, mark=at position 0.55 with {\arrow{Stealth}}}
+    },
+]
+
+% --- Boucle électron-trou fermée : ellipse complète ---
+% Centre (3,1.5), demi-axes a=1.2 (horizontal), b=1.0 (vertical)
+% Vertex photon (cercles) aux points gauche (180°) et droit (0°) de l'ellipse
+% Vertex phonon (carré) au point bas (-90°, soit (3,0.5))
+
+% Branche supérieure gauche (électron) : de 180° à 0°, flèche au milieu
+\draw[line, fermion] (1.8,1.5) arc (180:0:1.2 and 1.0);
+
+% Branche inférieure droite (trou) : de 0° à -90°, flèche au milieu
+\draw[line, fermion] (4.2,1.5) arc (0:-90:1.2 and 1.0);
+
+% Branche inférieure gauche (trou) : de -90° à -180°, flèche au milieu
+\draw[line, fermion] (3,0.5) arc (-90:-180:1.2 and 1.0);
+
+% --- Vertex électron-photon (cercle), absorption -- point gauche (180°) ---
+\draw[fill=white] (1.8,1.5) circle (0.18);
+
+% --- Photon incident (ligne pointillée) ---
+\draw[line, dashed] (0.2,1.5) -- (1.62,1.5);
+\node[above] at (0.9,1.5) {$\omega_L$};
+
+% --- Vertex électron-phonon (carré), point bas (-90°), milieu du propagateur ---
+\draw[fill=white] (2.82,0.32) rectangle (3.18,0.68);
+
+% --- Phonon sortant vers le bas depuis le vertex carré ---
+\draw[line, decorate, decoration={snake, amplitude=0.8mm, segment length=3mm}]
+    (3,0.32) -- (4,-0.7);
+\node[below] at (4,-0.75) {$\omega_\nu$};
+
+% --- Vertex électron-photon (cercle), émission -- point droit (0°), symétrique du premier ---
+\draw[fill=white] (4.2,1.5) circle (0.18);
+
+% --- Photon diffusé (ligne pointillée) ---
+\draw[line, dashed] (4.38,1.5) -- (5.8,1.5);
+\node[above] at (5.1,1.5) {$\omega_S$};
+
+\end{tikzpicture}
+\end{figure}

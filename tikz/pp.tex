@@ -1,0 +1,96 @@
+% Macro reproduisant EXACTEMENT le style du code original :
+%  - boucle = ellipse, centre (cx,cy), a=1.2, b=1.0
+%  - photons : \draw[line, dashed]
+%  - phonons : \draw[line, decorate, decoration={snake, amplitude=0.8mm, segment length=3mm}]
+%  - vertex photon : \draw[fill=white] ... circle (0.18)
+%  - vertex phonon : \draw[fill=white] ... rectangle (cote 0.36)
+%
+% #1 cx  #2 cy
+% #3 angle vertex phonon 1 (deg)  #4 dir phonon1 (up/down)  #5 label1
+% #6 angle vertex phonon 2 (deg)  #7 dir phonon2 (up/down)  #8 label2
+% #9 etiquette
+\newcommand{\diag}[9]{%
+\begin{scope}[shift={(#1,#2)},
+    line/.style={thick},
+    >=Stealth,
+    fermion/.style={
+      postaction={decorate},
+      decoration={markings, mark=at position 0.55 with {\arrow{Stealth}}}
+    }]
+  % --- Boucle electron-trou : 4 arcs, a=1.2 b=1.0 ---
+  % electron (haut, gauche->droite) : 180->90->0
+  \draw[line, fermion] (-1.2,0) arc (180:90:1.2 and 1.0);
+  \draw[line, fermion] (0,1.0) arc (90:0:1.2 and 1.0);
+  % trou (bas, droite->gauche) : 0->-90->-180
+  \draw[line, fermion] (1.2,0) arc (0:-90:1.2 and 1.0);
+  \draw[line, fermion] (0,-1.0) arc (-90:-180:1.2 and 1.0);
+
+  % --- vertex photon gauche (absorption) ---
+  \draw[fill=white] (-1.2,0) circle (0.18);
+  % --- photon incident ---
+  \draw[line, dashed] (-2.8,0) -- (-1.38,0);
+  \node[above] at (-2.1,0) {$\omega_L$};
+
+  % --- vertex photon droit (emission) ---
+  \draw[fill=white] (1.2,0) circle (0.18);
+  % --- photon diffuse ---
+  \draw[line, dashed] (1.38,0) -- (2.8,0);
+  \node[above] at (2.1,0) {$\omega_S$};
+
+  % --- vertex phonon 1 ---
+  \coordinate (p1) at ({1.2*cos(#3)},{1.0*sin(#3)});
+  \draw[fill=white] ($(p1)+(-0.18,-0.18)$) rectangle ($(p1)+(0.18,0.18)$);
+  \ifthenelse{\equal{#4}{up}}{%
+    \draw[line, decorate, decoration={snake, amplitude=0.8mm, segment length=3mm}]
+      ($(p1)+(0.18,0.18)$) -- ($(p1)+(1.0,0.85)$);
+    \node[above] at ($(p1)+(1.0,0.9)$) {#5};
+  }{%
+    \draw[line, decorate, decoration={snake, amplitude=0.8mm, segment length=3mm}]
+      ($(p1)+(0.18,-0.18)$) -- ($(p1)+(1.0,-0.85)$);
+    \node[below] at ($(p1)+(1.0,-0.9)$) {#5};
+  }
+
+  % --- vertex phonon 2 ---
+  \coordinate (p2) at ({1.2*cos(#6)},{1.0*sin(#6)});
+  \draw[fill=white] ($(p2)+(-0.18,-0.18)$) rectangle ($(p2)+(0.18,0.18)$);
+  \ifthenelse{\equal{#7}{up}}{%
+    \draw[line, decorate, decoration={snake, amplitude=0.8mm, segment length=3mm}]
+      ($(p2)+(0.18,0.18)$) -- ($(p2)+(1.0,0.85)$);
+    \node[above] at ($(p2)+(1.0,0.9)$) {#8};
+  }{%
+    \draw[line, decorate, decoration={snake, amplitude=0.8mm, segment length=3mm}]
+      ($(p2)+(0.18,-0.18)$) -- ($(p2)+(1.0,-0.85)$);
+    \node[below] at ($(p2)+(1.0,-0.9)$) {#8};
+  }
+
+  % --- etiquette ---
+  \node[font=\small\bfseries] at (-2.8,1.4) {#9};
+\end{scope}%
+}
+
+\begin{tikzpicture}
+
+  \def\xL{-4.7}
+  \def\xR{4.9}
+  \def\rA{-2.6}
+  \def\rB{-7.0}
+  \def\rC{-11.4}
+  \def\rD{-15.8}
+
+  % fond gris colonne droite
+  \begin{scope}[on background layer]
+    \fill[gray!12] (1.7,0.6) rectangle (9.2,-18.4);
+  \end{scope}
+
+  % --- gauche : ee1, ee2, hh1, hh2 ---
+  \diag{\xL}{\rA}{120}{up}{$\omega_{\nu-\qv}$}{60}{up}{$\omega_{\mu\qv}$}{ee1}
+  \diag{\xL}{\rB}{120}{up}{$\omega_{\mu\qv}$}{60}{up}{$\omega_{\nu-\qv}$}{ee2}
+  \diag{\xL}{\rC}{240}{down}{$\omega_{\nu-\qv}$}{300}{down}{$\omega_{\mu\qv}$}{hh1}
+  \diag{\xL}{\rD}{240}{down}{$\omega_{\mu\qv}$}{300}{down}{$\omega_{\nu-\qv}$}{hh2}
+
+  % --- droite : eh1, eh2, he1, he2 ---
+  \diag{\xR}{\rA}{90}{up}{$\omega_{\nu-\qv}$}{315}{down}{$\omega_{\mu\qv}$}{eh1}
+  \diag{\xR}{\rB}{90}{up}{$\omega_{\mu\qv}$}{315}{down}{$\omega_{\nu-\qv}$}{eh2}
+  \diag{\xR}{\rC}{90}{up}{$\omega_{\mu\qv}$}{225}{down}{$\omega_{\nu-\qv}$}{he1}
+  \diag{\xR}{\rD}{90}{up}{$\omega_{\nu-\qv}$}{225}{down}{$\omega_{\mu\qv}$}{he2}
+\end{tikzpicture}

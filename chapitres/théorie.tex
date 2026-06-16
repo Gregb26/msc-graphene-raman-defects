@@ -555,7 +555,6 @@ Ensuite, nous exploitons la localisation des constantes de force dans l'espace r
 L'idée est que comme $C_{\alpha\mu,\alpha'\mu'}(\Rv_l)$ décroît rapidement avec $|\Rv_l|$, cette somme peut être tronquée après quelques $\Rv_l$, rendant son évaluation extrêmement efficace même pour des grilles $\qv_f$ ultra denses. Il est nécessaire que $\qv_c$ soit assez dense pour bien capturer les constantes de force. Dans la prochaine section, nous présentons nos résultats de calculs DFPT pour une feuille de graphène parfaite. 
 \begin{figure}[t]
     \centering
-    \hspace{5cm}
     \input{tikz/dfpt}
     \caption[Représentation schématique du cycle SCF DFPT pour l'obtention des propriétés de phonons \textit{ab initio}.]{Représentation schématique du cycle SCF DFPT pour l'obtention des propriétés de phonons \textit{ab initio}.}
     \label{fig:scf_phonon}
@@ -581,7 +580,7 @@ correspondant aux extrema des branches de phonons, notamment
 aux alentours de 500, 600, 900, 1400 et 1580~cm$^{-1}$, 
 reflétant la structure de bande de phonons du panneau~(a).
 
-\section{Fonctions de Wannier}
+\section{Fonctions de Wannier}\label{sec:wannier}
 Les équations d'intensité Raman sont particulièrement difficile à converger et requièrent des grilles $\kv$ et $\qv$ extrêmement denses~\cite{lazzeriFirstPrinciplesCalculationVibrational2003,gilletFirstprinciplesStudyExcitonic2013a,bagheriHighthroughputComputationRaman2023}. Obtenir ces quantités directement de par DFT et DFPT sur de telles grilles est computationnellement impossible. Il existe plusieurs schémas d'interpolation : l'interpolation de Fourier~\cite{madsenBoltzTraP2ProgramInterpolating2018}, un calcul NSCF pour les quantités électroniques~\cite{bruninPhononlimitedElectronMobility2020}, le \textit{double padding}~\cite{bruninPhononlimitedElectronMobility2020}, le \textit{zero padding}, l'interpolation linéaire~\cite{liElectricalTransportLimited2015} et l'interpolation avec des fonctions de Wannier (WF)~\cite{ponceEPWElectronphononCoupling2016}. Nous utilisons cette dernière technique pour interpoler toutes les quantités nécessaires sur des grilles assez denses pour converger l'intensité Raman. 
 
 Les WF offrent deux avantages considérables : une interpolation efficace qui permet l'interpolation sur des grilles ultra denses et la capacité de respecter la physique du système interpolé. Les WF fournissent une base localisée et cette localisation garantit que les éléments de matrice calculés dans cette base décroissent rapidement avec la distance, de sorte qu'une transformée de Fourier tronquée suffit pour reproduire fidèlement n'importe quelle propriété sur une grille arbitrairement dense et ce à faible coût numérique. De plus, la transformation vers les WF étant exacte et unitaire, les propriétés interpolées coïncident exactement avec les résultats \textit{ab initio} sur la grille originale. Ces aspects s'appliquent autant aux propriétés électroniques, aux propriétés vibrationnelles (phonons), aux propriétés des défauts et aux propriétés de couplage électron-phonon, faisant de l'interpolation de Wannier une technique efficace et générale. En plus de leur utilité pour l'interpolation, les fonctions de Wannier sont utilisées pour faire des modèle \textit{tight binding} effectif \textit{ab initio} qui servent d'entrée pour la DMFT~\cite{lechermannDynamicalMeanfieldTheory2006} et sont à la base de la théorie moderne de la polarisation~\cite{king-smithTheoryPolarizationCrystalline1993,restaMacroscopicPolarizationCrystalline1994}. Dans cette section, nous introduisons ce schéma d'interpolation.
@@ -733,7 +732,7 @@ où $e$ est la charge de l'électron et $m_e$ sa masse. Le deuxième terme, quad
 
 En ne gardant que ce premier terme et en l'écrivant en deuxième quantification, nous avons
 \begin{equation}
-    \hat{H}_\text{eem}=\sum_{mn\lambda}\sum_\kv g_{mn}^{(\lambda)}(\kv)\hat{c}^\dag_{m\kv}\hat{c}_{n\kv}(\hat{a}_\lambda+\hat{a}^\dag_\lambda)
+    \hat{H}_\text{eem}=\sum_{mn\lambda}\sum_\kv g_{mn}^{(\lambda)}(\kv)\hat{c}^\dag_{m\kv}\hat{c}_{n\kv}(\hat{a}_\lambda+\hat{a}^\dag_\lambda)\label{H_eem}
 \end{equation}
 où nous avons défini les éléments de matrice de couplage électron-photon entre deux états de Bloch $\ket{\psi_{n\kv}}$ et $\ket{\psi_{m\kv}}$: 
 \begin{equation}
@@ -749,7 +748,7 @@ où dans la troisième égalité les fonctions de Bloch ont été écrites en te
 \end{equation}
 où $\mu=x,y,z$ identifie les coordonnées cartésiennes des vecteurs.
 
-\section{Hamiltonien complet en deuxième quantification}
+\section{Hamiltonien complet en deuxième quantification}\label{sec:hamiltonien}
 Avant de conclure ce chapitre, il vaut la peine de faire une petite pause pour récapituler le grand nombre de concepts théoriques qui ont été vus dans ce chapitre. Nous avons un système de graphène avec des défauts et trois types de particules élémentaires qui interagissent entre elles. L'Hamiltonien total de ce système se décompose en une partie libre et une partie d'interaction
 \begin{equation}
     \hat{H} = \hat{H}_0+\hat{H}_\text{int}.
@@ -763,10 +762,10 @@ La partie électronique à été obtenue dans la section~\ref{sec:électrons}, p
     \begin{split}
     \hat{H}_\text{int} &= \underbrace{\sum_{mn\lambda}\sum_\kv g_{mn}^{(\lambda)}(\kv)\hat{c}^\dag_{m\kv}\hat{c}_{n\kv}(\hat{a}_\lambda+\hat{a}_\lambda^\dag)}_{\hat{H}_\text{eem}}\\
     &+ \underbrace{\sum_{mn}\sum_{\kv\kv'}M_{mn}(\kv',\kv)\hat{c}^\dag_{m\kv'}\hat{c}_{n\kv}}_{\hat{H}_\text{ed}}\\
-    &+ \underbrace{\sum_{mn\nu}\sum_{\kv\qv}g_{mn}^{(\nu)}(\qv,\kv)\hat{c}_{m\kv+\qv}^\dag\hat{c}_{n\kv}\hat{A}_{\nu\qv}}_{\hat{H}_\text{eph}}.
+    &+ \underbrace{\sum_{mn\nu}\sum_{\kv\qv}g_{mn}^{(\nu)}(\kv+\qv,\kv)\hat{c}_{m\kv+\qv}^\dag\hat{c}_{n\kv}\hat{A}_{\nu\qv}}_{\hat{H}_\text{eph}}.
     \end{split}
 \end{equation}
-Nous avons vu comment obtenir les éléments de matrice de couplage électron-photon sur des grilles ultra dense via une interpolation par des MLWF dans la section~\ref{sec:photon}.L'Hamiltonien de couplage électron-défaut $\hat{H}_\text{ed}$ est introduit dans le chapitre sur les défauts et l'Hamiltonien de couplage électron-phonon $\hat{H}_\text{eph}$ est introduit dans le chapitre sur le couplage électron-phonon, les chapitres~\ref{chap:défauts} et~\ref{chap:eph} respectivement, lesquels sont indispensables pour la diffusion Raman.
+Nous avons vu comment obtenir les éléments de matrice de couplage électron-photon sur des grilles ultra dense via une interpolation par des MLWF dans la section~\ref{sec:photon}. L'Hamiltonien de couplage électron-défaut $\hat{H}_\text{ed}$ est introduit dans le chapitre sur les défauts et l'Hamiltonien de couplage électron-phonon $\hat{H}_\text{eph}$ est introduit dans le chapitre sur le couplage électron-phonon, les chapitres~\ref{chap:défauts} et~\ref{chap:eph} respectivement, lesquels sont indispensables pour la diffusion Raman.
 
 \section{Conclusion}
-Pour conclure ce chapitre, nous avons obtenu les valeurs propres électroniques $\varepsilon_{n\kv}$ et les fonctions d'onde $\ket{\psi_{n\kv}}$ à l'aide de la DFT. Nous avons également utilisé les MLWF pour interpoler l'Hamiltonien électronique pour obtenir les valeurs propres $\varepsilon_{n\kv}$ sur une grille $\kv$ ultra dense à moindre coût computationnel. Nous avons également obtenu les fréquences de phonons $\omega_{\nu\qv}$ sur une grille modérément dense à l'aide de la DFPT. Nous les avons aussi obtenues sur une grille $\qv$ ultra dense grâce à une interpolation similaire à l'interpolation de Wannier pour les quantités électroniques. Finalement, nous avons introduit le couplage électron-photon et avons détaillé comment obtenir ces éléments de matrice sur une grille $\kv$ ultra dense dans l'approximation du dipôle électrique avec l'aide des MLWF. Dans les deux prochains chapitres, nous assemblons les dernières quantités requises pour l'évaluation de l'intensité Raman résonante du graphène avec des défauts, c'est-à-dire les quantités reliées au couplage électron-défaut et électron-phonon. 
+Pour conclure ce chapitre, nous avons obtenu les valeurs propres électroniques $\varepsilon_{n\kv}$ et les fonctions d'onde $\ket{\psi_{n\kv}}$ à l'aide de la DFT, puis utilisé les MLWF pour interpoler l'Hamiltonien électronique et obtenir ces valeurs propres sur une grille $\kv$ ultra dense à moindre coût computationnel. Nous avons également obtenu les fréquences de phonons $\omega_{\nu\qv}$ sur une grille modérément dense à l'aide de la DFPT, puis sur une grille $\qv$ ultra dense grâce à une interpolation analogue à l'interpolation de Wannier utilisée pour les quantités électroniques. Finalement, nous avons introduit le couplage électron-photon et détaillé comment obtenir ces éléments de matrice sur une grille $\kv$ ultra dense, dans l'approximation du dipôle électrique, à l'aide des MLWF. Dans les prochains chapitres, nous détaillons les équations à résoudre pour simuler l'intensité Raman résonante du graphène avec défauts et nous assemblons les dernières quantités nécessaires, soit celles reliées au couplage électron-défaut et au couplage électron-phonon. 

@@ -1,1 +1,18 @@
 \chapter{Couplage électron-défaut dans le graphène}\label{chap:défauts}
+Ce chapitre se consacre à au couplage entre les électrons et les défauts, l'un des ingrédients essentiels au calcul de l'intensité Raman résonante des processus \textit{phonon-défaut} introduits au chapitre~\ref{chap:Raman}. Ce couplage intervient à deux endroits dans la théorie : directement, par les éléments de matrice $M_{mn}(\kv',\kv)$ qui apparaissent dans les amplitudes de diffusion \textit{phonon-défaut}, et indirectement, par la \textit{self}-énergie électronique due aux défauts $\Sigma_{n\kv}^\text{ed}$ et le taux d'amortissement $\Gamma_{n\kv}^\text{ed}$, qui renormalisent l'énergie et les temps de vie électronique. Nous commençons par définir les éléments de matrice de couplage électron-défaut, dérivons comment les calculer à partir des premiers principes, puis montrons comment les interpoler sur des grilles ultra denses grâce aux MLWF. Nous développons ensuite la théorie de la perturbation à plusieurs corps appliquée au couplage électron-défaut, qui relie ces éléments de matrice à la \textit{self}-énergie électronique et au taux d'amortissement.  
+\section{Éléments de matrice électron-défaut}
+L'élément central à l'étude de défauts dans un matériau à partir des premiers principes est la matrice de couplage électron-défaut
+\begin{equation}
+    M_{mn}(\kv',\kv) = \bra{\psi_{m\kv'}}V_\text{ed}(\rv)\ket{\psi_{n\kv}},\label{M}
+\end{equation}
+qui correspond à l'amplitude de probabilité que l'électron dans l'état $n\kv$ diffuse vers l'état $m\kv'$ à cause du potentiel $V_\text{ed}(\rv)$ induit par le défaut dans le matériau. L'Hamiltonien associé à ce couplage est donné par
+\begin{equation}
+    \hat{H}_\text{ed} = \sum_{mn}\sum_{\kv\kv'}M_{mn}(\kv',\kv)\hat{c}^\dag_{m\kv}\hat{c}_{n\kv},
+\end{equation}
+écrit en deuxième quantification. Ce Hamiltonien est inclus perturbativement dans le terme d'interaction de l'Hamiltonien complet et la matrice de couplage peut être vu comme la correction au premier ordre des valeurs propres électroniques due au potentiel $V_\text{ed}(\rv)$. 
+
+\subsection{Partie locale}
+\subsection{Partie non-locale}
+\subsection{Interpolation avec des fonctions de Wannier}
+\section{Théorie de la perturbation à plusieurs corps pour les défauts}\label{sec:mbt_défaut}
+\section{Conclusion}

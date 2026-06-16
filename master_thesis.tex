@@ -28,18 +28,32 @@
 \usepackage{amssymb}
 \usepackage{subfigure}
 \usepackage{physics}
+\usepackage{float}
 \usepackage{xcolor}
 \usepackage{url}
 \usepackage[labelfont=bf, width=\linewidth]{caption}
 \usepackage{hyperref} 
+\usepackage{ifthen}
 \definecolor{darkblue}{rgb}{0.0, 0.0, 0.5}
 \hypersetup{colorlinks=true,allcolors=darkblue}
 \usepackage{hypcap}   
 \usepackage{bookmark} 
 \usepackage{bm}
+
+%% TiKz setup
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, shadows, positioning, shapes.geometric}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{calc}
 
+\tikzset{
+  fermion/.style={
+    postaction={decorate},
+    decoration={markings, mark=at position 0.5 with {\arrow{Stealth}}}
+  }
+}
 
 \AtBeginDocument{%                 
   \setlength{\abovedisplayskip}{6pt}%
@@ -148,10 +162,10 @@
 \tableofcontents
 
 \cleardoublepage
-%\listoftables
+\listoftables
 
 \cleardoublepage
-%\listoffigures
+\listoffigures
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LISTE DES SIGLES ET ABRÉVIATION %
@@ -178,12 +192,12 @@
 %%                                                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\include{chapitres/introduction}
-\include{chapitres/théorie}
-\include{chapitres/raman}
+%\include{chapitres/introduction}
+%\include{chapitres/théorie}
+%\include{chapitres/raman}
 \include{chapitres/défauts}
-\include{chapitres/eph}
-\include{chapitres/conclusion}
+%\include{chapitres/eph}
+%\include{chapitres/conclusion}
 
 %%--------------%
 %%     index    %
@@ -197,7 +211,8 @@
 
 \appendix
 %\include{annexes/pbe}
-%\include{annexes/défauts}
+%\include{annexes/raman}
+\include{annexes/défauts}
 %\include{annexes/eph}
 %\include{annexes/paramètres}
 

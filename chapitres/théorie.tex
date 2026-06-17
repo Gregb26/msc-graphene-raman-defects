@@ -58,9 +58,9 @@ Finalement, l'approximation de Born-Oppenheimer a ses limites. Elle néglige par
 
 \subsection{Symétries du réseau cristallin et théorème de Bloch}\label{sec:symétries}
 
-Une autre simplification majeure vient du fait que les solides cristallins sont des systèmes hautement symétriques. Ils sont des répétitions périodiques d'une unité de base : la cellule unitaire. Nous identifions les cellules unitaires par les vecteurs du réseau cristallin $\Rv_\ell$, où $\ell$ est un triplet d'entiers $(n_1,n_2,n_3)$
+Une autre simplification majeure vient du fait que les solides cristallins sont des systèmes hautement symétriques. Ils sont des répétitions périodiques d'une unité de base : la cellule unitaire. Nous identifions les cellules unitaires par les vecteurs du réseau cristallin $\Rv_l$, où $l$ est un triplet d'entiers $(n_1,n_2,n_3)$
 \begin{equation}
-    \Rv_\ell = n_1\av_1+n_2\av_2+n_3\av_3.
+    \Rv_l = n_1\av_1+n_2\av_2+n_3\av_3.
     \label{eqn:c2_Rl}
 \end{equation}
 Ici, les vecteurs $\av_i$ sont les vecteurs primitifs du réseau cristallin et définissent la cellule unitaire. Comme toutes les cellules du solide sont les mêmes, il suit que l'Hamiltonien est invariant sous une translation discrète d'un vecteur du réseau. Il est généralement favorable de travailler de l'espace réciproque -- l'ensemble de points $\kv$ -- pour exploiter la symétrie de translation d'un système. À cet effet, nous introduisons le réseau réciproque, qui est un ensemble de points dans l'espace réciproque étiquetés par les vecteurs du réseau réciproque $\Gv$
@@ -74,12 +74,12 @@ où les $m_i$ sont des entiers et les $\bv_i$ sont les vecteurs primitifs du ré
 \end{equation}
 Il fut démontré par Félix Bloch~\cite{blochUeberQuantenmechanikElektronen1929}, alors doctorant sous la supervision de Werner Heisenberg, que la fonction d'onde d'une particule évoluant avec un Hamiltonien invariant sous translation discrète se factorise en un produit d'une onde plane et une fonction périodique
 \begin{equation}
-    \psi_{n\kv}=e^{i\kv\cdot\rv}u_{n\kv}(\rv),
+    \psi_{n\kv}(\rv)=e^{i\kv\cdot\rv}u_{n\kv}(\rv),
     \label{eqn:c2_bloch_thm}
 \end{equation}
-où la fonction périodique de Bloch possède la même invariance sous une translation discrète d'un vecteur du réseau que l'Hamiltonien
+où $N_\text{uc}$ est le nombres de cellules unitaires dans le cristal et la fonction périodique de Bloch possède la même invariance sous une translation discrète d'un vecteur du réseau que l'Hamiltonien
 \begin{equation}
-    u_{n\kv}(\rv+\Rv_\ell)=u_{n\kv}(\rv),
+    u_{n\kv}(\rv+\Rv_)=u_{n\kv}(\rv),
     \label{eqn:c2_unk}
 \end{equation}
 un résultat connu sous le nom de théorème de Bloch. Les vecteurs $\kv$ sont conservés modulo un vecteur du réseau réciproque $\Gv$, une conséquence directe de la symétrie de translation discrète. De ce fait, il est possible de restreindre l'espace réciproque à la première zone de Brillouin (BZ, de l'anglais \textit{Brillouin Zone}), soit l'ensemble de points $\kv$ plus proches de $\Gv=\mathbf{0}$ que de tout autre vecteur du réseau réciproque. N'importe quel point $\kv$ en dehors de la première BZ peut être replié dans la première BZ par une translation d'un vecteur $\Gv$. Pour distinguer les multiples solutions au même $\kv$ de la première BZ, nous avons introduit l'indice de bande $n$. Finalement, comme la fonction $u_{n\kv}(\rv)$ est la même dans toutes les cellules, il est possible de résoudre le problème dans une cellule unitaire seulement et reproduire la solution dans tout le solide par périodicité. En d'autres termes, au lieu de résoudre le problème pour le solide en son entier avec un nombre \textit{a priori} infini d'électrons et d'ions, le théorème de Bloch nous permet de restreindre le problème à une cellule unitaire avec un nombre fini d'électrons et d'ions, ce qui réduit énormément la complexité du calcul. À partir de maintenant, $N_e$ désigne le nombre d'électrons dans la cellule unitaire. 
@@ -226,15 +226,15 @@ Dans les codes DFT modernes, la forme séparable proposée par Kleinman et Bylan
 \end{equation}
 où la somme court sur tous les ions $\alpha$ de la cellule unitaire et $\bm{\tau}_\alpha$ dénote leur position. Dans la forme de KB, chaque contribution ionique se décompose en une partie locale et une partie non-locale
 \begin{equation}
-    V^{(\alpha)}_\text{PP}(\rv) = V^{(\alpha)}_\text{PPL}(\rv)+\underbrace{\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}}_{=\hat{V}_\text{PPNL}^{(\alpha)}}.
+    V^{(\alpha)}_\text{PP}(\rv) = V^{(\alpha)}_\text{PPL}(\rv)+\underbrace{\sum_{i\ell m_\ell}\ket{\beta_{i\ell m_\ell}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m_\ell}^{(\alpha)}}}_{=\hat{V}_\text{PPNL}^{(\alpha)}}.
     \label{eqn:c1_VKB}
 \end{equation}
-La partie locale $V_\text{PPL}(\rv)$ est un potentiel central à symétrie sphérique qui reproduit le potentiel de Coulomb $-Z_\text{val}/r$ loin de la région de c\oe ur et est plus lisse à l'intérieur. Dans la partie non-locale, $\ell$ est le nombre quantique de moment cinétique orbital, $m=-\ell,\dots,\ell$ est le nombre quantique magnétique et $i$ indexe les multiples projecteurs par canal $\ell$. C'est précisément ce qui distingue les ONCV des NC classiques, qui ne possèdent qu'un seul projecteur par canal. Les énergies de KB $E_{i\ell}^{(\alpha)}$ mesurent la force de la partie non-locale par rapport à la partie locale et les projecteurs de KB $\beta_{i\ell m}^{(\alpha)}(\rv)=\bra{\rv}\ket{\beta_{i\ell m}^{(\alpha)}}$ sont des fonctions à courte portée centrées sur l'ion $\alpha$, dont la structure est
+La partie locale $V_\text{PPL}(\rv)$ est un potentiel central à symétrie sphérique qui reproduit le potentiel de Coulomb $-Z_\text{val}/r$ loin de la région de c\oe ur et est plus lisse à l'intérieur. Dans la partie non-locale, $\ell$ est le nombre quantique de moment cinétique orbital, $m_\ell=-\ell,\dots,\ell$ est le nombre quantique magnétique et $i$ indexe les multiples projecteurs par canal $\ell$. C'est précisément ce qui distingue les ONCV des NC classiques, qui ne possèdent qu'un seul projecteur par canal. Les énergies de KB $E_{i\ell}^{(\alpha)}$ mesurent la force de la partie non-locale par rapport à la partie locale et les projecteurs de KB $\beta_{i\ell m_\ell}^{(\alpha)}(\rv)=\bra{\rv}\ket{\beta_{i\ell m_\ell}^{(\alpha)}}$ sont des fonctions à courte portée centrées sur l'ion $\alpha$, dont la structure est
 \begin{equation}
-    \beta_{i\ell m}^{(\alpha)}(\rv)=\frac{1}{|\rv-\bm{\tau}_\alpha|}\beta_{i\ell}^{(\alpha)}(|\rv-\bm{\tau}_\alpha|)Y_{\ell}^m(\theta,\phi),
-    \label{eqn:c2_betar}
+    \beta_{i\ell m_\ell}^{(\alpha)}(\rv)=\frac{1}{|\rv-\bm{\tau}_\alpha|}\beta_{i\ell}^{(\alpha)}(|\rv-\bm{\tau}_\alpha|)Y_{\ell}^{m_\ell}(\theta,\phi),
+    \label{betar}
 \end{equation}
-où $Y_\ell^m(\theta, \phi)$ sont les harmoniques sphériques et $\theta$ et $\phi$ sont les angles en coordonnées sphériques du vecteur $\rv-\bm{\tau}_\alpha$. La partie locale et les projecteurs radiaux du pseudo-potentiel ONCV pour un atome de carbone sont illustrés à la figure~\ref{fig:KB}.
+où $Y_\ell^{m_\ell}(\theta, \phi)$ sont les harmoniques sphériques et $\theta$ et $\phi$ sont les angles en coordonnées sphériques du vecteur $\rv-\bm{\tau}_\alpha$. La partie locale et les projecteurs radiaux du pseudo-potentiel ONCV pour un atome de carbone sont illustrés à la figure~\ref{fig:KB}.
 
 \begin{figure}[t]
     \centering
@@ -248,7 +248,7 @@ où $Y_\ell^m(\theta, \phi)$ sont les harmoniques sphériques et $\theta$ et $\p
 
 La décomposition du pseudo-potentiel en une partie locale et une partie non-locale se répercute directement sur le potentiel de KS, qui lui aussi se sépare en deux parties : 
 \begin{equation}
-    V_\text{KS}(\rv)=V_\text{L}(\rv)+V_\text{NL},
+    V_\text{KS}(\rv)=V_\text{L}(\rv)+\hat{V}_\text{NL},
     \label{eqn:c2_VKS_lnl}
 \end{equation}
 où la partie locale du potentiel regroupe les contributions d'Hartree, d'échange-corrélation et la partie locale du pseudo-potentiel
@@ -258,7 +258,7 @@ où la partie locale du potentiel regroupe les contributions d'Hartree, d'échan
 \end{equation}
 et la partie non-locale est entièrement due aux projecteurs de KB
 \begin{equation}
-    \hat{V}_\text{NL}=\sum_\alpha\sum_{i\ell m}\ket{\beta_{i\ell m}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m}^{(\alpha)}}.
+    \hat{V}_\text{NL}=\sum_\alpha\sum_{i\ell m_\ell}\ket{\beta_{i\ell m_\ell}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m_\ell}^{(\alpha)}}.
 \end{equation}
 Nous aurons besoin de ces expressions lors du calcul des éléments de matrice de couplage électron-défaut au chapitre \ref{chap:défauts}, ainsi que pour la solution des équations de KS, présentée dans la prochaine section.
 
@@ -270,17 +270,17 @@ Dans cette section, nous voyons comment résoudre les équations de Kohn-Sham en
 
 D'après le théorème de Bloch (cf. section~\ref{sec:symétries}), les fonctions d'onde de KS prennent la forme
 \begin{equation}
-    \psi_{n\kv}(\rv)=e^{i\kv\cdot\rv}u_{n\kv}(\rv),
+    \psi_{n\kv}(\rv)=\frac{1}{\sqrt{N_\text{uc}}}e^{i\kv\cdot\rv}u_{n\kv}(\rv),
     \label{eqn:c2_bloch_pt2}
 \end{equation}
 où la fonction périodique de Bloch possède la même périodicité que le solide : $u_{n\kv}(\rv+\Rv_\ell) = u_{n\kv}(\rv)$. Grâce à cette invariance sous translation discrète par un vecteur du réseau cristallin, il est possible de faire son expansion en série de Fourier avec les vecteurs $\Gv$ du réseau réciproque seulement
 \begin{equation}
-    u_{n\kv}(\rv)=\frac{1}{\sqrt{\Omega_\text{BvK}}}\sum_{\Gv}C_{n\kv}(\Gv)e^{i\Gv\cdot\rv},
+    u_{n\kv}(\rv)=\frac{1}{\sqrt{\Omega_\text{uc}}}\sum_{\Gv}C_{n\kv}(\Gv)e^{i\Gv\cdot\rv},
     \label{eqn:c2_uPW}
 \end{equation}
-où $\Omega_\text{BvK}$ est le volume du cristal et $C_{n\kv}(\Gv)$ sont les coefficients de l'expansion en série de Fourier, de sorte que la fonction d'onde de KS s'écrit comme une combinaison linéaire d'ondes planes
+où $\Omega_\text{uc}$ est le volume de la cellule unitaire et $C_{n\kv}(\Gv)$ sont les coefficients de l'expansion en série de Fourier, de sorte que la fonction d'onde de KS s'écrit comme une combinaison linéaire d'ondes planes
 \begin{equation}
-    \psi_{n\kv}(\rv)=\frac{1}{\sqrt{\Omega_\text{BvK}}}\sum_{\Gv}C_{n\kv}(\Gv)e^{i(\kv+\Gv)\cdot\rv}.
+    \psi_{n\kv}(\rv)=\frac{1}{\sqrt{\Omega_\text{uc}}}\sum_{\Gv}C_{n\kv}(\Gv)e^{i(\kv+\Gv)\cdot\rv}.
     \label{eqn:c2_psiPW}
 \end{equation}
 La base d'onde plane est un choix naturel pour les solides périodiques~\cite{carUnifiedApproachMolecular1985,martinElectronicStructureBasic2004} : elle est complète, orthonormée, et compatible avec les transformées de Fourier rapides (FFT, de l'anglais \textit{Fast Fourier Transform}) qui permettent de passer efficacement entre l'espace réel et l'espace réciproque. Le problème se réduit donc à la détermination des coefficients $C_{n\kv}(\Gv)$.
@@ -335,7 +335,7 @@ où la partie d'Hartree est obtenue directement dans l'espace réciproque via l'
 \end{equation}
 la partie d'échange-corrélation s'obtient par la FFT de $V_\text{XC}[n(\rv)]$ calculé dans l'espace réel et la partie locale du pseudo-potentiel s'obtient par la FFT de $V_\text{PPL}(\rv)$, qui ne dépend pas de la densité et est précalculée. La partie non-locale, elle aussi indépendante de la densité, est précalculée pour chaque $\kv$
 \begin{equation}
-    \tilde{V}_\text{NL}^{(\kv)}(\Gv,\Gv') = \sum_\alpha\sum_{i\ell m}\tilde{\beta}_{i\ell m}^{(\alpha)}(\kv+\Gv)E_{i\ell}^{(\alpha)}\tilde{\beta}^{*(\alpha)}_{i\ell m}(\kv+\Gv').
+    \tilde{V}_\text{NL}^{(\kv)}(\Gv,\Gv') = \sum_\alpha\sum_{i\ell m}\tilde{\beta}_{i\ell m}^{(\alpha)}(\kv+\Gv)E_{i\ell}^{(\alpha)}\tilde{\beta}^{*(\alpha)}_{i\ell m}(\kv+\Gv').\label{V_NL_k}
 \end{equation}
 La dérivation de cette expression est présentée au chapitre~\ref{chap:défauts} dans le contexte des éléments de matrice électron-défaut.
 
@@ -435,7 +435,6 @@ qui représente le nombre d'états électroniques par unité d'énergie disponib
 \end{equation}
 ce qui donne 8 pour le graphène.
 
-% CONDENSÉ : fusion des deux premières phrases (répétition fig 3.6 / fig 3.6(a))
 La structure de bandes, illustrée à la figure~\ref{fig:resultats_electrons} (a), a été obtenue en diagonalisant l'Hamiltonien le long du chemin $\Gamma\to K\to M\to\Gamma$ avec 60 points par segment, à partir de l'état fondamental calculé avec les paramètres donnés plus haut. Nous voyons les trois bandes $\sigma-sp^2$ plus basses en énergie et la bande $\pi-p_z$ qui touche linéairement la bande $\pi^*-p_z$ au niveau de Fermi et au point K de la BZ. C'est le cône de Dirac. La dispersion linéaire au point de Dirac donne lieu à une vitesse de Fermi $v_F\approx10^6$ m/s~\cite{castronetoElectronicPropertiesGraphene2009,novoselovTwodimensionalGasMassless2005} qui témoigne de la mobilité très élevée des électrons dans le graphène.
 
 La DOS, représentée à la figure~\ref{fig:resultats_electrons} (b), a été calculée sur une grille MP plus dense de $96\times96\times1$ avec un facteur d'élargissement $\sigma=0.01$ Ry. La partie colorée représente les états occupés et la densité d'états est nulle à l'énergie de Fermi, ce qui confirme que le graphène parfait est un semi-métal avec un gap nul au point de Dirac à température nulle. Pour toute température $T>0$, l'agitation thermique peuple continuellement la bande $\pi^*$, ce qui explique que le graphène est conducteur à température finie. Les singularités de Van Hove~\cite{dresselhausPhysicalPropertiesCarbon1998,BassaniParraviciniElectronic} (les pics dans la DOS aux points d'inflexion de la structure de bandes au point M) sont bien reproduites. Ces résultats sont en excellent accord avec les calculs DFT-PBE de la littérature~\cite{castronetoElectronicPropertiesGraphene2009}.

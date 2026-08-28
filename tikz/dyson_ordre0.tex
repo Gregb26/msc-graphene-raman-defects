@@ -1,0 +1,22 @@
+% Diagramme de Feynman : terme d'ordre zéro de la série de Dyson
+% pour la fonction de Green électronique en présence d'un défaut.
+% Style identique aux diagrammes du chapitre Raman (tikz/e1.tex, tikz/pd.tex).
+% Compatible pdflatex. Requiert : tikz, decorations.markings, arrows.meta, calc.
+\begin{tikzpicture}[
+    line/.style={thick},
+    >=Stealth,
+    fermion/.style={
+      postaction={decorate},
+      decoration={markings, mark=at position 0.55 with {\arrow{Stealth}}}
+    },
+]
+  % --- propagateur libre ---
+  \draw[line, fermion] (0,0) -- (4,0);
+  \node[above=3pt] at (2,0) {$n$};
+
+  % --- extrémités ---
+  \node[below=4pt] at (0,0) {$\tau$};
+  \node[below=4pt] at (4,0) {$\tau'$};
+  \fill (0,0) circle (0.05);
+  \fill (4,0) circle (0.05);
+\end{tikzpicture}

@@ -1,0 +1,64 @@
+% Diagrammes de Feynman : termes du premier ordre de la série de Dyson
+% pour la fonction de Green électronique en présence d'un défaut.
+% (a) diagramme connecté : une diffusion sur le défaut au temps tau_1.
+% (b) diagramme déconnecté (tadpole) : boucle fermée au temps tau_1.
+% Style identique aux diagrammes du chapitre Raman (tikz/e1.tex, tikz/pd.tex).
+% Compatible pdflatex. Requiert : tikz, decorations.markings, arrows.meta, calc.
+
+% Vertex électron-défaut : cercle blanc + croix (cf. tikz/règles_Raman.tex)
+\providecommand{\vertexdefaut}[1]{%
+  \draw[fill=white] (#1) circle (0.2);
+  \draw[line width=1pt] ($(#1)+(-0.14,-0.14)$) -- ($(#1)+(0.14,0.14)$);
+  \draw[line width=1pt] ($(#1)+(-0.14,0.14)$) -- ($(#1)+(0.14,-0.14)$);
+}
+
+\begin{tikzpicture}[
+    line/.style={thick},
+    >=Stealth,
+    fermion/.style={
+      postaction={decorate},
+      decoration={markings, mark=at position 0.55 with {\arrow{Stealth}}}
+    },
+]
+
+% ===================== (a) diagramme connecté =====================
+\begin{scope}[shift={(0,0)}]
+  \draw[line, fermion] (0,0)   -- (1.82,0);
+  \draw[line, fermion] (2.18,0) -- (4,0);
+  \node[above=3pt] at (0.9,0) {$n$};
+  \node[above=3pt] at (3.1,0) {$m$};
+
+  \vertexdefaut{2,0}
+  \node[above=6pt] at (2,0) {$\tau_1$};
+  \node[below=6pt] at (2,0) {$M_{mn}$};
+
+  \node[below=4pt] at (0,0) {$\tau$};
+  \node[below=4pt] at (4,0) {$\tau'$};
+  \fill (0,0) circle (0.05);
+  \fill (4,0) circle (0.05);
+
+  \node[font=\small\bfseries] at (-0.6,1.6) {(a)};
+\end{scope}
+
+% ===================== (b) diagramme déconnecté =====================
+\begin{scope}[shift={(7.2,0)}]
+  \draw[line, fermion] (0,0) -- (4,0);
+  \node[below=3pt] at (1.2,0) {$n$};
+
+  % boucle fermée, centre (2,1.15), rayon 0.55
+  \draw[line, fermion] (2,0.60) arc (-90:90:0.55);
+  \draw[line, fermion] (2,1.70) arc (90:270:0.55);
+  \node[left=3pt] at (1.45,1.15) {$n_1$};
+
+  \vertexdefaut{2,1.70}
+  \node[above=6pt] at (2,1.70) {$\tau_1$, $M_{n_1n_1}$};
+
+  \node[below=4pt] at (0,0) {$\tau$};
+  \node[below=4pt] at (4,0) {$\tau'$};
+  \fill (0,0) circle (0.05);
+  \fill (4,0) circle (0.05);
+
+  \node[font=\small\bfseries] at (-0.6,1.6) {(b)};
+\end{scope}
+
+\end{tikzpicture}

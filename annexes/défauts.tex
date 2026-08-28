@@ -42,7 +42,13 @@ Voyons comment écrire la série pour la fonction de Green de Matsubara pour le 
     &= -\delta_{mn}\,{}_0\langle\mathcal{T}\hat{c}_n(\tau')\hat{c}^\dag_n(\tau)\rangle_0,\\
     &= \delta_{mn}\mathcal{G}^{(0)}_n(\tau'-\tau),
 \end{align}
-soit la fonction de Green de Matsubara du système non-perturbé. Pour tracer le diagramme de Feynman qui représente ce terme, nous utilisons les règles de Feynman développées pour la spectroscopie Raman au chapitre~\ref{chap:Raman}. \textcolor{red}{AJOUTER DIAGRAMME} Physiquement, ce diagramme représente un électron dans la bande $n$ au temps $\tau$ et qui évolue dans le temps vers $\tau'$ tout en restant dans la bande $n$. C'est donc un électron qui se propage librement sans interagir avec le défaut. Ce diagramme est connecté.
+soit la fonction de Green de Matsubara du système non-perturbé. Pour tracer le diagramme de Feynman qui représente ce terme, nous utilisons les règles de Feynman développées pour la spectroscopie Raman au chapitre~\ref{chap:Raman}. Le diagramme correspondant est illustré à la figure~\ref{fig:dyson_ordre0}. Physiquement, ce diagramme représente un électron dans la bande $n$ au temps $\tau$ et qui évolue dans le temps vers $\tau'$ tout en restant dans la bande $n$. C'est donc un électron qui se propage librement sans interagir avec le défaut. Ce diagramme est connecté.
+\begin{figure}[h]
+    \centering
+    \input{tikz/dyson_ordre0.tex}
+    \caption[Diagramme de Feynman du terme d'ordre zéro de la série de Dyson.]{Diagramme de Feynman du terme d'ordre zéro de la série de Dyson. L'électron se propage librement dans la bande $n$, du temps $\tau$ au temps $\tau'$, sans interagir avec le défaut.}
+    \label{fig:dyson_ordre0}
+\end{figure}
 
 Le terme d'ordre un s'écrit
 \begin{align}
@@ -104,11 +110,17 @@ Les moyennes thermiques des paires d'opérateurs sont ensuite évaluées selon l
     \mathcal{G}^{(0)}_m(\tau'-\tau_1)\mathcal{G}^{(0)}_{n}(\tau_1-\tau)M_{mn}
 \\
 &
-    -\sum_{n_1}\mathcal{G}_{n}^{(0)}(\tau'-\tau)f_{n_1} M_{n_1n_1}
+    +\delta_{mn}\sum_{n_1}\mathcal{G}_{n}^{(0)}(\tau'-\tau)f_{n_1} M_{n_1n_1}
 \Big].
 \end{aligned}
 \end{equation}
-Il y a donc deux termes qui contribuent au premier ordre et ils peuvent être représentés par la somme de deux diagrammes de Feynman. \textcolor{red}{AJOUTER DIAGRAMME}. Physiquement, le premier diagramme représente un électron dans la bande $n$ au temps $\tau$ qui se propage vers la bande $m$ au temps $\tau'$ en diffusant sur un défaut au temps $\tau_1$ avec une amplitude de probabilité $M_{mn}$. Le deuxième diagramme est déconnecté et nous pouvons l'ignorer.
+Il y a donc deux termes qui contribuent au premier ordre et ils peuvent être représentés par la somme des deux diagrammes de Feynman de la figure~\ref{fig:dyson_ordre1}. Physiquement, le premier diagramme représente un électron dans la bande $n$ au temps $\tau$ qui se propage vers la bande $m$ au temps $\tau'$ en diffusant sur un défaut au temps $\tau_1$ avec une amplitude de probabilité $M_{mn}$. Le deuxième diagramme est déconnecté et nous pouvons l'ignorer.
+\begin{figure}[h]
+    \centering
+    \input{tikz/dyson_ordre1.tex}
+    \caption[Diagrammes de Feynman des termes du premier ordre de la série de Dyson.]{Diagrammes de Feynman des termes du premier ordre de la série de Dyson. (a) Diagramme connecté : l'électron diffuse une fois sur le défaut au temps $\tau_1$, avec une amplitude $M_{mn}$. (b) Diagramme déconnecté : la boucle fermée au temps $\tau_1$ n'est reliée par aucun propagateur au reste du diagramme et est annulée par le dénominateur de l'équation~\eqref{eqn:G}.}
+    \label{fig:dyson_ordre1}
+\end{figure}
 
 Au deuxième ordre, l'expansion du numérateur s'écrit
 \begin{align}
@@ -127,6 +139,36 @@ Il y a maintenant six appariements non-nuls. En général, pour $N$ paires d'op�
     &+\wick{{}_0\langle\mathcal{T} \c1 c_{m}(\tau') \c2 c_{m_1}^\dag(\tau_1)\c3 c_{n_1}(\tau_1)\c3 c_{m_2}^\dag(\tau_2)\c2 c_{n_2}(\tau_2)\c1 c_{n}^\dag(\tau)}\rangle_0\Big]M_{m_1n_1}M_{m_2n_2}.
 \end{aligned}
 \end{equation}
-Ici, tous les termes sauf le quatrième ont un nombre pair de croisements ; nous devons donc ajouter un signe moins au quatrième terme uniquement.
-
+Ici, tous les termes sauf le quatrième ont un nombre pair de croisements ; nous devons donc ajouter un signe moins au quatrième terme uniquement. Ces six appariements se traduisent par les six diagrammes de Feynman de la figure~\ref{fig:dyson_ordre2}. En écrivant les paires d'opérateurs fermioniques explicitement, nous avons
+\begin{equation}
+\begin{aligned}
+    \mathcal{G}^{(2)}(\tau'-\tau) &= \frac{(-1)^3}{2}\sum_{n_1m_2}\sum_{n_2m_2}\sum_{n_2\kv_2}\int_0^\beta  d\tau_1\,\int_0^\beta d\tau_2\Big[\\
+    &{}_0\langle\mathcal{T}\hat{c}_{m}(\tau')\hat{c}_{m_1}^\dag(\tau_1)\rangle_0{}_0\langle\mathcal{T}\hat{c}_{n_1}(\tau_1)\hat{c}_{m_2}^\dag(\tau_2)\rangle_0{}_0\langle\mathcal{T}\hat{c}_{n_2}(\tau_2)\hat{c}_{n}^\dag(\tau)\rangle_0\\
+    &+{}_0\langle\mathcal{T}\hat{c}_{m}(\tau')c_{m_1}^\dag(\tau_1)\rangle_0{}_0\langle\mathcal{T}\hat{c}_{n_1}(\tau_1)\hat{c}_{n}^\dag(\tau)\rangle_0{}_0\langle\mathcal{T}\hat{c}_{m_2}^\dag(\tau_2)\hat{c}_{n_2}(\tau_2)\rangle_0\\
+    &+{}_0\langle\mathcal{T}\hat{c}_{m}(\tau')\hat{c}_{m_2}^\dag(\tau_2)\rangle_0{}_0\langle\mathcal{T}\hat{c}_{m_1}^\dag(\tau_1)\hat{c}_{n_1}(\tau_1)\rangle_0{}_0\langle\mathcal{T}\hat{c}_{n_2}(\tau_2)\hat{c}_{n}^\dag(\tau)\rangle_0\\
+    &+{}_0\langle\mathcal{T}\hat{c}_{m}(\tau')\hat{c}_{m_2}^\dag(\tau_2)\rangle_0{}_0\langle\mathcal{T}\hat{c}_{m_1}^\dag(\tau_1)\hat{c}_{n_2}(\tau_2)\rangle_0{}_0\langle\mathcal{T}\hat{c}_{n_1}(\tau_1)\hat{c}_{n}^\dag(\tau)\rangle_0\\
+    &+{}_0\langle\mathcal{T}\hat{c}_{m}(\tau')\hat{c}_{n}^\dag(\tau)\rangle_0{}_0\langle\mathcal{T}\hat{c}_{m_1}^\dag(\tau_1)\hat{c}_{n_1}(\tau_1)\rangle_0{}_0\langle\mathcal{T}\hat{c}_{m_2}^\dag(\tau_2)\hat{c}_{n_2}(\tau_2)\rangle_0\\
+    &+{}_0\langle\mathcal{T}\hat{c}_{m}(\tau')\hat{c}_{n}^\dag(\tau)\rangle_0{}_0\langle\mathcal{T}\hat{c}_{m_1}^\dag(\tau_1)\hat{c}_{n_2}(\tau_2)\rangle_0{}_0\langle\mathcal{T}\hat{c}_{n_1}(\tau_1)\hat{c}_{m_2}^\dag(\tau_2)\rangle_0\Big]\\
+    &\times M_{m_1n_1}M_{m_2n_2}.
+\end{aligned}
+\end{equation}
+\begin{figure}[p]
+    \centering
+    \input{tikz/dyson_ordre2.tex}
+    \caption[Diagrammes de Feynman des termes du deuxième ordre de la série de Dyson.]{Diagrammes de Feynman des termes du deuxième ordre de la série de Dyson, dans l'ordre des six appariements de Wick. (a) et (d) sont les deux diagrammes connectés, qui diffèrent par l'ordre temporel des deux diffusions sur le défaut. (b), (c), (e) et (f) contiennent au moins une boucle fermée déconnectée du propagateur principal et sont annulés par le dénominateur de l'équation~\eqref{eqn:G}.}
+    \label{fig:dyson_ordre2}
+\end{figure}
+Finalement, en évaluant les moyennes thermiques nous obtenons
+\begin{equation}
+\begin{aligned}
+    \mathcal{G}^{(2)}_{mn}(\tau'-\tau) &= \frac{1}{2}\int_0^\beta d\tau_1\,\int_0^\beta d\tau_2\Big[\\
+    &\times \mathcal{G}^{(0)}_m(\tau'-\tau_1)M_{mn_1}\mathcal{G}^{(0)}_{n_1}(\tau_1-\tau_2)M_{n_1n}\mathcal{G}_n^{(0)}(\tau_2-\tau)\\
+    & -\sum_{n_2}\mathcal{G}^{(0)}_m(\tau'-\tau_1)M_{mn_1}\mathcal{G}^{(0)}(\tau_1-\tau)f_{n_2}M_{n_2n_2}\\
+    &-\sum_{n_1}\mathcal{G}^{(0)}_m(\tau'-\tau_2)M_{mn_2}\mathcal{G}^{(0)}_n(\tau_2-\tau)f_{n_1}M_{n_1n_1}\\
+    &+\mathcal{G}^{(0)}_m(\tau'-\tau_2)M_{mn_2}\mathcal{G}_{n_2}^{(0)}(\tau_2-\tau_1)M_{n_2n}\mathcal{G}_n^{(0)}(\tau_1-\tau)\\
+    &-\sum_{n_1n_2}\mathcal{G}_n^{(0)}(\tau'-\tau)f_{n_1}M_{n_1n_1}f_{n_2}M_{n_2n_2}\\
+    &+\mathcal{G}^{(0)}_n(\tau'-\tau)M_{n_1n_2}\mathcal{G}_{n_1}^{(0)}(\tau_1-\tau_2)M_{n_2n_1}\mathcal{G}^{(0)}_{n_2}(\tau_2-\tau_1)
+    \Big]
+\end{aligned}
+\end{equation}
 \section{Généralisation à des systèmes désordonnés}

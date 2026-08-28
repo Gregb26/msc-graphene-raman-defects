@@ -1,0 +1,68 @@
+% Série de Dyson resommée en termes de la matrice T :
+%   G_{mn}(tau'-tau) = G^(0) + G^(0) T G^(0)
+% Style identique aux diagrammes du chapitre Raman (tikz/e1.tex, tikz/pd.tex).
+% Compatible pdflatex. Requiert : tikz, decorations.markings, arrows.meta, calc.
+%
+% Convention temporelle : temps croissant de gauche à droite, donc
+% tau < tau_1 < tau_2 < tau'. Le deuxième terme se lit
+%   G^(0)_m(tau'-tau_2) T_{mn}(tau_2-tau_1) G^(0)_n(tau_1-tau).
+% Si l'équation du texte adopte l'ordre inverse, il suffit d'échanger les
+% étiquettes tau_1 et tau_2 ci-dessous.
+
+% Vertex électron-défaut : cercle blanc + croix (cf. tikz/règles_Raman.tex)
+\providecommand{\vertexdefaut}[1]{%
+  \draw[fill=white] (#1) circle (0.2);
+  \draw[line width=1pt] ($(#1)+(-0.14,-0.14)$) -- ($(#1)+(0.14,0.14)$);
+  \draw[line width=1pt] ($(#1)+(-0.14,0.14)$) -- ($(#1)+(0.14,-0.14)$);
+}
+
+% Matrice T : cercle hachuré. Définition identique à celle de tikz/matrice_T.tex.
+\providecommand{\blobT}[1]{%
+  \begin{scope}
+    \clip (#1) circle (0.28);
+    \foreach \i in {-8,...,8} {
+      \draw[line width=0.4pt] ($(#1)+(0.08*\i-0.45,-0.45)$) -- ($(#1)+(0.08*\i+0.45,0.45)$);
+    }
+  \end{scope}
+  \draw[thick, fill=none] (#1) circle (0.28);
+}
+
+\begin{tikzpicture}[
+    line/.style={thick},
+    >=Stealth,
+    fermion/.style={
+      postaction={decorate},
+      decoration={markings, mark=at position 0.55 with {\arrow{Stealth}}}
+    },
+]
+
+\node[anchor=east] at (1.55,0) {$\mathcal{G}_{mn}(\tau'-\tau) =$};
+
+% ---- premier terme : propagateur libre ----
+\draw[line, fermion] (1.75,0) -- (3.35,0);
+\node[above=3pt] at (2.55,0) {$n$};
+\fill (1.75,0) circle (0.05);
+\fill (3.35,0) circle (0.05);
+\node[below=2pt] at (1.75,0) {\small$\tau$};
+\node[below=2pt] at (3.35,0) {\small$\tau'$};
+
+\node at (3.85,0) {$+$};
+
+% ---- deuxième terme : G^(0) T G^(0) ----
+\draw[line, fermion] (4.35,0) -- (5.95,0);
+\node[above=3pt] at (5.15,0) {$n$};
+\blobT{6.23,0}
+\node[above=8pt] at (6.23,0) {$T_{mn}$};
+\draw[line, fermion] (6.51,0) -- (8.11,0);
+\node[above=3pt] at (7.31,0) {$m$};
+
+\fill (4.35,0) circle (0.05);
+\fill (8.11,0) circle (0.05);
+\node[below=2pt] at (4.35,0) {\small$\tau$};
+% étiquettes splayées en biais : les deux points d'attache du blob ne sont
+% distants que de 0.56, insuffisant pour deux étiquettes centrées
+\node[anchor=north east] at (5.99,-0.10) {\small$\tau_1$};
+\node[anchor=north west] at (6.47,-0.10) {\small$\tau_2$};
+\node[below=2pt] at (8.11,0) {\small$\tau'$};
+
+\end{tikzpicture}

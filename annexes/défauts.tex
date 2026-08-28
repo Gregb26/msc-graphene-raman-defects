@@ -1,1 +1,131 @@
 \chapter{Dérivation de la matrice $T$ à partir de la théorie de la perturbation à plusieurs corps}\label{annexe:défauts}
+
+Cette annexe présente la dérivation complète de la matrice $T$ introduite à la section~\ref{sec:mbt_défaut}. Nous partons de l'Hamiltonien de couplage entre les électrons et un seul défaut, construisons la fonction de Green du système perturbée par resommation de la série de Dyson, puis généralisons le problème à un ensemble dilué de défauts afin de simuler un matériau désordonné. 
+
+\section{Hamiltonien et fonction de Green pour un seul défaut}
+Conformément à la section~\ref{sec:hamiltonien}, l'Hamiltonien d'électrons en présence d'un seul défaut se décompose en une partie libre et une partie de couplage
+\begin{equation}
+    \hat{H} = \hat{H}_0+\hat{H}_\text{ed} = \sum_{n}\varepsilon_{n}\hat{c}^\dag_{n}\hat{c}_{n}+\sum_{mn}M_{mn}\hat{c}^\dag_{m}\hat{c}_{n},
+\end{equation}
+où $\varepsilon_{n}$ sont les énergies propres de Kohn-Sham du cristal parfait et où les éléments de matrice électron-défaut $M_{mn}$ contiennent les contributions locale et non-locale dérivées au chapitre~\ref{chap:défauts}. Nous avons également supprimé les indices de vecteur d'onde pour alléger la notation dans cette annexe. Nous allons utiliser la théorie de la perturbation en mécanique quantique sur l'Hamiltonien de couplage pour résoudre ce problème.
+
+Le lecteur peut se questionner sur l'utilité d'employer la théorie de perturbation pour ce problème, qui peut être résolu exactement. En effet, l'Hamiltonien de couplage est quadratique en les opérateurs de création et d'annihilation électroniques. Cela est une conséquence du fait qu'en présence d'un seul défaut, le problème est essentiellement un problème à un corps. Cependant, lorsque nous ajouterons plusieurs défauts, le problème ne peut plus être résolu de manière exacte et la théorie de la perturbation nous permet de résoudre le problème approximativement. La quantité centrale dans la théorie de la perturbation à plusieurs corps est la fonction de Green de Matsubara du système perturbé
+\begin{equation}
+    \mathcal{G}_{mn}(t'-t) = -\frac{_{0}\langle\mathcal{T}\hat{c}_m(\tau')S
+    (0,\beta)\hat{c}^\dag_n(\tau)\rangle_0}{_{0}\langle S(0,\beta) \rangle_0},\label{eqn:G}
+\end{equation}
+où $_{0}\langle\dots\rangle$ est une moyenne thermique par rapport à l'état fondamental non-perturbé, $\tau$ est un temps imaginaire, $\mathcal{T}$ est l'opérateur d'ordonnancement temporel (il ordonne les opérateurs dans le temps, avec le plus grand temps à gauche), $\beta=1/k_BT$ est l'inverse de la température, et la matrice $S$ est définie formellement comme étant
+\begin{equation}
+    S(0, \beta) = \mathcal{T}\exp{-\int_0^\beta d\tau\, \hat{H}_\text{ed}(\tau)} = \sum_{n=0}^\infty \frac{(-1)^n}{n!}\int_0^\beta d\tau_1\dots\int_0^\beta d\tau_n\,\hat{H}_\text{ed}(\tau_1)\dots\hat{H}_\text{ed}(\tau_n),
+\end{equation}
+où les opérateurs $\hat{O}(\tau)$ sont écrits dans la représentation d'interaction. Pour évaluer la fonction de Green, nous développons la matrice $S$ en puissances de l'interaction $\hat{H}_\text{ed}$, utilisons le théorème de Wick pour apparier les opérateurs électroniques, puis resommons la série ainsi engendrée à l'aide de diagrammes de Feynman.
+
+\section{Équation de Dyson}
+Avant d'écrire la série perturbative pour la fonction de Green de Matsubara, il est utile de formuler quelques règles pour évaluer correctement les termes de cette série.
+\begin{itemize}
+    \item Premièrement, nous allons apparier les opérateurs électroniques en paires. Comme ces paires vont être moyennées par rapport à l'état fondamental, les seules paires non-nulles sont celles qui contiennent exactement un opérateur de création et un opérateur d'annihilation. 
+    \item De plus, pour une paire donnée $_{0}\langle \mathcal{T}\hat{c}_m(\tau')\hat{c}_n^\dag(\tau)\rangle_0$, l'effet de l'opérateur $\hat{c}^\dag_n(\tau)$ est de placer un électron dans la bande $n$. Pour que cette moyenne soit non-nulle, il est impératif que l'opérateur d'annihilation enlève cet électron, ce qui impose $m=n$. Ainsi,
+    \[_{0}\langle \mathcal{T}\hat{c}_m(\tau')\hat{c}_n^\dag(\tau)\rangle_0=\delta_{mn}\, {}_{0}\langle \mathcal{T}\hat{c}_n(\tau')\hat{c}_n^\dag(\tau)\rangle_0.\]
+    \item Les deux prochaines règles sont à propos de l'ordonnancement temporel des opérateurs. Premièrement, pour la moyenne d'une paire évaluée à temps égal, il est de coutume de placer l'opérateur de création à gauche, donnant la distribution de Fermi-Dirac pour des opérateurs fermioniques comme les électrons
+    \[{}_0\langle\mathcal{T}\hat{c}_m(\tau)\hat{c}^\dag_n(\tau)\rangle_0=-\delta_{mn}f_n.\]
+    \item Deuxièmement, pour la moyenne d'une paire évaluée à des temps différents, il est de coutume de placer l'opérateur de création à droite, donnant la fonction de Green de Matsubara pour le système non-perturbé
+    \[{}_0\langle \mathcal{T}\hat{c}_m(\tau')\hat{c}^\dag_n(\tau)=-\delta_{mn} \mathcal{G}_n^{(0)}(\tau'-\tau).\]
+    Nous notons qu'il faut ajouter un signe moins pour chaque permutation d'opérateurs fermioniques dans les deux cas, et qu'il y a un autre signe moins dans la définition de la fonction de Green de Matsubara.
+    \item Finalement, lorsque nous apparions des opérateurs fermioniques avec le théorème de Wick, il faut ajouter un signe moins pour chaque permutation nécessaire pour mettre les opérateurs les uns à côté des autres. Cela devient rapidement lourd et il est très facile de faire des erreurs. Une façon plus visuelle est de compter le nombre de croisements en reliant deux opérateurs par une ligne.
+\end{itemize} 
+
+Voyons comment écrire la série pour la fonction de Green de Matsubara pour le système perturbé à l'aide des règles décrites ci-haut. En principe, nous devons faire l'expansion de la matrice $S$ au numérateur et au dénominateur simultanément, ce qui devient intraitable très rapidement. Heureusement, de par le théorème des amas connexes (traduit de l'anglais \textit{linked-cluster theorem}), les diagrammes engendrés par l'expansion au dénominateur annulent exactement les diagrammes déconnectés engendrés par l'expansion du numérateur. Ainsi, il suffit de ne considérer que l'expansion du numérateur et de ne garder que les diagrammes connectés. Commençons par le numérateur de l'équation~\eqref{eqn:G} et procédons ordre par ordre. 
+
+À l'ordre zéro, nous n'avons pas de puissance de l'interaction et ce terme est simplement
+\begin{align}
+    \mathcal{G}_{mn}^{(0)} &= -{}_0\langle\mathcal{T}\hat{c}_m(\tau')\hat{c}^\dag_n(\tau)\rangle_0,\\
+    &= -\delta_{mn}\,{}_0\langle\mathcal{T}\hat{c}_n(\tau')\hat{c}^\dag_n(\tau)\rangle_0,\\
+    &= \delta_{mn}\mathcal{G}^{(0)}_n(\tau'-\tau),
+\end{align}
+soit la fonction de Green de Matsubara du système non-perturbé. Pour tracer le diagramme de Feynman qui représente ce terme, nous utilisons les règles de Feynman développées pour la spectroscopie Raman au chapitre~\ref{chap:Raman}. \textcolor{red}{AJOUTER DIAGRAMME} Physiquement, ce diagramme représente un électron dans la bande $n$ au temps $\tau$ et qui évolue dans le temps vers $\tau'$ tout en restant dans la bande $n$. C'est donc un électron qui se propage librement sans interagir avec le défaut. Ce diagramme est connecté.
+
+Le terme d'ordre un s'écrit
+\begin{align}
+    \mathcal{G}_{mn}^{(1)}(\tau'-\tau) &= (-1)^2\int_0^\beta d\tau_1 \,{}_0\langle\mathcal{T}\hat{c}_m(\tau')\hat{H}_\text{ed}(\tau_1)\hat{c}^\dag_n(\tau)\rangle_0,\\
+    &= (-1)^2\sum_{n_1m_1}\int_0^\beta d\tau_1\,{}_0\langle\mathcal{T}\hat{c}_m(\tau')\hat{c}^\dag_{m_1}(\tau_1)\hat{c}_{n_1}(\tau_1)\hat{c}^\dag_n(\tau)\rangle_0.
+\end{align}
+En utilisant le théorème de Wick il n'y que deux appariements qui sont non-nuls. Ils sont représentés graphiquement par
+\begin{equation}
+\begin{aligned}
+\mathcal{G}_{n'\kv',n\kv}^{(1)}(t'-t)
+= (-i)^2 \sum_{n_1\kv_1}\sum_{n'_1\kv'_1} \int &dt_1\, 
+\Big[
+    {}_0\langle\mathcal{T}
+      \wick{
+        \c1 c_{m}(\tau')
+        \c1 c_{m_1}^\dag(\tau_1)
+        \c2 c_{n_1}(\tau_1)
+        \c2 c_{n}^\dag(\tau)
+      }\rangle_0
+\\
+&
+    +
+    {}_0\langle\mathcal{T}
+    \wick{
+        \c1 c_{m}(\tau')
+        \c2 c_{m_1}^\dag(\tau_1)
+        \c2 c_{n_1}(\tau_1)
+        \c1 c_{n}^\dag(\tau)
+    }\rangle_0
+\Big]M_{m_1n_1}.
+\end{aligned}
+\end{equation}
+Ici, les lignes des contractions Wick ne se croisent pas pour le premier terme et se croisent deux fois pour le deuxième terme, il faut donc ajouter un nombre pair de signe moins au deux terme, ce qui ne change rien. Les appariements écrits explicitement sont
+\begin{equation}
+\begin{aligned}
+\mathcal{G}_{mn}^{(1)}(\tau'-\tau)
+= (-1)^2 \sum_{m_1n_1} \int_0^\beta &d\tau_1\, 
+\Big[
+    {}_0\langle\mathcal{T}\hat{c}_{m}(\tau')\hat{c}_{m_1}^\dag(\tau_1)
+      \rangle_0    
+      {}_0\langle\mathcal{T}\hat{c}_{n_1}(\tau_1)\hat{c}_{n}^\dag(\tau)
+      \rangle_0
+\\
+&
+    +
+    {}_0\langle\mathcal{T}\hat{c}_{m}(\tau')\hat{c}_{n}^\dag(\tau)
+      \rangle_0    
+      {}_0\langle\mathcal{T}\hat{c}_{m_1}(\tau_1)\hat{c}_{n_1}^\dag(\tau_1)
+      \rangle_0
+\Big]M_{m_1n_1}.
+\end{aligned}
+\end{equation}
+Les moyennes thermiques des paires d'opérateurs sont ensuite évaluées selon les règles explicitées plus haut. Cela donne
+\begin{equation}
+\begin{aligned}
+\mathcal{G}_{mn}^{(1)}(\tau'-\tau)
+= \int_0^\beta &d\tau_1\, 
+\Big[
+    \mathcal{G}^{(0)}_m(\tau'-\tau_1)\mathcal{G}^{(0)}_{n}(\tau_1-\tau)M_{mn}
+\\
+&
+    -\sum_{n_1}\mathcal{G}_{n}^{(0)}(\tau'-\tau)f_{n_1} M_{n_1n_1}
+\Big].
+\end{aligned}
+\end{equation}
+Il y a donc deux termes  qui contribuent au premier ordre et ils peuvent être représentés par la somme de deux diagrammes de Feynman. \textcolor{red}{AJOUTER DIAGRAMME}. Physiquement, le premier diagramme représente un électron dans la branche $n$ au temps $\tau'$ qui se propage vers la branche $m$ au temps $\tau$ en diffusant sur un défaut au temps $\tau_1$ avec une amplitude de probabilité $M_{mn}$. Le deuxième diagramme est déconnectée et nous pouvons l'ignorer.
+
+Au deuxième ordre, l'expansion du numérateur s'écrit
+\begin{align}
+    \mathcal{G}^{(2)}_{mn}(\tau'-\tau) &= \frac{(-1)^3}{2!}\int_0^\beta d\tau_1\,\int_0^\beta d\tau_2\, {}_0\langle\mathcal{T}\hat{c}_m(\tau')\hat{H}_\text{ed}(\tau_1)\hat{H}_\text{ed}(\tau_2)\hat{c}^\dag_{n}(\tau)\rangle_0\\
+    & = \sum_{n_1m_1}\sum_{n_2m_2}\int_0^\beta d\tau_1\,\int_0^\beta d\tau_2\, {}_0\langle\mathcal{T}\hat{c}_m(\tau')\hat{c}_{m_1}^\dag(\tau_1)\hat{c}_{n_1}(\tau_1)\hat{c}_{m_2}^\dag(\tau_2)\hat{c}_{m_2}(\tau_2)\hat{c}_n^\dag(\tau)\rangle_0M_{m_1n_1}M_{m_2n_2}.
+\end{align}
+Il y a maintenant six appariements non-nuls. En général, pour $N$ paires d'opérateurs de création et d'annihilation fermioniques, il y a $N!$ appariements non-nuls. Ces appariements sont
+\begin{equation}
+\begin{aligned}
+    \mathcal{G}_{mn}^{(2)}(\tau'-\tau) &= \frac{(-1)^3}{2}\sum_{n_1m_1}\sum_{n_2m_2}\int_0^\beta d\tau_1\,\int_0^\beta d\tau_2\,\Big[\\
+    &\wick{{}_0\langle\mathcal{T} \c1 c_{m}(\tau') \c1 c_{m_1}^\dag(\tau_1) \c1 c_{n_1}(\tau_1) \c1 c_{m_2}^\dag(\tau_2) \c1 c_{n_2}(\tau_2) \c1 c_{n}^\dag(\tau)}\rangle_0\\
+    &+\wick{{}_0\langle\mathcal{T} \c1 c_{m}(\tau') \c1 c_{m_1}^\dag(\tau_1) \c1 c_{n_1}(\tau_1) \c2 c_{m_2}^\dag(\tau_2) \c2 c_{n_2}(\tau_2)\c1 c_{n}^\dag(\tau)}\rangle_0\\
+    &+\wick{{}_0\langle\mathcal{T} \c1 c_{m}(\tau') \c2 c_{m_1}^\dag(\tau_1) \c2 c_{n_1}(\tau_1) \c1 c_{m_2}^\dag(\tau_2) \c1 c_{n_2}(\tau_2) \c1 c_{n}^\dag(\tau)\rangle_0}\\
+    &+\wick{{}_0\langle\mathcal{T} \c1 c_{m}(\tau') \c2 c_{m_1}^\dag(\tau_1) \c3 c_{n_1}(\tau_1) \c1 c_{m_2}^\dag(\tau_2) \c2 c_{n_2}(\tau_2) \c3 c_{n}^\dag(\tau)\rangle_0}\\
+    &+\wick{{}_0\langle\mathcal{T} \c1 c_{m}(\tau')\c2 c_{m_1}^\dag(\tau_1)\c2 c_{n_1}(\tau_1)\c2 c_{m_2}^\dag(\tau_2)\c2 c_{n_2}(\tau_2) \c1 c_{n}^\dag(\tau)\rangle_0}\\
+    &+\wick{{}_0\langle\mathcal{T} \c1 c_{m}(\tau') \c2 c_{m_1}^\dag(\tau_1)\c3 c_{n_1}(\tau_1)\c3 c_{m_2}^\dag(\tau_2)\c2 c_{n_2}(\tau_2)\c1 c_{n}^\dag(\tau)\rangle_0}\Big]M_{m_1n_1}M_{m_2n_2}.
+\end{aligned}
+\end{equation}
+Ici, tous les termes sauf le quatrième ont un nombre pair de croisement: nous devons y ajouter un signe moins.   
+\section{Généralisation à des systèmes désordonnés}

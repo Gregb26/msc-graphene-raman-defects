@@ -1,0 +1,70 @@
+% Développement complet de la série de Dyson pour la fonction de Green
+% électronique en présence d'un seul défaut.
+% Style identique aux diagrammes du chapitre Raman (tikz/e1.tex, tikz/pd.tex).
+% Compatible pdflatex. Requiert : tikz, decorations.markings, arrows.meta, calc.
+% Géométrie : segments de 0.58, vertex de rayon 0.2, séparateurs de 0.7.
+% Ajustée pour tenir dans la justification du mémoire (470 pt).
+
+% Vertex électron-défaut : cercle blanc + croix (cf. tikz/règles_Raman.tex)
+\providecommand{\vertexdefaut}[1]{%
+  \draw[fill=white] (#1) circle (0.2);
+  \draw[line width=1pt] ($(#1)+(-0.14,-0.14)$) -- ($(#1)+(0.14,0.14)$);
+  \draw[line width=1pt] ($(#1)+(-0.14,0.14)$) -- ($(#1)+(0.14,-0.14)$);
+}
+
+% Extrémités d'un terme : #1 x gauche, #2 x droit
+\providecommand{\bornesserie}[2]{%
+  \fill (#1,0) circle (0.05);
+  \fill (#2,0) circle (0.05);
+  \node[below=2pt] at (#1,0) {\small$\tau$};
+  \node[below=2pt] at (#2,0) {\small$\tau'$};
+}
+
+\begin{tikzpicture}[
+    line/.style={thick},
+    >=Stealth,
+    fermion/.style={
+      postaction={decorate},
+      decoration={markings, mark=at position 0.55 with {\arrow{Stealth}}}
+    },
+]
+
+\node[anchor=east] at (1.55,0) {$\mathcal{G}_{mn}(\tau'-\tau) =$};
+
+% ---- ordre 0 : propagation libre ----
+\draw[line, fermion] (1.75,0) -- (2.90,0);
+\bornesserie{1.75}{2.90}
+
+\node at (3.25,0) {$+$};
+
+% ---- ordre 1 : un vertex ----
+\draw[line, fermion] (3.60,0) -- (4.18,0);
+\draw[line, fermion] (4.58,0) -- (5.16,0);
+\vertexdefaut{4.38,0}
+\bornesserie{3.60}{5.16}
+
+\node at (5.51,0) {$+$};
+
+% ---- ordre 2 : deux vertex ----
+\draw[line, fermion] (5.86,0) -- (6.44,0);
+\draw[line, fermion] (6.84,0) -- (7.42,0);
+\draw[line, fermion] (7.82,0) -- (8.40,0);
+\vertexdefaut{6.64,0}
+\vertexdefaut{7.62,0}
+\bornesserie{5.86}{8.40}
+
+\node at (8.75,0) {$+$};
+
+% ---- ordre 3 : trois vertex ----
+\draw[line, fermion] (9.10,0)  -- (9.68,0);
+\draw[line, fermion] (10.08,0) -- (10.66,0);
+\draw[line, fermion] (11.06,0) -- (11.64,0);
+\draw[line, fermion] (12.04,0) -- (12.62,0);
+\vertexdefaut{9.88,0}
+\vertexdefaut{10.86,0}
+\vertexdefaut{11.84,0}
+\bornesserie{9.10}{12.62}
+
+\node[anchor=west] at (12.95,0) {$+\ \cdots$};
+
+\end{tikzpicture}

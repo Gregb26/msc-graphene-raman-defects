@@ -12,11 +12,11 @@ où $\varepsilon_{n}$ sont les énergies propres de Kohn-Sham du cristal parfait
 Le lecteur peut se questionner sur l'utilité d'employer la théorie de perturbation pour ce problème, qui peut être résolu exactement. En effet, l'Hamiltonien de couplage est quadratique en les opérateurs de création et d'annihilation électroniques. Cela est une conséquence du fait qu'en présence d'un seul défaut, le problème est essentiellement un problème à un corps. Cependant, lorsque nous ajouterons plusieurs défauts, le problème ne peut plus être résolu de manière exacte et la théorie de la perturbation nous permet de résoudre le problème approximativement. La quantité centrale dans la théorie de la perturbation à plusieurs corps est la fonction de Green de Matsubara du système perturbé
 \begin{equation}
     \mathcal{G}_{mn}(\tau'-\tau) = -\frac{{}_{0}\langle\mathcal{T}\hat{c}_m(\tau')S
-    (0,\beta)\hat{c}^\dag_n(\tau)\rangle_0}{{}_{0}\langle S(0,\beta) \rangle_0},\label{eqn:G}
+    (\beta, 0)\hat{c}^\dag_n(\tau)\rangle_0}{{}_{0}\langle S(\beta, 0) \rangle_0},\label{eqn:G}
 \end{equation}
-où ${}_{0}\langle\dots\rangle_0$ est une moyenne thermique par rapport à l'état fondamental non-perturbé, $\tau$ est un temps imaginaire, $\mathcal{T}$ est l'opérateur d'ordonnancement temporel (il ordonne les opérateurs dans le temps, avec le plus grand temps à gauche), $\beta=1/k_BT$ est l'inverse de la température, et la matrice $S$ est définie formellement comme étant
+où ${}_{0}\langle\dots\rangle_0$ est une moyenne thermique par rapport à l'Hamiltonien non-perturbé $\hat{H}_0$, $\tau$ est un temps imaginaire, $\mathcal{T}$ est l'opérateur d'ordonnancement temporel (il ordonne les opérateurs dans le temps, avec le plus grand temps à gauche), $\beta=1/k_BT$ est l'inverse de la température, et la matrice $S$ est définie formellement comme étant
 \begin{equation}
-    S(0, \beta) = \mathcal{T}\exp{-\int_0^\beta d\tau\, \hat{H}_\text{ed}(\tau)} = \sum_{n=0}^\infty \frac{(-1)^n}{n!}\int_0^\beta d\tau_1\dots\int_0^\beta d\tau_n\,\hat{H}_\text{ed}(\tau_1)\dots\hat{H}_\text{ed}(\tau_n),
+    S(\beta, 0) = \mathcal{T}\exp{-\int_0^\beta d\tau\, \hat{H}_\text{ed}(\tau)} = \sum_{p=0}^\infty \frac{(-1)^p}{p!}\int_0^\beta d\tau_1\dots\int_0^\beta d\tau_p\,\hat{H}_\text{ed}(\tau_1)\dots\hat{H}_\text{ed}(\tau_p),
 \end{equation}
 où les opérateurs $\hat{O}(\tau)$ sont écrits dans la représentation d'interaction. Pour évaluer la fonction de Green, nous développons la matrice $S$ en puissances de l'interaction $\hat{H}_\text{ed}$, utilisons le théorème de Wick pour apparier les opérateurs électroniques, puis resommons la série ainsi engendrée à l'aide de diagrammes de Feynman.
 
@@ -112,7 +112,7 @@ Les moyennes thermiques des paires d'opérateurs sont ensuite évaluées selon l
     \mathcal{G}^{(0)}_m(\tau'-\tau_1)\mathcal{G}^{(0)}_{n}(\tau_1-\tau)M_{mn}
 \\
 &
-    +\delta_{mn}\sum_{n_1}\mathcal{G}_{n}^{(0)}(\tau'-\tau)f_{n_1} M_{n_1n_1}
+    -\delta_{mn}\sum_{n_1}\mathcal{G}_{n}^{(0)}(\tau'-\tau)f_{n_1} M_{n_1n_1}
 \Big].
 \end{aligned}
 \end{equation}
@@ -161,11 +161,11 @@ Finalement, en évaluant les moyennes thermiques nous obtenons
 \begin{aligned}
     \mathcal{G}^{(2)}_{mn}(\tau'-\tau) &= \frac{1}{2}\int_0^\beta d\tau_1\,\int_0^\beta d\tau_2\Big[\\
     &\mathcal{G}^{(0)}_m(\tau'-\tau_1)M_{mn_1}\mathcal{G}^{(0)}_{n_1}(\tau_1-\tau_2)M_{n_1n}\mathcal{G}_n^{(0)}(\tau_2-\tau)\\
-    & -\sum_{n_2}\mathcal{G}^{(0)}_m(\tau'-\tau_1)M_{mn_1}\mathcal{G}^{(0)}_n(\tau_1-\tau)f_{n_2}M_{n_2n_2}\\
-    &-\sum_{n_1}\mathcal{G}^{(0)}_m(\tau'-\tau_2)M_{mn_2}\mathcal{G}^{(0)}_n(\tau_2-\tau)f_{n_1}M_{n_1n_1}\\
+    & -\sum_{n_2}\mathcal{G}^{(0)}_m(\tau'-\tau_1)M_{mn}\mathcal{G}^{(0)}_n(\tau_1-\tau)f_{n_2}M_{n_2n_2}\\
+    &-\sum_{n_1}\mathcal{G}^{(0)}_m(\tau'-\tau_2)M_{mn}\mathcal{G}^{(0)}_n(\tau_2-\tau)f_{n_1}M_{n_1n_1}\\
     &+\mathcal{G}^{(0)}_m(\tau'-\tau_2)M_{mn_2}\mathcal{G}_{n_2}^{(0)}(\tau_2-\tau_1)M_{n_2n}\mathcal{G}_n^{(0)}(\tau_1-\tau)\\
-    &-\sum_{n_1n_2}\mathcal{G}_n^{(0)}(\tau'-\tau)f_{n_1}M_{n_1n_1}f_{n_2}M_{n_2n_2}\\
-    &+\mathcal{G}^{(0)}_n(\tau'-\tau)M_{n_1n_2}\mathcal{G}_{n_1}^{(0)}(\tau_1-\tau_2)M_{n_2n_1}\mathcal{G}^{(0)}_{n_2}(\tau_2-\tau_1)
+    &+\delta_{mn}\sum_{n_1n_2}\mathcal{G}_n^{(0)}(\tau'-\tau)f_{n_1}M_{n_1n_1}f_{n_2}M_{n_2n_2}\\
+    &-\delta_{mn}\sum_{n_1n_2}\mathcal{G}^{(0)}_n(\tau'-\tau)M_{n_1n_2}\mathcal{G}_{n_1}^{(0)}(\tau_1-\tau_2)M_{n_2n_1}\mathcal{G}^{(0)}_{n_2}(\tau_2-\tau_1)
     \Big].
 \end{aligned}
 \end{equation}
@@ -217,7 +217,9 @@ ou, explicitement en indices de bande,
     T_{mn}(i\omega_j) = M_{mn}+\sum_{n_1}M_{mn_1}\mathcal{G}^{(0)}_{n_1}(i\omega_j)T_{n_1n}(i\omega_j),\qquad \mathcal{G}^{(0)}_n(i\omega_j)=\frac{1}{i\hbar\omega_j-\xi_n},
     \label{eqn:T_indices}
 \end{equation}
-avec $\xi_n = \varepsilon_n-\varepsilon_F$. C'est là tout l'intérêt de la matrice $T$ : une seule inversion de matrice, de la taille du nombre de bandes retenues, resomme la série à tous les ordres, sans hypothèse sur la force du potentiel de défaut. Il est possible de réécrire l'équation de Dyson en termes de la matrice $T$. Cela est illustré diagrammatiquement à la figure~\ref{fig:dyson_matrice_T}.
+avec $\xi_n = \varepsilon_n-\mu$, où $\mu$ est le potentiel chimique. C'est là tout l'intérêt de la matrice $T$ : une seule inversion de matrice, de la taille du nombre de bandes retenues, resomme la série à tous les ordres, sans hypothèse sur la force du potentiel de défaut. Cette resommation à tous les ordres n'est pas un simple raffinement formel : elle est indispensable pour les défauts considérés dans ce mémoire. Le potentiel d'une lacune correspond à la suppression d'un atome du réseau, une perturbation dont les éléments de matrice sont comparables à la largeur de bande — il n'existe aucun petit paramètre justifiant la troncature de la série de Dyson à un ordre fini. La matrice $T$, exacte pour un centre diffuseur unique, demeure valide dans cette limite de couplage fort (dite limite unitaire). 
+
+Il est possible de réécrire l'équation de Dyson en termes de la matrice $T$. Cela est illustré diagrammatiquement à la figure~\ref{fig:dyson_matrice_T}.
 \begin{figure}[h]
     \centering
     \input{tikz/dyson_matrice_T.tex}
@@ -226,8 +228,9 @@ avec $\xi_n = \varepsilon_n-\varepsilon_F$. C'est là tout l'intérêt de la mat
 \end{figure}
 
 \noindent
-Finalement, il est possible d'obtenir une expression mathématique pour la fonction de Green de Matsubara du système perturbé en traduisant la série de diagrammes de la figure~\ref{fig:dyson_matrice_T} à l'aide des règles de Feynman. Cela donne
+Finalement, nous obtenons une expression mathématique pour la fonction de Green de Matsubara du système perturbé en traduisant la série de diagrammes de la figure~\ref{fig:dyson_matrice_T} à l'aide des règles de Feynman. Cela donne
 \begin{equation}
     \mathcal{G}_{mn}(\tau'-\tau) = \delta_{mn}\mathcal{G}^{(0)}_n(\tau'-\tau) + \int_0^\beta d\tau_1\,\int_0^\beta d\tau_2\,\mathcal{G}^{(0)}_m(\tau'-\tau_2)T_{mn}(\tau_2-\tau_1)\mathcal{G}^{(0)}_n(\tau_1-\tau).
 \end{equation}
+
 \section{Généralisation à des systèmes désordonnés}

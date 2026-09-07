@@ -1,6 +1,6 @@
 \chapter{Couplage électron-défaut dans le graphène}\label{chap:défauts}
-Ce chapitre se consacre au couplage entre les électrons et les défauts, l'un des ingrédients essentiels au calcul de l'intensité Raman résonante des processus \textit{phonon-défaut} introduits au chapitre~\ref{chap:Raman}. Ce couplage intervient à deux endroits dans la théorie : directement, par les éléments de matrice $M_{mn}(\kv',\kv)$ qui apparaissent dans les amplitudes de diffusion \textit{phonon-défaut}, et indirectement, par la \textit{self}-énergie électronique due aux défauts $\Sigma_{n\kv}^\text{ed}$ et le taux d'amortissement $\Gamma_{n\kv}^\text{ed}$, qui renormalisent l'énergie et les temps de vie électroniques. Nous commençons par définir les éléments de matrice de couplage électron-défaut, dérivons comment les calculer à partir des premiers principes, puis montrons comment les interpoler sur des grilles ultra denses grâce aux MLWF. Nous développons ensuite la théorie de la perturbation à plusieurs corps appliquée au couplage électron-défaut, qui relie ces éléments de matrice à la \textit{self}-énergie électronique et au taux d'amortissement.  
-\section{Éléments de matrice électron-défaut}
+Ce chapitre se consacre au couplage entre les électrons et les défauts, l'un des ingrédients essentiels au calcul de l'intensité Raman résonante des processus \textit{phonon-défaut} introduits au chapitre~\ref{chap:Raman}. Ce couplage intervient à deux endroits dans la théorie : directement, par les éléments de matrice $M_{mn}(\kv',\kv)$ qui apparaissent dans les amplitudes de diffusion \textit{phonon-défaut}, et indirectement, par la \textit{self}-énergie électronique due aux défauts $\Sigma_{n\kv}^\text{ed}$ et le taux d'amortissement $\Gamma_{n\kv}^\text{ed}$, qui renormalisent l'énergie et les temps de vie électroniques. Nous commençons par définir les éléments de matrice de couplage électron-défaut, dérivons comment les calculer à partir des premiers principes, puis montrons comment les interpoler sur des grilles ultra denses grâce aux MLWF. Nous développons ensuite la théorie de la perturbation à plusieurs corps appliquée au couplage électron-défaut, qui relie ces éléments de matrice à la \textit{self}-énergie électronique et au taux d'amortissement. Ce chapitre constitue le c\oe ur des contributions originales de ce mémoire.
+\section{Éléments de matrice électron-défaut}\label{sec:M_défaut}
 L'élément central à l'étude de défauts dans un matériau à partir des premiers principes est la matrice de couplage électron-défaut
 \begin{equation}
     M_{mn}(\kv',\kv) = \bra{\psi_{m\kv'}}V_\text{ed}(\rv)\ket{\psi_{n\kv}},\label{M}
@@ -9,13 +9,13 @@ qui correspond à l'amplitude de probabilité que l'électron dans l'état $n\kv
 \begin{equation}
     \hat{H}_\text{ed} = \sum_{mn}\sum_{\kv\kv'}M_{mn}(\kv',\kv)\hat{c}^\dag_{m\kv'}\hat{c}_{n\kv},
 \end{equation}
-écrit en deuxième quantification. Cet Hamiltonien est inclus perturbativement dans le terme d'interaction de l'Hamiltonien complet et la matrice de couplage peut être vue comme l'élément de matrice de la perturbation $V_\text{ed}(\rv)$ au premier ordre dans la base des états non perturbés. Cette approche est valide pour des potentiels de défauts faibles. Toutefois, les défauts usuels --- lacunes, substitutions, adatomes --- induisent des potentiels qui ne sont généralement pas faibles, et un traitement au premier ordre est insuffisant. Nous verrons à la section~\ref{sec:mbt_défaut} que la théorie de la perturbation à plusieurs corps permet de sommer les corrections jusqu'à l'ordre infini, pour un seul défaut, ce qui rend le traitement valable quelle que soit la force du potentiel de défaut. 
+écrit en deuxième quantification. Cet Hamiltonien est inclus perturbativement dans le terme d'interaction de l'Hamiltonien complet et la matrice de couplage peut être vue comme l'élément de matrice de la perturbation $V_\text{ed}(\rv)$ au premier ordre dans la base des états non perturbés. Cette approche est valide pour des potentiels de défauts faibles. Toutefois, les défauts usuels --- lacunes, substitutions, adatomes --- induisent des potentiels qui ne sont généralement pas faibles, et un traitement au premier ordre est insuffisant. Nous verrons à la section~\ref{sec:mbt_défaut} que la théorie de la perturbation à plusieurs corps permet de sommer les corrections à tous les ordres, pour un seul défaut, ce qui rend le traitement valable quelle que soit la force du potentiel de défaut.
 
-La présence d'un ou plusieurs défauts dans un matériau brise explicitement la symétrie de translation discrète et la périodicité du cristal : le théorème de Bloch ne s'applique plus, ce qui complique fortement l'étude des défauts \textit{ab initio}. Pour contourner ces difficultés, il est utile de placer le défaut au centre d'une \textit{super-cellule}, \textit{i.e.} une répétition $N\times N$ (en deux dimensions) de cellules unitaires et de résoudre le problème électronique pour deux super-cellules : celle contenant le défaut, appelée la super-cellule \textit{défective}, et une ne contenant pas de défaut, appelée la super-cellule \textit{parfaite}. Une fois le problème résolu avec la DFT pour les deux super-cellules, nous avons les potentiels de Kohn-Sham convergés de la super-cellule défective $V_\text{KS}^d(\rv)$ et de la super-cellule parfaite $V_\text{KS}^p(\rv)$ et le potentiel induit par le défaut est défini comme étant la différence des deux super-cellules
+La présence d'un ou plusieurs défauts dans un matériau brise explicitement la symétrie de translation discrète et la périodicité du cristal : le théorème de Bloch ne s'applique plus, ce qui complique fortement l'étude des défauts \textit{ab initio}. Pour contourner ces difficultés, il est utile de placer le défaut au centre d'une \textit{super-cellule}, \textit{i.e.} une répétition $N\times N$ (en deux dimensions) de cellules unitaires et de résoudre le problème électronique pour deux super-cellules : celle contenant le défaut, appelée la super-cellule \textit{défecteuse}, et une ne contenant pas de défaut, appelée la super-cellule \textit{parfaite}. Une fois le problème résolu avec la DFT pour les deux super-cellules, nous avons les potentiels de Kohn-Sham convergés de la super-cellule défective $V_\text{KS}^d(\rv)$ et de la super-cellule parfaite $V_\text{KS}^p(\rv)$ et le potentiel induit par le défaut est défini comme étant la différence des deux super-cellules
 \begin{equation}
-    V_\text{ed}(\rv) = V_\text{KS}^\text{d}(\rv) - V_\text{KS}^\text{p}(\rv)\label{V_ed}.
+    V_\text{ed}(\rv) = V_\text{KS}^\text{d}(\rv) - V_\text{KS}^\text{p}(\rv)\label{eqn:V_ed}.
 \end{equation}
-Il est critique que la taille des super-cellules $N\times N$ soit suffisamment grande pour que le potentiel $V_\text{ed}(\rv)$ soit localisé et décroisse à zéro aux frontières de la super-cellule, de sorte que les défauts dans deux super-cellules voisines n'interagissent pas entre eux. La plupart des défauts sont bien localisés et lisses dans l'espace réel et une super-cellule relativement petite est suffisante pour les contenir. L'inclusion de défauts chargés cause plus de difficultés à cause de leur longue portée, ce qui augmente la taille de super-cellule nécessaire pour les contenir. 
+Il est critique que la taille des super-cellules $N\times N$ soit suffisamment grande pour que le potentiel $V_\text{ed}(\rv)$ soit localisé et décroisse à zéro aux frontières de la super-cellule, de sorte que les défauts dans deux super-cellules voisines n'interagissent pas entre eux. La plupart des défauts sont bien localisés et lisses dans l'espace réel et une super-cellule relativement petite est suffisante pour les contenir. L'inclusion de défauts chargés cause plus de difficultés à cause de leur longue portée, ce qui augmente la taille de super-cellule nécessaire pour les contenir. Nous ne considérons que des lacunes (des atomes manquants dans le réseau cristallin) dans ce mémoire. Ces défauts induisent un potentiel de défaut qui est généralement localisé dans l'espace et qui est très fort.
 
 Nous avons vu dans la section~\ref{sec:PP} que le potentiel de Kohn-Sham se décompose en une partie locale et une partie non-locale due aux pseudo-potentiels. De manière similaire, le potentiel de défaut se sépare en deux parties
 \begin{equation}
@@ -33,14 +33,14 @@ Par conséquent, la matrice de couplage électron-défaut se sépare aussi en de
 \begin{equation}
     M_{mn}(\kv',\kv) =  M_{mn}^\text{L}(\kv',\kv) +  M_{mn}^\text{NL}(\kv',\kv).
 \end{equation}
-Ces deux parties sont calculées indépendamment, puis additionnées pour retrouver la matrice de couplage totale. 
+Ces deux parties sont calculées indépendamment, puis additionnées pour retrouver la matrice de couplage totale.
 
-\subsection{Partie locale}
+\subsection{Partie locale}\label{sec:M_local}
 Commençons par dériver une expression pour la partie locale de la matrice. Dans l'espace réel, nous avons
 \begin{equation}
     M^\text{L}_{mn}(\kv',\kv) = \bra{\psi_{m\kv'}}V_\text{ed}^\text{L}(\rv)\ket{\psi_{n\kv}} = \int_{\Omega_\text{BvK}}d^3\rv\,\psi_{m\kv'}^*(\rv)\,V^\text{L}_\text{ed}(\rv)\,\psi_{n\kv}(\rv),\label{ML_réel}
 \end{equation}
-où l'intégration se fait sur le volume du cristal $\Omega_\text{BvK}$. Le potentiel $V_\text{ed}^\text{L}(\rv)$ est calculé dans une super-cellule et donc est défini sur la grille FFT $\rv$ de la super-cellule. Toutefois, les états $\ket{\psi_{n\kv}}$ sont les états propres de la cellule unitaire parfaite. Pour évaluer l'intégrande, ces états de Bloch doivent être échantillonnés sur la même grille FFT réelle que le potentiel $V_\text{ed}^\text{L}(\rv)$, c'est-à-dire celle de la super-cellule. Évaluer cette intégrale directement dans l'espace réel exigerait de représenter chaque état de Bloch $\psi_{n\kv}$ sur la grille FFT de la super-cellule, dont l'empreinte en mémoire devient rapidement prohibitive lorsque la taille de la super-cellule augmente. Il est plus efficace de passer à l'espace réciproque, où la matrice de couplage s'exprime à partir des seules quantités de la cellule unitaire. Pour ce faire, il est utile de faire l'expansion du potentiel local en série de Fourier
+où l'intégration se fait sur le volume du cristal $\Omega_\text{BvK}$. Le potentiel $V_\text{ed}^\text{L}(\rv)$ est calculé dans une super-cellule et donc est défini sur la grille FFT $\rv$ de la super-cellule. Toutefois, les états $\ket{\psi_{n\kv}}$ sont les états propres de la cellule unitaire parfaite. Pour évaluer l'intégrande, ces états de Bloch doivent être échantillonnés sur la même grille FFT réelle que le potentiel $V_\text{ed}^\text{L}(\rv)$, c'est-à-dire celle de la super-cellule. Évaluer cette intégrale directement dans l'espace réel exigerait de représenter chaque état de Bloch $\psi_{n\kv}$ sur la grille FFT de la super-cellule, dont l'empreinte en mémoire devient rapidement prohibitive lorsque la taille de la super-cellule augmente. Il est plus efficace de passer à l'espace réciproque, où la matrice de couplage s'exprime à partir des seules quantités de la cellule unitaire. Pour ce faire, il est utile de développer le potentiel local en série de Fourier
 \begin{equation}
     V_\text{ed}^\text{L}(\rv) = \frac{1}{N_\text{uc}}\sum_{\widetilde{\Gv}}\widetilde{V}_\text{ed}^\text{L}(\widetilde{\Gv})e^{i\widetilde{\Gv}\cdot\rv},
 \end{equation}
@@ -52,8 +52,8 @@ où $N_\text{uc}$ est le nombre de cellules unitaires dans le cristal (de sorte 
 où l'intégrale se réduit sur une super-cellule puisque nous supposons que le potentiel de défaut est nul aux frontières de celle-ci. Pour les fonctions d'onde de la cellule primitive, nous utilisons leur forme donnée par le théorème de Bloch introduite à la section~\ref{sec:symétries}
 \begin{equation}
     \psi_{n\kv}(\rv) = u_{n\kv}(\rv)e^{i\kv\cdot\rv}.
-\end{equation} 
-En utilisant ces deux expansions dans l'intégrale de l'équation~\eqref{ML_réel}, nous obtenons
+\end{equation}
+En utilisant ces deux développements dans l'intégrale de l'équation~\eqref{ML_réel}, nous obtenons
 \begin{equation}
     M^\text{L}_{mn}(\kv',\kv) = \frac{1}{N_\text{uc}}\sum_{\widetilde{\Gv}}\widetilde{V}_\text{ed}^\text{L}(\widetilde{\Gv})\int_{\Omega_\text{BvK}}d^3\rv\,u^*_{m\kv'}(\rv)\,u_{n\kv}(\rv)\,e^{i(\kv+\widetilde{\Gv}-\kv')\cdot\rv}.
 \end{equation}
@@ -65,7 +65,7 @@ La somme sur $\Rv$ est non-nulle seulement si $\kv+\widetilde{\Gv}-\kv' = \Gv$ e
 \begin{equation}
     M^\text{L}_{mn}(\kv',\kv) = \sum_{\Gv}\widetilde{V}_\text{ed}^\text{L}(\Gv+\kv'-\kv)\int_{\Omega_\text{uc}} d^3\rv\,u_{m\kv'}^*(\rv)\,u_{n\kv}(\rv)e^{i\Gv\cdot\rv}.
 \end{equation}
-Finalement, nous utilisons l'expansion de la partie périodique de Bloch en ondes planes introduite à la section~\ref{sec:PW}
+Finalement, nous utilisons le développement de la partie périodique de Bloch en ondes planes introduite à la section~\ref{sec:PW}
 \begin{equation}
     u_{n\kv}(\rv) = \frac{1}{\sqrt{\Omega_\text{uc}}}\sum_\Gv C_{n\kv}(\Gv)e^{i\Gv\cdot\rv},
 \end{equation}
@@ -75,19 +75,19 @@ pour obtenir
 \end{equation}
 En faisant la somme sur $\Gv'$ et en définissant le transfert de quantité de mouvement $\qv\equiv\kv'-\kv$, nous obtenons l'équation pratique pour calculer la partie locale de la matrice de couplage électron-défaut
 \begin{equation}
-    M_{mn}^\text{L}(\kv',\kv) = \sum_{\Gv\Gv''}\widetilde{V}_\text{ed}^\text{L}(\qv+\Gv)C_{m\kv'}^*(\Gv+\Gv'')C_{n\kv}(\Gv'').\label{ML_final}
+    M_{mn}^\text{L}(\kv',\kv) = \sum_{\Gv\Gv''}\widetilde{V}_\text{ed}^\text{L}(\qv+\Gv)C_{m\kv'}^*(\Gv+\Gv'')C_{n\kv}(\Gv'').\label{eqn:ML_final}
 \end{equation}
-L'évaluation de l'équation~\eqref{ML_final} requiert la composante de Fourier $\widetilde{V}_\text{ed}^\text{L}(\qv+\Gv)$. Or, le potentiel de défaut n'est défini que sur les vecteurs $\widetilde{\Gv}$ du réseau réciproque de la super-cellule, qui constituent sa grille de Fourier. Pour évaluer le potentiel à $\qv+\Gv$, il faut que ce vecteur coïncide avec l'un des vecteurs $\widetilde{\Gv}$. Comme le réseau réciproque de la super-cellule est plus dense que celui de la cellule unitaire et le contient comme sous-réseau, tout vecteur $\Gv$ de la cellule unitaire appartient à la grille de $\widetilde{V}_\text{ed}^\text{L}$. La condition se réduit alors à ce que le transfert $\qv=\kv'-\kv$ soit lui-même commensurable avec la grille de la super-cellule, ce qui est automatiquement satisfait lorsque les points $\kv$ et $\kv'$ sont choisis sur une grille compatible avec la taille $N\times N$ de la super-cellule. 
+L'évaluation de l'équation~\eqref{ML_final} requiert la composante de Fourier $\widetilde{V}_\text{ed}^\text{L}(\qv+\Gv)$. Or, le potentiel de défaut n'est défini que sur les vecteurs $\widetilde{\Gv}$ du réseau réciproque de la super-cellule, qui constituent sa grille de Fourier. Pour évaluer le potentiel à $\qv+\Gv$, il faut que ce vecteur coïncide avec l'un des vecteurs $\widetilde{\Gv}$. Comme le réseau réciproque de la super-cellule est plus dense que celui de la cellule unitaire et le contient comme sous-réseau, tout vecteur $\Gv$ de la cellule unitaire appartient à la grille de $\widetilde{V}_\text{ed}^\text{L}$. La condition se réduit alors à ce que le transfert $\qv=\kv'-\kv$ soit lui-même commensurable avec la grille de la super-cellule, ce qui est automatiquement satisfait lorsque les points $\kv$ et $\kv'$ sont choisis sur une grille compatible avec la taille $N\times N$ de la super-cellule.
 
-En pratique, les calculs de super-cellule sont effectués au seul point $\Gamma$ d'une super-cellule $N\times N$. Le potentiel $\widetilde{V}_\text{ed}^\text{L}$ n'est alors connu que sur les vecteurs $\widetilde{\Gv}$ du réseau réciproque de la super-cellule, espacés de $1/N$ (en unités du réseau réciproque de la cellule primitive). Pour que le transfert $\qv=\kv'-\kv$ requis dans l'équation~\eqref{ML_final} coïncide avec l'un de ces vecteurs, la grille $\kv$ de la cellule unitaire doit être commensurable avec la super-cellule : une grille $M\times M$ convient si et seulement si $M$ divise $N$. Ainsi, à titre d'exemple, une super-cellule $10\times 10$ (à $\Gamma$) autorise les grilles pour la cellule unitaire $5\times 5$ et $10\times 10$ seulement. 
+En pratique, les calculs de super-cellule sont effectués au seul point $\Gamma$ d'une super-cellule $N\times N$. Le potentiel $\widetilde{V}_\text{ed}^\text{L}$ n'est alors connu que sur les vecteurs $\widetilde{\Gv}$ du réseau réciproque de la super-cellule, espacés de $1/N$ (en unités du réseau réciproque de la cellule primitive). Pour que le transfert $\qv=\kv'-\kv$ requis dans l'équation~\eqref{ML_final} coïncide avec l'un de ces vecteurs, la grille $\kv$ de la cellule unitaire doit être commensurable avec la super-cellule : une grille $M\times M$ convient si et seulement si $M$ divise $N$. Ainsi, à titre d'exemple, une super-cellule $10\times 10$ (à $\Gamma$) autorise les grilles pour la cellule unitaire $5\times 5$ et $10\times 10$ seulement.
 
-Cette contrainte est très restrictive. La taille de la super-cellule est dictée par la physique du défaut : elle doit être suffisamment grande pour que le potentiel soit convergé et localisé. Cependant, la finesse de la grille $\kv$ de la cellule unitaire est fixée par la grille utilisée pour construire les MLWF, puisque pour faire l'interpolation des éléments de matrice électron-défaut avec les MLWF, il faut que ces deux quantités soient sur la même grille. Imposer la commensurabilité forcerait alors des super-cellules inutilement grandes, au prix d'un coût de calcul prohibitif. Par exemple, si nous construisions nos MLWF avec la grille optimale $27\times 27$ de la section~\ref{sec:electron_results}, il faudrait une super-cellule $27\times 27$, qui contient 729 atomes de carbone pour le graphène et 2916 électrons, ce qui n'est pas idéal. 
+Cette contrainte est très restrictive. La taille de la super-cellule est dictée par la physique du défaut : elle doit être suffisamment grande pour que le potentiel soit convergé et localisé. Cependant, la finesse de la grille $\kv$ de la cellule unitaire est fixée par la grille utilisée pour construire les MLWF, puisque pour faire l'interpolation des éléments de matrice électron-défaut avec les MLWF, il faut que ces deux quantités soient sur la même grille. Imposer la commensurabilité forcerait alors des super-cellules inutilement grandes, au prix d'un coût de calcul prohibitif. Par exemple, si nous construisions nos MLWF avec la grille optimale $27\times 27$ de la section~\ref{sec:electron_results}, il faudrait une super-cellule $27\times 27$, qui contient 729 atomes de carbone pour le graphène et 2916 électrons, ce qui n'est pas idéal.
 
 Nous contournons cette limitation en raffinant la grille de Fourier du potentiel par remplissage de zéros (\textit{zero padding}). Comme le potentiel de défaut est localisé et s'annule aux frontières de la super-cellule, le placer dans une super-cellule réelle plus grande en complétant par des zéros ne modifie pas le potentiel physique. La transformée de Fourier de ce potentiel élargi fournit alors $\widetilde{V}_\text{ed}^\text{L}$ sur une grille réciproque plus dense, contenant les transferts $\qv$ de la grille $\kv$ désirée. En vertu du théorème d'échantillonnage, cette opération est \textit{exacte} et non approximative : un potentiel à support compact est entièrement déterminé par ses composantes de Fourier sur la grille de la super-cellule et ses valeurs aux $\qv$ intermédiaires en sont reconstruites sans perte d'information. Ceci nous permet d'évaluer la matrice de couplage sur la même grille que celle utilisée pour calculer les MLWF, nous permettant d'utiliser le schéma d'interpolation par des MLWF à partir d'une super-cellule de taille modérée, choisie uniquement selon le critère de convergence du potentiel. Le calcul de ces éléments de matrice fait donc intervenir deux interpolations de natures différentes : un raffinement de la grille de Fourier du potentiel par remplissage de zéros, qui porte le potentiel sur la grille $\kv$ des fonctions de Wannier, suivi d'une interpolation par fonctions de Wannier des éléments de matrice eux-mêmes vers la grille ultra dense requise pour la convergence du spectre Raman.
 
-D'autres schémas d'interpolation auraient pu être envisagés pour évaluer $\widetilde{V}_\text{ed}^\text{L}$ aux transferts hors grille. Une interpolation polynomiale ou par des splines des composantes $\widetilde{V}_\text{ed}^\text{L}(\widetilde{\Gv})$ directement dans l'espace réciproque est la plus immédiate, mais elle ne repose sur aucune propriété physique du potentiel : son erreur dépend du degré choisi et de la régularité supposée du potentiel, sans garantie de convergence. À l'inverse, le remplissage de zéros exploite directement la localisation du potentiel dans l'espace réel et fournit, dans cette limite, une reconstruction exacte plutôt qu'approximative. 
+D'autres schémas d'interpolation auraient pu être envisagés pour évaluer $\widetilde{V}_\text{ed}^\text{L}$ aux transferts hors grille. Une interpolation polynomiale ou par des splines des composantes $\widetilde{V}_\text{ed}^\text{L}(\widetilde{\Gv})$ directement dans l'espace réciproque est la plus immédiate, mais elle ne repose sur aucune propriété physique du potentiel : son erreur dépend du degré choisi et de la régularité supposée du potentiel, sans garantie de convergence. À l'inverse, le remplissage de zéros exploite directement la localisation du potentiel dans l'espace réel et fournit, dans cette limite, une reconstruction exacte plutôt qu'approximative.
 
-\subsection{Partie non-locale}
+\subsection{Partie non-locale}\label{sec:M_non_local}
 La partie non-locale de la matrice est due entièrement aux pseudo-potentiels. En pratique, nous calculons la partie non-locale pour chacune des deux super-cellules séparément, puis la partie non-locale de la matrice est obtenue en soustrayant les contributions des deux super-cellules. Pour une des deux super-cellules, la partie non-locale s'obtient en calculant
 \begin{equation}
     M_{mn}^\text{NL}(\kv',\kv) = \bra{\psi_{m\kv'}}\hat{V}_\text{ed}^\text{NL}\ket{\psi_{n\kv}} = \sum_\alpha\sum_{i\ell m_\ell}\bra{\psi_{m\kv'}}\ket{\beta^{(\alpha)}_{i\ell m_\ell}}E_{i\ell}^{(\alpha)}\bra{\beta^{(\alpha)}_{i\ell m_\ell}}\ket{\psi_{n\kv}}.\label{M_NL}
@@ -96,7 +96,7 @@ Nous devons évaluer le chevauchement entre les états de Bloch et les projecteu
 \begin{equation}
     \bra{\psi_{n\kv}}\ket{\beta_{i\ell m_\ell}^{(\alpha)}} = \int d^3\rv\,\bra{\psi_{n\kv}}\ket{\rv}\bra{\rv}\ket{\beta_{i\ell m_\ell}^{(\alpha)}}.
 \end{equation}
-En utilisant la forme de l'équation~\eqref{betar} pour la représentation du projecteur dans l'espace réel ainsi que l'expansion de la fonction d'onde dans la base d'ondes planes, nous avons
+En utilisant la forme de l'équation~\eqref{betar} pour la représentation du projecteur dans l'espace réel ainsi que le développement de la fonction d'onde dans la base d'ondes planes, nous avons
 \begin{equation}
     \bra{\psi_{n\kv}}\ket{\beta_{i\ell m_\ell}^{(\alpha)}} =\frac{1}{\sqrt{\Omega_\text{uc}}}\sum_\Gv C^*_{n\kv}(\Gv)\int d^3\rv\,e^{-i(\kv+\Gv)\cdot\rv}\frac{\beta_{i\ell}^{(\alpha)}(|\rv-\bm{\tau}_\alpha|)Y_\ell^{m_\ell}(\widehat{\rv-\bm{\tau}_\alpha})}{|\rv-\bm{\tau}_\alpha|},
 \end{equation}
@@ -104,15 +104,16 @@ où ici $\bm{\tau}_\alpha$ identifie la position des ions $\alpha$ dans la super
 \begin{equation}
     \bra{\psi_{n\kv}}\ket{\beta_{i\ell m_\ell}^{(\alpha)}} =\frac{1}{\sqrt{\Omega_\text{uc}}}\sum_\Gv C^*_{n\kv}(\Gv)e^{-i(\kv+\Gv)\cdot\bm{\tau}_{\alpha}}\int d^3\rv'\, e^{-i(\kv+\Gv)\cdot\rv'}\frac{\beta_{i\ell}^{(\alpha)}(|\rv'|)Y_\ell^{m_\ell}(\hat{\rv}')}{|\rv'|}.
 \end{equation}
-Une autre simplification s'obtient en faisant l'expansion de Rayleigh de l'onde plane dans l'intégrale en termes d'harmoniques sphériques $Y_\ell^{m_\ell}(\hat{\rv})$ et de fonctions de Bessel sphériques $j_\ell(qr)$
+Une autre simplification s'obtient en faisant le développement de Rayleigh de l'onde plane dans l'intégrale sur les harmoniques sphériques $Y_\ell^{m_\ell}(\hat{\rv})$ et de fonctions de Bessel sphériques $j_\ell(qr)$
 \begin{equation}
     e^{i\qv\cdot\rv} = 4\pi \sum_{\ell m_\ell}i^\ell j_\ell (qr)Y_\ell^{m_\ell}(\hat{\qv})Y_\ell^{*m_\ell}(\hat{\rv}),
 \end{equation}
-où $qr$ est le produit des normes des vecteurs $\qv$ et $\rv$. Avec cette expansion, le chevauchement devient
-\begin{equation}
-    \bra{\psi_{n\kv}}\ket{\beta_{i\ell m_\ell}^{(\alpha)}} =\frac{4\pi}{\sqrt{\Omega_\text{uc}}}\sum_\Gv\sum_{\ell'm_\ell'}(-i)^{\ell'}C^*_{n\kv}(\Gv)e^{-i\Kv\cdot\bm{\tau}_\alpha}Y_{\ell'}^{m_\ell'}(\widehat{\Kv})\int d^3\rv'\frac{\beta_{i\ell}^{(\alpha)}(|\rv'|)j_{\ell'}(Kr')Y_{\ell'}^{*m_\ell'}(\hat{\rv}')Y_{\ell}^{m_\ell}(\hat{\rv}')}{|\rv'|},\label{beta_nk_1}
-\end{equation}
-où nous avons défini $\Kv\equiv\kv+\Gv$ et $K=|\Kv|$. Le but de cette expansion est de simplifier l'intégrale en exploitant l'orthonormalité des harmoniques sphériques en passant aux coordonnées sphériques
+où $qr$ est le produit des normes des vecteurs $\qv$ et $\rv$. Avec ce développement, le chevauchement devient
+\begin{align}
+    \bra{\psi_{n\kv}}\ket{\beta_{i\ell m_\ell}^{(\alpha)}} &=\frac{4\pi}{\sqrt{\Omega_\text{uc}}}\sum_\Gv\sum_{\ell'm_\ell'}(-i)^{\ell'}C^*_{n\kv}(\Gv)e^{-i\Kv\cdot\bm{\tau}_\alpha}Y_{\ell'}^{m_\ell'}(\widehat{\Kv})\notag\\
+    &\qquad\times\int d^3\rv'\frac{\beta_{i\ell}^{(\alpha)}(|\rv'|)j_{\ell'}(Kr')Y_{\ell'}^{*m_\ell'}(\hat{\rv}')Y_{\ell}^{m_\ell}(\hat{\rv}')}{|\rv'|},\label{beta_nk_1}
+\end{align}
+où nous avons défini $\Kv\equiv\kv+\Gv$ et $K=|\Kv|$. Le but de ce développement est de simplifier l'intégrale en exploitant l'orthonormalité des harmoniques sphériques en passant aux coordonnées sphériques
 \begin{equation}
     \int d^3\rv'\frac{\beta_{i\ell}^{(\alpha)}(|\rv'|)j_{\ell'}(Kr')Y_{\ell'}^{m_\ell'}(\hat{\rv}')Y_{\ell}^{m_\ell}(\hat{\rv}')}{|\rv'|} = \underbrace{\int dr' r' \beta_{i\ell}^{(\alpha)}(r')j_{\ell'}(Kr')}_{\equiv F_{i\ell}^{(\alpha)}(K)}\underbrace{\int d\theta d\phi Y_{\ell'}^{*m_\ell'}(\hat{\rv}')Y_\ell^{m_\ell}(\hat{\rv}')}_{\delta_{\ell\ell'}\delta_{m_\ell m_\ell'}}.
 \end{equation}
@@ -122,15 +123,257 @@ Ici, nous avons défini le facteur de forme du pseudo-potentiel dans l'espace r�
 \end{equation}
 et qui constitue l'expression finale du chevauchement entre les états de Bloch et les projecteurs de KB. C'est également cette forme qu'il faut utiliser pour calculer la partie non-locale du potentiel lors de la résolution des équations de Kohn-Sham dans la base d'ondes planes~\eqref{V_NL_k}. La partie non-locale de la matrice de couplage électron-défaut pour une super-cellule s'obtient avec ce chevauchement, son conjugué complexe et les énergies de KB~\eqref{M_NL} :
 \begin{equation}
-    M_{mn}^\text{NL}(\kv',\kv) = \frac{(4\pi)^2}{\Omega_\text{uc}}\sum_{\alpha i\ell m_\ell}E_{i\ell}^{(\alpha)}\sum_{\Gv\Gv'}C_{m\kv'}^*(\Gv')F_{i\ell}^{(\alpha)}(K')Y_{\ell}^{m_\ell}(\widehat{\Kv}')e^{-i\Kv'\cdot\bm{\tau}_{\alpha}}C_{n\kv}(\Gv)F_{i\ell}^{(\alpha)}(K)Y_\ell^{*m_\ell}(\widehat{\Kv})e^{i\Kv\cdot\bm{\tau}_\alpha},
+\begin{aligned}
+    M_{mn}^\text{NL}(\kv',\kv) = \frac{(4\pi)^2}{\Omega_\text{uc}}\sum_{\alpha i\ell m_\ell}E_{i\ell}^{(\alpha)}\sum_{\Gv\Gv'}
+    &C_{m\kv'}^*(\Gv')F_{i\ell}^{(\alpha)}(K')Y_{\ell}^{m_\ell}(\widehat{\Kv}')e^{-i\Kv'\cdot\bm{\tau}_{\alpha}}\\
+    \times\;&C_{n\kv}(\Gv)F_{i\ell}^{(\alpha)}(K)Y_\ell^{*m_\ell}(\widehat{\Kv})e^{i\Kv\cdot\bm{\tau}_\alpha},\label{eqn:MNL_final}
+\end{aligned}
 \end{equation}
 où $\Kv'\equiv \kv'+\Gv'$ et $K'=|\Kv'|$. Les quantités associées à la cellule unitaire sont $\kv, \Gv$ et $C_{n\kv}(\Gv)$, tandis que seules les positions atomiques $\bm{\tau}_\alpha$ sont associées à la super-cellule. Les pseudo-potentiels pour les atomes de la super-cellule donnent directement les énergies de KB $E_{i\ell}^{(\alpha)}$, ainsi que le projecteur radial de KB $\beta_{i\ell}(r)$ sur une grille $r$ unidimensionnelle. Il faut reconstruire le facteur de forme dans l'espace réciproque via la transformée de Hankel sphérique d'ordre $\ell$
 \begin{equation}
-    F_{i\ell}^{(\alpha)}(K)=\int dr\,r\,\beta_{i\ell}^{(\alpha)}(r)\,j_\ell(Kr).
+    F_{i\ell}^{(\alpha)}(K)=\int dr\,r\,\beta_{i\ell}^{(\alpha)}(r)\,j_\ell(Kr).\label{eqn:Hankel_sphérique}
 \end{equation}
 
-\subsection{Détails computationnels}
+Dans la prochaine section, nous verrons comment utiliser les fonctions de Wannier introduites à la section~\ref{sec:wannier} pour interpoler cette matrice sur les grilles denses requises pour simuler l'intensité Raman. 
 \subsection{Interpolation avec des fonctions de Wannier}
-\subsection{Résultats pour le graphène}
+\label{sec:interp_wannier_M}
+
+Tel que mentionné à la section~\ref{sec:wannier}, la convergence de
+l'intensité Raman requiert la matrice de couplage électron-défaut sur une
+grille de vecteurs d'onde beaucoup plus dense que celle accessible aux
+calculs \textit{ab initio} sur des super-cellules. Nous montrons ici comment les
+fonctions de Wannier introduites à cette section permettent d'interpoler
+la matrice de couplage sur une grille fine arbitraire. La démarche suit
+la stratégie éprouvée pour le couplage électron-phonon~\cite{giustinoElectronphononInteractionUsing2007a}.
+
+Le point de départ est la matrice de couplage calculée dans l'espace
+réciproque sur la grille grossière $\{\kv_c\}$ de la super-cellule, selon
+les développements de la section~\ref{sec:M_défaut} :
+\begin{equation}
+    M_{mn}(\kv_c',\kv_c) = \bra{\psi_{m\kv_c'}}V_\text{ed}(\rv)\ket{\psi_{n\kv_c}}.
+\end{equation}
+Contrairement au couplage électron-phonon, où la conservation du vecteur
+d'onde réduit la dépendance à $(\kv+\qv, \kv)$, le potentiel de défaut
+brise la symétrie de translation : les deux vecteurs d'onde $\kv_c'$ et
+$\kv_c$ sont indépendants, et la matrice doit être interpolée dans ses
+deux arguments simultanément.
+
+Les fonctions de Wannier du système sont construites à partir des
+fonctions de Bloch suivant les expressions de la
+section~\ref{sec:wannier}, ce qui fournit les matrices de transformation
+$U^{(\kv_c)}_{mn}$ (et $U^{\text{dis},(\kv_c)}_{mn}$ en présence de
+bandes enchevêtrées). La matrice de couplage est alors transformée dans
+la représentation de Wannier par une double transformée de Fourier
+discrète,
+\begin{equation}
+    M_{ij}(\Rv',\Rv) = \bra{i\Rv'}V_\text{ed}(\rv)\ket{j\Rv}
+    = \frac{1}{N_{\kv_c}^2}\sum_{\kv_c'\kv_c}
+    e^{i(\kv_c'\cdot\Rv'-\kv_c\cdot\Rv)}
+    \left[U^{\dag(\kv_c')}\,M(\kv_c',\kv_c)\,U^{(\kv_c)}\right]_{ij}.
+    \label{eqn:M_wannier}
+\end{equation}
+
+L'utilité de la représentation~\eqref{eqn:M_wannier} repose entièrement
+sur une propriété de localisation : les éléments $M_{ij}(\Rv',\Rv)$
+doivent décroître rapidement lorsque $\Rv$ ou $\Rv'$ s'éloignent du
+site du défaut. Cette décroissance autorise la troncature de
+la représentation réelle à un nombre fini de cellules et permet l'interpolation vers une grille arbitrairement fine. Cette localisation n'est toutefois manifeste que si le défaut occupe l'origine du réseau de Wannier. Or, dans la super-cellule, la lacune occupe une cellules $\Rv_d$ quelconque (choisie pour être le plus au centre possible de la super-cellule, voir la section~\ref{sec:M_détails}), et la transformée~\eqref{eqn:M_wannier} produit alors un poids concentré autour de $\Rv,\Rv'\approx\Rv_d$ plutôt qu'autour de l'origine. Une troncature centrée sur l'origine serait donc invalide : nous recentrons la représentation réelle en effectuant
+\begin{equation}
+    M_{ij}(\Rv',\Rv)\to M_{ij}(\Rv'-\Rv_d,\Rv-\Rv_d),\label{eqn:M_recentrage}
+\end{equation}
+qui ne modifie aucune valeur physique puisqu'il s'agit d'une permutation des indices de cellules, périodique sur la grille $\Rv$. Ce recentrage équivaut à la multiplication par la phase $e^{i(\kv'-\kv)\cdot\Rv_d}$ dans l'espace réciproque. 
+
+Ensuite, la matrice est recalculée dans l'espace des fonctions de Bloch, sur une grille fine $\{\kv_f\}$ arbitraire, par l'inverse de l'équation~\eqref{eqn:M_wannier}:
+\begin{equation}
+    M_{mn}(\kv_f',\kv_f) = \sum_{\Rv'\Rv}
+    e^{-i(\kv_f'\cdot\Rv'-\kv_f\cdot\Rv)}
+    \left[V^{\dag(\kv_f')}\,M(\Rv',\Rv)\,V^{(\kv_f)}\right]_{mn},
+    \label{eqn:M_interp}
+\end{equation}
+où les sommes courent sur le domaine tronqué $R,R'\le R_\text{cut}$, une fois le défaut recentré. Les matrices
+$V^{(\kv_f)}_{mn}$ proviennent de la diagonalisation de l'Hamiltonien
+interpolé par la même machinerie,
+$H(\kv_f) = \sum_{\Rv} e^{i\kv_f\cdot\Rv} H(\Rv)$, ce qui ramène la
+matrice de couplage dans la base des états propres sur la grille fine.
+Notons que les $V^{(\kv_f)}$ sont définis à une phase arbitraire près
+par la diagonalisation ; les quantités physiques construites à partir
+de~\eqref{eqn:M_interp} sont invariantes sous ce
+choix de jauge, à condition que le couplage et l'Hamiltonien interpolés
+proviennent des mêmes fonctions de Wannier.
+
+Enfin, la cohérence de la procédure d'interpolation est contrôlée en boucle fermée dans la section~\ref{sec:M_results} : nous vérifions que l'interpolation de la matrice vers les points de la grilles grossière elle-même repoduit les éléments de matrice de départ avec un écart relatif de l'ordre de la précision machine. La décroissance des éléments $M_{ij}$, ainsi que la convergence du paramètre $R_\text{cut}$ sont également étudiés dans cette section. 
+\subsection{Détails computationnels}\label{sec:M_détails}
+Nous reportons ici les stratégies, les paramètres et les conventions du calcul de matrice de couplage électron défauts. Premièrement, les super-cellules défecteuses et parfaites, ainsi que la cellule unitaire, sont traitées avec le logiciel de calcul DFT \texttt{Quantum ESPRESSO}~\cite{giannozziQUANTUMESPRESSOModular2009,giannozziAdvancedCapabilitiesMaterials2017,giannozziQuantumESPRESSOExascale2020}. Les super-cellules sont de tailles $N\times N$ avec $N\in[5, 7, 8, 9]$. La super-cellule parfaite contient $2N^2$ atomes de carbon arrangés sur un réseau cristallin hexagonal avec le paramètres de maille optimal de $a = 2.466$~\AA~déterminé à la section~\ref{sec:electron_results} par relaxation structurelle. Les super-cellules défectueuses contiennent $2N^2-1$ atomes de carbones arrangés sur un réseau hexagonal avec le même paramètre de maille que les super-cellules parfaites. L'atome supprimé est celui le plus autre centre possible de la super-cellule et correspond au défaut d'une lacune. La super-cellule défectueuse n'est \textit{pas} relaxée dans ce mémoire, l'objectif étant de simplement valider la méthode. En particulier, la reconstruction de Jahn-Teller de la monolacune est ignorée. Bien sûr, il est nécessaire de relaxer la structure défectueuse pour obtenir des intensités Raman quantitativement correctes. Les calculs sont non-polarisés en spin : la lacune est traitée comme un défaut non-magnétique. La généralisation à un potentiel de défaut dépendant du spin est laissée en perpsective. Les calculs de super-cellules sont effectués au seul point $\Gamma$ de la zone de Brillouin, la fonctionnelle d'échange-corrélation PBE~\cite{perdewGeneralizedGradientApproximation1996a} avec un pseudo-potentiel ONCV de type Kleinman-Bylander~\cite{hamannOptimizedNormconservingVanderbilt2013,kleinmanEfficaciousFormModel1982}, une énergie de coupure de $100$ Ry pour les ondes planes, un facteur d'élargissement de Marzari-Vanderbilt de 0.01 Ry et un seuil de convergence de $10^{-10}$ Ry sur l'énergie totale. La périodicité artificielle dans la direction perpendiculaire au plan est supprimée par une cellule vide de 30 Bohr dans cette direction combinée à la troncature de Coulomb pour les systèmes bidimensionnels~\cite{sohierDensityFunctionalPerturbation2017}.
+
+Les calculs DFT pour la cellule unitaire sont également réalisés avec \texttt{Quantum ESPRESSO}. Les paramètres de calculs doivent être les mêmes que ceux utilisés pour les super-cellules par soucis de cohérence (fonctionnelle, \textit{smearing}, pseudopotentiels, seuil de convergence, énergie de coupure, \textit{etc.}) et nous utilisons 20 bandes. En particulier, la même énergie de coupure est imposée aux calculs de cellule unitaire et de super-cellule : elle fixe l'ensemble des vecteurs $\Gv$ actifs, qui doivent coïncider pour que le repliement des coefficients d'ondes planes sur la grille de la super-cellule soit exact. Nous sommes libres de choisir la grille $\kv$ de la cellule unitaire ;
+idéalement, nous voulons la matrice de couplage sur une grille de
+densité comparable à la grille optimale $27\times27$ de la
+section~\ref{sec:electron_results}, puis l'interpoler avec des fonctions de
+Wannier sur les grilles ultra denses. Or, la section~\ref{sec:M_local} a montré que $M$ ne peut être
+évalué que pour des transferts $\qv = \kv'-\kv$ appartenant à la grille
+de Fourier du potentiel, laquelle est fixée par la taille $N$ de la
+super-cellule. Le remplissage de zéros, détaillé dans cette même section, lève cette contrainte : en
+plaçant le potentiel $V_\text{ed}$, calculé dans la super-cellule
+$N\times N$, dans une boîte $pN\times pN$ complétée par des zéros, sa
+grille de Fourier devient $p$ fois plus fine et contient tous les
+transferts d'une grille $pN\times pN$ de la cellule unitaire. Nous
+choisissons $p$ pour chaque taille de super-cellule de manière à
+approcher la densité cible, soit $p = 5, 4, 4, 3$ pour $N = 5, 7, 8, 9$
+et des grilles de $25\times25$, $28\times28$, $32\times32$ et $27\times27$ pour la cellule unitaire. 
+La super-cellule physique reste $N\times N$ : seule la boîte dans
+laquelle le potentiel est représenté est agrandie, ce qui est exact tant
+que $V_\text{ed}$ est négligeable à la frontière de la
+super-cellule, une condition qui est vérifiée à la section~\ref{sec:M_results}.
+
+Pour le calcul de la matrice de couplage elle-même, les parties locales et non-locales sont calculées séparémment et en parallèle, puis la matrice complète est construite en additionnant les deux parties. La partie locale est évaluée directement selon l'équation~\eqref{eqn:ML_final}. Le potentiel local $V_\text{ed}^\text{L} = V^\text{d}_\text{KS}-V^\text{p}_\text{KS}$ est construit sur la grille FFT de la super-cellule à partir des potentiels de Kohn-Sham convergés. Sa composante de Fourier $\widetilde{G}=\mathbf{0}$, correspondant à la moyenne spatiale du potentiel, est soustraite puisqu'elle dépend du référence du potentiel des deux calculs de super-cellules. Le potentiel de défaut est ensuite rempli de zéro suivant la logique du paragraphe précédant, puis est obtenu dans l'espace réciproque par une FFT. Les coéfficients d'ondes planes $C_{n\kv}(\Gv)$ et les vecteurs du réseau réciproque de la cellule unitaire $\Gv$ sont repliés sur le réseau réciproque de la super-cellule élargie par zéros par le facteur entier $pN$, de sorte que tout transfert $\qv + \Gv$ correspond exactement à un indice de la grille FFT de la super-cellule élargie. La commensurabilité des deux grilles est imposée par arrondi à l'entier et vérifée. Pour chaque paire $(\kv',\kv)$, la double somme sur $\Gv,\Gv''$ de l'équation~\eqref{eqn:ML_final} se réduit à une contraction matricielle $C^\dag_{\kv'}\widetilde{V}_\text{ed}C_\kv$, effectuée par blocs de vecteurs $\Gv'$ pour limiter la mémoire. De plus, les paires $(\kv',\kv)$ sont parallèlisées en les distribuant entre les processus MPI, pour accélerer les calculs. 
+
+La partie non-locale ne requiert ni grille FFT ni remplissage de zéro, car l'équation~\eqref{eqn:MNL_final} est analyqiue en $\kv$ et s'évalue directement sur la grille dense de la cellule unitaire. Son évaluation exploite forme séparable des projecteurs de Kleinman-Bylander.  Pour chaque état de Bloch $\ket{\psi_{n\kv}}$, nous contruisons le chevauchement
+\begin{equation}
+    B_{n\kv}(\alpha,i\ell m_\ell) = \frac{4\pi}{\sqrt{\Omega_\text{uc}}}(-i)^\ell\sum_{\Gv}C^*_{n\kv} (\Gv) F_{i\ell}(K)Y_\ell^{m_\ell}(\widehat{\Kv})e^{-i\Kv\cdot\bm\tau_\alpha}\qquad \Kv\equiv \kv+\Gv
+\end{equation}
+pour tous les atomes de carbone à la postion $\bm\tau_\alpha$ de la super-cellule, et tous les canaux $(i,\ell,m_\ell)$ du pseudopotentiel, de sorte que $M^\text{NL}_{mn}(\kv',\kv)=\sum_{\alpha i\ell m_\ell}E_{i\ell}^{(\alpha)}B_{m\kv'}(\alpha, i\ell m_\ell) B^*_{n\kv}(\alpha, i\ell m_\ell)$ se réduit à une contraction sur les canaux, effectuée séparément pour la super-cellule parfaite et la super-celluoe défecteuse avec leurs positions atomiques respectives, puis soustraite. Le facteur de forme $F_{i\ell}^{(\alpha)}(K)$ est obtenue par transformée de Hankel sphérique d'ordre $\ell$~\eqref{eqn:Hankel_sphérique} du projecteur radial $r\beta_{i\ell}(r)$ qui est lu sur la grille radiale du pseudopotentiel. La transformée d'Hankel est effectuée numériquement avec la méthode de Simpson. Le facteur de forme est tabulé sur une grille $q\in[0,q_\text{max}]$ avec $q_\text{max}>\sqrt{2E_\text{cut}}$, puis interpolé par splines cubiques aux normes $K=|\kv+\Gv|$ requises. Les harmoniques sphériques sont évaluées aux angles des vecteurs $\widehat{\Kv} =\widehat{\kv+\Gv}$ et les énergies de KB $E_{i\ell}^{(\alpha)}$ sont lus directement du fichier du pseudopotentiel. La contraction en $(\kv',\kv)$, de coût quadratique en nombre de points $\kv$, est distribuée entre processus MPI sur l'indice $\kv'$ pour accélerer les calculs. L'implémentation actuelle suppose une seule espèce chimique; la généralisation à plusieurs espèces (pour inclure des susbtitutions \textit{e.g.} d'atomes d'azote) est laissée en perspective. 
+
+Terminons par les conventions. Les éléments de matrice sont calculés et stockés avec des états de Bloch normalisés sur la cellule unitaire : $M_{mn}(\kv',\kv)$ est alors une quantité intensive, indépendant de la taille de la super-cellule $N$, ce qui autorise la comparaise directe entre tailles et avec la littérature. Nous vérifions cette propriété dans la propchaine section~\ref{sec:M_results} en contrôlant que $\max|M|$ est indépendant de $N$. Le facteur de $1/N_\text{uc}$ qui accompagne la normalisation sur le cristal est appliqué une seule fois, au moment d'exprimer $M$ dans la base de Bloch de la section~\ref{sec:mbt_défaut}. Enfin, les éléments de matrice sont exprimés en unités atomiques d'Hartree, tandis que énergies des bandes et l'Hamiltonien de Wannier le sont en eV ; la conversion est effectuée un seule fois au chargement, puis chaque fichier d'éléments de matrice porte une étiquette de convention (normalisation, unités) vérifiées avant tout calcul.
+
+\subsection{Résultats pour le graphène}\label{sec:M_results}
+Nous présentons dans cette section la matrice de couplage électron-défaut obtenue pour un système de graphène avec une unique lacune. Nous commençons avec les vérifications annoncées aux sections précédantes, puis nous présentons les éléments de matrice eux-mêmes avec leur comparaison avec la littérature. Sauf mention contraire, les résultats présentés sont ceux de la super-cellule $9\times 9$ et de sa grille dense $27\times 27$. Les paramètres de calcul utilisés sont détaillés dans la section précédentes sur les détails computationels.
+
+
 \section{Théorie de la perturbation à plusieurs corps pour les défauts}\label{sec:mbt_défaut}
+Dans cette section, nous détaillons comment utiliser la théorie de la perturbation à plusieurs corps dans le contexte de l'interaction électron-défaut pour relier les éléments de matrice de couplage de la section précédente à la \textit{self}-énergie électronique due à la présence de défauts dans un matériau. Nous commençons avec le cas le plus simple où un seul et unique défaut est présent dans le matériau. Dans ce cas, le problème peut être résolu exactement dans le formalisme de la matrice $T$. Ensuite, nous généralisons au cas avec plusieurs défauts pour simuler un matériau réaliste. Ce problème ne peut pas être résolu exactement, d'où l'utilité d'employer la théorie de la perturbation.
+\subsection{Un défaut et la matrice $T$}\label{sec:mbt_T}
+Commençons par le cas idéal où il n'y a qu'un seul défaut présent dans le matériau et ignorons toutes les autres perturbations. Supposons que le problème électronique a été résolu par la DFT dans le système parfait. Le couplage entre les électrons du système et le défaut se fait par l'entremise de l'Hamiltonien de couplage électron-défaut, et nous travaillons maintenant à température finie \textit{i.e.} dans l'ensemble grand canonique, de sorte que l'Hamiltonien du système est
+\begin{equation}
+    \hat{H}-\mu\hat{N} = \hat{H}_\text{e}+\hat{H}_\text{ed} = \sum_{n\kv}\xi_{n\kv}\hat{c}^\dag_{n\kv}\hat{c}_{n\kv}+\sum_{nm}\sum_{\kv\kv'}M_{mn}(\kv',\kv)\hat{c}^\dag_{m\kv'}\hat{c}_{n\kv},\quad\xi_{n\kv} \equiv \varepsilon_{n\kv}-\mu
+\end{equation}
+où la matrice $M_{mn}(\kv',\kv)=\bra{\psi_{m\kv'}}V_\text{ed}(\rv)\ket{\psi_{n\kv}}$ représente physiquement l'amplitude de probabilité qu'un électron dans l'état $\ket{\psi_{n\kv}}$ diffuse vers l'état $\ket{\psi_{m\kv'}}$  via le potentiel $V_\text{ed}(\rv)$ induit par le défaut dans le matériau et $\mu$ est le potentiel chimique. Nous souhaitons employer la méthode de la théorie de la perturbation pour résoudre ce problème. Notre objectif est de déterminer la fonction de Green de Matsubara à température finie ; une fois celle-ci calculée, la grande majorité des propriétés physiques mesurables peuvent être extraites de cette fonction. Dans le formalisme de Matsubara, nous travaillons avec un temps imaginaire $\tau\in[0,\beta]$, où $\beta=1/k_BT$ est l'inverse de la température et la fonction de Green est généralement calculée dans la représentation d'interaction en mécanique quantique
+\begin{equation}
+    \mathcal{G}_{mn}(\tau'-\tau) = -\frac{{}_0\langle\mathcal{T}_\tau\hat{c}_m(\tau')S(\beta,0)\hat{c}
+    _n^\dag(\tau)\rangle_0}{{}_0\langle S(\beta,0)\rangle_0}.\label{eqn:G_formel}
+\end{equation}
+Ici, ${}_0\langle\dots\rangle_0$ est une moyenne thermique par rapport à l'Hamiltonien non perturbé $\hat{H}_\text{e}$, $\mathcal{T}_\tau$ est l'opérateur d'ordonnancement dans le temps imaginaire, la dépendance en temps imaginaire des opérateurs $\hat{O}(\tau)$ est obtenue dans la représentation de l'interaction (donc déterminée par $\hat{H}_\text{e}$) et la matrice $S(\beta, 0)$ inclut les effets de couplage entre les électrons et le défaut et est définie formellement par
+\begin{equation}
+    S(\beta, 0) = \mathcal{T}_\tau\exp{-\int_0^\beta d\tau\,\hat{H}_\text{ed}(\tau)} = \sum_{p=0}^\infty\frac{(-1)^p}{p!}\int_0^\beta d\tau_1\dots\int_0^\beta d\tau_p\mathcal{T}_\tau\left[\hat{H}_\text{ed}(\tau_1)\cdots\hat{H}_\text{ed}(\tau_p)\right].\label{eqn:S}
+\end{equation}
+Pour calculer la fonction de Green de l'équation~\eqref{eqn:G_formel}, nous devons développer la matrice $S$ à l'aide de l'équation~\eqref{eqn:S} puis évaluer les moyennes thermiques. Comme ces moyennes sont faites par rapport à l'Hamiltonien libre $\hat{H}_\text{e}$, qui est quadratique dans les opérateurs de création et d'annihilation, elles peuvent être évaluées avec le théorème de Wick. Cependant, cette approche souffre du même problème que l'application de la théorie de la perturbation dans le cadre de la spectroscopie Raman : il n'est pas trivial d'énumérer tous les termes qui découlent du développement de la matrice $S$. Pour remédier à ce problème, nous employons à nouveau des diagrammes de Feynman, avec les règles de la figure~\ref{fig:règles_Raman}. En théorie, nous devons développer la matrice $S$ au numérateur et au dénominateur de l'équation~\eqref{eqn:G_formel} simultanément, ce qui devient rapidement problématique. En pratique, le théorème des amas connexes (de l'anglais \textit{linked-cluster theorem}) stipule que les diagrammes engendrés par le développement de la matrice $S$ au dénominateur annulent exactement les diagrammes déconnectés du développement au numérateur. Cela simplifie considérablement la tâche. Toute cette machinerie est présentée en détail dans l'annexe~\ref{annexe:défauts} et nous reprenons seulement les étapes importantes ici.
+
+Le résultat central de cette annexe est que la fonction de Green de Matsubara pour des électrons en interaction avec un seul défaut satisfait une équation de Dyson qui est illustrée diagrammatiquement dans la figure~\ref{fig:G_Dyson}.
+\begin{figure}[h]
+    \centering
+    \input{tikz/dyson_serie.tex}
+    \caption[Équation de Dyson pour la fonction de Green de Matsubara électronique en présence d'un défaut.]{Équation de Dyson pour la fonction de Green de Matsubara électronique en présence d'un défaut.}
+    \label{fig:G_Dyson}
+\end{figure}
+Cette équation de Dyson est plus généralement réécrite en employant la matrice $T$ dans le contexte de la diffusion sur des défauts. Cette matrice $T$ est définie diagrammatiquement à la figure~\ref{fig:T_matrice} et joue un rôle similaire à la \textit{self}-énergie électronique.
+\begin{figure}[htbp]
+    \centering
+    \input{tikz/matrice_T.tex}
+    \caption[Expression diagrammatique de la matrice $T$ pour la diffusion sur un seul défaut.]{Expression diagrammatique de la matrice $T$ pour la diffusion sur un seul défaut. La première ligne donne le développement complet, la deuxième la forme récursive.}
+    \label{fig:T_matrice}
+\end{figure}
+À l'aide de la matrice $T$, l'équation de Dyson pour la fonction de Green prend la forme donnée diagrammatiquement à la figure~\ref{fig:dyson_T}.
+\begin{figure}[htbp]
+    \centering
+    \input{tikz/dyson_matrice_T.tex}
+    \caption[Série de Dyson pour la fonction de Green de Matsubara électronique en présence d'un seul défaut exprimée en fonction de la matrice $T$.]{Série de Dyson pour la fonction de Green de Matsubara électronique en présence d'un seul défaut, exprimée en fonction de la matrice $T$. Les temps $\tau_1$ et $\tau_2$ sont intégrés.}
+    \label{fig:dyson_T}
+\end{figure}
+En traduisant ces diagrammes à l'aide des règles de Feynman, la matrice $T$ de la figure~\ref{fig:T_matrice} s'écrit
+\begin{equation}
+    T = M + M\mathcal{G}^{(0)}T,\label{eqn:T_chap}
+\end{equation}
+où les produits sont matriciels sur les indices $(n\kv)$ et convolutifs en temps imaginaire, et la fonction de Green de la figure~\ref{fig:dyson_T} devient
+\begin{equation}
+    \mathcal{G} = \mathcal{G}^{(0)}+\mathcal{G}^{(0)}T\mathcal{G}^{(0)}.\label{eqn:G_chap}
+\end{equation}
+Les convolutions en temps imaginaire se démêlent dans l'espace des fréquences de Matsubara fermioniques $i\omega_j$, défini à l'annexe~\ref{annexe:défauts} dans l'équation~\eqref{eqn_G_tau}, où elles deviennent de simples produits. La quantité $\mathcal{G}^{(0)}$ est la fonction de Green de Matsubara pour le système non perturbé, soit en l'absence de défauts. Elle est connue analytiquement et prend la forme
+\begin{equation}
+    \mathcal{G}^{(0)}_{n\kv}(i\omega_j) = \frac{1}{i\omega_j-\xi_{n\kv}}.
+\end{equation}
+Comme le défaut est statique, $M$ ne dépend pas de la fréquence et l'équation~\eqref{eqn:T_chap} se résout par une inversion de matrice à chaque fréquence
+\begin{equation}
+    T(i\omega_j) = \left[1-M\mathcal{G}^{(0)}(i\omega_j)\right]^{-1}M.
+\end{equation}
+Une fois la matrice $T$ calculée, nous pouvons calculer la fonction de Green qui prend la forme explicite
+\begin{equation}
+    \mathcal{G}_{mn}(\kv',\kv;i\omega_j) = \frac{\delta_{mn}\delta_{\kv'\kv}}{i\omega_j-\xi_{n\kv}}+\frac{T_{mn}(\kv',\kv; i\omega_j)}{(i\omega_j-\xi_{m\kv'})(i\omega_j-\xi_{n\kv})},
+\end{equation}
+dans l'espace des fréquences de Matsubara. Notons que nous avons ici une expression analytique \textit{exacte} pour la fonction de Green : le problème est résolu exactement. Ceci ne devrait pas être trop surprenant, car il s'agit d'un problème à un corps. Notons également que le formalisme de la matrice $T$ inclut les effets du défaut sur les électrons à tous les ordres de la théorie de la perturbation. Cela est particulièrement intéressant pour les défauts considérés dans ce mémoire, les lacunes, qui induisent un potentiel de défaut si fort qu'il n'est pas justifié de tronquer la série de Dyson à un ordre fini. Le formalisme de la matrice $T$ demeure valide dans tous les régimes de force de potentiel de défaut.
+
+Enfin, notons que les quantités physiques mesurables sont les fonctions dites \textit{retardées}, définies
+sur l'axe des fréquences réelles, tandis que nous avons des expressions pour les quantités sur l'axe des fréquences imaginaires. Les quantités retardées s'obtiennent des fonctions de Matsubara par prolongement analytique, $i\omega_j \to \omega + i\eta$ avec $\eta \to 0^+$, qui est ici une simple substitution puisque nous disposons d'expressions analytiques fermées (voir la discussion sur la continuation analytique à la fin de l'annexe~\ref{annexe:défauts}). Généralement, les fonctions retardées sont identifiées par un exposant $R$. Or, dans tout ce mémoire, les quantités définies sur l'axe des fréquences réelles sont implicitement retardées et l'exposant $R$ est supprimé. 
+
+\subsection{Plusieurs défauts et la \textit{self}-énergie}\label{sec:mbt_sigma}
+Bien que le formalisme de la matrice $T$ offre une solution exacte au problème de l'interaction entre les électrons d'un matériau et un seul défaut, n'importe quel matériau réaliste contient un très grand nombre de défauts. En effet, un matériau peut être pur à une partie par milliard ($10^9$), si nous avons une quantité macroscopique de ce matériau ($10^{23}$), il y a $10^{14}$ défauts, ce qui est gigantesque. Nous devons donc généraliser au cas où il y a $N_d$ lacunes réparties aléatoirement dans le matériau. Le potentiel induit par cette collection de défauts est maintenant
+\begin{equation}
+    V_\text{ed}(\rv) = \sum_{I=1}^{N_d}V_\text{ed}(\rv-\rv_I),
+\end{equation}
+où $V_\text{ed}(\rv-\rv_I)$ est le potentiel induit par la lacune à la position $\rv_I=\Rv_\ell+\bm\tau_\alpha$, de sorte que $I=(\alpha\ell)$ est un indice composé (ici encore $\ell$ identifie les cellules unitaires du matériau et $\alpha$ identifie les atomes dans une cellule unitaire). Puisque ce potentiel dépend de la position des défauts, il va de soi que la fonction de Green résultante dépend aussi de la position des défauts. En d'autres mots, les propriétés microscopiques du matériaux dépendent de la réalisation exacte du désordre. Cependant, les propriétés macroscopiques mesurées par l'expérience (\textit{e.g.} la densité d'états, le spectre de quasi-particules ou bien l'intensité Raman) sont insensibles à la réalisation particulière du désordre : elles correspondent à la moyenne sur toutes les configurations de positions $\{\rv_I\}$ possibles, notée $\overline{\mathcal{G}}\equiv\langle\mathcal{G}\rangle_{\{\rv_I\}}.$ Cette moyenne sur les positions des lacunes restaure la symétrie de translation du système, brisée par chaque configuration individuelle, de sorte que $\overline{\mathcal{G}}$ est diagonale en $\kv$ et s'écrit sous la forme d'une équation de Dyson habituelle
+\begin{equation}
+    \overline{\mathcal{G}}_{n\kv}(\omega) = \left[\left(\mathcal{G}^{(0)}_{n\kv}(\omega)\right)^{-1}-\Sigma_{n\kv}^\text{ed}(\omega)\right]^{-1}=\left[\omega-\xi_{n\kv}-\Sigma_{n\kv}^\text{ed}(\omega)\right]^{-1},\label{eqn:G_moyenne}
+\end{equation}
+où $\Sigma_{n\kv}^\text{ed}$ est la \textit{self}-énergie électronique due aux défauts. Contrairement au cas d'un défaut unique, cette moyenne ne peut pas être effectuée exactement, d'où l'utilité de la théorie de la perturbation. En suivant la même procédure qui conduit à l'expression analytique pour $\mathcal{G}$, nous obtenons une expansion perturbative pour la \textit{self}-énergie en série de puissance de la concentration de défauts $c\equiv N_d/N_\text{uc}$. Ce calcul n'est pas répété ici et le lecteur intéressé peut consulter l'ouvrage de Bruus et Flensberg~\cite{bruusManyBodyQuantumTheory2004}.
+
+Dans ce mémoire, nous travaillons dans la limite diluée, $c\ll 1$, où les processus de diffusion sur des défauts différents sont indépendants les uns des autres. Cette limite couvre toutes les concentrations de défauts expérimentalements pertinentes : pour le graphène, une concentration de l'ordre de $c\sim 1\%$ correspond à une densité de défauts de $\sim 2\times 10^{13}$ cm$^{-2}$, qui est un échantillon de piètre qualité. Les processus de diffusion impliquant $p$ défauts distincts sont d'ordres $c^p$ et sont supprimés pour $p>1$ dans cette limite. Ainsi, la \textit{self}-énergie se réduit, au premier ordre en $c$, à la somme des diffusions multiples sur chaque défaut pris isolément, ce qui correspond précisement à la matrice $T$ de la section~\ref{sec:mbt_T}, évaluée sur sa diagonale en $\kv$ et multipliée par le nombre de défauts~\cite{bruusManyBodyQuantumTheory2004}
+\begin{equation}
+    \Sigma_{n\kv }^\text{ed}(\omega) = N_d T_{n\kv}(\omega)+\mathcal{O}(c^2),\label{eqn:sigma_diulée}
+\end{equation}
+où $T_{n\kv}(\omega)\equiv T_{nn}(\kv,\kv;\omega)$ est la version diagonale de la matrice $T$, nous discutons un peu plus bas du pourquoi nous la prenons aussi diagonale en bande. Cette approximation de la limite diluée, appelée Born complète (de l'anglais \textit{full Born approximation}) et aussi connue sous le nom de l'approximation de la matrice $T$, est exacte au premier ordre en concentration et demeure valide quelque soit la force du potentiel de défaut, car la matrice $T$ inclue l'effet d'un défaut à tous les ordre en théorie de la perturbation. De plus, nous ne retenons que la partie diagonale en bande de la matrice $T$, une approximation qui est justifiée si les lacunes sont distribuées également sur les deux sous-réseaux du graphène. Dans cette approximation, la \textit{self}-énergie moyennée (et par conséquent, la fonction de Green) est diagonale en bande. Dans le cas d'un désordre confiné à un seul sous-réseau, cette approximation n'est pas valide puisque qu'un term interbande responsable de l'ouverture d'un gap apparaît. 
+
+Le membre de droite de l'équation~\eqref{eqn:sigma_diulée} est intensif : avec la convention de la section~\ref{sec:M_détails}, les états de Bloch sont normalisés sur la cellule unitaire et le facteur $1/N_\text{uc}$ qui accompgne la normalisation sur le cristal fait de $N_dT$ une quantité proportionnelle à $c$, qui est finie dans la limite thermodynamique. Nous rapportons donc les résultats dans la section~\ref{sec:T_results} sous la forme $\Sigma/c$, indépendante de la concentration.
+
+Une fois que la matrice $T$ est calculée en suivant les développements de la section~\ref{sec:mbt_T} et que le prolongement analytique est effectué, la \textit{self}-énergie s'obtient directement dans l'espace des fréquences réelles (c'est une quantité retardée) par un simple multiplication par un scalaire suivant l'équation~\eqref{eqn:sigma_diulée}. Cette \textit{self}-énergie se décompose en une partie réelle et une partie imaginaire
+\begin{equation}
+    \Sigma_{n\kv}^\text{ed}(\omega) = \Sigma_{n\kv}^{\text{ed}'}(\omega) + i\Sigma_{n\kv}^{\text{ed}''}(\omega).
+\end{equation}
+La partie réelle $\Sigma_{n\kv}^{\text{ed}'}$ renormalise l'énergie des bandes et sa partie imaginaire $\Sigma_{n\kv}^{\text{ed}''}$ définit le taux d'amortissement dû aux défauts $\Gamma_{n\kv}^{\text{ed}} = -2\Sigma_{n\kv}^{\text{ed}''}$. C'est ce taux d'amortissement, avec son homologue au couplage électron-phonon, qui fixe l'élargissement des états électroniques intermédiaires dans les dénominateurs résonants des amplitudes Raman du chapitre~\ref{chap:Raman}. Le temps de vie électronique dû aux défauts est relié au taux d'amortissement par
+\begin{equation}
+    \tau^\text{ed}_{n\kv} = \frac{\hbar}{\Gamma^\text{ed}_{n\kv}} = -\frac{\hbar}{2\Sigma^{\text{ed''}}_{n\kv}}.
+\end{equation}
+
+Il est instructif de situer notre traitement parmis la hiérarchie des approximations usuelles pour la \textit{self}-énergie de désordre. Premièrement, l'approximation de Born tronque la série pour matrice $T$ à ses deux premiers termes, de sorte que la \textit{self}-énergie s'écrit
+\begin{equation}
+    \Sigma_{n\kv}^\text{ed,B}\approx N_d[M+M\mathcal{G}^{(0)}M].
+\end{equation}
+Cette approximation, qui ignore les diffusions multiples sur un même défaut, n'est pas valable dans la limite ou le potentiel induit par les défauts sont forts, tel est le cas pour des lacunes. Nous quantifions cet échec dans la section~\ref{sec:T_results}. Ensuite, nous avons l'approximation de Born complète (ou de la matrice $T$), qui inclue les diffusions multiples sur un même défaut à tous les ordres et est l'approximation dans lequel nous travaillons. La \textit{self}-énergie prend la forme
+\begin{equation}
+    \Sigma_{n\kv}^{\text{ed,T}}\approx N_dT_{n\kv},
+\end{equation}
+et est exacte au premier ordre en concentration des défauts, quelque soit la force du potentiel. Ensuite, l'approximation de la matrice $T$ autocohérente (SCTA, de l'anglais \textit{Self-Consistent $T$-matrix Approximation}) va un cran plus loin en calculant la matrice $T$ avec la fonction de Green moyennée $\overline{\mathcal{G}}$ plutôt qu'avec la fonction de Green non-perturbée $\mathcal{G}^{(0)}$. Cela donne trois équations couplées à résoudre de manière autocohérente
+\begin{equation}
+    \Sigma_{n\kv}^\text{ed,SCTA} = N_d\overline{T}_{n\kv},\quad \overline{T} = M+M\overline{\mathcal{G}}\overline{T},\quad \overline{\mathcal{G}}_{n\kv} = \left[\omega-\xi_{n\kv}-\Sigma_{n\kv}^\text{ed,SCTA}  \right]^{-1}.
+\end{equation}
+La SCTA inclut la rétraction de l'élargissmeent de désordre sur la diffusion elle-même et apporte des corrections d'ordre $\mathcal{O}(c^2)$, donc négligeable dans le limite diluée, sauf au voisinage immédiat des points de Dirac du graphène où la densité d'états est nulle et l'autocohèrence engendre une densité d'états finie induite par le désordre~\cite{peresElectronicPropertiesDisordered2006}. Les états électroniques intermédiaires pertinents pour la double résonance Raman se trouve à plusieurs dixième d'eV du point de Dirac pour la lumière visible utilisée dans les expériences de spectroscopie Raman : les corrections apportées par la SCTA sont négligeables ici et nous les laissons en perspective. Enfin, au-delà de ces approximations à un site, l'approximation du potentiel cohérent (CPA, de l'anglais \textit{Coherent Potential Approximation}) et l'inclusion de diagrammes croisés reliant plusieurs défauts, deviennent nécessaire aux concentrations élevées ou pour les propriétés de transport cohérent, que nous ne considérons pas ici.
+  
+\subsection{Détails computationnels}\label{sec:T_détails}
+Nous décrivons ici comment la matrice $T$ et le taux d'amortissement sont évalués numériquement à partir de la matrice de couplage interpole de la section~\ref{sec:interp_wannier_M}.
+
+La matrice $T$ de l'équation~\eqref{eqn:T_chap} est définie dans la base des états de Bloch. Sur une grille de $N_{\kv_f}$ points avec $N_W$ bandes (ici les cinq fonctions de Wannier $\sigma$,  $\sigma$,  $\sigma$, $\pi$ et $\pi^*$), c'est une matrice dense de dimension $N_{\kv_f}N_W$, à inverser à chaque énergie. À titre d'exemple, simplement la stocker sur une grille de $120\times 120$ occupe $\sim 80$ Go en mémoire. Son inversion coûte $\mathcal{O}((N_{\kv_f}N_W)^3)$ et le taux d'amortissement, qui requiert la matrice $T$ à l'énergie de chaque état, porte le coût à $\mathcal{O}((N_{\kv_f}N_W)^4)$. Même une grille $60\times 60$ est impraticable.
+
+La section~\ref{sec:M_results} montre que, dans la base des fonctions de Wannier, les élements $M_{ij}(\Rv',\Rv)$ sont négligeables dès que $\Rv$ ou $\Rv'$ s'éloigne de la lacune. Or, en itérant l'équation récursive~\eqref{eqn:T_chap}, la matrice $T$ s'écrit comme la série $M+M\mathcal{G}^{(0)}M+M\mathcal{G}^{(0)}M\mathcal{G}^{(0)}M+\dots$, dont chaque terme est multiplié à gauche et à droite par $M$ : la matrice $T_{ij}(\Rv',\Rv)$ est donc elle aussi négligeable dès que $\Rv$ ou $\Rv'$ s'éloigne de la lacune. Il suffit alors de travailler avec les $N_L$ cellules situées à distance $R\le R_\text{cut}$ de la lacune (recentrée à l'origine), ce qui donne une base de taille $N_LN_W$ au lieu de $N_{\kv_f}N_W$. Comme $N_L$ est généralement beaucoup plus petit que $N_{\kv_f}$, cela est computationnelement avantageux. Notons $M_\text{loc}$ la matrice de couplage restreinte à ces mailles, de dimension $N_LN_W$, et $g^{(0)}$ la fonction de Green du système non-perturbé restreinte de la même façon. Dans ce sous-espace, l'équation~\eqref{eqn:T_chap} devient
+\begin{equation}
+    t(\omega) = M_\text{loc}\left[\mathbb{I}-g^{(0)}(\omega)M_\text{loc}\right]^{-1}\label{eqn:t_loc},
+\end{equation}
+et requiert une inversion de $N_LN_W$ au lieu de $N_{\kv_f}N_W$. Cette réécriture est exacte si $R_\text{cut}$ englobe toutes les cellules où $M$ est non-négligeable. Le paramètre $R_\text{cut}$ est alors un paramètre de convergence contrôlée à la section~\ref{sec:T_results}.
+
+Il est important de souligner que $g^{(0)}$ est la fonction de Green du système infini, dont on ne garde que les éléments entres les fonctions de Wanner voisines de la lacune : ce n'est pas la fonction de Green d'un morceau fini de graphène isolé. Elle s'écrit, dans la base des fonctions de Wannier
+\begin{equation}
+    g^{(0)}_{ij}(\Rv',\Rv;\omega) = \frac{1}{N_{\kv}}\sum_\kv e^{i\kv\cdot(\Rv'-\Rv)}\left[(\omega+i\eta)\mathbb{I}-H_W(\kv)\right]^{-1}_{ij}\label{eqn:g_loc}
+\end{equation}
+où $H_W(\kv)=\sum_{\Rv}e^{i\kv\cdot\Rv}H_W(\Rv)$ est l'Hamiltonien de Wannier interpolé, de dimension $N_W\times N_W$, et où la somme court sur une grille interne de $N_\kv$ points. Cette grille interne est indépendante de la grille sur laquelle $\Gamma_{n\kv}$ sera finalement évaluée. Chaque points ne coûte qu'une inversion de dimension $N_W$, de sorte que la grille interne peut être très dense, ce qui autorise un $\eta$ petit qui est lui aussi un paramètre à faire converger dans la section~\ref{sec:T_results}. Ce schéma est celui de l'annexe B de la référence~\cite{}, formulé ici dans la base des fonctions de Wannier plutôt que dans une base d'orbitales atomiques.
+
+Enfin, il reste à calculer l'élément diagonal $T_{n\kv}$ de la section~\ref{sec:mbt_sigma} à partir de $t$, ce qui requiert d'écrire l'état de Bloch $\ket{\psi_{n\kv}}$ dans la base de fonctions de Wannier. La diagonalisation de l'Hamiltonien interpolé $H_W(\kv)$ fournit la matrice de tranformation $V^{(\kv)}$ requise, et l'état de Bloch écrit dans la base des fonctions de Wannier prend la forme
+\begin{equation}
+    \ket{\psi_{n\kv}} = \sum_{j\Rv} e^{i\kv\cdot\Rv} V^{(\kv)}_{jn}\ket{j\Rv}\label{eqn:Bloch_Wannier},
+\end{equation}
+où $\ket{j\Rv}$ est la $j$-ième fonction de Wannier, localisée dans la cellule $\Rv$. Le taux d'amortissement par défaut s'obtient alors en prenant l'élément de matrice de $t$ entre ces états et lui-même
+\begin{equation}
+    \Gamma^\text{ed}_{n\kv}/c = -2\mathrm{Im}\sum_{ij}\sum_{\Rv\Rv'}V_{in}^{(\kv)*}e^{-i\kv\cdot\Rv'}t_{ij}(\Rv',\Rv;\varepsilon_{n\kv})V^{(\kv)}_{jn} e^{i\kv\cdot\Rv}
+\end{equation}
+où les sommes sur $\Rv$ et $\Rv'$ ne courent que sur les $N_L$ cellules retenues. Le facteur $1/c$ provient de la normalisation intensive de $M$ (voir la section~\ref{sec:M_détails}), la matrice $t$ calculée vaut ainsi $N_\text{uc}$ fois la matrice $T$ de la section~\ref{sec:mbt_sigma}, de sorte que $\Sigma = ct$ et que la quantité obtenue est le taux d'amortissement par unité de concentration, indépendant de $c$.
+
+En pratique, le taux d'amortissement doit être évalué à l'énergie $\varepsilon_{n\kv_f}$ de chaque état de la grille de sortie $\kv_f$, ce qui demanderait de reconstruire $g^{(0)}$ autant de fois qu'il y a d'état $\ket{\psi_{n\kv_f}}$. Nous évitons ce coût astronomique en construisant $g^{(0)}(\omega)$ une seule fois sur une grille d'énergie régulière, de pas $\eta/n_e$, couvrant une fenêtre de $\pm 3$ eV autour du point de Dirac, puis en évaluant chaque état au point de la grille le plus proche de $\varepsilon_{n\kv_f}$. Comme $g^{(0)}$ varie sur l'échelle de $\eta$, cette approximation introduit une erreur qui décroît avec le pas et qui vaut 0.5\% pour $n_e = 8$. C'est la seule approximation numérique de ce schéma qui ne soit pas un paramète de convergence au sens strict et nous la fixons bien en deçà des autres sources d'incertitudes. 
+
+La chaîne de calcul est protégée par une série de contrôle qui interrompent l'exécution plutôt que d'émettre un avertissement : les matrices $U^{(\kv)}$ et l'Hamiltonien $H_W$ doivent provenir de la même procédure de Wannierisation sur la même grille (vérifié par les empruntes de fichiers), le poids de $M_{ij}(\Rv',\Rv)$ doit être maximal à l'origine (après le recentrage), $M_\text{loc}$ doit être hermitienne, $\Gamma_{n\kv}$ doit être positif et les étiquettes de normalisation et d'unités des fichiers d'entrée doivent (voir la section~\ref{sec:M_détails}) doivent être celles attendues. Le schéma local est également validé contre l'inversion dense de l'équation~\eqref{eqn:T_chap} sur la super-cellule $5\times 5$, où celle-ci reste praticable. Ces tests sont effectuées dans la prochaine section et établissent la cohérence interne de la méthode, mais ils ne peuvent détecter une erreur commune aux deux méthodes comparées, telle une convention d'unités ou une normalisation. Ce rôle revient à la comparaison avec la littérature, également effectué dans la prochaine section. 
+\subsection{Résultats pour le graphène}\label{sec:T_results}
 \section{Conclusion}

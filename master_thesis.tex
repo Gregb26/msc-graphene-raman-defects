@@ -62,7 +62,7 @@
   \setlength{\abovedisplayshortskip}{3pt}%
   \setlength{\belowdisplayshortskip}{3pt}%
 }
-
+\allowdisplaybreaks[2]
 %%\hypersetup{
 %%  pdftitle = {Vers la simulation du spectre Raman résonant du graphène avec des défauts à partir des premiers principes},
 %%  pdfauthor = {Grégoire Barrette},
@@ -163,20 +163,20 @@
 \tableofcontents
 
 \cleardoublepage
-\listoftables
+%\listoftables
 
 \cleardoublepage
-\listoffigures
+%\listoffigures
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LISTE DES SIGLES ET ABRÉVIATION %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\include{pages_liminaires/sigles_abbréviations}
+\include{pages_liminaires/sigles_abbréviations}
 
 %%------------------------------------------------- %
 %%              liste des symboles                  %
 %%------------------------------------------------- %
-%\include{pages_liminaires/symboles}
+\include{pages_liminaires/symboles}
 
 %%------------------------------------------------- %
 %%            Remerciements                         %
@@ -214,7 +214,6 @@
 %\include{annexes/pbe}
 %\include{annexes/raman}
 \include{annexes/défauts}
-%\include{annexes/eph}
 %\include{annexes/paramètres}
 
 

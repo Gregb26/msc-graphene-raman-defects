@@ -228,7 +228,7 @@ Le choix de la taille des super-cellules a par ailleurs une influence significat
 
 \noindent
 La troisième colonne de ce tableau montre que le déplacement du niveau de Fermi à la création d'une lacune neutre vaut moins de 21 meV pour la famille de tailles avec $N$ divisible par trois, tandis qu'il vaut de $0{,}2$ à $0{,}9$ eV pour toutes les autres tailles, y compris $10\times 10$ et $11\times 11 $, qui sont des échantillonnages plus denses que $9\times 9$. La quatrième colonne de ce tableau et la figure~\ref{fig:Ved_zoom} montrent la conséquence sur le potentiel de défaut local au voisinage du site.
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_Ved_zoom.pdf}
     \caption[Potentiel de défaut local au voisinage de la lacune pour deux tailles de super-cellule]{Potentiel de défaut local $V_\text{ed}^\text{L}$ dans le plan du graphène $(z=z_C)$, dans un rayon de $3$~\AA~autour de la lacune représentée par une croix, pour les super-cellules (a) $8\times 8$ et (b) $9\times 9$. L'échelle est symétrique logarithmique et linéaire entre $\pm 10^{-2}$ eV. Nous voyons une différence qualitative de la forme et de l'orientation des lobes du potentiel de défaut entre les deux tailles de super-cellules. Les deux super-cellules partagent les paramètres de calcul et la
@@ -279,7 +279,7 @@ Nous présentons ici la matrice de couplage électron-défaut du graphène avec 
 \noindent\textbf{Remplissage par zéros}
 
 La figure~\ref{fig:Ved} (a,b) montre le potentiel de défaut local $V_\text{ed}^\text{L}$ dans le plan du graphène pour les super-cellules $5\times 5$ et $9\times 9$, et la figure~\ref{fig:Ved} (c) sa moyenne azimutale, en excluant un rayon de 0,5~\AA{} autour de chaque atome, en fonction de la distance au site de la lacune pour les six tailles. 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_Ved.pdf}
     \caption[Potentiel de défaut local de la lacune dans le graphène.]{Potentiel de défaut local $V_\text{ed}^\text{L}$ de la lacune. (a,b) Dans le plan du graphène ($z=z_\text{C}$), pour les super-cellules $5\times 5$ et $9\times 9$ avec une échelle de couleur symétrique logarithmique, linéaire entre $\pm 10 ^{-2}$ eV. Notons la zone positive au coin de la super-cellule $5\times 5 $ en (a), absente en (b), qui représente l'interaction de la lacune avec ses images périodiques. (c) Moyenne azimutale autour du site de la lacune, excluant un rayon de $r_\text{at} = 0{,}5$~\AA~autour des cœurs atomiques, pour les six tailles de super-cellules, sans soustraction de la moyenne. Chaque courbe s'arrête à la demi-largeur de la super-cellule. Les lignes verticales marquent la distance au premier voisin (1,42~\AA) et le rayon de coupure $R_\text{cut}=3$ déterminé à la section~\ref{sec:T_results}. La famille avec $N$ divisible par trois ($N=3m$) est identifiée dans la légende.}
@@ -293,7 +293,7 @@ frontière, où le fond, quoique faible, ne s'annule pas encore. Le potentiel é
 \noindent\textbf{Convention intensive}
 
 La figure~\ref{fig:M_scaling} vérifie la convention de normalisation de la section~\ref{sec:M_détails}, \textit{i.e.} la convention intensive de $M$, en comparant le maximum de $|M|$ sur les 20 bandes pour les six tailles de super-cellules, calculé d'une part sur les grille grossières $N\times N$ sans remplissage par zéros, et d'autre part sur les grilles élargies $pN\times pN$ après remplissage.
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_M_scaling_final.pdf}
     \caption[Convention intensive des éléments de matrice.]{Maximum de $|M_{mn}(\kv',\kv)|$ sur les 20 bandes avec des états de Bloch normalisés sur la cellule unitaire, en fonction de la taille $N$ de la super-cellule. Les croix représentent les grilles grossières $N\times N$ de la super-cellule sans remplissage et les cercles représentent les grilles élargies $pN\times pN$ après remplissage. L'indépendance en $N$ vérifie la convention intensive de la section~\ref{sec:M_détails}.}
@@ -304,7 +304,7 @@ Pour les grilles élargies, le maximum de $|M|$ sur les 20 bandes varie avec une
 \noindent\textbf{Éléments de matrice au point de Dirac}
 
 La figure~\ref{fig:M_map} (a,b) présente les éléments de matrice diagonaux en bande $\tilde M\equiv A_\text{cell}|M_{nn}(\kv',K)|$ pour les bandes $\pi$ et $\pi^*$ avec l'état initial fixé au point de Dirac $K$ et l'état final $\kv'$ parcourant la zone de Brillouin de la cellule unitaire. La quantité $A_\text{cell}=5{,}27$~\AA$^{2}$~est l'aire de la cellule unitaire et $\tilde M$ s'exprime en eV\,\AA$^{2}$.
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_M_map_final.pdf}
     \caption[Éléments de matrice électron-lacune au point de Dirac.]{Éléments de matrice électron-lacune pour l'état initial au point de Dirac $K$ (cercle) et l'état final $\kv'$ parcourant la zone de Brillouin de la super-cellule $9\times 9$ et sa grille élargie $27\times 27$. (a,b) Éléments de matrice diagonaux en bande $\tilde M = A_\text{cell}|M_{nn}(\kv',K)|$ pour les bandes $n=\pi$ (a) et $n=\pi^*$ (b), en eV\,\AA$^2$. (c,d) Contributions locale et non-locale à $\tilde M_\pi$, projetées sur la direction de l'élément total, $A_\text{cell}\,\mathrm{Re}[\hat M^* M^\text{X}]$ avec $\hat M = M/|M|$ et
@@ -347,7 +347,7 @@ Cette différence a une origine simple : la partie locale est une différence de
 \noindent\textbf{Localisation dans la base de Wannier}
 
 La figure~\ref{fig:M_locality} présente la norme des blocs $M_{ij}(\Rv',\bm 0)$ en fonction de la distance $\Rv'$ à la lacune, après recentrage, pour les quatre super-cellules $N=5,8,9,12$ sur la grille élargie obtenue par remplissage de zéros et, pour $N=5,8$, sur la grille grossière $N\times N$.
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_locality_final.pdf}
     \caption[Localisation de la matrice de couplage électron-lacune dans la base des fonctions de Wannier.]{Norme de Frobenius des blocs
@@ -393,7 +393,7 @@ Le tableau~\ref{tab:rcut_M} mesure l'effet de la troncature sur les éléments d
 \noindent\textbf{Autres vérifications}
 
 Le tableau~\ref{tab:tests_M} rassemble toutes les vérifications de la chaîne de calcul de la matrice $M$. Le test le plus contraignant porte sur la machinerie de calcul elle-même : en l'appliquant au potentiel de Kohn-Sham convergé de la super-cellule parfaite (et en ajoutant l'énergie cinétique) plutôt qu'au potentiel de défaut, elle doit reconstruire la matrice Hamiltonienne de Kohn-Sham dans la base de ses états propres, c'est-à-dire retourner les valeurs propres $\varepsilon_{n\kv}$ sur la diagonale et zéro ailleurs. La figure~\ref{fig:ks_reconstruction} montre les résultats pour les six tailles.
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_ks_reconstruction.pdf}
     \caption[Reconstruction des valeurs propres de Kohn-Sham.]{Écart
@@ -615,7 +615,7 @@ Nous présentons ici le taux d'amortissement dû aux défauts dans le graphène 
 \noindent\textbf{Convergence}
 
 Trois paramètres numériques contrôlent directement le taux d'amortissement : le rayon de coupure $R_\text{cut}$, la densité de la grille de sortie $\kv_f$ et l'élargissement $\eta$. De plus, la taille $N$ de la super-cellule contrôle la qualité de la matrice de couplage $M$ et donc, indirectement, le taux d'amortissement. La figure~\ref{fig:convergence} et le tableau~\ref{tab:convergence_gamma} rapportent la médiane de $\Gamma N_\text{cells}$ sur les états des bandes $\pi$ et $\pi^*$ situés dans une fenêtre de $\pm 3$ eV autour de $E_D$, en fonction du rayon de coupure, de la densité de la grille de sortie et de l'élargissement.
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_convergence.pdf}
     \caption[Convergence du taux d'amortissement par unité de
@@ -650,7 +650,7 @@ Trois paramètres numériques contrôlent directement le taux d'amortissement : 
 \end{table}
 Le comportement en $R_\text{cut}$ est le même pour toutes les tailles : la passage du site seul $R_\text{cut}=0$ à $R_\text{cut} =1$ abaisse le taux d'amortissment de 3-4\%, celui de 1 à 2 de 1\%, celui de 2 à 3 le modifie de moins de 0,4\% et celui de 3 à 4 de 0,2\% (calculé uniquement pour la super-cellule de référence). Le taux d'amortissement converge nettement plus vite en $R_\text{cut}$ que les éléments de matrice interpolés eux-mêmes (voir le tableau~\ref{tab:rcut_M}), pour lesquels l'écart à $R_\text{cut}=3$ est encore de 2 à 3\%. Selon la figure~\ref{fig:convergence} (b), le doublement de la grille de sortie et la division de $\eta$ par deux changent la médiane de moins de 0,5\%. Nous retenons donc $R_\text{cut}=3$, une grille de sortie de $240\times 240$ points et $\eta=20$ meV comme paramètres de production avec une grille interne de $300\times 300$ points. Chacun est au-delà du points où le taux d'amortissement cesse de varier à mieux que 0,5\%. La valeur de $R_\text{cut}=3$ offre en outre le meilleur compromis entre précision et coût : le passage à $R_\text{cut}=4$ multiplie par près de deux la dimension du sous-espace local pour une gain marginal de 0,2\%.
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_level2.pdf}
     \caption[Convergence du taux d'amortissement en taille de
@@ -691,7 +691,7 @@ Le tableau~\ref{tab:tests_T} rassemble les vérifications du schéma local de la
 
 \noindent\textbf{Taux d'amortissement et approximation de Born}
 
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_spectral_final.pdf}
     \caption[Taux d'amortissement et signatures spectrales d'une lacune

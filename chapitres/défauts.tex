@@ -153,7 +153,9 @@ la matrice de couplage sur une grille fine arbitraire. La démarche suit
 la stratégie éprouvée pour le couplage électron-phonon~\cite{giustinoElectronphononInteractionUsing2007a}.
 
 Le point de départ est la matrice de couplage calculée dans l'espace
-réciproque sur la grille grossière $\{\kv_c\}$ de la super-cellule, selon
+réciproque sur la grille $\{\kv_c\}$ de la super-cellule — en pratique la grille
+élargie $pN\times pN$ obtenue par remplissage de zéros à la
+section~\ref{sec:M_détails} — selon
 les développements de la section~\ref{sec:M_défaut} :
 \begin{equation}
     M_{mn}(\kv_c',\kv_c) = \matrixel{\psi_{m\kv_c'}}{V_\text{ed}(\rv)}{\psi_{n\kv_c}}.
@@ -402,9 +404,9 @@ Le tableau~\ref{tab:tests_M} rassemble toutes les vérifications de la chaîne d
     La moyenne et le maximum sont sur toutes les bandes et tous les points $\kv$, après le retrait d'un décalage constant entre les deux références d'énergie. L'exercice est fait pour les grilles $N\times N$, où la densité convergée est la même pour les états et le potentiel, et pour les grilles élargies $pN\times pN$, où la densité auto-cohérente est différente.}
     \label{fig:ks_reconstruction}
 \end{figure}
-Pour les grilles grossières $N\times N$, où les états de Bloch et le potentiel proviennent du même calcul autocohérent, les valeurs propres de \texttt{Quantum ESPRESSO} sont reproduites à 2--32 $\mu$eV près et les éléments hors diagonaux sont inférieurs à $10^{-6}$ en valeur relative. Ce test valide contre une référence indépendante du code le repliement des vecteurs $\Gv$, les facteurs de forme, les phases atomiques, la normalisation et les préfacteurs communs aux deux parties de la matrice de couplage. Seule la soustraction des deux super-cellules lui échappe. Sur les grilles élargies $pN\times pN$, l'écart atteint 0,2 à 10 meV, ce qui est attendu puisque les états de Bloch proviennent de la cellule unitaire avec la grille dense $pN\times pN$ tandis que le potentiel vient du calcul de la super-cellule, dont l'échantillonnage à $\Gamma$ équivaut à une grille $N\times N$. Les densités autocohérentes ne sont donc pas identiques, et le potentiel n'est pas exactement celui dont les états de Bloch sont les états propres. Cette incohérence est inhérente à toute approche par super-cellule et ne pose pas un problème pour notre méthode.
+Pour les grilles grossières $N\times N$, où les états de Bloch et le potentiel proviennent du même calcul autocohérent, les valeurs propres de \texttt{Quantum ESPRESSO} sont reproduites à 2--32 $\mu$eV près et les éléments hors diagonaux sont inférieurs à $10^{-6}$ en valeur relative. Ce test valide contre une référence indépendante du code le repliement des vecteurs $\Gv$, les facteurs de forme, les phases atomiques, la normalisation et les préfacteurs communs aux deux parties de la matrice de couplage. Seule la soustraction des deux super-cellules lui échappe. Sur les grilles élargies $pN\times pN$, l'écart atteint 0,2 à 10 meV, ce qui est attendu puisque les états de Bloch proviennent de la cellule unitaire avec la grille élargie $pN\times pN$ tandis que le potentiel vient du calcul de la super-cellule, dont l'échantillonnage à $\Gamma$ équivaut à une grille $N\times N$. Les densités autocohérentes ne sont donc pas identiques, et le potentiel n'est pas exactement celui dont les états de Bloch sont les états propres. Cette incohérence est inhérente à toute approche par super-cellule et ne pose pas un problème pour notre méthode.
 
-Les autres tests sont des vérifications de cohérence interne. L'hermiticité des matrices de couplage est respectée à $10^{-14}$. Le remplissage par zéros préserve les coefficients de Fourier aux points coïncidents à $10^{-15}$. Le passage de 16 à 20 bandes modifie les éléments de matrice des bandes retenues de $10^{-7}$ en valeur relative. La transformée de Fourier $\kv\to\Rv\to\kv$ reproduit les éléments de matrice de départ à $10^{-14}$ près, et la transformée aller-retour Bloch$\to$Wannier$\to$Bloch (les équations~\eqref{eqn:M_wannier} et~\eqref{eqn:M_interp}) évaluée aux points de la grille grossière elle-même, à $10^{-15}$ près. Le seul écart supérieur au bruit numérique, de $10^{-3}$, apparaît en comparant les éléments de matrice des grilles grossières et élargies aux points $\kv$ communs. Cet écart a la même origine que l'écart de reconstruction sur les grilles denses c.-à-d. la différence entre les deux densités autocohérentes, et non la chaîne de calcul de $M$.
+Les autres tests sont des vérifications de cohérence interne. L'hermiticité des matrices de couplage est respectée à $10^{-14}$. Le remplissage par zéros préserve les coefficients de Fourier aux points coïncidents à $10^{-15}$. Le passage de 16 à 20 bandes modifie les éléments de matrice des bandes retenues de $10^{-7}$ en valeur relative. La transformée de Fourier $\kv\to\Rv\to\kv$ reproduit les éléments de matrice de départ à $10^{-14}$ près, et la transformée aller-retour Bloch$\to$Wannier$\to$Bloch (les équations~\eqref{eqn:M_wannier} et~\eqref{eqn:M_interp}) évaluée aux points de la grille grossière elle-même, à $10^{-15}$ près. Le seul écart supérieur au bruit numérique, de $10^{-3}$, apparaît en comparant les éléments de matrice des grilles grossières et élargies aux points $\kv$ communs. Cet écart a la même origine que l'écart de reconstruction sur les grilles élargies c.-à-d. la différence entre les deux densités autocohérentes, et non la chaîne de calcul de $M$.
 \begin{table}[htbp]
     \centering
     \small
@@ -418,8 +420,8 @@ Les autres tests sont des vérifications de cohérence interne. L'hermiticité d
         \hline
         Reconstruction KS, grille $N\times N$ & $\max|\varepsilon_\text{calc}-\varepsilon_\text{QE}|$ & 2--32~$\mu$eV & --- \\
         \quad éléments hors diagonaux & rel. à $\max|\varepsilon|$ & $\le 1{,}3\times10^{-6}$ & --- \\
-        Reconstruction KS, grille dense & $\max|\varepsilon_\text{calc}-\varepsilon_\text{QE}|$ & 0,2--10~meV & --- \\
-        Hermiticité ($M$ dense) & $\max|M-M^\dagger|/\max|M|$ & $\le 4\times10^{-14}$ & $10^{-12}$ \\
+        Reconstruction KS, grille élargie & $\max|\varepsilon_\text{calc}-\varepsilon_\text{QE}|$ & 0,2--10~meV & --- \\
+        Hermiticité ($M$ élargi) & $\max|M-M^\dagger|/\max|M|$ & $\le 4\times10^{-14}$ & $10^{-12}$ \\
         Remplissage, coefficients coïncidents & $\max|\Delta M^\text{L}|/\max|M^\text{L}|$ & $1{,}3\times10^{-15}$ & $10^{-10}$ \\
         Remplissage, points $\kv$ communs & écart rel. valeurs singulières & $1{,}2\times10^{-3}$ & $2\times10^{-3}$ \\
         16 $\to$ 20 bandes & écart rel. valeurs singulières & $1{,}2\times10^{-7}$ & $10^{-5}$ \\

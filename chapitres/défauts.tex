@@ -7,7 +7,7 @@ Contrairement au couplage électron-phonon, pour lequel la communauté dispose d
 
 L'élément central à l'étude de défauts dans un matériau à partir des premiers principes est la matrice de couplage électron-défaut
 \begin{equation}
-    M_{mn}(\kv',\kv) = \bra{\psi_{m\kv'}}V_\text{ed}(\rv)\ket{\psi_{n\kv}},\label{eqn:M}
+    M_{mn}(\kv',\kv) = \matrixel{\psi_{m\kv'}}{V_\text{ed}(\rv)}{\psi_{n\kv}},\label{eqn:M}
 \end{equation}
 qui correspond physiquement à l'amplitude de probabilité que l'électron dans l'état $n\kv$ diffuse vers l'état $m\kv'$ à cause du potentiel $V_\text{ed}(\rv)$ induit par le défaut dans le matériau. L'Hamiltonien associé à ce couplage est donné par
 \begin{equation}
@@ -43,7 +43,7 @@ Ces deux parties sont calculées indépendamment, puis additionnées pour retrou
 
 Commençons par dériver une expression pour la partie locale de la matrice. Dans l'espace réel, nous avons
 \begin{equation}
-    M^\text{L}_{mn}(\kv',\kv) = \bra{\psi_{m\kv'}}V_\text{ed}^\text{L}(\rv)\ket{\psi_{n\kv}} = \int_{\Omega_\text{BvK}}d^3\rv\,\psi_{m\kv'}^*(\rv)\,V^\text{L}_\text{ed}(\rv)\,\psi_{n\kv}(\rv),\label{eqn:ML_réel}
+    M^\text{L}_{mn}(\kv',\kv) = \matrixel{\psi_{m\kv'}}{V_\text{ed}^\text{L}(\rv)}{\psi_{n\kv}} = \int_{\Omega_\text{BvK}}d^3\rv\,\psi_{m\kv'}^*(\rv)\,V^\text{L}_\text{ed}(\rv)\,\psi_{n\kv}(\rv),\label{eqn:ML_réel}
 \end{equation}
 où l'intégration se fait sur le volume du cristal $\Omega_\text{BvK}$. Le potentiel $V_\text{ed}^\text{L}(\rv)$ est calculé dans une super-cellule et donc est défini sur la grille de la super-cellule. Toutefois, les états $\ket{\psi_{n\kv}}$ sont les états propres sur la grille de la unitaire parfaite. Pour évaluer l'intégrande, ces états de Bloch doivent être échantillonnés sur la même grille  que le potentiel $V_\text{ed}^\text{L}(\rv)$, c'est-à-dire celle de la super-cellule. Évaluer cette intégrale directement dans l'espace réel exigerait de représenter chaque état de Bloch sur la grille de la super-cellule, dont l'empreinte en mémoire devient rapidement prohibitive lorsque la taille de la super-cellule augmente. Il est plus efficace de passer à l'espace réciproque, où la matrice de couplage s'exprime à partir des seules quantités de la cellule unitaire. Pour ce faire, il est utile de développer le potentiel local en série de Fourier
 \begin{equation}
@@ -96,19 +96,19 @@ D'autres schémas d'interpolation auraient pu être envisagés pour évaluer $\w
 
 La partie non-locale de la matrice est due entièrement aux pseudo-potentiels. En pratique, nous calculons la partie non-locale pour chacune des deux super-cellules séparément, puis la partie non-locale de la matrice est obtenue en soustrayant les contributions des deux super-cellules. Pour une des deux super-cellules, la partie non-locale s'obtient en calculant
 \begin{equation}
-    M_{mn}^\text{NL}(\kv',\kv) = \bra{\psi_{m\kv'}}\hat{V}_\text{ed}^\text{NL}\ket{\psi_{n\kv}} = \sum_\alpha\sum_{i\ell m_\ell}\bra{\psi_{m\kv'}}\ket{\beta^{(\alpha)}_{i\ell m_\ell}}E_{i\ell}^{(\alpha)}\bra{\beta^{(\alpha)}_{i\ell m_\ell}}\ket{\psi_{n\kv}}.\label{eqn:M_NL}
+    M_{mn}^\text{NL}(\kv',\kv) = \matrixel{\psi_{m\kv'}}{\hat{V}_\text{ed}^\text{NL}}{\psi_{n\kv}} = \sum_\alpha\sum_{i\ell m_\ell}\braket{\psi_{m\kv'}}{\beta^{(\alpha)}_{i\ell m_\ell}}E_{i\ell}^{(\alpha)}\braket{\beta^{(\alpha)}_{i\ell m_\ell}}{\psi_{n\kv}}.\label{eqn:M_NL}
 \end{equation}
 Nous devons évaluer le chevauchement entre les états de Bloch et les projecteurs de KB. Dans l'espace réel, nous avons
 \begin{equation}
-    \bra{\psi_{n\kv}}\ket{\beta_{i\ell m_\ell}^{(\alpha)}} = \int d^3\rv\,\bra{\psi_{n\kv}}\ket{\rv}\bra{\rv}\ket{\beta_{i\ell m_\ell}^{(\alpha)}}.
+    \braket{\psi_{n\kv}}{\beta_{i\ell m_\ell}^{(\alpha)}} = \int d^3\rv\,\braket{\psi_{n\kv}}{\rv}\braket{\rv}{\beta_{i\ell m_\ell}^{(\alpha)}}.
 \end{equation}
 En utilisant la forme de l'équation~\eqref{betar} pour la représentation du projecteur dans l'espace réel ainsi que le développement de la fonction d'onde dans la base d'ondes planes, nous avons
 \begin{equation}
-    \bra{\psi_{n\kv}}\ket{\beta_{i\ell m_\ell}^{(\alpha)}} =\frac{1}{\sqrt{\Omega_\text{uc}}}\sum_\Gv C^*_{n\kv}(\Gv)\int d^3\rv\,e^{-i(\kv+\Gv)\cdot\rv}\frac{\beta_{i\ell}^{(\alpha)}(|\rv-\bm{\tau}_\alpha|)Y_\ell^{m_\ell}(\widehat{\rv-\bm{\tau}_\alpha})}{|\rv-\bm{\tau}_\alpha|},
+    \braket{\psi_{n\kv}}{\beta_{i\ell m_\ell}^{(\alpha)}} =\frac{1}{\sqrt{\Omega_\text{uc}}}\sum_\Gv C^*_{n\kv}(\Gv)\int d^3\rv\,e^{-i(\kv+\Gv)\cdot\rv}\frac{\beta_{i\ell}^{(\alpha)}(|\rv-\bm{\tau}_\alpha|)Y_\ell^{m_\ell}(\widehat{\rv-\bm{\tau}_\alpha})}{|\rv-\bm{\tau}_\alpha|},
 \end{equation}
 où ici $\bm{\tau}_\alpha$ identifie la position des ions $\alpha$ dans la super-cellule. L'intégrale se simplifie en effectuant le changement de variable $\rv'\equiv\rv-\bm{\tau}_\alpha$, qui ne change pas la mesure de l'intégrale
 \begin{equation}
-    \bra{\psi_{n\kv}}\ket{\beta_{i\ell m_\ell}^{(\alpha)}} =\frac{1}{\sqrt{\Omega_\text{uc}}}\sum_\Gv C^*_{n\kv}(\Gv)e^{-i(\kv+\Gv)\cdot\bm{\tau}_{\alpha}}\int d^3\rv'\, e^{-i(\kv+\Gv)\cdot\rv'}\frac{\beta_{i\ell}^{(\alpha)}(|\rv'|)Y_\ell^{m_\ell}(\hat{\rv}')}{|\rv'|}.
+    \braket{\psi_{n\kv}}{\beta_{i\ell m_\ell}^{(\alpha)}} =\frac{1}{\sqrt{\Omega_\text{uc}}}\sum_\Gv C^*_{n\kv}(\Gv)e^{-i(\kv+\Gv)\cdot\bm{\tau}_{\alpha}}\int d^3\rv'\, e^{-i(\kv+\Gv)\cdot\rv'}\frac{\beta_{i\ell}^{(\alpha)}(|\rv'|)Y_\ell^{m_\ell}(\hat{\rv}')}{|\rv'|}.
 \end{equation}
 Une autre simplification s'obtient en faisant le développement de Rayleigh de l'onde plane dans l'intégrale sur les harmoniques sphériques $Y_\ell^{m_\ell}(\hat{\rv})$ et de fonctions de Bessel sphériques $j_\ell(qr)$
 \begin{equation}
@@ -116,7 +116,7 @@ Une autre simplification s'obtient en faisant le développement de Rayleigh de l
 \end{equation}
 où $qr$ est le produit des normes des vecteurs $\qv$ et $\rv$. Avec ce développement, le chevauchement devient
 \begin{align}
-    \bra{\psi_{n\kv}}\ket{\beta_{i\ell m_\ell}^{(\alpha)}} &=\frac{4\pi}{\sqrt{\Omega_\text{uc}}}\sum_\Gv\sum_{\ell'm_\ell'}(-i)^{\ell'}C^*_{n\kv}(\Gv)e^{-i\Kv\cdot\bm{\tau}_\alpha}Y_{\ell'}^{m_\ell'}(\widehat{\Kv})\notag\\
+    \braket{\psi_{n\kv}}{\beta_{i\ell m_\ell}^{(\alpha)}} &=\frac{4\pi}{\sqrt{\Omega_\text{uc}}}\sum_\Gv\sum_{\ell'm_\ell'}(-i)^{\ell'}C^*_{n\kv}(\Gv)e^{-i\Kv\cdot\bm{\tau}_\alpha}Y_{\ell'}^{m_\ell'}(\widehat{\Kv})\notag\\
     &\qquad\times\int d^3\rv'\frac{\beta_{i\ell}^{(\alpha)}(|\rv'|)j_{\ell'}(Kr')Y_{\ell'}^{*m_\ell'}(\hat{\rv}')Y_{\ell}^{m_\ell}(\hat{\rv}')}{|\rv'|},\label{eqn:beta_nk_1}
 \end{align}
 où nous avons défini $\Kv\equiv\kv+\Gv$ et $K=|\Kv|$. Le but de ce développement est de simplifier l'intégrale en exploitant l'orthonormalité des harmoniques sphériques en passant aux coordonnées sphériques
@@ -125,7 +125,7 @@ où nous avons défini $\Kv\equiv\kv+\Gv$ et $K=|\Kv|$. Le but de ce développem
 \end{equation}
 Ici, nous avons défini le facteur de forme du pseudo-potentiel dans l'espace réciproque par $F_{i\ell}^{(\alpha)}(K)$, $r'=|\rv'|$ et l'intégrale sur les angles sphériques nous permet de faire la somme sur $\ell'$ et $m_\ell'$ dans l'équation~\eqref{eqn:beta_nk_1}, ce qui donne
 \begin{equation}
-    \bra{\psi_{n\kv}}\ket{\beta_{i\ell m_\ell}^{(\alpha)}} =\frac{4\pi}{\sqrt{\Omega_\text{uc}}}\sum_\Gv(-i)^\ell C_{n\kv}^*(\Gv)e^{-i\Kv\cdot\bm{\tau}_\alpha}Y_\ell^{m_\ell}(\widehat{\Kv})F_{i\ell}^{(\alpha)}(K),
+    \braket{\psi_{n\kv}}{\beta_{i\ell m_\ell}^{(\alpha)}} =\frac{4\pi}{\sqrt{\Omega_\text{uc}}}\sum_\Gv(-i)^\ell C_{n\kv}^*(\Gv)e^{-i\Kv\cdot\bm{\tau}_\alpha}Y_\ell^{m_\ell}(\widehat{\Kv})F_{i\ell}^{(\alpha)}(K),
 \end{equation}
 et qui constitue l'expression finale du chevauchement entre les états de Bloch et les projecteurs de KB. C'est également cette forme qu'il faut utiliser pour calculer la partie non-locale du potentiel lors de la résolution des équations de Kohn-Sham dans la base d'ondes planes~\eqref{V_NL_k}. La partie non-locale de la matrice de couplage électron-défaut pour une super-cellule s'obtient avec ce chevauchement, son conjugué complexe et les énergies de KB~\eqref{eqn:M_NL} :
 \begin{equation}
@@ -156,7 +156,7 @@ Le point de départ est la matrice de couplage calculée dans l'espace
 réciproque sur la grille grossière $\{\kv_c\}$ de la super-cellule, selon
 les développements de la section~\ref{sec:M_défaut} :
 \begin{equation}
-    M_{mn}(\kv_c',\kv_c) = \bra{\psi_{m\kv_c'}}V_\text{ed}(\rv)\ket{\psi_{n\kv_c}}.
+    M_{mn}(\kv_c',\kv_c) = \matrixel{\psi_{m\kv_c'}}{V_\text{ed}(\rv)}{\psi_{n\kv_c}}.
 \end{equation}
 Contrairement au couplage électron-phonon, le potentiel de défaut brise la symétrie de translation : les deux vecteurs d'onde $\kv_c'$ et
 $\kv_c$ sont indépendants et la matrice doit être interpolée dans ses
@@ -165,7 +165,7 @@ bandes enchevêtrées). La matrice de couplage est alors transformée dans
 la représentation de Wannier par une double transformée de Fourier
 discrète,
 \begin{equation}
-    M_{ij}(\Rv',\Rv) = \bra{i\Rv'}V_\text{ed}(\rv)\ket{j\Rv}
+    M_{ij}(\Rv',\Rv) = \matrixel{i\Rv'}{V_\text{ed}(\rv)}{j\Rv}
     = \frac{1}{N_{\kv_c}^2}\sum_{\kv_c'\kv_c}
     e^{i(\kv_c'\cdot\Rv'-\kv_c\cdot\Rv)}
     \left[U^{\dag(\kv_c')}\,M(\kv_c',\kv_c)\,U^{(\kv_c)}\right]_{ij},
@@ -442,7 +442,7 @@ Commençons par le cas idéal où il n'y a qu'un seul défaut présent dans le m
 \begin{equation}
     \hat{H}-\mu\hat{N} = \hat{H}_\text{e}+\hat{H}_\text{ed} = \sum_{n\kv}\xi_{n\kv}\hat{c}^\dag_{n\kv}\hat{c}_{n\kv}+\sum_{nm}\sum_{\kv\kv'}M_{mn}(\kv',\kv)\hat{c}^\dag_{m\kv'}\hat{c}_{n\kv},\quad\xi_{n\kv} \equiv \varepsilon_{n\kv}-\mu
 \end{equation}
-où la matrice $M_{mn}(\kv',\kv)=\bra{\psi_{m\kv'}}V_\text{ed}(\rv)\ket{\psi_{n\kv}}$ représente physiquement l'amplitude de probabilité qu'un électron dans l'état $\ket{\psi_{n\kv}}$ diffuse vers l'état $\ket{\psi_{m\kv'}}$ via le potentiel $V_\text{ed}(\rv)$ induit par le défaut dans le matériau, $\xi_{n\kv}\equiv\varepsilon_{ n\kv}-\mu$ et $\mu$ est le potentiel chimique. Nous souhaitons employer la méthode de la théorie de la perturbation pour résoudre ce problème. Notre objectif est de déterminer la fonction de Green de Matsubara à température finie ; une fois celle-ci calculée, la grande majorité des propriétés physiques mesurables peuvent être extraites de cette fonction. Dans le formalisme de Matsubara, nous travaillons avec un temps imaginaire $\tau\in[0,\beta]$, où $\beta=1/k_BT$ est l'inverse de la température et la fonction de Green est généralement calculée dans la représentation d'interaction en mécanique quantique
+où la matrice $M_{mn}(\kv',\kv)=\matrixel{\psi_{m\kv'}}{V_\text{ed}(\rv)}{\psi_{n\kv}}$ représente physiquement l'amplitude de probabilité qu'un électron dans l'état $\ket{\psi_{n\kv}}$ diffuse vers l'état $\ket{\psi_{m\kv'}}$ via le potentiel $V_\text{ed}(\rv)$ induit par le défaut dans le matériau, $\xi_{n\kv}\equiv\varepsilon_{ n\kv}-\mu$ et $\mu$ est le potentiel chimique. Nous souhaitons employer la méthode de la théorie de la perturbation pour résoudre ce problème. Notre objectif est de déterminer la fonction de Green de Matsubara à température finie ; une fois celle-ci calculée, la grande majorité des propriétés physiques mesurables peuvent être extraites de cette fonction. Dans le formalisme de Matsubara, nous travaillons avec un temps imaginaire $\tau\in[0,\beta]$, où $\beta=1/k_BT$ est l'inverse de la température et la fonction de Green est généralement calculée dans la représentation d'interaction en mécanique quantique
 \begin{equation}
     \mathcal{G}_{mn}(\tau'-\tau) = -\frac{{}_0\langle\mathcal{T}_\tau\hat{c}_m(\tau')S(\beta,0)\hat{c}
     _n^\dag(\tau)\rangle_0}{{}_0\langle S(\beta,0)\rangle_0}.\label{eqn:G_formel}

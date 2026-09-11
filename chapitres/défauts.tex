@@ -7,7 +7,7 @@ Contrairement au couplage électron-phonon, pour lequel la communauté dispose d
 
 L'élément central à l'étude de défauts dans un matériau à partir des premiers principes est la matrice de couplage électron-défaut
 \begin{equation}
-    M_{mn}(\kv',\kv) = \bra{\psi_{m\kv'}}V_\text{ed}(\rv)\ket{\psi_{n\kv}},\label{M}
+    M_{mn}(\kv',\kv) = \bra{\psi_{m\kv'}}V_\text{ed}(\rv)\ket{\psi_{n\kv}},\label{eqn:M}
 \end{equation}
 qui correspond physiquement à l'amplitude de probabilité que l'électron dans l'état $n\kv$ diffuse vers l'état $m\kv'$ à cause du potentiel $V_\text{ed}(\rv)$ induit par le défaut dans le matériau. L'Hamiltonien associé à ce couplage est donné par
 \begin{equation}
@@ -31,7 +31,7 @@ La partie locale est donnée par la somme des potentiels d'Hartree, d'échange-c
 \end{equation}
 où $\text{x} = \text{d},\text{p}$ et la partie non-locale est due entièrement à la partie non-locale des pseudo-potentiels
 \begin{equation}
-    \hat{V}_\text{ed}^\text{x,NL} = \sum_{\alpha}\sum_{i\ell m_\ell}\ket{\beta_{i\ell m_\ell}^{\text{x}(\alpha)}}E_{i\ell}^{\text{x}(\alpha)}\bra{\beta_{i\ell m_\ell}^{\text{x}(\alpha)}}.\label{V_ed_NL}
+    \hat{V}_\text{ed}^\text{x,NL} = \sum_{\alpha}\sum_{i\ell m_\ell}\ket{\beta_{i\ell m_\ell}^{\text{x}(\alpha)}}E_{i\ell}^{\text{x}(\alpha)}\bra{\beta_{i\ell m_\ell}^{\text{x}(\alpha)}}.\label{eqn:V_ed_NL}
 \end{equation}
 Les parties locale et non-locales totales s'obtiennent par une soustraction similaire à celle pour obtenir le potentiel de défaut total~\eqref{eqn:V_ed}. Par conséquent, la matrice de couplage électron-défaut se sépare aussi en une partie locale et une partie non-locale
 \begin{equation}
@@ -43,7 +43,7 @@ Ces deux parties sont calculées indépendamment, puis additionnées pour retrou
 
 Commençons par dériver une expression pour la partie locale de la matrice. Dans l'espace réel, nous avons
 \begin{equation}
-    M^\text{L}_{mn}(\kv',\kv) = \bra{\psi_{m\kv'}}V_\text{ed}^\text{L}(\rv)\ket{\psi_{n\kv}} = \int_{\Omega_\text{BvK}}d^3\rv\,\psi_{m\kv'}^*(\rv)\,V^\text{L}_\text{ed}(\rv)\,\psi_{n\kv}(\rv),\label{ML_réel}
+    M^\text{L}_{mn}(\kv',\kv) = \bra{\psi_{m\kv'}}V_\text{ed}^\text{L}(\rv)\ket{\psi_{n\kv}} = \int_{\Omega_\text{BvK}}d^3\rv\,\psi_{m\kv'}^*(\rv)\,V^\text{L}_\text{ed}(\rv)\,\psi_{n\kv}(\rv),\label{eqn:ML_réel}
 \end{equation}
 où l'intégration se fait sur le volume du cristal $\Omega_\text{BvK}$. Le potentiel $V_\text{ed}^\text{L}(\rv)$ est calculé dans une super-cellule et donc est défini sur la grille de la super-cellule. Toutefois, les états $\ket{\psi_{n\kv}}$ sont les états propres sur la grille de la unitaire parfaite. Pour évaluer l'intégrande, ces états de Bloch doivent être échantillonnés sur la même grille  que le potentiel $V_\text{ed}^\text{L}(\rv)$, c'est-à-dire celle de la super-cellule. Évaluer cette intégrale directement dans l'espace réel exigerait de représenter chaque état de Bloch sur la grille de la super-cellule, dont l'empreinte en mémoire devient rapidement prohibitive lorsque la taille de la super-cellule augmente. Il est plus efficace de passer à l'espace réciproque, où la matrice de couplage s'exprime à partir des seules quantités de la cellule unitaire. Pour ce faire, il est utile de développer le potentiel local en série de Fourier
 \begin{equation}
@@ -58,7 +58,7 @@ où l'intégrale sur le cristal se réduit à une intégrale sur une super-cellu
 \begin{equation}
     \psi_{n\kv}(\rv) = u_{n\kv}(\rv)e^{i\kv\cdot\rv}.
 \end{equation}
-En utilisant ces deux développements dans l'intégrale de l'équation~\eqref{ML_réel}, nous obtenons
+En utilisant ces deux développements dans l'intégrale de l'équation~\eqref{eqn:ML_réel}, nous obtenons
 \begin{equation}
     M^\text{L}_{mn}(\kv',\kv) = \frac{1}{N_\text{uc}}\sum_{\widetilde{\Gv}}\widetilde{V}_\text{ed}^\text{L}(\widetilde{\Gv})\int_{\Omega_\text{BvK}}d^3\rv\,u^*_{m\kv'}(\rv)\,u_{n\kv}(\rv)\,e^{i(\kv+\widetilde{\Gv}-\kv')\cdot\rv}.
 \end{equation}
@@ -96,7 +96,7 @@ D'autres schémas d'interpolation auraient pu être envisagés pour évaluer $\w
 
 La partie non-locale de la matrice est due entièrement aux pseudo-potentiels. En pratique, nous calculons la partie non-locale pour chacune des deux super-cellules séparément, puis la partie non-locale de la matrice est obtenue en soustrayant les contributions des deux super-cellules. Pour une des deux super-cellules, la partie non-locale s'obtient en calculant
 \begin{equation}
-    M_{mn}^\text{NL}(\kv',\kv) = \bra{\psi_{m\kv'}}\hat{V}_\text{ed}^\text{NL}\ket{\psi_{n\kv}} = \sum_\alpha\sum_{i\ell m_\ell}\bra{\psi_{m\kv'}}\ket{\beta^{(\alpha)}_{i\ell m_\ell}}E_{i\ell}^{(\alpha)}\bra{\beta^{(\alpha)}_{i\ell m_\ell}}\ket{\psi_{n\kv}}.\label{M_NL}
+    M_{mn}^\text{NL}(\kv',\kv) = \bra{\psi_{m\kv'}}\hat{V}_\text{ed}^\text{NL}\ket{\psi_{n\kv}} = \sum_\alpha\sum_{i\ell m_\ell}\bra{\psi_{m\kv'}}\ket{\beta^{(\alpha)}_{i\ell m_\ell}}E_{i\ell}^{(\alpha)}\bra{\beta^{(\alpha)}_{i\ell m_\ell}}\ket{\psi_{n\kv}}.\label{eqn:M_NL}
 \end{equation}
 Nous devons évaluer le chevauchement entre les états de Bloch et les projecteurs de KB. Dans l'espace réel, nous avons
 \begin{equation}
@@ -117,17 +117,17 @@ Une autre simplification s'obtient en faisant le développement de Rayleigh de l
 où $qr$ est le produit des normes des vecteurs $\qv$ et $\rv$. Avec ce développement, le chevauchement devient
 \begin{align}
     \bra{\psi_{n\kv}}\ket{\beta_{i\ell m_\ell}^{(\alpha)}} &=\frac{4\pi}{\sqrt{\Omega_\text{uc}}}\sum_\Gv\sum_{\ell'm_\ell'}(-i)^{\ell'}C^*_{n\kv}(\Gv)e^{-i\Kv\cdot\bm{\tau}_\alpha}Y_{\ell'}^{m_\ell'}(\widehat{\Kv})\notag\\
-    &\qquad\times\int d^3\rv'\frac{\beta_{i\ell}^{(\alpha)}(|\rv'|)j_{\ell'}(Kr')Y_{\ell'}^{*m_\ell'}(\hat{\rv}')Y_{\ell}^{m_\ell}(\hat{\rv}')}{|\rv'|},\label{beta_nk_1}
+    &\qquad\times\int d^3\rv'\frac{\beta_{i\ell}^{(\alpha)}(|\rv'|)j_{\ell'}(Kr')Y_{\ell'}^{*m_\ell'}(\hat{\rv}')Y_{\ell}^{m_\ell}(\hat{\rv}')}{|\rv'|},\label{eqn:beta_nk_1}
 \end{align}
 où nous avons défini $\Kv\equiv\kv+\Gv$ et $K=|\Kv|$. Le but de ce développement est de simplifier l'intégrale en exploitant l'orthonormalité des harmoniques sphériques en passant aux coordonnées sphériques
 \begin{equation}
     \int d^3\rv'\frac{\beta_{i\ell}^{(\alpha)}(|\rv'|)j_{\ell'}(Kr')Y_{\ell'}^{m_\ell'}(\hat{\rv}')Y_{\ell}^{m_\ell}(\hat{\rv}')}{|\rv'|} = \underbrace{\int dr' r' \beta_{i\ell}^{(\alpha)}(r')j_{\ell'}(Kr')}_{\equiv F_{i\ell}^{(\alpha)}(K)}\underbrace{\int d\theta d\phi Y_{\ell'}^{*m_\ell'}(\hat{\rv}')Y_\ell^{m_\ell}(\hat{\rv}')}_{\delta_{\ell\ell'}\delta_{m_\ell m_\ell'}}.
 \end{equation}
-Ici, nous avons défini le facteur de forme du pseudo-potentiel dans l'espace réciproque par $F_{i\ell}^{(\alpha)}(K)$, $r'=|\rv'|$ et l'intégrale sur les angles sphériques nous permet de faire la somme sur $\ell'$ et $m_\ell'$ dans l'équation~\eqref{beta_nk_1}, ce qui donne
+Ici, nous avons défini le facteur de forme du pseudo-potentiel dans l'espace réciproque par $F_{i\ell}^{(\alpha)}(K)$, $r'=|\rv'|$ et l'intégrale sur les angles sphériques nous permet de faire la somme sur $\ell'$ et $m_\ell'$ dans l'équation~\eqref{eqn:beta_nk_1}, ce qui donne
 \begin{equation}
     \bra{\psi_{n\kv}}\ket{\beta_{i\ell m_\ell}^{(\alpha)}} =\frac{4\pi}{\sqrt{\Omega_\text{uc}}}\sum_\Gv(-i)^\ell C_{n\kv}^*(\Gv)e^{-i\Kv\cdot\bm{\tau}_\alpha}Y_\ell^{m_\ell}(\widehat{\Kv})F_{i\ell}^{(\alpha)}(K),
 \end{equation}
-et qui constitue l'expression finale du chevauchement entre les états de Bloch et les projecteurs de KB. C'est également cette forme qu'il faut utiliser pour calculer la partie non-locale du potentiel lors de la résolution des équations de Kohn-Sham dans la base d'ondes planes~\eqref{V_NL_k}. La partie non-locale de la matrice de couplage électron-défaut pour une super-cellule s'obtient avec ce chevauchement, son conjugué complexe et les énergies de KB~\eqref{M_NL} :
+et qui constitue l'expression finale du chevauchement entre les états de Bloch et les projecteurs de KB. C'est également cette forme qu'il faut utiliser pour calculer la partie non-locale du potentiel lors de la résolution des équations de Kohn-Sham dans la base d'ondes planes~\eqref{V_NL_k}. La partie non-locale de la matrice de couplage électron-défaut pour une super-cellule s'obtient avec ce chevauchement, son conjugué complexe et les énergies de KB~\eqref{eqn:M_NL} :
 \begin{equation}
 \begin{aligned}
     M_{mn}^\text{NL}(\kv',\kv) = \frac{(4\pi)^2}{\Omega_\text{uc}}\sum_{\alpha i\ell m_\ell}E_{i\ell}^{(\alpha)}\sum_{\Gv\Gv'}
@@ -710,6 +710,6 @@ Ces signatures se comparent à celles obtenues par Kaasbjerg~\cite{kaasbjergAtom
 
 \noindent\textbf{Pertinence pour la spectroscopie Raman}
 
-Pour les excitations visible typiquement utilisées dans les expériences de spectroscopie Raman ($\hbar\omega_L\approx 2$ eV), les états électroniques intermédiaires de la double résonance Raman de la bande $D$ se situent à $\pm 1$ eV du point de Dirac (pour des bandes symétriques). C'est précisement cette région où la diffusion sur la lacune est la plus intense et où l'écart entre la matrice $T$ et l'approximation de Born est le plus marqué. Le taux d'amortissement dû aux défauts $\Gamma^\text{ed}$ qui entre dans les dénominateurs résonants du chapitre~\ref{chap:Raman} y est donc à la fois maximal et fortement renormalisé. Le chapitre suivant calcule le taux d'amortissement électronique dû au couplage électron-phonon et nous verrons que les deux sont comparables dans cette fenêtre d'énergie.
+Pour les excitations visible typiquement utilisées dans les expériences de spectroscopie Raman ($\hbar\omega_L\approx 2$ eV), les états électroniques intermédiaires de la double résonance Raman de la bande $D$ se situent à $\pm 1$ eV du point de Dirac (pour des bandes symétriques). C'est précisement cette région où la diffusion sur la lacune est la plus intense et où l'écart entre la matrice $T$ et l'approximation de Born est le plus marqué. Le taux d'amortissement dû aux défauts $\Gamma^\text{ed}$ qui entre dans les dénominateurs résonants du chapitre~\ref{chap:Raman} y est donc à la fois maximal et fortement renormalisé. Le chapitre suivant calcule le taux d'amortissement électronique dû au couplage électron-phonon et nous verrons que les deux taux sont comparables dans cette fenêtre d'énergie.
 
 \section{Conclusion}

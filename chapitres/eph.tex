@@ -1,13 +1,88 @@
 \chapter{Couplage électron-phonon dans le graphène}\label{chap:eph}
 
-\section{Éléments de matrice électron-phonon $g$}\label{sec:g_eph}
+Ce chapitre se consacre au couplage entre les électrons et les phonons, le dernier ingrédient essentiel au calcul de l'intensité Raman résonante introduit au chapitre~\ref{chap:Raman}. Ce couplage intervient à la fois dans les processus de diffusion \textit{deux-phonons} et les processus \textit{phonon-défaut} à trois endroits dans la théorie : par les éléments de matrice de couplage $g_{mn}^{(\nu)}(\kv,\qv)$ qui apparaissent aux numérateurs des amplitudes de diffusion, par la \textit{self}-énergie électronique due aux phonons $\Sigma^\text{ep}_{n\kv}$ et le taux d'amortissement $\Gamma_{n\kv}^\text{ep}$ qui renormalisent l'énergie et les temps de vie électroniques, ainsi que par la \textit{self}-énergie phononique due aux électrons $\Pi_{\nu\qv}$ et la largeur des phonons $\gamma_{\nu\qv}$ qui renormalisent l'énergie et les temps de vie phononiques.
 
-\section{Interpolation avec des fonctions de Wannier}\label{sec:_eph_wannier}
+Contrairement au couplage électron-défaut, le couplage électron-phonon a été longuement étudié par les physiciens et nous disposons d'un cadre théorique mûr~\cite{giustinoElectronphononInteractionUsing2007a,giustinoElectronphononInteractionsFirst2017} et des outils de calcul~\cite{ponceEPWElectronphononCoupling2016,leeElectronPhononPhysics2023a,zhouPerturboSoftwarePackage2021,gonzeAbinitProjectImpact2020,bruninPhononlimitedElectronMobility2020} largement distribués et validés depuis deux décennies. Ce chapitre est donc volontairement plus concis que le précédent : plutôt que de reconstruire la méthode, nous appliquons la machinerie éprouvée au graphène en nous concentrant sur la validation de la chaîne de calcul et sur les quantités requises pour l'évaluation de l'intensité Raman résonante. 
 
-\section{\textit{Self}-énergie et le taux d'amortissement dû aux phonons}
+Nous commençons par donner les équations à résoudre pour calculer la matrice de couplage à la section~\ref{sec:g} et détaillons comment les interpoler sur des grilles denses à l'aide des fonctions de Wannier à la section~\ref{sec:g_wannier}, comme pour les défauts. Nous montrons ensuite comment calculer les \textit{self}-énergies et les taux d'amortissement à partir de ces éléments de matrice à la section~\ref{sec:g_self}. Nous présentons nos résultats pour le graphène à la section~\ref{sec:g_results} après avoir documenté notre chaîne de calcul à la section~\ref{sec:g_détails}. Enfin, nous comparons le taux d'amortissement dû aux phonons $\Gamma^\text{ep}$ à celui dû aux défauts $\Gamma^\text{ed}$ du chapitre précédent à la section~\ref{sec:g_comparaison}.
 
-\section{Détails computationnels pour la matrice $g$ et le taux d'amortissement}
+\section{Éléments de matrice électron-phonon $g$}\label{sec:g}
 
-\section{Résultats pour la matrice $g$ et le taux d'amortissement}
+L'élément central au calcul du couplage électron-phonon à partir des premiers principes est la matrice de couplage~\cite{giustinoElectronphononInteractionUsing2007a}
+\begin{equation}
+    g_{mn}^{(\nu)}(\kv,\qv) = \sqrt{\frac{\hbar}{2M\omega_{\nu\qv}}}\bra{\psi_{m\kv+\qv}}\Delta_{\nu\qv}V_\text{KS}\ket{\psi_{n\kv}},\label{eqn:g}
+\end{equation}
+qui correspond physiquement à l'amplitude de probabilité qu'un électron dans l'état $n\kv$ diffuse vers l'état $m\kv+\qv$ en absorbant un phonon de la branche $\nu$ au vecteur d'onde $\qv$ (ou en émettant un phonon à $-\qv$). Ici, $\Delta_{\nu\qv}V_\text{KS}$ est la variation du potentiel auto-cohérent de Kohn-Sham sous le déplacement des ions selon le mode propre $\nu\qv$ ; elle s'obtient en contractant les perturbations élémentaires $\Delta_{\qv\alpha\mu}\hat{H}_\text{KS}$ de l'équation~\eqref{deltaH} calculées par la DFPT à la section~\ref{sec:dfpt} avec les vecteurs propres du mode. Enfin, $M$ est la masse de l'atome de carbone (nous avons spécialisé au cas du graphène) et $\omega_{\nu\qv}$ est la fréquence du mode de phonon. Le préfacteur est l'amplitude de point zéro de l'oscillateur harmonique quantique associé à ce mode et porte la dimension de déplacement atomique. L'Hamiltonien associé à ce couplage est donné par~\cite{giustinoElectronphononInteractionsFirst2017,ponceEPWElectronphononCoupling2016}
+\begin{equation}
+    \hat{H}_\text{ep}=\sqrt{\frac{1}{N_\text{uc}}}\sum_{mn\nu}\sum_{\kv\qv}g_{mn}^{(\nu)}(\kv,\qv)\hat{c}^\dag_{m\kv+\qv}\hat{c}_{n\kv}\left(\hat{b}_{\nu\qv}+\hat{b}^\dag_{\nu-\qv}\right)\label{eqn:H_ep}
+\end{equation}
+où $\hat{b}^\dag_{\nu\qv}$ et $\hat{b}_{\nu\qv}$ créent et annihilent un phonon dans le mode $\nu\qv$ et où $N_\text{uc}$ est le nombre de cellules unitaires dans le cristal. 
 
-\section{Conclusion}
+Cet Hamiltonien joue pour les phonons le même rôle que l'Hamiltonien $\hat{H}_\text{ed}$ du chapitre~\ref{chap:défauts} joue pour les défauts, avec deux différences structurantes qui simplifient beaucoup son traitement. Premièrement, le cristal parfait (en l'absence de défaut) conserve la symétrie de translation : le phonon porte un vecteur d'onde $\qv$ bien défini et l'état électronique final est contraint à $\kv+\qv$ et nous n'avons pas besoin d'employer des super-cellules. Deuxièmement, la perturbation engendrée par la présence de phonons est généralement beaucoup plus faible que celle induite par la présence d'une lacune : le déplacement atomique associé à un phonon est une fraction du paramètre de maille alors qu'une lacune retire un potentiel atomique entier ! Cette faiblesse nous autorise à traiter le couplage électron-phonon au premier ordre en théorie de la perturbation, là où le potentiel intense de la lacune exigeait la sommation à tous les ordres avec la matrice $T$. 
+
+Le défi ici n'est donc pas d'ordre formel ou théorique, mais numérique : la convergence de l'intensité Raman résonante exige d'évaluer les \textit{self}-énergies et les taux d'amortissement visés par ce chapitre sur des grilles $\kv$ et $\qv$ bien plus denses que ce que la DFPT peut fournir directement. Contrairement au chapitre précédent, où chaque ingrédient a dû être dérivé et implémenté, nous disposons ici d'une implémentation éprouvée : le code \texttt{EPW}~\cite{ponceEPWElectronphononCoupling2016} (qui vient de l'anglais \textit{Electron-Phonon coupling using Wannier functions}, soit \og Couplage électron-phonon par fonctions de Wannier \fg), qui calcule les éléments de matrice $g$ par DFPT, les interpole par fonctions de Wannier et en construit les \textit{self}-énergies. Les deux prochaines sections résument le formalisme sans le redériver : l'interpolation des éléments de matrice par fonctions de Wannier, puis leur utilisation pour calculer les \textit{self}-énergies. 
+
+\section{Interpolation par fonctions de Wannier}\label{sec:g_wannier}
+
+La DFPT fournit les éléments de matrice~\eqref{eqn:g} sur des grilles $\kv$ et $\qv$ grossières, à un coût computationnel qui interdit les grilles denses requises par l'intensité Raman résonante. La solution, proposée par Giustino, Cohen et Louie~\cite{giustinoElectronphononInteractionUsing2007a} et implémentée dans \texttt{EPW}~\cite{ponceEPWElectronphononCoupling2016}, consiste à écrire les éléments de matrice $g$ dans une représentation localisée de l'espace réel. 
+
+Cependant, cette matrice de couplage porte deux indices de nature différente : un indice électronique $n\kv$ et un indice phononique $\nu\qv$, et chacun requiert sa propre représentation localisée. Du côté électronique, la construction est la même que celle du chapitre~\ref{chap:défauts} : les matrices $U^{(\kv)}$ font passer les états de Bloch vers la jauge de Wannier et une transformée de Fourier discrète ramène l'indice $\kv$ vers les vecteurs du réseau $\Rv_e$. Du côté phononique, il n'y a pas de fonctions de Wannier au sens propre : l'analogue de la localisation est fourni par la base des déplacements ioniques et est précisément celle dans laquelle la DFPT travaille nativement. Les perturbations élémentaires du potentiel de Kohn-Sham $\Delta_{\qv\alpha\mu}V_\text{KS}$ par rapport au déplacement de l'ion $\alpha$ dans la direction $\mu$ de la section~\ref{sec:dfpt} définissent directement l'élément de matrice dans la base des déplacements ioniques individuels
+\begin{equation}
+    g_{mn}^{(\alpha\mu)}(\kv_c,\qv_c) =
+    \matrixel{\psi_{m\kv_c+\qv_c}}{\Delta_{\qv_c\alpha\mu}V_\text{KS}}{\psi_{n\kv_c}},\label{eqn:g_atomique}
+\end{equation}
+calculé sur les grilles grossières $\kv_c$ et $\qv_c$ accessibles par la DFPT. Cet objet, et non $g^{(\nu)}$, se prête à l'interpolation : les vecteurs propres des modes $\nu\qv$ portent des phases abritraires et se croisent d'une branche à l'autre le long de $\qv$, ce qui rend $g^{(\nu)}$ non lisse, tandis que $g^{(\alpha\mu)}$ varie doucement~\cite{giustinoElectronphononInteractionsFirst2017,ponceEPWElectronphononCoupling2016}. C'est cet objet que nous transformons vers la représentation réelle 
+\begin{equation}
+    g_{ij}^{(\alpha\mu)}(\Rv_e,\Rv_p) =
+    \frac{1}{N_{\kv_c}N_{\qv_c}}\sum_{\kv_c\qv_c}
+    e^{-i(\kv_c\cdot\Rv_e+\qv_c\cdot\Rv_p)}
+    \left[U^{\dag(\kv_c+\qv_c)}g^{(\alpha\mu)}(\kv_c,\qv_c)U^{(\kv_c)}\right]_{ij}.
+    \label{eqn:g_wannier}
+\end{equation}
+L'interpolation vers des grilles de sortie $\kv_f$ et $\qv_f$ arbitrairement denses est l'inverse de l'équation~\eqref{eqn:g_wannier}
+\begin{equation}
+    g_{mn}^{(\alpha\mu)}(\kv_f,\qv_f) = \sum_{\Rv_e\Rv_p}
+    e^{i(\kv_f\cdot\Rv_e+\qv_f\cdot\Rv_p)}
+    \left[V^{\dag(\kv_f+\qv_f)}g^{(\alpha\mu)}(\Rv_e,\Rv_p)V^{(\kv_f)}\right]_{mn},
+    \label{eqn:g_interp}
+\end{equation}
+où, comme à la section~\ref{sec:interp_wannier_M}, les matrices $V^{(\kv_f)}$ proviennent de la diagonalisation de l'Hamiltonien électronique interpolé sur la même grille fine et ramènent le couplage dans la base des états propres. Comme au chapitre~\ref{chap:défauts}, ces matrices sont définies à une phase arbitraire près : les quantités physiques, qui ne dépendent que de $|g|^2$, en sont indépendantes, à condition que l'Hamiltonien électronique et le couplage soient interpolés avec les mêmes fonctions de Wannier. Enfin, nous obtenons le couplage physique interpolé de l'équation~\eqref{eqn:g} en passant de la base des déplacements ioniques individuels à celle des modes normaux en utilisant
+\begin{equation}
+        g_{mn}^{(\nu)}(\kv_f,\qv_f) =
+    \sqrt{\frac{\hbar}{2M\omega_{\nu\qv_f}}}\sum_{\alpha\mu}
+    e^{(\nu)}_{\alpha\mu}(\qv_f)g_{mn}^{(\alpha\mu)}(\kv_f,\qv_f),
+    \label{eqn:g_modes}
+\end{equation}
+où les $e^{(\nu)}_{\alpha\mu}(\qv_f)$ sont les vecteurs propres de la matrice dynamique interpolée sur la même grille dense et ses valeurs propres $\omega_{\nu\qv_f}$, les fréquences de phonon correspondantes.
+
+Comme pour les défauts, cette interpolation vers des grilles arbitrairement denses n'est possible que si les sommes sur $\Rv_e$ et $\Rv_p$ de l'équation~\eqref{eqn:g_interp} peuvent être tronquées sévèrement, ce qui requirt que $g_{ij}^{(\alpha\mu)}(\Rv_e,\Rv_p)$ décroisse rapidement dans ses deux arguments. Or, cette décroissance repose sur un méchanisme différent de chaque côté. Du côté électronique, elle est garantie par la localisation des fonctions de Wannier maximalement localisées elles-mêmes, définies à la section~\ref{sec:wannier} : l'élément de matrice couple deux fonctions séparées de $\Rv_e$, et est négligeable lorsque le recouvrement entre ces deux fonctions est nul~\cite{brouderExponentialLocalizationWannier2007,marzariMaximallyLocalizedWannier2012a}. Du côté phononique, elle repose sur la courte portée de la variation du potentiel $\Delta_{\qv\alpha\mu}V_\text{KS}$. Dans un métal ou un semi-métal comme le graphène, le déplacement d'un ion est efficacement écranté par les électron de sorte que la perturbation ne s'étend que sur quelques cellules autour de l'ion déplacé. C'est le même argument qui fondait l'interpolation de Fourier des constantes de force interatomiques de la section~\ref{sec:dfpt}~\cite{baroniPhononsRelatedCrystal2001a}.
+
+Nous avons besoin de trois quantités tabulées en représentation réelle : l'Hamiltonien $H_{ij}(\Rv_e)$ électronique, dont la diagonalisation aux points $\kv_f$ fournit les bandes interpolées et les matrices $V^{(\kv_f)}$ ; les constantes de force $C(\Rv_p)$ de la section~\ref{sec:dfpt}, dont la matrice dynamique interpolée sur la grille $\qv_f$ fournit les fréquences $\omega_{\nu\qv_f}$ et les vecteurs propres $e^{(\nu)}(\qv_f)$; et le couplage dans la base des déplacements ioniques $g_{ij}^{(\alpha\mu)}(\Rv_e,\Rv_p)$, interpolé par~\eqref{eqn:g_interp} et transformé par~\eqref{eqn:g_modes}. À partir de ces tables, le côté électronique, le côté phononique, ainsi que le couplage entre les deux, s'évaluent à n'importe quel $\kv_f$ et $\qv_f$ par transformée de Fourier discrète tronquée, à faible coût computationnel. La décroissance de ces trois quantités en $\Rv_e$ et $\Rv_p$  est nécessaire pour tronquer les sommes et nous le vérifions explicitement à la section~\ref{sec:g_results}.
+
+\section{\textit{Self}-énergie, taux d'amortissement et largeur des phonons}\label{sec:g_self}
+
+% Fan-Midgal au plus bas ordre avec les facteurs de Bose/Fermi. Mentionner Debye-Waller et qu'on l'écarte (pourquoi?). Taux d'amortissement à partir de la self-énergie. Self-énergie phononique et largeur de phonon (pourquoi et renvoi au chapitre 3).
+
+\section{Détails computationnels pour la matrice $g$ et le taux d'amortissement}\label{sec:g_détails}
+
+% Logiciels (avec les références) : QuantumESPRESSO, Wannier90, EPW. Chaîne EPW  : scf -> ph 24x24 q -> nscf -> Wannier -> interpolation. Paramètres : degaus 0.002 Ry, fenêtre gelée. Paramètres de production Gamma^ep : 240^2, degaussw 0.02 eV, T = 300k, 10k, phonon : 1200^2 degauss = 0.02 eV (voir résultats pour la convergence). Convention : gamma_EPW = FWHM calibrée contre la règle d'or et les g^2 de Piscanec.  
+
+\section{Résultats pour la matrice $g$ et le taux d'amortissement}\label{sec:g_results}
+
+% Validation de l'interpolation (nécessaire pour avoir une belle physique) fig_epw_validation : bandes + phonons EPW vs ref directe. Analogue du test de reconstruction KS du chap 4, le présenter avec la même logiqu.
+
+% Contrôle de g : fig_epw_g_control : EPW vs DFPT. Controle externe comme au chapitre 4
+
+% Taux d'amortissement gamma^ep : fig_epw_gamma : convergence (grille, degaussw) puis production aux deux T. Artefact signalé dans le texte et dans la légende.
+
+% Largeur des phonons : fig_epw_phonselfen : convergence (anneau résonant, physique à raconter), comparaison avec la littératures ? nouvelles ref? 
+
+\section{Comparaison des taux d'amortissement $\Gamma^\text{ed}$ et $\Gamma^\text{ep}$}\label{sec:g_comparaison}
+
+% Il y a une autre session de calculs à faire avant de rédiger cette section
+
+% Honore la promesse de la conclusion du chapitre 4
+
+\section{Conclusion}\label{sec:g_conclusion}
+
+% Même gabarit que le chapitre 4 : méthode (standard, assumée comme telle), résultats (gamma^ep validé, largeur de phonon, comparaisons), limites (fréquences de la chaines adoucies, degauss arbitré), pont vers le chapitre 3 et la conclusion. Tous les ingrédients des équations de l'intensité Raman sont sur la table.

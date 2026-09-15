@@ -153,7 +153,7 @@ la matrice de couplage sur une grille fine arbitraire. La démarche suit
 la stratégie éprouvée pour le couplage électron-phonon~\cite{giustinoElectronphononInteractionUsing2007a} et s'inspire de Lu \textit{et al.}~\cite{luInitioElectrondefectInteractions2020}.
 
 Le point de départ est la matrice de couplage calculée dans l'espace
-réciproque sur la grille $\{\kv_c\}$ de la super-cellule (en pratique la grille
+réciproque sur la grille $\kv_c$ de la cellule unitaire (en pratique la grille
 élargie $pN\times pN$ obtenue par remplissage par zéros à la
 section~\ref{sec:M_détails}) selon
 les développements de la section~\ref{sec:M_défaut} :
@@ -173,7 +173,7 @@ discrète,
     \left[U^{\dag(\kv_c')}\,M(\kv_c',\kv_c)\,U^{(\kv_c)}\right]_{ij},
     \label{eqn:M_wannier}
 \end{equation}
-puis ramenée sur une grille fine $\{\kv_f\}$ arbitraire par la transformée inverse
+puis ramenée sur une grille fine $\kv_f$ arbitrairement dense par la transformée inverse
 \begin{equation}
     M_{mn}(\kv_f',\kv_f) = \sum_{\Rv'\Rv}
     e^{-i(\kv_f'\cdot\Rv'-\kv_f\cdot\Rv)}
@@ -188,20 +188,19 @@ Ce qui rend ce schéma praticable sur des grilles de sortie $\kv_f$  denses est 
 \begin{equation}
     M_{ij}(\Rv',\Rv)\to M_{ij}(\Rv'+\Rv_0,\Rv+\Rv_0),\label{eqn:M_recentrage}
 \end{equation}
-c'est-à-dire que la matrice recentrée évaluée en $(\Rv',\Rv)$ reprend la valeur que la matrice d'origine prenait en $(\Rv'+\Rv_0,\Rv+\Rv_0)$, ce qui ramène la lacune à l'origine. C'est une permutation des indices de cellules, qui ne modifie aucune valeur et équivaut à la multiplication par la phase $e^{i(\kv'-\kv)\cdot\Rv_0}$ dans l'espace réciproque.  La troncature retient les cellules dont les indices $(n_1,n_2)$ du réseau de Wannier vérifient $n_1^2+n_2^2\le R_\text{cut}^2$, soit $1$, $5$, $13$, $29$, $49$, $81$ et $113$ cellules pour $R_\text{cut}=0$ à $6$. Ce disque est défini dans l'espace des indices et non dans l'espace réel : le réseau étant hexagonal, les cellules retenues ne forment pas un disque physique. Le rayon de troncature $R_\text{cut}$ est un paramètre à faire converger et apparaît également plus loin dans le chapitre. Sa convergence est contrôlée aux sections~\ref{sec:M_results} et~\ref{sec:T_results}.
+c'est-à-dire que la matrice recentrée évaluée en $(\Rv',\Rv)$ reprend la valeur que la matrice d'origine prenait en $(\Rv'+\Rv_0,\Rv+\Rv_0)$, ce qui ramène la lacune à l'origine. C'est une permutation des indices de cellules, qui ne modifie aucune valeur et équivaut à la multiplication par la phase $e^{i(\kv'-\kv)\cdot\Rv_0}$ dans l'espace réciproque. Après le recentrage, la troncature retient toutes les cellules unitaires avec les indices entiers $(n_1,n_2)$ qui satisfont
+\begin{equation}
+    n_1^2+n_2^2\le R_\text{cut}^2,
+\end{equation}
+où le rayon de troncature, $R_\text{cut}$, est exprimé en coordonnées réduites. Comme le graphène est un réseau hexagonale, les cellules retenues ne forment pas nécessairement un cercle. Ce rayon de troncature affecte significativement les élements de matrice et les observables physiques qui en découlent : l'augmenter réduit l'erreur introduite par la troncature, au prix d'un coût computationnel accru. La convergence de la matrice $M$ par rapport à ce rayon est contrôlée à la section~\ref{sec:M_results} et la convergence du taux d'amortissment $\Gamma^\text{ed}$, la quantité physique d'intérêt, y est contrôlée à la section~\ref{sec:T_results}.
 
-Enfin, la cohérence de la procédure d'interpolation est contrôlée à la
-section~\ref{sec:M_results} : nous y vérifions en boucle fermée que
-l'interpolation vers les points de la grille grossière elle-même
-reproduit les éléments de matrice de départ à la précision machine,
-nous y examinons la décroissance des éléments $M_{ij}(\Rv',\Rv)$ qui
-fonde la troncature, et nous y mesurons l'erreur que la troncature à
-$R_\text{cut}$ introduit sur les éléments de matrice interpolés.
+Enfin, nous contrôlons la cohérence de la procédure d'interpolation à la section~\ref{sec:M_results} où nous y vérifions en boucle fermée que l'interpolation vers les points de la grille grossière elle-même reproduit les éléments de matrice de départ à la précision machine. En outre, nous y examinons la décroissance des éléments $M_{ij}(\Rv',\Rv)$ dans l'espace réel, une condition nécessaire à la fiabilité de l'interpolation par fonctions de Wannier.
 
 \subsection{Détails computationnels pour la matrice $M$}\label{sec:M_détails}
-Avant de passer aux résultats de cette section, nous reportons ici les stratégies, les paramètres et les conventions du calcul de la matrice de couplage électron-défaut. Les résultats pour le graphène avec une lacune se trouvent à la section~\ref{sec:M_results}.
 
-\noindent\textbf{Super-cellules}
+Avant de passer aux résultats de cette section, nous reportons ici les stratégies, les paramètres et les conventions de la chaîne de calcul de la matrice de couplage électron-défaut. Cette chaîne procède en quatre étapes : deux calculs DFT de super-cellules (une défectueuse et une parfaite) fournissent le potentiel de défaut par soustraction et un calcul DFT de cellule unitaire produit les fonctions de Bloch, le remplissage par zéros porte le potentiel de défaut sur les grilles des fonctions de Wannier, les éléments de matrice (parties locale et non-locale) sont évalués sur cette grille, puis l'interpolation par fonctions de Wannier livre ces éléments de matrice sur des grilles arbitraires.
+
+\bloc{Super-cellules}
 
 D'abord, les super-cellules défectueuses et parfaites sont traitées avec le logiciel de calcul DFT \texttt{QuantumESPRESSO}~\cite{giannozziQUANTUMESPRESSOModular2009,giannozziAdvancedCapabilitiesMaterials2017,giannozziQuantumESPRESSOExascale2020}. Les super-cellules sont de tailles $N\times N$ avec $N\in\{5, 6, 7, 8, 9, 12\}$. La super-cellule parfaite contient $2N^2$ atomes de carbone arrangés sur un réseau cristallin hexagonal avec le paramètre de maille optimal de $a = 2{,}466$~\AA~déterminé à la section~\ref{sec:electron_results} par relaxation structurelle. Les super-cellules défectueuses contiennent $2N^2-1$ atomes de carbone arrangés sur le même réseau et l'atome supprimé (la lacune) est celui le plus proche du centre de la super-cellule : il appartient au sous-réseau A pour $N=5,7,8,9$ et au sous-réseau B pour $N=6,12$, les deux choix étant équivalents. La super-cellule défectueuse n'est \textit{pas} relaxée dans ce mémoire, l'objectif étant de simplement valider la méthode. En particulier, la reconstruction de Jahn-Teller de la monolacune~\cite{el-barbaryStructureEnergeticsVacancy2003} est ignorée. Une description quantitative des intensités Raman exigera de l'inclure. Enfin, les calculs de super-cellules sont effectués au seul point $\Gamma$ de la zone de Brillouin, avec la fonctionnelle d'échange-corrélation PBE~\cite{perdewGeneralizedGradientApproximation1996a}, un pseudo-potentiel ONCV de type Kleinman-Bylander~\cite{hamannOptimizedNormconservingVanderbilt2013,kleinmanEfficaciousFormModel1982}, une énergie de coupure de $100$ Ry pour les ondes planes, un facteur d'élargissement de Marzari-Vanderbilt de 0,01 Ry et un seuil de convergence de $10^{-10}$ Ry sur l'énergie totale. La périodicité artificielle dans la direction perpendiculaire au plan est supprimée par une cellule vide de 30 Bohr dans cette direction combinée à la troncature de Coulomb pour les systèmes bidimensionnels~\cite{sohierDensityFunctionalPerturbation2017}. Toutes les super-cellules ont ces mêmes paramètres ainsi que la même géométrie, hormis la position exacte de la lacune pour les super-cellules défectueuses. 
 

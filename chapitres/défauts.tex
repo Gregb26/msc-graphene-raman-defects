@@ -300,7 +300,6 @@ Nous vérifions ici la convention intensive de la section~\ref{sec:M_détails}, 
     \label{fig:M_scaling}
 \end{figure}
 
-\newpage
 \bloc{Éléments de matrice au point de Dirac et comparaison avec la littérature}
 
 \begin{figure}[htbp]
@@ -354,7 +353,6 @@ qui est invariante, comme la norme, sous les rotations unitaires de la paire. La
 \end{table}
 Cette différence a une origine simple : la partie locale est une différence de potentiels autocohérents, dans laquelle les réponses d'Hartree et d'échange-corrélation écrantent le trou de potentiel créé par la lacune, tandis que la partie non-locale est le retrait des projecteurs de Kleinman-Bylander de l'atome absent, que rien n'écrante. Cette séparation est due à notre choix de pseudo-potentiels et n'a pas de signification physique en soi : seule la somme des deux parties en a une. Cependant, elle a une conséquence pratique pour notre approche : le remplissage par zéros est encore plus justifié, même si le potentiel local n'est pas exactement nul à la frontière puisqu'il n'affecte que la partie locale représentant au plus $13~\%$ du couplage pour la plus petite super-cellule et moins de $5~\%$ pour la référence $9\times 9$.
 
-\newpage
 \bloc{Localisation dans la base de Wannier}
 
 La figure~\ref{fig:M_locality} présente la norme de Frobenius des blocs $M_{ij}(\Rv,\bm 0)$ en fonction de la distance $R$ à la lacune située à l'origine après le recentrage, pour les quatre super-cellules $N=5, 8, 9, 12$ sur la grille élargie obtenue par remplissage par zéros et, pour $N=5, 8$, sur la grille grossière $N\times N$.
@@ -621,7 +619,6 @@ Nous donnons ici quelques chiffres qui justifient l'introduction du schéma loca
 
 La convergence de ces paramètres est déterminée dans la section~\ref{sec:T_results}. Nous donnons ici les paramètres retenus. Le rayon de coupure vaut $R_\text{cut}=3$, appliqué à la norme euclidienne des indices réduits, ce qui retient les $N_L=29$ mailles (la suite pour $R_\text{cut}=0,\dots,4$ est $1, 5, 13, 29, 49$) et est le même rayon que celui de la troncature de l'interpolation de $M$ par fonction de Wannier. La fonction de Green locale~\eqref{eqn:g_loc} est évaluée sur une grille interne de $N_{\tilde\kv}=300\times 300$ avec un élargissement de $\eta=0.02$ eV. Le point de Dirac est déterminé comme le milieu du gap minimal $\pi/\pi^*$ des bandes de Wannier, soit $E_D=-4.239$ eV et est identique au niveau de Fermi du chapitre~\ref{chap:eph}.
 
-\newpage
 \bloc{Grille de sortie et quantité rapportée}
 
 Le taux d'amortissement~\eqref{eqn:gamma_loc} est évalué sur une grille de sortie de $240\times 240$ points centrée à $\Gamma$, qui contient les points $K$, pour les états situés dans une fenêtre de $\pm 3$ eV autour de $E_D$ (ce qui correspond à $41\,266$ états). Les états hors de cette fenêtre sont exclus. Comme une super-cellule de $N_\text{cells}=N^2$ cellules unitaires contenant un seul défaut réalise la concentration $1/N_{\text{cells}}$ (à ne pas confondre avec $N_\text{uc}$ qui dénote le nombre de cellules unitaires du cristal en entier), nous notons la quantité intensive $\Gamma N_\text{cells}$ et rapportons sa médiane sur les états de la fenêtre. Cette quantité doit être indépendante de la taille de la super-cellule, ce que la section~\ref{sec:T_results} tente de vérifier. Le taux d'amortissement à une concentration $c$ donnée s'obtient par $\Gamma^\text{ed}=c\Gamma N_\text{cells}$. Suivant les conventions de la section~\ref{sec:M_détails}, la matrice $M$ est convertie en eV une seule fois au chargement et le taux d'amortissement est rapporté en meV.
@@ -715,7 +712,6 @@ Le tableau~\ref{tab:tests_T} rassemble les vérifications du schéma local de la
     \end{tabular}
 \end{table}
 
-\newpage
 \bloc{Taux d'amortissement et approximation de Born}
 
 \begin{figure}[htbp]

@@ -33,10 +33,13 @@ correspondants sont commentés dans `master_thesis.tex`.
 
 ## Conventions de rédaction
 
-- Décimales en virgule française : `{,}` en mode mathématique (`$2{,}3$`),
-  virgule simple en mode texte. Ne pas toucher aux dimensions de grilles
-  (`27\times 27`), aux longueurs LaTeX (`\vspace{0.5\baselineskip}`) ni aux
-  numéros de sections.
+- **Décimales au point** (`$2.3$`), en mode mathématique comme en mode texte,
+  par cohérence avec la littérature du domaine. La virgule reste le séparateur
+  de liste et prend alors une espace (`$N=5, 7, 8, 9$`, `$1, 5, 13, 29, 49$`) :
+  c'est l'ambiguïté des suites d'entiers qui a motivé le changement. Ne pas
+  toucher aux espaces fines de milliers (`41\,266`), aux dimensions de grilles
+  (`27\times 27`), aux longueurs LaTeX (`\vspace{0.5\baselineskip}`), aux clés
+  bib, aux étiquettes ni aux numéros de sections.
 - Pourcentages : `X~\%`.
 - Grilles : trois noms seulement — **grossière** (`N x N`), **élargie**
   (`pN x pN`), **fine** (`k_f`). « dense » est réservé à la grille de sortie

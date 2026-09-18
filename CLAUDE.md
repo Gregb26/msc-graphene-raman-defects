@@ -78,6 +78,14 @@ régénérant — jamais en éditant le PDF.
   en remplacement de la ligne verticale unique. Aucun script générateur de
   cette figure n'existe actuellement dans le dépôt de calcul.
 
+### Après le dépôt
+
+- Renommer `eqn_G_tau` → `eqn:G_tau` (déclarée dans `annexes/défauts.tex`,
+  3 renvois : annexe ×2 + `chapitres/défauts.tex`). Seule étiquette
+  d'équation du mémoire qui n'a pas le préfixe `eqn:`. Impose un
+  `make clean all`. Reporté après le dépôt : le renvoi actuel résout
+  correctement, ce n'est qu'une dette de convention.
+
 ### Balayage transverse
 
 - Remplacer les 3 « i.e. » résiduels des autres chapitres par « c.-à-d. »

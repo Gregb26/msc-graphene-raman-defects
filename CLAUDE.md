@@ -58,6 +58,25 @@ passe de relecture. Une figure ne se corrige qu'en modifiant le script qui
 la produit (dépôt `~/Projects/electron_defect_interaction`) puis en la
 régénérant — jamais en éditant le PDF.
 
+## Provenance des données du chapitre 4
+
+`tab:convergence_gamma` est alimenté par **deux** sources distinctes, ce qui
+n'est pas apparent à la lecture du tableau :
+
+- colonnes `R_cut = 0` à `3`, les six tailles : `results/M/level1_summary.csv`
+  (carte de niveau 1, balayage grille × eta × R_cut) ;
+- colonne `R_cut = 4`, ligne `9x9` seulement (2468) : `m_rcut_resigma.csv`,
+  produit par `rcut_resigma.py` (balayage R_cut 0–4, 9×9 uniquement), et non
+  par `level1_summary.csv`, qui ne contient aucune ligne `R_cut = 4`.
+
+Les deux sources concordent : sur `R_cut = 0`–`3` à `9x9`/240/0,02 eV, elles
+donnent des valeurs identiques aux quatre décimales de `level1_summary.csv`
+(2596,9154 / 2488,8991 / 2466,8378 / 2473,5466). `m_rcut_resigma.csv` confirme
+aussi la suite des `nL` (1, 5, 13, 29, 49) et `dim = 145` à `R_cut = 3`.
+
+Note : cette provenance appartient à `NOTES_TGAMMA.md` §6, absent de ce poste
+de travail — à y reporter.
+
 ## À faire
 
 ### Chapitre 5 et calculs sur rorqual

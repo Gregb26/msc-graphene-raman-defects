@@ -41,8 +41,9 @@
 
 \node[box] (dnout)  at (0, -4.1*\sep)
     {$\Delta n_\text{out}(\rv)
-       = 4\Re\displaystyle\sum_{n\kv} f_{n\kv}\,
-         \psi^*_{n\kv}(\rv)\,\Delta\psi_{n\kv}(\rv)$};
+       = 4\displaystyle\sum_{n\kv} f_{n\kv}\,
+         \psi^*_{n\kv}(\rv)\,\Delta\psi_{n\kv}(\rv)$\\[1pt]
+     {\scriptsize (partie réelle à $\qv=\mathbf{0}$ seulement)}};
 \node[font=\scriptsize\bfseries, anchor=north west]
     at (dnout.north west) {(6)};
 
@@ -55,7 +56,7 @@
 
 \node[box] (cel)    at (0, -8.0*\sep)
     {$\widetilde{C}^\text{el}_{\alpha\mu,\alpha'\mu'}(\qv)
-      = \displaystyle\int d^3\rv\,\Delta n(\rv)\,\Delta' V_\text{PP}(\rv)
+      = \displaystyle\int d^3\rv\,\left[\Delta n(\rv)\right]^*\Delta' V_\text{PP}(\rv)
       + \displaystyle\int d^3\rv\,n(\rv)\,\Delta\Delta' V_\text{PP}(\rv)$};
 \node[font=\scriptsize\bfseries, anchor=north west]
     at (cel.north west) {(8)};

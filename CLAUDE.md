@@ -105,6 +105,24 @@ de travail — à y reporter.
   en remplacement de la ligne verticale unique. Aucun script générateur de
   cette figure n'existe actuellement dans le dépôt de calcul.
 
+### Restes de la passe P20 (chap. 2 et 3)
+
+- **Régénérer `figures/fig_phonons.pdf`** avec la chaîne `24k-24q_mv0.02`
+  (mêmes IFC que `fig_epw_*`), chemin `Gamma-K-M-Gamma`, DOS de `matdyn.x`
+  en états/cm^-1. Le générateur est `~/Projects/qe_pp/notebooks/phonons.ipynb`,
+  mais ses données locales (`data/phonons/`) sont celles d'anciennes chaînes
+  (`E_2g` à 1586 et 1566 cm^-1, pas 1550.5) : les sorties de la bonne chaîne
+  sont sur rorqual. Puis remplacer, dans `chapitres/théorie.tex`, le
+  `% TODO P20-C2`, la fin de la légende (b) et la phrase « grille `96 x 96`,
+  `sigma = 0.01 Ry` » par la grille dense et le `DeltaE` réels de matdyn, et
+  revoir la liste des pics de van Hove.
+- **IBZ = 1/12** : établi par comptage de symétrie (75 points irréductibles
+  pour `27 x 27`, 19 pour `12 x 12`), pas lu dans une sortie QE — aucune
+  sortie SCF `27 x 27` sur ce poste. À confirmer par
+  `grep 'number of k points'` sur rorqual.
+- **Fiches Zotero à refaire (C19)** : le `.bib` est un export BBT, ne pas
+  l'éditer à la main. Voir le rapport P20 pour la liste.
+
 ### Après le dépôt
 
 - Renommer `eqn_G_tau` → `eqn:G_tau` (déclarée dans `annexes/défauts.tex`,

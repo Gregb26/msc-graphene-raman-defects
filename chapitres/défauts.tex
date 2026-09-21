@@ -102,7 +102,7 @@ Nous devons évaluer le chevauchement entre les états de Bloch et les projecteu
 \begin{equation}
     B_{n\kv}^{(\alpha)}(i\ell m_\ell)\equiv\braket{\psi_{n\kv}}{\beta_{i\ell m_\ell}^{(\alpha)}} = \int d^3\rv\,\braket{\psi_{n\kv}}{\rv}\braket{\rv}{\beta_{i\ell m_\ell}^{(\alpha)}}.
 \end{equation}
-En utilisant la forme de l'équation~\eqref{betar} pour la représentation du projecteur dans l'espace réel ainsi que le développement de la fonction d'onde dans la base d'ondes planes, nous avons
+En utilisant la forme de l'équation~\eqref{eqn:betar} pour la représentation du projecteur dans l'espace réel ainsi que le développement de la fonction d'onde dans la base d'ondes planes, nous avons
 \begin{equation}
     B_{n\kv}^{(\alpha)}(i\ell m_\ell) =\frac{1}{\sqrt{\Omega_\text{uc}}}\sum_\Gv C^*_{n\kv}(\Gv)\int d^3\rv\,e^{-i(\kv+\Gv)\cdot\rv}\frac{\beta_{i\ell}^{(\alpha)}(|\rv-\bm{\tau}_\alpha|)Y_\ell^{m_\ell}(\widehat{\rv-\bm{\tau}_\alpha})}{|\rv-\bm{\tau}_\alpha|},
 \end{equation}
@@ -127,7 +127,7 @@ Ici, nous avons défini le facteur de forme du pseudo-potentiel dans l'espace r�
 \begin{equation}
     B_{n\kv}^{(\alpha)}(i\ell m_\ell) =\frac{4\pi}{\sqrt{\Omega_\text{uc}}}\sum_\Gv(-i)^\ell C_{n\kv}^*(\Gv)e^{-i\Kv\cdot\bm{\tau}_\alpha}Y_\ell^{m_\ell}(\widehat{\Kv})F_{i\ell}^{(\alpha)}(K),
 \end{equation}
-et qui constitue l'expression finale du chevauchement entre les états de Bloch et les projecteurs de KB. C'est également cette forme qu'il faut utiliser pour calculer la partie non-locale du potentiel lors de la résolution des équations de Kohn-Sham dans la base d'ondes planes~\eqref{V_NL_k}. La partie non-locale de la matrice de couplage électron-défaut pour une super-cellule s'obtient avec ce chevauchement, son conjugué complexe et les énergies de KB~\eqref{eqn:M_NL} :
+et qui constitue l'expression finale du chevauchement entre les états de Bloch et les projecteurs de KB. C'est également cette forme qu'il faut utiliser pour calculer la partie non-locale du potentiel lors de la résolution des équations de Kohn-Sham dans la base d'ondes planes~\eqref{eqn:V_NL_k}. La partie non-locale de la matrice de couplage électron-défaut pour une super-cellule s'obtient avec ce chevauchement, son conjugué complexe et les énergies de KB~\eqref{eqn:M_NL} :
 \begin{equation}
 \begin{aligned}
     M_{mn}^\text{NL}(\kv',\kv) = \frac{(4\pi)^2}{\Omega_\text{uc}}\sum_{\alpha i\ell m_\ell}E_{i\ell}^{(\alpha)}\sum_{\Gv\Gv'}

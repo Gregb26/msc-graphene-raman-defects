@@ -214,6 +214,11 @@
 %%------------------------------------------------- %
 
 \appendix
+% Équations des annexes numérotées (A.n), (B.n), ... : compteur remis à zéro
+% à chaque annexe et non à chaque section.
+\counterwithout*{equation}{section}
+\counterwithin*{equation}{chapter}
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
 %\include{annexes/pbe}
 %\include{annexes/raman}
 %\include{annexes/défauts}

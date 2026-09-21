@@ -31,7 +31,8 @@ sont commentés dans `master_thesis.tex`. Sur le build courant — chapitre 4
 plus annexe C, les deux `\maketitle` commentés — la liste complète est, aux
 11 étiquettes près : `chap:Raman`, `chap:eph`, `sec:wannier`, `sec:PP`,
 `sec:PW`, `sec:hamiltonien`, `sec:symétries`, `sec:electron_results`,
-`fig:règles_Raman`, `V_NL_k` et `betar`. Toute étiquette hors de cette liste
+`fig:règles_Raman`, `eqn:V_NL_k` et `eqn:betar` (ces deux dernières
+renommées avec le préfixe `eqn:` à la passe P20). Toute étiquette hors de cette liste
 signale un vrai renvoi cassé.
 
 `annexes/défauts` étant désormais inclus, `annexe:défauts` et `eqn_G_tau`

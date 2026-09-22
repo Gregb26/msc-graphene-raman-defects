@@ -1,1 +1,165 @@
+% !TEX root = ../master_thesis.tex
 \chapter{Paramètres utilisés dans les calculs numériques}\label{annexe:paramètres}
+
+Cette annexe rassemble les paramètres numériques des six chaînes de calcul du mémoire, dans l'ordre des chapitres. Les calculs DFT et DFPT sont réalisés avec \texttt{QuantumESPRESSO} (version~7.4.1), l'interpolation par fonctions de Wannier avec \texttt{Wannier90} et \texttt{EPW}, et le post-traitement de la matrice de couplage électron-défaut en Python avec \texttt{NumPy} et \texttt{SciPy}.
+% TODO P23 : versions d'EPW, de Wannier90, de NumPy et de SciPy absentes du texte des chapitres.
+Tous les calculs ont été effectués sur la grappe Rorqual. Les fichiers d'entrée de chaque chaîne sont regroupés dans le dépôt \texttt{graphene-raman}.
+% TODO P23 : adresse du dépôt graphene-raman.
+Dans chaque tableau, la colonne « Section » renvoie à l'endroit du texte où la valeur est donnée. Une valeur qui diffère d'une chaîne à l'autre est donnée dans chaque tableau avec sa propre valeur.
+
+\begin{table}[htbp]
+    \centering
+    \caption[Paramètres du calcul DFT de la cellule unitaire.]{Paramètres du calcul DFT de la cellule unitaire du graphène parfait (chapitre~\ref{chap:théorie}).}
+    \label{tab:param_dft}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{p{0.27\textwidth} p{0.46\textwidth} p{0.14\textwidth}}
+        \hline\hline
+        Paramètre & Valeur & Section \\
+        \hline
+        Code & \texttt{QuantumESPRESSO} & \ref{sec:electron_results} \\
+        Fonctionnelle d'échange-corrélation & PBE & \ref{sec:electron_results} \\
+        Pseudo-potentiel & ONCV \textit{stringent} pour le carbone, bibliothèque PseudoDojo & \ref{sec:electron_results} \\
+        Coupure $E_\text{cut}$ & $100$~Ry & \ref{sec:electron_results} \\
+        Grille $\kv$ & $27\times 27$, centrée sur $\Gamma$ & \ref{sec:electron_results} \\
+        Occupation & Marzari-Vanderbilt, $\sigma = 0.01$~Ry & \ref{sec:electron_results} \\
+        Diagonalisation & Davidson & \ref{sec:electron_results} \\
+        \textit{Mixing} & Broyden, $\beta = 0.3$ & \ref{sec:electron_results} \\
+        Seuil de convergence SCF & $10^{-14}$~Ry & \ref{sec:electron_results} \\
+        Critère des tests de convergence & $0.1$~meV par atome & \ref{sec:electron_results} \\
+        Paramètre de maille $a$ & $2.466$~\AA{}, par relaxation structurelle & \ref{sec:electron_results} \\
+        Cellule de vide & & \\
+        Troncature de Coulomb & & \\
+        \hline\hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption[Paramètres des calculs DFPT et des phonons.]{Paramètres des calculs DFPT et des phonons du graphène parfait (chapitres~\ref{chap:théorie} et~\ref{chap:eph}).}
+    \label{tab:param_dfpt}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{p{0.27\textwidth} p{0.46\textwidth} p{0.14\textwidth}}
+        \hline\hline
+        Paramètre & Valeur & Section \\
+        \hline
+        Grille $\kv$ du calcul DFT préalable & $24\times 24$, centrée sur $\Gamma$ & \ref{sec:phonon_results} \\
+        Grille $\qv$ de la DFPT & $24\times 24$ & \ref{sec:phonon_results} \\
+        Occupation & Marzari-Vanderbilt, $\sigma = 0.02$~Ry & \ref{sec:phonon_results} \\
+        Coupure $E_\text{cut}$ & $100$~Ry & \ref{sec:g_détails} \\
+        Paramètre de maille & $2.466$~\AA & \ref{sec:g_détails} \\
+        Cellule de vide & $30$~Bohr & \ref{sec:g_détails} \\
+        Troncature de Coulomb & bidimensionnelle & \ref{sec:g_détails} \\
+        Seuil de convergence (DFT et DFPT) & $10^{-14}$~Ry & \ref{sec:g_détails} \\
+        Chemin d'interpolation & $\Gamma\to K\to M\to\Gamma$, $125$ points par segment & \ref{sec:phonon_results} \\
+        Densité d'états : grille $\qv$ & $500\times 500$ & \ref{sec:phonon_results} \\
+        Densité d'états : élargissement & gaussien, $3$~cm$^{-1}$ & \ref{sec:phonon_results} \\
+        \hline\hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption[Paramètres des fonctions de Wannier.]{Paramètres des fonctions de Wannier de la cellule unitaire, pour la chaîne de la matrice $M$ (chapitre~\ref{chap:défauts}) et la chaîne de la matrice $g$ (chapitre~\ref{chap:eph}).}
+    \label{tab:param_wannier}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{p{0.27\textwidth} p{0.46\textwidth} p{0.14\textwidth}}
+        \hline\hline
+        Paramètre & Valeur & Section \\
+        \hline
+        Code (chaîne $M$) & \texttt{Wannier90} & \ref{sec:M_détails} \\
+        Code (chaîne $g$) & \texttt{EPW}, qui fait appel à \texttt{Wannier90} & \ref{sec:g_détails} \\
+        Grille (chaîne $M$) & grille élargie $pN\times pN$, soit $27\times 27$ pour la super-cellule de référence $9\times 9$ & \ref{sec:M_détails} \\
+        Grille (chaîne $g$) & $24\times 24$ & \ref{sec:g_détails} \\
+        Nombre de fonctions de Wannier & $5$ & \ref{sec:M_détails}, \ref{sec:g_détails} \\
+        Fonctions d'essai & trois orbitales hybrides $sp^2$ et une orbitale $p_z$ sur un atome de carbone, une orbitale $p_z$ sur l'autre & \ref{sec:M_détails}, \ref{sec:g_détails} \\
+        Fenêtre externe & $-25$~eV à $15$~eV & \ref{sec:M_détails}, \ref{sec:g_détails} \\
+        Fenêtre gelée & jusqu'à $E_D + 2.5$~eV & \ref{sec:M_détails}, \ref{sec:g_détails} \\
+        Étalements (chaîne $M$) & $0.61095$~\AA$^2$ ($\sigma$), $0.96695$~\AA$^2$ ($p_z$), total $3.76675$~\AA$^2$ & \ref{sec:M_détails} \\
+        Étalements (chaîne $g$) & $0.6106$~\AA$^2$ ($\sigma$), $0.9655$~\AA$^2$ ($p_z$), total $3.7627$~\AA$^2$ & \ref{sec:g_détails} \\
+        \hline\hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption[Paramètres des super-cellules et de la matrice $M$.]{Paramètres des calculs de super-cellules et de la matrice de couplage électron-défaut $M$ (chapitre~\ref{chap:défauts}).}
+    \label{tab:param_M}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{p{0.27\textwidth} p{0.46\textwidth} p{0.14\textwidth}}
+        \hline\hline
+        Paramètre & Valeur & Section \\
+        \hline
+        Tailles de super-cellule $N\times N$ & $N = 5, 6, 7, 8, 9, 12$ ; référence $9\times 9$ & \ref{sec:M_détails}, \ref{sec:M_results} \\
+        Sous-réseau de la lacune & A pour $N = 5, 7, 8, 9$ ; B pour $N = 6, 12$ & \ref{sec:M_détails} \\
+        Géométrie & non relaxée & \ref{sec:M_détails} \\
+        Échantillonnage de la super-cellule & point $\Gamma$ seul & \ref{sec:M_détails} \\
+        Grille grossière & $N\times N$ & \ref{sec:M_détails} \\
+        Facteur d'élargissement $p$ & $5, 4, 4, 4, 3, 2$ pour $N = 5, 6, 7, 8, 9, 12$ & \ref{sec:M_détails} \\
+        Grille élargie $pN\times pN$ & $pN = 25, 24, 28, 32, 27, 24$ & \ref{sec:M_détails} \\
+        Fonctionnelle d'échange-corrélation & PBE & \ref{sec:M_détails} \\
+        Pseudo-potentiel & ONCV \textit{stringent} pour le carbone, forme de Kleinman-Bylander, bibliothèque PseudoDojo & \ref{sec:M_détails} \\
+        Coupure $E_\text{cut}$ & $100$~Ry & \ref{sec:M_détails} \\
+        Occupation & Marzari-Vanderbilt, $\sigma = 0.01$~Ry & \ref{sec:M_détails} \\
+        Seuil de convergence & $10^{-10}$~Ry sur l'énergie totale & \ref{sec:M_détails} \\
+        Cellule de vide & $30$~Bohr & \ref{sec:M_détails} \\
+        Troncature de Coulomb & bidimensionnelle & \ref{sec:M_détails} \\
+        Rayon de coupure $R_\text{cut}$ & $3$, soit $29$ cellules unitaires & \ref{sec:M_results} \\
+        Grille fine du test de troncature & $60\times 60$ & \ref{sec:M_results} \\
+        Nombre de bandes & & \\
+        \hline\hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption[Paramètres de la matrice $T$ et du taux d'amortissement $\Gamma^\text{ed}$.]{Paramètres du schéma local pour la matrice $T$ et le taux d'amortissement $\Gamma^\text{ed}$ (chapitre~\ref{chap:défauts}).}
+    \label{tab:param_T}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{p{0.27\textwidth} p{0.46\textwidth} p{0.14\textwidth}}
+        \hline\hline
+        Paramètre & Valeur & Section \\
+        \hline
+        Rayon de coupure $R_\text{cut}$ & $3$ & \ref{sec:T_détails} \\
+        Nombre de cellules $N_L$ & $29$ (suite $1, 5, 13, 29, 49$ pour $R_\text{cut} = 0, \dots, 4$) & \ref{sec:T_détails} \\
+        Nombre de fonctions de Wannier $N_W$ & $5$, soit une dimension $N_LN_W = 145$ & \ref{sec:T_détails} \\
+        Grille interne $N_{\tilde\kv}$ & $300\times 300$ & \ref{sec:T_détails} \\
+        Élargissement $\eta$ & $0.02$~eV & \ref{sec:T_détails} \\
+        Grille de sortie $N_{\kv_f}$ & $240\times 240$, centrée sur $\Gamma$ & \ref{sec:T_détails} \\
+        Fenêtre d'énergie & $\pm 3$~eV autour de $E_D$, soit $41\,266$ états & \ref{sec:T_détails} \\
+        Pas de la grille d'énergie & $\eta/n_e$ avec $n_e = 8$, soit $2.5$~meV & \ref{sec:T_détails} \\
+        Point de Dirac $E_D$ & $-4.239$~eV & \ref{sec:T_détails} \\
+        Super-cellule de référence & $9\times 9$, grille élargie $27\times 27$ & \ref{sec:T_results} \\
+        Moyenne lorentzienne & $\eta = 0.02$~eV & \ref{sec:T_results} \\
+        Concentration de référence $c$ & $1~\%$ & \ref{sec:T_results} \\
+        \hline\hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption[Paramètres de la chaîne \texttt{EPW}.]{Paramètres de la chaîne \texttt{EPW} pour la matrice $g$, le taux d'amortissement $\Gamma^\text{ep}$ et la largeur des phonons $\gamma_{\nu\qv}$ (chapitre~\ref{chap:eph}).}
+    \label{tab:param_epw}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{p{0.27\textwidth} p{0.46\textwidth} p{0.14\textwidth}}
+        \hline\hline
+        Paramètre & Valeur & Section \\
+        \hline
+        Grilles grossières $\kv$ et $\qv$ & $24\times 24$ et $24\times 24$ & \ref{sec:g_détails} \\
+        Occupation (DFT et DFPT) & Marzari-Vanderbilt, $\sigma = 0.02$~Ry & \ref{sec:g_détails} \\
+        Niveau de Fermi & $E_F = E_D = -4.2389$~eV & \ref{sec:g_détails} \\
+        Fenêtre d'énergie & $\pm 3.5$~eV autour de $E_F$ & \ref{sec:g_détails} \\
+        Grille de sortie pour $\Gamma^\text{ep}$ & $240^2$ points $\qv$, grille $\kv$ irréductible de même densité & \ref{sec:g_détails}, \ref{ssec:g_gamma_ep} \\
+        Grille de sortie pour $\gamma_{\nu\qv}$ & $1200^2$ points $\kv$, $\qv$ le long de $\Gamma\to K\to M\to\Gamma$ & \ref{sec:g_détails}, \ref{ssec:g_gamma_ph} \\
+        Élargissement gaussien $\sigma$ & $0.02$~eV & \ref{sec:g_détails} \\
+        Températures & $300$~K et $10$~K & \ref{sec:g_détails} \\
+        Moyenne lorentzienne de $\Gamma^\text{ep}(\varepsilon)$ & $\eta = 0.02$~eV & \ref{sec:g_détails} \\
+        Convention de largeur & largeur totale $\gamma_{\nu\qv} = -2\,\mathrm{Im}\,\Pi_{\nu\qv}$, quantité imprimée par \texttt{EPW} & \ref{sec:g_détails}, \ref{ssec:g_gamma_ph} \\
+        \hline\hline
+    \end{tabular}
+\end{table}

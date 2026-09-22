@@ -171,17 +171,17 @@ Le potentiel externe $V_\text{ext}(\rv)$, qui décrit l'interaction de Coulomb e
 
 On distingue principalement trois grandes catégories de pseudo-potentiels : les pseudo-potentiels à conservation de norme (NC, de l'anglais \textit{Norm-Conserving}) \cite{hamannNormConservingPseudopotentials1979}, les pseudo-potentiels \textit{ultrasoft} de Vanderbilt \cite{vanderbiltSoftSelfconsistentPseudopotentials1990} et la méthode des ondes augmentées projetées (PAW, de l'anglais \textit{Projector Augmented Waves}) de Blöchl \cite{blochlProjectorAugmentedwaveMethod1994}. Pour tous les calculs effectués dans ce mémoire, nous utilisons des pseudo-potentiels NC de la famille ONCV (de l'anglais \textit{Optimized Norm-Conserving Vanderbilt}) tirés de la bibliothèque PseudoDojo \cite{vansettenPseudoDojoTrainingGrading2018}, qui offrent un excellent compromis entre précision et efficacité computationnelle. Dans un pseudo-potentiel NC, la pseudo-fonction d'onde de valence coïncide exactement avec la fonction d'onde tous-électrons au-delà d'un rayon de coupure $r_c$ et reproduit la norme à l'intérieur, ce qui garantit la bonne densité de charge dans le région de c\oe ur et la transférabilité du pseudo-potentiel à différents environnements chimiques~\cite{hamannGeneralizedNormconservingPseudopotentials1989,troullierEfficientPseudopotentialsPlanewave1991}.
 
-Dans les codes DFT modernes, la forme séparable proposée par Kleinman et Bylander (KB)~\cite{kleinmanEfficaciousFormModel1982} pour les pseudo-potentiels NC est généralement employée, car elle réduit radicalement le nombre d'opérations nécessaires pour l'application de la partie non-locale de l'Hamiltonien, ainsi que la mémoire nécessaire pour stocker l'opérateur. Dans l'approximation des pseudo-potentiels, l'interaction des électrons de valence avec les ions est remplacée par un pseudo-potentiel total
+Dans les codes DFT modernes, la forme séparable proposée par Kleinman et Bylander (KB)~\cite{kleinmanEfficaciousFormModel1982} pour les pseudo-potentiels NC est généralement employée, car elle réduit radicalement le nombre d'opérations nécessaires pour l'application de la partie non locale de l'Hamiltonien, ainsi que la mémoire nécessaire pour stocker l'opérateur. Dans l'approximation des pseudo-potentiels, l'interaction des électrons de valence avec les ions est remplacée par un pseudo-potentiel total
 \begin{equation}
     V_\text{PP}(\rv)=\sum_\alpha V_\text{PP}^{(\alpha)}(\rv-\bm{\tau}_\alpha),
     \label{eqn:c2_pp_approx}
 \end{equation}
-où la somme court sur tous les ions $\alpha$ de la cellule unitaire et $\bm{\tau}_\alpha$ dénote leur position. Dans la forme de KB, chaque contribution ionique se décompose en une partie locale et une partie non-locale
+où la somme court sur tous les ions $\alpha$ de la cellule unitaire et $\bm{\tau}_\alpha$ dénote leur position. Dans la forme de KB, chaque contribution ionique se décompose en une partie locale et une partie non locale
 \begin{equation}
     V^{(\alpha)}_\text{PP}(\rv) = V^{(\alpha)}_\text{PPL}(\rv)+\underbrace{\sum_{i\ell m_\ell}\ket{\beta_{i\ell m_\ell}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m_\ell}^{(\alpha)}}}_{=\hat{V}_\text{PPNL}^{(\alpha)}}.
     \label{eqn:c2_VKB}
 \end{equation}
-La partie locale $V_\text{PPL}(\rv)$ est un potentiel central à symétrie sphérique qui reproduit le potentiel de Coulomb $-Z_\text{val}/r$ loin de la région de c\oe ur et est plus lisse à l'intérieur. Dans la partie non-locale, $\ell$ est le nombre quantique de moment cinétique orbital, $m_\ell=-\ell,\dots,\ell$ est le nombre quantique magnétique et $i$ indexe les multiples projecteurs par canal $\ell$. C'est précisément ce qui distingue les ONCV des NC classiques, qui ne possèdent qu'un seul projecteur par canal. Les énergies de KB $E_{i\ell}^{(\alpha)}$ mesurent la force de la partie non-locale par rapport à la partie locale et les projecteurs de KB $\beta_{i\ell m_\ell}^{(\alpha)}(\rv)=\braket{\rv}{\beta_{i\ell m_\ell}^{(\alpha)}}$ sont des fonctions à courte portée centrées sur l'ion $\alpha$, dont la structure est
+La partie locale $V_\text{PPL}(\rv)$ est un potentiel central à symétrie sphérique qui reproduit le potentiel de Coulomb $-Z_\text{val}/r$ loin de la région de c\oe ur et est plus lisse à l'intérieur. Dans la partie non locale, $\ell$ est le nombre quantique de moment cinétique orbital, $m_\ell=-\ell,\dots,\ell$ est le nombre quantique magnétique et $i$ indexe les multiples projecteurs par canal $\ell$. C'est précisément ce qui distingue les ONCV des NC classiques, qui ne possèdent qu'un seul projecteur par canal. Les énergies de KB $E_{i\ell}^{(\alpha)}$ mesurent la force de la partie non locale par rapport à la partie locale et les projecteurs de KB $\beta_{i\ell m_\ell}^{(\alpha)}(\rv)=\braket{\rv}{\beta_{i\ell m_\ell}^{(\alpha)}}$ sont des fonctions à courte portée centrées sur l'ion $\alpha$, dont la structure est
 \begin{equation}
     \beta_{i\ell m_\ell}^{(\alpha)}(\rv)=\frac{1}{|\rv-\bm{\tau}_\alpha|}\beta_{i\ell}^{(\alpha)}(|\rv-\bm{\tau}_\alpha|)Y_{\ell}^{m_\ell}(\theta,\phi),
     \label{eqn:betar}
@@ -198,7 +198,7 @@ où $Y_\ell^{m_\ell}(\theta, \phi)$ sont les harmoniques sphériques et $\theta$
     \label{fig:KB}
 \end{figure}
 
-La décomposition du pseudo-potentiel en une partie locale et une partie non-locale se répercute directement sur le potentiel de KS, qui lui aussi se sépare en deux parties : 
+La décomposition du pseudo-potentiel en une partie locale et une partie non locale se répercute directement sur le potentiel de KS, qui lui aussi se sépare en deux parties : 
 \begin{equation}
     V_\text{KS}(\rv)=V_\text{L}(\rv)+\hat{V}_\text{NL},
     \label{eqn:c2_VKS_lnl}
@@ -208,7 +208,7 @@ où la partie locale du potentiel regroupe les contributions d'Hartree, d'échan
     V_\text{L}(\rv) = V_\text{H}(\rv)+V_\text{XC}(\rv)+\sum_\alpha V_\text{PPL}^{(\alpha)}(\rv-\bm{\tau}_\alpha),
     \label{eqn:c2_VL}
 \end{equation}
-et la partie non-locale est entièrement due aux projecteurs de KB
+et la partie non locale est entièrement due aux projecteurs de KB
 \begin{equation}
     \hat{V}_\text{NL}=\sum_\alpha\sum_{i\ell m_\ell}\ket{\beta_{i\ell m_\ell}^{(\alpha)}}E_{i\ell}^{(\alpha)}\bra{\beta_{i\ell m_\ell}^{(\alpha)}}.
 \end{equation}
@@ -276,7 +276,7 @@ où la partie d'Hartree est obtenue directement dans l'espace réciproque via l'
 \begin{equation}
     \tilde{V}_\text{H}(\Gv) = \frac{e^2}{\varepsilon_0|\Gv|^2}\tilde{n}(\Gv),
 \end{equation}
-la partie d'échange-corrélation s'obtient par la FFT de $V_\text{XC}[n(\rv)]$ calculé dans l'espace réel et la partie locale du pseudo-potentiel s'obtient par la FFT de $V_\text{PPL}(\rv)$, qui ne dépend pas de la densité et est précalculée. La partie non-locale, elle aussi indépendante de la densité, est précalculée pour chaque $\kv$
+la partie d'échange-corrélation s'obtient par la FFT de $V_\text{XC}[n(\rv)]$ calculé dans l'espace réel et la partie locale du pseudo-potentiel s'obtient par la FFT de $V_\text{PPL}(\rv)$, qui ne dépend pas de la densité et est précalculée. La partie non locale, elle aussi indépendante de la densité, est précalculée pour chaque $\kv$
 \begin{equation}
     \tilde{V}_\text{NL}^{(\kv)}(\Gv,\Gv') = \sum_\alpha\sum_{i\ell m_\ell}\tilde{\beta}_{i\ell m_\ell}^{(\alpha)}(\kv+\Gv)E_{i\ell}^{(\alpha)}\tilde{\beta}^{*(\alpha)}_{i\ell m_\ell}(\kv+\Gv'),\label{eqn:V_NL_k}
 \end{equation}
@@ -387,7 +387,7 @@ où la contribution ionique est la dérivée seconde de l'énergie d'interaction
     \widetilde{C}^{\text{el}}_{\alpha\mu,\alpha'\mu'}(\qv) = \int d^3\rv\, \left[\Delta_{\qv\alpha\mu}n(\rv)\right]^*\,\Delta_{\qv\alpha'\mu'} V_\text{PP}(\rv)+\int d^3\rv\,n(\rv)\Delta_{\qv\alpha\mu}\Delta_{\qv\alpha'\mu'}V_\text{PP}(\rv)
     ,\label{eqn:C_el}
 \end{equation}
-où $n(\rv)$ est la densité pour le système non-perturbé. Calculer $\widetilde{C}^\text{el}$ requiert donc de connaître la correction au premier ordre à la densité $\Delta_{\qv\alpha\mu}n$, qui s'obtient à partir de la correction de premier ordre aux fonctions d'onde $\Delta_{\qv\alpha\mu}\psi_{n\kv}$. Le fait que les IFC,  dérivées secondes de l'énergie, ne nécessitent que des corrections au premier ordre aux fonctions d'onde est une instance du théorème $2n+1$~\cite{dalgarnoPerturbationCalculationProperties1958,gonzeDensityfunctionalApproachNonlinearresponse1989,gonzeAdiabaticDensityfunctionalPerturbation1995,baroniPhononsRelatedCrystal2001a}. 
+où $n(\rv)$ est la densité pour le système non perturbé. Calculer $\widetilde{C}^\text{el}$ requiert donc de connaître la correction au premier ordre à la densité $\Delta_{\qv\alpha\mu}n$, qui s'obtient à partir de la correction de premier ordre aux fonctions d'onde $\Delta_{\qv\alpha\mu}\psi_{n\kv}$. Le fait que les IFC,  dérivées secondes de l'énergie, ne nécessitent que des corrections au premier ordre aux fonctions d'onde est une instance du théorème $2n+1$~\cite{dalgarnoPerturbationCalculationProperties1958,gonzeDensityfunctionalApproachNonlinearresponse1989,gonzeAdiabaticDensityfunctionalPerturbation1995,baroniPhononsRelatedCrystal2001a}. 
 
 \bloc{Résolution des équations de la DFPT}
 
@@ -405,11 +405,11 @@ La correction à la fonction d'onde $\Delta_{\qv\alpha\mu}\ket{\psi_{n\kv}}$ ind
     \left(\hat{H}_\text{KS}-\varepsilon_{n\kv}\right)\ket{\Delta_{\qv\alpha\mu}\psi_{n\kv}} = -\hat{P}_c\,\Delta_{\qv\alpha\mu}\hat{H}_\text{KS}\ket{\psi_{n\kv}}.
     \label{eqn:Sternheimer_projetée}
 \end{equation}
-Ici, les quantités avec un $\Delta$ sont des corrections au premier ordre et les quantités sans $\Delta$ sont non-perturbées. L'opérateur $\hat{P}_c$ est le projecteur sur les états vides en $\kv+\qv$, puisque $\Delta_{\qv\alpha\mu}\psi_{n\kv}$ a le caractère de Bloch $\kv+\qv$ :
+Ici, les quantités avec un $\Delta$ sont des corrections au premier ordre et les quantités sans $\Delta$ sont non perturbées. L'opérateur $\hat{P}_c$ est le projecteur sur les états vides en $\kv+\qv$, puisque $\Delta_{\qv\alpha\mu}\psi_{n\kv}$ a le caractère de Bloch $\kv+\qv$ :
 \begin{equation}
     \hat{P}_c = 1-\hat{P}_v = 1 - \sum_m f_{m\kv+\qv}\ket{\psi_{m\kv+\qv}}\bra{\psi_{m\kv+\qv}}.
 \end{equation}
-L'avantage décisif de la DFPT est que $\ket{\Delta_{\qv\alpha\mu}\psi_{n\kv}}$ s'obtient sans jamais évaluer explicitement la somme sur les états non-occupés, ce qui rend la méthode praticable pour des systèmes comportant un grand nombre de bandes~\cite{baroniPhononsRelatedCrystal2001a}. La correction à l'Hamiltonien qui apparaît dans l'équation de Sternheimer projetée est donnée par
+L'avantage décisif de la DFPT est que $\ket{\Delta_{\qv\alpha\mu}\psi_{n\kv}}$ s'obtient sans jamais évaluer explicitement la somme sur les états non occupés, ce qui rend la méthode praticable pour des systèmes comportant un grand nombre de bandes~\cite{baroniPhononsRelatedCrystal2001a}. La correction à l'Hamiltonien qui apparaît dans l'équation de Sternheimer projetée est donnée par
 \begin{equation}
     \Delta_{\qv\alpha\mu} \hat{H}_\text{KS} = \Delta_{\qv\alpha\mu}V_\text{PP} + \int d^3\rv'\,\Delta_{\qv\alpha\mu} n(\rv')\frac{\delta V_\text{H}(\rv)}{\delta n(\rv')}+\int d^3\rv'\,\Delta_{\qv\alpha\mu}n(\rv')\frac{\delta V_\text{XC}(\rv)}{\delta n(\rv')}.
     \label{eqn:deltaH}
@@ -419,7 +419,7 @@ La correction à la densité est donnée par
     \Delta_{\qv\alpha\mu} n(\rv) = 4\sum_{n\kv}f_{n\kv}\psi^*_{n\kv}(\rv)\Delta_{\qv\alpha\mu}\psi_{n\kv}(\rv),
     \label{eqn:deltan}
 \end{equation}
-une quantité complexe pour $\qv\neq\mathbf{0}$ (la partie réelle n'est à prendre qu'à $\qv=\mathbf{0}$). Ces trois équations~\eqref{eqn:Sternheimer_projetée}--\eqref{eqn:deltan} sont à résoudre de manière autocohérente : en partant des quantités non-perturbées $\ket{\psi_{n\kv}}$ et $n(\rv)$, nous construisons $\Delta_{\qv\alpha\mu}\hat{H}_\text{KS}$, nous résolvons l'équation de Sternheimer projetée pour $\ket{\Delta_{\qv\alpha\mu}\psi_{n\kv}}$ et nous mettons à jour $\Delta_{\qv\alpha\mu}n(\rv)$. Ce processus est itéré jusqu'à convergence et est illustré à la figure~\ref{fig:scf_phonon}.
+une quantité complexe pour $\qv\neq\mathbf{0}$ (la partie réelle n'est à prendre qu'à $\qv=\mathbf{0}$). Ces trois équations~\eqref{eqn:Sternheimer_projetée}--\eqref{eqn:deltan} sont à résoudre de manière autocohérente : en partant des quantités non perturbées $\ket{\psi_{n\kv}}$ et $n(\rv)$, nous construisons $\Delta_{\qv\alpha\mu}\hat{H}_\text{KS}$, nous résolvons l'équation de Sternheimer projetée pour $\ket{\Delta_{\qv\alpha\mu}\psi_{n\kv}}$ et nous mettons à jour $\Delta_{\qv\alpha\mu}n(\rv)$. Ce processus est itéré jusqu'à convergence et est illustré à la figure~\ref{fig:scf_phonon}.
 
 Une fois le cycle convergé pour les $3p$ perturbations élémentaires, $\widetilde{C}^\text{el}$ est calculé avec l'équation~\eqref{eqn:C_el}, auquel la contribution ionique $\widetilde{C}^\text{ion}$ est ajoutée et la matrice dynamique est construite
 \begin{equation}

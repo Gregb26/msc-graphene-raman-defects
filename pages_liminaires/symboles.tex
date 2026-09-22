@@ -7,6 +7,7 @@
     $k_B$ & Constante de Boltzmann : $1.380649\times 10^{-23}$ m$^2$ kg s$^{-2}$ K$^{-1}$\\
     $T$ & Température en kelvins\\
     $\beta$ & Inverse de l'énergie thermique associée à la température : $\beta = 1 /k_BT$\\
+    $\mathbb{I}$ & Matrice identité\\
     & \\
 
     & \large\textbf{Réseau cristallin}\\
@@ -31,6 +32,7 @@
     $\ket{n\kv}$ & État quantique d'une onde plane électronique\\
     $C_{n\kv}(\Gv)$ & Coefficient de l'expansion en ondes planes des états de Bloch électroniques\\
     $\hat{c}^\dag_{n\kv}\,(\hat{c}_{n\kv})$ & Opérateur de création (destruction) d'un électron\\
+    $\rho(\varepsilon)$ & Densité d'états électronique\\
 
     & \\
 
@@ -44,13 +46,13 @@
     $\omega_{\nu\qv}$ & Fréquence d'un phonon\\
     $\hat{a}_{\lambda\qv}^\dag\,(\hat{a}_{\lambda\qv})$ & Opérateur de création (destruction) d'un photon\\
     $\hat{b}_{\nu\qv}^\dag\,(\hat{b}_{\nu\qv})$ & Opérateur de création (destruction) d'un phonon\\
-    $\hat{A}_{\nu\qv}$ & Opérateur proportionnel aux déplacements d'un phonon : $\hat{A}_{\nu\qv}=\hat{b}_{\nu\qv}+\hat{b}^\dag_{\nu-\qv}$\\
+    $\rho(\omega)$ & Densité d'états phononique\\
     & \\
 
     & \large\textbf{Couplage}\\
-    $g_{nm\lambda}(\kv,\qv)$ & Élément de matrice de couplage électron-photon\\
-    $g_{nm\nu}(\kv,\qv)$ & Élément de matrice de couplage électron-phonon\\
-    $M_{nm}(\kv,\kv')$ & Élément de matrice de couplage électron-défaut\\
+    $g^{(\lambda)}_{mn}(\kv)$ & Élément de matrice de couplage électron-photon\\
+    $g^{(\nu)}_{mn}(\kv,\qv)$ & Élément de matrice de couplage électron-phonon\\
+    $M_{mn}(\kv',\kv)$ & Élément de matrice de couplage électron-défaut\\
     & \\
 
     & \large\textbf{Fonctions de Green et \textit{self}-énergie} \\
@@ -58,14 +60,17 @@
     $\mathcal{D}^{(0)}_{\nu\qv}(i\nu_j)$ & Fonction de Green de Matsubara phononique libre aux fréquences de Matsubara\\
     $\mathcal{G}_{n\kv}(i\omega_j)$ & Fonction de Green de Matsubara électronique aux fréquences de Matsubara\\
     $\mathcal{G}^\text{ed}_{n\kv}(i\omega_j)$ & Fonction de Green de Matsubara électronique due aux défauts aux fréquences de Matsubara\\
-    $\mathcal{G}^\text{eph}_{n\kv}(i\omega_j)$ & Fonction de Green de Matsubara électronique due phonons aux fréquences de Matsubara\\
+    $\mathcal{G}^\text{ep}_{n\kv}(i\omega_j)$ & Fonction de Green de Matsubara électronique due aux phonons aux fréquences de Matsubara\\
     $\mathcal{G}^{(0)}_{n\kv}(i\omega_j)$ & Fonction de Green de Matsubara électronique libre aux fréquences de Matsubara\\
-    $\bar{\mathcal{G}}^\text{ed}_{n\kv}(i\omega_j)$ & Fonction de Green de Matsubara électronique moyenée pour une collections de défauts aux fréquences de Matsubara\\
+    $\bar{\mathcal{G}}^\text{ed}_{n\kv}(i\omega_j)$ & Fonction de Green de Matsubara électronique moyennée pour une collection de défauts aux fréquences de Matsubara\\
     $i\omega_j$ & Fréquence de Matsubara fermionique\\
     $i\nu_j$ & Fréquence de Matsubara bosonique\\
     $\Pi_{\nu\qv}(\omega)$ & \textit{Self}-énergie phononique due aux interactions avec les électrons\\
     $\Sigma^\text{ed}_{n\kv}(\omega)$ & \textit{Self}-énergie électronique due aux interactions avec les défauts\\
-    $\Sigma^\text{eph}_{n\kv}(\omega)$ & \textit{Self}-énergie électronique due aux interactions avec les phonons\\
+    $\Sigma^\text{ep}_{n\kv}(\omega)$ & \textit{Self}-énergie électronique due aux interactions avec les phonons\\
+    $\Gamma^\text{ed}_{n\kv}$ & Taux d'amortissement d'un électron dû aux interactions avec les défauts\\
+    $\Gamma^\text{ep}_{n\kv}$ & Taux d'amortissement d'un électron dû aux interactions avec les phonons\\
+    $\gamma_{\nu\qv}$ & Largeur d'un phonon due aux interactions avec les électrons : $\gamma_{\nu\qv}=-2\,\mathrm{Im}\,\Pi_{\nu\qv}$\\
     $S(\beta, 0)$ & Matrice $S$ dans le formalisme de Matsubara\\
     $T_{mn}(\kv',\kv)$ & Matrice $T$ pour le couplage des électrons avec un seul défaut\\
 
@@ -77,7 +82,7 @@
     $\hat{H}_\text{ed}$ & Hamiltonien de couplage électron-défaut\\
     $\hat{H}_\text{eem}$ & Hamiltonien de couplage électron-photon\\
     $\hat{H}_\text{em}$ & Hamiltonien des photons libres\\  
-    $\hat{H}_\text{eph}$ & Hamiltonien de couplage électron-phonon\\
+    $\hat{H}_\text{ep}$ & Hamiltonien de couplage électron-phonon\\
     $\hat{H}_\text{i}$ & Hamiltonien ionique\\
     $\hat{H}_\text{int}$ & Hamiltonien d'interaction général\\
     $\hat{H}_\text{KS}$ & Hamiltonien de Kohn-Sham dans le formalisme de la théorie de la fonctionnelle de la densité\\

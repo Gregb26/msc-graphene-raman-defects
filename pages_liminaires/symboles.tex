@@ -18,7 +18,11 @@
     $\Omega_\text{uc}$ & Volume de la cellule primitive\\
     $\Omega_\text{sc}$ & Volume de la super-cellule\\
     $N_\text{cells}$ & Nombre de cellules unitaires dans la super-cellule\\
-    $N_\text{uc}$ & Nombre de cellules primitives dans le cristal\\ 
+    $N_\text{uc}$ & Nombre de cellules primitives dans le cristal\\
+    $N_d$ & Nombre de défauts dans le cristal\\
+    $c$ & Concentration de défauts : $c = N_d/N_\text{uc}$\\
+    $A_\text{cell}$ & Aire de la cellule unitaire\\
+    $R_\text{cut}$ & Rayon de coupure du schéma local, en indices réduits de maille\\
     $\Rv_l$ & Vecteurs du réseau cristallin qui identifient la cellule primitive $l$ \\
     $\bm{\tau}_\alpha$ & Position de l'atome $\alpha$ dans une cellule unitaire\\
     & \\
@@ -27,6 +31,7 @@
     $\kv$ & Vecteur d'onde ou quasi-moment d'un électron\\
     $n$ & Indice de bande d'un électron\\
     $\varepsilon_{n\kv}$ & Énergie d'un électron dans le formalisme de Kohn-Sham\\
+    $E_D$ & Énergie du point de Dirac\\
     $\ket{\psi_{n\kv}}$ & État quantique de Bloch d'un électron dans le formalisme de Kohn-Sham\\
     $\ket{u_{n\kv}}$ & Partie périodique de l'état de Bloch d'un électron\\
     $\ket{n\kv}$ & État quantique d'une onde plane électronique\\
@@ -43,6 +48,7 @@
     $\mathbf{e}_{\lambda\qv}$ & Vecteur de polarisation d'un photon\\
     $\mathbf{e}_{\nu\qv}$ & Vecteur de polarisation d'un phonon \\
     $\omega_{\qv}$ & Fréquence d'un photon\\
+    $\varepsilon_L = \hbar\omega_L$ & Énergie du photon incident (laser)\\
     $\omega_{\nu\qv}$ & Fréquence d'un phonon\\
     $\hat{a}_{\lambda\qv}^\dag\,(\hat{a}_{\lambda\qv})$ & Opérateur de création (destruction) d'un photon\\
     $\hat{b}_{\nu\qv}^\dag\,(\hat{b}_{\nu\qv})$ & Opérateur de création (destruction) d'un phonon\\
@@ -52,6 +58,7 @@
     $g^{(\lambda)}_{mn}(\kv)$ & Élément de matrice de couplage électron-photon\\
     $g^{(\nu)}_{mn}(\kv,\qv)$ & Élément de matrice de couplage électron-phonon\\
     $M_{mn}(\kv',\kv)$ & Élément de matrice de couplage électron-défaut\\
+    $\langle D^2\rangle$ & Carré du potentiel de déformation électron-phonon\\
     & \\
 
     & \large\textbf{Fonctions de Green et \textit{self}-énergie} \\
@@ -72,6 +79,7 @@
     $\gamma_{\nu\qv}$ & Largeur d'un phonon due aux interactions avec les électrons : $\gamma_{\nu\qv}=-2\,\mathrm{Im}\,\Pi_{\nu\qv}$\\
     $S(\beta, 0)$ & Matrice $S$ dans le formalisme de Matsubara\\
     $T_{mn}(\kv',\kv)$ & Matrice $T$ pour le couplage des électrons avec un seul défaut\\
+    $\bar T(K;\varepsilon)$ & Demi-trace de la matrice $T$ sur la paire $\pi/\pi^*$ dégénérée en $K$\\
 
     & \\
     & \large\textbf{Hamiltoniens}\\

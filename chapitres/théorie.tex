@@ -298,7 +298,7 @@ Une diagonalisation directe de la matrice Hamiltonienne coûte $\mathcal{O}(N_\t
 
 \bloc{Facteur d'occupation}
 
-Pour un isolant ou un semi-conducteur, le facteur d'occupation est une fonction Heaviside $f_{n\kv}=\Theta(\varepsilon_F-\varepsilon_{n\kv})$, où $\varepsilon_F$ est l'énergie de Fermi. Pour un métal ou un semi-métal, le niveau de Fermi traverse des bandes et cette discontinuité déstabilise le cycle SCF : un petit déplacement de $\varepsilon_F$ entre deux itérations fait basculer des états d'occupés à inoccupés et introduit des discontinuités dans la densité. Nous remplaçons alors la fonction de Heaviside par une occupation lissée $f_{n\kv}(\sigma)$, paramétrée par un facteur d'élargissement $\sigma$ qui joue un rôle analogue à la température. Cette température n'est pas physique et introduit une erreur dans l'énergie totale, en échange d'une convergence plus rapide. Plusieurs schémas existent : la distribution de Fermi-Dirac et l'occupation gaussienne avec une erreur en $\sigma^2$, l'occupation de Methfessel-Paxton~\cite{methfesselHighprecisionSamplingBrillouinzone1989} qui réduit l'erreur à l'ordre $\sigma^4$ par des corrections polynomiales au prix d'occupations pouvant sortir de l'intervalle physique $[0,1]$ et l'occupation de Marzari-Vanderbilt (MV) ou \textit{cold smearing}~\cite{marzariThermalContractionDisordering1999} dont l'erreur est comparable à Methfessel-Paxton tout en gardant les occupations dans $[0,1]$. Il n'y a pas de prescription \textit{a priori} pour choisir le schéma. Nous devons les tester et retenir celui qui converge le plus vite vers la limite $\sigma\to 0$, ce que nous faisons à la section~\ref{sec:electron_results}.
+Pour un isolant ou un semi-conducteur, le facteur d'occupation est une fonction Heaviside $f_{n\kv}=\Theta(E_F-\varepsilon_{n\kv})$, où $E_F$ est l'énergie de Fermi. Pour un métal ou un semi-métal, le niveau de Fermi traverse des bandes et cette discontinuité déstabilise le cycle SCF : un petit déplacement de $E_F$ entre deux itérations fait basculer des états d'occupés à inoccupés et introduit des discontinuités dans la densité. Nous remplaçons alors la fonction de Heaviside par une occupation lissée $f_{n\kv}(\sigma)$, paramétrée par un facteur d'élargissement $\sigma$ qui joue un rôle analogue à la température. Cette température n'est pas physique et introduit une erreur dans l'énergie totale, en échange d'une convergence plus rapide. Plusieurs schémas existent : la distribution de Fermi-Dirac et l'occupation gaussienne avec une erreur en $\sigma^2$, l'occupation de Methfessel-Paxton~\cite{methfesselHighprecisionSamplingBrillouinzone1989} qui réduit l'erreur à l'ordre $\sigma^4$ par des corrections polynomiales au prix d'occupations pouvant sortir de l'intervalle physique $[0,1]$ et l'occupation de Marzari-Vanderbilt (MV) ou \textit{cold smearing}~\cite{marzariThermalContractionDisordering1999} dont l'erreur est comparable à Methfessel-Paxton tout en gardant les occupations dans $[0,1]$. Il n'y a pas de prescription \textit{a priori} pour choisir le schéma. Nous devons les tester et retenir celui qui converge le plus vite vers la limite $\sigma\to 0$, ce que nous faisons à la section~\ref{sec:electron_results}.
 
 
 \bloc{Schéma de mixing}
@@ -557,10 +557,10 @@ La quantification du champ électromagnétique suit la procédure standard de qu
 \end{equation}
 où $\hat{a}^\dag_{\lambda\qv}$ et $\hat{a}_{\lambda\qv}$ sont les opérateurs de création et d'annihilation d'un photon de vecteur d'onde $\qv$ et de polarisation $\lambda$, et $\omega_\qv=c|\qv|$ est la fréquence du photon ($c$ est la vitesse de la lumière). Les photons étant des bosons, ces opérateurs commutent entre eux : $[\hat{a}_{\lambda\qv},\hat{a}_{\lambda'\qv'}]=[\hat{a}_{\lambda\qv}^\dag,\hat{a}^\dag_{\lambda'\qv'}] = 0$. Le potentiel vecteur quantifié s'exprime en termes de ces opérateurs
 \begin{equation}
-    \hat{\mathbf{A}}(\rv)=\sum_{\lambda\qv}\sqrt{\frac{\hbar}{2\varepsilon_0\omega_\qv V}}\mathbf{e}_{\lambda\qv}\left(\hat{a}_{\lambda\qv}e^{i\qv\cdot\rv}+\hat{a}^\dag_{\lambda\qv}e^{-i\qv\cdot\rv}\right),
+    \hat{\mathbf{A}}(\rv)=\sum_{\lambda\qv}\sqrt{\frac{\hbar}{2\varepsilon_0\omega_\qv \Omega_\text{BvK}}}\mathbf{e}_{\lambda\qv}\left(\hat{a}_{\lambda\qv}e^{i\qv\cdot\rv}+\hat{a}^\dag_{\lambda\qv}e^{-i\qv\cdot\rv}\right),
     \label{eqn:c2_A}
 \end{equation}
-où $\mathbf{e}_{\lambda\qv}$ est le vecteur de polarisation du photon $(\lambda\qv)$, $V$ est le volume du système et $\varepsilon_0$ est la permittivité du vide. 
+où $\mathbf{e}_{\lambda\qv}$ est le vecteur de polarisation du photon $(\lambda\qv)$, $\Omega_\text{BvK}$ est le volume du système et $\varepsilon_0$ est la permittivité du vide. 
 
 \subsection{Couplage électron-photon}
 
@@ -576,11 +576,11 @@ En ne gardant que ce premier terme et en l'écrivant en deuxième quantification
 \end{equation}
 où nous avons défini les éléments de matrice de couplage électron-photon entre deux états de Bloch $\ket{\psi_{n\kv}}$ et $\ket{\psi_{m\kv}}$ : 
 \begin{equation}
-    g^{(\lambda)}_{mn}(\kv) = -e\sqrt{\frac{\hbar}{2\varepsilon_0 \omega V}}\matrixel{\psi_{m\kv}}{\mathbf{e}_\lambda\cdot\hat{\mathbf{v}}}{\psi_{n\kv}},
+    g^{(\lambda)}_{mn}(\kv) = -e\sqrt{\frac{\hbar}{2\varepsilon_0 \omega \Omega_\text{BvK}}}\matrixel{\psi_{m\kv}}{\mathbf{e}_\lambda\cdot\hat{\mathbf{v}}}{\psi_{n\kv}},
 \end{equation}
 et où nous avons supposé que le vecteur d'onde du photon est négligeable par rapport à celui de l'électron (c'est l'approximation dipolaire électrique). Nous avons réécrit l'opérateur impulsion en termes de l'opérateur de vitesse $\hat{\mathbf{p}}=m_e\hat{\mathbf{v}}$. L'élément de matrice de couplage s'obtient en contractant l'opérateur vitesse avec la polarisation du photon
 \begin{equation}
-    g^{(\lambda)}_{mn}(\kv) = -e\sqrt{\frac{\hbar}{2\varepsilon_0\omega V}}\sum_\mu e_{\lambda\mu}v_{mn}^{(\mu)}(\kv),
+    g^{(\lambda)}_{mn}(\kv) = -e\sqrt{\frac{\hbar}{2\varepsilon_0\omega \Omega_\text{BvK}}}\sum_\mu e_{\lambda\mu}v_{mn}^{(\mu)}(\kv),
 \end{equation}
 où $\mu=x,y,z$ identifie les coordonnées cartésiennes des vecteurs. Nous ne calculons pas $v_{mn}(\kv)$ explicitement dans ce mémoire, mais la procédure est celle de l'interpolation par fonctions de Wannier de la section précédente. Dans la base des MLWF, l'opérateur vitesse $\hat{\mathbf{v}}=\nabla_\kv\hat{H}/\hbar$ s'obtient de l'Hamiltonien électronique lui-même interpolé par fonctions de Wannier
 \begin{equation}

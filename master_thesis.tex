@@ -1,4 +1,8 @@
 % !TEX root = master_thesis.tex
+% Le français doit être la langue principale de babel : dms.cls le charge avec
+% [french,english], ce qui fait de l'anglais la langue principale (dernière
+% option). Voir le bloc \AtBeginDocument en fin de préambule.
+\PassOptionsToPackage{main=french}{babel}
 \documentclass[12pt,maitrise]{dms}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -108,6 +112,18 @@
  % ou
 \renewcommand{\baselinestretch}{1.286} %Interligne et demi (environ 18pt (12pt+6pt) entre les lignes)
 
+%% Correctif dms.cls / babel-french 4.0 (LuaLaTeX). La classe ne greffe
+%% \selectlanguage{french} sur \francais que si \ifFBunicode existe ; babel-french
+%% 4.0 (TeX Live 2026) ne le définit plus sous LuaTeX, si bien que babel restait
+%% en anglais (« List of Tables », « Chapter » dans la table des matières) alors
+%% que \anglais, lui, bascule toujours babel. Ce bloc rend la bascule symétrique,
+%% quel que soit le moteur ; sous pdfLaTeX la greffe est faite deux fois, sans effet.
+\makeatletter
+\AtBeginDocument{%
+  \let\dms@francais@orig\francais
+  \def\francais{\dms@francais@orig\selectlanguage{french}}}
+\makeatother
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%                                     %%%%%%%%%%%%%
@@ -196,12 +212,12 @@
 %%                                                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\include{chapitres/introduction}
+%\include{chapitres/introduction}
 %\include{chapitres/théorie}
 %\include{chapitres/raman}
 %\include{chapitres/défauts}
 %\include{chapitres/eph}
-%\include{chapitres/conclusion}
+\include{chapitres/conclusion}
 
 %%--------------%
 %%     index    %

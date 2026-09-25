@@ -57,6 +57,11 @@ résolvent et ne figurent plus dans la liste ; en contrepartie
 - `\braket{a}{b}` et `\matrixel{a}{V}{b}` (paquet `physics`).
 - `pseudo-potentiel` (avec trait d'union), `cellule unitaire`, `c.-à-d.`,
   `N_\text{cells}`.
+- **`œ` s'écrit `\oe` (`c\oe ur`), jamais en UTF-8 direct.** Le préambule
+  impose `[T1]{fontenc}` + `lmodern`, donc des fontes 8 bits (`ec-lmr12`)
+  même sous LuaLaTeX ; U+0153 n'y a pas de glyphe (`Missing character` au
+  log, blanc dans le PDF), alors que les lettres accentuées de Latin-1
+  passent. Vérifier avec `grep -c 'Missing character' master_thesis.log`.
 - `BZ` se conserve : le sigle est déclaré dans
   `pages_liminaires/sigles_abbréviations.tex` et domine dans les autres
   chapitres.

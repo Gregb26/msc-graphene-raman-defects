@@ -12,6 +12,35 @@ Conventions :
 
 ---
 
+## 0. Structure cible de msc- (décision du 2026-09-30)
+
+Le dépôt reprend la forme *src layout* de graphene-raman ; les imports du paquet marchent par installation
+(`pip install -e .`), pas par emplacement. Les dossiers `analyse/` et `scripts_figures/` créés le matin sont
+remplacés par `src/` et `scripts/fig/`.
+
+```
+msc-graphene-raman-defects/
+├── pyproject.toml              ← celui de graphene-raman
+├── src/graphene_raman/         ← paquet (renommé depuis electron_defect_interaction), sans les orphelins
+├── scripts/                    ← même arborescence que graphene-raman après ménage (fig/, …)
+├── campagnes/                  ← ce qui sert au mémoire : M/ch4, R/R8_kaasbjerg (pilote), EM
+├── config/production.json      ← results_dir = donnees/  (seule ligne à changer à la copie)
+├── donnees/                    ← results/M2_plateau, results/epw, sorties R8, ch4/*.md, EM/*.npz
+├── calculs/                    ← inputs QE / Wannier90 / EPW / SLURM, un dossier par calcul
+├── tests/
+├── notes/                      ← NOTES_TGAMMA, NOTES_EPW, NOTES_EPW_REPERES (copies figées)
+└── memoire/                    ← LaTeX
+```
+
+Conditions pour que la copie soit un `cp -r` : les scripts de figures trouvent `_palette` et `memoire.mplstyle`
+par rapport à `__file__` ; tout accès aux résultats passe par `config.results_dir()` ; aucun `sys.path` relatif au
+cwd. `ch4_chiffres.py` reste un générateur lié à graphene-raman : on copie ses sorties, pas sa capacité à tourner.
+
+Vérification à la copie : régénérer les 20 figures depuis msc- et comparer les md5 à `graphene-raman/figures/`
+(tag d'après ménage).
+
+---
+
 ## 1. Figures incluses (20)
 
 | Label | Fichier | .tex:ligne | Producteur (source) | Données lues (source) | État | Dans msc- |
@@ -19,9 +48,9 @@ Conventions :
 | `fig:KB` | `KB_projectors_C.pdf` | théorie:191 | probablement `GR:plotting/plot_psp_radial_proj.py`, sortie manuelle | pseudo-potentiel C (`.upf`/`.psp8`) | hors chaîne | |
 | `fig:convergence_dft` | `fig_electron_convergence.pdf` | théorie:319 | `QEPP:plot_convergence.py` | sorties QE de convergence (qe_pp) | hors dépôt GR | |
 | `fig:resultats_electrons` | `fig_ebands_edos.pdf` | théorie:326 | `QEPP:plot_ebands_edos.py` | bandes + DOS QE (qe_pp) | hors dépôt GR | |
-| `fig:phonon_results` | `fig_epw_phonons.pdf` | théorie:447 | `GR:scripts/make_figures_epw.py` | `GR:results/epw/*` (phdos) | R10 (identique) | |
-| `fig:Ved_zoom` | `fig_Ved_zoom.pdf` | défauts:268 | `GR:scripts/make_figures.py` | `ved_analysis.npz` | R10 (identique) | |
-| `fig:Ved` | `fig_Ved.pdf` | défauts:284 | `GR:scripts/make_figures_memoire.py` | `ved_analysis.npz` + C_N | **R6** | |
+| `fig:phonon_results` | `fig_epw_phonons.pdf` | théorie:447 | `GR:scripts/fig/make_figures_epw.py` | `GR:results/epw/*` (phdos) | R10 (identique) | |
+| `fig:Ved_zoom` | `fig_Ved_zoom.pdf` | défauts:268 | `GR:scripts/fig/make_figures.py` | `ved_analysis.npz` | R10 (identique) | |
+| `fig:Ved` | `fig_Ved.pdf` | défauts:284 | `GR:scripts/fig/make_figures_memoire.py` | `ved_analysis.npz` + C_N | **R6** | |
 | `fig:M_scaling` | `fig_M_scaling_final.pdf` | défauts:297 | `make_figures_memoire.py` | `M_analysis` | **R6** | |
 | `fig:M_map` | `fig_M_map_final.pdf` | défauts:306 | `make_figures_memoire.py` | `M_analysis` | **R6** | |
 | `fig:M_locality` | `fig_locality_final.pdf` | défauts:360 | `make_figures_memoire.py` | `mwr_locality` | **R6** | |
@@ -50,9 +79,9 @@ Style commun : `GR:scripts/_palette.py` et `GR:figures/memoire.mplstyle`.
 
 | Figure | Pour | Producteur (source) | Données |
 |---|---|---|---|
-| `dos_c`, `spectral_GKM`, `sigma_K`, `sensibilites`, `superposition` | ch. 4 (réécriture) | `GR:article/R8_kaasbjerg/r8_driver.py fig` (`sigeff` pour `sigma_K`) | `GR:article/R8_kaasbjerg/out/` |
-| `alignement_regions` (si retenue) | ch. 4 | `GR:memoire/ch4/ch4_chiffres.py regions` (**exige Rorqual** : lit les `scf.in` des super-cellules) | `GR:memoire/ch4/alignement_regions.npz` |
-| `fig_em_coupling` | §2.5 électron-photon | `GR:scripts/make_figures_em.py` | `GR:memoire/EM/{M4_sigma,EM3,EM2}` |
+| `dos_c`, `spectral_GKM`, `sigma_K`, `sensibilites`, `superposition` | ch. 4 (réécriture) | `GR:campagnes/R/R8_kaasbjerg/r8_driver.py fig` (`sigeff` pour `sigma_K`) | `GR:campagnes/R/R8_kaasbjerg/out/` |
+| `alignement_regions` (si retenue) | ch. 4 | `GR:campagnes/M/ch4/ch4_chiffres.py regions` (**exige Rorqual** : lit les `scf.in` des super-cellules) | `GR:campagnes/M/ch4/alignement_regions.npz` |
+| `fig_em_coupling` | §2.5 électron-photon | `GR:scripts/fig/make_figures_em.py` | `GR:campagnes/EM/{M4_sigma,EM3,EM2}` |
 
 ---
 
@@ -67,7 +96,7 @@ Toutes les tables sont saisies à la main dans le `.tex`, sans `\input` de csv.
 | `tab:rcut_M` | défauts:370 | `m_rcut_convergence.csv` (deux valeurs après décision R10) |
 | `tab:tests_M` | défauts:415 | `M_tests_summary.csv` |
 | `tab:convergence_gamma` | défauts:653 | `level1_summary.csv`, `level2_*.csv` |
-| `tab:tests_T` | défauts:691 | `nkint_check_9x9.csv`, `GR:NOTES_TGAMMA.md` |
+| `tab:tests_T` | défauts:691 | `nkint_check_9x9.csv`, `GR:notes/NOTES_TGAMMA.md` |
 | `tab:kohn_chaines` | eph:194 | `GR:results/epw/*.npz` via `epw_*_post.py` |
 | `tab:gamma_ep_conv` | eph:219 | idem |
 | `tab:gamma_ph_conv` | eph:254 | idem |
@@ -76,8 +105,8 @@ Toutes les tables sont saisies à la main dans le `.tex`, sans `\input` de csv.
 | `tab:param_dfpt` | paramètres:37 | inputs ph.x (`calculs/`) |
 | `tab:param_wannier` | paramètres:62 | `GR:wannier/*/wannier.wout` |
 | `tab:param_M` | paramètres:86 | `GR:config/production.json` |
-| `tab:param_T` | paramètres:117 | `production.json`, `NOTES_TGAMMA.md` |
-| `tab:param_epw` | paramètres:143 | inputs EPW, `GR:NOTES_EPW.md` |
+| `tab:param_T` | paramètres:117 | `production.json`, `GR:notes/NOTES_TGAMMA.md` |
+| `tab:param_epw` | paramètres:143 | inputs EPW, `GR:notes/NOTES_EPW.md` |
 
 ---
 
@@ -88,8 +117,8 @@ Toutes les tables sont saisies à la main dans le `.tex`, sans `\input` de csv.
 | Introduction | 2 | lit. (l. 13 : 130 GPa, 97.7 %) | citées, pas de données |
 | Ch. 2 théorie | 25 | §2.2 : 2.466 Å, 5.46 eV, convergence 0.1 meV → `QEPP`. §2.3 : 1550.5 et 1583 cm⁻¹, écart 2 %, 468/1394/1602 cm⁻¹ → `GR:results/epw` (phdos) et lit. | 100 Ry et 0.01 Ry sont des paramètres, voir `tab:param_dft` |
 | Ch. 3 Raman | 8 | lit. (positions des pics G, D, 2D… ; 10 nm) | aucune donnée |
-| Ch. 4 défauts | 111 | `GR:memoire/ch4/table_v1_final.md` (source des valeurs finales) ; appariement ligne par ligne dans `GR:memoire/ch4/defauts_nombres.md` | **le texte cite encore les valeurs v1** : à refaire avec la réécriture ; régénérer `defauts_nombres.md` après |
-| Ch. 5 EPW | 176 | `GR:results/epw/*.npz`, `GR:NOTES_EPW.md` §1c–§1g ; Γ^ed/Γ^ep (§5.3.5, l. 301–312) → `table_v1_final.md` | à apparier comme pour le ch. 4 ; l. 303–312 dépendent du ch. 4 (Γ^ed R6 → R10) |
+| Ch. 4 défauts | 111 | `GR:campagnes/M/ch4/table_v1_final.md` (source des valeurs finales) ; appariement ligne par ligne dans `GR:campagnes/M/ch4/defauts_nombres.md` | **le texte cite encore les valeurs v1** : à refaire avec la réécriture ; régénérer `defauts_nombres.md` après |
+| Ch. 5 EPW | 176 | `GR:results/epw/*.npz`, `GR:notes/NOTES_EPW.md` §1c–§1g ; Γ^ed/Γ^ep (§5.3.5, l. 301–312) → `table_v1_final.md` | à apparier comme pour le ch. 4 ; l. 303–312 dépendent du ch. 4 (Γ^ed R6 → R10) |
 | Conclusion | 5 | reprend ch. 4–5 (300 K, 1 %, 3 eV, 0.6 %, 14 cm⁻¹) | à revoir après la réécriture du ch. 4 |
 | Résumé / abstract | 2 + 2 | reprend ch. 4–5 (300 K, 1 %) | idem |
 

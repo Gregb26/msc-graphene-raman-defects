@@ -1,0 +1,7 @@
+/* Couleur du code dans l'aperçu Markdown de VS Code
+   (chargé par "markdown.styles" dans les réglages utilisateur) :
+   code en ligne (`...`) et blocs de code (```). */
+body code,
+body pre code {
+    color: #29baa7;
+}

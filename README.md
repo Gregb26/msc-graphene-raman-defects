@@ -29,7 +29,7 @@ Le PDF est écrit à la racine du dépôt et les fichiers auxiliaires vont dans 
 
 ## Reproduire les figures
 
-*Pour installer l'environnement :*
+**Pour installer l'environnement :**
 
 ```bash
 python3.12 -m venv .venv
@@ -37,7 +37,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-*Scripts : à venir*
+**Scripts :**  *à venir*
 
 ## Données lourdes
 

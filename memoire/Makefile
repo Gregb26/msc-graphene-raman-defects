@@ -5,12 +5,6 @@ MAIN     := master_thesis
 
 .PHONY: all clean distclean check
 
-all:
-	TEXINPUTS= $(TEX) $(FLAGS) $(MAIN).tex
-	biber $(MAIN)
-	TEXINPUTS= $(TEX) $(FLAGS) $(MAIN).tex
-	TEXINPUTS= $(TEX) $(FLAGS) $(MAIN).tex
-
 # Renommer une étiquette invalide les .aux/.out ; LaTeX échoue alors en
 # relisant les anciens (« Undefined control sequence » sur r@chap:...).
 # Passer par « make clean all » après toute modification d'étiquette.

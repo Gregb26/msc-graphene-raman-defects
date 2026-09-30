@@ -21,5 +21,7 @@
 build/
 out/
 
+# fichiers
+/master_thesis.pdf
 # venv
 .venv 

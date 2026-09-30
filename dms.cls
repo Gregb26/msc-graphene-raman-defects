@@ -1,3 +1,5 @@
+% Copie de dms.cls v2.2 du DMS avec une correction (l. 254) ; original dans l'historique Git, commit 67d8f33. 
+
 % Commandes utiles
 \newcommand{\kv}{\mathbf{k}}
 \newcommand{\qv}{\mathbf{q}}
@@ -251,7 +253,7 @@
 \def\@francais{%
     \escapecount=\escapechar
     \escapechar=-1
-    \def\do##1{\edef##1{\csname\string##1fr\endcsname}}
+    \def\do##1{\protected@edef##1{\csname\string##1fr\endcsname}}
     \dopolyglot
     \def\bibname{R\'ef\'erences}
     \escapechar=\escapecount

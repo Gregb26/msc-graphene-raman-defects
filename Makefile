@@ -1,24 +1,15 @@
-# Compilation de master_thesis
-#
-# Le TEXINPUTS ci-dessous fait passer cls_local/ AVANT la racine du dépôt :
-# la copie corrigée de dms.cls y est donc trouvée en premier, tandis que
-# l'original du département reste intact à la racine. Voir l'en-tête de
-# cls_local/dms.cls pour le détail de la correction.
-#
-# Le « : » final est obligatoire : il conserve les chemins par défaut de TeX.
-
 TEX      := lualatex
 FLAGS    := -interaction=nonstopmode
 MAIN     := master_thesis
-TEXINPUTS_LOCAL := cls_local:
+
 
 .PHONY: all clean distclean check
 
 all:
-	TEXINPUTS="$(TEXINPUTS_LOCAL)" $(TEX) $(FLAGS) $(MAIN).tex
+	TEXINPUTS= $(TEX) $(FLAGS) $(MAIN).tex
 	biber $(MAIN)
-	TEXINPUTS="$(TEXINPUTS_LOCAL)" $(TEX) $(FLAGS) $(MAIN).tex
-	TEXINPUTS="$(TEXINPUTS_LOCAL)" $(TEX) $(FLAGS) $(MAIN).tex
+	TEXINPUTS= $(TEX) $(FLAGS) $(MAIN).tex
+	TEXINPUTS= $(TEX) $(FLAGS) $(MAIN).tex
 
 # Renommer une étiquette invalide les .aux/.out ; LaTeX échoue alors en
 # relisant les anciens (« Undefined control sequence » sur r@chap:...).

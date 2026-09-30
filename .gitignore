@@ -16,8 +16,10 @@
 *.snm
 *.vrb
 *.bbl-SAVE-ERROR
+
 # Dossier de build
 build/
 out/
 
-# *.pdf
+# venv
+.venv 

@@ -5,45 +5,26 @@ Greg la commite avec le reste. Dépôt du mémoire : **31 décembre 2026**.
 
 Qui : **G** = Greg, **C** = Claude, **R** = demande Rorqual. Détails des figures, tables et chiffres : `PROVENANCE.md`.
 
-Mise à jour : 2026-10-01, 10 h 30.
+Mise à jour : 2026-10-01, 11 h 15. Les items terminés sont retirés de la liste (l'historique est dans git).
 
 ---
 
-## 1. Urgent : sauvegarde et versionnement
+## 1. En cours
 
-- [x] 2026-10-01 — `graphene-raman/campagnes/` versionné (GR `3305f58`, 647 fichiers) ; `notes/` reste gitignoré dans GR mais ses trois fichiers sont copiés ici
-- [x] 2026-10-01 — Notes copiées : `donnees/ch4/NOTES_TGAMMA.md`, `donnees/epw/NOTES_EPW.md`, `donnees/epw/NOTES_EPW_REPERES.md` (sources de `tab:tests_T`, `tab:param_T`, `tab:param_epw`)
-- [x] 2026-10-01 — `c2_results.json` copié dans `donnees/campagnes/R10_plateau/c/` (comparaison Kaasbjerg, 77 à 83 eV Å²) ; `MD5SUMS` et `campagnes/README.md` à jour
-- [x] 2026-10-01 — `make_figures.py` ne réécrit plus `level{1,2}_summary.csv` (option `--write-summaries`) : corrigé dans graphene-raman et recopié ici
-- [x] 2026-10-01 — Commité dans graphene-raman (`3305f58`, après le tag) : `make_figures.py --write-summaries`, documentation
-- [x] 2026-10-01 — `TODO.md`, `calculs/`, réduction du dépôt commités (`9970ab5`, `d83a8e7`)
-- [ ] **G** — Pousser : msc- a 1 commit d'avance sur `origin/main` (`d83a8e7`)
-- [ ] **G** — Coller les nouvelles instructions du projet : seule la ligne `TODO.md` a été ajoutée ; le reste cite encore `analyse/`, `scripts_figures/` et CLAUDE.md, et le texte du 2026-10-01 est périmé depuis la réduction du dépôt → **C** fournit une version à jour
-- [ ] **G** — Copier dans `donnees/campagnes/` (mêmes chemins relatifs que dans GR, ~0.4 Mo, tous versionnés dans GR `3305f58`) les sources des chiffres nouveaux du ch. 4 encore absentes ; leurs valeurs sont déjà recopiées dans `donnees/ch4/table_v1_final.md`, mais pas les fichiers : `R10_plateau/b/b_results.json` (familles : gap à Γ, ΔE_F, occupations ; table §g), `R10_plateau/c/c3_results.json` (convention intensive par famille), `R10_plateau/c/c6_results.json` (⟨ΔV⟩_3D, §k), `R8_kaasbjerg/out/dos/dos_results.json` et `out/spec/spec_results.json` (chiffres du texte des 5 figures Kaasbjerg, §h), `R6_production_corrigee/etape2/b3/b3_results_M2.json` (convergence en bandes, §c), `R6_production_corrigee/etape2/d4/d4_results.json` (escalier D4, §b) ; puis `MD5SUMS` et `campagnes/README.md`
+- [ ] **G** — Relire et commiter la restructuration de `donnees/` : `campagnes/` remplacé par `alignement/`, `kaasbjerg/`, `controles/`, `electron_photon/` (fichiers à plat, préfixes de campagne) ; les 4 json de la racine rangés ; `production.json` et `make_figures_{controles,em,kaasbjerg}.py` ajustés ; `MD5SUMS_2026-10-01.txt` (123 fichiers) et `PROVENANCE.md` (§0, §3) à jour ; recette : 47 PDF identiques. Avec : `scripts/chiffres_ch4.py` et sa sortie `donnees/ch4/chiffres_complementaires.{md,csv}` (§2)
 
-## 2. Chiffres manquants du ch. 4 (à trancher avant la réécriture)
+## 2. Chiffres complémentaires du ch. 4
 
-Aucune valeur finale nulle part. **Décision du 2026-10-01 : les trois tests sont retirés du mémoire, rien n'est relancé.** Les retraits dans le texte sont faits pendant la réécriture (§4).
-
-- [x] **G** — Retiré : `tab:tests_M`, « 16 → 20 bandes » (v1 : 1.2×10⁻⁷) : marqué « non rejouable » dans `M_tests_summary.csv`
-- [x] **G** — Retiré : `tab:tests_T`, références 6×6 et 12×12 contre l'inversion dense (v1 : 6.1×10⁻⁹, 3.7×10⁻⁹) ; seul le 5×5 est refait (1.80×10⁻¹³)
-- [x] **G** — Retiré : `tab:tests_T`, grille d'énergie n_e = 8 contre 32 (v1 : 8×10⁻⁴ / 5×10⁻³ / 1.5×10⁻² ; 3×10⁻⁴ sur la médiane)
-
-À calculer ici, données dans `donnees/` :
-
-- [ ] **C** — `fig:M_map` sur toute la zone : max de M̃_π*, plages de M^NL_∥ et M^L_∥ (`M_analysis.npz` : clés `map_Vpi*`, `map_Lpar*`, `map_Npar*`, brutes et `_aligned`, présentes)
-- [ ] **C** — Grille interne : écart sur la zone ±0.3 eV et au point de Dirac (`nkint_check_9x9.csv` : colonnes `z_n`, `z_medG`, `z_medRe`, présentes)
-- [ ] **C** — Ordres de grandeur lus sur `fig_Ved` et `fig_locality_final` R10 (cœur, fond, coin 5×5, plancher)
+Calculés le 2026-10-01 : `donnees/ch4/chiffres_complementaires.md` (159 valeurs, chacune avec fichier et clé), produit par `scripts/chiffres_ch4.py`. Avec `donnees/ch4/table_v1_final.md`, toutes les valeurs du ch. 4 ont une source. Les constats qui changent le texte sont reportés dans les items du §4.
 
 ## 3. Choix à trancher (G)
 
-- [ ] M^L à K **brut ou aligné** dans `tab:L_NL` et `fig:M_map` (9×9 : 11.31 ou 13.34 eV ; M̃_π(K) : 107.2 ou 114.9 eV Å²)
+- [ ] M^L à K **brut ou aligné** dans `tab:L_NL` et `fig:M_map` (9×9 : 11.31 ou 13.34 eV ; M̃_π(K) : 107.2 ou 114.9 eV Å²). L'alignement change la carte en K et autour (jusqu'à 7.7 eV Å², 125 des 729 points de plus de 0.5), pas ses extrêmes ; `fig_M_map_final` trace aujourd'hui la carte **brute** (`map_Vpi`) : si « aligné », changer `make_figures_memoire.py` (`map_*_aligned`)
 - [ ] V̄^L(a_CC) **brut ou aligné** dans `tab:échantillonnage` (9×9 : +43 ou +68 meV)
 - [ ] Colonne R_cut = 4 pour les six tailles dans `tab:convergence_gamma`
 - [ ] Figures à ajouter au ch. 4 : les 5 `fig_kaasbjerg_*` (décidées), `alignement_regions` (?), figures de contrôle (`fig_offset_profiles_13`, `fig_levels_vs_invN`…) dans le corps, en annexe ou nulle part
 - [ ] Ch. 2 : valider les 3 figures redessinées (`fig_kb_pseudo_C` remplace `KB_projectors_C`, `fig_ebands_edos`, `fig_electron_convergence`)
 - [ ] Ch. 2 : `fig:phonon_results` = `fig_epw_phonons` (actuel) ou `fig_phfreq_phdos`
-- [x] 2026-10-01 — **Convergence et tests en annexe** (adopté). Critère : en annexe ce qui justifie seulement un paramètre numérique ; dans le corps ce qui porte un résultat ou une limite. Restent dans le corps : `fig:level2` (non-convergence en taille), `fig:M_locality`, `fig:ks_reconstruction`, `fig:epw_kohn_degauss`, `tab:gamma_ph_prod`. Vont en annexe : `fig:convergence_dft`, `fig:convergence`, `tab:convergence_gamma`, grille interne, `tab:rcut_M`, `tab:tests_M`, `tab:tests_T`, `tab:gamma_ep_conv`, `tab:gamma_ph_conv`. Voir §4 bis.
 
 ## 4. Chantier 2a : réécriture du ch. 4
 
@@ -52,14 +33,14 @@ Section par section : C propose, G tranche, C applique et compile. Un tableau g�
 - [ ] **C** — Créer `scripts/make_tables.py` et `memoire/tables/` (les scripts sont à la racine de `scripts/` depuis le 2026-10-01)
 - [ ] §4.1.5 Détails computationnels de M : introduire l'alignement de Kumagai–Oba (C_N)
 - [ ] §4.1.6 Taille des super-cellules — `tab:échantillonnage`
-- [ ] §4.1.6 Remplissage par zéros — `fig:Ved`
-- [ ] §4.1.6 Convention intensive — `fig:M_scaling` (« < 2 % » devient 2.1 à 2.3 %)
-- [ ] §4.1.6 Point de Dirac et littérature — `fig:M_map`, Kaasbjerg (« 3 à 4 fois inférieur » ne tient plus)
-- [ ] §4.1.6 Local / non local — `tab:L_NL` (**inversion** : NL/L passe de 20 à 0.25)
-- [ ] §4.1.6 Localisation Wannier — `fig:M_locality` (corps) ; `tab:rcut_M` → annexe, une phrase de renvoi
+- [ ] §4.1.6 Remplissage par zéros — `fig:Ved` : cœur 115 à 116 eV au site ; |V̄| < 10⁻³ du cœur dès 1.4 à 1.8 Å ; fond loin de la lacune −0.10 eV (5×5) à −0.018 eV (12×12), égal à C_N à quelques meV près ; **le « coin positif de ~0.1 eV » de la 5×5 ne tient plus** (max −0.08 eV dans les 5 % les plus éloignés)
+- [ ] §4.1.6 Convention intensive — `fig:M_scaling` : « < 2 % » devient 2.1 % (non-3m) et 2.3 % (3m) par famille, 7.7 % sur les six tailles ; « écart grossière / élargie pratiquement nul pour N ≥ 7 » devient ≤ 2.4 % (−2.4, 0.0, −2.2, −1.0 % pour 7, 8, 9, 12)
+- [ ] §4.1.6 Point de Dirac et littérature — `fig:M_map`, Kaasbjerg (« 3 à 4 fois inférieur » ne tient plus) : sur la zone (brut), M̃_π 102 à 117 eV Å², M̃_π* 110 à 146 (max près de Γ, |k'| = 0.11 Å⁻¹), M^L_∥ 83 à 94, M^NL_∥ 19 à 23
+- [ ] §4.1.6 Local / non local — `tab:L_NL` (**inversion** : NL/L passe de 20 à 0.25) : fraction locale à K 0.77 à 0.79 (brut), 0.79 à 0.82 (aligné) ; A_cell·M̄(K) pour 9×9 : 75.9 (brut) ou 86.6 (aligné) eV Å², au lieu de 17.1
+- [ ] §4.1.6 Localisation Wannier — `fig:M_locality` (corps) ; `tab:rcut_M` → annexe, une phrase de renvoi. Grilles élargies : ~41 eV sur le site (35 en 12×12), ~2 eV à |R| = 1, ~0.1 eV à 3, ~0.01 eV à 5 (3.6 ordres de grandeur), plancher ~10⁻³ eV au-delà de 6 a (**pas 10⁻⁴**) ; grilles grossières : aucune décroissance (5×5 : 4.1 → 2.9 eV)
 - [ ] §4.1.6 Autres vérifications — `fig:ks_reconstruction` (corps) ; `tab:tests_M` → annexe (+ porte A.2, convention intensive par famille) ; retirer la ligne « 16 → 20 bandes » et la phrase correspondante (l. 414)
 - [ ] §4.3.4 Détails computationnels de T — « Évaluation pratique » (l. 629) : retirer « nous vérifions ce choix », justifier n_e = 8 par l'argument seul (g⁽⁰⁾ varie sur l'échelle de η, pas η/8) ; « Contrôles » (l. 633) : référence sur 5×5 seulement
-- [ ] §4.3.5 Convergence — `fig:convergence`, `tab:convergence_gamma`, grille interne → annexe ; le corps garde les paramètres retenus et le critère « < 0.5 % » (R_cut 0 → 1 augmente maintenant Γ)
+- [ ] §4.3.5 Convergence — `fig:convergence`, `tab:convergence_gamma`, grille interne → annexe ; le corps garde les paramètres retenus et le critère « < 0.5 % » (R_cut 0 → 1 augmente maintenant Γ). Grille interne 300² → 600² : −0.09 % sur la fenêtre, +0.2 % sur la zone ±0.3 eV (v1 : 2.4 %), +4.8 % au point de Dirac (v1 : 5 %), décroissance monotone en N_k^int
 - [ ] §4.3.5 Taille de super-cellule — `fig:level2`, **reste dans le corps** (0.6 % devient 2.4 % ; médiane croissante en 3m)
 - [ ] §4.3.5 Tests du schéma local — `tab:tests_T` → annexe, une phrase dans le corps ; retirer les lignes 6×6, 12×12 et grille d'énergie, et les phrases correspondantes (l. 690)
 - [ ] §4.3.5 Born — `fig:spectral` (Born/T : 3.3 → 46 en médiane, 16 → 203 au max ; pic de −1.24 à −0.18 eV)
@@ -70,6 +51,8 @@ Section par section : C propose, G tranche, C applique et compile. Un tableau g�
 - [ ] **C** — `PROVENANCE.md` à jour à chaque section (§0 et §4 refaits le 2026-10-01 après la réduction du dépôt)
 
 ## 4 bis. Annexe D : paramètres et convergence
+
+Décision du 2026-10-01 : en annexe ce qui justifie seulement un paramètre numérique, dans le corps ce qui porte un résultat ou une limite. Restent dans le corps : `fig:level2`, `fig:M_locality`, `fig:ks_reconstruction`, `fig:epw_kohn_degauss`, `tab:gamma_ph_prod`. Vont en annexe : `fig:convergence_dft`, `fig:convergence`, `tab:convergence_gamma`, grille interne, `tab:rcut_M`, `tab:tests_M`, `tab:tests_T`, `tab:gamma_ep_conv`, `tab:gamma_ph_conv`.
 
 Annexe D réorganisée par chaîne (DFT, DFPT, Wannier, M, T, EPW) : pour chacune, tableau des paramètres puis preuves de convergence et tests. Le corps garde les valeurs retenues et un renvoi.
 
@@ -114,16 +97,3 @@ Notés avant le 2026-09-25 ; peut-être déjà faits.
 - [ ] C7 : 75 points k pour 27×27 (IBZ 1/12), à confirmer par `grep 'number of k points'` sur Rorqual
 - [ ] Normalisation de la DOS des phonons (intégrale matdyn 3.78 au lieu de 6)
 
----
-
-## Fait
-
-- [x] 2026-09-30 — Tag `memoire-avant-menage` (656c05c) sur graphene-raman
-- [x] 2026-09-30 — Inventaire côté texte (`PROVENANCE.md`) ; skill `thesis-section-pass` mis à jour
-- [x] 2026-10-01 — Ménage de graphene-raman, tag `memoire-apres-menage` (14e8c2a)
-- [x] 2026-10-01 — Copie vers msc- (`bbed6f0`, `12da2f0`, `3e2e5ad`) ; recette passée (§0 de `PROVENANCE.md`, commit `ec61841`)
-- [x] 2026-10-01 — Inventaire des chiffres du ch. 4 : trous et choix listés aux §2 et §3
-- [x] 2026-10-01 — Réduction du dépôt à ce qui trace les figures (code de production laissé dans graphene-raman au tag) ; `scripts/make_all_figures.py` ; `requirements.txt` figé ; 47 figures identiques au bit à celles du tag
-- [x] 2026-10-01 — `calculs/` rempli depuis Rorqual (entrées QE, Wannier90, EPW, listes de points)
-- [x] 2026-10-01 — Audit « que manque-t-il ? » : 20 figures régénérables, sources des tables présentes ; ajoutés à `donnees/campagnes/` les chiffres de R8 (`*_results.json`) et de la série EM (`em_table.*`, `em_ring_stats.json`)
-- [x] 2026-10-01, 10 h 20 — Recette refaite après réduction, VM Linux : 8 scripts ok, 47 PDF identiques à ceux de la recette du matin, 109 md5 de `donnees/` OK

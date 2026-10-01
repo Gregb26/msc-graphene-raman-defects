@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 """
 Figure du §2.5 (couplage électron-photon, série EM), style graphene_raman.plotting (memoire.mplstyle), français. Données lues dans
-<campaigns_results_dir>/EM = results/campagnes/EM (config ; copies des fichiers de campagnes/EM) : EM3/ (em3_ring_2p33.npz,
-em2_postw90_sigma_ti.npz : make_em3_data.py), EM2/em2_A.npz (DFT directe) et la production M4 (M4_sigma/ :
-em_sigma_*_N1200_eta0.04.npz, em_scalars.json).
+donnees/electron_photon/ (config ; copies à plat des fichiers de campagnes/EM de graphene-raman) : em3_ring_2p33.npz,
+em2_postw90_sigma_ti.npz (EM3, make_em3_data.py), em2_A.npz (EM2, DFT directe) et la production M4 :
+em_sigma_*_N1200_eta0.04.npz, em_scalars.json.
   fig_em_coupling : (a) |ħv_cv| dans le plan sur l'anneau de 2.33 eV (532 nm) en fonction de θ, trois variantes de la
                     vitesse (complète, centres seuls, sans Berry) et les 48 points de la DFT directe (EM2) ;
                     (b) σ_xx(ω)/σ₀ des trois variantes, postw90 avec transl_inv (EM2, décision 7 d'EM.md), ħω_froz,
@@ -23,7 +23,7 @@ from graphene_raman.plotting.palette import NAVY, ORANGE, GREEN, GOLD, REF, INK,
 from graphene_raman.config import load_production, campaigns_dir
 
 ap = argparse.ArgumentParser(); ap.add_argument("--outdir", default=str(ROOT / "figures" / "electron_photon")); a = ap.parse_args()
-EM = Path(campaigns_dir(load_production(verbose=False), "EM"))   # results/campagnes/EM (config)
+EM = Path(campaigns_dir(load_production(verbose=False), "electron_photon"))   # donnees/electron_photon (config)
 LASERS = {1.96: "633", 2.33: "532", 2.54: "488"}        # eV : nm
 VARIANTS = ("full", "centres_only", "no_berry")
 # une couleur et un trait par variante de la vitesse, les mêmes dans les deux panneaux ; références en marqueurs gris ouverts
@@ -43,12 +43,12 @@ def save(fig, name):
     w, h = fig.get_size_inches(); plt.close(fig); print(f"écrit {a.outdir}/{name}.pdf/.png ({w:.2f} × {h:.2f} po)")
 
 
-scal = json.loads((EM / "M4_sigma" / "em_scalars.json").read_text())
+scal = json.loads((EM / "em_scalars.json").read_text())
 hw_froz = scal["hw_froz_eV"]
-RING = np.load(EM / "EM3" / "em3_ring_2p33.npz")
-A = np.load(EM / "EM2" / "em2_A.npz"); dft = (A["sets"] == "ring") & np.isclose(A["hw"], float(RING["hw"]))
-SIG = {v: np.load(EM / "M4_sigma" / f"em_sigma_{v}_N1200_eta0.04.npz") for v in VARIANTS}
-P = np.load(EM / "EM3" / "em2_postw90_sigma_ti.npz")
+RING = np.load(EM / "em3_ring_2p33.npz")
+A = np.load(EM / "em2_A.npz"); dft = (A["sets"] == "ring") & np.isclose(A["hw"], float(RING["hw"]))
+SIG = {v: np.load(EM / f"em_sigma_{v}_N1200_eta0.04.npz") for v in VARIANTS}
+P = np.load(EM / "em2_postw90_sigma_ti.npz")
 hw = SIG["full"]["hw"]; s = {v: z["sigma"][:, 0, 0] for v, z in SIG.items()}
 
 fig, (a1, a2) = plt.subplots(1, 2, figsize=(6.5, 3.3))

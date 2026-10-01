@@ -15,16 +15,49 @@ Tous les chemins sont relatifs à la racine de ce dépôt, sauf `GR:` = `graphen
 ```
 msc-graphene-raman-defects/
 ├── memoire/                   LaTeX
-├── scripts/                   make_all_figures.py (lanceur) + les huit make_figures*.py
+├── scripts/                   make_all_figures.py (lanceur) + les huit make_figures*.py ; chiffres_ch4.py (chiffres complémentaires du ch. 4)
 ├── src/graphene_raman/        sous-ensemble du paquet de GR, réduit à ce que les scripts importent :
 │                              config.py, plotting/ (style, palette, sauvegarde), io/pseudo_io.py, electron_phonon/phself.py
 ├── config/production.json     paramètres de production et emplacement des données (identique à GR, sauf results/… → donnees/…)
-├── donnees/                   données derrière les figures, les tables et les chiffres (122 fichiers, 74 Mo ; MD5SUMS_2026-10-01.txt)
+├── donnees/                   données derrière les figures, les tables et les chiffres (121 fichiers + MD5SUMS_2026-10-01.txt) ;
+│                              un dossier plat par sujet, voir « Dossiers de donnees/ » ci-dessous
 ├── calculs/                   fichiers d'entrée QE / Wannier90 / EPW (289 fichiers), rangés par chapitre
 ├── figures/<chapitre>/        sortie des scripts (PDF + PNG), 47 figures
 ├── requirements.txt           versions exactes de l'environnement (matplotlib 3.10.5, numpy 2.3.5, scipy 1.16.1, pillow 11.3.0)
 └── pyproject.toml             paquet graphene_raman (numpy, scipy, matplotlib)
 ```
+
+### Dossiers de `donnees/`
+
+| Dossier | Contenu | Clé de `production.json` |
+|---|---|---|
+| `M2_plateau/` | produits finaux de la chaîne M → T → Γ (R10, alignement de Kumagai–Oba) : npz et csv | `results_dir` |
+| `M2/` | sommes md5 des matrices M brutes (les `.npy` restent sur Rorqual) | `matrices_dir` |
+| `electron/`, `phonon/`, `epw/` | ch. 2 (convergence, bandes, DOS, phonons) et ch. 5 (EPW) ; `epw/NOTES_EPW*.md` | `electron_results_dir`, `phonon_results_dir`, `epw_results_dir` |
+| `wannier/27x27/` | `wannier.wout` seulement (étalements cités dans l'annexe) | `wannier_dir` |
+| `alignement/` | alignement du potentiel de défaut (Kumagai–Oba) : profils des 13 tailles, niveaux QE, ⟨ΔV⟩_3D | `campaigns_results_dir` (= `donnees`) + `"alignement"` |
+| `kaasbjerg/` | comparaison à Kaasbjerg : DOS, A_k, sensibilités, Σ^eff (R8), cartes et métriques de la Fig. 3 (R10 c2) | id. + `"kaasbjerg"` |
+| `controles/` | contrôles du ch. 4 : tailles 3m (R7), N_k^int, R_cut et chaîne repliée (R9), familles N mod 3 et convention intensive (R10 b, c3), escalier D4 (R6) | id. + `"controles"` |
+| `electron_photon/` | §2.5 : σ(ω) des trois variantes, anneau de 2.33 eV, références DFT et `postw90`, tables `em_table` | id. + `"electron_photon"` |
+| `ch4/` | `table_v1_final.md`, `defauts_nombres.md`, `alignement_regions.*`, `NOTES_TGAMMA.md` (lus par aucun script) | — |
+
+Les quatre dossiers `alignement/`, `kaasbjerg/`, `controles/` et `electron_photon/` remplacent le 2026-10-01 l'arborescence
+`donnees/campagnes/<campagne>/<étape>/` (copie conforme de `GR:campagnes/`). Les fichiers y sont à plat ; ceux dont le nom était
+générique portent le préfixe de leur campagne. Correspondance avec GR (commit `3305f58`, contenu identique octet par octet) :
+
+| Ici (`donnees/`) | `GR:campagnes/` |
+|---|---|
+| `alignement/r10_a1_results.json`, `r10_a2_results.json`, `profiles_<S>.npz` (13) | `R/R10_plateau/a/{a1_results.json,a2_results.json,profiles_<S>.npz}` |
+| `alignement/r10_c6_results.json` | `R/R10_plateau/c/c6_results.json` |
+| `kaasbjerg/r10_c2_results.json`, `r10_c2_kaasbjerg_maps.npz` | `R/R10_plateau/c/{c2_results.json,c2_kaasbjerg_maps.npz}` |
+| `kaasbjerg/r8_<nom>` (`7a_results.json`, `fig13_VA_interp_1meV.csv`, `dos_9x9.npz`, `dos_results.json`, `fig_results.json`, `gate_results.json`, `sens_results.json`, `sigeff_results.json`, `sigma_K_9x9.npz`, `spec_results.json`, `spectral_GKM_9x9.npz`) | `R/R8_kaasbjerg/out/<étape>/<nom>` |
+| `controles/r7_d1_results.json` | `R/R7_tailles_3m/d1_8pts/d1_results.json` |
+| `controles/r9_a3_results{,_plateau}.json`, `r9_b_results{,_plateau}.json`, `r9_c_results.json` | `R/R9_controles/{a,b,c}/…` |
+| `controles/r10_b_results.json`, `r10_c3_results.json` | `R/R10_plateau/b/b_results.json`, `R/R10_plateau/c/c3_results.json` |
+| `controles/r6_d4_results.json` | `R/R6_production_corrigee/etape2/d4/d4_results.json` |
+| `electron_photon/em2_A.npz` | `EM/EM2/em2_A.npz` |
+| `electron_photon/em2_postw90_sigma_ti.npz`, `em3_ring_2p33.npz`, `em3_table.{csv,md}` | `EM/EM3/{em2_postw90_sigma_ti.npz,em3_ring_2p33.npz,em_table.csv,em_table.md}` |
+| `electron_photon/em_scalars.json`, `em_ring_stats.json`, `em_sigma_<variante>_N1200_eta0.04.npz` (3), `em_table.{csv,tex}` | `EM/M4_sigma/…` (mêmes noms) |
 
 Installation (depuis la racine) :
 
@@ -50,17 +83,23 @@ elles sont remplacées chapitre par chapitre à la réécriture.
    Retirés : `src/graphene_raman/` hors des quatre modules ci-dessus (34 fichiers), `tests/`, `scripts/{m,t,epw,validation,slurm}/`,
    `donnees/wannier/` sauf `27x27/wannier.wout` (33 Mo). Tout reste lisible dans le commit `bbed6f0` de ce dépôt et dans GR au tag.
 3. **2026-10-01, ajouts** : `calculs/` (entrées rapatriées de Rorqual) ; `donnees/ch4/NOTES_TGAMMA.md`, `donnees/epw/NOTES_EPW{,_REPERES}.md`
-   (copies des notes de GR, non suivies par git là-bas) ; sources de chiffres du texte, lues par aucune figure : `donnees/campagnes/R10_plateau/c/c2_results.json`,
-   `donnees/campagnes/R8_kaasbjerg/{dos,gate,spec,fig}/*_results.json`, `donnees/campagnes/EM/{M4_sigma,EM3}/em_table.*` et `em_ring_stats.json` ; `scripts/make_all_figures.py` ;
+   (copies des notes de GR, non suivies par git là-bas) ; sources de chiffres du texte, lues par aucune figure : `c2_results.json` (R10),
+   `{dos,gate,spec,fig}_results.json` (R8), `em_table.*` et `em_ring_stats.json` (EM), puis `b_results.json`, `c3_results.json`, `c6_results.json` (R10) et `d4_results.json` (R6) ; `scripts/make_all_figures.py` ;
    scripts de figures remontés de `scripts/fig/` à `scripts/`.
+4. **2026-10-01, `donnees/campagnes/` aplati** en `alignement/`, `kaasbjerg/`, `controles/`, `electron_photon/` (tableau ci-dessus) ;
+   `campaigns_results_dir` = `donnees` ; chemins ajustés dans `make_figures_{controles,em,kaasbjerg}.py`. Recette (VM Linux) : 47 PDF
+   identiques octet par octet à ceux d'avant le changement, aucune lecture hors de `donnees/` et `config/`, 121 md5 OK, chaque fichier
+   déplacé de même md5 qu'avant.
+5. **2026-10-01, `scripts/chiffres_ch4.py`** (propre à ce dépôt, absent de GR) : lectures et statistiques sur `donnees/M2_plateau/` et `config/`, sortie `donnees/ch4/chiffres_complementaires.{md,csv}` (159 lignes, chaque valeur avec son fichier et sa clé) ; `MD5SUMS_2026-10-01.txt` : 123 fichiers.
 
 **Recette après réduction (2026-10-01, Mac, Python 3.12.1, environnement de `requirements.txt`)** : `scripts/make_all_figures.py`
 → 47 figures, 94 fichiers PDF et PNG **identiques octet par octet** à `GR:figures/` au tag. Cette comparaison ne sera pas entretenue ;
 elle sera refaite une fois, au verrouillage du mémoire, contre des sommes md5 enregistrées dans ce dépôt.
 
-Écarts volontaires avec GR au tag : `config/production.json` (chemins) ; `scripts/make_figures.py` ne réécrit plus
+Écarts volontaires avec GR au tag : `config/production.json` (chemins, dont `campaigns_results_dir` = `donnees`) ; `scripts/make_figures.py` ne réécrit plus
 `donnees/M2_plateau/level{1,2}_summary.csv` à chaque exécution (option `--write-summaries`, corrigé aussi dans GR après le tag) ;
-dans les neuf scripts, la racine du dépôt est `parents[1]` au lieu de `parents[2]`.
+dans les neuf scripts, la racine du dépôt est `parents[1]` au lieu de `parents[2]` ; `make_figures_{controles,em,kaasbjerg}.py`
+lisent les dossiers plats de `donnees/` (noms de fichiers préfixés, voir ci-dessus).
 
 ---
 
@@ -110,11 +149,11 @@ de date, d'où des PDF reproductibles octet par octet sur une même machine.
 
 | Figure | Pour | Producteur | Données |
 |---|---|---|---|
-| `fig_kaasbjerg_{dos_c,spectral_GKM,sigma_K,sensibilites,superposition}` | ch. 4 (réécriture, décidées) | `make_figures_kaasbjerg.py` | `donnees/campagnes/R8_kaasbjerg/` ; chiffres à citer : `{dos,gate,spec,fig,sens,sigeff}/*_results.json` |
+| `fig_kaasbjerg_{dos_c,spectral_GKM,sigma_K,sensibilites,superposition}` | ch. 4 (réécriture, décidées) | `make_figures_kaasbjerg.py` | `donnees/kaasbjerg/` ; chiffres à citer : `r8_{dos,gate,spec,fig,sens,sigeff}_results.json`, `r10_c2_results.json` |
 | `alignement_regions` (si retenue) | ch. 4 | `GR:campagnes/M/ch4/ch4_chiffres.py regions` (ne tourne pas ici : lit les `scf.in` de Rorqual) | `donnees/ch4/alignement_regions.{npz,pdf}` |
-| `fig_em_coupling` | §2.5 électron-photon | `make_figures_em.py` | `donnees/campagnes/EM/{M4_sigma,EM3,EM2}/` |
-| table `em_table` (pas une figure) | §2.5 électron-photon | — (produite dans GR par `campagnes/EM/M4_sigma/make_table.py` et `EM3/make_em3_data.py`) | `donnees/campagnes/EM/M4_sigma/em_table.{csv,tex}`, `em_ring_stats.json`, `donnees/campagnes/EM/EM3/em_table.{csv,md}` |
-| contrôles du ch. 4 : `fig_{offset_profiles_13,levels_vs_invN,kaasbjerg_plateau_ws,resonance_vs_nkint{,_plateau},rcut_aligned,folded_vs_R7,size_3m,localized_3m}` | ch. 4 ou annexe, à décider | `make_figures_controles.py` | `donnees/campagnes/{R7_tailles_3m,R9_controles,R10_plateau}/` |
+| `fig_em_coupling` | §2.5 électron-photon | `make_figures_em.py` | `donnees/electron_photon/` |
+| table `em_table` (pas une figure) | §2.5 électron-photon | — (produite dans GR par `campagnes/EM/M4_sigma/make_table.py` et `EM3/make_em3_data.py`) | `donnees/electron_photon/em_table.{csv,tex}`, `em_ring_stats.json`, `em3_table.{csv,md}` |
+| contrôles du ch. 4 : `fig_{offset_profiles_13,levels_vs_invN,kaasbjerg_plateau_ws,resonance_vs_nkint{,_plateau},rcut_aligned,folded_vs_R7,size_3m,localized_3m}` | ch. 4 ou annexe, à décider | `make_figures_controles.py` | `donnees/{controles,alignement,kaasbjerg}/` |
 | figures de travail : `fig_{M_map,M_scaling,locality,spectral,plateau,rcut}`, `fig_Ved_{map,boundary,profile_mean,radial,radial_masked}` | — | `make_figures.py` | `donnees/M2_plateau/` |
 
 ---
@@ -153,7 +192,7 @@ Les sources des quatre tables du ch. 5 sont déduites des noms de fichiers ; l'a
 | Introduction | 2 | lit. (l. 13 : 130 GPa, 97.7 %) | citées, pas de données |
 | Ch. 2 théorie | 25 | §2.2 : 2.466 Å, 5.46 eV, convergence 0.1 meV → `donnees/electron/`. §2.3 : 1550.5 et 1583 cm⁻¹, écart 2 %, 468/1394/1602 cm⁻¹ → `donnees/epw/phdos_24k24q_mv0.02.npz`, `validation_24k24q_mv0.02.npz` et lit. | 100 Ry et 0.01 Ry sont des paramètres, voir `tab:param_dft` |
 | Ch. 3 Raman | 8 | lit. (positions des pics G, D, 2D… ; 10 nm) | aucune donnée |
-| Ch. 4 défauts | 111 | `donnees/ch4/table_v1_final.md` (source des valeurs finales, avec fichier et clé de chaque valeur) ; appariement dans `donnees/ch4/defauts_nombres.md` | **le texte cite encore les valeurs v1** : à refaire avec la réécriture ; `defauts_nombres.md` ne se régénère que dans GR |
+| Ch. 4 défauts | 111 | `donnees/ch4/table_v1_final.md` (source des valeurs finales, avec fichier et clé de chaque valeur) ; valeurs absentes de la table (carte de `fig:M_map` sur toute la zone, grille interne, ordres de grandeur de `fig:Ved` et `fig:M_locality`, fraction locale et A_cell·M̄(K), dispersion de max\|M\|) : `donnees/ch4/chiffres_complementaires.{md,csv}`, produit par `scripts/chiffres_ch4.py` (propre à ce dépôt) ; appariement dans `donnees/ch4/defauts_nombres.md` | **le texte cite encore les valeurs v1** : à refaire avec la réécriture ; `defauts_nombres.md` ne se régénère que dans GR |
 | Ch. 5 EPW | 176 | `donnees/epw/*.npz` ; Γ^ed/Γ^ep (§5.3.5, l. 301–312) → `donnees/M2_plateau/ed_vs_ep_24k24q_mv0.02.npz` et `table_v1_final.md` | à apparier comme pour le ch. 4 ; l. 303–312 dépendent du ch. 4 (Γ^ed R6 → R10) |
 | Conclusion | 5 | reprend ch. 4–5 (300 K, 1 %, 3 eV, 0.6 %, 14 cm⁻¹) | à revoir après la réécriture du ch. 4 |
 | Résumé / abstract | 2 + 2 | reprend ch. 4–5 (300 K, 1 %) | idem |
@@ -170,7 +209,7 @@ Liste détaillée par ligne (hors ch. 4) : annexe A.
 | matrices *M* (`M_*.npy`), fonctions d'onde (`.save`) | Rorqual (`/project`, nearline) ; sommes md5 dans `donnees/M2/` | nécessaires pour recalculer, pas pour tracer |
 | sorties de Wannier90 (hamiltonien, matrices de jauge, huit grilles) | `GR:results/wannier/` | seul `27x27/wannier.wout` est gardé (étalements cités dans l'annexe) |
 | produits v1 et v2 non alignés (`GR:results/M/`, produits de `GR:results/M2/`) | GR | servent seulement à la colonne « v1 » de `donnees/ch4/table_v1_final.md` |
-| pilotes de campagne (`ch4_chiffres.py`, `r8_driver.py`, `r10_driver.py`, EM) et leurs rapports | `graphene-raman/campagnes/` sur le portable, **non suivi par git dans GR** | leurs sorties sont dans `donnees/` ; le code n'est versionné nulle part : à sauvegarder |
+| pilotes de campagne (`ch4_chiffres.py`, `r8_driver.py`, `r10_driver.py`, EM) et leurs rapports | `GR:campagnes/` (versionné depuis `3305f58`) | leurs sorties utiles sont dans `donnees/` |
 | sorties des calculs (`*.out`, potentiels, matrices dynamiques) et lanceurs SLURM simples | Rorqual | `calculs/` ne garde que les entrées, les listes de points et les scripts qui génèrent des entrées |
 | chaîne EPW à 0,002 Ry au-delà des phonons ; grilles EPW d'essai ; relaxations de la lacune ; convergence des phonons en grille **q** | Rorqual | n'alimentent aucune figure ni table ; `calculs/ch5_epw/24k-24q/` est réduit à `phonons/` et `dfpt_g_K/` |
 
@@ -181,8 +220,8 @@ Liste détaillée par ligne (hors ch. 4) : annexe A.
 | `ch2_electrons/convergence/{ecut,ecut_cross,kpoint,smearing}/` | énergie totale en fonction de la coupure (grilles 12×12 et 24×24), de la grille **k** (9 à 42) et de l'élargissement (grille 27×27) | `donnees/electron/{ecut,ecut_cross,kpoint,smearing}.dat` |
 | `ch2_electrons/bandes_dos/` | SCF 27×27, NSCF 96×96, bandes, densité d'états | `donnees/electron/{ebands,edos}.dat` |
 | `ch2_phonons/` | SCF 24×24, DFPT 24×24, `q2r`, `matdyn` (dispersion et DOS) | `donnees/phonon/` |
-| `ch2_electron_photon/{EM1_tb,EM2}/` | éléments de position de Wannier (27×27) ; bandes DFT aux anneaux, `postw90` | `donnees/campagnes/EM/` |
-| `ch4_supercellules/<N>x<N>/{pristine,defective}/` | SCF au point Γ et `pp.x`, 13 tailles (5 à 12, 15, 18, 21, 24, 27) | potentiel de défaut, constantes d'alignement (`donnees/M2_plateau/`, `donnees/campagnes/R10_plateau/`) |
+| `ch2_electron_photon/{EM1_tb,EM2}/` | éléments de position de Wannier (27×27) ; bandes DFT aux anneaux, `postw90` | `donnees/electron_photon/` |
+| `ch4_supercellules/<N>x<N>/{pristine,defective}/` | SCF au point Γ et `pp.x`, 13 tailles (5 à 12, 15, 18, 21, 24, 27) | potentiel de défaut, constantes d'alignement (`donnees/M2_plateau/`, `donnees/alignement/`) |
 | `ch4_mailles/<N>x<N>/` | cellule unitaire sur la grille complète : SCF, NSCF, `pw2wannier90`, Wannier90 ; grilles 5 à 12 et 24, 25, 27, 28, 32 | matrices *M* ; `donnees/wannier/27x27/wannier.wout` |
 | `ch5_epw/24k-24q_mv0.02/` | chaîne EPW de production (0,02 Ry) : phonons, `epw1`, auto-énergies, contrôles de *g* | `donnees/epw/*_mv0.02*.npz` |
 | `ch5_epw/24k-24q/{phonons,dfpt_g_K}/` | phonons et DFPT directe à 0,002 Ry | `donnees/epw/{validation,dfpt_path_freq}_24k24q.npz` (`fig_epw_kohn_degauss`) |

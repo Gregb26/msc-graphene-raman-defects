@@ -8,7 +8,7 @@
   "electron_results_dir": "donnees/electron",
   "phonon_results_dir": "donnees/phonon",
   "wannier_dir": "donnees/wannier",
-  "campaigns_results_dir": "donnees/campagnes",
+  "campaigns_results_dir": "donnees",
   "results_dir_frozen": [],
   "alignment": {
     "version": "alignement de Kumagai-Oba (PRB 89, 195205, 2014), approximation (i), R10, 2026-09-29 ; etiquette d archive : plateau (i)",

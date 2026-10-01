@@ -9,8 +9,8 @@ Tracé extrait le 2026-09-30 de `r8_driver.cmd_fig` (quatre premières) et de la
   fig_kaasbjerg_superposition  nos courbes (ρ₀ 1 200², η 15 meV) sur celles extraites de Kaasbjerg, ×1 (par spin) et ×2
   fig_kaasbjerg_sigma_K        Σ_nn et Σ^eff_nK à k = K, c_i = 1 %, tel quel et aligné (étape 4)
 
-Données : <campaigns_results_dir>/R8_kaasbjerg/ = results/campagnes/R8_kaasbjerg/ (config ; copies de `out/` de la campagne) :
-dos/dos_9x9.npz, spec/spectral_GKM_9x9.npz, sens/sens_results.json, 7a/fig13_VA_interp_1meV.csv, 7a/7a_results.json, sigeff/sigma_K_9x9.npz, sigeff/sigeff_results.json.
+Données : donnees/kaasbjerg/ (config ; copies à plat de `out/` de la campagne, préfixe r8_) :
+r8_dos_9x9.npz, r8_spectral_GKM_9x9.npz, r8_sens_results.json, r8_fig13_VA_interp_1meV.csv, r8_7a_results.json, r8_sigma_K_9x9.npz, r8_sigeff_results.json.
 Sortie : figures/electron_defect/fig_kaasbjerg_<nom>.{pdf,png} (reproductibles au bit, palette.save).
 Usage : python scripts/make_figures_kaasbjerg.py [--only nom,nom] [--outdir figures/electron_defect]
 """
@@ -28,7 +28,7 @@ from graphene_raman.plotting.palette import use_style, save, NAVY, ORANGE, GREEN
 from graphene_raman.config import load_production, campaigns_dir
 
 ROOT = Path(__file__).resolve().parents[1]            # scripts/ -> racine
-R8 = campaigns_dir(load_production(verbose=False), "R8_kaasbjerg")
+R8 = campaigns_dir(load_production(verbose=False), "kaasbjerg")   # donnees/kaasbjerg (config)
 
 # constantes de la campagne (r8_driver.py, 2026-09-28) : variantes, concentrations, grilles
 VARIANTS = ("tel_quel", "aligne")
@@ -44,10 +44,10 @@ def jload(*p):
 
 
 def dos_inputs():
-    D = np.load(os.path.join(R8, "dos", "dos_9x9.npz"))
-    Kx = np.loadtxt(os.path.join(R8, "7a", "fig13_VA_interp_1meV.csv"), delimiter=",", skiprows=1)
+    D = np.load(os.path.join(R8, "r8_dos_9x9.npz"))
+    Kx = np.loadtxt(os.path.join(R8, "r8_fig13_VA_interp_1meV.csv"), delimiter=",", skiprows=1)
     eK, rK = Kx[:, 0], {"pristine": Kx[:, 1], 0.001: Kx[:, 2], 0.01: Kx[:, 3]}
-    K7 = jload("7a", "7a_results.json")["fig13_metrics"]
+    K7 = jload("r8_7a_results.json")["fig13_metrics"]
     egr = D["eg_rel"]
     rho0_fig = D[f"pristine_eta15_{P0}"]
     prot = lambda key: rho0_fig + (D[key] - D[key.rsplit("_c", 1)[0] + "_rho0"])          # rho0(1200^2, 15 meV) + delta rho
@@ -73,7 +73,7 @@ def fig_dos_c(a):
 
 
 def fig_spectral_GKM(a):
-    Sp = np.load(os.path.join(R8, "spec", "spectral_GKM_9x9.npz"))
+    Sp = np.load(os.path.join(R8, "r8_spectral_GKM_9x9.npz"))
     names = ("tel_quel", "aligne", "eta_unique")
     fig, ax = plt.subplots(2, 3, figsize=(6.5, 4.4), sharex=True, sharey=True)
     s, idx, ege = Sp["s"], Sp["idx"], Sp["eg_rel"]
@@ -93,7 +93,7 @@ def fig_spectral_GKM(a):
 
 
 def fig_sensibilites(a):
-    Se = jload("sens", "sens_results.json"); K7 = jload("7a", "7a_results.json")["fig13_metrics"]
+    Se = jload("r8_sens_results.json"); K7 = jload("r8_7a_results.json")["fig13_metrics"]
     fig, ax = plt.subplots(1, 4, figsize=(6.5, 2.3), sharey=True)
     groups = (("N_k_int", "N_k_int", r"$N_k^\mathrm{int}$"), ("R_cut", "R_cut", r"$R_\mathrm{cut}$"), ("taille", "size", "taille"),
               ("eta_G", "eta_G", r"$\eta_G$ (eV)"))
@@ -133,7 +133,7 @@ def fig_superposition(a):
 
 
 def fig_sigma_K(a):
-    Z = np.load(os.path.join(R8, "sigeff", "sigma_K_9x9.npz")); runs = jload("sigeff", "sigeff_results.json")["runs"]
+    Z = np.load(os.path.join(R8, "r8_sigma_K_9x9.npz")); runs = jload("r8_sigeff_results.json")["runs"]
     eg = Z["eg_rel"]
     fig, axs = plt.subplots(1, 2, figsize=(6.5, 2.8), sharey=True)
     for iv, var in enumerate(VARIANTS):

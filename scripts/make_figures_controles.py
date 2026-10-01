@@ -1,15 +1,15 @@
 """Figures de contrôle du chapitre 4 retenues pour le mémoire (9), redessinées au style graphene_raman.plotting depuis les
-json/npz des campagnes copiés dans <campaigns_results_dir> = results/campagnes/ (config ; aucun calcul). Fonctions de tracé extraites le 2026-09-30 des pilotes de campagne, au contenu identique :
+json/npz des campagnes copiés dans donnees/controles/, donnees/alignement/ et donnees/kaasbjerg/ (config ; aucun calcul). Fonctions de tracé extraites le 2026-09-30 des pilotes de campagne, au contenu identique :
 
   fig_size_3m, fig_localized_3m         R7 (`r7_driver.figs`) : état π quasi-lié et doublet σ contre 1/N, ajustements ε_∞ + a/N^p,
-                                        états localisés ; données R7_tailles_3m/d1_8pts/d1_results.json
+                                        états localisés ; données controles/r7_d1_results.json
   fig_resonance_vs_nkint,               R9 (`r9_driver.b_figure`, `cmd_synth`) : pic de Γ_T, pic de −Im T̄(K), E_res contre 1/N_k^int ;
-  fig_resonance_vs_nkint_plateau        données R9_controles/b/b_results{,_plateau}.json
-  fig_rcut_aligned                      R9 (`cmd_synth`) : max|ΔM|/max|M| contre R_cut, trois alignements ; a/a3_results{,_plateau}.json
-  fig_folded_vs_R7                      R9 (`c_figure`) : chaîne repliée contre QE (R7), limite diluée ; c/c_results.json
-  fig_offset_profiles_13                R10 (`a1_figure`) : profils ΔV et plateau des 13 tailles ; a/a1_results.json, a/profiles_<S>.npz
-  fig_levels_vs_invN                    R10 (`a2_figure`) : niveaux QE π et σ, Lu contre plateau ; a/a2_results.json
-  fig_kaasbjerg_plateau_ws              R10 (`c2_figure`) : cartes A_cell|M_k'k| autour de K ; c/c2_kaasbjerg_maps.npz
+  fig_resonance_vs_nkint_plateau        données controles/r9_b_results{,_plateau}.json
+  fig_rcut_aligned                      R9 (`cmd_synth`) : max|ΔM|/max|M| contre R_cut, trois alignements ; controles/r9_a3_results{,_plateau}.json
+  fig_folded_vs_R7                      R9 (`c_figure`) : chaîne repliée contre QE (R7), limite diluée ; controles/r9_c_results.json
+  fig_offset_profiles_13                R10 (`a1_figure`) : profils ΔV et plateau des 13 tailles ; alignement/r10_a1_results.json, alignement/profiles_<S>.npz
+  fig_levels_vs_invN                    R10 (`a2_figure`) : niveaux QE π et σ, Lu contre plateau ; alignement/r10_a2_results.json
+  fig_kaasbjerg_plateau_ws              R10 (`c2_figure`) : cartes A_cell|M_k'k| autour de K ; kaasbjerg/r10_c2_kaasbjerg_maps.npz
 
 Sortie : figures/electron_defect/fig_<nom>.{pdf,png} (reproductibles au bit, palette.save). Texte en français, panneaux (a), (b), …
 Usage : python scripts/make_figures_controles.py [--only nom,nom] [--outdir figures/electron_defect]
@@ -29,10 +29,10 @@ from graphene_raman.plotting.palette import use_style, save
 from graphene_raman.config import load_production, campaigns_dir
 
 ROOT = Path(__file__).resolve().parents[1]            # scripts/ -> racine
-CFG = load_production(verbose=False)                   # données : results/campagnes/<campagne>/… (config campaigns_results_dir)
-R7 = Path(campaigns_dir(CFG, "R7_tailles_3m"))
-R9 = Path(campaigns_dir(CFG, "R9_controles"))
-R10 = Path(campaigns_dir(CFG, "R10_plateau"))
+CFG = load_production(verbose=False)                   # données : donnees/<sujet>/ (config campaigns_results_dir = donnees)
+CTRL = Path(campaigns_dir(CFG, "controles"))           # R7, R9, R10 b/c3, R6 d4
+ALIGN = Path(campaigns_dir(CFG, "alignement"))         # R10 a, c6
+KAAS = Path(campaigns_dir(CFG, "kaasbjerg"))           # R8, R10 c2
 
 FAM3 = {6, 9, 12, 15, 18, 21, 24, 27}                 # famille N = 3m (K replié sur Γ)
 ALL13 = ["5x5", "6x6", "7x7", "8x8", "9x9", "10x10", "11x11", "12x12", "15x15", "18x18", "21x21", "24x24", "27x27"]
@@ -57,7 +57,7 @@ def times(S):
 # ---------------------------------------------------------------------------------------------------- R7 (r7_driver.figs)
 def fig_size_3m(outdir):
     """État π quasi-lié (a) et doublet σ (b) contre 1/N, huit points 6…27, ajustements ε_∞ + a/N et ε_∞ + a/N²."""
-    out = jload(R7 / "d1_8pts" / "d1_results.json"); F = out["fits"]
+    out = jload(CTRL / "r7_d1_results.json"); F = out["fits"]
     Nf = np.linspace(5.5, 200, 400)
     fig, axs = plt.subplots(1, 2, figsize=(6.5, 3.2))
     for ax_, what, col, title in ((axs[0], "pi", pal.ORANGE, r"(a) état $\pi$ quasi-lié (impair)"), (axs[1], "sigma", pal.NAVY, r"(b) doublet $\sigma$ (moyenne, pair)")):
@@ -78,7 +78,7 @@ def fig_size_3m(outdir):
 
 def fig_localized_3m(outdir):
     """États localisés (w_2 > seuil) de chaque taille contre 1/N ; couleur = parité, aire ∝ w_2."""
-    out = jload(R7 / "d1_8pts" / "d1_results.json"); S = {int(k): v for k, v in out["sizes"].items()}
+    out = jload(CTRL / "r7_d1_results.json"); S = {int(k): v for k, v in out["sizes"].items()}
     fig, ax_ = plt.subplots(figsize=(4.2, 3.4))
     for N in sorted(S):
         for q in S[N]["localized"]:
@@ -115,19 +115,19 @@ def _b_res(path, keys):
 
 def fig_resonance_vs_nkint(outdir):
     """Trois variantes (tel quel, C_N Lu, C_N plateau), comme la clôture de R9 (`cmd_synth`)."""
-    B9 = jload(R9 / "b" / "b_results.json"); BP = jload(R9 / "b" / "b_results_plateau.json")
+    B9 = jload(CTRL / "r9_b_results.json"); BP = jload(CTRL / "r9_b_results_plateau.json")
     merged = {S: {"brut": B9[S]["brut"], "aligne_lu": B9[S]["aligne"], "aligne_plateau": BP[S]["aligne_plateau"]} for S in ("9x9", "12x12")}
     _b_figure(merged, "fig_resonance_vs_nkint", outdir)
 
 
 def fig_resonance_vs_nkint_plateau(outdir):
     """Variantes plateau seules (aligné (i) et aligné exact), comme `r9_driver.py b --cn plateau`."""
-    _b_figure(_b_res(R9 / "b" / "b_results_plateau.json", ("aligne_plateau", "exact_plateau")), "fig_resonance_vs_nkint_plateau", outdir)
+    _b_figure(_b_res(CTRL / "r9_b_results_plateau.json", ("aligne_plateau", "exact_plateau")), "fig_resonance_vs_nkint_plateau", outdir)
 
 
 def fig_rcut_aligned(outdir):
     """max|ΔM|/max|M| (paire π) contre R_cut, 9×9 et 12×12, pour M2 tel quel, C_N Lu et C_N plateau (+ variantes exactes)."""
-    A9 = jload(R9 / "a" / "a3_results.json"); AP = jload(R9 / "a" / "a3_results_plateau.json")
+    A9 = jload(CTRL / "r9_a3_results.json"); AP = jload(CTRL / "r9_a3_results_plateau.json")
     fig, axes = plt.subplots(1, 2, figsize=(6.5, 3.0), sharey=True)
     for ax, S, lab in zip(axes, ("9x9", "12x12"), "ab"):
         r9 = A9[f"rcut_{S}"]["rows"]; rp = AP[f"rcut_{S}"]["rows"]
@@ -144,7 +144,7 @@ def fig_rcut_aligned(outdir):
 
 def fig_folded_vs_R7(outdir):
     """Chaîne repliée N×N contre QE (R7) : état π quasi-lié (a) et maximum de la LDOS des voisins (b) contre 1/N, limite diluée."""
-    out = jload(R9 / "c" / "c_results.json")
+    out = jload(CTRL / "r9_c_results.json")
     fig, ax = plt.subplots(1, 2, figsize=(6.5, 3.0))
     N1 = sorted(int(N) for N in out.get("C1", {})); N2 = sorted(int(N) for N in out.get("C2", {}) if not out["C2"][N].get("skipped"))
     qe = [(N, out["C1"][str(N)]["QE"]["pi_quasi_bound"]["x"]) for N in N1 if out["C1"][str(N)]["QE"]]
@@ -169,13 +169,13 @@ def fig_folded_vs_R7(outdir):
 # ---------------------------------------------------------------------------------------------------- R10 (a1_figure, a2_figure, c2_figure)
 def fig_offset_profiles_13(outdir):
     """Décalages de sphère ΔV contre la distance à la lacune, 13 tailles ; zone grisée = plateau (d ≥ 0,75 r_max), C_N = sa moyenne."""
-    out = jload(R10 / "a" / "a1_results.json")
+    out = jload(ALIGN / "r10_a1_results.json")
     sizes = [S for S in ALL13 if S in out["sizes"]]
     fig, axes = plt.subplots(4, 4, figsize=(6.5, 7.6), squeeze=False); nout = []
     for ax in axes.ravel()[len(sizes):]:
         ax.set_visible(False)
     for i, (ax, S) in enumerate(zip(axes.ravel(), sizes)):
-        r = out["sizes"][S]; Z = np.load(R10 / "a" / f"profiles_{S}.npz")
+        r = out["sizes"][S]; Z = np.load(ALIGN / f"profiles_{S}.npz")
         d, s = Z["dist"], Z["shift10"] * 1e3; C = r["C_N_eV"] * 1e3; far = Z["far"]
         ax.axvspan(PLATEAU_FRAC * r["r_max_A"], r["r_max_A"] * 1.03, color=pal.LIGHT, alpha=0.35, lw=0)
         ax.plot(d, s, "o", ms=1.6, color=pal.NAVY, label=r"sphères de 1,0 Å")
@@ -201,7 +201,7 @@ def fig_offset_profiles_13(outdir):
 
 def fig_levels_vs_invN(outdir):
     """Niveaux QE de l'état π quasi-lié (a) et de la paire σ (b) contre 1/N, alignement Lu publié contre plateau C_N, par famille."""
-    res = jload(R10 / "a" / "a2_results.json")
+    res = jload(ALIGN / "r10_a2_results.json")
     fig, axes = plt.subplots(1, 2, figsize=(6.5, 3.3), sharex=True)
     for ax, what, ttl in zip(axes, ("pi", "sigma"), (r"(a) état $\pi$ quasi-lié", r"(b) paire $\sigma$ (moyenne)")):
         for fam, mk in (("3m", "o"), ("non-3m", "s")):
@@ -226,7 +226,7 @@ def fig_levels_vs_invN(outdir):
 
 def fig_kaasbjerg_plateau_ws(outdir):
     """Cartes A_cell|M_k'k| (valence, conduction) autour de K, M2 tel quel et plateau (i), étiquettes de Wigner-Seitz."""
-    Z = np.load(R10 / "c" / "c2_kaasbjerg_maps.npz"); Bc = Z["Bc"]; kc = Z["kc"]
+    Z = np.load(KAAS / "r10_c2_kaasbjerg_maps.npz"); Bc = Z["Bc"]; kc = Z["kc"]
     maps = {"tel quel": {"valence": Z["tel_quel_valence"], "conduction": Z["tel_quel_conduction"]},
             "plateau": {"valence": Z["plateau_valence"], "conduction": Z["plateau_conduction"]}}
     imgs = np.array([[i, j] for i in (-1, 0, 1) for j in (-1, 0, 1)]) @ Bc[:2, :2].T

@@ -1,15 +1,17 @@
 #!/usr/bin/env python
 """
-Figure du §2.5 (couplage électron-photon, série EM), style graphene_raman.plotting (memoire.mplstyle), français. Données lues dans
-donnees/electron_photon/ (config ; copies à plat des fichiers de campagnes/EM de graphene-raman) : em3_ring_2p33.npz,
-em2_postw90_sigma_ti.npz (EM3, make_em3_data.py), em2_A.npz (EM2, DFT directe) et la production M4 :
-em_sigma_*_N1200_eta0.04.npz, em_scalars.json.
-  fig_em_coupling : (a) |ħv_cv| dans le plan sur l'anneau de 2.33 eV (532 nm) en fonction de θ, trois variantes de la
-                    vitesse (complète, centres seuls, sans Berry) et les 48 points de la DFT directe (EM2) ;
-                    (b) σ_xx(ω)/σ₀ des trois variantes, postw90 avec transl_inv (EM2, décision 7 d'EM.md), ħω_froz,
+Figure de la section 2.5 (couplage électron-photon,), style graphene_raman.plotting (memoire.mplstyle), français. C : figures dans le corps du texte. A : figures en annexe.
+
+Données lues dans donnees/electron_photon/: em3_ring_2p33.npz, em2_postw90_sigma_ti.np, em2_A.npz et la production  : em_sigma_*_N1200_eta0.04.npz, em_scalars.json.
+
+    C: fig_em_coupling : (a) |ħv_cv| dans le plan sur l'anneau de 2.33 eV (532 nm) en fonction de θ, trois variantes de la
+                    vitesse (complète, centres seuls, sans Berry) et les 48 points de la DFT directe  ;
+                    (b) σ_xx(ω)/σ₀ des trois variantes, postw90 avec transl_inv, ħω_froz,
                     médaillon sur les trois lasers. σ_yy sans Berry = σ_yy centres seuls à 1e-14 (τ_B − τ_A selon x).
-La carte autour de K (F19, M4_sigma/em_map_K.npz) reste calculée mais n'est plus montrée (décision 10).
+
+                    
 Usage : python scripts/make_figures_em.py [--outdir figures/electron_photon]
+
 """
 import argparse, json
 from pathlib import Path

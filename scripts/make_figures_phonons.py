@@ -1,6 +1,6 @@
 """Figure du chapitre 2 (phonons du graphène parfait), style graphene_raman.plotting, texte en français :
 
-  fig_phfreq_phdos   (a) dispersion matdyn ω_νq sur Γ–K–M–Γ, (b) DOS de phonons matdyn sur grille dense ; cm⁻¹.
+    C: fig_phfreq_phdos   (a) dispersion matdyn ω_νq sur Γ–K–M–Γ, (b) DOS de phonons matdyn sur grille dense ; cm⁻¹.
                      Même contenu que `fig_epw_phonons` (section 7 de make_figures_epw.py), extraite ici parce qu'elle ne relève que des
                      phonons (ex `make_fig_phonons.py`, rapatrié le 2026-09-30).
 

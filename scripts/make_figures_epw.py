@@ -1,15 +1,20 @@
 from graphene_raman.config import load_production, results_dir
 RES = results_dir(load_production(verbose=False))          # R6 : results/M2 (results/M gelé)
 #!/usr/bin/env python
+
 """
 Figures du chapitre 5 (couplage électron-phonon, EPW), style graphene_raman.plotting (memoire.mplstyle), français, données lues dans results/epw/*.npz
 et <results_dir>/resonance_9x9.npz (Γ^ed). Trois figures :
-  fig_epw_validation : (a) bandes DFT (bands.x) vs EPW/Wannier, (b) phonons matdyn vs EPW, chemin Γ–K–M–Γ    [validation_24k24q.npz]
-  fig_epw_gamma      : (a) Γ^ep(ε) convergence (degaussw à 120², 240²), (b) Γ^ep(ε) à 300 K et 10 K (production)  [selfen_*.npz]
-  fig_epw_vs_ed      : Γ^ep(300 K) et Γ^ed(c = 1 %) = c × Γ N_cells (matrice T, 9×9, R_cut 3, η 0.02) sur le même axe
+
+  C: fig_epw_validation : (a) bandes DFT (bands.x) vs EPW/Wannier, (b) phonons matdyn vs EPW, chemin Γ–K–M–Γ    [validation_24k24q.npz]
+  C: fig_epw_gamma      : (a) Γ^ep(ε) convergence (degaussw à 120², 240²), (b) Γ^ep(ε) à 300 K et 10 K (production)  [selfen_*.npz]
+  C: fig_epw_vs_ed      : Γ^ep(300 K) et Γ^ed(c = 1 %) = c × Γ N_cells (matrice T, 9×9, R_cut 3, η 0.02) sur le même axe
+
 Optionnel (--control) : fig_epw_g_control, |g| EPW vs DFPT aux q déjà appariés (sommes gauge-invariantes, q = M exclu : double comptage).
+
 Usage : python scripts/make_figures_epw.py [--outdir figures/electron_phonon] [--control] [--prod-tag prod]
 """
+
 import argparse, os, glob, numpy as np
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt

@@ -12,6 +12,7 @@ Figures du mémoire (matplotlib, style graphene_raman.plotting (memoire.mplstyle
 Avec --write-summaries, écrit aussi <results_dir>/level1_summary.csv et level2_summary.csv (tables dérivées des cartes specwd ; à ne passer
 qu'en production, après un nouveau calcul des cartes : par défaut le script ne fait que lire <results_dir>).
 Usage : python scripts/make_figures.py [--tag prod] [--sizes 5x5,7x7,8x8,9x9] [--outdir figures/electron_defect] [--write-summaries]
+Toutes dans le corps du texte.
 """
 import argparse, csv, os, numpy as np
 import matplotlib; matplotlib.use("Agg")

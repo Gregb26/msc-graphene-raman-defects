@@ -1,15 +1,16 @@
-"""Figures du chapitre 2 (structure électronique du graphène parfait), style graphene_raman.plotting, texte en français :
+"""Figures du chapitre 2 (structure électronique du graphène parfait), style graphene_raman.plotting, texte en français. C : figures dans le corps du texte. A : figures en annexe.
 
-  fig_kb_pseudo_C            parties locale et non locale du pseudo-potentiel ONCV du carbone (fig:KB ; redessinée le 2026-09-30) :
+  C: fig_kb_pseudo_C         parties locale et non locale du pseudo-potentiel ONCV du carbone :
                              (a) V_PPL(r) contre −Z_val/r (Z_val = 4) ; (b) projecteurs de Kleinman–Bylander tels que le UPF les tabule
-                             (PP_BETA = r·β(r), nuls à l'origine, nuls au-delà de r_c ≈ 1,2–1,3 bohr). Données : <electron_dir>/C.upf (copie du pseudo du `.save` de la maille ; `--upf`).
-  fig_electron_convergence   tests de convergence SCF (ex `qe_pp/plot_convergence.py`, fonction plot_all, rapatriée le 2026-09-30) :
+                             (PP_BETA = r·β(r), nuls à l'origine, nuls au-delà de r_c ≈ 1,2–1,3 bohr). Données : <electron_dir>/C.upf
+  A: fig_electron_convergence   tests de convergence SCF :
                              (a) E_cut à grille modérée, (b) grille k, (c) E_cut à grille optimale, (d) élargissement par type de smearing ;
                              ΔE = (E − E_réf)/N_at en meV/atome, seuil 0,1 meV/atome. Données : <electron_dir>/{ecut,kpoint,ecut_cross,smearing}.dat.
-  fig_ebands_edos            (ex `qe_pp/plot_ebands_edos.py`) : (a) structure de bandes sur Γ–K–M–Γ, (b) DOS électronique, énergies
+  C: fig_ebands_edos         (a) structure de bandes sur Γ–K–M–Γ, (b) DOS électronique, énergies
                              relatives à E_F. Données : <electron_dir>/{ebands,edos}.dat (bands.x, dos.x).
 
 <electron_dir> = config.electron_dir() (results/electron). Sortie : figures/electron/<nom>.{pdf,png}, reproductible au bit (palette.save).
+
 Usage : python scripts/make_figures_electron.py [--only kb_pseudo_C,electron_convergence,ebands_edos] [--upf C.upf] [--outdir figures/electron]
 """
 import argparse

@@ -1,19 +1,16 @@
-"""Figures de contrôle du chapitre 4 retenues pour le mémoire (9), redessinées au style graphene_raman.plotting depuis les
-json/npz des campagnes copiés dans donnees/controles/, donnees/alignement/ et donnees/kaasbjerg/ (config ; aucun calcul). Fonctions de tracé extraites le 2026-09-30 des pilotes de campagne, au contenu identique :
+"""Figures de contrôle du chapitre 4 retenues pour le mémoire, redessinées au style graphene_raman.plotting depuis les
+json/npz des campagnes copiés dans donnees/controles/, donnees/alignement/ et donnees/kaasbjerg/ (config ; aucun calcul). C : figures dans le corps du texte, A : figure en annexe.
 
-  fig_size_3m, fig_localized_3m         R7 (`r7_driver.figs`) : état π quasi-lié et doublet σ contre 1/N, ajustements ε_∞ + a/N^p,
-                                        états localisés ; données controles/r7_d1_results.json
-  fig_resonance_vs_nkint,               R9 (`r9_driver.b_figure`, `cmd_synth`) : pic de Γ_T, pic de −Im T̄(K), E_res contre 1/N_k^int ;
-  fig_resonance_vs_nkint_plateau        données controles/r9_b_results{,_plateau}.json
-  fig_rcut_aligned                      R9 (`cmd_synth`) : max|ΔM|/max|M| contre R_cut, trois alignements ; controles/r9_a3_results{,_plateau}.json
-  fig_folded_vs_R7                      R9 (`c_figure`) : chaîne repliée contre QE (R7), limite diluée ; controles/r9_c_results.json
-  fig_offset_profiles_13                R10 (`a1_figure`) : profils ΔV et plateau des 13 tailles ; alignement/r10_a1_results.json, alignement/profiles_<S>.npz
-  fig_levels_vs_invN                    R10 (`a2_figure`) : niveaux QE π et σ, Lu contre plateau ; alignement/r10_a2_results.json
-  fig_kaasbjerg_plateau_ws              R10 (`c2_figure`) : cartes A_cell|M_k'k| autour de K ; kaasbjerg/r10_c2_kaasbjerg_maps.npz
+  A: fig_resonance_vs_nkint_plateau        données controles/r9_b_results{,_plateau}.json
+  A: fig_rcut_aligned                      max|ΔM|/max|M| contre R_cut, trois alignements ; controles/r9_a3_results{,_plateau}.json
+  C: fig_folded_vs_R7                      chaîne repliée contre QE, limite diluée ; controles/r9_c_results.json
+  A: fig_offset_profiles_13                profils ΔV et plateau des 13 tailles ; alignement/r10_a1_results.json, alignement/profiles_<S>.npz
+  C: fig_kaasbjerg_plateau_ws              cartes A_cell|M_k'k| autour de K ; kaasbjerg/r10_c2_kaasbjerg_maps.npz
 
 Sortie : figures/electron_defect/fig_<nom>.{pdf,png} (reproductibles au bit, palette.save). Texte en français, panneaux (a), (b), …
 Usage : python scripts/make_figures_controles.py [--only nom,nom] [--outdir figures/electron_defect]
 """
+
 import argparse
 import json
 import os
@@ -53,41 +50,6 @@ def size_n(S):
 def times(S):
     return S.replace("x", r"$\times$")
 
-
-# ---------------------------------------------------------------------------------------------------- R7 (r7_driver.figs)
-def fig_size_3m(outdir):
-    """État π quasi-lié (a) et doublet σ (b) contre 1/N, huit points 6…27, ajustements ε_∞ + a/N et ε_∞ + a/N²."""
-    out = jload(CTRL / "r7_d1_results.json"); F = out["fits"]
-    Nf = np.linspace(5.5, 200, 400)
-    fig, axs = plt.subplots(1, 2, figsize=(6.5, 3.2))
-    for ax_, what, col, title in ((axs[0], "pi", pal.ORANGE, r"(a) état $\pi$ quasi-lié (impair)"), (axs[1], "sigma", pal.NAVY, r"(b) doublet $\sigma$ (moyenne, pair)")):
-        f = F.get(f"{what}_all")
-        if f is None:
-            continue
-        Nn = np.array(f["N"], float); xx = np.array(f["x"])
-        ax_.scatter(1 / Nn, xx, color=col, s=20, zorder=3)
-        for N, x in zip(Nn, xx):
-            ax_.annotate(f"{int(N)}", (1 / N, x), textcoords="offset points", xytext=(4, 3), fontsize=6, color=pal.INK)
-        f1 = f["fits"].get(1, f["fits"].get("1")); f2 = f["fits"].get(2, f["fits"].get("2"))
-        ax_.plot(1 / Nf, f1["eps_inf"] + f1["a"] / Nf, "-", color=col, lw=0.9, label=f"$\\varepsilon_\\infty + a/N$ : $\\varepsilon_\\infty$ = {f1['eps_inf']:+.3f} eV (rms {f1['rms']:.3f})")
-        ax_.plot(1 / Nf, f2["eps_inf"] + f2["a"] / Nf ** 2, "--", color=col, lw=0.9, label=f"$\\varepsilon_\\infty + a/N^2$ : $\\varepsilon_\\infty$ = {f2['eps_inf']:+.3f} eV (rms {f2['rms']:.3f})")
-        ax_.axhline(0, color=pal.MUTED, lw=0.5); ax_.set_xlim(0, 0.19); ax_.set_xlabel("$1/N$"); ax_.set_title(title, fontsize=8); ax_.legend(fontsize=5.5, loc="best")
-    axs[0].set_ylabel(r"$\varepsilon - E_D$ (eV)")
-    fig.tight_layout(); save(fig, "fig_size_3m", outdir); plt.close(fig)
-
-
-def fig_localized_3m(outdir):
-    """États localisés (w_2 > seuil) de chaque taille contre 1/N ; couleur = parité, aire ∝ w_2."""
-    out = jload(CTRL / "r7_d1_results.json"); S = {int(k): v for k, v in out["sizes"].items()}
-    fig, ax_ = plt.subplots(figsize=(4.2, 3.4))
-    for N in sorted(S):
-        for q in S[N]["localized"]:
-            ax_.scatter(1 / N, q["x"], s=6 + 80 * q["w2"], color=pal.NAVY if q["parity"] > 0 else pal.ORANGE, alpha=0.75, lw=0)
-    ax_.axhline(0, color=pal.MUTED, lw=0.5); ax_.set_xlabel("$1/N$"); ax_.set_ylabel(r"$\varepsilon - E_D$ (eV)"); ax_.set_xlim(0, 0.19); ax_.set_ylim(-3, 1)
-    ax_.set_title(r"états localisés ($w_2 >$ seuil) : bleu $\sigma$ (pair), orange $\pi$ (impair) ; aire $\propto w_2$", fontsize=6.5)
-    fig.tight_layout(); save(fig, "fig_localized_3m", outdir); plt.close(fig)
-
-
 # ---------------------------------------------------------------------------------------------------- R9 (r9_driver.b_figure, cmd_synth, c_figure)
 def _b_figure(res, name, outdir):
     """Pic de la courbe Γ_T, pic de −Im T̄(K) et E_res contre 1/N_k^int, 9×9 et 12×12, une courbe par variante d'alignement."""
@@ -111,14 +73,6 @@ def _b_figure(res, name, outdir):
 def _b_res(path, keys):
     res = jload(path)
     return {S: {v: res[S][v] for v in keys if v in res[S]} for S in ("9x9", "12x12") if S in res}
-
-
-def fig_resonance_vs_nkint(outdir):
-    """Trois variantes (tel quel, C_N Lu, C_N plateau), comme la clôture de R9 (`cmd_synth`)."""
-    B9 = jload(CTRL / "r9_b_results.json"); BP = jload(CTRL / "r9_b_results_plateau.json")
-    merged = {S: {"brut": B9[S]["brut"], "aligne_lu": B9[S]["aligne"], "aligne_plateau": BP[S]["aligne_plateau"]} for S in ("9x9", "12x12")}
-    _b_figure(merged, "fig_resonance_vs_nkint", outdir)
-
 
 def fig_resonance_vs_nkint_plateau(outdir):
     """Variantes plateau seules (aligné (i) et aligné exact), comme `r9_driver.py b --cn plateau`."""
@@ -198,32 +152,6 @@ def fig_offset_profiles_13(outdir):
              ha="center", va="bottom", fontsize=5.5, color=pal.MUTED)
     fig.tight_layout(rect=(0, 0.065, 1, 1)); save(fig, "fig_offset_profiles_13", outdir); plt.close(fig)
 
-
-def fig_levels_vs_invN(outdir):
-    """Niveaux QE de l'état π quasi-lié (a) et de la paire σ (b) contre 1/N, alignement Lu publié contre plateau C_N, par famille."""
-    res = jload(ALIGN / "r10_a2_results.json")
-    fig, axes = plt.subplots(1, 2, figsize=(6.5, 3.3), sharex=True)
-    for ax, what, ttl in zip(axes, ("pi", "sigma"), (r"(a) état $\pi$ quasi-lié", r"(b) paire $\sigma$ (moyenne)")):
-        for fam, mk in (("3m", "o"), ("non-3m", "s")):
-            xs, yl, yp = [], [], []
-            for S, per in res["rows"].items():
-                n = size_n(S)
-                if ("3m" if n in FAM3 else "non-3m") != fam:
-                    continue
-                p = per["R5 C" if "R5 C" in per else "R7 D1"]
-                if what == "pi":
-                    yl.append(p["pi"]["x_Lu"]); yp.append(p["pi"]["x_plateau"])
-                else:
-                    yl.append(np.mean([q["x_Lu"] for q in p["sigma"]])); yp.append(np.mean([q["x_plateau"] for q in p["sigma"]]))
-                xs.append(1.0 / n)
-            ax.plot(xs, yl, mk, ms=4.5, mfc="none", mec=pal.ORANGE, mew=0.9, ls="none", label=f"site unique, {fam}")
-            ax.plot(xs, yp, mk, ms=3.5, color=pal.NAVY, ls="none", label=f"Kumagai–Oba, {fam}")
-        ax.set_title(ttl, loc="left", fontsize=9); ax.set_xlabel(r"$1/N$"); ax.axhline(0, color=pal.MUTED, lw=0.6)
-    axes[0].set_ylabel(r"$\varepsilon - E_D$ (eV)")
-    h, l_ = axes[0].get_legend_handles_labels(); fig.legend(h, l_, loc="lower center", ncol=4, fontsize=6, frameon=False)
-    fig.tight_layout(rect=(0, 0.08, 1, 1)); save(fig, "fig_levels_vs_invN", outdir); plt.close(fig)
-
-
 def fig_kaasbjerg_plateau_ws(outdir):
     """Cartes A_cell|M_k'k| (valence, conduction) autour de K, M2 tel quel et plateau (i), étiquettes de Wigner-Seitz."""
     Z = np.load(KAAS / "r10_c2_kaasbjerg_maps.npz"); Bc = Z["Bc"]; kc = Z["kc"]
@@ -248,8 +176,8 @@ def fig_kaasbjerg_plateau_ws(outdir):
     fig.tight_layout(); save(fig, "fig_kaasbjerg_plateau_ws", outdir); plt.close(fig)
 
 
-FIGURES = {f.__name__[4:]: f for f in (fig_size_3m, fig_localized_3m, fig_resonance_vs_nkint, fig_resonance_vs_nkint_plateau, fig_rcut_aligned,
-                                       fig_folded_vs_R7, fig_offset_profiles_13, fig_levels_vs_invN, fig_kaasbjerg_plateau_ws)}
+FIGURES = {f.__name__[4:]: f for f in (fig_resonance_vs_nkint_plateau, fig_rcut_aligned,
+                                       fig_folded_vs_R7, fig_offset_profiles_13, fig_kaasbjerg_plateau_ws)}
 
 
 def main():

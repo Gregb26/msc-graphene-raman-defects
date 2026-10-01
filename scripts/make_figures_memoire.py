@@ -2,13 +2,13 @@
 """
 Figures finales du mémoire (retouches), style graphene_raman.plotting (memoire.mplstyle), français, données lues dans <results_dir>/*.npz.
 Noms distincts des figures de travail (rien n'est écrasé) :
-  fig_convergence        (a) Γ N_cells vs R_cut, six tailles ; (b) carte plateau (grille × η), référence     — 6.5 × 3.4 po
-  fig_locality_final     (a) 5×5, (b) 8×8 avec grille aliasée ; (c) 9×9, (d) 12×12                 — 6.5 × 5.6 po
-  fig_spectral_final     (a) Γ(ε) T vs Born (log) ; (b) δρ ; (c) T̄_ππ(K,K;ε) ; (d) critère det / λ_min       — 6.5 × 5.6 po
-  fig_M_map_final        (a) π, (b) π*, (c) partie locale projetée, (d) partie non locale projetée ; colorbars M̃ et M_∥ — 6.5 × 6.0 po
-  fig_M_scaling_final    max|M| vs N, convention cellule unitaire (panneau unique)                           — 6.5 × 4.0 po
-  fig_Ved                (a) carte 5×5, (b) carte 9×9 (colorbar commune) ; (c) profil radial masqué, + C_N (pointillés, R10) — 6.5 × 7.2 po
-  fig_Ved_zoom           inchangée (make_figures.py)
+  A: fig_convergence        (a) Γ N_cells vs R_cut, six tailles ; (b) carte plateau (grille × η), référence     — 6.5 × 3.4 po
+  C: fig_locality_final     (a) 5×5, (b) 8×8 avec grille aliasée ; (c) 9×9, (d) 12×12                 — 6.5 × 5.6 po
+  C: fig_spectral_final     (a) Γ(ε) T vs Born (log) ; (b) δρ ; (c) T̄_ππ(K,K;ε) ; (d) critère det / λ_min       — 6.5 × 5.6 po
+  C: fig_M_map_final        (a) π, (b) π*, (c) partie locale projetée, (d) partie non locale projetée ; colorbars M̃ et M_∥ — 6.5 × 6.0 po
+  C: fig_M_scaling_final    max|M| vs N, convention cellule unitaire (panneau unique)                           — 6.5 × 4.0 po
+  C: fig_Ved                (a) carte 5×5, (b) carte 9×9 (colorbar commune) ; (c) profil radial masqué, + C_N (pointillés, R10) — 6.5 × 7.2 po
+  C: fig_Ved_zoom           inchangée (make_figures.py)
 Usage : python scripts/make_figures_memoire.py [--outdir figures/electron_defect]
 """
 import argparse, os, numpy as np

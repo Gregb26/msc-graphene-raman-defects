@@ -1,17 +1,15 @@
-"""Les cinq figures de la campagne R8 (DOS et A_k moyennées sur le désordre, Kaasbjerg PRB 101, 045433) retenues pour le chapitre 4,
-redessinées au style graphene_raman.plotting depuis les sorties de `campagnes/R/R8_kaasbjerg/r8_driver.py` (aucun calcul).
-Tracé extrait le 2026-09-30 de `r8_driver.cmd_fig` (quatre premières) et de la fin de `r8_driver.cmd_sigeff` (`sigma_K`, qui lit
-`sigma_K_9x9.npz` au lieu de recalculer Σ), au contenu identique :
+""" Les cinq figures (DOS et A_k moyennées sur le désordre) de comparaison avec la littérature (Kaasbjerg PRB 101, 045433) retenues pour le chapitre 4,
+redessinées au style graphene_raman.plotting. C : figures dans le corps du texte. A : figures en annexe.
 
-  fig_kaasbjerg_dos_c          (a) ρ(ε) tel quel, ρ₀ 1 200² et c_i = 0,1 et 1 % ; (b), (c) ρ − ρ₀ des trois variantes (600² plein, 300² pointillé)
+  M: fig_kaasbjerg_dos_c          (a) ρ(ε) tel quel, ρ₀ 1 200² et c_i = 0,1 et 1 % ; (b), (c) ρ − ρ₀ des trois variantes (600² plein, 300² pointillé)
   fig_kaasbjerg_spectral_GKM   A_k(ε) sur Γ–K–M, 2 concentrations × 3 variantes, branches où A ≥ 1 % du maximum
-  fig_kaasbjerg_sensibilites   max de ρ − ρ₀ contre N_k^int, R_cut, taille, η_G ; ligne : valeur de Kaasbjerg (Fig. 13, c_i = 1 %)
-  fig_kaasbjerg_superposition  nos courbes (ρ₀ 1 200², η 15 meV) sur celles extraites de Kaasbjerg, ×1 (par spin) et ×2
-  fig_kaasbjerg_sigma_K        Σ_nn et Σ^eff_nK à k = K, c_i = 1 %, tel quel et aligné (étape 4)
+  A: fig_kaasbjerg_sensibilites   max de ρ − ρ₀ contre N_k^int, R_cut, taille, η_G ; ligne : valeur de Kaasbjerg (Fig. 13, c_i = 1 %)
+  M: fig_kaasbjerg_superposition  nos courbes (ρ₀ 1 200², η 15 meV) sur celles extraites de Kaasbjerg, ×1 (par spin) et ×2
+  M: fig_kaasbjerg_sigma_K        Σ_nn et Σ^eff_nK à k = K, c_i = 1 %, tel quel et aligné (étape 4)
 
-Données : donnees/kaasbjerg/ (config ; copies à plat de `out/` de la campagne, préfixe r8_) :
-r8_dos_9x9.npz, r8_spectral_GKM_9x9.npz, r8_sens_results.json, r8_fig13_VA_interp_1meV.csv, r8_7a_results.json, r8_sigma_K_9x9.npz, r8_sigeff_results.json.
-Sortie : figures/electron_defect/fig_kaasbjerg_<nom>.{pdf,png} (reproductibles au bit, palette.save).
+Données : donnees/kaasbjerg/: r8_dos_9x9.npz, r8_spectral_GKM_9x9.npz, r8_sens_results.json, r8_fig13_VA_interp_1meV.csv, r8_7a_results.json, r8_sigma_K_9x9.npz, r8_sigeff_results.json.
+Sortie : figures/electron_defect/fig_kaasbjerg_<nom>.{pdf,png}
+
 Usage : python scripts/make_figures_kaasbjerg.py [--only nom,nom] [--outdir figures/electron_defect]
 """
 import argparse
@@ -30,7 +28,7 @@ from graphene_raman.config import load_production, campaigns_dir
 ROOT = Path(__file__).resolve().parents[1]            # scripts/ -> racine
 R8 = campaigns_dir(load_production(verbose=False), "kaasbjerg")   # donnees/kaasbjerg (config)
 
-# constantes de la campagne (r8_driver.py, 2026-09-28) : variantes, concentrations, grilles
+# constantes de la campagne : variantes, concentrations, grilles
 VARIANTS = ("tel_quel", "aligne")
 C_LIST = (0.001, 0.01)                   # c_i, défauts par maille
 GRID_SENS, NK_MAIN = 600, 900

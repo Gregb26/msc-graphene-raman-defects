@@ -21,7 +21,7 @@ remplacés par `src/` et `scripts/fig/`.
 ```
 msc-graphene-raman-defects/
 ├── pyproject.toml              ← celui de graphene-raman
-├── src/graphene_raman/         ← paquet (renommé depuis electron_defect_interaction), sans les orphelins
+├── src/graphene_raman/         ← paquet (renommé depuis graphene_raman), sans les orphelins
 ├── scripts/                    ← même arborescence que graphene-raman après ménage (fig/, …)
 ├── campagnes/                  ← ce qui sert au mémoire : M/ch4, R/R8_kaasbjerg (pilote), EM
 ├── config/production.json      ← results_dir = donnees/  (seule ligne à changer à la copie)
@@ -45,7 +45,7 @@ Vérification à la copie : régénérer les 20 figures depuis msc- et comparer 
 
 | Label | Fichier | .tex:ligne | Producteur (source) | Données lues (source) | État | Dans msc- |
 |---|---|---|---|---|---|---|
-| `fig:KB` | `KB_projectors_C.pdf` | théorie:191 | probablement `GR:plotting/plot_psp_radial_proj.py`, sortie manuelle | pseudo-potentiel C (`.upf`/`.psp8`) | hors chaîne | |
+| `fig:KB` | `KB_projectors_C.pdf` | théorie:191 | `GR:scripts/fig/make_figures_electron.py` → `GR:figures/electron/fig_kb_pseudo_C.pdf` (**redessinée le 2026-09-30**, à valider et réinstaller ; l'original dessiné à la main est dans l'historique git de graphene-raman) | `C.upf` du `.save` de la maille | nouvelle | |
 | `fig:convergence_dft` | `fig_electron_convergence.pdf` | théorie:319 | `QEPP:plot_convergence.py` | sorties QE de convergence (qe_pp) | hors dépôt GR | |
 | `fig:resultats_electrons` | `fig_ebands_edos.pdf` | théorie:326 | `QEPP:plot_ebands_edos.py` | bandes + DOS QE (qe_pp) | hors dépôt GR | |
 | `fig:phonon_results` | `fig_epw_phonons.pdf` | théorie:447 | `GR:scripts/fig/make_figures_epw.py` | `GR:results/epw/*` (phdos) | R10 (identique) | |
@@ -103,7 +103,7 @@ Toutes les tables sont saisies à la main dans le `.tex`, sans `\input` de csv.
 | `tab:gamma_ph_prod` | eph:275 | idem |
 | `tab:param_dft` | annexes/paramètres:10 | inputs QE (`calculs/`) |
 | `tab:param_dfpt` | paramètres:37 | inputs ph.x (`calculs/`) |
-| `tab:param_wannier` | paramètres:62 | `GR:wannier/*/wannier.wout` |
+| `tab:param_wannier` | paramètres:62 | `GR:results/wannier/*/wannier.wout` |
 | `tab:param_M` | paramètres:86 | `GR:config/production.json` |
 | `tab:param_T` | paramètres:117 | `production.json`, `GR:notes/NOTES_TGAMMA.md` |
 | `tab:param_epw` | paramètres:143 | inputs EPW, `GR:notes/NOTES_EPW.md` |

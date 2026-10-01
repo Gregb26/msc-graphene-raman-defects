@@ -1,0 +1,108 @@
+{
+  "_comment": "Frozen production parameters (2026-09-05), declared after the Level 1-2 convergence on the nbnd=20 dense chain. Every production script must load this file via graphene_raman.config.load_production(); CLI flags may only widen a sweep, never silently change a frozen value.",
+  "M_normalization": "v2 : L et NL en norme unit_cell, 2026-09-25",
+  "M_normalization_note": "v1 (results/M, gele) : M^L des noyaux compute_ML_R* avec psi normee sur la super-cellule (facteur N_cells manquant, R5-A.2) et M^NL en norme maille ; v2 (R6) : M2 = N_cells*M^L + M^NL, les deux parties en norme unit_cell ; porte obligatoire A.2 (application directe de dV sur etats de Bloch purs, <= 1e-6 eV) sur chaque M utilise",
+  "results_dir": "donnees/M2_plateau",
+  "matrices_dir": "donnees/M2",
+  "epw_results_dir": "donnees/epw",
+  "electron_results_dir": "donnees/electron",
+  "phonon_results_dir": "donnees/phonon",
+  "wannier_dir": "donnees/wannier",
+  "campaigns_results_dir": "donnees/campagnes",
+  "results_dir_frozen": [],
+  "alignment": {
+    "version": "alignement de Kumagai-Oba (PRB 89, 195205, 2014), approximation (i), R10, 2026-09-29 ; etiquette d archive : plateau (i)",
+    "method": "C_N = moyenne des decalages de sphere de 1,0 A (alignment.atom_sphere_shifts) sur les atomes a distance vraie >= 0,75 r_max de la lacune ; M_W(R,R) - C_N*I_5 sur les mailles R mod D dans [0,N)^2 (etiquettes brutes de Mwk_to_Mwr, defect_mwr), approximation (i), rien d'autre ; matrices M2 brutes (matrices_dir)",
+    "C_N_eV": {
+      "5x5": -0.0575626062015234,
+      "6x6": -0.05050914517629934,
+      "7x7": -0.02691429425434127,
+      "8x8": -0.014410274533323343,
+      "9x9": -0.02514371002267805,
+      "10x10": -0.009341716029942201,
+      "11x11": -0.009550651557225422,
+      "12x12": -0.01868959310083182,
+      "15x15": -0.01621854502926427,
+      "18x18": -0.015062070057554946,
+      "21x21": -0.014234270413329362,
+      "24x24": -0.013481540317473475,
+      "27x27": -0.0130057717522539
+    },
+    "source": "campagnes/R/R10_plateau/a/a1_results.json",
+    "source_md5": "3d98bbd244eba8e1c1c645dcf675432b",
+    "labels_offgrid": "wigner_seitz"
+  },
+  "R_cut": 3,
+  "grid": 240,
+  "eta_eV": 0.02,
+  "N_min": 7,
+  "reference_size": "9x9",
+  "production_sizes": [
+    "7x7",
+    "8x8",
+    "9x9"
+  ],
+  "nk_int": 300,
+  "e_window_eV": 3.0,
+  "ne_per_eta": 8,
+  "nbnd_dense": 20,
+  "dense": {
+    "5x5": {
+      "p": 5,
+      "D": 25
+    },
+    "7x7": {
+      "p": 4,
+      "D": 28
+    },
+    "8x8": {
+      "p": 4,
+      "D": 32
+    },
+    "9x9": {
+      "p": 3,
+      "D": 27
+    },
+    "6x6": {
+      "p": 4,
+      "D": 24
+    },
+    "12x12": {
+      "p": 2,
+      "D": 24
+    }
+  },
+  "wannier": {
+    "num_wann": 5,
+    "projections": "C1:sp2;pz  C2:pz",
+    "dis_win_eV": [
+      -25.0,
+      15.0
+    ],
+    "dis_froz_max_eV": -1.74
+  },
+  "units": {
+    "M_files": "Hartree",
+    "wannier_tb": "eV",
+    "rule": "M is multiplied by HA2EV once, at load time, before any t-matrix algebra; Gamma is reported in eV (x1e3 = meV)"
+  },
+  "defect_concentration_for_dos": 0.01,
+  "K_red": [
+    0.6666666666666666,
+    0.3333333333333333,
+    0.0
+  ],
+  "K_note": "Dirac point in reduced coordinates for the QE cell (a1,a2 at 60 deg): (2/3,1/3); (1/3,1/3) is NOT K (|k| = 0.98 A^-1, pi gap 9.5 eV)",
+  "families": {
+    "3m": [
+      "6x6",
+      "9x9",
+      "12x12"
+    ],
+    "non3m": [
+      "5x5",
+      "7x7",
+      "8x8"
+    ]
+  }
+}

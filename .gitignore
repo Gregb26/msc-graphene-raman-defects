@@ -25,3 +25,13 @@ out/
 /master_thesis.pdf
 # venv
 .venv 
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Données calculées lourdes (jamais dans le dépôt)
+*.npy
+*.save/

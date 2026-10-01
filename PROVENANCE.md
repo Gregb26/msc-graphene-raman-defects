@@ -16,7 +16,7 @@ Tous les chemins sont relatifs à la racine de ce dépôt, sauf `GR:` = `graphen
 msc-graphene-raman-defects/
 ├── memoire/                   LaTeX ; memoire/tables/ : tableaux générés (un tabular par fichier) et leur index SOURCES.md
 ├── scripts/                   make_all_figures.py (lanceur) + les sept make_figures_*.py ; chiffres_ch4.py (chiffres complémentaires du ch. 4) ;
-│                              make_tables.py (les six tableaux du ch. 4 → memoire/tables/)
+│                              make_tables.py (les huit tableaux du ch. 4 → memoire/tables/)
 ├── src/graphene_raman/        sous-ensemble du paquet de GR, réduit à ce que les scripts importent :
 │                              config.py, plotting/ (style, palette, sauvegarde), io/pseudo_io.py, electron_phonon/phself.py
 ├── config/production.json     paramètres de production et emplacement des données (identique à GR, sauf results/… → donnees/…)
@@ -67,7 +67,7 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python -m pip install -e . --no-deps
 .venv/bin/python scripts/make_all_figures.py        # les 33 figures, ~25 s ; --only, --list
-.venv/bin/python scripts/make_tables.py             # les six tableaux du ch. 4 et leur index ; --only, --list, --check
+.venv/bin/python scripts/make_tables.py             # les huit tableaux du ch. 4 et leur index ; --only, --list, --check
 ```
 
 LaTeX est requis (le texte des figures est composé par `text.usetex`). Les scripts écrivent dans `figures/<chapitre>/` ;
@@ -98,6 +98,7 @@ elles sont remplacées chapitre par chapitre à la réécriture.
    (C_N de la config = C_N des produits M ; `level2_families.csv` = `M_analysis.npz` ; M̄^L aligné − brut = N²|C_N| ; `m_rcut_convergence.csv`
    = `r10_c2_results.json` plateau_ws ; niveau 1 R_cut 3 = `level2_summary.csv` ; grille interne 300² = production) et écrit
    `memoire/tables/<nom>.tex` (tabular seul, légende et `\label` dans le chapitre) et `memoire/tables/SOURCES.md` (index). Sortie déterministe.
+   Deux tableaux nouveaux le même jour : `tab:kaasbjerg` (corps, §4.2.5) et `tab:grille_interne` (annexe D, chaîne T).
 
 **Recette après réduction (2026-10-01, Mac, Python 3.12.1, environnement de `requirements.txt`)** : `scripts/make_all_figures.py`
 → 47 figures, 94 fichiers PDF et PNG **identiques octet par octet** à `GR:figures/` au tag. Cette comparaison ne sera pas entretenue ;
@@ -173,7 +174,7 @@ de date, d'où des PDF reproductibles octet par octet sur une même machine.
 
 ## 2. Tables
 
-Les six tableaux du ch. 4 sont générés par `scripts/make_tables.py` dans `memoire/tables/` ; chacun entre dans `défauts.tex` (`\input{tables/<nom>}`)
+Les huit tableaux du ch. 4 (six existants, deux nouveaux) sont générés par `scripts/make_tables.py` dans `memoire/tables/` ; chacun entre dans `défauts.tex` (`\input{tables/<nom>}`)
 à la réécriture de sa section, d'ici là le `.tex` garde l'ancienne version saisie à la main. Valeur et source de chaque cellule :
 `memoire/tables/SOURCES.md`. Les tableaux du ch. 5 et de l'annexe D restent saisis à la main.
 
@@ -184,7 +185,9 @@ Les six tableaux du ch. 4 sont générés par `scripts/make_tables.py` dans `mem
 | `tab:rcut_M` | défauts:370 | `make_tables.py` → `tables/rcut_M.tex` : `M2_plateau/m_rcut_convergence.csv` (= `kaasbjerg/r10_c2_results.json`, plateau_ws) |
 | `tab:tests_M` | défauts:415 | `make_tables.py` → `tables/tests_M.tex` : `M2_plateau/M_tests_summary.csv`, `M2_plateau/ks_reconstruction.npz` |
 | `tab:convergence_gamma` | défauts:653 | `make_tables.py` → `tables/convergence_gamma.tex` : `M2_plateau/level1_summary.csv` |
-| `tab:tests_T` | défauts:691 | `make_tables.py` → `tables/tests_T.tex` : `M2_plateau/{M_tests_summary.csv,nkint_check_9x9.csv,resonance_9x9.npz}` ; hermiticité de M_loc : `ch4/NOTES_TGAMMA.md` seulement (en prose) |
+| `tab:tests_T` | défauts:691 | `make_tables.py` → `tables/tests_T.tex` : `M2_plateau/{M_tests_summary.csv,nkint_check_9x9.csv,resonance_9x9.npz}` ; seuil de positivité : `ch4/NOTES_TGAMMA.md` |
+| `tab:kaasbjerg` | nouveau (§4.2.5) | `make_tables.py` → `tables/kaasbjerg.tex` : `kaasbjerg/r8_{dos,spec,7a}_results.json`, `kaasbjerg/r10_c2_results.json` ; A_cell\|M\| ~70 eV Å² de Kaasbjerg : lit. (sa Fig. 3, non numérisée) |
+| `tab:grille_interne` | nouveau (annexe D) | `make_tables.py` → `tables/grille_interne.tex` : `M2_plateau/nkint_check_9x9.csv` |
 | `tab:kohn_chaines` | eph:194 | `donnees/epw/d2_extract_24k24q{,_mv0.02}.npz`, `validation_24k24q{,_mv0.02}.npz` |
 | `tab:gamma_ep_conv` | eph:219 | `donnees/epw/selfen_*_T300.npz` |
 | `tab:gamma_ph_conv` | eph:254 | `donnees/epw/NOTES_EPW.md` (table de convergence de γ(A₁′, K), l. 295) : **aucun fichier de données** ne porte ces 18 valeurs, tirées des `epw.out` des runs `calculs/ch5_epw/24k-24q_mv0.02/epw6_phself_K_*` restés sur Rorqual ; un csv est à extraire des notes (TODO) |

@@ -2,7 +2,7 @@
 
 Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur affichée : texte LaTeX, valeur lue et source (`fichier : clé [sélection]`, chemins relatifs à `donnees/`, sauf `config/`). Les remarques de chaque tableau notent les choix de présentation et les cellules sans source lisible par machine.
 
-## `tab:échantillonnage` — `tables/echantillonnage.tex` (§4.1.6, corps)
+## `tab:échantillonnage` — `tables/echantillonnage.tex` (§4.1.5, corps)
 
 - Toutes les valeurs en meV. V̄^L(a_CC) **aligné** = brut − C_N (décision du TODO, chantier 1) ; la colonne brute n'est plus affichée (brut = aligné + C_N). ΔE_F ne dépend pas de l'alignement.
 - N = 10 et 11 : SCF de super-cellules seulement (pas de matrice M) ; leurs C_N viennent de la même source.
@@ -34,7 +34,7 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | 11 | C_N (meV) | $-9.6$ | -9.550651557225422 | `config/production.json : alignment.C_N_eV [11x11] × 10³` |
 | 11 | V̄^L(a_CC) aligné (meV) | $-244.3$ | -244.34934844277458 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 11] − config/production.json : alignment.C_N_eV [11x11] × 10³` |
 
-## `tab:L_NL` — `tables/L_NL.tex` (§4.1.6, corps)
+## `tab:L_NL` — `tables/L_NL.tex` (§4.1.5, corps)
 
 - Brut et aligné côte à côte (décision du 2026-10-01, R10 D6). M̄^NL ne dépend pas de l'alignement.
 - Contrôles : `level2_families.csv` = `M_analysis.npz` (ReML_K, ReML_K_aligned, ReMNL_K) ; aligné − brut = N²|C_N| à 1e-8 eV près pour les six tailles.
@@ -73,7 +73,7 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | 12 | NL/L BZ brut | $0.252$ | 0.2521472662877427 | `M2_plateau/lnl_frobenius.csv : ratio_full [12x12]` |
 | 12 | NL/L BZ aligné | $0.252$ | 0.25195367625385306 | `M2_plateau/lnl_frobenius.csv : ratio_full_aligned [12x12]` |
 
-## `tab:rcut_M` — `tables/rcut_M.tex` (§4.1.6 → annexe D)
+## `tab:rcut_M` — `tables/rcut_M.tex` (§4.1.5 → annexe D)
 
 - Production finale : alignement de Kumagai–Oba et étiquettes de Wigner-Seitz ; contrôle : le csv = `kaasbjerg/r10_c2_results.json` : rcut.<S>.plateau_ws à 1e-4 près. Grille fine 60² (colonne `fine_grid`).
 - Deux chiffres significatifs.
@@ -116,7 +116,7 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | 6 | 12x12 π–π* | 1.1~\% | 0.011178 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 6]` |
 | 6 | 12x12 diag. | 0.87~\% | 0.0086769 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 6]` |
 
-## `tab:tests_M` — `tables/tests_M.tex` (§4.1.6 → annexe D)
+## `tab:tests_M` — `tables/tests_M.tex` (§4.1.5 → annexe D)
 
 - Ligne « 16 → 20 bandes » retirée (non rejouable avec M2 ; TODO). Ajouts : application directe de V_ed (porte A.2, toutes les tailles ; valeur affichée = le plus grand des écarts L et NL) et convention intensive par famille (remplace la ligne sur six tailles).
 - Hermiticité : maximum sur les six tailles (la légende actuelle dit « valeur de la 9×9 sauf mention »). Reconstruction KS : fourchette sur les six tailles. Deux chiffres significatifs.
@@ -146,7 +146,7 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | \quad $N = 5, 7, 8$ | valeur | $2.1\times10^{-2}$ | 0.021 | `M2_plateau/M_tests_summary.csv : valeur [convention intensive (cellule unitaire), famille non-3m (N = 5, 7, 8)]` |
 | \quad $N = 5, 7, 8$ | seuil | $5\times10^{-2}$ | 5e-2 | `M2_plateau/M_tests_summary.csv : seuil` |
 
-## `tab:convergence_gamma` — `tables/convergence_gamma.tex` (§4.3.5 → annexe D)
+## `tab:convergence_gamma` — `tables/convergence_gamma.tex` (§4.2.5 → annexe D)
 
 - Médiane de Γ N_cells (meV), grille de sortie 240², η = 0.02 eV, grille interne 300², fenêtre ±3 eV ; colonne R_cut = 4 remplie pour les six tailles (TODO). Contrôle : R_cut 3 = `level2_summary.csv`.
 
@@ -183,10 +183,10 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | 8 | R_cut 3 | 2974 | 2974.1813 | `M2_plateau/level1_summary.csv : median_Gamma_Ncells_meV [8x8, R_cut = 3, 240, 0.02]` |
 | 8 | R_cut 4 | 2991 | 2991.2441 | `M2_plateau/level1_summary.csv : median_Gamma_Ncells_meV [8x8, R_cut = 4, 240, 0.02]` |
 
-## `tab:tests_T` — `tables/tests_T.tex` (§4.3.5 → annexe D)
+## `tab:tests_T` — `tables/tests_T.tex` (§4.2.5 → annexe D)
 
 - Lignes 6×6, 12×12 (non rejoués avec M2) et grille d'énergie (v1 seulement) retirées (TODO).
-- Hermiticité de M_loc : **aucune valeur lisible par machine** ; seule valeur v2 connue = golden 5×5 dense (NOTES_TGAMMA C5, 1.3e-14) ; rien pour la 9×9 de production. À trancher : garder cette ligne ou la retirer (l'hermiticité de M est déjà dans tab:tests_M).
+- Ligne « Hermiticité de M_loc » retirée (décision du 2026-10-01) : l'hermiticité de M est déjà dans tab:tests_M et aucune valeur de la 9×9 de production n'existe hors des journaux.
 - Positivité : minimum réel sur les 41 266 états de la fenêtre (9×9 de production) au lieu de « ≥ 0 ».
 
 | ligne | colonne | affiché | valeur lue | source |
@@ -194,7 +194,57 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | Référence, $5\times5$ | valeur | $1.8\times10^{-13}$ | 1.8e-13 | `M2_plateau/M_tests_summary.csv : valeur [test d'or (local vs compute_T), 5×5 dense]` |
 | Référence, $5\times5$ | seuil | $10^{-8}$ | 1e-08 | `M2_plateau/M_tests_summary.csv : seuil` |
 | Grille interne, $300^2\to600^2$ | valeur | $9.1\times10^{-4}$ | 0.0009144248278094638 | `M2_plateau/nkint_check_9x9.csv : \|medG[300] − medG[600]\| / medG[600]` |
-| Hermiticité de $M_\text{loc}$, $5\times5$ | valeur | $1.3\times10^{-14}$ | 1,3e-14 | `ch4/NOTES_TGAMMA.md : l. 120 (C5, golden 5×5 dense M2, en prose seulement)` |
-| Hermiticité de $M_\text{loc}$, $5\times5$ | seuil | $10^{-10}$ | 1e-10 | `ch4/NOTES_TGAMMA.md : l. 48 (garde-fou b)` |
 | Positivité | valeur | $1.96$~eV | 1.955186878025845 | `M2_plateau/resonance_9x9.npz : min de G_T sur \|E_out − E_D\| ≤ 3.0 eV (eV)` |
 | Positivité | seuil | $-10^{-8}$~eV | -1e-8 | `ch4/NOTES_TGAMMA.md : l. 122 (C7)` |
+
+## `tab:kaasbjerg` — `tables/kaasbjerg.tex` (§4.2.5, corps)
+
+- Colonne Kaasbjerg : Fig. 13 et 14 de l'article numérisées dans `r8_7a_results.json` (Fig. 13 : courbes vectorielles du PDF interpolées au meV ; Fig. 14 : points sur des cellules de 10 meV). Seule cellule sans source lisible par machine : A_cell|M| ~70 eV Å², lu sur sa Fig. 3.
+- Nos colonnes (9×9, R_cut 3, η_t = 20 meV, N_k^int = 900) : ρ − ρ₀ sur la grille 600² avec η_G = 50 meV (`r8_dos_results.json`) ; A_K avec η_G = 25 meV (`r8_spec_results.json`) ; A_cell|M_nn| = moyenne sur un disque de 0.147 Å⁻¹ autour de K, état initial K + δx̂ (δ = 0.029 Å⁻¹), 512 points (`r10_c2_results.json` : kaasbjerg.meta). Nos DOS sont par spin : hauteur × 2 (spin compté, comme Kaasbjerg) ; unité : états/eV/maille. c = défauts par maille (convention de Kaasbjerg). A_cell|M_nn| : π / π* (valence / conduction), à dire dans la légende.
+- Nos positions tombent sur la grille d'énergie de pas 2.5 meV : quatre décimales (−0.1625 arrondi à trois décimales est ambigu). Kaasbjerg : trois décimales (lecture au meV).
+- Contrôles : positions de `r8_fig_results.json` (superposition_7b) = `r8_dos_results.json` ; pos_K = `r8_7a_results.json` ; C_N, η_t, η_G et N_k^int attendus.
+
+| ligne | colonne | affiché | valeur lue | source |
+|---|---|---|---|---|
+| $A_\text{cell}\|M_{nn}\|$ près de $K$ (eV\,\AA$^2$) | Kaasbjerg | ${\sim}70$ | ~70 | `lit. : Kaasbjerg 2020 (PRB 101, 045433), Fig. 3, lu sur la figure (défauts.tex l. 327), aucune donnée numérisée` |
+| $A_\text{cell}\|M_{nn}\|$ près de $K$ (eV\,\AA$^2$) | non aligné | 77 / 78 | 76.956 / 78.168 | `kaasbjerg/r10_c2_results.json : kaasbjerg.D1.tel quel.{valence, conduction} \| K.mean` |
+| $A_\text{cell}\|M_{nn}\|$ près de $K$ (eV\,\AA$^2$) | Kumagai–Oba | 82 / 83 | 81.605 / 82.821 | `kaasbjerg/r10_c2_results.json : kaasbjerg.D1.plateau.{valence, conduction} \| K.mean` |
+| Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$ | Kaasbjerg | $-0.200$ | -0.2 | `kaasbjerg/r8_7a_results.json : fig13_metrics.0.1.drho_max_pos_eV` |
+| Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$ | non aligné | $-0.1625$ | -0.1624999999995529 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.001.drho_max_pos_eV` |
+| Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$ | Kumagai–Oba | $-0.1475$ | -0.14749999999955055 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.001.drho_max_pos_eV` |
+| \quad $c = 1~\%$ | Kaasbjerg | $-0.210$ | -0.21 | `kaasbjerg/r8_7a_results.json : fig13_metrics.1.0.drho_max_pos_eV` |
+| \quad $c = 1~\%$ | non aligné | $-0.1650$ | -0.16499999999955328 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.01.drho_max_pos_eV` |
+| \quad $c = 1~\%$ | Kumagai–Oba | $-0.1500$ | -0.14999999999955094 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.01.drho_max_pos_eV` |
+| Hauteur, $c = 1~\%$ (eV$^{-1}$) | Kaasbjerg | $0.031$ | 0.030746893024432773 | `kaasbjerg/r8_7a_results.json : fig13_metrics.1.0.drho_max` |
+| Hauteur, $c = 1~\%$ (eV$^{-1}$) | non aligné | $0.054$ | 0.05352573830058177 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.01.drho_max × 2 (spin)` |
+| Hauteur, $c = 1~\%$ (eV$^{-1}$) | Kumagai–Oba | $0.058$ | 0.05817516839179859 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.01.drho_max × 2 (spin)` |
+| Largeur à mi-hauteur, $c = 1~\%$ (eV) | Kaasbjerg | $0.31$ | 0.30635758813655406 | `kaasbjerg/r8_7a_results.json : fig13_metrics.1.0.drho_fwhm_eV` |
+| Largeur à mi-hauteur, $c = 1~\%$ (eV) | non aligné | $0.20$ | 0.20124621847661056 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.01.drho_fwhm_eV` |
+| Largeur à mi-hauteur, $c = 1~\%$ (eV) | Kumagai–Oba | $0.19$ | 0.1870328301810967 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.01.drho_fwhm_eV` |
+| Écart des maxima de $A_K$, $c = 1~\%$ (eV) | Kaasbjerg | $0.100$ | 0.10000404720303457 | `kaasbjerg/r8_7a_results.json : fig14.1.0.K_gap_eV` |
+| Écart des maxima de $A_K$, $c = 1~\%$ (eV) | non aligné | $0.118$ | 0.11762346994893341 | `kaasbjerg/r8_spec_results.json : runs.tel_quel_c0.01.K_gap_eV` |
+| Écart des maxima de $A_K$, $c = 1~\%$ (eV) | Kumagai–Oba | $0.118$ | 0.11824139676128233 | `kaasbjerg/r8_spec_results.json : runs.aligne_c0.01.K_gap_eV` |
+
+## `tab:grille_interne` — `tables/grille_interne.tex` (§4.2.5 → annexe D (chaîne T))
+
+- 9×9 de production (Kumagai–Oba), R_cut 3, grille de sortie 240², η = 20 meV. Fenêtre ±3 eV : 41 266 états ; zone |ε − E_D| ≤ 0.3 eV : 280 états (`z_n`) ; Γ(E_D) : les 4 états au point de Dirac (`n_ED`). Contrôle : 300² = production (`level1_summary.csv`).
+- E_res = argmax de Γ sur les états à ±1.5 eV : grandeur **retirée du ch. 4 par la décision R10 B.1** (argmax discret sur les états de la grille de sortie), remise ici à la demande de G (2026-10-01) ; à confirmer à la rédaction de l'annexe D. E_res = z_E_res dans le csv.
+
+| ligne | colonne | affiché | valeur lue | source |
+|---|---|---|---|---|
+| $150^2$ | médiane ±3 eV (meV) | 3210 | 3210.0181762526818 | `M2_plateau/nkint_check_9x9.csv : medG [nk_int = 150]` |
+| $150^2$ | médiane ±0.3 eV (meV) | 4289 | 4288.842027638511 | `M2_plateau/nkint_check_9x9.csv : z_medG [nk_int = 150]` |
+| $150^2$ | Γ N_cells(E_D) (meV) | 5662 | 5662.157507923787 | `M2_plateau/nkint_check_9x9.csv : G_ED [nk_int = 150]` |
+| $150^2$ | E_res − E_D (eV) | $-0.238$ | -0.23822954795906082 | `M2_plateau/nkint_check_9x9.csv : E_res [nk_int = 150]` |
+| $300^2$ | médiane ±3 eV (meV) | 3189 | 3189.013588325133 | `M2_plateau/nkint_check_9x9.csv : medG [nk_int = 300]` |
+| $300^2$ | médiane ±0.3 eV (meV) | 3045 | 3045.276268611333 | `M2_plateau/nkint_check_9x9.csv : z_medG [nk_int = 300]` |
+| $300^2$ | Γ N_cells(E_D) (meV) | 4287 | 4287.112828533603 | `M2_plateau/nkint_check_9x9.csv : G_ED [nk_int = 300]` |
+| $300^2$ | E_res − E_D (eV) | $-0.175$ | -0.17484882850105077 | `M2_plateau/nkint_check_9x9.csv : E_res [nk_int = 300]` |
+| $450^2$ | médiane ±3 eV (meV) | 3196 | 3196.1099873995636 | `M2_plateau/nkint_check_9x9.csv : medG [nk_int = 450]` |
+| $450^2$ | médiane ±0.3 eV (meV) | 3080 | 3079.7507187061265 | `M2_plateau/nkint_check_9x9.csv : z_medG [nk_int = 450]` |
+| $450^2$ | Γ N_cells(E_D) (meV) | 4120 | 4120.384973749112 | `M2_plateau/nkint_check_9x9.csv : G_ED [nk_int = 450]` |
+| $450^2$ | E_res − E_D (eV) | $-0.175$ | -0.17484882850105077 | `M2_plateau/nkint_check_9x9.csv : E_res [nk_int = 450]` |
+| $600^2$ | médiane ±3 eV (meV) | 3192 | 3191.9323705334373 | `M2_plateau/nkint_check_9x9.csv : medG [nk_int = 600]` |
+| $600^2$ | médiane ±0.3 eV (meV) | 3039 | 3039.0595886407905 | `M2_plateau/nkint_check_9x9.csv : z_medG [nk_int = 600]` |
+| $600^2$ | Γ N_cells(E_D) (meV) | 4090 | 4090.1124522968867 | `M2_plateau/nkint_check_9x9.csv : G_ED [nk_int = 600]` |
+| $600^2$ | E_res − E_D (eV) | $-0.175$ | -0.17484882850105077 | `M2_plateau/nkint_check_9x9.csv : E_res [nk_int = 600]` |

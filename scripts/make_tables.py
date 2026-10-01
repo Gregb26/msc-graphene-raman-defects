@@ -1,24 +1,26 @@
-"""Tableaux du chapitre 4, générés depuis donnees/ et config/.
+"""
+Tableaux du chapitre 4, générés depuis donnees/ et config/. C : tableaux dans le corps du texte. A : tableaux en annexe. Le script retourne :
 
-Couche d'organisation (décision du 2026-10-01) : les données restent rangées par sujet et par campagne dans donnees/,
-sous les mêmes noms que dans graphene-raman ; ce script les range *par tableau du mémoire*. Chaque tableau est une
-fonction qui déclare, cellule par cellule, la valeur affichée et sa source (fichier : clé [sélection]), vérifie la
-cohérence entre fichiers quand deux sources portent la même grandeur, puis le script écrit :
+    memoire/tables/<nom>.tex    le tabular seul, la légende et le \\label restent dans le chapitre (\\input{tables/<nom>}).
+    memoire/tables/SOURCES.md   l'index : pour chaque tableau, chaque valeur affichée, la valeur lue et sa source.
 
-  memoire/tables/<nom>.tex    le tabular seul ; la légende et le \\label restent dans le chapitre (\\input{tables/<nom>})
-  memoire/tables/SOURCES.md   l'index : pour chaque tableau, chaque valeur affichée, la valeur lue et sa source
+<nom> prend les valeurs : 
 
-Aucun calcul physique : lectures, arithmétique élémentaire (écrite dans la source de la cellule) et mise en forme
-(point décimal, X~\\%, nombres en mode math). Sortie déterministe (pas de date) : un tableau dont les données n'ont pas
-changé est réécrit identique au bit.
+    C : t_echantilonnage
+    C : t_L_NL
+    C : t_kaasbjerg
+    A : t_rcut_M
+    A : t_tests_M
+    A : tests_T
+    A : t_convergence_gamma
+    A : t_grille_interne
 
-Usage (depuis la racine, environnement de requirements.txt) :
-  python scripts/make_tables.py                 # tous les tableaux et l'index
-  python scripts/make_tables.py --only L_NL     # seulement certains .tex (l'index est toujours réécrit en entier)
-  python scripts/make_tables.py --list          # liste des tableaux, sans rien écrire
-  python scripts/make_tables.py --check         # compare à memoire/tables/ sans écrire ; code de sortie 1 si l'un diffère
+Usage : depuis la racine et dans l'environnement de requirements.txt : 
 
-Les tableaux du ch. 5 et de l'annexe D (paramètres) restent saisis à la main (décision du 2026-10-01).
+    .venv/bin/python scripts/make_tables.py                 # tous les tableaux e
+    .venv/bin/python scripts/make_tables.py --only <nom>    # un seul tableau, spéficié par <nom>
+    .venv/bin/python scripts/make_tables.py --list          # liste des tableaux, sans rien écrire
+    .venv/bin/python scripts/make_tables.py --check         # compare à memoire/tables/ sans écrire ; code de sortie 1 si l'un diffère, à figer une fois que le chap4 est verrouillé seulement.
 """
 import argparse
 import csv
@@ -39,12 +41,12 @@ OUTDIR = ROOT / "memoire" / "tables"
 CFG = load_production(verbose=False)
 RES = Path(results_dir(CFG))                                # donnees/M2_plateau
 CN_SRC = "config/production.json : alignment.C_N_eV"
-SYM_CN = r"$C_N$"                                           # symbole de la constante d'alignement (à fixer au §4.1.5)
+SYM_CN = r"$\\Delta V _\\text{PA}^{(N)}$"                                           # symbole de la constante d'alignement 
 SIZES = ["5x5", "6x6", "7x7", "8x8", "9x9", "12x12"]
 FAM_3M, FAM_NON3M = ["6x6", "9x9", "12x12"], ["5x5", "7x7", "8x8"]
 
 
-# ------------------------------------------------------------------ lectures (avec cache)
+# lectures 
 
 _cache = {}
 
@@ -95,7 +97,7 @@ def gate(ok, message):
         sys.exit(f"[make_tables] contrôle échoué : {message}")
 
 
-# ------------------------------------------------------------------ mise en forme
+# mise en forme
 
 def fixed(x, nd, sign=False):
     """Décimales fixes, en mode math : $-20.5$, $+58.7$."""
@@ -141,7 +143,7 @@ def first_float(s):
     return float(m.group())
 
 
-# ------------------------------------------------------------------ tableaux
+# tableaux
 
 @dataclass
 class Cell:
@@ -219,7 +221,7 @@ class Table:
         return "\n".join(out) + "\n"
 
 
-# --- tab:échantillonnage (§4.1.6, corps)
+# tab:échantillonnage 
 
 def t_echantillonnage():
     f = RES / "sampling_table.csv"
@@ -239,7 +241,7 @@ def t_echantillonnage():
                           f"{rel(f)} : Ved_radial_1.42A_meV [N = {N}] − {CN_SRC} [{S}] × 10³", vraw - C)])
         if N == 12:
             rows.append(HLINE)
-    return Table("echantillonnage", "tab:échantillonnage", "§4.1.6, corps", "c c r r r",
+    return Table("echantillonnage", "tab:échantillonnage", "§4.1.5, corps", "c c r r r",
                  [r"$N$ & $N \bmod 3$ & $\Delta E_F$ & " + SYM_CN + r" & $\bar V^\text{L}_\text{ed}(a_\text{CC})$ \\"],
                  ["N", "N mod 3", "ΔE_F (meV)", "C_N (meV)", "V̄^L(a_CC) aligné (meV)"], rows,
                  ["Toutes les valeurs en meV. V̄^L(a_CC) **aligné** = brut − C_N (décision du TODO, chantier 1) ; la colonne brute "
@@ -247,7 +249,7 @@ def t_echantillonnage():
                   "N = 10 et 11 : SCF de super-cellules seulement (pas de matrice M) ; leurs C_N viennent de la même source."])
 
 
-# --- tab:L_NL (§4.1.6, corps)
+# tab:L_NL
 
 def t_L_NL():
     fa, fl, ff = RES / "M_analysis.npz", RES / "level2_families.csv", RES / "lnl_frobenius.csv"
@@ -272,7 +274,7 @@ def t_L_NL():
     head = [r"& \multicolumn{2}{c}{$\bar M^\text{L}(K)$ (eV)} & $\bar M^\text{NL}(K)$ & \multicolumn{2}{c}{NL/L toute la BZ} \\",
             r"\cline{2-3}\cline{5-6}",
             r"$N$ & brut & aligné & (eV) & brut & aligné \\"]
-    return Table("L_NL", "tab:L_NL", "§4.1.6, corps", "c c c c c c", head,
+    return Table("L_NL", "tab:L_NL", "§4.1.5, corps", "c c c c c c", head,
                  ["N", "M̄^L(K) brut (eV)", "M̄^L(K) aligné (eV)", "M̄^NL(K) (eV)", "NL/L BZ brut", "NL/L BZ aligné"], rows,
                  ["Brut et aligné côte à côte (décision du 2026-10-01, R10 D6). M̄^NL ne dépend pas de l'alignement.",
                   "Contrôles : `level2_families.csv` = `M_analysis.npz` (ReML_K, ReML_K_aligned, ReMNL_K) ; aligné − brut = N²|C_N| "
@@ -280,8 +282,7 @@ def t_L_NL():
                   "N = 5, 7, 8 : grilles élargies 25², 28², 32² sans K ; « K » y est le point de grille le plus proche "
                   "(`lnl_<S>_dK` = 0.055, 0.050, 0.043 Å⁻¹) — à dire dans la légende."])
 
-
-# --- tab:rcut_M (§4.1.6 → annexe D)
+# tab:rcut_M
 
 def t_rcut_M():
     f = RES / "m_rcut_convergence.csv"
@@ -300,14 +301,14 @@ def t_rcut_M():
         rows.append(cells)
     head = [r"& & \multicolumn{2}{c}{$9\times9$} & \multicolumn{2}{c}{$12\times12$} \\",
             r"$R_\text{cut}$ & Nombre de cellules & $\pi$--$\pi^*$ & diag. & $\pi$--$\pi^*$ & diag. \\"]
-    return Table("rcut_M", "tab:rcut_M", "§4.1.6 → annexe D", "c c cc cc", head,
+    return Table("rcut_M", "tab:rcut_M", "§4.1.5 → annexe D", "c c cc cc", head,
                  ["R_cut", "cellules", "9x9 π–π*", "9x9 diag.", "12x12 π–π*", "12x12 diag."], rows,
                  ["Production finale : alignement de Kumagai–Oba et étiquettes de Wigner-Seitz ; contrôle : le csv = "
                   "`kaasbjerg/r10_c2_results.json` : rcut.<S>.plateau_ws à 1e-4 près. Grille fine 60² (colonne `fine_grid`).",
                   "Deux chiffres significatifs."])
 
 
-# --- tab:tests_M (§4.1.6 → annexe D)
+# tab:tests_M
 
 def t_tests_M():
     fk, ft, fa = RES / "ks_reconstruction.npz", RES / "M_tests_summary.csv", RES / "M_analysis.npz"
@@ -373,7 +374,7 @@ def t_tests_M():
         rows.append([L(tex), L(r"$(\max-\min)/\text{moy.}$ de $\max|M|$" if fam is FAM_3M else "idem"),
                      Cell(sci(v), f"{rel(ft)} : valeur [{name}]", v),
                      Cell(thr(first_float(r["seuil"])), f"{rel(ft)} : seuil", r["seuil"])])
-    return Table("tests_M", "tab:tests_M", "§4.1.6 → annexe D", "l l l l", [r"Test & Quantité & Valeur & Seuil \\"],
+    return Table("tests_M", "tab:tests_M", "§4.1.5 → annexe D", "l l l l", [r"Test & Quantité & Valeur & Seuil \\"],
                  ["test", "quantité", "valeur", "seuil"], rows,
                  ["Ligne « 16 → 20 bandes » retirée (non rejouable avec M2 ; TODO). Ajouts : application directe de V_ed "
                   "(porte A.2, toutes les tailles ; valeur affichée = le plus grand des écarts L et NL) et convention intensive par famille "
@@ -384,7 +385,7 @@ def t_tests_M():
                   "tests de la chaîne T (le second est dans `tab:tests_T`) ; portes D6 de l'alignement (`M_analysis.npz` : align_gate_*)."])
 
 
-# --- tab:convergence_gamma (§4.3.5 → annexe D)
+# tab:convergence_gamma 
 
 def t_convergence_gamma():
     f, f2 = RES / "level1_summary.csv", RES / "level2_summary.csv"
@@ -402,13 +403,13 @@ def t_convergence_gamma():
         if S == "12x12":
             rows.append(HLINE)
     head = [r"$N$ & $N \bmod 3$ & $R_\text{cut}=0$ & 1 & 2 & 3 & 4 \\"]
-    return Table("convergence_gamma", "tab:convergence_gamma", "§4.3.5 → annexe D", "c c ccccc", head,
+    return Table("convergence_gamma", "tab:convergence_gamma", "§4.2.5 → annexe D", "c c ccccc", head,
                  ["N", "N mod 3", "R_cut 0", "R_cut 1", "R_cut 2", "R_cut 3", "R_cut 4"], rows,
                  ["Médiane de Γ N_cells (meV), grille de sortie 240², η = 0.02 eV, grille interne 300², fenêtre ±3 eV ; "
                   "colonne R_cut = 4 remplie pour les six tailles (TODO). Contrôle : R_cut 3 = `level2_summary.csv`."])
 
 
-# --- tab:tests_T (§4.3.5 → annexe D)
+# tab:tests_T
 
 def t_tests_T():
     ft, fn, fl, fr = (RES / "M_tests_summary.csv", RES / "nkint_check_9x9.csv", RES / "level1_summary.csv",
@@ -425,9 +426,6 @@ def t_tests_T():
     d = abs(m300 - m600) / m600
     rows.append([L(r"Grille interne, $300^2\to600^2$"), L("écart rel. sur la médiane"),
                  Cell(sci(d), f"{rel(fn)} : |medG[300] − medG[600]| / medG[600]", d), L("---")])
-    rows.append([L(r"Hermiticité de $M_\text{loc}$, $5\times5$"), L(r"$\max|M_\text{loc}-M_\text{loc}^\dagger|$"),
-                 Cell(sci(1.3e-14), "ch4/NOTES_TGAMMA.md : l. 120 (C5, golden 5×5 dense M2, en prose seulement)", "1,3e-14"),
-                 Cell(thr(1e-10), "ch4/NOTES_TGAMMA.md : l. 48 (garde-fou b)", "1e-10")])
     Z = read_npz(fr)
     E, G, ED = Z["E_out"], Z["G_T"], float(Z["E_D"])
     win = np.abs(E - ED) <= CFG["e_window_eV"]
@@ -436,16 +434,122 @@ def t_tests_T():
     rows.append([L("Positivité"), L(r"$\min_{n\kv}\Gamma_{n\kv}N_\text{cells}$"),
                  Cell(f"${gmin:.2f}$~eV", f"{rel(fr)} : min de G_T sur |E_out − E_D| ≤ {CFG['e_window_eV']} eV (eV)", gmin),
                  Cell(r"$-10^{-8}$~eV", "ch4/NOTES_TGAMMA.md : l. 122 (C7)", "-1e-8")])
-    return Table("tests_T", "tab:tests_T", "§4.3.5 → annexe D", "l l l l", [r"Test & Quantité & Valeur & Seuil \\"],
+    return Table("tests_T", "tab:tests_T", "§4.2.5 → annexe D", "l l l l", [r"Test & Quantité & Valeur & Seuil \\"],
                  ["test", "quantité", "valeur", "seuil"], rows,
                  ["Lignes 6×6, 12×12 (non rejoués avec M2) et grille d'énergie (v1 seulement) retirées (TODO).",
-                  "Hermiticité de M_loc : **aucune valeur lisible par machine** ; seule valeur v2 connue = golden 5×5 dense "
-                  "(NOTES_TGAMMA C5, 1.3e-14) ; rien pour la 9×9 de production. À trancher : garder cette ligne ou la retirer "
-                  "(l'hermiticité de M est déjà dans tab:tests_M).",
+                  "Ligne « Hermiticité de M_loc » retirée (décision du 2026-10-01) : l'hermiticité de M est déjà dans tab:tests_M "
+                  "et aucune valeur de la 9×9 de production n'existe hors des journaux.",
                   "Positivité : minimum réel sur les 41 266 états de la fenêtre (9×9 de production) au lieu de « ≥ 0 »."])
 
 
-TABLES = {f.__name__[2:]: f for f in (t_echantillonnage, t_L_NL, t_rcut_M, t_tests_M, t_convergence_gamma, t_tests_T)}
+# tab:kaasbjerg 
+
+KAAS_LIT = "lit. : Kaasbjerg 2020 (PRB 101, 045433)"
+
+def t_kaasbjerg():
+    def K(name):
+        return Path(campaigns_dir(CFG, "kaasbjerg", name))
+    fd, fs, f7, fc, ff = (K("r8_dos_results.json"), K("r8_spec_results.json"), K("r8_7a_results.json"),
+                          K("r10_c2_results.json"), K("r8_fig_results.json"))
+    D, Sp, F = read_json(fd)["metrics"], read_json(fs)["runs"], read_json(ff)["superposition_7b"]
+    k13, k14 = read_json(f7)["fig13_metrics"], read_json(f7)["fig14"]
+    D1 = read_json(fc)["kaasbjerg"]["D1"]
+    grid = 600
+    var = (("tel_quel", "tel quel", 0.0), ("aligne", "plateau", alignment_C(CFG, "9x9")))   # (R8, R10 C.2, C_N attendu)
+    lit = {"0.001": "0.1", "0.01": "1.0"}                   # c_i -> légende de la Fig. 13 de Kaasbjerg
+    for v, _, C in var:                                     # paramètres et concordance entre les json de R8
+        for c in ("0.001", "0.01"):
+            m, sup = D[f"{v}_{grid}_c{c}"], F[f"{v}_{grid}_c{c}"]
+            gate(abs(m["C_N_eV"] - C) < 1e-15 and m["eta_G"] == 0.05 and m["eta_t"] == 0.02 and m["N_k_int"] == 900,
+                 f"r8_dos_results.json {v}, c {c} : paramètres inattendus")
+            gate(abs(sup["pos_ours"] - m["drho_max_pos_eV"]) < 1e-9, f"r8_fig ≠ r8_dos ({v}, c {c})")
+            gate(abs(sup["pos_K"] - k13[lit[c]]["drho_max_pos_eV"]) < 1e-9, f"r8_fig pos_K ≠ r8_7a (c {c})")
+        gate(Sp[f"{v}_c0.01"]["eta_G"] == 0.025 and Sp[f"{v}_c0.01"]["N_k_int"] == 900, f"r8_spec_results.json {v} : paramètres")
+    sd, ss, s7, sc = rel(fd), rel(fs), rel(f7), rel(fc)
+
+    rows = []
+    cells = [L(r"$A_\text{cell}|M_{nn}|$ près de $K$ (eV\,\AA$^2$)"),
+             Cell(r"${\sim}70$", f"{KAAS_LIT}, Fig. 3, lu sur la figure (défauts.tex l. 327), aucune donnée numérisée", "~70")]
+    for _, w, _ in var:
+        a, b = D1[w]["valence | K"]["mean"], D1[w]["conduction | K"]["mean"]
+        cells.append(Cell(f"{a:.0f} / {b:.0f}", f"{sc} : kaasbjerg.D1.{w}.{{valence, conduction}} | K.mean", f"{a:.3f} / {b:.3f}"))
+    rows.append(cells)
+    for c, tex in (("0.001", r"Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$"), ("0.01", r"\quad $c = 1~\%$")):
+        a = k13[lit[c]]["drho_max_pos_eV"]
+        cells = [L(tex), Cell(fixed(a, 3), f"{s7} : fig13_metrics.{lit[c]}.drho_max_pos_eV", a)]
+        for v, _, _ in var:
+            a = D[f"{v}_{grid}_c{c}"]["drho_max_pos_eV"]
+            cells.append(Cell(fixed(a, 4), f"{sd} : metrics.{v}_{grid}_c{c}.drho_max_pos_eV", a))
+        rows.append(cells)
+    h = k13["1.0"]["drho_max"]
+    cells = [L(r"Hauteur, $c = 1~\%$ (eV$^{-1}$)"), Cell(fixed(h, 3), f"{s7} : fig13_metrics.1.0.drho_max", h)]
+    for v, _, _ in var:                                     # nos DOS sont par spin : × 2 pour compter le spin comme Kaasbjerg
+        x = 2 * D[f"{v}_{grid}_c0.01"]["drho_max"]
+        cells.append(Cell(fixed(x, 3), f"{sd} : metrics.{v}_{grid}_c0.01.drho_max × 2 (spin)", x))
+    rows.append(cells)
+    w0 = k13["1.0"]["drho_fwhm_eV"]
+    cells = [L(r"Largeur à mi-hauteur, $c = 1~\%$ (eV)"), Cell(fixed(w0, 2), f"{s7} : fig13_metrics.1.0.drho_fwhm_eV", w0)]
+    for v, _, _ in var:
+        x = D[f"{v}_{grid}_c0.01"]["drho_fwhm_eV"]
+        cells.append(Cell(fixed(x, 2), f"{sd} : metrics.{v}_{grid}_c0.01.drho_fwhm_eV", x))
+    rows.append(cells)
+    g0 = k14["1.0"]["K_gap_eV"]
+    cells = [L(r"Écart des maxima de $A_K$, $c = 1~\%$ (eV)"), Cell(fixed(g0, 3), f"{s7} : fig14.1.0.K_gap_eV", g0)]
+    for v, _, _ in var:
+        x = Sp[f"{v}_c0.01"]["K_gap_eV"]
+        cells.append(Cell(fixed(x, 3), f"{ss} : runs.{v}_c0.01.K_gap_eV", x))
+    rows.append(cells)
+    head = [r"Grandeur & Kaasbjerg~\cite{kaasbjergAtomisticMatrixTheory2020} & non aligné & Kumagai--Oba \\"]
+    return Table("kaasbjerg", "tab:kaasbjerg", "§4.2.5, corps", "l c c c", head,
+                 ["grandeur", "Kaasbjerg", "non aligné", "Kumagai–Oba"], rows,
+                 ["Colonne Kaasbjerg : Fig. 13 et 14 de l'article numérisées dans `r8_7a_results.json` (Fig. 13 : courbes vectorielles "
+                  "du PDF interpolées au meV ; Fig. 14 : points sur des cellules de 10 meV). Seule cellule sans source lisible par "
+                  "machine : A_cell|M| ~70 eV Å², lu sur sa Fig. 3.",
+                  "Nos colonnes (9×9, R_cut 3, η_t = 20 meV, N_k^int = 900) : ρ − ρ₀ sur la grille 600² avec η_G = 50 meV "
+                  "(`r8_dos_results.json`) ; A_K avec η_G = 25 meV (`r8_spec_results.json`) ; A_cell|M_nn| = moyenne sur un disque "
+                  "de 0.147 Å⁻¹ autour de K, état initial K + δx̂ (δ = 0.029 Å⁻¹), 512 points (`r10_c2_results.json` : kaasbjerg.meta). "
+                  "Nos DOS sont par spin : hauteur × 2 (spin compté, comme Kaasbjerg) ; unité : états/eV/maille. c = défauts par maille "
+                  "(convention de Kaasbjerg). A_cell|M_nn| : π / π* (valence / conduction), à dire dans la légende.",
+                  "Nos positions tombent sur la grille d'énergie de pas 2.5 meV : quatre décimales (−0.1625 arrondi à trois "
+                  "décimales est ambigu). Kaasbjerg : trois décimales (lecture au meV).",
+                  "Contrôles : positions de `r8_fig_results.json` (superposition_7b) = `r8_dos_results.json` ; pos_K = `r8_7a_results.json` ; "
+                  "C_N, η_t, η_G et N_k^int attendus."])
+
+
+# tab:grille_interne 
+
+def t_grille_interne():
+    f, fl = RES / "nkint_check_9x9.csv", RES / "level1_summary.csv"
+    prod = float(csv_row(fl, size="9x9", R_cut="3", grid="240", eta_eV="0.02")["median_Gamma_Ncells_meV"])
+    rows = []
+    for n in ("150", "300", "450", "600"):
+        r = csv_row(f, nk_int=n)
+        gate(int(r["nk_tot"]) == int(n) ** 2 and r["n_states"] == "41266" and r["n_ED"] == "4", f"{rel(f)} : nk_int {n}")
+        gate(r["E_res"] == r["z_E_res"], f"{rel(f)} : E_res ≠ z_E_res à nk_int {n}")
+        if n == "300":
+            gate(abs(float(r["medG"]) - prod) < 1e-3, "nkint_check_9x9.csv nk 300 ≠ production (level1_summary.csv)")
+        cells = [L(f"${n}^2$")]
+        for col in ("medG", "z_medG", "G_ED"):
+            x = float(r[col])
+            cells.append(Cell(f"{x:.0f}", f"{rel(f)} : {col} [nk_int = {n}]", x))
+        x = float(r["E_res"])
+        cells.append(Cell(fixed(x, 3), f"{rel(f)} : E_res [nk_int = {n}]", x))
+        rows.append(cells)
+    head = [r"& \multicolumn{2}{c}{Médiane de $\Gamma N_\text{cells}$ (meV)} & $\Gamma N_\text{cells}(E_D)$ & $E_\text{res}-E_D$ \\",
+            r"\cline{2-3}",
+            r"$N_{\tilde\kv}$ & $\pm3$~eV & $\pm0.3$~eV & (meV) & (eV) \\"]
+    return Table("grille_interne", "tab:grille_interne", "§4.2.5 → annexe D (chaîne T)", "c c c c c", head,
+                 ["N_k^int", "médiane ±3 eV (meV)", "médiane ±0.3 eV (meV)", "Γ N_cells(E_D) (meV)", "E_res − E_D (eV)"], rows,
+                 ["9×9 de production (Kumagai–Oba), R_cut 3, grille de sortie 240², η = 20 meV. Fenêtre ±3 eV : 41 266 états ; "
+                  "zone |ε − E_D| ≤ 0.3 eV : 280 états (`z_n`) ; Γ(E_D) : les 4 états au point de Dirac (`n_ED`). "
+                  "Contrôle : 300² = production (`level1_summary.csv`).",
+                  "E_res = argmax de Γ sur les états à ±1.5 eV : grandeur **retirée du ch. 4 par la décision R10 B.1** (argmax discret "
+                  "sur les états de la grille de sortie), remise ici à la demande de G (2026-10-01) ; à confirmer à la rédaction "
+                  "de l'annexe D. E_res = z_E_res dans le csv."])
+
+
+TABLES = {f.__name__[2:]: f for f in (t_echantillonnage, t_L_NL, t_rcut_M, t_tests_M, t_convergence_gamma, t_tests_T,
+                                            t_kaasbjerg, t_grille_interne)}
 
 
 def index_md(tables):

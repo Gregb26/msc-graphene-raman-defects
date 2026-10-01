@@ -9,15 +9,7 @@ Mise à jour : 2026-10-01, 11 h 15. Les items terminés sont retirés de la list
 
 ---
 
-## 1. En cours
-
-- [ ] **G** — Relire et commiter la restructuration de `donnees/` : `campagnes/` remplacé par `alignement/`, `kaasbjerg/`, `controles/`, `electron_photon/` (fichiers à plat, préfixes de campagne) ; les 4 json de la racine rangés ; `production.json` et `make_figures_{controles,em,kaasbjerg}.py` ajustés ; `MD5SUMS_2026-10-01.txt` (123 fichiers) et `PROVENANCE.md` (§0, §3) à jour ; recette : 47 PDF identiques. Avec : `scripts/chiffres_ch4.py` et sa sortie `donnees/ch4/chiffres_complementaires.{md,csv}` (§2)
-
-## 2. Chiffres complémentaires du ch. 4
-
-Calculés le 2026-10-01 : `donnees/ch4/chiffres_complementaires.md` (159 valeurs, chacune avec fichier et clé), produit par `scripts/chiffres_ch4.py`. Avec `donnees/ch4/table_v1_final.md`, toutes les valeurs du ch. 4 ont une source. Les constats qui changent le texte sont reportés dans les items du §4.
-
-## 3. Choix à trancher (G)
+## Choix à trancher (G)
 
 - [ ] M^L à K **brut ou aligné** dans `tab:L_NL` et `fig:M_map` (9×9 : 11.31 ou 13.34 eV ; M̃_π(K) : 107.2 ou 114.9 eV Å²). L'alignement change la carte en K et autour (jusqu'à 7.7 eV Å², 125 des 729 points de plus de 0.5), pas ses extrêmes ; `fig_M_map_final` trace aujourd'hui la carte **brute** (`map_Vpi`) : si « aligné », changer `make_figures_memoire.py` (`map_*_aligned`)
 - [ ] V̄^L(a_CC) **brut ou aligné** dans `tab:échantillonnage` (9×9 : +43 ou +68 meV)
@@ -26,7 +18,7 @@ Calculés le 2026-10-01 : `donnees/ch4/chiffres_complementaires.md` (159 valeurs
 - [ ] Ch. 2 : valider les 3 figures redessinées (`fig_kb_pseudo_C` remplace `KB_projectors_C`, `fig_ebands_edos`, `fig_electron_convergence`)
 - [ ] Ch. 2 : `fig:phonon_results` = `fig_epw_phonons` (actuel) ou `fig_phfreq_phdos`
 
-## 4. Chantier 2a : réécriture du ch. 4
+## Chantier 1 : réécriture du ch. 4
 
 Section par section : C propose, G tranche, C applique et compile. Un tableau généré par section (`scripts/make_tables.py` → `memoire/tables/`).
 
@@ -50,7 +42,7 @@ Section par section : C propose, G tranche, C applique et compile. Un tableau g�
 - [ ] **C** — Installer les 8 figures R10 dans `memoire/figures/` (depuis `figures/electron_defect/`, produites par `scripts/make_all_figures.py`), plus les nouvelles retenues
 - [ ] **C** — `PROVENANCE.md` à jour à chaque section (§0 et §4 refaits le 2026-10-01 après la réduction du dépôt)
 
-## 4 bis. Annexe D : paramètres et convergence
+## Chantier 2 : Annexe D, paramètres et convergence
 
 Décision du 2026-10-01 : en annexe ce qui justifie seulement un paramètre numérique, dans le corps ce qui porte un résultat ou une limite. Restent dans le corps : `fig:level2`, `fig:M_locality`, `fig:ks_reconstruction`, `fig:epw_kohn_degauss`, `tab:gamma_ph_prod`. Vont en annexe : `fig:convergence_dft`, `fig:convergence`, `tab:convergence_gamma`, grille interne, `tab:rcut_M`, `tab:tests_M`, `tab:tests_T`, `tab:gamma_ep_conv`, `tab:gamma_ph_conv`.
 
@@ -62,7 +54,13 @@ Annexe D réorganisée par chaîne (DFT, DFPT, Wannier, M, T, EPW) : pour chacun
 - [ ] **C** — Ch. 5 (verrouillé) : déplacer `tab:gamma_ep_conv`, `tab:gamma_ph_conv` et leurs blocs « Convergence », une phrase de renvoi — même bloc
 - [ ] **C** — Vérifier tous les `\ref` vers les éléments déplacés (grep sur `memoire/`), compiler, `PROVENANCE.md` à jour
 
-## 5. Répercussions hors du ch. 4
+## Chantier 3 : §2.5 couplage électron-photon
+
+- [ ] Rédiger le §2.5 (texte P28) avec `fig_em_coupling` et la table `em_table`
+- [ ] Retirer « laissée hors du cadre » : intro l. 72, raman l. 297, et ailleurs (grep « électron-photon »)
+
+
+## Chantier 4 : répercussions hors du ch. 4
 
 - [ ] Ch. 5 §5.3.5 (l. 301–312) : Γ^ed/Γ^ep (médiane 0.361 → 0.554, max 2.0 → 34.8 à −0.18 eV, croisements) et `fig_epw_vs_ed` R10
 - [ ] Intro l. 74 (« état quasi-lié sous la singularité de van Hove »)
@@ -71,12 +69,9 @@ Annexe D réorganisée par chaîne (DFT, DFPT, Wannier, M, T, EPW) : pour chacun
 - [ ] **C** — Apparier les 176 chiffres du ch. 5 à `donnees/epw/` (comme `defauts_nombres.md` pour le ch. 4)
 - [ ] **C** — `tab:gamma_ph_conv` (eph:254, 18 valeurs) n'a aucun fichier de données : extraire un csv de `donnees/epw/NOTES_EPW.md` (table de convergence de γ(A₁′, K), l. 295 ; grilles 120² à 1200², σ = 0.01 / 0.02 / 0.05 eV, 10 K et 300 K) → `donnees/epw/phself_K_convergence.csv`, vérifier contre la table du `.tex`, mettre `MD5SUMS` et `PROVENANCE.md` à jour
 
-## 6. Chantier 2b : §2.5 couplage électron-photon
+## Chantier 5 (une fois tout le reste terminé) : corrections de la grammaire et orthographes. relecture complète.
 
-- [ ] Rédiger le §2.5 (texte P28) avec `fig_em_coupling` et la table `em_table`
-- [ ] Retirer « laissée hors du cadre » : intro l. 72, raman l. 297, et ailleurs (grep « électron-photon »)
-
-## 7. Avant le dépôt
+## Avant le dépôt
 
 - [ ] **C** — `calculs/` (289 fichiers, commités dans `9970ab5`) : croiser avec l'annexe D (lignes vides et points périmés relevés le 2026-10-01 : vide de 30 Bohr et troncature 2D dans `tab:param_dft` ; nombre de bandes 16 / 20, 13 tailles pour l'alignement, seuil 10⁻¹⁴ Ry des cellules unitaires dans `tab:param_M` ; fenêtre gelée −4,5 eV des grilles grossières dans `tab:param_wannier`)
 - [ ] **G/R** — Rorqual : `git pull --ff-only` de graphene-raman, `pip uninstall` + `pip install -e .`, pytest, une recette avec données, ligne dans `CLEANUP.md`
@@ -89,7 +84,9 @@ Annexe D réorganisée par chaîne (DFT, DFPT, Wannier, M, T, EPW) : pour chacun
 - [ ] **C** — Grep des coquilles récurrentes (Midgal, abritraires, méchanisme, absorbtion, inversions ed/ep)
 - [ ] **G** — Ménage : supprimer `~/LaTeX/msc-graphene-raman-defects` (ancien clone, vérifier d'abord `git status` et `git log origin/main..`) et `~/projects/raman-graphene` (s'il est vide) ; supprimer `.git/index.lock.orphelin-claude-2026-10-01` (fichier vide laissé par Claude)
 
-## 8. Anciens restes, statut à vérifier
+
+
+## Anciens restes, statut à vérifier
 
 Notés avant le 2026-09-25 ; peut-être déjà faits.
 

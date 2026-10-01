@@ -41,7 +41,7 @@ OUTDIR = ROOT / "memoire" / "tables"
 CFG = load_production(verbose=False)
 RES = Path(results_dir(CFG))                                # donnees/M2_plateau
 CN_SRC = "config/production.json : alignment.C_N_eV"
-SYM_CN = r"$\\Delta V _\\text{PA}^{(N)}$"                                           # symbole de la constante d'alignement 
+SYM_CN = r"$\Delta V_\text{PA}^{(N)}$"                                           # symbole de la constante d'alignement 
 SIZES = ["5x5", "6x6", "7x7", "8x8", "9x9", "12x12"]
 FAM_3M, FAM_NON3M = ["6x6", "9x9", "12x12"], ["5x5", "7x7", "8x8"]
 

@@ -5,19 +5,21 @@ Greg la commite avec le reste. Dépôt du mémoire : **31 décembre 2026**.
 
 Qui : **G** = Greg, **C** = Claude, **R** = demande Rorqual. Détails des figures, tables et chiffres : `PROVENANCE.md`.
 
-Mise à jour : 2026-10-01.
+Mise à jour : 2026-10-01, 10 h 30.
 
 ---
 
 ## 1. Urgent : sauvegarde et versionnement
 
-- [ ] **G** — Versionner ou sauvegarder `graphene-raman/campagnes/` et `graphene-raman/notes/` (gitignorés : n'existent que sur le laptop ; contiennent les pilotes `ch4_chiffres.py`, `r8_driver.py`, `r10_driver.py` et les rapports)
+- [x] 2026-10-01 — `graphene-raman/campagnes/` versionné (GR `3305f58`, 647 fichiers) ; `notes/` reste gitignoré dans GR mais ses trois fichiers sont copiés ici
 - [x] 2026-10-01 — Notes copiées : `donnees/ch4/NOTES_TGAMMA.md`, `donnees/epw/NOTES_EPW.md`, `donnees/epw/NOTES_EPW_REPERES.md` (sources de `tab:tests_T`, `tab:param_T`, `tab:param_epw`)
 - [x] 2026-10-01 — `c2_results.json` copié dans `donnees/campagnes/R10_plateau/c/` (comparaison Kaasbjerg, 77 à 83 eV Å²) ; `MD5SUMS` et `campagnes/README.md` à jour
 - [x] 2026-10-01 — `make_figures.py` ne réécrit plus `level{1,2}_summary.csv` (option `--write-summaries`) : corrigé dans graphene-raman et recopié ici
-- [ ] **G** — Commiter dans graphene-raman : `scripts/fig/make_figures.py`, `scripts/slurm/submit_post.sh` (correction ci-dessus, postérieure au tag `14e8c2a`), et la documentation modifiée
-- [ ] **G** — Commiter `TODO.md` (le reste est poussé : `origin/main` = `ec61841`)
-- [ ] **G** — Coller les nouvelles instructions du projet (texte du 2026-10-01)
+- [x] 2026-10-01 — Commité dans graphene-raman (`3305f58`, après le tag) : `make_figures.py --write-summaries`, documentation
+- [x] 2026-10-01 — `TODO.md`, `calculs/`, réduction du dépôt commités (`9970ab5`, `d83a8e7`)
+- [ ] **G** — Pousser : msc- a 1 commit d'avance sur `origin/main` (`d83a8e7`)
+- [ ] **G** — Coller les nouvelles instructions du projet : seule la ligne `TODO.md` a été ajoutée ; le reste cite encore `analyse/`, `scripts_figures/` et CLAUDE.md, et le texte du 2026-10-01 est périmé depuis la réduction du dépôt → **C** fournit une version à jour
+- [ ] **G** — Copier dans `donnees/campagnes/` (mêmes chemins relatifs que dans GR, ~0.4 Mo, tous versionnés dans GR `3305f58`) les sources des chiffres nouveaux du ch. 4 encore absentes ; leurs valeurs sont déjà recopiées dans `donnees/ch4/table_v1_final.md`, mais pas les fichiers : `R10_plateau/b/b_results.json` (familles : gap à Γ, ΔE_F, occupations ; table §g), `R10_plateau/c/c3_results.json` (convention intensive par famille), `R10_plateau/c/c6_results.json` (⟨ΔV⟩_3D, §k), `R8_kaasbjerg/out/dos/dos_results.json` et `out/spec/spec_results.json` (chiffres du texte des 5 figures Kaasbjerg, §h), `R6_production_corrigee/etape2/b3/b3_results_M2.json` (convergence en bandes, §c), `R6_production_corrigee/etape2/d4/d4_results.json` (escalier D4, §b) ; puis `MD5SUMS` et `campagnes/README.md`
 
 ## 2. Chiffres manquants du ch. 4 (à trancher avant la réécriture)
 
@@ -29,8 +31,8 @@ Aucune valeur finale nulle part. **Décision du 2026-10-01 : les trois tests son
 
 À calculer ici, données dans `donnees/` :
 
-- [ ] **C** — `fig:M_map` sur toute la zone : max de M̃_π*, plages de M^NL_∥ et M^L_∥ (`M_analysis.npz`)
-- [ ] **C** — Grille interne : écart sur la zone ±0.3 eV et au point de Dirac (`nkint_check_9x9.csv`, colonnes `z_*` à confirmer)
+- [ ] **C** — `fig:M_map` sur toute la zone : max de M̃_π*, plages de M^NL_∥ et M^L_∥ (`M_analysis.npz` : clés `map_Vpi*`, `map_Lpar*`, `map_Npar*`, brutes et `_aligned`, présentes)
+- [ ] **C** — Grille interne : écart sur la zone ±0.3 eV et au point de Dirac (`nkint_check_9x9.csv` : colonnes `z_n`, `z_medG`, `z_medRe`, présentes)
 - [ ] **C** — Ordres de grandeur lus sur `fig_Ved` et `fig_locality_final` R10 (cœur, fond, coin 5×5, plancher)
 
 ## 3. Choix à trancher (G)
@@ -84,6 +86,7 @@ Annexe D réorganisée par chaîne (DFT, DFPT, Wannier, M, T, EPW) : pour chacun
 - [ ] Conclusion générale l. 8–16 (non local dominant, van Hove, 0.6 %, Kaasbjerg)
 - [ ] Résumé et abstract (non local dominant, facteur 3.3, van Hove)
 - [ ] **C** — Apparier les 176 chiffres du ch. 5 à `donnees/epw/` (comme `defauts_nombres.md` pour le ch. 4)
+- [ ] **C** — `tab:gamma_ph_conv` (eph:254, 18 valeurs) n'a aucun fichier de données : extraire un csv de `donnees/epw/NOTES_EPW.md` (table de convergence de γ(A₁′, K), l. 295 ; grilles 120² à 1200², σ = 0.01 / 0.02 / 0.05 eV, 10 K et 300 K) → `donnees/epw/phself_K_convergence.csv`, vérifier contre la table du `.tex`, mettre `MD5SUMS` et `PROVENANCE.md` à jour
 
 ## 6. Chantier 2b : §2.5 couplage électron-photon
 
@@ -92,15 +95,16 @@ Annexe D réorganisée par chaîne (DFT, DFPT, Wannier, M, T, EPW) : pour chacun
 
 ## 7. Avant le dépôt
 
-- [ ] **G** — `calculs/` : 289 fichiers d'entrée rangés par chapitre (contenu décrit au §4 de `PROVENANCE.md`), à commiter ; ensuite croiser avec l'annexe D (lignes vides et points périmés relevés le 2026-10-01 : vide de 30 Bohr et troncature 2D dans `tab:param_dft` ; nombre de bandes 16 / 20, 13 tailles pour l'alignement, seuil 10⁻¹⁴ Ry des cellules unitaires dans `tab:param_M` ; fenêtre gelée −4,5 eV des grilles grossières dans `tab:param_wannier`)
+- [ ] **C** — `calculs/` (289 fichiers, commités dans `9970ab5`) : croiser avec l'annexe D (lignes vides et points périmés relevés le 2026-10-01 : vide de 30 Bohr et troncature 2D dans `tab:param_dft` ; nombre de bandes 16 / 20, 13 tailles pour l'alignement, seuil 10⁻¹⁴ Ry des cellules unitaires dans `tab:param_M` ; fenêtre gelée −4,5 eV des grilles grossières dans `tab:param_wannier`)
 - [ ] **G/R** — Rorqual : `git pull --ff-only` de graphene-raman, `pip uninstall` + `pip install -e .`, pytest, une recette avec données, ligne dans `CLEANUP.md`
 - [ ] **G** — Annexe déclaration IA (`annexes/ia.tex`, à confirmer avec Michel) ; décommenter son `\include`
 - [ ] **G** — README principal (structure, « Reproduire les figures », « Données lourdes », lien vers graphene-raman) : au verrouillage du dépôt
 - [ ] **G/C** — Au verrouillage : enregistrer les sommes md5 des figures finales (`figures/MD5SUMS`) et refaire une fois la recette
+- [ ] **G** — Fichier `LICENSE` à la racine (absent ; nécessaire avant l'archive publique)
 - [ ] **G** — Archive : release GitHub de msc- → Zenodo (DOI)
 - [ ] **C** — Décommenter tous les `\include` de `master_thesis.tex`, build complet, passe finale de mise en page (débordements > 10 pt : `tikz/pp`, `tikz/pd`, amplitudes de l'annexe B)
 - [ ] **C** — Grep des coquilles récurrentes (Midgal, abritraires, méchanisme, absorbtion, inversions ed/ep)
-- [ ] **G** — Ménage : supprimer `~/LaTeX/msc-graphene-raman-defects` (ancien clone, vérifier d'abord `git status` et `git log origin/main..`) et `~/projects/raman-graphene` (s'il est vide)
+- [ ] **G** — Ménage : supprimer `~/LaTeX/msc-graphene-raman-defects` (ancien clone, vérifier d'abord `git status` et `git log origin/main..`) et `~/projects/raman-graphene` (s'il est vide) ; supprimer `.git/index.lock.orphelin-claude-2026-10-01` (fichier vide laissé par Claude)
 
 ## 8. Anciens restes, statut à vérifier
 
@@ -121,3 +125,5 @@ Notés avant le 2026-09-25 ; peut-être déjà faits.
 - [x] 2026-10-01 — Inventaire des chiffres du ch. 4 : trous et choix listés aux §2 et §3
 - [x] 2026-10-01 — Réduction du dépôt à ce qui trace les figures (code de production laissé dans graphene-raman au tag) ; `scripts/make_all_figures.py` ; `requirements.txt` figé ; 47 figures identiques au bit à celles du tag
 - [x] 2026-10-01 — `calculs/` rempli depuis Rorqual (entrées QE, Wannier90, EPW, listes de points)
+- [x] 2026-10-01 — Audit « que manque-t-il ? » : 20 figures régénérables, sources des tables présentes ; ajoutés à `donnees/campagnes/` les chiffres de R8 (`*_results.json`) et de la série EM (`em_table.*`, `em_ring_stats.json`)
+- [x] 2026-10-01, 10 h 20 — Recette refaite après réduction, VM Linux : 8 scripts ok, 47 PDF identiques à ceux de la recette du matin, 109 md5 de `donnees/` OK

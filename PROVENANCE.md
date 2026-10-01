@@ -19,7 +19,7 @@ msc-graphene-raman-defects/
 ├── src/graphene_raman/        sous-ensemble du paquet de GR, réduit à ce que les scripts importent :
 │                              config.py, plotting/ (style, palette, sauvegarde), io/pseudo_io.py, electron_phonon/phself.py
 ├── config/production.json     paramètres de production et emplacement des données (identique à GR, sauf results/… → donnees/…)
-├── donnees/                   données derrière les figures, les tables et les chiffres (113 fichiers, 74 Mo ; MD5SUMS_2026-10-01.txt)
+├── donnees/                   données derrière les figures, les tables et les chiffres (122 fichiers, 74 Mo ; MD5SUMS_2026-10-01.txt)
 ├── calculs/                   fichiers d'entrée QE / Wannier90 / EPW (289 fichiers), rangés par chapitre
 ├── figures/<chapitre>/        sortie des scripts (PDF + PNG), 47 figures
 ├── requirements.txt           versions exactes de l'environnement (matplotlib 3.10.5, numpy 2.3.5, scipy 1.16.1, pillow 11.3.0)
@@ -50,7 +50,8 @@ elles sont remplacées chapitre par chapitre à la réécriture.
    Retirés : `src/graphene_raman/` hors des quatre modules ci-dessus (34 fichiers), `tests/`, `scripts/{m,t,epw,validation,slurm}/`,
    `donnees/wannier/` sauf `27x27/wannier.wout` (33 Mo). Tout reste lisible dans le commit `bbed6f0` de ce dépôt et dans GR au tag.
 3. **2026-10-01, ajouts** : `calculs/` (entrées rapatriées de Rorqual) ; `donnees/ch4/NOTES_TGAMMA.md`, `donnees/epw/NOTES_EPW{,_REPERES}.md`
-   (copies des notes de GR, non suivies par git là-bas) ; `donnees/campagnes/R10_plateau/c/c2_results.json` ; `scripts/make_all_figures.py` ;
+   (copies des notes de GR, non suivies par git là-bas) ; sources de chiffres du texte, lues par aucune figure : `donnees/campagnes/R10_plateau/c/c2_results.json`,
+   `donnees/campagnes/R8_kaasbjerg/{dos,gate,spec,fig}/*_results.json`, `donnees/campagnes/EM/{M4_sigma,EM3}/em_table.*` et `em_ring_stats.json` ; `scripts/make_all_figures.py` ;
    scripts de figures remontés de `scripts/fig/` à `scripts/`.
 
 **Recette après réduction (2026-10-01, Mac, Python 3.12.1, environnement de `requirements.txt`)** : `scripts/make_all_figures.py`
@@ -109,9 +110,10 @@ de date, d'où des PDF reproductibles octet par octet sur une même machine.
 
 | Figure | Pour | Producteur | Données |
 |---|---|---|---|
-| `fig_kaasbjerg_{dos_c,spectral_GKM,sigma_K,sensibilites,superposition}` | ch. 4 (réécriture, décidées) | `make_figures_kaasbjerg.py` | `donnees/campagnes/R8_kaasbjerg/` |
+| `fig_kaasbjerg_{dos_c,spectral_GKM,sigma_K,sensibilites,superposition}` | ch. 4 (réécriture, décidées) | `make_figures_kaasbjerg.py` | `donnees/campagnes/R8_kaasbjerg/` ; chiffres à citer : `{dos,gate,spec,fig,sens,sigeff}/*_results.json` |
 | `alignement_regions` (si retenue) | ch. 4 | `GR:campagnes/M/ch4/ch4_chiffres.py regions` (ne tourne pas ici : lit les `scf.in` de Rorqual) | `donnees/ch4/alignement_regions.{npz,pdf}` |
 | `fig_em_coupling` | §2.5 électron-photon | `make_figures_em.py` | `donnees/campagnes/EM/{M4_sigma,EM3,EM2}/` |
+| table `em_table` (pas une figure) | §2.5 électron-photon | — (produite dans GR par `campagnes/EM/M4_sigma/make_table.py` et `EM3/make_em3_data.py`) | `donnees/campagnes/EM/M4_sigma/em_table.{csv,tex}`, `em_ring_stats.json`, `donnees/campagnes/EM/EM3/em_table.{csv,md}` |
 | contrôles du ch. 4 : `fig_{offset_profiles_13,levels_vs_invN,kaasbjerg_plateau_ws,resonance_vs_nkint{,_plateau},rcut_aligned,folded_vs_R7,size_3m,localized_3m}` | ch. 4 ou annexe, à décider | `make_figures_controles.py` | `donnees/campagnes/{R7_tailles_3m,R9_controles,R10_plateau}/` |
 | figures de travail : `fig_{M_map,M_scaling,locality,spectral,plateau,rcut}`, `fig_Ved_{map,boundary,profile_mean,radial,radial_masked}` | — | `make_figures.py` | `donnees/M2_plateau/` |
 
@@ -131,7 +133,7 @@ Toutes les tables sont saisies à la main dans le `.tex`, sans `\input` de csv.
 | `tab:tests_T` | défauts:691 | `donnees/M2_plateau/nkint_check_9x9.csv` ; `donnees/ch4/NOTES_TGAMMA.md` |
 | `tab:kohn_chaines` | eph:194 | `donnees/epw/d2_extract_24k24q{,_mv0.02}.npz`, `validation_24k24q{,_mv0.02}.npz` |
 | `tab:gamma_ep_conv` | eph:219 | `donnees/epw/selfen_*_T300.npz` |
-| `tab:gamma_ph_conv` | eph:254 | `donnees/epw/phself_path_{240,1200}_dg0.02*.npz` |
+| `tab:gamma_ph_conv` | eph:254 | `donnees/epw/NOTES_EPW.md` (table de convergence de γ(A₁′, K), l. 295) : **aucun fichier de données** ne porte ces 18 valeurs, tirées des `epw.out` des runs `calculs/ch5_epw/24k-24q_mv0.02/epw6_phself_K_*` restés sur Rorqual ; un csv est à extraire des notes (TODO) |
 | `tab:gamma_ph_prod` | eph:275 | `donnees/epw/phself_path_1200_dg0.02_mv0.02.npz` |
 | `tab:param_dft` | annexes/paramètres:10 | `calculs/ch2_electrons/bandes_dos/{scf,nscf,dos}.in` ; convergence : `calculs/ch2_electrons/convergence/` |
 | `tab:param_dfpt` | paramètres:37 | `calculs/ch2_phonons/{scf,ph,q2r,matdyn,matdyn.dos}.in` |

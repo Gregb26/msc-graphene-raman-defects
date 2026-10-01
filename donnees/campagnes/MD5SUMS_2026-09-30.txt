@@ -35,3 +35,12 @@ a8c9cd30d0cff6dc1f13c8f6c26a7f51 R9_controles/b/b_results.json
 bda4a4a8236454100c85a3b6a3be6ffd R9_controles/c/c_results.json
 5e3e4cf1a5d155e8087657e16f6a5550 R8_kaasbjerg/spec/spectral_GKM_9x9.npz
 0ea90120b9c42cf47b1a5cb26ddf329d R10_plateau/c/c2_results.json
+8cc12df6a4e0e160d2274efdc3cb4195 EM/M4_sigma/em_table.csv
+5036d266f0ef938c52618519f01bdd64 EM/M4_sigma/em_table.tex
+a4745ab92991ab0fbd90e07824379561 EM/M4_sigma/em_ring_stats.json
+bc33649176f726230256052f398cf761 EM/EM3/em_table.csv
+4e827b1d732e21290e72a8a047642fc9 EM/EM3/em_table.md
+dfb1dcaa2f17c0e5d4017f540517cb76 R8_kaasbjerg/dos/dos_results.json
+9170e8388382ccf2163fd263d808bf4f R8_kaasbjerg/gate/gate_results.json
+706a866bae27c563fa5dd2282cf1286d R8_kaasbjerg/spec/spec_results.json
+20e99d10745ab09ccf161b9b65bc9673 R8_kaasbjerg/fig/fig_results.json

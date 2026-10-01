@@ -1,0 +1,14 @@
+! pristine graphene phonons on uniform 8x8x1 qmesh
+
+&INPUTPH
+  prefix      = 'graphene'         ! prefix of output files
+  outdir      = './'               ! directory of tempory files
+  fildyn      = 'graphene.dyn.xml' ! file where the dynamical matrix is written
+  fildvscf    = 'dvscf'            ! file where the variation of the SCF potential due to phonon perturbation is stored
+  tr2_ph      = 1.0d-14            ! threshold for self-consistency
+  ldisp       = .true.             ! run phonon calculation on qgrid specified by nq1 nq2 nq3
+  nq1 = 24, nq2 = 24, nq3 = 1
+  alpha_mix   = 0.3
+  asr = .true. ! enforces accoustic sum rule
+/
+

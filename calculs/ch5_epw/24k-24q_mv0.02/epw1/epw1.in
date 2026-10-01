@@ -1,0 +1,62 @@
+! Wannier interpolation of band structure and phonon dispersion with EPW
+
+&INPUTEPW
+  ! P18 : 24k-24q_mv0.02, degauss 0.02 Ry (chaine refaite) ; fenetre gelee E_D + 2.5 eV = -1.74 eV comme au chapitre 4
+  prefix       = 'graphene'                  ! prefixed used in other calculations
+  outdir       = './'                        ! output directory
+  dvscf_dir    = '../phonons/save'           ! directory containing DFPT outputs
+
+  etf_mem      = 0                           
+
+  elph         = .true.                     ! compute electron-phonon matrix elements g
+  epbwrite     = .true.                      ! write g on coarse grid
+  epbread      = .false.                     ! do not read g, compute them first
+  epwwrite     = .true.                      ! write wannier interpolated data
+  epwread      = .false.                     ! do not read wannier interpolated data, compute them first
+
+  wannierize   = .true.                      ! run Wannier90
+  nbndsub      = 5                           ! number of Wannier functions to use (3 sp2 and 2 pz = 5 for graphene)
+  num_iter     = 5000
+  dis_win_max  = 15.0
+  dis_froz_max = -1.74
+  dis_win_min  = -25
+  proj(1)      = 'C1:sp2;pz'
+  proj(2)      = 'C2:pz'
+  wannier_plot = .false.
+ 
+
+  ! ------ Wannier90 passthrough --------
+  wdata(1)     = 'conv_tol = 1E-12'
+  wdata(2)     = 'conv_window = 4'
+  wdata(3)     = 'dis_num_iter = 5000'
+  wdata(4)     = 'dis_conv_tol = 1E-12'
+  wdata(5)     = 'num_print_cycles = 10'
+  wdata(6)     = 'dis_mix_ratio = 0.5'
+  wdata(7)     = 'bands_plot = true'
+  wdata(8)     = 'write_tb = true'
+  wdata(9)     = 'write_u_matrices = true'
+  wdata(10)    = 'bands_num_points = 200'
+  wdata(11)    = 'begin kpoint_path'
+  wdata(12)    = 'G 0.0 0.0 0.0 K 0.666666 0.333333 0.0'
+  wdata(13)    = 'K 0.666666 0.333333 0.0 M 0.5 0.0 0.0'
+  wdata(14)    = 'M 0.5 0.0 0.0 G 0.0 0.0 0.0'
+  wdata(15)    = 'end kpoint_path'
+  wdata(16)    = 'guiding_centres = true'
+
+! EPW fine grid (set 1 for no interpolation)
+  nkf1         = 1
+  nkf2         = 1 
+  nkf3         = 1
+  nqf1         = 1
+  nqf2         = 1
+  nqf3         = 1
+
+! coarse grids
+  nk1          = 24
+  nk2          = 24
+  nk3          = 1
+  nq1          = 24
+  nq2          = 24
+  nq3          = 1
+
+/

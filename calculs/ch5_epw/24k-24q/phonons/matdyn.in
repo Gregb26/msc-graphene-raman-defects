@@ -1,0 +1,13 @@
+! interpolation and evaluation of phonon frequencies along high symmetry path from interatomic force constants
+&INPUT
+  flfrc = 'graphene.ifc.xml'  ! files storing interatomic force constants, same prefix as in q2r.in
+  asr   = 'crystal'           ! enforces acoustic sum rule
+  flfrq = 'graphene.freq'     ! output files for phonon frequencies along path
+  q_in_cryst_coord = .true.
+  q_in_band_form   = .true.
+/
+4 ! number of high symmetry points along qpath
+ 0.000000 0.000000 0.000000 125  ! Gamma
+ 0.666667 0.333333 0.000000 125  ! K
+ 0.500000 0.000000 0.000000 125  ! M
+ 0.000000 0.000000 0.000000 125  ! Gamma

@@ -1,0 +1,42 @@
+! P18 : chaine 24k-24q_mv0.02 (degauss 0.02 Ry), entree identique a 24k-24q sauf fermi_energy = E_D de cette chaine
+! P6 : self-energie de phonon (phonselfen) : gamma_qnu = Im Pi (demi-largeur EPW), q depuis K_only.kpt, grille fine k 1200x1200 complete, T = 10 et 300 K, degaussw 0.02 eV
+! reference d'energie : fermi_energy = E_D (Wannier, chapitre 4) ; fsthick 3.5 eV comme en P2
+
+&INPUTEPW
+  prefix        = 'graphene'
+  outdir        = './'
+  dvscf_dir     = '../phonons/save'
+
+  etf_mem       = 1
+
+  elph          = .true.
+  epwread       = .true.
+  epwwrite      = .false.
+  wannierize    = .false.
+  nbndsub       = 5
+
+  phonselfen    = .true.
+  elecselfen    = .false.
+  efermi_read   = .true.
+  fermi_energy  = -4.2389
+  fsthick       = 3.5
+  temps         = 10 300
+  nstemp        = 2
+  degaussw      = 0.01
+  ngaussw       = 0
+
+  mp_mesh_k     = .false.
+  restart       = .false.
+
+  nkf1          = 1200
+  nkf2          = 1200
+  nkf3          = 1
+  filqf         = 'K_only.kpt'
+
+  nk1           = 24
+  nk2           = 24
+  nk3           = 1
+  nq1           = 24
+  nq2           = 24
+  nq3           = 1
+/

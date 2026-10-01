@@ -2,47 +2,64 @@
 
 Registre de provenance du mémoire : une ligne par figure, table ou groupe de chiffres cités dans `memoire/`.
 
-État : copie depuis `graphene-raman`, tag `memoire-apres-menage` (`14e8c2a`), faite le 2026-09-30
-(commits `bbed6f0`, `12da2f0`, `3e2e5ad`) ; recette passée le 2026-10-01 (§0).
-Tous les chemins sont relatifs à la racine de ce dépôt, sauf `GR:` = `graphene-raman` au tag ci-dessus.
+État au 2026-10-01 : ce dépôt contient le texte du mémoire, ce qui trace ses figures (`scripts/`, `donnees/`), et les fichiers
+d'entrée des calculs (`calculs/`). Le code qui a **produit** les données (chaînes des matrices *M* et *T*, post-traitement d'EPW,
+tests) n'est pas ici : il est dans le dépôt `graphene-raman`, étiquette `memoire-apres-menage` (commit `14e8c2a`).
+Tous les chemins sont relatifs à la racine de ce dépôt, sauf `GR:` = `graphene-raman` à cette étiquette.
 `lit.` = valeur de la littérature citée dans le texte.
 
 ---
 
-## 0. Structure et recette
+## 0. Structure, installation et recette
 
 ```
 msc-graphene-raman-defects/
-├── pyproject.toml             paquet graphene_raman (identique à GR)
-├── src/graphene_raman/        identique à GR:src/graphene_raman/
-├── scripts/{fig,m,t,epw,validation,slurm}/   identiques à GR:scripts/
-├── tests/                     identique à GR:tests/
-├── config/production.json     identique à GR, sauf les chemins results/… → donnees/…
-├── donnees/                   = GR:results/ sans M/ ni les produits de M2/ ; + ch4/ (voir donnees/README.md)
-├── calculs/                   inputs QE / Wannier90 / EPW (à remplir)
-└── memoire/                   LaTeX
+├── memoire/                   LaTeX
+├── scripts/                   make_all_figures.py (lanceur) + les huit make_figures*.py
+├── src/graphene_raman/        sous-ensemble du paquet de GR, réduit à ce que les scripts importent :
+│                              config.py, plotting/ (style, palette, sauvegarde), io/pseudo_io.py, electron_phonon/phself.py
+├── config/production.json     paramètres de production et emplacement des données (identique à GR, sauf results/… → donnees/…)
+├── donnees/                   données derrière les figures, les tables et les chiffres (113 fichiers, 74 Mo ; MD5SUMS_2026-10-01.txt)
+├── calculs/                   fichiers d'entrée QE / Wannier90 / EPW (289 fichiers), rangés par chapitre
+├── figures/<chapitre>/        sortie des scripts (PDF + PNG), 47 figures
+├── requirements.txt           versions exactes de l'environnement (matplotlib 3.10.5, numpy 2.3.5, scipy 1.16.1, pillow 11.3.0)
+└── pyproject.toml             paquet graphene_raman (numpy, scipy, matplotlib)
 ```
 
-Installation : `python -m venv .venv && .venv/bin/pip install -e ".[mpi,test]"`. Tous les scripts se lancent depuis la
-racine. Les scripts de figures écrivent par défaut dans `figures/<domaine>/` ; pour le mémoire,
-`--outdir memoire/figures`.
+Installation (depuis la racine) :
 
-**Recette du 2026-10-01** (VM Linux, Python 3.10, NumPy 2.2.6, Matplotlib 3.10.9, MPICH 5.0.2) :
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pip install -e . --no-deps
+.venv/bin/python scripts/make_all_figures.py        # les 47 figures, ~25 s ; --only, --list
+```
 
-| Contrôle | Résultat |
-|---|---|
-| `donnees/` : `md5sum -c MD5SUMS_2026-10-01.txt` | 152 / 152 OK |
-| `donnees/` contre `GR:results/` au tag, octet par octet | 151 fichiers identiques ; seul `campagnes/README.md` diffère (une note mise à jour) |
-| `src/`, `scripts/`, `tests/`, `pyproject.toml` contre le tag | identiques (`diff -r` vide) |
-| `config/production.json` contre le tag | seules les clés de chemins diffèrent (`results/` → `donnees/`, `results_dir_frozen` vidé) |
-| `pytest tests` | 233 réussis, 5 sautés (données DFT `.save` absentes, attendu) |
-| les 8 scripts de `scripts/fig/` lancés depuis ce dépôt | 47 PDF, aucune erreur, aucune lecture hors de `donnees/` et `config/` |
-| mêmes scripts depuis un export du tag, même environnement | 47 / 47 PDF identiques octet par octet à ceux de ce dépôt |
-| contre les PDF du tag (`GR:figures/`, générés sur le Mac) | 38 / 47 identiques ; les 9 autres (cartes en couleur) identiques au pixel près à 100 ppp, l'écart est dans l'encodage des images intégrées |
+LaTeX est requis (le texte des figures est composé par `text.usetex`). Les scripts écrivent dans `figures/<chapitre>/` ;
+`--outdir` de chaque script change le dossier. `memoire/figures/` contient encore les versions incluses dans le PDF actuel :
+elles sont remplacées chapitre par chapitre à la réécriture.
 
-Réserves de la recette : `cm-super` absent de la VM (paquet `type1ec` remplacé par un fichier vide), PNG non
-produits (pas de `dvipng`). Effet de bord : `scripts/fig/make_figures.py` réécrit `donnees/M2_plateau/level{1,2}_summary.csv`
-à chaque exécution (contenu inchangé à la recette).
+### Historique de la copie
+
+1. **2026-09-30, copie complète** depuis `GR:` au tag (commits `bbed6f0`, `12da2f0`, `3e2e5ad`) : `src/`, `scripts/{fig,m,t,epw,validation,slurm}/`,
+   `tests/`, `GR:results/` → `donnees/`. Recette sur une VM Linux (Python 3.10, NumPy 2.2.6, Matplotlib 3.10.9) : `donnees/` identique au
+   tag octet par octet (un README mis à jour excepté), `src/`, `scripts/`, `tests/` identiques (`diff -r` vide), `pytest` 233 réussis et
+   5 sautés, 47 PDF sans erreur ni lecture hors de `donnees/` et `config/`, 38 / 47 identiques au bit aux PDF du tag et les 9 autres
+   (cartes en couleur) identiques au pixel à 100 ppp.
+2. **2026-10-01, réduction** à ce qui trace les figures (décision : le code de production reste dans GR, on n'entretient pas deux copies).
+   Retirés : `src/graphene_raman/` hors des quatre modules ci-dessus (34 fichiers), `tests/`, `scripts/{m,t,epw,validation,slurm}/`,
+   `donnees/wannier/` sauf `27x27/wannier.wout` (33 Mo). Tout reste lisible dans le commit `bbed6f0` de ce dépôt et dans GR au tag.
+3. **2026-10-01, ajouts** : `calculs/` (entrées rapatriées de Rorqual) ; `donnees/ch4/NOTES_TGAMMA.md`, `donnees/epw/NOTES_EPW{,_REPERES}.md`
+   (copies des notes de GR, non suivies par git là-bas) ; `donnees/campagnes/R10_plateau/c/c2_results.json` ; `scripts/make_all_figures.py` ;
+   scripts de figures remontés de `scripts/fig/` à `scripts/`.
+
+**Recette après réduction (2026-10-01, Mac, Python 3.12.1, environnement de `requirements.txt`)** : `scripts/make_all_figures.py`
+→ 47 figures, 94 fichiers PDF et PNG **identiques octet par octet** à `GR:figures/` au tag. Cette comparaison ne sera pas entretenue ;
+elle sera refaite une fois, au verrouillage du mémoire, contre des sommes md5 enregistrées dans ce dépôt.
+
+Écarts volontaires avec GR au tag : `config/production.json` (chemins) ; `scripts/make_figures.py` ne réécrit plus
+`donnees/M2_plateau/level{1,2}_summary.csv` à chaque exécution (option `--write-summaries`, corrigé aussi dans GR après le tag) ;
+dans les neuf scripts, la racine du dépôt est `parents[1]` au lieu de `parents[2]`.
 
 ---
 
@@ -55,7 +72,7 @@ mémoire (taille et mise en page changent), à valider.
 
 | Label | Fichier du mémoire | .tex:ligne | Producteur | Données lues | État |
 |---|---|---|---|---|---|
-| `fig:KB` | `KB_projectors_C.pdf` | théorie:191 | `scripts/fig/make_figures_electron.py` → `fig_kb_pseudo_C` (**nom différent**) | `donnees/electron/C.upf` | ch. 2 refaite |
+| `fig:KB` | `KB_projectors_C.pdf` | théorie:191 | `make_figures_electron.py` → `fig_kb_pseudo_C` (**nom différent**) | `donnees/electron/C.upf` | ch. 2 refaite |
 | `fig:convergence_dft` | `fig_electron_convergence.pdf` | théorie:319 | `make_figures_electron.py` | `donnees/electron/{ecut,ecut_cross,kpoint,smearing}.dat` | ch. 2 refaite |
 | `fig:resultats_electrons` | `fig_ebands_edos.pdf` | théorie:326 | `make_figures_electron.py` | `donnees/electron/{ebands,edos}.dat` | ch. 2 refaite |
 | `fig:phonon_results` | `fig_epw_phonons.pdf` | théorie:447 | `make_figures_epw.py` (variante : `make_figures_phonons.py` → `fig_phfreq_phdos`, données `donnees/phonon/`) | `donnees/epw/{validation,phdos}_24k24q_mv0.02.npz` | même contenu |
@@ -76,8 +93,8 @@ mémoire (taille et mise en page changent), à valider.
 | `fig:epw_phonselfen` | `fig_epw_phonselfen.pdf` | eph:290 | idem | `phself_path_1200_dg0.02_mv0.02.npz` | même contenu |
 | `fig:epw_vs_ed` | `fig_epw_vs_ed.pdf` | eph:304 | idem | `selfen_240_dg0.02_mv0.02_T300.npz` + `donnees/M2_plateau/resonance_9x9.npz` | **R10** |
 
-Sauf mention, les données du ch. 4 sont dans `donnees/M2_plateau/` et les scripts dans `scripts/fig/`.
-Options de production de `make_figures_epw.py` (de `scripts/slurm/submit_post.sh figures`) :
+Sauf mention, les données du ch. 4 sont dans `donnees/M2_plateau/` et les scripts dans `scripts/`.
+Options de production de `make_figures_epw.py` (passées par `scripts/make_all_figures.py`) :
 `--prod-tag 240_dg0.02_mv0.02 --phself-tag path_1200_dg0.02_mv0.02 --val-tag 24k24q_mv0.02 --sel-suffix _mv0.02 --control --kohn-val-tags 24k24q,24k24q_mv0.02 --dfpt-tag 24k24q`.
 Sans elles, les valeurs par défaut tracent l'ancienne chaîne (degauss 0.002) et ne produisent pas `fig_epw_vs_ed`.
 Style commun : `src/graphene_raman/plotting/{palette.py,memoire.mplstyle}` ; `palette.save` retire les métadonnées
@@ -111,17 +128,17 @@ Toutes les tables sont saisies à la main dans le `.tex`, sans `\input` de csv.
 | `tab:rcut_M` | défauts:370 | `donnees/M2_plateau/m_rcut_convergence.csv` (deux valeurs après décision R10) |
 | `tab:tests_M` | défauts:415 | `donnees/M2_plateau/M_tests_summary.csv` |
 | `tab:convergence_gamma` | défauts:653 | `donnees/M2_plateau/{level1_summary,level2_summary,level2_families}.csv` |
-| `tab:tests_T` | défauts:691 | `donnees/M2_plateau/nkint_check_9x9.csv` ; `NOTES_TGAMMA.md` (**pas dans ce dépôt**, voir §4) |
+| `tab:tests_T` | défauts:691 | `donnees/M2_plateau/nkint_check_9x9.csv` ; `donnees/ch4/NOTES_TGAMMA.md` |
 | `tab:kohn_chaines` | eph:194 | `donnees/epw/d2_extract_24k24q{,_mv0.02}.npz`, `validation_24k24q{,_mv0.02}.npz` |
 | `tab:gamma_ep_conv` | eph:219 | `donnees/epw/selfen_*_T300.npz` |
 | `tab:gamma_ph_conv` | eph:254 | `donnees/epw/phself_path_{240,1200}_dg0.02*.npz` |
 | `tab:gamma_ph_prod` | eph:275 | `donnees/epw/phself_path_1200_dg0.02_mv0.02.npz` |
-| `tab:param_dft` | annexes/paramètres:10 | inputs QE (`calculs/`, à remplir) |
-| `tab:param_dfpt` | paramètres:37 | inputs ph.x (`calculs/`, à remplir) |
-| `tab:param_wannier` | paramètres:62 | `donnees/wannier/*/wannier.wout` |
-| `tab:param_M` | paramètres:86 | `config/production.json` |
-| `tab:param_T` | paramètres:117 | `config/production.json` ; `NOTES_TGAMMA.md` (**pas dans ce dépôt**) |
-| `tab:param_epw` | paramètres:143 | inputs EPW (`calculs/`, à remplir) ; `NOTES_EPW.md` (**pas dans ce dépôt**) |
+| `tab:param_dft` | annexes/paramètres:10 | `calculs/ch2_electrons/bandes_dos/{scf,nscf,dos}.in` ; convergence : `calculs/ch2_electrons/convergence/` |
+| `tab:param_dfpt` | paramètres:37 | `calculs/ch2_phonons/{scf,ph,q2r,matdyn,matdyn.dos}.in` |
+| `tab:param_wannier` | paramètres:62 | chaîne *M* : `calculs/ch4_mailles/27x27/wannier.win`, étalements dans `donnees/wannier/27x27/wannier.wout` ; chaîne *g* : `calculs/ch5_epw/24k-24q_mv0.02/epw1/{epw1.in,graphene.win}` (étalements : sortie d'EPW, sur Rorqual) |
+| `tab:param_M` | paramètres:86 | `config/production.json` ; `calculs/ch4_supercellules/<N>x<N>/{pristine,defective}/scf.in` ; `calculs/ch4_mailles/<N>x<N>/{scf,nscf}.in` |
+| `tab:param_T` | paramètres:117 | `config/production.json` ; `donnees/ch4/NOTES_TGAMMA.md` |
+| `tab:param_epw` | paramètres:143 | `calculs/ch5_epw/24k-24q_mv0.02/` (`phonons/`, `epw1/`, `epw2_selfen_*/`, `epw6_phself_*/`) ; `donnees/epw/NOTES_EPW.md` |
 
 Les sources des quatre tables du ch. 5 sont déduites des noms de fichiers ; l'appariement valeur par valeur reste à faire.
 
@@ -147,11 +164,28 @@ Liste détaillée par ligne (hors ch. 4) : annexe A.
 
 | Quoi | Où | Conséquence |
 |---|---|---|
-| matrices *M* (`M_*.npy`), fonctions d'onde (`.save`) | Rorqual (`/project`, nearline) | les scripts `m/`, `t/` et `validation/` ne se relancent pas ici ; les figures n'en ont pas besoin |
-| produits v1 et v2 (`GR:results/M/`, produits de `GR:results/M2/`) | GR | servent seulement à la colonne « v1 » de `table_v1_final.md` |
-| pilotes de campagne (`ch4_chiffres.py`, `r8_driver.py`, `r10_driver.py`, EM) | `graphene-raman/campagnes/` sur le laptop, **non suivi par git dans GR** | leurs sorties sont dans `donnees/` ; le code n'est versionné nulle part |
-| `NOTES_TGAMMA.md`, `NOTES_EPW.md`, `NOTES_EPW_REPERES.md` | `graphene-raman/notes/` sur le laptop, **non suivi par git dans GR** | citées comme source de `tab:tests_T`, `tab:param_T`, `tab:param_epw` |
-| inputs QE / Wannier90 / EPW | Rorqual | `calculs/` à remplir |
+| code de production : chaînes des matrices *M* et *T*, post-traitement d'EPW, module électron-photon, tests | `GR:src/`, `GR:scripts/{m,t,epw,validation,slurm}/`, `GR:tests/` ; aussi dans le commit `bbed6f0` de ce dépôt | aucune donnée de `donnees/` ne se recalcule ici ; les figures n'en ont pas besoin |
+| matrices *M* (`M_*.npy`), fonctions d'onde (`.save`) | Rorqual (`/project`, nearline) ; sommes md5 dans `donnees/M2/` | nécessaires pour recalculer, pas pour tracer |
+| sorties de Wannier90 (hamiltonien, matrices de jauge, huit grilles) | `GR:results/wannier/` | seul `27x27/wannier.wout` est gardé (étalements cités dans l'annexe) |
+| produits v1 et v2 non alignés (`GR:results/M/`, produits de `GR:results/M2/`) | GR | servent seulement à la colonne « v1 » de `donnees/ch4/table_v1_final.md` |
+| pilotes de campagne (`ch4_chiffres.py`, `r8_driver.py`, `r10_driver.py`, EM) et leurs rapports | `graphene-raman/campagnes/` sur le portable, **non suivi par git dans GR** | leurs sorties sont dans `donnees/` ; le code n'est versionné nulle part : à sauvegarder |
+| sorties des calculs (`*.out`, potentiels, matrices dynamiques) et lanceurs SLURM simples | Rorqual | `calculs/` ne garde que les entrées, les listes de points et les scripts qui génèrent des entrées |
+| chaîne EPW à 0,002 Ry au-delà des phonons ; grilles EPW d'essai ; relaxations de la lacune ; convergence des phonons en grille **q** | Rorqual | n'alimentent aucune figure ni table ; `calculs/ch5_epw/24k-24q/` est réduit à `phonons/` et `dfpt_g_K/` |
+
+### Contenu de `calculs/`
+
+| Dossier | Calcul | Alimente |
+|---|---|---|
+| `ch2_electrons/convergence/{ecut,ecut_cross,kpoint,smearing}/` | énergie totale en fonction de la coupure (grilles 12×12 et 24×24), de la grille **k** (9 à 42) et de l'élargissement (grille 27×27) | `donnees/electron/{ecut,ecut_cross,kpoint,smearing}.dat` |
+| `ch2_electrons/bandes_dos/` | SCF 27×27, NSCF 96×96, bandes, densité d'états | `donnees/electron/{ebands,edos}.dat` |
+| `ch2_phonons/` | SCF 24×24, DFPT 24×24, `q2r`, `matdyn` (dispersion et DOS) | `donnees/phonon/` |
+| `ch2_electron_photon/{EM1_tb,EM2}/` | éléments de position de Wannier (27×27) ; bandes DFT aux anneaux, `postw90` | `donnees/campagnes/EM/` |
+| `ch4_supercellules/<N>x<N>/{pristine,defective}/` | SCF au point Γ et `pp.x`, 13 tailles (5 à 12, 15, 18, 21, 24, 27) | potentiel de défaut, constantes d'alignement (`donnees/M2_plateau/`, `donnees/campagnes/R10_plateau/`) |
+| `ch4_mailles/<N>x<N>/` | cellule unitaire sur la grille complète : SCF, NSCF, `pw2wannier90`, Wannier90 ; grilles 5 à 12 et 24, 25, 27, 28, 32 | matrices *M* ; `donnees/wannier/27x27/wannier.wout` |
+| `ch5_epw/24k-24q_mv0.02/` | chaîne EPW de production (0,02 Ry) : phonons, `epw1`, auto-énergies, contrôles de *g* | `donnees/epw/*_mv0.02*.npz` |
+| `ch5_epw/24k-24q/{phonons,dfpt_g_K}/` | phonons et DFPT directe à 0,002 Ry | `donnees/epw/{validation,dfpt_path_freq}_24k24q.npz` (`fig_epw_kohn_degauss`) |
+
+Les entrées sont copiées telles qu'elles ont tourné : `outdir` et `pseudo_dir` pointent vers l'arborescence de Rorqual.
 
 ---
 

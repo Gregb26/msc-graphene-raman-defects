@@ -1,0 +1,32 @@
+
+&CONTROL
+  calculation = 'scf'
+  prefix      = 'kpoint'
+  outdir      = '/home/gregb26/links/scratch/qe_conv/kpoint/kpoint_30_e100'
+  pseudo_dir  = '/home/gregb26/links/projects/rrg-cotemich-ac/gregb26/abinit_processing/pseudo'
+/
+&SYSTEM
+  ibrav       = 0
+  nat         = 2
+  ntyp        = 1
+  ecutwfc     = 100
+  ecutrho     = 400
+  occupations = 'smearing'
+  smearing    = 'mv'
+  degauss     = 0.02
+/
+&ELECTRONS
+  conv_thr    = 1.d-10
+  mixing_beta = 0.3
+/
+ATOMIC_SPECIES
+  C 12.011 C.upf
+CELL_PARAMETERS bohr
+  4.0354919061  -2.3298923383   0.0
+  4.0354919061   2.3298923383   0.0
+  0.0            0.0           30.0
+ATOMIC_POSITIONS crystal
+  C  0.3333333333  0.3333333333  0.0
+  C  0.6666666667  0.6666666667  0.0
+K_POINTS automatic
+  30 30 1  0 0 0

@@ -1,0 +1,6 @@
+&BANDS
+  prefix = 'defect_unit_cell_11x11'
+  outdir = '/home/gregb26/links/scratch/qe_tmp/defect_unit_cell_11x11'
+  filband = 'bands.dat'
+/
+

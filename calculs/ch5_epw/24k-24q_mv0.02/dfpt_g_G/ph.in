@@ -1,0 +1,28 @@
+! electron-phonon coupling g with DFPT at k=Gamma and q along high symmetry path for graphene
+
+&INPUTPH
+  prefix      = 'graphene'         ! prefix of output files
+  outdir      = './'               ! directory of tempory files
+  fildyn      = 'graphene.dyn.xml' ! file where the dynamical matrix is written
+  fildvscf    = 'dvscf'            ! file where the variation of the SCF potential due to phonon perturbation is stored
+  tr2_ph      = 1.0d-14            ! threshold for self-consistency
+  ldisp       = .true.             ! run phonon calculation on qgrid specified by nq1 nq2 nq3
+  alpha_mix   = 0.3
+  asr = .true. ! enforces accoustic sum rule
+
+  electron_phonon = 'prt'          ! compute electron-phonon coupling g
+  qplot           = .true.
+  q_in_band_form  = .true.
+
+  ! Gamma in cartesian coordinates
+  kx = 0.0
+  ky = 0.0
+  kz = 0.0
+/
+4 ! number of high symmetry points in the path
+  0.0000000  0.0000000 0.000000 10  ! Gamma (Cartesian 2pi/a: ph.x qplot path is Cartesian, not crystal)
+  0.5773503 -0.3333333 0.000000 10  ! K  = (2/3,1/3) crystal
+  0.2886751 -0.5000000 0.000000 10  ! M  = (1/2,0) crystal
+  0.0000000  0.0000000 0.000000 1   ! Gamma
+
+

@@ -1,0 +1,6 @@
+&BANDS
+  prefix  = 'graphene'
+  outdir  = './'   ! directory of tempory files
+  lsym    = .false.
+  filband = 'graphene.qe.bands'
+/

@@ -1,0 +1,12 @@
+&inputpp
+  prefix   = 'defect_unit_cell_5x5'
+  outdir      = '/home/gregb26/links/scratch/qe_tmp/defect_unit_cell_5x5'   ! directory of tempory files
+  plot_num = 1                ! V_loc + V_Hartree + V_xc
+  filplot  = 'Vks_uc_5x5'
+/
+&plot
+  iflag         = 3             ! 3D
+  output_format = 6             ! cube
+/
+
+

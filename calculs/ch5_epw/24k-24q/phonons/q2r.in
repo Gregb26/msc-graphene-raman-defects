@@ -1,0 +1,7 @@
+! convert dynamical matrix in q space to inter atomic force constants in real space
+&INPUT
+  fildyn = 'graphene.dyn.xml'   ! name of files containing dynamical matrices, same prefix as in ph.in
+  flfrc  = 'graphene.ifc'       ! name of output force constants file
+  zasr    = 'crystal'           ! type of acoustic sum rule
+/
+

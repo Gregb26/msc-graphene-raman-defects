@@ -1,0 +1,31 @@
+! P18 : chaine 24k-24q_mv0.02 (degauss 0.02 Ry), entree identique a 24k-24q sauf fermi_energy = E_D de cette chaine
+! restarting from real space quantities and interpolate g at k=K' and q on high symmetry path
+
+&INPUTEPW
+  prefix        = 'graphene'
+  outdir        = './'
+  dvscf_dir     = '../phonons/save'
+
+  etf_mem       = 1
+
+  elph          = .true.              ! enable electron-phonon properties
+  epwread       = .true.              ! restart from real space quantities
+  epwwrite      = .false.
+
+  wannierize    = .false.             ! do not do another Wannierization
+  nbndsub       = 5
+
+  prtgkk        = .true.              ! write g
+
+  filkf         = 'K.dat'             ! file containing fine kpath for interpolation. use the same as the DFT band structure to compare
+  filqf         = 'graphene_band.kpt' ! file containing fine qpath for interpolation. use same as DFPT phonon calculation
+
+  ! coarse grids
+  nk1           = 24
+  nk2           = 24
+  nk3           = 1
+  nq1           = 24
+  nq2           = 24
+  nq3           = 1
+/
+

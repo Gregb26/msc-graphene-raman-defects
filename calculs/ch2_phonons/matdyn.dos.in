@@ -1,0 +1,13 @@
+! P18 : densite d'etats de phonons sur grille dense, memes IFC (graphene.ifc.xml, chaine 24k-24q_mv0.02, degauss MV 0.02 Ry)
+! que matdyn.in / fig_epw_*. Sorties prefixees "dos." pour ne pas ecraser graphene.freq / matdyn.modes du chemin.
+&INPUT
+  flfrc  = 'graphene.ifc.xml'   ! constantes de force (q2r, meme fichier que matdyn.in)
+  asr    = 'crystal'
+  dos    = .true.
+  fldos  = 'graphene.dos'       ! DOS : Frequency[cm^-1] DOS PDOS(atome 1) PDOS(atome 2)
+  flfrq  = 'graphene.dos.freq'  ! frequences sur la grille dense (ne pas ecraser graphene.freq)
+  flvec  = 'graphene.dos.modes' ! vecteurs propres sur la grille dense (ne pas ecraser matdyn.modes)
+  deltaE  = 1.0                 ! pas en energie de la DOS (cm^-1)
+  degauss = 3.0                 ! elargissement gaussien de la DOS (cm^-1) -- distinct du degauss MV electronique de scf.in
+  nk1 = 500, nk2 = 500, nk3 = 1 ! grille q dense pour la DOS
+/

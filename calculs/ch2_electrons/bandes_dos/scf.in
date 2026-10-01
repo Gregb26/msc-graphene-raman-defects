@@ -1,0 +1,40 @@
+! ground state SCF of pristine graphene unit cell
+
+&CONTROL
+  calculation = 'scf'       ! SCF ground state calculation
+  prefix      = 'graphene_scf'        ! prefix of output files
+  outdir      = '/home/gregb26/links/scratch/qe_tmp/graphene_scf'   ! directory of tempory files
+  pseudo_dir  = '/home/gregb26/links/projects/rrg-cotemich-ac/gregb26/abinit_processing/pseudo' ! directory of pseudo potentials
+/
+&SYSTEM
+  ibrav       = 0        ! specified by CELL_PARAMETERS
+  nat         = 2        ! number of atoms
+  ntyp        = 1        ! number of atom types
+  ecutwfc     = 100      ! PW energy cutoff in Ry (1 Ha = 2 Ry)
+  occupations = 'smearing' 
+  smearing    = 'mv'     ! Marzeri-Vanderbilt cold smearing
+  degauss     = 0.01    ! value of gaussian smearing in Ry
+  nbnd        = 16       ! number of bands
+  assume_isolated = '2D' ! helps for 2d systems 
+/
+&ELECTRONS
+  electron_maxstep =  400   ! number of iterations in SCF step
+  conv_thr         =  1.d-14 ! convergence threshold for self-consistency
+  mixing_beta      =  0.3
+/
+
+ATOMIC_SPECIES
+  C 12.011 C.upf ! atom type and pseudo potential
+
+CELL_PARAMETERS bohr
+  4.0354919061  -2.3298923383   0.0
+  4.0354919061   2.3298923383   0.0
+  0.0            0.0           30.0
+
+ATOMIC_POSITIONS crystal
+  C  0.3333333333  0.3333333333  0.0
+  C  0.6666666667  0.6666666667  0.0
+
+K_POINTS automatic
+  27 27 1  0 0 0
+

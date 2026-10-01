@@ -1,0 +1,9 @@
+&inputpp
+   prefix   = 'defect_unit_cell_5x5_wann'
+   outdir   = '/home/gregb26/links/scratch/qe_tmp/defect_unit_cell_5x5_wann'
+   seedname = 'wannier'
+   spin_component = 'none'
+   write_mmn = .true.
+   write_amn = .true.
+   write_unk = .true.
+/

@@ -23,8 +23,13 @@ out/
 
 # fichiers
 /master_thesis.pdf
+
 # venv
 .venv 
+
+# IDE
+.vscode
+
 # Python
 __pycache__/
 *.pyc

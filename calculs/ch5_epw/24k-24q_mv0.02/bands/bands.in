@@ -1,0 +1,39 @@
+! P18 : chaine 24k-24q_mv0.02 = 24k-24q avec degauss = 0.02 Ry (Marzari-Vanderbilt), tout le reste identique
+! band structure calculation pristine graphene
+&CONTROL
+  calculation = 'bands'
+  prefix      = 'graphene'        ! prefix of output files
+  outdir      = './'              ! directory of tempory files
+  pseudo_dir  = '/home/gregb26/links/projects/rrg-cotemich-ac/gregb26/abinit_processing/pseudo' ! directory of pseudo potentials
+/
+&SYSTEM
+  ibrav   = 0
+  nat     = 2
+  ntyp    = 2
+  ecutwfc = 100
+  nbnd    = 16
+  occupations = 'fixed'
+/
+&ELECTRONS
+  conv_thr = 1.d-10
+/
+ATOMIC_SPECIES
+  C1 12.011 C.upf
+  C2 12.011 C.upf
+
+CELL_PARAMETERS bohr
+  4.0354919061  -2.3298923383   0.0
+  4.0354919061   2.3298923383   0.0
+  0.0            0.0           30.0
+
+ATOMIC_POSITIONS crystal
+  C1  0.3333333333  0.3333333333  0.0
+  C2  0.6666666667  0.6666666667  0.0
+
+K_POINTS crystal_b
+4 ! number of high symmetry points in the band structure
+  0.000000 0.000000 0.000000 60  ! Gamma
+  0.666667 0.333333 0.000000 60  ! K
+  0.500000 0.000000 0.000000 60  ! M
+  0.000000 0.000000 0.000000 60  ! Gamma
+

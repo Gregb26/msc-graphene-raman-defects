@@ -1,0 +1,5 @@
+&BANDS
+  prefix  = 'graphene_scf'
+  outdir  = '/home/gregb26/links/scratch/qe_tmp/graphene_scf'   ! directory of tempory files
+  filband = 'graphene.bands.dat'
+/

@@ -1,0 +1,73 @@
+! P18 : chaine 24k-24q_mv0.02 = 24k-24q avec degauss = 0.02 Ry, tout le reste identique
+! ground state nSCF of pristine graphene unit cell
+
+&CONTROL
+  calculation = 'bands'            ! nSCF ground state calculation
+  prefix      = 'graphene'        ! prefix of output files
+  outdir      = './'              ! directory of tempory files
+  pseudo_dir  = '/home/gregb26/links/projects/rrg-cotemich-ac/gregb26/abinit_processing/pseudo' ! directory of pseudo potentials
+  verbosity   = 'high'
+/
+&SYSTEM
+  ibrav       = 0       ! specified by CELL_PARAMETERS
+  nat         = 2       ! number of atoms
+  ntyp        = 2       ! number of atom types
+  ecutwfc     = 100     ! PW energy cutoff in Ry (1 Ha = 2 Ry)
+  occupations = 'smearing'
+  smearing    = 'mv' ! gaussian smearing (occopt 7 in Abinit)
+  degauss     = 0.02     ! value of gaussian smearing in Ry
+  nbnd        = 32       ! number of bands
+  assume_isolated = '2D' ! helps for 2d systems
+/
+&ELECTRONS
+  electron_maxstep =  400   ! number of iterations in SCF step
+  conv_thr         =  1.d-14 ! convergence threshold for self-consistency
+  mixing_beta      =  0.3
+/
+
+ATOMIC_SPECIES
+  C1 12.011 C.upf ! atom type and pseudo potential
+  C2 12.011 C.upf
+
+CELL_PARAMETERS bohr
+  4.0354919061  -2.3298923383   0.0
+  4.0354919061   2.3298923383   0.0
+  0.0            0.0           30.0
+
+ATOMIC_POSITIONS crystal
+  C1  0.3333333333  0.3333333333  0.0
+  C2  0.6666666667  0.6666666667  0.0
+
+K_POINTS tpiba
+31
+0.0000000 0.0000000 0.0000000 0.0078125
+0.0360844 0.0625000 0.0000000 0.0468750
+0.0721688 0.1250000 0.0000000 0.0468750
+0.1082532 0.1875000 0.0000000 0.0468750
+0.1443376 0.2500000 0.0000000 0.0468750
+0.1804220 0.3125000 0.0000000 0.0468750
+0.2165064 0.3750000 0.0000000 0.0468750
+0.2525907 0.4375000 0.0000000 0.0468750
+-0.2886751 -0.5000000 0.0000000 0.0234375
+0.1082532 0.0625000 0.0000000 0.0468750
+0.1443376 0.1250000 0.0000000 0.0937500
+0.1804220 0.1875000 0.0000000 0.0937500
+0.2165064 0.2500000 0.0000000 0.0937500
+0.2525907 0.3125000 0.0000000 0.0937500
+0.2886751 0.3750000 0.0000000 0.0937500
+-0.2525907 -0.5625000 0.0000000 0.0937500
+0.2165064 0.1250000 0.0000000 0.0468750
+0.2525907 0.1875000 0.0000000 0.0937500
+0.2886751 0.2500000 0.0000000 0.0937500
+0.3247595 0.3125000 0.0000000 0.0937500
+-0.2165064 -0.6250000 0.0000000 0.0937500
+-0.1804220 -0.5625000 0.0000000 0.0468750
+0.3247595 0.1875000 0.0000000 0.0468750
+0.3608439 0.2500000 0.0000000 0.0937500
+-0.1804220 -0.6875000 0.0000000 0.0937500
+-0.1443376 -0.6250000 0.0000000 0.0937500
+-0.1443376 -0.7500000 0.0000000 0.0468750
+-0.1082532 -0.6875000 0.0000000 0.0937500
+-0.0721688 -0.6250000 0.0000000 0.0468750
+-0.0360844 -0.6875000 0.0000000 0.0468750
+0.5773503   -0.3333333  0.0000000   0.0000000

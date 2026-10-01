@@ -1,0 +1,7 @@
+&DOS
+  prefix      = 'graphene_scf'        ! prefix of output files
+  outdir      = '/home/gregb26/links/scratch/qe_tmp/graphene_scf'   ! directory of tempory files
+  fildos      = 'graphene_dos.dat' ! output file for the DOS
+  degauss     = 1e-2
+  DeltaE      = 1e-3
+/ 

@@ -1,0 +1,88 @@
+! ground state SCF of pristine graphene 5x5 supercell
+
+&CONTROL
+  calculation = 'scf'       ! SCF ground state calculation
+  prefix      = 'defect_5x5_p'        ! prefix of output files
+  outdir      = '/home/gregb26/links/scratch/qe_tmp/defect_5x5_p'   ! directory of tempory files
+  pseudo_dir  = '/home/gregb26/links/projects/rrg-cotemich-ac/gregb26/abinit_processing/pseudo' ! directory of pseudo potentials
+/
+&SYSTEM
+  ibrav       = 0        ! specified by CELL_PARAMETERS
+  nat         = 50       ! number of atoms (2 x 5 x 5)
+  ntyp        = 1        ! number of atom types
+  ecutwfc     = 100      ! PW energy cutoff in Ry (1 Ha = 2 Ry)
+  occupations = 'smearing'
+  smearing    = 'mv'     ! Marzari-Vanderbilt cold smearing
+  degauss     = 0.01     ! value of gaussian smearing in Ry
+  nbnd        = 130      ! number of bands (200 valence electrons -> 100 occupied; adjust as needed)
+  assume_isolated = '2D' ! helps for 2d systems
+  nosym        = .true.
+  noinv       = .true. 
+/
+&ELECTRONS
+  electron_maxstep =  400    ! number of iterations in SCF step
+  conv_thr         =  1.d-10 ! convergence threshold for self-consistency
+  mixing_beta      =  0.3
+/
+
+ATOMIC_SPECIES
+  C 12.011 C.upf ! atom type and pseudo potential
+
+CELL_PARAMETERS bohr
+  20.1774595305  -11.6494616915   0.0
+  20.1774595305   11.6494616915   0.0
+   0.0             0.0            30.0
+
+ATOMIC_POSITIONS crystal
+  C  0.0666666667  0.0666666667  0.0
+  C  0.1333333333  0.1333333333  0.0
+  C  0.0666666667  0.2666666667  0.0
+  C  0.1333333333  0.3333333333  0.0
+  C  0.0666666667  0.4666666667  0.0
+  C  0.1333333333  0.5333333333  0.0
+  C  0.0666666667  0.6666666667  0.0
+  C  0.1333333333  0.7333333333  0.0
+  C  0.0666666667  0.8666666667  0.0
+  C  0.1333333333  0.9333333333  0.0
+  C  0.2666666667  0.0666666667  0.0
+  C  0.3333333333  0.1333333333  0.0
+  C  0.2666666667  0.2666666667  0.0
+  C  0.3333333333  0.3333333333  0.0
+  C  0.2666666667  0.4666666667  0.0
+  C  0.3333333333  0.5333333333  0.0
+  C  0.2666666667  0.6666666667  0.0
+  C  0.3333333333  0.7333333333  0.0
+  C  0.2666666667  0.8666666667  0.0
+  C  0.3333333333  0.9333333333  0.0
+  C  0.4666666667  0.0666666667  0.0
+  C  0.5333333333  0.1333333333  0.0
+  C  0.4666666667  0.2666666667  0.0
+  C  0.5333333333  0.3333333333  0.0
+  C  0.4666666667  0.4666666667  0.0
+  C  0.5333333333  0.5333333333  0.0
+  C  0.4666666667  0.6666666667  0.0
+  C  0.5333333333  0.7333333333  0.0
+  C  0.4666666667  0.8666666667  0.0
+  C  0.5333333333  0.9333333333  0.0
+  C  0.6666666667  0.0666666667  0.0
+  C  0.7333333333  0.1333333333  0.0
+  C  0.6666666667  0.2666666667  0.0
+  C  0.7333333333  0.3333333333  0.0
+  C  0.6666666667  0.4666666667  0.0
+  C  0.7333333333  0.5333333333  0.0
+  C  0.6666666667  0.6666666667  0.0
+  C  0.7333333333  0.7333333333  0.0
+  C  0.6666666667  0.8666666667  0.0
+  C  0.7333333333  0.9333333333  0.0
+  C  0.8666666667  0.0666666667  0.0
+  C  0.9333333333  0.1333333333  0.0
+  C  0.8666666667  0.2666666667  0.0
+  C  0.9333333333  0.3333333333  0.0
+  C  0.8666666667  0.4666666667  0.0
+  C  0.9333333333  0.5333333333  0.0
+  C  0.8666666667  0.6666666667  0.0
+  C  0.9333333333  0.7333333333  0.0
+  C  0.8666666667  0.8666666667  0.0
+  C  0.9333333333  0.9333333333  0.0
+
+K_POINTS gamma

@@ -14,5 +14,8 @@ au même chemin relatif que dans la campagne, pour que tout ce qui produit une f
 | `R8_kaasbjerg/{dos,spec,sens,7a,sigeff}/` | `R/R8_kaasbjerg/out/{dos,spec,sens,7a,sigeff}/` | `dos_9x9.npz`, `spectral_GKM_9x9.npz` (14 Mo, rapatrié de rorqual le 2026-09-30 ; absent de la copie de campagne), `sens_results.json`, `fig13_VA_interp_1meV.csv`, `7a_results.json`, `sigma_K_9x9.npz`, `sigeff_results.json` | `make_figures_kaasbjerg.py` | `fig_kaasbjerg_{dos_c,spectral_GKM,sensibilites,superposition,sigma_K}` |
 | `EM/{M4_sigma,EM3,EM2}/` | `EM/{M4_sigma,EM3,EM2}/` | `em_scalars.json`, `em_sigma_{full,centres_only,no_berry}_N1200_eta0.04.npz`, `em3_ring_2p33.npz`, `em2_postw90_sigma_ti.npz`, `em2_A.npz` | `make_figures_em.py` | `fig_em_coupling` |
 
+Ajout du 2026-10-01 (dépôt du mémoire seulement) : `R10_plateau/c/c2_results.json`, source des chiffres de la comparaison
+à Kaasbjerg cités au chapitre 4 (éléments de matrice autour de K, 77 à 83 eV Å²) ; lu par aucun script de figure.
+
 Les autres produits des campagnes (rapports, tables, gates, sorties intermédiaires, inputs QE) ne sont pas copiés : voir
 `campagnes/README.md` et le README de chaque campagne.

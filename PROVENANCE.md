@@ -97,7 +97,7 @@ elles sont remplacées chapitre par chapitre à la réécriture.
 elle sera refaite une fois, au verrouillage du mémoire, contre des sommes md5 enregistrées dans ce dépôt.
 
 Écarts volontaires avec GR au tag : `config/production.json` (chemins, dont `campaigns_results_dir` = `donnees`) ; `scripts/make_figures.py` **retiré le 2026-10-01** :
-ses trois figures du mémoire (`fig_Ved_zoom`, `fig_ks_reconstruction`, `fig_level2`) sont tracées par `make_figures_memoire.py`, code repris
+ses trois figures du mémoire (`fig_Ved_zoom`, `fig_ks_reconstruction`, `fig_level2`) sont tracées par `make_figures_defaut.py`, code repris
 à l'identique (9 PDF identiques au bit avant / après dans la VM) ; ses onze figures de travail sont retirées de `figures/` ; `level{1,2}_summary.csv`
 restent produits par `GR:scripts/fig/make_figures.py --write-summaries` ; dans les huit scripts, la racine du dépôt est `parents[1]` au lieu de `parents[2]` ; `make_figures_{controles,em,kaasbjerg}.py`
 lisent les dossiers plats de `donnees/` (noms de fichiers préfixés, voir ci-dessus) ; `make_figures_controles.py` : quatre figures écartées
@@ -123,15 +123,15 @@ mémoire (taille et mise en page changent), à valider.
 | `fig:convergence_dft` | `fig_electron_convergence.pdf` | théorie:319 | `make_figures_electron.py` | `donnees/electron/{ecut,ecut_cross,kpoint,smearing}.dat` | ch. 2 refaite |
 | `fig:resultats_electrons` | `fig_ebands_edos.pdf` | théorie:326 | `make_figures_electron.py` | `donnees/electron/{ebands,edos}.dat` | ch. 2 refaite |
 | `fig:phonon_results` | `fig_epw_phonons.pdf` | théorie:447 | `make_figures_epw.py` (variante : `make_figures_phonons.py` → `fig_phfreq_phdos`, données `donnees/phonon/`) | `donnees/epw/{validation,phdos}_24k24q_mv0.02.npz` | même contenu |
-| `fig:Ved_zoom` | `fig_Ved_zoom.pdf` | défauts:268 | `make_figures_memoire.py` | `donnees/M2_plateau/ved_analysis.npz` | même contenu |
-| `fig:Ved` | `fig_Ved.pdf` | défauts:284 | `make_figures_memoire.py` | `ved_analysis.npz` + C_N de `config/production.json` | **R10** |
-| `fig:M_scaling` | `fig_M_scaling_final.pdf` | défauts:297 | `make_figures_memoire.py` | `M_analysis.npz` | **R10** |
-| `fig:M_map` | `fig_M_map_final.pdf` | défauts:306 | `make_figures_memoire.py` | `M_analysis.npz` | **R10** |
-| `fig:M_locality` | `fig_locality_final.pdf` | défauts:360 | `make_figures_memoire.py` | `mwr_locality.npz` | **R10** |
-| `fig:ks_reconstruction` | `fig_ks_reconstruction.pdf` | défauts:402 | `make_figures_memoire.py` | `ks_reconstruction.npz` | même contenu |
-| `fig:convergence` | `fig_convergence.pdf` | défauts:643 | `make_figures_memoire.py` | `specwd_{5x5,6x6,7x7,8x8,9x9,12x12}_prod.npz` | **R10** |
-| `fig:level2` | `fig_level2.pdf` | défauts:676 | `make_figures_memoire.py` | `specwd_*_prod.npz` | **R10** |
-| `fig:spectral` | `fig_spectral_final.pdf` | défauts:722 | `make_figures_memoire.py` | `resonance_9x9.npz`, `resonance_criteria_9x9.npz` | **R10** |
+| `fig:Ved_zoom` | `fig_Ved_zoom.pdf` | défauts:268 | `make_figures_defaut.py` | `donnees/M2_plateau/ved_analysis.npz` | même contenu |
+| `fig:Ved` | `fig_Ved.pdf` | défauts:284 | `make_figures_defaut.py` | `ved_analysis.npz` + C_N de `config/production.json` | **R10** |
+| `fig:M_scaling` | `fig_M_scaling_final.pdf` | défauts:297 | `make_figures_defaut.py` | `M_analysis.npz` | **R10** |
+| `fig:M_map` | `fig_M_map_final.pdf` | défauts:306 | `make_figures_defaut.py` | `M_analysis.npz` | **R10** |
+| `fig:M_locality` | `fig_locality_final.pdf` | défauts:360 | `make_figures_defaut.py` | `mwr_locality.npz` | **R10** |
+| `fig:ks_reconstruction` | `fig_ks_reconstruction.pdf` | défauts:402 | `make_figures_defaut.py` | `ks_reconstruction.npz` | même contenu |
+| `fig:convergence` | `fig_convergence.pdf` | défauts:643 | `make_figures_defaut.py` | `specwd_{5x5,6x6,7x7,8x8,9x9,12x12}_prod.npz` | **R10** |
+| `fig:level2` | `fig_level2.pdf` | défauts:676 | `make_figures_defaut.py` | `specwd_*_prod.npz` | **R10** |
+| `fig:spectral` | `fig_spectral_final.pdf` | défauts:722 | `make_figures_defaut.py` | `resonance_9x9.npz`, `resonance_criteria_9x9.npz` | **R10** |
 | `fig:epw_validation` | `fig_epw_validation.pdf` | eph:152 | `make_figures_epw.py` (options de production ci-dessous) | `donnees/epw/validation_24k24q_mv0.02.npz` | même contenu |
 | `fig:epw_g_control` | `fig_epw_g_control.pdf` | eph:158 | idem | `donnees/epw/validation_24k24q_mv0.02.npz` | même contenu |
 | `fig:epw_decay` | `fig_epw_decay.pdf` | eph:168 | idem | idem | même contenu |

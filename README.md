@@ -8,13 +8,12 @@ Ce dépôt contient le texte du mémoire et tout ce qui a servi à produire ses 
 
 | Dossier            | Contenu                                                        |
 |--------------------|----------------------------------------------------------------|
-| `memoire/`         | Source LaTeX du mémoire                                        |
-| `calculs/`         | Inputs QE, Wannier90, EPW et scripts SLURM, un dossier par calcul |
-| `analyse/`         | Post-traitement (copie figée du repo de recherche)             |
+| `calculs/`         | Inputs QE, Wannier90, EPW et scripts bash pour le lancement des calculs|
+| `config/`          | Paramètres de production                                       |
 | `donnees/`         | Données finales derrière les figures                           |
-| `scripts_figures/` | Scripts de génération des figures                              |
-
-`master_thesis.pdf` à la racine est la dernière version compilée.
+| `memoire/`         | Source LaTeX du mémoire                                        |
+| `scripts/`         | Scripts de génération des figures et des tableaux à partir des données|
+| `src/`             | Partie du code source requise pour rouler les scripts. Le reste du code source est dans le repo `graphene-raman`|
 
 ## Compiler le mémoire
 
@@ -34,7 +33,8 @@ Le PDF est écrit à la racine du dépôt et les fichiers auxiliaires vont dans 
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pip install -e . --no-deps
 ```
 
 **Scripts :**  *à venir*

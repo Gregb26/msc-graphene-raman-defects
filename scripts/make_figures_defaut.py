@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Figures du chapiter 4 du mémoire, style graphene_raman.plotting (memoire.mplstyle), français, données lues dans <results_dir>/*.npz.
+Figures du chapitre 4 du mémoire, style graphene_raman.plotting (memoire.mplstyle), français, données lues dans <results_dir>/*.npz.
 C : figures dans le corps du texte. A : figures en annexe.
 
   A: fig_convergence        (a) Γ N_cells vs R_cut, six tailles ; (b) carte plateau (grille × η), référence     — 6.5 × 3.4 po

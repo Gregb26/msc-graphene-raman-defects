@@ -24,7 +24,7 @@ SCRIPTS = {
     "electron": ("make_figures_electron.py", []),
     "phonons": ("make_figures_phonons.py", []),
     "em": ("make_figures_em.py", []),
-    "defauts": ("make_figures_defauts.py", []),
+    "defauts": ("make_figures_defaut.py", []),
     "controles": ("make_figures_controles.py", []),
     "kaasbjerg": ("make_figures_kaasbjerg.py", []),
     "epw": ("make_figures_epw.py", ["--prod-tag", "240_dg0.02_mv0.02", "--phself-tag", "path_1200_dg0.02_mv0.02",

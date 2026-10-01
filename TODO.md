@@ -2,7 +2,7 @@
 
 Liste de travail unique du dépôt.
 
-Mise à jour : 2026-10-01, 13 h 45. Les items terminés sont retirés de la liste (l'historique est dans git).
+Mise à jour : 2026-10-01, 15 h 20. Les items terminés sont retirés de la liste (l'historique est dans git).
 
 ---
 
@@ -10,7 +10,12 @@ Mise à jour : 2026-10-01, 13 h 45. Les items terminés sont retirés de la list
 
 Section par section : C propose, G tranche, C applique et compile. Tableaux : `scripts/make_tables.py` → `memoire/tables/<nom>.tex` (fait le 2026-10-01 ; valeur et source de chaque cellule dans `memoire/tables/SOURCES.md`) ; `\input{tables/<nom>}` et légende revue à la réécriture de chaque section.
 
-Ordre : celui du chapitre (numéros et lignes de `défauts.tex` au 2026-10-01 ; les numéros de ce chantier étaient décalés d'un cran jusqu'au 2026-10-01). L'introduction et les sous-sections de théorie (§4.1.1–4.1.3, §4.2.1–4.2.3) n'ont pas d'item.
+Ordre : celui du chapitre (numéros et lignes de `défauts.tex` au 2026-10-01 ; les numéros de ce chantier étaient décalés d'un cran jusqu'au 2026-10-01). L'introduction, les §4.1.1–4.1.2 et les sous-sections de théorie de T (§4.2.1–4.2.3) n'ont pas d'item (§4.1 à 4.1.2 relus et retouchés par G le 2026-10-01).
+
+### §4.1.3 Interpolation avec des fonctions de Wannier (`sec:interp_wannier_M`)
+
+- [ ] **G** — §4.1.3 ou §4.1.4, images de Wigner-Seitz : la production prend les vecteurs **R** de la boîte pN×pN par images de Wigner-Seitz (`config/production.json` : `alignment.labels_offgrid = wigner_seitz` ; `ws_images`, `ws_phase` ; `donnees/ch4/NOTES_TGAMMA.md` l. 88), mais le texte (autour de `eqn:M_interp` et de la troncature) ne dit pas quel représentant de **R** est pris. Ce choix fixe l'abscisse de `fig:M_locality` (15.6 a, contre 22.5 a avec les étiquettes brutes) et les valeurs de `tab:rcut_M` (`r10_c2_results.json` : `plateau_ws`). Une phrase ; place à choisir : §4.1.3 avec la troncature, ou §4.1.4 avec l'alignement
+- [ ] **C** — §4.1.3, renvois à repointer vers l'annexe D quand elle aura ses labels (chantier 3) : l. 192 (convergence de M en R_cut → `tab:rcut_M` ; convergence de Γ^ed en R_cut → `fig:convergence`, `tab:convergence_gamma`) et l. 194 (boucle fermée Bloch → Wannier → Bloch → `tab:tests_M`) ; la décroissance des M_ij(R′, R) (`fig:M_locality`, citée l. 194) reste au §4.1.5 ; lignes du 2026-10-01
 
 ### §4.1.4 Détails computationnels de M (`sec:M_détails`, l. 200–238)
 

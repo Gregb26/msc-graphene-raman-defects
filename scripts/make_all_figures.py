@@ -1,4 +1,4 @@
-"""Génère toutes les figures du mémoire en lançant, l'un après l'autre, les huit autres scripts de ce dossier.
+"""Génère toutes les figures du mémoire en lançant, l'un après l'autre, les sept scripts make_figures_*.py de ce dossier.
 
 Usage (depuis n'importe où, avec le Python de l'environnement du dépôt) :
 
@@ -19,13 +19,12 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 
-# nom court -> (script, options). L'ordre suit celui des chapitres.
+# nom : (script, options). L'ordre suit celui des chapitres.
 SCRIPTS = {
     "electron": ("make_figures_electron.py", []),
     "phonons": ("make_figures_phonons.py", []),
     "em": ("make_figures_em.py", []),
-    "travail": ("make_figures.py", []),
-    "memoire": ("make_figures_memoire.py", []),
+    "defauts": ("make_figures_defauts.py", []),
     "controles": ("make_figures_controles.py", []),
     "kaasbjerg": ("make_figures_kaasbjerg.py", []),
     "epw": ("make_figures_epw.py", ["--prod-tag", "240_dg0.02_mv0.02", "--phself-tag", "path_1200_dg0.02_mv0.02",

@@ -15,14 +15,14 @@ Tous les chemins sont relatifs à la racine de ce dépôt, sauf `GR:` = `graphen
 ```
 msc-graphene-raman-defects/
 ├── memoire/                   LaTeX
-├── scripts/                   make_all_figures.py (lanceur) + les huit make_figures*.py ; chiffres_ch4.py (chiffres complémentaires du ch. 4)
+├── scripts/                   make_all_figures.py (lanceur) + les sept make_figures_*.py ; chiffres_ch4.py (chiffres complémentaires du ch. 4)
 ├── src/graphene_raman/        sous-ensemble du paquet de GR, réduit à ce que les scripts importent :
 │                              config.py, plotting/ (style, palette, sauvegarde), io/pseudo_io.py, electron_phonon/phself.py
 ├── config/production.json     paramètres de production et emplacement des données (identique à GR, sauf results/… → donnees/…)
 ├── donnees/                   données derrière les figures, les tables et les chiffres (121 fichiers + MD5SUMS_2026-10-01.txt) ;
 │                              un dossier plat par sujet, voir « Dossiers de donnees/ » ci-dessous
 ├── calculs/                   fichiers d'entrée QE / Wannier90 / EPW (289 fichiers), rangés par chapitre
-├── figures/<chapitre>/        sortie des scripts (PDF + PNG), 47 figures
+├── figures/<chapitre>/        sortie des scripts (PDF + PNG), 33 figures (47 avant le tri du 2026-10-01)
 ├── requirements.txt           versions exactes de l'environnement (matplotlib 3.10.5, numpy 2.3.5, scipy 1.16.1, pillow 11.3.0)
 └── pyproject.toml             paquet graphene_raman (numpy, scipy, matplotlib)
 ```
@@ -39,7 +39,7 @@ msc-graphene-raman-defects/
 | `kaasbjerg/` | comparaison à Kaasbjerg : DOS, A_k, sensibilités, Σ^eff (R8), cartes et métriques de la Fig. 3 (R10 c2) | id. + `"kaasbjerg"` |
 | `controles/` | contrôles du ch. 4 : tailles 3m (R7), N_k^int, R_cut et chaîne repliée (R9), familles N mod 3 et convention intensive (R10 b, c3), escalier D4 (R6) | id. + `"controles"` |
 | `electron_photon/` | §2.5 : σ(ω) des trois variantes, anneau de 2.33 eV, références DFT et `postw90`, tables `em_table` | id. + `"electron_photon"` |
-| `ch4/` | `table_v1_final.md`, `defauts_nombres.md`, `alignement_regions.*`, `NOTES_TGAMMA.md` (lus par aucun script) | — |
+| `ch4/` | `alignement_regions.npz` (lu par `make_figures_controles.py`, `fig_alignement_regions`) ; `table_v1_final.md`, `defauts_nombres.md`, `alignement_regions.md`, `NOTES_TGAMMA.md` (lus par aucun script ; PDF et PNG de GR retirés le 2026-10-01) | id. + `"ch4"` |
 
 Les quatre dossiers `alignement/`, `kaasbjerg/`, `controles/` et `electron_photon/` remplacent le 2026-10-01 l'arborescence
 `donnees/campagnes/<campagne>/<étape>/` (copie conforme de `GR:campagnes/`). Les fichiers y sont à plat ; ceux dont le nom était
@@ -65,7 +65,7 @@ Installation (depuis la racine) :
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python -m pip install -e . --no-deps
-.venv/bin/python scripts/make_all_figures.py        # les 47 figures, ~25 s ; --only, --list
+.venv/bin/python scripts/make_all_figures.py        # les 33 figures, ~25 s ; --only, --list
 ```
 
 LaTeX est requis (le texte des figures est composé par `text.usetex`). Les scripts écrivent dans `figures/<chapitre>/` ;
@@ -96,10 +96,17 @@ elles sont remplacées chapitre par chapitre à la réécriture.
 → 47 figures, 94 fichiers PDF et PNG **identiques octet par octet** à `GR:figures/` au tag. Cette comparaison ne sera pas entretenue ;
 elle sera refaite une fois, au verrouillage du mémoire, contre des sommes md5 enregistrées dans ce dépôt.
 
-Écarts volontaires avec GR au tag : `config/production.json` (chemins, dont `campaigns_results_dir` = `donnees`) ; `scripts/make_figures.py` ne réécrit plus
-`donnees/M2_plateau/level{1,2}_summary.csv` à chaque exécution (option `--write-summaries`, corrigé aussi dans GR après le tag) ;
-dans les neuf scripts, la racine du dépôt est `parents[1]` au lieu de `parents[2]` ; `make_figures_{controles,em,kaasbjerg}.py`
-lisent les dossiers plats de `donnees/` (noms de fichiers préfixés, voir ci-dessus).
+Écarts volontaires avec GR au tag : `config/production.json` (chemins, dont `campaigns_results_dir` = `donnees`) ; `scripts/make_figures.py` **retiré le 2026-10-01** :
+ses trois figures du mémoire (`fig_Ved_zoom`, `fig_ks_reconstruction`, `fig_level2`) sont tracées par `make_figures_memoire.py`, code repris
+à l'identique (9 PDF identiques au bit avant / après dans la VM) ; ses onze figures de travail sont retirées de `figures/` ; `level{1,2}_summary.csv`
+restent produits par `GR:scripts/fig/make_figures.py --write-summaries` ; dans les huit scripts, la racine du dépôt est `parents[1]` au lieu de `parents[2]` ; `make_figures_{controles,em,kaasbjerg}.py`
+lisent les dossiers plats de `donnees/` (noms de fichiers préfixés, voir ci-dessus) ; `make_figures_controles.py` : quatre figures écartées
+retirées le 2026-10-01 (`fig_{levels_vs_invN,resonance_vs_nkint,size_3m,localized_3m}`, d9f821f) et `fig_alignement_regions` ajoutée (tracé porté de
+`GR:campagnes/M/ch4/ch4_chiffres.py`, `make_regions_figure` : lit `donnees/ch4/alignement_regions.npz` au lieu de recalculer les statistiques,
+point décimal dans la légende, marqueurs de famille en `MUTED` au lieu de `gray`) ; `fig_offset_profiles_13` au point décimal (1.0 Å, 1.42 Å, 0.75 r_max).
+`make_figures_kaasbjerg.py` (2026-10-01, docstring de Greg) : variante η_t = η_G retirée de toutes les figures ; `dos_c` réduite à ρ − ρ₀ (grille 600²,
+non aligné et Kumagai–Oba, 2 panneaux ; ρ total et grille 300² retirés) ; `spectral_GKM` réduite à Kumagai–Oba (6 → 2 panneaux), seuil d'affichage des maxima 1 → 2 % (retire cinq points isolés de la résonance à −0.17 eV) ; `superposition`
+réduite au spin compté (4 → 2 panneaux) ; `sensibilites` : ordonnée « position du max » et ligne de Kaasbjerg dans la légende ; point décimal partout.
 
 ---
 
@@ -116,14 +123,14 @@ mémoire (taille et mise en page changent), à valider.
 | `fig:convergence_dft` | `fig_electron_convergence.pdf` | théorie:319 | `make_figures_electron.py` | `donnees/electron/{ecut,ecut_cross,kpoint,smearing}.dat` | ch. 2 refaite |
 | `fig:resultats_electrons` | `fig_ebands_edos.pdf` | théorie:326 | `make_figures_electron.py` | `donnees/electron/{ebands,edos}.dat` | ch. 2 refaite |
 | `fig:phonon_results` | `fig_epw_phonons.pdf` | théorie:447 | `make_figures_epw.py` (variante : `make_figures_phonons.py` → `fig_phfreq_phdos`, données `donnees/phonon/`) | `donnees/epw/{validation,phdos}_24k24q_mv0.02.npz` | même contenu |
-| `fig:Ved_zoom` | `fig_Ved_zoom.pdf` | défauts:268 | `make_figures.py` | `donnees/M2_plateau/ved_analysis.npz` | même contenu |
+| `fig:Ved_zoom` | `fig_Ved_zoom.pdf` | défauts:268 | `make_figures_memoire.py` | `donnees/M2_plateau/ved_analysis.npz` | même contenu |
 | `fig:Ved` | `fig_Ved.pdf` | défauts:284 | `make_figures_memoire.py` | `ved_analysis.npz` + C_N de `config/production.json` | **R10** |
 | `fig:M_scaling` | `fig_M_scaling_final.pdf` | défauts:297 | `make_figures_memoire.py` | `M_analysis.npz` | **R10** |
 | `fig:M_map` | `fig_M_map_final.pdf` | défauts:306 | `make_figures_memoire.py` | `M_analysis.npz` | **R10** |
 | `fig:M_locality` | `fig_locality_final.pdf` | défauts:360 | `make_figures_memoire.py` | `mwr_locality.npz` | **R10** |
-| `fig:ks_reconstruction` | `fig_ks_reconstruction.pdf` | défauts:402 | `make_figures.py` | `ks_reconstruction.npz` | même contenu |
+| `fig:ks_reconstruction` | `fig_ks_reconstruction.pdf` | défauts:402 | `make_figures_memoire.py` | `ks_reconstruction.npz` | même contenu |
 | `fig:convergence` | `fig_convergence.pdf` | défauts:643 | `make_figures_memoire.py` | `specwd_{5x5,6x6,7x7,8x8,9x9,12x12}_prod.npz` | **R10** |
-| `fig:level2` | `fig_level2.pdf` | défauts:676 | `make_figures.py` | `specwd_*_prod.npz` | **R10** |
+| `fig:level2` | `fig_level2.pdf` | défauts:676 | `make_figures_memoire.py` | `specwd_*_prod.npz` | **R10** |
 | `fig:spectral` | `fig_spectral_final.pdf` | défauts:722 | `make_figures_memoire.py` | `resonance_9x9.npz`, `resonance_criteria_9x9.npz` | **R10** |
 | `fig:epw_validation` | `fig_epw_validation.pdf` | eph:152 | `make_figures_epw.py` (options de production ci-dessous) | `donnees/epw/validation_24k24q_mv0.02.npz` | même contenu |
 | `fig:epw_g_control` | `fig_epw_g_control.pdf` | eph:158 | idem | `donnees/epw/validation_24k24q_mv0.02.npz` | même contenu |
@@ -149,12 +156,11 @@ de date, d'où des PDF reproductibles octet par octet sur une même machine.
 
 | Figure | Pour | Producteur | Données |
 |---|---|---|---|
-| `fig_kaasbjerg_{dos_c,spectral_GKM,sigma_K,sensibilites,superposition}` | ch. 4 (réécriture, décidées) | `make_figures_kaasbjerg.py` | `donnees/kaasbjerg/` ; chiffres à citer : `r8_{dos,gate,spec,fig,sens,sigeff}_results.json`, `r10_c2_results.json` |
-| `alignement_regions` (si retenue) | ch. 4 | `GR:campagnes/M/ch4/ch4_chiffres.py regions` (ne tourne pas ici : lit les `scf.in` de Rorqual) | `donnees/ch4/alignement_regions.{npz,pdf}` |
+| `fig_kaasbjerg_{superposition,spectral_GKM,sigma_K}` (corps), `fig_kaasbjerg_sensibilites` (annexe D), `fig_kaasbjerg_dos_c` (place à décider) | ch. 4 (décision du 2026-10-01) | `make_figures_kaasbjerg.py` | `donnees/kaasbjerg/` ; chiffres à citer : `r8_{dos,gate,spec,fig,sens,sigeff}_results.json`, `r10_c2_results.json` |
+| `fig_alignement_regions` | annexe D (ch. 4), décision du 2026-10-01 | `make_figures_controles.py` (tracé seulement ; les statistiques du npz sont calculées par `GR:campagnes/M/ch4/ch4_chiffres.py regions`, qui lit les `scf.in` de Rorqual et ne tourne pas ici) | `donnees/ch4/alignement_regions.npz` (tableau : `alignement_regions.md`) |
 | `fig_em_coupling` | §2.5 électron-photon | `make_figures_em.py` | `donnees/electron_photon/` |
 | table `em_table` (pas une figure) | §2.5 électron-photon | — (produite dans GR par `campagnes/EM/M4_sigma/make_table.py` et `EM3/make_em3_data.py`) | `donnees/electron_photon/em_table.{csv,tex}`, `em_ring_stats.json`, `em3_table.{csv,md}` |
-| contrôles du ch. 4 : `fig_{offset_profiles_13,levels_vs_invN,kaasbjerg_plateau_ws,resonance_vs_nkint{,_plateau},rcut_aligned,folded_vs_R7,size_3m,localized_3m}` | ch. 4 ou annexe, à décider | `make_figures_controles.py` | `donnees/{controles,alignement,kaasbjerg}/` |
-| figures de travail : `fig_{M_map,M_scaling,locality,spectral,plateau,rcut}`, `fig_Ved_{map,boundary,profile_mean,radial,radial_masked}` | — | `make_figures.py` | `donnees/M2_plateau/` |
+| contrôles du ch. 4 : corps `fig_{kaasbjerg_plateau_ws,folded_vs_R7}` ; annexe D `fig_{offset_profiles_13,rcut_aligned,resonance_vs_nkint_plateau}` (décision du 2026-10-01 ; `fig_{levels_vs_invN,resonance_vs_nkint,size_3m,localized_3m}` écartées, PDF retirés le 2026-10-01) | ch. 4 et annexe D | `make_figures_controles.py` | `donnees/{controles,alignement,kaasbjerg}/` |
 
 ---
 

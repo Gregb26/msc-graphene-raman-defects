@@ -1,16 +1,20 @@
 #!/usr/bin/env python
 """
-Figures finales du mémoire (retouches), style graphene_raman.plotting (memoire.mplstyle), français, données lues dans <results_dir>/*.npz.
-Noms distincts des figures de travail (rien n'est écrasé) :
+Figures du chapiter 4 du mémoire, style graphene_raman.plotting (memoire.mplstyle), français, données lues dans <results_dir>/*.npz.
+C : figures dans le corps du texte. A : figures en annexe.
+
   A: fig_convergence        (a) Γ N_cells vs R_cut, six tailles ; (b) carte plateau (grille × η), référence     — 6.5 × 3.4 po
   C: fig_locality_final     (a) 5×5, (b) 8×8 avec grille aliasée ; (c) 9×9, (d) 12×12                 — 6.5 × 5.6 po
   C: fig_spectral_final     (a) Γ(ε) T vs Born (log) ; (b) δρ ; (c) T̄_ππ(K,K;ε) ; (d) critère det / λ_min       — 6.5 × 5.6 po
   C: fig_M_map_final        (a) π, (b) π*, (c) partie locale projetée, (d) partie non locale projetée ; colorbars M̃ et M_∥ — 6.5 × 6.0 po
   C: fig_M_scaling_final    max|M| vs N, convention cellule unitaire (panneau unique)                           — 6.5 × 4.0 po
   C: fig_Ved                (a) carte 5×5, (b) carte 9×9 (colorbar commune) ; (c) profil radial masqué, + C_N (pointillés, R10) — 6.5 × 7.2 po
-  C: fig_Ved_zoom           inchangée (make_figures.py)
-Usage : python scripts/make_figures_memoire.py [--outdir figures/electron_defect]
+  C: fig_Ved_zoom           V_ed^L dans le plan, zoom ±3 Å : (a) 8×8, (b) 9×9 (reprise à l'identique de make_figures.py)
+  C: fig_ks_reconstruction  |ε_calc − ε_QE| contre N, grilles N×N et denses, moyenne et max (reprise à l'identique de make_figures.py)
+  C: fig_level2             Γ N_cells contre N, paramètres de production (reprise à l'identique de make_figures.py)
+Usage : python scripts/make_figures_defaut.py [--outdir figures/electron_defect]
 """
+
 import argparse, os, numpy as np
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -133,6 +137,45 @@ axc.axhline(0, color=MUTED, lw=0.8); axc.set_yscale("symlog", linthresh=LIN, lin
 axc.set_xlabel(r"Distance au site $r$ (Å)"); axc.set_ylabel(r"$\bar V_\mathrm{ed}^{L}$ (eV)"); axc.legend(title="Super-cellule", ncol=6, fontsize=7, title_fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.20), frameon=False)
 axc.set_title("Moyenne du potentiel local dans le plan du graphène", loc="left", fontsize=9); panel(axc, "c")
 save(fig, "fig_Ved")
+
+# ---------------- 7. trois figures reprises à l'identique de make_figures.py (2026-10-01) : fig_level2, fig_ks_reconstruction, fig_Ved_zoom
+LBL_G_TAUX = r"Taux d'amortissement $\Gamma\,N_\mathrm{cells}$ (meV)"          # libellé de make_figures.py (fig_level2)
+if maps:
+    fig, ax = plt.subplots(); Ns = [int(S.split("x")[0]) for S in maps]; ys = [maps[S][(RC, GRID, ETA)] for S in maps]
+    for S, N, y in zip(maps, Ns, ys): ax.plot([N], [y], "o", color=COL[S], ms=7, label=famlab(S))
+    pts = sorted(zip(Ns, ys)); ax.plot([q[0] for q in pts], [q[1] for q in pts], "-", color=MUTED, lw=1, zorder=0); ax.axvspan(0, cfg["N_min"] - 0.5, color="#e6e6e3", alpha=0.5, lw=0)
+    ax.set_xlabel(r"Taille de la super-cellule $N$ ($N\times N$)"); ax.set_ylabel(LBL_G_TAUX); ax.set_xticks(Ns); ax.set_xlim(min(Ns) - 1, max(Ns) + 1)
+    ax.set_title(rf"$R_\mathrm{{cut}}$ = {RC}, grille {GRID}$^2$, $\eta$ = {ETA} eV", loc="left", fontsize=9); ax.legend(ncol=2, fontsize=8); save(fig, "fig_level2")
+
+ks = f"{RES}/ks_reconstruction.npz"                      # reconstruction KS avec V_p (super-cellule parfaite), moyenne sur bandes et k
+if os.path.exists(ks):
+    K = np.load(ks); mc = []; md = []; xc = []; xd = []
+    for S in SIZES:
+        mc.append(float(K[f"{S}_coarse_mean_meV"]) if f"{S}_coarse_mean_meV" in K else np.nan); xc.append(float(K[f"{S}_coarse_max_meV"]) if f"{S}_coarse_max_meV" in K else np.nan)
+        md.append(float(K[f"{S}_dense_mean_meV"]) if f"{S}_dense_mean_meV" in K else np.nan); xd.append(float(K[f"{S}_dense_max_meV"]) if f"{S}_dense_max_meV" in K else np.nan)
+    Nall = [int(S.split("x")[0]) for S in SIZES]
+    fig, ax = plt.subplots()
+    ax.plot(Nall, mc, "o-", color=C_REF, label=r"grille $N\times N$ : moyenne")
+    ax.plot(Nall, xc, "o--", color=C_REF, mfc="none", label=r"grille $N\times N$ : max")
+    ax.plot(Nall, md, "s-", color=C_T, label="dense : moyenne")
+    ax.plot(Nall, xd, "s--", color=C_T, mfc="none", label="dense : max")
+    ax.set_yscale("log"); ax.set_xticks(Nall); ax.set_xlabel(r"Taille de la super-cellule $N$"); ax.set_ylabel(r"$|\varepsilon_\mathrm{calc} - \varepsilon_\mathrm{QE}|$ (meV)")
+    ax.set_title(r"Reconstruction KS avec $V_p$ (décalage constant retiré), bandes et $k$ confondus", loc="left", fontsize=10); ax.legend(ncol=2)
+    save(fig, "fig_ks_reconstruction")
+
+vfz = f"{RES}/ved_analysis.npz"                           # zoom 8×8 contre 9×9 (±3 Å, même échelle, atomes superposés)
+if os.path.exists(vfz) and "9x9_rad_masked" in np.load(vfz):
+    Vz = np.load(vfz); LINZ = 1e-2; Z = 3.0
+    fig, axs = plt.subplots(1, 2, figsize=(6.5, 3.4), layout="constrained"); vmax = 0.0
+    for S in ("8x8", "9x9"):
+        Xm, Ym, Vm = Vz[f"{S}_map_X"], Vz[f"{S}_map_Y"], Vz[f"{S}_map"]; sel = (np.abs(Xm) <= Z) & (np.abs(Ym) <= Z); vmax = max(vmax, np.abs(Vm[sel]).max())
+    norm = SymLogNorm(linthresh=LINZ, vmin=-vmax, vmax=vmax, base=10)
+    for ax, S, let in ((axs[0], "8x8", "a"), (axs[1], "9x9", "b")):
+        pc = ax.pcolormesh(Vz[f"{S}_map_X"], Vz[f"{S}_map_Y"], Vz[f"{S}_map"], norm=norm, cmap=CMAP_DIV, shading="nearest", rasterized=True)
+        at = Vz[f"{S}_atoms_xy"]; ax.plot(at[:, 0], at[:, 1], "o", mfc="none", mec=INK, mew=0.7, ms=5); ax.plot(0, 0, "x", color=INK, ms=6)
+        ax.set_xlim(-Z, Z); ax.set_ylim(-Z, Z); ax.set_aspect("equal"); ax.set_xlabel(r"$x$ (Å)"); ax.set_title(rf"{lab(S)}, plan $z = z_\mathrm{{C}}$", loc="left", fontsize=10); panel(ax, let)
+    axs[0].set_ylabel(r"$y$ (Å)"); cb = fig.colorbar(pc, ax=axs, shrink=0.9); cb.set_label(r"$V_\mathrm{ed}^L$ (eV), échelle symlog")
+    save(fig, "fig_Ved_zoom")
 
 print("\nFichiers finaux (largeur × hauteur, po) :")
 for n, w, h in DONE: print(f"  {n:24s} {w:.2f} × {h:.2f}")

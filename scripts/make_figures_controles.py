@@ -1,10 +1,12 @@
 """Figures de contrôle du chapitre 4 retenues pour le mémoire, redessinées au style graphene_raman.plotting depuis les
-json/npz des campagnes copiés dans donnees/controles/, donnees/alignement/ et donnees/kaasbjerg/ (config ; aucun calcul). C : figures dans le corps du texte, A : figure en annexe.
+json/npz des campagnes copiés dans donnees/controles/, donnees/alignement/, donnees/kaasbjerg/ et donnees/ch4/ (config ; aucun calcul). C : figures dans le corps du texte, A : figure en annexe.
 
   A: fig_resonance_vs_nkint_plateau        données controles/r9_b_results{,_plateau}.json
   A: fig_rcut_aligned                      max|ΔM|/max|M| contre R_cut, trois alignements ; controles/r9_a3_results{,_plateau}.json
   C: fig_folded_vs_R7                      chaîne repliée contre QE, limite diluée ; controles/r9_c_results.json
   A: fig_offset_profiles_13                profils ΔV et plateau des 13 tailles ; alignement/r10_a1_results.json, alignement/profiles_<S>.npz
+  A: fig_alignement_regions               C_N selon quatre régions d'échantillonnage (A)–(D), 13 tailles ; ch4/alignement_regions.npz
+                                          (statistiques calculées par GR:campagnes/M/ch4/ch4_chiffres.py regions, qui lit les scf.in de Rorqual)
   C: fig_kaasbjerg_plateau_ws              cartes A_cell|M_k'k| autour de K ; kaasbjerg/r10_c2_kaasbjerg_maps.npz
 
 Sortie : figures/electron_defect/fig_<nom>.{pdf,png} (reproductibles au bit, palette.save). Texte en français, panneaux (a), (b), …
@@ -30,6 +32,7 @@ CFG = load_production(verbose=False)                   # données : donnees/<suj
 CTRL = Path(campaigns_dir(CFG, "controles"))           # R7, R9, R10 b/c3, R6 d4
 ALIGN = Path(campaigns_dir(CFG, "alignement"))         # R10 a, c6
 KAAS = Path(campaigns_dir(CFG, "kaasbjerg"))           # R8, R10 c2
+CH4 = Path(campaigns_dir(CFG, "ch4"))                  # campagne M/ch4 (régions d'alignement)
 
 FAM3 = {6, 9, 12, 15, 18, 21, 24, 27}                 # famille N = 3m (K replié sur Γ)
 ALL13 = ["5x5", "6x6", "7x7", "8x8", "9x9", "10x10", "11x11", "12x12", "15x15", "18x18", "21x21", "24x24", "27x27"]
@@ -132,7 +135,7 @@ def fig_offset_profiles_13(outdir):
         r = out["sizes"][S]; Z = np.load(ALIGN / f"profiles_{S}.npz")
         d, s = Z["dist"], Z["shift10"] * 1e3; C = r["C_N_eV"] * 1e3; far = Z["far"]
         ax.axvspan(PLATEAU_FRAC * r["r_max_A"], r["r_max_A"] * 1.03, color=pal.LIGHT, alpha=0.35, lw=0)
-        ax.plot(d, s, "o", ms=1.6, color=pal.NAVY, label=r"sphères de 1,0 Å")
+        ax.plot(d, s, "o", ms=1.6, color=pal.NAVY, label=r"sphères de 1.0 Å")
         ax.axhline(C, color=pal.NAVY, lw=0.8, label=r"$\Delta V_\mathrm{PA}^{(N)}$ (Kumagai–Oba)")
         ax.axhline(r["Lu"]["published_meV"], color=pal.REF, lw=0.8, ls="--", label="site unique (un atome, distances axe par axe)")
         ax.plot(d[far], s[far], "D", ms=3.2, mfc="none", mec=pal.ORANGE, mew=0.9, label="atomes vraiment les plus loin")
@@ -147,10 +150,40 @@ def fig_offset_profiles_13(outdir):
             ax.set_xlabel("Distance à la lacune (Å)", fontsize=7)
     h, l_ = axes[0][0].get_legend_handles_labels()
     fig.legend(h, l_, loc="lower center", ncol=2, fontsize=6, frameon=False, bbox_to_anchor=(0.5, 0.012))
-    fig.text(0.5, 0.004, f"Hors cadre : {', '.join(map(str, sorted(set(nout))))} point(s) par panneau, les premiers voisins de la lacune (1,42 Å). Zone grisée : "
-             + r"$d \geq 0{,}75\, r_\mathrm{max}$.",
+    fig.text(0.5, 0.004, f"Hors cadre : {', '.join(map(str, sorted(set(nout))))} point(s) par panneau, les premiers voisins de la lacune (1.42 Å). Zone grisée : "
+             + r"$d \geq 0.75\, r_\mathrm{max}$.",
              ha="center", va="bottom", fontsize=5.5, color=pal.MUTED)
     fig.tight_layout(rect=(0, 0.065, 1, 1)); save(fig, "fig_offset_profiles_13", outdir); plt.close(fig)
+
+def fig_alignement_regions(outdir):
+    """C_N (moyenne ± rms des décalages de sphère) contre N pour quatre régions d'échantillonnage : (A) d ≥ 0.75 r_max (production),
+    (B) Kumagai–Oba 2D d ≥ N·a/2, (C) Kumagai–Oba 3D d ≥ min(N·a/2, c/2), (D) site unique. Porté de GR:campagnes/M/ch4/ch4_chiffres.py
+    (make_regions_figure) le 2026-10-01 : même tracé, données lues dans le npz au lieu d'être recalculées, point décimal."""
+    Z = np.load(CH4 / "alignement_regions.npz")
+    sizes = [str(S) for S in Z["sizes"]]
+    Ns = np.array([int(Z[f"{S}_N"]) for S in sizes])
+    fam3 = np.array([str(Z[f"{S}_family"]) == "3m" for S in sizes])
+    fig, ax = plt.subplots(figsize=(6.5, 3.6))
+    series = [(r"(A) $\geq 0.75\,r_\mathrm{max}$ (nous)", "meanA", "rmsA", pal.CYCLE[0]),
+              (r"(B) Kumagai–Oba 2D, $\geq N a/2$", "meanB", "rmsB", pal.CYCLE[1]),
+              (r"(C) Kumagai–Oba 3D, $\min(Na/2, c/2)$", "meanC", "rmsC", pal.CYCLE[2])]
+    for i, (lab, mk, rk, col) in enumerate(series):
+        m = np.array([float(Z[f"{S}_{mk}"]) for S in sizes]) * 1e3
+        r = np.array([float(Z[f"{S}_{rk}"]) for S in sizes]) * 1e3
+        off = (i - 1) * 0.12
+        for sel, mark in ((fam3, "o"), (~fam3, "s")):
+            ax.errorbar(Ns[sel] + off, m[sel], yerr=r[sel], fmt=mark, color=col, ms=4, capsize=2, lw=1, label=lab if mark == "o" else None)
+    lu = np.array([float(Z[f"{S}_Lu"]) for S in sizes]) * 1e3
+    for sel, mark in ((fam3, "o"), (~fam3, "s")):
+        ax.plot(Ns[sel] + 0.24, lu[sel], mark, mfc="none", color=pal.CYCLE[3], ms=4, label="(D) site unique" if mark == "o" else None)
+    ax.plot([], [], "o", color=pal.MUTED, label="famille $N = 3m$")
+    ax.plot([], [], "s", color=pal.MUTED, label=r"famille $N \neq 3m$")
+    ax.set_xlabel("Taille de la super-cellule $N$")
+    ax.set_ylabel(r"$\Delta V_\mathrm{PA}^{(N)}$ (meV), moyenne $\pm$ rms")
+    ax.set_xticks(Ns)
+    ax.legend(fontsize=7, ncol=2)
+    fig.tight_layout(); save(fig, "fig_alignement_regions", outdir); plt.close(fig)
+
 
 def fig_kaasbjerg_plateau_ws(outdir):
     """Cartes A_cell|M_k'k| (valence, conduction) autour de K, M2 tel quel et plateau (i), étiquettes de Wigner-Seitz."""
@@ -177,7 +210,7 @@ def fig_kaasbjerg_plateau_ws(outdir):
 
 
 FIGURES = {f.__name__[4:]: f for f in (fig_resonance_vs_nkint_plateau, fig_rcut_aligned,
-                                       fig_folded_vs_R7, fig_offset_profiles_13, fig_kaasbjerg_plateau_ws)}
+                                       fig_folded_vs_R7, fig_offset_profiles_13, fig_alignement_regions, fig_kaasbjerg_plateau_ws)}
 
 
 def main():

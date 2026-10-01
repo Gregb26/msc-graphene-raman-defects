@@ -1,12 +1,10 @@
-"""Figure du chapitre 2 (phonons du graphène parfait), style graphene_raman.plotting, texte en français :
+"""Figure du chapitre 2 (phonons du graphène parfait), style graphene_raman.plotting, texte en français. C : figures dans le corps du texte. A : figures en annexe.
 
-    C: fig_phfreq_phdos   (a) dispersion matdyn ω_νq sur Γ–K–M–Γ, (b) DOS de phonons matdyn sur grille dense ; cm⁻¹.
-                     Même contenu que `fig_epw_phonons` (section 7 de make_figures_epw.py), extraite ici parce qu'elle ne relève que des
-                     phonons (ex `make_fig_phonons.py`, rapatrié le 2026-09-30).
+    C: fig_phfreq_phdos   (a) fréquences de phonon sur G-K-M-K, (b) DOS de phonons sur grille dense, cm⁻¹.
 
 Données : <phonon_dir>/validation_<tag>.npz (ph_s, ph_F_matdyn) et <phonon_dir>/phdos_<tag>.npz, <phonon_dir> = config.phonon_dir()
-(results/phonon ; copies des npz de results/epw de la chaîne de production 24k-24q_mv0.02).
-Sortie : figures/electron_phonon/fig_phfreq_phdos.{pdf,png}, reproductible au bit (palette.save).
+Sortie : figures/electron_phonon/fig_phfreq_phdos.{pdf,png},
+
 Usage : python scripts/make_figures_phonons.py [--tag 24k24q_mv0.02] [--outdir figures/electron_phonon]
 """
 import argparse

@@ -20,12 +20,12 @@
 
 % ---- Entrées ----
 \node[inbox] (sc) at (-3.2, 0)
-    {Super-cellules $N\times N$ parfaite et défectueuse \\[2pt]
+    {\texttt{QuantumESPRESSO} \\ Super-cellules $N\times N$ parfaite et défectueuse \\[2pt]
      $V^\text{L}, \hat V^\text{NL}$, $\bm{\tau}_\alpha$};
 \node[num] at (sc.north west) {(1)};
 
 \node[inbox] (uc) at (3.2, 0)
-    {Cellule unitaire grille $pN\times pN$ \\[2pt]
+    {\texttt{QuantumESPRESSO} \\ Cellule unitaire grille $pN\times pN$ \\[2pt]
      $C_{n\kv}(\Gv)$, $\varepsilon_{n\kv}$};
 \node[num] at (uc.north west) {(2)};
 
@@ -72,7 +72,7 @@
 
 % ---- Quantités préalables (boîtes latérales) ----
 \node[sidebox] (wan) at (5.6, -8.8)
-    {Wannier90\\$U^{(\kv)}$, $H(\Rv)$};
+    {\texttt{Wannier90}\\$U^{(\kv)}$, $H(\Rv)$};
 
 \node[sidebox] (PA) at (-5.6, -10.6)
     {$\Delta V^{(N)}_\text{PA}$, éq.~\eqref{eqn:VPA}\\{\scriptsize loin de la lacune}};
@@ -98,7 +98,7 @@
 % ---- Sortie ----
 \draw[arrow] (trunc.south) -- ++(0, -1.0)
     node[below, font=\linespread{1}\selectfont\small, align=center]
-    {Quantités physiques\\
+    {Interpolation et \\ quantités physiques\\
       (section~\ref{sec:mbt_défaut})};
 
 % ---- Cadres : base de Bloch et base de Wannier ----

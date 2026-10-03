@@ -1,17 +1,19 @@
 % Généré par scripts/make_tables.py : ne pas éditer (python scripts/make_tables.py --only rcut_M).
 % tab:rcut_M, §4.1.5 → annexe D. Valeurs et sources cellule par cellule : tables/SOURCES.md.
-% Sources : M2_plateau/m_rcut_convergence.csv
-\begin{tabular}{c c cc cc}
+% Sources : M2_plateau/m_rcut_convergence.csv ; kaasbjerg/r10_c2_results.json
+\begin{tabular}{c c cc cc cc cc}
     \hline\hline
-    & & \multicolumn{2}{c}{$9\times9$} & \multicolumn{2}{c}{$12\times12$} \\
-    $R_\text{cut}$ & Nombre de cellules & $\pi$--$\pi^*$ & diag. & $\pi$--$\pi^*$ & diag. \\
+    & & \multicolumn{4}{c}{$9\times9$} & \multicolumn{4}{c}{$12\times12$} \\
+    \cline{3-6}\cline{7-10}
+    & & \multicolumn{2}{c}{brut} & \multicolumn{2}{c}{aligné} & \multicolumn{2}{c}{brut} & \multicolumn{2}{c}{aligné} \\
+    $R_\text{cut}$ & Cellules & $\pi$--$\pi^*$ & diag. & $\pi$--$\pi^*$ & diag. & $\pi$--$\pi^*$ & diag. & $\pi$--$\pi^*$ & diag. \\
     \hline
-    0 & 1   & 32~\%   & 32~\%  & 99~\%  & 87~\% \\
-    1 & 5   & 19~\%   & 15~\%  & 19~\%  & 19~\% \\
-    2 & 13  & 6.6~\%  & 4.6~\% & 13~\%  & 13~\% \\
-    3 & 29  & 2.6~\%  & 1.7~\% & 3.3~\% & 3.1~\% \\
-    4 & 49  & 2.0~\%  & 1.4~\% & 2.5~\% & 1.5~\% \\
-    5 & 81  & 1.1~\%  & 1.2~\% & 1.6~\% & 0.85~\% \\
-    6 & 113 & 0.92~\% & 1.0~\% & 1.1~\% & 0.87~\% \\
+    0 & 1   & 32~\%   & 26~\%   & 32~\%   & 32~\%  & 99~\%  & 85~\%  & 99~\%  & 87~\% \\
+    1 & 5   & 19~\%   & 23~\%   & 19~\%   & 15~\%  & 20~\%  & 24~\%  & 19~\%  & 19~\% \\
+    2 & 13  & 13~\%   & 12~\%   & 6.6~\%  & 4.6~\% & 15~\%  & 14~\%  & 13~\%  & 13~\% \\
+    3 & 29  & 8.8~\%  & 7.2~\%  & 2.6~\%  & 1.7~\% & 12~\%  & 10~\%  & 3.3~\% & 3.1~\% \\
+    4 & 49  & 5.8~\%  & 4.8~\%  & 2.0~\%  & 1.4~\% & 10~\%  & 8.4~\% & 2.5~\% & 1.5~\% \\
+    5 & 81  & 1.4~\%  & 1.6~\%  & 1.1~\%  & 1.2~\% & 6.9~\% & 5.9~\% & 1.6~\% & 0.85~\% \\
+    6 & 113 & 0.85~\% & 0.97~\% & 0.92~\% & 1.0~\% & 3.8~\% & 3.6~\% & 1.1~\% & 0.87~\% \\
     \hline\hline
 \end{tabular}

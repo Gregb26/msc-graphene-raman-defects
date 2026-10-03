@@ -168,3 +168,40 @@ Dans chaque tableau, la colonne « Section » renvoie à l'endroit du texte où 
         \hline\hline
     \end{tabular}
 \end{table}
+
+% ------------------------------------------------------------------------------------------------
+% SECTION PROVISOIRE (2026-10-03) : éléments déplacés du chapitre 4 pendant sa réécriture (chantier 1),
+% à ranger dans la chaîne « matrice M » à la restructuration de l'annexe (chantier 3). Légendes à revoir.
+% ------------------------------------------------------------------------------------------------
+\section{Vérifications de la matrice de couplage électron-défaut}\label{sec:annexe_M_tests}
+
+Cette section rassemble les vérifications de la chaîne de calcul de la matrice $M$ du chapitre~\ref{chap:défauts} qui justifient un paramètre numérique : la convergence de l'interpolation en $R_\text{cut}$ et les tests de cohérence interne.
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \setlength{\tabcolsep}{3pt}
+    % À REVOIR : légende provisoire du 2026-10-03
+    \caption[Erreur de troncature sur les éléments de
+    matrice interpolés.]{Écart relatif maximal entre les éléments de
+    matrice interpolés sur une grille de sortie $60\times60$ avec troncature de
+    la somme~\eqref{eqn:M_interp} à $R',R \le R_\text{cut}$, où $R$ et $R'$ sont des normes euclidiennes d'indices réduits, et ceux
+    obtenus avec toutes les cellules unitaires de la représentation réelle, pour les
+    super-cellules $9\times9$ et $12\times12$, sur les valeurs singulières
+    des blocs $\pi$--$\pi^*$ et sur les éléments
+    diagonaux $M_{nn}(\kv,\kv)$, avec les matrices brutes et alignées (section~\ref{sec:M_détails}). La deuxième colonne donne le nombre de
+    cellules unitaires retenues.}
+    \label{tab:rcut_M}
+    \input{tables/rcut_M}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \setlength{\tabcolsep}{2pt}
+    % À REVOIR : légende provisoire du 2026-10-03
+    \caption[Vérifications de la chaîne de calcul de la matrice de
+    couplage.]{Vérifications de la chaîne de calcul de la matrice $M$ : les tests et la quantité qu'ils contrôlent, la valeur obtenue et le seuil d'acceptation. Sauf mention contraire la valeur est celle de la super-cellule de référence $9\times9$ ; les reconstructions de Kohn-Sham, l'hermiticité et l'application directe de $V_\text{ed}$ sont données en fourchette ou en maximum sur les six tailles, et le test de convention intensive porte sur chaque famille de tailles.}
+    \label{tab:tests_M}
+    \input{tables/tests_M}
+\end{table}

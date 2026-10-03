@@ -75,46 +75,74 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 
 ## `tab:rcut_M` — `tables/rcut_M.tex` (§4.1.5 → annexe D)
 
-- Production finale : alignement de Kumagai–Oba et étiquettes de Wigner-Seitz ; contrôle : le csv = `kaasbjerg/r10_c2_results.json` : rcut.<S>.plateau_ws à 1e-4 près. Grille fine 60² (colonne `fine_grid`).
+- Brut = matrices non alignées (`rcut.<S>.tel_quel`, étiquettes brutes) ; aligné = production finale (alignement de Kumagai–Oba, étiquettes de Wigner-Seitz), lu dans le csv et contrôlé contre `kaasbjerg/r10_c2_results.json` : rcut.<S>.plateau_ws à 1e-4 près (décision du 2026-10-03 : les deux côte à côte). Grille de sortie 60² (colonne `fine_grid`).
 - Deux chiffres significatifs.
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
 | 0 | cellules | 1 | 1 | `M2_plateau/m_rcut_convergence.csv : n_sites [R_cut = 0]` |
-| 0 | 9x9 π–π* | 32~\% | 0.31708 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 0]` |
-| 0 | 9x9 diag. | 32~\% | 0.31708 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 0]` |
-| 0 | 12x12 π–π* | 99~\% | 0.99271 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 0]` |
-| 0 | 12x12 diag. | 87~\% | 0.86782 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 0]` |
+| 0 | 9x9 brut π–π* | 32~\% | 0.31515496547888816 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.sv_mismatch_pi_blocks [R_cut = 0]` |
+| 0 | 9x9 brut diag. | 26~\% | 0.25912840266165366 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.diag_max_dM_over_max [R_cut = 0]` |
+| 0 | 9x9 aligné π–π* | 32~\% | 0.31708 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 0]` |
+| 0 | 9x9 aligné diag. | 32~\% | 0.31708 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 0]` |
+| 0 | 12x12 brut π–π* | 99~\% | 0.9934201967117877 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.sv_mismatch_pi_blocks [R_cut = 0]` |
+| 0 | 12x12 brut diag. | 85~\% | 0.8534475799814677 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.diag_max_dM_over_max [R_cut = 0]` |
+| 0 | 12x12 aligné π–π* | 99~\% | 0.99271 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 0]` |
+| 0 | 12x12 aligné diag. | 87~\% | 0.86782 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 0]` |
 | 1 | cellules | 5 | 5 | `M2_plateau/m_rcut_convergence.csv : n_sites [R_cut = 1]` |
-| 1 | 9x9 π–π* | 19~\% | 0.18508 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 1]` |
-| 1 | 9x9 diag. | 15~\% | 0.15005 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 1]` |
-| 1 | 12x12 π–π* | 19~\% | 0.18948 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 1]` |
-| 1 | 12x12 diag. | 19~\% | 0.18925 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 1]` |
+| 1 | 9x9 brut π–π* | 19~\% | 0.1894515006298804 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.sv_mismatch_pi_blocks [R_cut = 1]` |
+| 1 | 9x9 brut diag. | 23~\% | 0.22987228362554646 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.diag_max_dM_over_max [R_cut = 1]` |
+| 1 | 9x9 aligné π–π* | 19~\% | 0.18508 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 1]` |
+| 1 | 9x9 aligné diag. | 15~\% | 0.15005 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 1]` |
+| 1 | 12x12 brut π–π* | 20~\% | 0.1994766568776596 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.sv_mismatch_pi_blocks [R_cut = 1]` |
+| 1 | 12x12 brut diag. | 24~\% | 0.2400524420295236 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.diag_max_dM_over_max [R_cut = 1]` |
+| 1 | 12x12 aligné π–π* | 19~\% | 0.18948 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 1]` |
+| 1 | 12x12 aligné diag. | 19~\% | 0.18925 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 1]` |
 | 2 | cellules | 13 | 13 | `M2_plateau/m_rcut_convergence.csv : n_sites [R_cut = 2]` |
-| 2 | 9x9 π–π* | 6.6~\% | 0.066075 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 2]` |
-| 2 | 9x9 diag. | 4.6~\% | 0.0462 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 2]` |
-| 2 | 12x12 π–π* | 13~\% | 0.12521 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 2]` |
-| 2 | 12x12 diag. | 13~\% | 0.12506 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 2]` |
+| 2 | 9x9 brut π–π* | 13~\% | 0.13431206811766086 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.sv_mismatch_pi_blocks [R_cut = 2]` |
+| 2 | 9x9 brut diag. | 12~\% | 0.1230155169300484 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.diag_max_dM_over_max [R_cut = 2]` |
+| 2 | 9x9 aligné π–π* | 6.6~\% | 0.066075 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 2]` |
+| 2 | 9x9 aligné diag. | 4.6~\% | 0.0462 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 2]` |
+| 2 | 12x12 brut π–π* | 15~\% | 0.149492101109121 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.sv_mismatch_pi_blocks [R_cut = 2]` |
+| 2 | 12x12 brut diag. | 14~\% | 0.13804522708042136 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.diag_max_dM_over_max [R_cut = 2]` |
+| 2 | 12x12 aligné π–π* | 13~\% | 0.12521 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 2]` |
+| 2 | 12x12 aligné diag. | 13~\% | 0.12506 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 2]` |
 | 3 | cellules | 29 | 29 | `M2_plateau/m_rcut_convergence.csv : n_sites [R_cut = 3]` |
-| 3 | 9x9 π–π* | 2.6~\% | 0.025737 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 3]` |
-| 3 | 9x9 diag. | 1.7~\% | 0.017074 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 3]` |
-| 3 | 12x12 π–π* | 3.3~\% | 0.032908 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 3]` |
-| 3 | 12x12 diag. | 3.1~\% | 0.030979 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 3]` |
+| 3 | 9x9 brut π–π* | 8.8~\% | 0.08843096815169486 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.sv_mismatch_pi_blocks [R_cut = 3]` |
+| 3 | 9x9 brut diag. | 7.2~\% | 0.07210267109666697 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.diag_max_dM_over_max [R_cut = 3]` |
+| 3 | 9x9 aligné π–π* | 2.6~\% | 0.025737 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 3]` |
+| 3 | 9x9 aligné diag. | 1.7~\% | 0.017074 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 3]` |
+| 3 | 12x12 brut π–π* | 12~\% | 0.12428601203516523 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.sv_mismatch_pi_blocks [R_cut = 3]` |
+| 3 | 12x12 brut diag. | 10~\% | 0.09970133773685418 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.diag_max_dM_over_max [R_cut = 3]` |
+| 3 | 12x12 aligné π–π* | 3.3~\% | 0.032908 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 3]` |
+| 3 | 12x12 aligné diag. | 3.1~\% | 0.030979 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 3]` |
 | 4 | cellules | 49 | 49 | `M2_plateau/m_rcut_convergence.csv : n_sites [R_cut = 4]` |
-| 4 | 9x9 π–π* | 2.0~\% | 0.019846 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 4]` |
-| 4 | 9x9 diag. | 1.4~\% | 0.014106 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 4]` |
-| 4 | 12x12 π–π* | 2.5~\% | 0.025296 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 4]` |
-| 4 | 12x12 diag. | 1.5~\% | 0.015291 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 4]` |
+| 4 | 9x9 brut π–π* | 5.8~\% | 0.05755898678110712 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.sv_mismatch_pi_blocks [R_cut = 4]` |
+| 4 | 9x9 brut diag. | 4.8~\% | 0.047704949650745614 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.diag_max_dM_over_max [R_cut = 4]` |
+| 4 | 9x9 aligné π–π* | 2.0~\% | 0.019846 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 4]` |
+| 4 | 9x9 aligné diag. | 1.4~\% | 0.014106 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 4]` |
+| 4 | 12x12 brut π–π* | 10~\% | 0.10363576431997679 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.sv_mismatch_pi_blocks [R_cut = 4]` |
+| 4 | 12x12 brut diag. | 8.4~\% | 0.08366378305309369 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.diag_max_dM_over_max [R_cut = 4]` |
+| 4 | 12x12 aligné π–π* | 2.5~\% | 0.025296 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 4]` |
+| 4 | 12x12 aligné diag. | 1.5~\% | 0.015291 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 4]` |
 | 5 | cellules | 81 | 81 | `M2_plateau/m_rcut_convergence.csv : n_sites [R_cut = 5]` |
-| 5 | 9x9 π–π* | 1.1~\% | 0.01104 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 5]` |
-| 5 | 9x9 diag. | 1.2~\% | 0.011945 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 5]` |
-| 5 | 12x12 π–π* | 1.6~\% | 0.016202 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 5]` |
-| 5 | 12x12 diag. | 0.85~\% | 0.0085068 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 5]` |
+| 5 | 9x9 brut π–π* | 1.4~\% | 0.013976145430797934 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.sv_mismatch_pi_blocks [R_cut = 5]` |
+| 5 | 9x9 brut diag. | 1.6~\% | 0.015671294937633192 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.diag_max_dM_over_max [R_cut = 5]` |
+| 5 | 9x9 aligné π–π* | 1.1~\% | 0.01104 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 5]` |
+| 5 | 9x9 aligné diag. | 1.2~\% | 0.011945 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 5]` |
+| 5 | 12x12 brut π–π* | 6.9~\% | 0.06933623609602667 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.sv_mismatch_pi_blocks [R_cut = 5]` |
+| 5 | 12x12 brut diag. | 5.9~\% | 0.05919708484979451 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.diag_max_dM_over_max [R_cut = 5]` |
+| 5 | 12x12 aligné π–π* | 1.6~\% | 0.016202 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 5]` |
+| 5 | 12x12 aligné diag. | 0.85~\% | 0.0085068 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 5]` |
 | 6 | cellules | 113 | 113 | `M2_plateau/m_rcut_convergence.csv : n_sites [R_cut = 6]` |
-| 6 | 9x9 π–π* | 0.92~\% | 0.0091728 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 6]` |
-| 6 | 9x9 diag. | 1.0~\% | 0.010052 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 6]` |
-| 6 | 12x12 π–π* | 1.1~\% | 0.011178 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 6]` |
-| 6 | 12x12 diag. | 0.87~\% | 0.0086769 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 6]` |
+| 6 | 9x9 brut π–π* | 0.85~\% | 0.008530237975469986 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.sv_mismatch_pi_blocks [R_cut = 6]` |
+| 6 | 9x9 brut diag. | 0.97~\% | 0.009680251897035301 | `kaasbjerg/r10_c2_results.json : rcut.9x9.tel_quel.diag_max_dM_over_max [R_cut = 6]` |
+| 6 | 9x9 aligné π–π* | 0.92~\% | 0.0091728 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [9x9, R_cut = 6]` |
+| 6 | 9x9 aligné diag. | 1.0~\% | 0.010052 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [9x9, R_cut = 6]` |
+| 6 | 12x12 brut π–π* | 3.8~\% | 0.038144140261797334 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.sv_mismatch_pi_blocks [R_cut = 6]` |
+| 6 | 12x12 brut diag. | 3.6~\% | 0.036341753469030756 | `kaasbjerg/r10_c2_results.json : rcut.12x12.tel_quel.diag_max_dM_over_max [R_cut = 6]` |
+| 6 | 12x12 aligné π–π* | 1.1~\% | 0.011178 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 6]` |
+| 6 | 12x12 aligné diag. | 0.87~\% | 0.0086769 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 6]` |
 
 ## `tab:tests_M` — `tables/tests_M.tex` (§4.1.5 → annexe D)
 

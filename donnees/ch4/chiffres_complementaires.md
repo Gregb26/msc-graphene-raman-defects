@@ -104,10 +104,18 @@ Généré par `scripts/chiffres_ch4.py` depuis `donnees/` (ne pas éditer). Sour
 | 12x12 : V̄^L moyen pour 0.75 r_max ≤ r ≤ r_max (r_max = 14.80 Å) | -0.0181 | eV | `M2_plateau/ved_analysis.npz : 12x12_rad_masked` |
 | 12x12 : V̄^L min / max pour 0.75 r_max ≤ r ≤ r_max | -0.0215 / -0.0156 | eV | `M2_plateau/ved_analysis.npz : 12x12_rad_masked` |
 | 12x12 : C_N (Kumagai–Oba) | -0.01869 | eV | `config/production.json : alignment.C_N_eV` |
-| 5x5 : carte, max de V^L dans les 5 % les plus éloignés de la lacune (coins) | -0.0785 | eV | `M2_plateau/ved_analysis.npz : 5x5_map, 5x5_map_X, 5x5_map_Y` |
-| 5x5 : carte, médiane de V^L dans les 5 % les plus éloignés de la lacune | -0.12 | eV | `M2_plateau/ved_analysis.npz : 5x5_map` |
-| 9x9 : carte, max de V^L dans les 5 % les plus éloignés de la lacune (coins) | -0.0191 | eV | `M2_plateau/ved_analysis.npz : 9x9_map, 9x9_map_X, 9x9_map_Y` |
-| 9x9 : carte, médiane de V^L dans les 5 % les plus éloignés de la lacune | -0.025 | eV | `M2_plateau/ved_analysis.npz : 9x9_map` |
+| 5x5 : distance d'image minimale maximale sur la carte (sommets de Wigner-Seitz, L/√3) | 7.118 | Å | `M2_plateau/ved_analysis.npz : 5x5_map_X, 5x5_map_Y, 5x5_a` |
+| 5x5 : sommet de Wigner-Seitz (−L/√3, 0), distance de l'atome le plus proche | 1.4e-09 | Å | `M2_plateau/ved_analysis.npz : 5x5_atoms_xy` |
+| 5x5 : carte, V^L à moins de 1.5 Å du sommet (−L/√3, 0) : min / médiane / max ; fraction positive | -0.00292 / 0.0632 / 0.298 ; 0.99 | eV | `M2_plateau/ved_analysis.npz : 5x5_map, 5x5_map_X, 5x5_map_Y` |
+| 5x5 : sommet de Wigner-Seitz (+L/√3, 0), distance de l'atome le plus proche | 1.4 | Å | `M2_plateau/ved_analysis.npz : 5x5_atoms_xy` |
+| 5x5 : carte, V^L à moins de 1.5 Å du sommet (+L/√3, 0) : min / médiane / max ; fraction positive | -0.133 / -0.111 / -0.102 ; 0.0 | eV | `M2_plateau/ved_analysis.npz : 5x5_map, 5x5_map_X, 5x5_map_Y` |
+| 5x5 : carte, 5 % des points les plus loin de toute lacune (distance d'image minimale) : médiane / max | -0.0563 / 0.298 | eV | `M2_plateau/ved_analysis.npz : 5x5_map` |
+| 9x9 : distance d'image minimale maximale sur la carte (sommets de Wigner-Seitz, L/√3) | 12.81 | Å | `M2_plateau/ved_analysis.npz : 9x9_map_X, 9x9_map_Y, 9x9_a` |
+| 9x9 : sommet de Wigner-Seitz (−L/√3, 0), distance de l'atome le plus proche | 2.6e-09 | Å | `M2_plateau/ved_analysis.npz : 9x9_atoms_xy` |
+| 9x9 : carte, V^L à moins de 1.5 Å du sommet (−L/√3, 0) : min / médiane / max ; fraction positive | -0.0617 / -0.0268 / -0.0156 ; 0.0 | eV | `M2_plateau/ved_analysis.npz : 9x9_map, 9x9_map_X, 9x9_map_Y` |
+| 9x9 : sommet de Wigner-Seitz (+L/√3, 0), distance de l'atome le plus proche | 1.3e-09 | Å | `M2_plateau/ved_analysis.npz : 9x9_atoms_xy` |
+| 9x9 : carte, V^L à moins de 1.5 Å du sommet (+L/√3, 0) : min / médiane / max ; fraction positive | -0.0694 / -0.0324 / -0.0216 ; 0.0 | eV | `M2_plateau/ved_analysis.npz : 9x9_map, 9x9_map_X, 9x9_map_Y` |
+| 9x9 : carte, 5 % des points les plus loin de toute lacune (distance d'image minimale) : médiane / max | -0.0255 / -0.0137 | eV | `M2_plateau/ved_analysis.npz : 9x9_map` |
 
 ## D. fig:M_locality
 

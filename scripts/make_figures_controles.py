@@ -7,7 +7,7 @@ json/npz des campagnes copiés dans donnees/controles/, donnees/alignement/, don
   A: fig_offset_profiles_13                profils ΔV et plateau des 13 tailles ; alignement/r10_a1_results.json, alignement/profiles_<S>.npz
   A: fig_alignement_regions               C_N selon quatre régions d'échantillonnage (A)–(D), 13 tailles ; ch4/alignement_regions.npz
                                           (statistiques calculées par GR:campagnes/M/ch4/ch4_chiffres.py regions, qui lit les scf.in de Rorqual)
-  C: fig_kaasbjerg_plateau_ws              cartes A_cell|M_k'k| autour de K ; kaasbjerg/r10_c2_kaasbjerg_maps.npz
+  C: fig_kaasbjerg_plateau_ws              cartes A_cell|M_k'k| autour de K, matrices alignées seulement (décision du 2026-10-02) ; kaasbjerg/r10_c2_kaasbjerg_maps.npz
 
 Sortie : figures/electron_defect/fig_<nom>.{pdf,png} (reproductibles au bit, palette.save). Texte en français, panneaux (a), (b), …
 Usage : python scripts/make_figures_controles.py [--only nom,nom] [--outdir figures/electron_defect]
@@ -186,17 +186,17 @@ def fig_alignement_regions(outdir):
 
 
 def fig_kaasbjerg_plateau_ws(outdir):
-    """Cartes A_cell|M_k'k| (valence, conduction) autour de K, M2 tel quel et plateau (i), étiquettes de Wigner-Seitz."""
+    """Cartes A_cell|M_k'k| (valence, conduction) autour de K, matrices alignées (Kumagai–Oba), étiquettes de Wigner-Seitz.
+    Les panneaux non alignés (anciens (a, b)) sont retirés (décision du 2026-10-02) : le npz les garde (tel_quel_*)."""
     Z = np.load(KAAS / "r10_c2_kaasbjerg_maps.npz"); Bc = Z["Bc"]; kc = Z["kc"]
-    maps = {"tel quel": {"valence": Z["tel_quel_valence"], "conduction": Z["tel_quel_conduction"]},
-            "plateau": {"valence": Z["plateau_valence"], "conduction": Z["plateau_conduction"]}}
+    maps = {"plateau": {"valence": Z["plateau_valence"], "conduction": Z["plateau_conduction"]}}
     imgs = np.array([[i, j] for i in (-1, 0, 1) for j in (-1, 0, 1)]) @ Bc[:2, :2].T
     kf = np.array([kc[i] + imgs[np.argmin(np.linalg.norm(kc[i] + imgs, axis=1))] for i in range(len(kc))])
     corners = np.array([Bc[:2, :2] @ np.array(c) for c in [(2/3, 1/3), (1/3, 2/3), (-1/3, 1/3), (-2/3, -1/3), (-1/3, -2/3), (1/3, -1/3)]])
     corners = corners[np.argsort(np.arctan2(corners[:, 1], corners[:, 0]))]; Kc = Bc @ K_RED
     labs = list(maps); fig, axes = plt.subplots(len(labs), 2, figsize=(6.5, 3.0 * len(labs)), squeeze=False)
     vmax = max(np.nanmax(maps[v][b]) for v in labs for b in ("valence", "conduction")); vmin = min(np.nanmin(maps[v][b]) for v in labs for b in ("valence", "conduction"))
-    tl = {"tel quel": "non aligné, Wigner-Seitz", "plateau": "Kumagai–Oba, Wigner-Seitz"}
+    tl = {"tel quel": "non aligné", "plateau": "aligné"}
     for i, lab in enumerate(labs):
         for j, (band, bl) in enumerate((("valence", r"valence ($\pi$)"), ("conduction", r"conduction ($\pi^*$)"))):
             ax = axes[i][j]; z = maps[lab][band]; m = np.isfinite(z)

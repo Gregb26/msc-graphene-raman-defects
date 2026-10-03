@@ -286,25 +286,35 @@ def t_L_NL():
 
 def t_rcut_M():
     f = RES / "m_rcut_convergence.csv"
-    c2 = read_json(Path(campaigns_dir(CFG, "kaasbjerg", "r10_c2_results.json")))["rcut"]
+    c2p = Path(campaigns_dir(CFG, "kaasbjerg", "r10_c2_results.json"))
+    c2 = read_json(c2p)["rcut"]
     rows = []
     for R in range(7):
         r9, r12 = csv_row(f, size="9x9", R_cut=str(R)), csv_row(f, size="12x12", R_cut=str(R))
         gate(r9["n_sites"] == r12["n_sites"], f"{rel(f)} : n_sites différent entre 9x9 et 12x12 à R_cut {R}")
         cells = [L(f"{R}"), Cell(r9["n_sites"], f"{rel(f)} : n_sites [R_cut = {R}]", int(r9["n_sites"]))]
         for S, r in (("9x9", r9), ("12x12", r12)):
-            j = [x for x in c2[S]["plateau_ws"] if x["R_cut"] == R][0]
+            jb = [x for x in c2[S]["tel_quel"] if x["R_cut"] == R][0]          # brut (non aligné), étiquettes brutes
+            ja = [x for x in c2[S]["plateau_ws"] if x["R_cut"] == R][0]        # aligné (Kumagai–Oba), Wigner-Seitz = csv
+            for col in ("sv_mismatch_pi_blocks", "diag_max_dM_over_max"):
+                v = float(jb[col])
+                cells.append(Cell(pct(v), f"{rel(c2p)} : rcut.{S}.tel_quel.{col} [R_cut = {R}]", v))
             for col in ("sv_mismatch_pi_blocks", "diag_max_dM_over_max"):
                 v = float(r[col])
-                gate(abs(v - j[col]) <= 1e-4 * abs(j[col]), f"{rel(f)} : {col} [{S}, R_cut {R}] ≠ r10_c2_results.json plateau_ws")
+                gate(abs(v - ja[col]) <= 1e-4 * abs(ja[col]), f"{rel(f)} : {col} [{S}, R_cut {R}] ≠ r10_c2_results.json plateau_ws")
                 cells.append(Cell(pct(v), f"{rel(f)} : {col} [{S}, R_cut = {R}]", v))
         rows.append(cells)
-    head = [r"& & \multicolumn{2}{c}{$9\times9$} & \multicolumn{2}{c}{$12\times12$} \\",
-            r"$R_\text{cut}$ & Nombre de cellules & $\pi$--$\pi^*$ & diag. & $\pi$--$\pi^*$ & diag. \\"]
-    return Table("rcut_M", "tab:rcut_M", "§4.1.5 → annexe D", "c c cc cc", head,
-                 ["R_cut", "cellules", "9x9 π–π*", "9x9 diag.", "12x12 π–π*", "12x12 diag."], rows,
-                 ["Production finale : alignement de Kumagai–Oba et étiquettes de Wigner-Seitz ; contrôle : le csv = "
-                  "`kaasbjerg/r10_c2_results.json` : rcut.<S>.plateau_ws à 1e-4 près. Grille fine 60² (colonne `fine_grid`).",
+    head = [r"& & \multicolumn{4}{c}{$9\times9$} & \multicolumn{4}{c}{$12\times12$} \\",
+            r"\cline{3-6}\cline{7-10}",
+            r"& & \multicolumn{2}{c}{brut} & \multicolumn{2}{c}{aligné} & \multicolumn{2}{c}{brut} & \multicolumn{2}{c}{aligné} \\",
+            r"$R_\text{cut}$ & Cellules & $\pi$--$\pi^*$ & diag. & $\pi$--$\pi^*$ & diag. & $\pi$--$\pi^*$ & diag. & $\pi$--$\pi^*$ & diag. \\"]
+    return Table("rcut_M", "tab:rcut_M", "§4.1.5 → annexe D", "c c cc cc cc cc", head,
+                 ["R_cut", "cellules", "9x9 brut π–π*", "9x9 brut diag.", "9x9 aligné π–π*", "9x9 aligné diag.",
+                  "12x12 brut π–π*", "12x12 brut diag.", "12x12 aligné π–π*", "12x12 aligné diag."], rows,
+                 ["Brut = matrices non alignées (`rcut.<S>.tel_quel`, étiquettes brutes) ; aligné = production finale "
+                  "(alignement de Kumagai–Oba, étiquettes de Wigner-Seitz), lu dans le csv et contrôlé contre "
+                  "`kaasbjerg/r10_c2_results.json` : rcut.<S>.plateau_ws à 1e-4 près (décision du 2026-10-03 : les deux côte à côte). "
+                  "Grille de sortie 60² (colonne `fine_grid`).",
                   "Deux chiffres significatifs."])
 
 

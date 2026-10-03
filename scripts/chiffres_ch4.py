@@ -3,7 +3,7 @@ statistiques sur les npz/csv de production). Complète donnees/ch4/table_v1_fina
 
   A. fig:M_map  : M̃_π, M̃_π*, M^L_∥ et M^NL_∥ sur toute la zone (grille élargie 27×27 de la 9×9), brut et aligné
   B. grille interne N_k^int : écarts 300 → 600 sur la fenêtre ±3 eV, la zone |ε − E_D| ≤ 0.3 eV et au point de Dirac
-  C. fig:Ved    : cœur au site, décroissance, fond loin de la lacune (comparé à C_N), coin de la 5×5
+  C. fig:Ved    : cœur au site, décroissance, fond loin de la lacune (comparé à C_N), région la plus loin de toute lacune (sommets de Wigner-Seitz ; 5×5 positive)
   D. fig:M_locality : poids sur le site, décroissance sur les premières mailles, plancher
   E. dérivés    : fraction locale à K (tab:L_NL), A_cell·M̄(K), dispersion de max|M| en N (fig:M_scaling)
 
@@ -84,11 +84,31 @@ for S in SIZES:
     put("C", f"{S} : V̄^L min / max pour 0.75 r_max ≤ r ≤ r_max", f"{f(v[far].min(), 3)} / {f(v[far].max(), 3)}", "eV", f"{src} : {S}_rad_masked")
     put("C", f"{S} : C_N (Kumagai–Oba)", f(alignment_C(CFG, S), 4), "eV", "config/production.json : alignment.C_N_eV")
 for S in ("5x5", "9x9"):
+    # Région la plus éloignée de la lacune ET de ses images (correction du 2026-10-03). L'ancienne statistique prenait
+    # la distance simple au site dans le losange tracé : ses « 5 % les plus éloignés » étaient les sommets aigus du
+    # losange, à 6.2 Å (5×5) d'une image, et non la région loin de toute lacune. La carte est tracée dans le losange
+    # a1, a2 à 60° avec a1 + a2 selon x (demi-diagonales (√3/2) L et L/2, L = N a) : le point le plus loin de toute
+    # image est le sommet de la cellule de Wigner-Seitz, à L/√3 selon ±x, où se trouve un atome.
     X, Y, M = V[f"{S}_map_X"], V[f"{S}_map_Y"], V[f"{S}_map"]
-    i0 = np.unravel_index(np.argmax(M), M.shape); d = np.hypot(X - X[i0], Y - Y[i0])
-    loin = d >= 0.95 * d.max()
-    put("C", f"{S} : carte, max de V^L dans les 5 % les plus éloignés de la lacune (coins)", f(M[loin].max(), 3), "eV", f"{src} : {S}_map, {S}_map_X, {S}_map_Y")
-    put("C", f"{S} : carte, médiane de V^L dans les 5 % les plus éloignés de la lacune", f(np.median(M[loin]), 3), "eV", f"{src} : {S}_map")
+    N = int(S.split("x")[0]); Lbox = N * float(V[f"{S}_a"])
+    a1, a2 = Lbox * np.array([np.sqrt(3) / 2, -0.5]), Lbox * np.array([np.sqrt(3) / 2, 0.5])
+    assert abs(X.max() - np.sqrt(3) / 2 * Lbox) < 0.3 and abs(Y.max() - Lbox / 2) < 0.3, f"{S} : losange de la carte ≠ (a1, a2) supposés"
+    dimg = np.full(M.shape, np.inf)
+    for i in (-1, 0, 1):
+        for j in (-1, 0, 1):
+            img = i * a1 + j * a2
+            dimg = np.minimum(dimg, np.hypot(X - img[0], Y - img[1]))
+    rws = Lbox / np.sqrt(3)
+    put("C", f"{S} : distance d'image minimale maximale sur la carte (sommets de Wigner-Seitz, L/√3)", f(dimg.max(), 4), "Å", f"{src} : {S}_map_X, {S}_map_Y, {S}_a")
+    at = V[f"{S}_atoms_xy"]
+    for sgn, lab in ((-1, "(−L/√3, 0)"), (+1, "(+L/√3, 0)")):          # les deux sommets de Wigner-Seitz contenus dans le losange
+        c = np.array([sgn * rws, 0.0]); sel = np.hypot(X - c[0], Y - c[1]) < 1.5
+        da = float(np.min(np.hypot(at[:, 0] - c[0], at[:, 1] - c[1])))
+        put("C", f"{S} : sommet de Wigner-Seitz {lab}, distance de l'atome le plus proche", f(da, 2), "Å", f"{src} : {S}_atoms_xy")
+        put("C", f"{S} : carte, V^L à moins de 1.5 Å du sommet {lab} : min / médiane / max ; fraction positive",
+            f"{f(M[sel].min(), 3)} / {f(np.median(M[sel]), 3)} / {f(M[sel].max(), 3)} ; {f(np.mean(M[sel] > 0), 2)}", "eV", f"{src} : {S}_map, {S}_map_X, {S}_map_Y")
+    loin5 = dimg >= np.quantile(dimg, 0.95)
+    put("C", f"{S} : carte, 5 % des points les plus loin de toute lacune (distance d'image minimale) : médiane / max", f"{f(np.median(M[loin5]), 3)} / {f(M[loin5].max(), 3)}", "eV", f"{src} : {S}_map")
 
 # ---------------- D. fig:M_locality (grilles élargies ; 5×5 et 8×8 aussi grossières)
 L = np.load(RES / "mwr_locality.npz")

@@ -119,6 +119,16 @@ for S in ("5x5", "6x6", "7x7", "8x8", "9x9", "10x10", "11x11", "12x12"):
 vm = [c6[S]["vacuum_mean_meV"] for S in ("5x5", "6x6", "7x7", "8x8", "9x9", "10x10", "11x11", "12x12")]
 put("C", "ΔV brut dans le vide, N = 5 à 12 : min / max des moyennes", f"{min(vm):.1f} / {max(vm):.1f}", "meV", "alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV")
 
+# dépendance en N de ΔV_PA (bloc Alignement du potentiel, 2026-10-03) : ajustement C_N = a + b/N² sur la famille 3m, N ≥ 9
+CN = CFG["alignment"]["C_N_eV"]
+S3 = ["9x9", "12x12", "15x15", "18x18", "21x21", "24x24", "27x27"]
+Nn = np.array([int(S.split("x")[0]) for S in S3], float); yy = np.array([1e3 * CN[S] for S in S3])
+AA = np.stack([np.ones_like(Nn), 1 / Nn**2], 1); (a0, b0) = np.linalg.lstsq(AA, yy, rcond=None)[0]
+put("C", "ΔV_PA^(N), famille 3m, N = 9 à 27 : ajustement a + b/N² (a, b)", f"{a0:.1f}, {b0:.0f}", "meV", "config/production.json : alignment.C_N_eV [9x9 … 27x27]")
+put("C", "ΔV_PA^(N), famille 3m, N = 9 à 27 : rms de l'ajustement a + b/N²", f(np.sqrt(np.mean((AA @ [a0, b0] - yy) ** 2)), 2), "meV", "id.")
+put("C", "ΔV_PA^(N) − ΔV_vide, N = 6, 7, 8, 9, 12 (sites en plan contre vide)", " / ".join(f"{1e3 * CN[S] - c6[S]['vacuum_mean_meV']:.1f}" for S in ("6x6", "7x7", "8x8", "9x9", "12x12")), "meV",
+    "config/production.json : alignment.C_N_eV ; alignement/r10_c6_results.json : vacuum_mean_meV")
+
 # ---------------- D. fig:M_locality (grilles élargies ; 5×5 et 8×8 aussi grossières)
 L = np.load(RES / "mwr_locality.npz")
 src = "M2_plateau/mwr_locality.npz"

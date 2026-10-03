@@ -125,6 +125,9 @@ Généré par `scripts/chiffres_ch4.py` depuis `donnees/` (ne pas éditer). Sour
 | 11x11 : ΔV brut dans le vide, |z| > 5 Å : moyenne ± écart-type | -3.0 ± 3.1 | meV | `alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV, vacuum_std_meV` |
 | 12x12 : ΔV brut dans le vide, |z| > 5 Å : moyenne ± écart-type | -3.7 ± 4.5 | meV | `alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV, vacuum_std_meV` |
 | ΔV brut dans le vide, N = 5 à 12 : min / max des moyennes | -16.2 / -3.0 | meV | `alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV` |
+| ΔV_PA^(N), famille 3m, N = 9 à 27 : ajustement a + b/N² (a, b) | -11.6, -1083 | meV | `config/production.json : alignment.C_N_eV [9x9 … 27x27]` |
+| ΔV_PA^(N), famille 3m, N = 9 à 27 : rms de l'ajustement a + b/N² | 0.21 | meV | `id.` |
+| ΔV_PA^(N) − ΔV_vide, N = 6, 7, 8, 9, 12 (sites en plan contre vide) | -34.3 / -22.0 / -9.1 / -18.1 / -15.0 | meV | `config/production.json : alignment.C_N_eV ; alignement/r10_c6_results.json : vacuum_mean_meV` |
 
 ## D. fig:M_locality
 

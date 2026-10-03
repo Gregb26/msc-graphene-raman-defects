@@ -4,35 +4,27 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 
 ## `tab:échantillonnage` — `tables/echantillonnage.tex` (§4.1.5, corps)
 
-- Toutes les valeurs en meV. V̄^L(a_CC) **aligné** = brut − C_N (décision du TODO, chantier 1) ; la colonne brute n'est plus affichée (brut = aligné + C_N). ΔE_F ne dépend pas de l'alignement.
-- N = 10 et 11 : SCF de super-cellules seulement (pas de matrice M) ; leurs C_N viennent de la même source.
+- Toutes les valeurs en meV, **brutes** (référence du vide, décision G du 2026-10-03) : ni ΔE_F ni V̄^L(a_CC) ne sont alignés ; les valeurs alignées valent brut − C_N (`config/production.json : alignment.C_N_eV`).
+- N = 10 et 11 : SCF de super-cellules seulement (pas de matrice M).
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
 | 6 | ΔE_F (meV) | $-20.5$ | -20.5 | `M2_plateau/sampling_table.csv : dE_F_meV [N = 6]` |
-| 6 | C_N (meV) | $-50.5$ | -50.50914517629934 | `config/production.json : alignment.C_N_eV [6x6] × 10³` |
-| 6 | V̄^L(a_CC) aligné (meV) | $+58.7$ | 58.709145176299344 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 6] − config/production.json : alignment.C_N_eV [6x6] × 10³` |
+| 6 | V̄^L(a_CC) brut (meV) | $+8.2$ | 8.2 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 6]` |
 | 9 | ΔE_F (meV) | $-2.4$ | -2.4 | `M2_plateau/sampling_table.csv : dE_F_meV [N = 9]` |
-| 9 | C_N (meV) | $-25.1$ | -25.14371002267805 | `config/production.json : alignment.C_N_eV [9x9] × 10³` |
-| 9 | V̄^L(a_CC) aligné (meV) | $+68.4$ | 68.44371002267805 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 9] − config/production.json : alignment.C_N_eV [9x9] × 10³` |
+| 9 | V̄^L(a_CC) brut (meV) | $+43.3$ | 43.3 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 9]` |
 | 12 | ΔE_F (meV) | $+2.5$ | 2.5 | `M2_plateau/sampling_table.csv : dE_F_meV [N = 12]` |
-| 12 | C_N (meV) | $-18.7$ | -18.689593100831818 | `config/production.json : alignment.C_N_eV [12x12] × 10³` |
-| 12 | V̄^L(a_CC) aligné (meV) | $+69.8$ | 69.78959310083182 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 12] − config/production.json : alignment.C_N_eV [12x12] × 10³` |
+| 12 | V̄^L(a_CC) brut (meV) | $+51.1$ | 51.1 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 12]` |
 | 5 | ΔE_F (meV) | $-235.8$ | -235.8 | `M2_plateau/sampling_table.csv : dE_F_meV [N = 5]` |
-| 5 | C_N (meV) | $-57.6$ | -57.562606201523394 | `config/production.json : alignment.C_N_eV [5x5] × 10³` |
-| 5 | V̄^L(a_CC) aligné (meV) | $-306.8$ | -306.83739379847657 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 5] − config/production.json : alignment.C_N_eV [5x5] × 10³` |
+| 5 | V̄^L(a_CC) brut (meV) | $-364.4$ | -364.4 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 5]` |
 | 7 | ΔE_F (meV) | $-866.1$ | -866.1 | `M2_plateau/sampling_table.csv : dE_F_meV [N = 7]` |
-| 7 | C_N (meV) | $-26.9$ | -26.914294254341268 | `config/production.json : alignment.C_N_eV [7x7] × 10³` |
-| 7 | V̄^L(a_CC) aligné (meV) | $-373.2$ | -373.18570574565877 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 7] − config/production.json : alignment.C_N_eV [7x7] × 10³` |
+| 7 | V̄^L(a_CC) brut (meV) | $-400.1$ | -400.1 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 7]` |
 | 8 | ΔE_F (meV) | $-583.3$ | -583.3 | `M2_plateau/sampling_table.csv : dE_F_meV [N = 8]` |
-| 8 | C_N (meV) | $-14.4$ | -14.410274533323342 | `config/production.json : alignment.C_N_eV [8x8] × 10³` |
-| 8 | V̄^L(a_CC) aligné (meV) | $-255.5$ | -255.48972546667665 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 8] − config/production.json : alignment.C_N_eV [8x8] × 10³` |
+| 8 | V̄^L(a_CC) brut (meV) | $-269.9$ | -269.9 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 8]` |
 | 10 | ΔE_F (meV) | $-508.7$ | -508.7 | `M2_plateau/sampling_table.csv : dE_F_meV [N = 10]` |
-| 10 | C_N (meV) | $-9.3$ | -9.341716029942202 | `config/production.json : alignment.C_N_eV [10x10] × 10³` |
-| 10 | V̄^L(a_CC) aligné (meV) | $-288.4$ | -288.3582839700578 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 10] − config/production.json : alignment.C_N_eV [10x10] × 10³` |
+| 10 | V̄^L(a_CC) brut (meV) | $-297.7$ | -297.7 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 10]` |
 | 11 | ΔE_F (meV) | $-209.3$ | -209.3 | `M2_plateau/sampling_table.csv : dE_F_meV [N = 11]` |
-| 11 | C_N (meV) | $-9.6$ | -9.550651557225422 | `config/production.json : alignment.C_N_eV [11x11] × 10³` |
-| 11 | V̄^L(a_CC) aligné (meV) | $-244.3$ | -244.34934844277458 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 11] − config/production.json : alignment.C_N_eV [11x11] × 10³` |
+| 11 | V̄^L(a_CC) brut (meV) | $-253.9$ | -253.9 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 11]` |
 
 ## `tab:L_NL` — `tables/L_NL.tex` (§4.1.5, corps)
 

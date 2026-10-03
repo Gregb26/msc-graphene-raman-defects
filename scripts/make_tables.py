@@ -224,29 +224,25 @@ class Table:
 # tab:échantillonnage 
 
 def t_echantillonnage():
+    """Décision G du 2026-10-03 : tableau dans la référence du vide (brut, tel que sorti de QE) — ΔE_F et V̄^L(a_CC) non
+    alignés, pas de colonne C_N ni d'écart-type du vide. Les valeurs alignées (brut − C_N) ne sont plus affichées."""
     f = RES / "sampling_table.csv"
-    A = read_npz(RES / "M_analysis.npz")
-    for S in SIZES:                                         # mêmes C_N pour le tableau et pour les produits M de R10
-        gate(abs(alignment_C(CFG, S) - float(A[f"lnl_{S}_C_N_eV"])) < 1e-15, f"C_N de {S} : config ≠ M_analysis.npz")
     rows = []
     for N in (6, 9, 12, 5, 7, 8, 10, 11):
         r = csv_row(f, N=str(N))
-        S = f"{N}x{N}"
         gate(int(r["N_mod_3"]) == N % 3, f"{rel(f)} : N_mod_3 de N = {N}")
-        dE, vraw, C = float(r["dE_F_meV"]), float(r["Ved_radial_1.42A_meV"]), 1e3 * alignment_C(CFG, S)
+        dE, vraw = float(r["dE_F_meV"]), float(r["Ved_radial_1.42A_meV"])
         rows.append([L(f"{N}"), L(f"{N % 3}"),
                      Cell(fixed(dE, 1, sign=True), f"{rel(f)} : dE_F_meV [N = {N}]", dE),
-                     Cell(fixed(C, 1, sign=True), f"{CN_SRC} [{S}] × 10³", C),
-                     Cell(fixed(vraw - C, 1, sign=True),
-                          f"{rel(f)} : Ved_radial_1.42A_meV [N = {N}] − {CN_SRC} [{S}] × 10³", vraw - C)])
+                     Cell(fixed(vraw, 1, sign=True), f"{rel(f)} : Ved_radial_1.42A_meV [N = {N}]", vraw)])
         if N == 12:
             rows.append(HLINE)
-    return Table("echantillonnage", "tab:échantillonnage", "§4.1.5, corps", "c c r r r",
-                 [r"$N$ & $N \bmod 3$ & $\Delta E_F$ & " + SYM_CN + r" & $\bar V^\text{L}_\text{ed}(a_\text{CC})$ \\"],
-                 ["N", "N mod 3", "ΔE_F (meV)", "C_N (meV)", "V̄^L(a_CC) aligné (meV)"], rows,
-                 ["Toutes les valeurs en meV. V̄^L(a_CC) **aligné** = brut − C_N (décision du TODO, chantier 1) ; la colonne brute "
-                  "n'est plus affichée (brut = aligné + C_N). ΔE_F ne dépend pas de l'alignement.",
-                  "N = 10 et 11 : SCF de super-cellules seulement (pas de matrice M) ; leurs C_N viennent de la même source."])
+    return Table("echantillonnage", "tab:échantillonnage", "§4.1.5, corps", "c c r r",
+                 [r"$N$ & $N \bmod 3$ & $\Delta E_F$ & $\bar V^\text{L}_\text{ed}(a_\text{CC})$ \\"],
+                 ["N", "N mod 3", "ΔE_F (meV)", "V̄^L(a_CC) brut (meV)"], rows,
+                 ["Toutes les valeurs en meV, **brutes** (référence du vide, décision G du 2026-10-03) : ni ΔE_F ni V̄^L(a_CC) "
+                  "ne sont alignés ; les valeurs alignées valent brut − C_N (`config/production.json : alignment.C_N_eV`).",
+                  "N = 10 et 11 : SCF de super-cellules seulement (pas de matrice M)."])
 
 
 # tab:L_NL

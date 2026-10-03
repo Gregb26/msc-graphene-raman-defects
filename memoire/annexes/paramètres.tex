@@ -1,10 +1,15 @@
 % !TEX root = ../master_thesis.tex
 \chapter{Paramètres utilisés dans les calculs numériques}\label{annexe:paramètres}
 
-Cette annexe rassemble les paramètres numériques des six chaînes de calcul du mémoire, dans l'ordre des chapitres. Les calculs DFT et DFPT sont réalisés avec \texttt{QuantumESPRESSO} (version~7.4.1), l'interpolation par fonctions de Wannier avec \texttt{Wannier90} et \texttt{EPW}, et le post-traitement de la matrice de couplage électron-défaut en Python avec \texttt{NumPy} et \texttt{SciPy}.
+\section{Convergence}
+
+Cette section rassemble tous les tests de convergence des paramètres numériques du mémoire, dans l'ordre des chapitres.
+
+\section{Paramètres}
+
+Cette section rassemble les paramètres numériques des six chaînes de calcul du mémoire, dans l'ordre des chapitres. Les calculs DFT et DFPT sont réalisés avec \texttt{QuantumESPRESSO} (version~7.4.1), l'interpolation par fonctions de Wannier avec \texttt{Wannier90} et \texttt{EPW}, et le post-traitement de la matrice de couplage électron-défaut en Python avec \texttt{NumPy} et \texttt{SciPy}.
 % TODO P23 : versions d'EPW, de Wannier90, de NumPy et de SciPy absentes du texte des chapitres.
-Tous les calculs ont été effectués sur la grappe Rorqual. Les fichiers d'entrée de chaque chaîne sont regroupés dans le dépôt \texttt{graphene-raman}.
-% TODO P23 : adresse du dépôt graphene-raman.
+Tous les calculs ont été effectués sur la grappe Rorqual. Les fichiers d'entrée de chaque chaîne sont regroupés dans le dossier \texttt{calculs/} du dépôt \url{https://github.com/Gregb26/msc-graphene-raman-defects}, et le code de production dans \url{https://github.com/Gregb26/graphene-raman}.
 Dans chaque tableau, la colonne « Section » renvoie à l'endroit du texte où la valeur est donnée. Une valeur qui diffère d'une chaîne à l'autre est donnée dans chaque tableau avec sa propre valeur.
 
 \begin{table}[htbp]

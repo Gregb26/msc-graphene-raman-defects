@@ -119,6 +119,24 @@ Annexe D réorganisée par chaîne (DFT, DFPT, Wannier, M, T, EPW) : pour chacun
 
 
 
+## Après le dépôt (perspective) : campagne sur l'alignement et le fond du potentiel
+
+Décision du 2026-10-03 : le mémoire garde les chiffres actuels et dit ce qui est compris et ce qui ne l'est pas ; les tests ci-dessous sont reportés au doctorat. Contexte : item G du §4.1.4.
+
+- [ ] Indices du 2026-10-03 (à exploiter) : le décalage du vide reste petit (−3 à −7 meV pour N ≥ 9 hors 18, 24, 27 ; −2.6 ± 1.4 meV à 21×21) alors que C_N − vide vaut encore −11.7 meV à 21×21 (attendu ~ b/N² ≈ −2.5) : le résidu est dans le plan, pas dans la référence globale. Hypothèse (2026-10-03) : au seul point Γ, la famille 3m place exactement en E_D huit états par super-cellule (K, K′, π et π*, spin), soit 8/N² par maille (0.10 à 9×9, 0.011 à 27×27), contre ~2×10⁻³ état par maille pour le vrai cône dans la fenêtre d'étalement (±0.136 eV, ħv_F ≈ 5.6 à 6.6 eV Å) : surestimation d'un facteur ~50 (9×9) à ~5 (27×27). La famille non-3m n'en a aucun (faux gap, réponse locale). À taille comparable, l'écart plan − vide est ~3 fois plus faible pour N ≠ 3m (−6.1, −6.6 meV à 10, 11 contre −18.1, −15.0 à 9, 12), sans rien dire de l'asymptote (série arrêtée à 11, ajustement mauvais). Le test suivant tranche.
+- [ ] Échantillonnage en k (candidat principal) : refaire les SCF pur et avec lacune de la 9×9 avec une grille de k centrée en Γ sur la super-cellule (3×3, 4×4 ; K reste inclus pour N = 3m), puis mesurer C_9, le fond dans le plan (panneau (c) de `fig:Ved`) et le décalage du vide. Motif : la fenêtre d'étalement (0.136 eV, ~0.02 Å⁻¹ autour de K) est plus petite que l'espacement de la grille (~0.11 Å⁻¹ même à 27×27), donc la réponse de basse énergie n'est échantillonnée que par K à toutes les tailles.
+- [ ] Vide mesuré sur le potentiel électrostatique seul (pp.x `plot_num = 11`, V_bare + V_H) plutôt que sur V_KS (`plot_num = 1`, qui contient V_xc, numériquement bruité là où la densité est infime) ; pp.x seulement si les `.save` existent encore. Les entrées SCF et pp.x des tailles anormales sont identiques à celles de 21×21 à la maille près (vérifié le 2026-10-03), donc la cause n'est pas dans les entrées.
+- [ ] Rôle de `assume_isolated='2D'` : refaire la paire 9×9 (pur, avec lacune) sans troncature, puis avec un vide plus grand (c = 40 bohr au lieu de 30), et comparer C_9, le fond dans le plan et le vide. Montage actuel conforme (feuillet à z = 0, c = 30 bohr = 15.87 Å). Attente : C_9 inchangé à 1/N² près, puisque les effets de la troncature passent par des moyennes sur la cellule.
+- [ ] Vide anormal à 18×18, 24×24, 27×27 (−30, −167, −253 meV pour |z| > 5 Å, `table_v1_final.md` k) : vérifier les sorties SCF (« convergence has been achieved », précision estimée), la grille FFT et le profil en z ; seule voie pour comparer plan et vide aux grandes tailles.
+- [ ] Mesure : dépendance de C_N au rayon des sphères (0.79 Å de Kumagai–Oba, 1.0 Å, 1.2 Å) et moyenne de ΔV brut pondérée par la densité π loin de la lacune.
+- [ ] Charge de la lacune : charge portée par l'état quasi localisé au point de Dirac et compensation délocalisée (terme de type Madelung en 1/N ?) ; calcul polarisé en spin.
+- [ ] Ajustements de C_N avec plus de tailles 3m (30, 33) pour discriminer a + b/N² de formes qui s'annulent à l'infini.
+- [ ] Variante d'alignement sur le vide (au lieu de Kumagai–Oba) dans toute la chaîne, et comparaison avec Kaasbjerg à convention égale.
+- [ ] Test de la diagonale M_nn(k,k) brute et alignée contre N sur toute la zone (famille 3m).
+- [ ] Validation de la méthode sur un semi-conducteur : MoS₂ avec lacune de soufre, comparaison directe avec Kaasbjerg (2020) (états liés dans le gap, taux de diffusion, même article). Sépare « la méthode marche-t-elle » (cas gappé, sans point de Dirac) de « ce que le graphène ajoute » (états en E_D, mode zéro, écrantage de semi-métal) ; renforce la publication du paquet.
+
+Décision du 2026-10-03 : le mémoire garde les super-cellules au seul point Γ ; les calculs ci-dessus (grilles de k denses, tailles 30 et 33, sans troncature, vide élargi, MoS₂) sont lancés sur Rorqual après le dépôt.
+
 ## Anciens restes, statut à vérifier
 
 Notés avant le 2026-09-25 ; peut-être déjà faits (**ambigu**, non vérifiés par C le 2026-10-03).

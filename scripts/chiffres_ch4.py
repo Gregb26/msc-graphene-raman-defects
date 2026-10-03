@@ -110,6 +110,15 @@ for S in ("5x5", "9x9"):
     loin5 = dimg >= np.quantile(dimg, 0.95)
     put("C", f"{S} : carte, 5 % des points les plus loin de toute lacune (distance d'image minimale) : médiane / max", f"{f(np.median(M[loin5]), 3)} / {f(M[loin5].max(), 3)}", "eV", f"{src} : {S}_map")
 
+# vide hors du plan (R10 C.6, potentiels bruts) : référence commune des deux super-cellules, citée au bloc Taille (2026-10-03)
+import json
+c6 = json.load(open(ROOT / "donnees" / "alignement" / "r10_c6_results.json"))["sizes"]
+for S in ("5x5", "6x6", "7x7", "8x8", "9x9", "10x10", "11x11", "12x12"):
+    put("C", f"{S} : ΔV brut dans le vide, |z| > 5 Å : moyenne ± écart-type", f"{c6[S]['vacuum_mean_meV']:.1f} ± {c6[S]['vacuum_std_meV']:.1f}", "meV",
+        "alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV, vacuum_std_meV")
+vm = [c6[S]["vacuum_mean_meV"] for S in ("5x5", "6x6", "7x7", "8x8", "9x9", "10x10", "11x11", "12x12")]
+put("C", "ΔV brut dans le vide, N = 5 à 12 : min / max des moyennes", f"{min(vm):.1f} / {max(vm):.1f}", "meV", "alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV")
+
 # ---------------- D. fig:M_locality (grilles élargies ; 5×5 et 8×8 aussi grossières)
 L = np.load(RES / "mwr_locality.npz")
 src = "M2_plateau/mwr_locality.npz"

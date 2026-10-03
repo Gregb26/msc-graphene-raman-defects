@@ -116,6 +116,15 @@ Généré par `scripts/chiffres_ch4.py` depuis `donnees/` (ne pas éditer). Sour
 | 9x9 : sommet de Wigner-Seitz (+L/√3, 0), distance de l'atome le plus proche | 1.3e-09 | Å | `M2_plateau/ved_analysis.npz : 9x9_atoms_xy` |
 | 9x9 : carte, V^L à moins de 1.5 Å du sommet (+L/√3, 0) : min / médiane / max ; fraction positive | -0.0694 / -0.0324 / -0.0216 ; 0.0 | eV | `M2_plateau/ved_analysis.npz : 9x9_map, 9x9_map_X, 9x9_map_Y` |
 | 9x9 : carte, 5 % des points les plus loin de toute lacune (distance d'image minimale) : médiane / max | -0.0255 / -0.0137 | eV | `M2_plateau/ved_analysis.npz : 9x9_map` |
+| 5x5 : ΔV brut dans le vide, |z| > 5 Å : moyenne ± écart-type | -10.9 ± 9.8 | meV | `alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV, vacuum_std_meV` |
+| 6x6 : ΔV brut dans le vide, |z| > 5 Å : moyenne ± écart-type | -16.2 ± 20.4 | meV | `alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV, vacuum_std_meV` |
+| 7x7 : ΔV brut dans le vide, |z| > 5 Å : moyenne ± écart-type | -4.9 ± 4.3 | meV | `alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV, vacuum_std_meV` |
+| 8x8 : ΔV brut dans le vide, |z| > 5 Å : moyenne ± écart-type | -5.3 ± 5.3 | meV | `alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV, vacuum_std_meV` |
+| 9x9 : ΔV brut dans le vide, |z| > 5 Å : moyenne ± écart-type | -7.0 ± 8.7 | meV | `alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV, vacuum_std_meV` |
+| 10x10 : ΔV brut dans le vide, |z| > 5 Å : moyenne ± écart-type | -3.2 ± 3.0 | meV | `alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV, vacuum_std_meV` |
+| 11x11 : ΔV brut dans le vide, |z| > 5 Å : moyenne ± écart-type | -3.0 ± 3.1 | meV | `alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV, vacuum_std_meV` |
+| 12x12 : ΔV brut dans le vide, |z| > 5 Å : moyenne ± écart-type | -3.7 ± 4.5 | meV | `alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV, vacuum_std_meV` |
+| ΔV brut dans le vide, N = 5 à 12 : min / max des moyennes | -16.2 / -3.0 | meV | `alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV` |
 
 ## D. fig:M_locality
 

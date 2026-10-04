@@ -26,44 +26,39 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | 11 | ΔE_F (meV) | $-209.3$ | -209.3 | `M2_plateau/sampling_table.csv : dE_F_meV [N = 11]` |
 | 11 | V̄^L(a_CC) brut (meV) | $-253.9$ | -253.9 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 11]` |
 
-## `tab:L_NL` — `tables/L_NL.tex` (§4.1.5, corps)
+## `tab:L_NL` — `tables/L_NL.tex` (§4.1.5, corps (bloc Convention intensive))
 
-- Brut et aligné côte à côte (décision du 2026-10-01, R10 D6). M̄^NL ne dépend pas de l'alignement.
+- Toutes les valeurs en eV. Brut et aligné côte à côte (décision du 2026-10-01, R10 D6) ; colonne N²|ΔV_PA^(N)| ajoutée et colonnes de Frobenius retirées (décision G du 2026-10-04). M̄^NL ne dépend pas de l'alignement.
 - Contrôles : `level2_families.csv` = `M_analysis.npz` (ReML_K, ReML_K_aligned, ReMNL_K) ; aligné − brut = N²|C_N| à 1e-8 eV près pour les six tailles.
 - N = 5, 7, 8 : grilles élargies 25², 28², 32² sans K ; « K » y est le point de grille le plus proche (`lnl_<S>_dK` = 0.055, 0.050, 0.043 Å⁻¹) — à dire dans la légende.
+- Rapport de Frobenius NL/L sur toute la zone (pour le texte) : 0.252 à 0.258, brut comme aligné (`lnl_frobenius.csv`).
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
 | 5 | M̄^L(K) brut (eV) | $10.534$ | 10.534251736351404 | `M2_plateau/M_analysis.npz : lnl_5x5_ReL` |
 | 5 | M̄^L(K) aligné (eV) | $11.973$ | 11.973316891523073 | `M2_plateau/M_analysis.npz : lnl_5x5_ReL_aligned` |
+| 5 | N²|ΔV_PA| (eV) | $1.439$ | 1.4390651550380849 | `config/production.json : alignment.C_N_eV [5x5] × N²` |
 | 5 | M̄^NL(K) (eV) | $3.100$ | 3.1004099575437367 | `M2_plateau/M_analysis.npz : lnl_5x5_ReNL` |
-| 5 | NL/L BZ brut | $0.258$ | 0.2578052049536437 | `M2_plateau/lnl_frobenius.csv : ratio_full [5x5]` |
-| 5 | NL/L BZ aligné | $0.257$ | 0.2572153016716182 | `M2_plateau/lnl_frobenius.csv : ratio_full_aligned [5x5]` |
 | 6 | M̄^L(K) brut (eV) | $11.356$ | 11.356081037016198 | `M2_plateau/M_analysis.npz : lnl_6x6_ReL` |
 | 6 | M̄^L(K) aligné (eV) | $13.174$ | 13.17441026340056 | `M2_plateau/M_analysis.npz : lnl_6x6_ReL_aligned` |
+| 6 | N²|ΔV_PA| (eV) | $1.818$ | 1.8183292263467763 | `config/production.json : alignment.C_N_eV [6x6] × N²` |
 | 6 | M̄^NL(K) (eV) | $3.103$ | 3.102988706968697 | `M2_plateau/M_analysis.npz : lnl_6x6_ReNL` |
-| 6 | NL/L BZ brut | $0.252$ | 0.25244414666487575 | `M2_plateau/lnl_frobenius.csv : ratio_full [6x6]` |
-| 6 | NL/L BZ aligné | $0.252$ | 0.2519315893483562 | `M2_plateau/lnl_frobenius.csv : ratio_full_aligned [6x6]` |
 | 7 | M̄^L(K) brut (eV) | $10.486$ | 10.485717569026498 | `M2_plateau/M_analysis.npz : lnl_7x7_ReL` |
 | 7 | M̄^L(K) aligné (eV) | $11.805$ | 11.804517987545477 | `M2_plateau/M_analysis.npz : lnl_7x7_ReL_aligned` |
+| 7 | N²|ΔV_PA| (eV) | $1.319$ | 1.3188004184627222 | `config/production.json : alignment.C_N_eV [7x7] × N²` |
 | 7 | M̄^NL(K) (eV) | $3.101$ | 3.1008823454051875 | `M2_plateau/M_analysis.npz : lnl_7x7_ReNL` |
-| 7 | NL/L BZ brut | $0.258$ | 0.25829922711993497 | `M2_plateau/lnl_frobenius.csv : ratio_full [7x7]` |
-| 7 | NL/L BZ aligné | $0.258$ | 0.25802354135325317 | `M2_plateau/lnl_frobenius.csv : ratio_full_aligned [7x7]` |
 | 8 | M̄^L(K) brut (eV) | $10.734$ | 10.734266871804461 | `M2_plateau/M_analysis.npz : lnl_8x8_ReL` |
 | 8 | M̄^L(K) aligné (eV) | $11.657$ | 11.656524441943947 | `M2_plateau/M_analysis.npz : lnl_8x8_ReL_aligned` |
+| 8 | N²|ΔV_PA| (eV) | $0.922$ | 0.9222575701326939 | `config/production.json : alignment.C_N_eV [8x8] × N²` |
 | 8 | M̄^NL(K) (eV) | $3.101$ | 3.1008536668855924 | `M2_plateau/M_analysis.npz : lnl_8x8_ReNL` |
-| 8 | NL/L BZ brut | $0.257$ | 0.25666358087334196 | `M2_plateau/lnl_frobenius.csv : ratio_full [8x8]` |
-| 8 | NL/L BZ aligné | $0.257$ | 0.2565179816585835 | `M2_plateau/lnl_frobenius.csv : ratio_full_aligned [8x8]` |
 | 9 | M̄^L(K) brut (eV) | $11.305$ | 11.305093784928658 | `M2_plateau/M_analysis.npz : lnl_9x9_ReL` |
 | 9 | M̄^L(K) aligné (eV) | $13.342$ | 13.341734296784253 | `M2_plateau/M_analysis.npz : lnl_9x9_ReL_aligned` |
+| 9 | N²|ΔV_PA| (eV) | $2.037$ | 2.036640511836922 | `config/production.json : alignment.C_N_eV [9x9] × N²` |
 | 9 | M̄^NL(K) (eV) | $3.103$ | 3.102990131127166 | `M2_plateau/M_analysis.npz : lnl_9x9_ReNL` |
-| 9 | NL/L BZ brut | $0.252$ | 0.25238026362236965 | `M2_plateau/lnl_frobenius.csv : ratio_full [9x9]` |
-| 9 | NL/L BZ aligné | $0.252$ | 0.2521218195055461 | `M2_plateau/lnl_frobenius.csv : ratio_full_aligned [9x9]` |
 | 12 | M̄^L(K) brut (eV) | $11.222$ | 11.222042955604584 | `M2_plateau/M_analysis.npz : lnl_12x12_ReL` |
 | 12 | M̄^L(K) aligné (eV) | $13.913$ | 13.913344362179998 | `M2_plateau/M_analysis.npz : lnl_12x12_ReL_aligned` |
+| 12 | N²|ΔV_PA| (eV) | $2.691$ | 2.691301406519782 | `config/production.json : alignment.C_N_eV [12x12] × N²` |
 | 12 | M̄^NL(K) (eV) | $3.103$ | 3.1029887069686977 | `M2_plateau/M_analysis.npz : lnl_12x12_ReNL` |
-| 12 | NL/L BZ brut | $0.252$ | 0.2521472662877427 | `M2_plateau/lnl_frobenius.csv : ratio_full [12x12]` |
-| 12 | NL/L BZ aligné | $0.252$ | 0.25195367625385306 | `M2_plateau/lnl_frobenius.csv : ratio_full_aligned [12x12]` |
 
 ## `tab:rcut_M` — `tables/rcut_M.tex` (§4.1.5 → annexe D)
 

@@ -195,6 +195,17 @@ Cette section rassemble les vérifications de la chaîne de calcul de la matrice
     \input{tables/rcut_M}
 \end{table}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_ks_reconstruction.pdf}
+    \caption[Reconstruction des valeurs propres de Kohn-Sham.]{Écart
+    entre les valeurs propres de Kohn-Sham reconstruites par la chaîne
+    d'évaluation des éléments de matrice, appliquée au potentiel de la
+    super-cellule parfaite, et celles de \texttt{QuantumESPRESSO}.
+    La moyenne et le maximum sont sur toutes les bandes et tous les points $\kv$, après le retrait d'un décalage constant entre les deux références d'énergie. L'exercice est fait pour les grilles $N\times N$, où la densité convergée est la même pour les états et le potentiel, et pour les grilles élargies $pN\times pN$, où la densité autocohérente est différente.}
+    \label{fig:ks_reconstruction}
+\end{figure}
+
 \begin{table}[htbp]
     \centering
     \small

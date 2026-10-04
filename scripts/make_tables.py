@@ -248,7 +248,11 @@ def t_echantillonnage():
 # tab:L_NL
 
 def t_L_NL():
-    fa, fl, ff = RES / "M_analysis.npz", RES / "level2_families.csv", RES / "lnl_frobenius.csv"
+    """Décision G du 2026-10-04 : cinq colonnes, toutes en eV — M̄^L(K) brut, aligné, N²|ΔV_PA^(N)|, M̄^NL(K). Les deux colonnes de
+    Frobenius (NL/L sur toute la zone) sont retirées : brut et aligné y sont identiques (0.25 pour les six tailles), une phrase
+    dans le texte suffit (`lnl_frobenius.csv` reste la source). Le bloc Local / non local est supprimé ; le tableau sert au bloc
+    Convention intensive (vérification intensive partie par partie, identité aligné − brut = N²|ΔV_PA|)."""
+    fa, fl = RES / "M_analysis.npz", RES / "level2_families.csv"
     A = read_npz(fa)
     rows = []
     for S in SIZES:
@@ -257,26 +261,27 @@ def t_L_NL():
         r2 = csv_row(fl, size=S)
         for col, v in (("ReML_K_eV", ReL), ("ReML_K_aligned_eV", ReLa), ("ReMNL_K_eV", ReNL)):
             gate(abs(float(r2[col]) - v) < 6e-5, f"{rel(fl)} : {col} [{S}] ≠ {rel(fa)}")
-        # identité annoncée au TODO : à k = k′, l'alignement ajoute exactement N²|C_N|
-        gate(abs((ReLa - ReL) - N * N * abs(alignment_C(CFG, S))) < 1e-8, f"{S} : M̄^L aligné − brut ≠ N²|C_N|")
-        r = csv_row(ff, size=S)
-        rb, ra = float(r["ratio_full"]), float(r["ratio_full_aligned"])
+        term = N * N * abs(alignment_C(CFG, S))
+        # identité : à k = k′, l'alignement ajoute exactement N²|C_N|
+        gate(abs((ReLa - ReL) - term) < 1e-8, f"{S} : M̄^L aligné − brut ≠ N²|C_N|")
         rows.append([L(f"{N}"),
                      Cell(fixed(ReL, 3), f"{rel(fa)} : lnl_{S}_ReL", ReL),
                      Cell(fixed(ReLa, 3), f"{rel(fa)} : lnl_{S}_ReL_aligned", ReLa),
-                     Cell(fixed(ReNL, 3), f"{rel(fa)} : lnl_{S}_ReNL", ReNL),
-                     Cell(fixed(rb, 3), f"{rel(ff)} : ratio_full [{S}]", rb),
-                     Cell(fixed(ra, 3), f"{rel(ff)} : ratio_full_aligned [{S}]", ra)])
-    head = [r"& \multicolumn{2}{c}{$\bar M^\text{L}(K)$ (eV)} & $\bar M^\text{NL}(K)$ & \multicolumn{2}{c}{NL/L toute la BZ} \\",
-            r"\cline{2-3}\cline{5-6}",
-            r"$N$ & brut & aligné & (eV) & brut & aligné \\"]
-    return Table("L_NL", "tab:L_NL", "§4.1.5, corps", "c c c c c c", head,
-                 ["N", "M̄^L(K) brut (eV)", "M̄^L(K) aligné (eV)", "M̄^NL(K) (eV)", "NL/L BZ brut", "NL/L BZ aligné"], rows,
-                 ["Brut et aligné côte à côte (décision du 2026-10-01, R10 D6). M̄^NL ne dépend pas de l'alignement.",
+                     Cell(fixed(term, 3), f"{CN_SRC} [{S}] × N²", term),
+                     Cell(fixed(ReNL, 3), f"{rel(fa)} : lnl_{S}_ReNL", ReNL)])
+    head = [r"& \multicolumn{2}{c}{$\bar M^\text{L}(K)$} & & \\",
+            r"\cline{2-3}",
+            r"$N$ & brut & aligné & $N^2|\Delta V_\text{PA}^{(N)}|$ & $\bar M^\text{NL}(K)$ \\"]
+    return Table("L_NL", "tab:L_NL", "§4.1.5, corps (bloc Convention intensive)", "c c c c c", head,
+                 ["N", "M̄^L(K) brut (eV)", "M̄^L(K) aligné (eV)", "N²|ΔV_PA| (eV)", "M̄^NL(K) (eV)"], rows,
+                 ["Toutes les valeurs en eV. Brut et aligné côte à côte (décision du 2026-10-01, R10 D6) ; colonne N²|ΔV_PA^(N)| "
+                  "ajoutée et colonnes de Frobenius retirées (décision G du 2026-10-04). M̄^NL ne dépend pas de l'alignement.",
                   "Contrôles : `level2_families.csv` = `M_analysis.npz` (ReML_K, ReML_K_aligned, ReMNL_K) ; aligné − brut = N²|C_N| "
                   "à 1e-8 eV près pour les six tailles.",
                   "N = 5, 7, 8 : grilles élargies 25², 28², 32² sans K ; « K » y est le point de grille le plus proche "
-                  "(`lnl_<S>_dK` = 0.055, 0.050, 0.043 Å⁻¹) — à dire dans la légende."])
+                  "(`lnl_<S>_dK` = 0.055, 0.050, 0.043 Å⁻¹) — à dire dans la légende.",
+                  "Rapport de Frobenius NL/L sur toute la zone (pour le texte) : 0.252 à 0.258, brut comme aligné (`lnl_frobenius.csv`)."])
+
 
 # tab:rcut_M
 

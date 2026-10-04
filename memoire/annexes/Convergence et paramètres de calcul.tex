@@ -218,3 +218,42 @@ Les autres tests sont des vérifications de cohérence interne. L'hermiticité d
     \label{tab:tests_M}
     \input{tables/tests_M}
 \end{table}
+
+\section{Convergence et vérifications de la matrice $T$}\label{sec:annexe_T_tests}
+
+Cette section rassemble les preuves de convergence du schéma local de la matrice $T$ du chapitre~\ref{chap:T} : le rayon de coupure, la grille de sortie, l'élargissement et la grille interne de la fonction de Green locale. Le corps du chapitre (section~\ref{sec:T_results}) ne garde que les paramètres retenus et les variations mesurées.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_convergence.pdf}
+    \caption[Convergence du taux d'amortissement par unité de
+    concentration.]{Convergence de la médiane de $\Gamma N_\text{cells}$
+    sur $\pm3$~eV autour de $E_D$. (a) En fonction du rayon de coupure
+    $R_\text{cut}$ du schéma local pour les six tailles de super-cellule,
+    avec une grille de sortie $240\times240$ et un élargissement $\eta = 20$~meV. (b) En fonction de la grille de sortie et de $\eta$, pour la super-cellule de référence $9\times9$ à $R_\text{cut} = 3$. La couleur donne l'écart au point $(240^2, 20~\text{meV})$. La grille interne est de $300\times300$ ($N_{\tilde\kv}=300^2$) dans tous les cas.}
+    \label{fig:convergence}
+\end{figure}
+\begin{table}[htbp]
+    \centering
+    \caption[Convergence du taux d'amortissement en fonction du rayon de
+    coupure.]{Médiane de $\Gamma\,N_\text{cells}$ (meV) sur $\pm3$~eV
+    autour de $E_D$ en fonction du rayon de coupure $R_\text{cut}$, pour les
+    six tailles de super-cellule (grille de sortie $240\times240$,
+    $\eta = 20$~meV, grille interne $300\times300$). Nous distinguons les deux familles de super-cellules de la section~\ref{sec:M_détails}.}
+    \label{tab:convergence_gamma}
+    \input{tables/convergence_gamma}
+\end{table}
+\begin{table}[htbp]
+    \centering
+    % À REVOIR : légende provisoire du 2026-10-04
+    \caption[Convergence du taux d'amortissement en grille interne.]{Convergence en grille interne $N_{\tilde\kv}$ de la fonction de Green locale~\eqref{eqn:g_loc}, pour la super-cellule de référence $9\times9$ et les paramètres de production ($R_\text{cut}=3$, grille de sortie $240^2$, $\eta=20$~meV) : médiane de $\Gamma N_\text{cells}$ sur la fenêtre $\pm3$~eV et sur la zone $|\varepsilon-E_D|\le0.3$~eV, taux d'amortissement des états situés au point de Dirac et position $E_\text{res}$ de la résonance, définie comme l'énergie de l'état de la grille de sortie où $\Gamma N_\text{cells}$ est maximal.}
+    \label{tab:grille_interne}
+    \input{tables/grille_interne}
+\end{table}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_resonance_vs_nkint_plateau.pdf}
+    % À REVOIR : légende provisoire du 2026-10-04 ; étiquettes « Kumagai–Oba » de la figure à renommer « aligné » (make_figures_controles.py)
+    \caption[Position de la résonance en fonction de la grille interne.]{Position de la résonance de la lacune en fonction de l'inverse de la grille interne $N_k^\text{int}=N_{\tilde\kv}$, pour les super-cellules (a) $9\times9$ et (b) $12\times12$ et les matrices alignées, avec les paramètres de production : pic de la courbe $\Gamma_T(\varepsilon)$ obtenue par la moyenne lorentzienne~\eqref{eqn:moyenne_lorentzienne}, pic de $-\mathrm{Im}\,\bar T(K;\varepsilon)$ et $E_\text{res}$ (état de la grille de sortie $240^2$ où $\Gamma N_\text{cells}$ est maximal). Pour $9\times9$, l'alignement appliqué aux blocs diagonaux de la base de Wannier (section~\ref{sec:M_détails}) et l'alignement exact du potentiel se superposent.}
+    \label{fig:resonance_vs_nkint_plateau}
+\end{figure}

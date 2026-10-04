@@ -314,6 +314,46 @@ def t_rcut_M():
                   "Deux chiffres significatifs."])
 
 
+# tab:alignement (bloc Alignement du potentiel, §4.1.5 ; demandé par G le 2026-10-03)
+
+def t_alignement():
+    """Constante d'alignement selon cinq schémas, dix tailles (18, 24, 27 retirées : vide anormal, décision G du 2026-10-04) :
+    (A) nous (sites à d ≥ 0.75 r_max), (B) Kumagai–Oba 2D (hors du cercle inscrit, d ≥ N a/2), (C) Kumagai–Oba 3D tel quel
+    (hors de la sphère inscrite, d ≥ min(N a/2, c/2) = c/2 dès N ≥ 7), (D) site unique de Lu et al., (E) vide (ΔV brut pour
+    |z| > 5 Å, R10 C.6). Moyenne ± rms (écart-type de population des potentiels de site, ddof 0) ; vide : moyenne ± écart-type."""
+    Z = read_npz(DONNEES / "ch4" / "alignement_regions.npz")
+    c6p = Path(campaigns_dir(CFG, "alignement", "r10_c6_results.json")); c6 = read_json(c6p)["sizes"]
+    src_z = rel(DONNEES / "ch4" / "alignement_regions.npz")
+    rows = []
+    for S in [str(x) for x in Z["sizes"]]:
+        N = int(Z[f"{S}_N"])
+        if N in (18, 24, 27):
+            continue
+        gate(abs(float(Z[f"{S}_meanA"]) - alignment_C(CFG, S)) < 1e-12, f"{src_z} : meanA de {S} ≠ C_N de la config")
+        def pm(m, r, src):
+            return Cell(f"${1e3 * m:+.1f} \\pm {1e3 * r:.1f}$", src, (1e3 * m, 1e3 * r))
+        cells = [L(f"{N}"),
+                 pm(float(Z[f"{S}_meanA"]), float(Z[f"{S}_rmsA"]), f"{src_z} : {S}_meanA, {S}_rmsA"),
+                 pm(float(Z[f"{S}_meanB"]), float(Z[f"{S}_rmsB"]), f"{src_z} : {S}_meanB, {S}_rmsB"),
+                 pm(float(Z[f"{S}_meanC"]), float(Z[f"{S}_rmsC"]), f"{src_z} : {S}_meanC, {S}_rmsC"),
+                 Cell(fixed(1e3 * float(Z[f"{S}_Lu"]), 1, sign=True), f"{src_z} : {S}_Lu", 1e3 * float(Z[f"{S}_Lu"])),
+                 Cell(f"${c6[S]['vacuum_mean_meV']:+.1f} \\pm {c6[S]['vacuum_std_meV']:.1f}$",
+                      f"{rel(c6p)} : sizes.{S}.vacuum_mean_meV, vacuum_std_meV", (c6[S]["vacuum_mean_meV"], c6[S]["vacuum_std_meV"]))]
+        rows.append(cells)
+        if N == 12:
+            rows.append(HLINE)
+    head = [r"$N$ & (A) Nous & (B) Kumagai-Oba 2D & (C) Kumagai-Oba 3D & (D) Lu \textit{et al.} & (E) Vide \\"]
+    return Table("alignement", "tab:alignement", "§4.1.5, corps (bloc Alignement du potentiel)", "c r r r r r", head,
+                 ["N", "(A) nous ± rms (meV)", "(B) K–O 2D ± rms (meV)", "(C) K–O 3D ± rms (meV)", "(D) Lu et al., site unique (meV)", "(E) vide ± écart-type (meV)"], rows,
+                 ["Toutes les valeurs en meV, potentiels bruts. (A) = production (`config/production.json : alignment.C_N_eV`, contrôlé au bit) ; "
+                  "(B) Kumagai–Oba en 2D : cellule de Wigner-Seitz plane, sites hors du cercle inscrit ; (C) Kumagai–Oba 3D tel quel : hors de la sphère "
+                  "inscrite, de rayon c/2 = 7.94 Å dès N ≥ 7 (la hauteur de boîte borne la région) ; (D) site unique publié (Lu et al. 2019) ; "
+                  "(E) vide : moyenne de ΔV brut pour |z| > 5 Å (R10 C.6). Tailles 18, 24, 27 retirées (vide anormal, constat ouvert 1 de "
+                  "`NOTES_TGAMMA.md` ; décision G du 2026-10-04) ; colonne famille retirée (même décision).",
+                  "rms = écart-type de population des potentiels de site de la région (ddof 0) ; pour le vide, écart-type sur la grille.",
+                  "Les tailles 15, 21 et 10, 11 n'ont que le SCF (pas de matrice M)."])
+
+
 # tab:tests_M
 
 def t_tests_M():
@@ -554,7 +594,7 @@ def t_grille_interne():
                   "de l'annexe D. E_res = z_E_res dans le csv."])
 
 
-TABLES = {f.__name__[2:]: f for f in (t_echantillonnage, t_L_NL, t_rcut_M, t_tests_M, t_convergence_gamma, t_tests_T,
+TABLES = {f.__name__[2:]: f for f in (t_echantillonnage, t_L_NL, t_rcut_M, t_alignement, t_tests_M, t_convergence_gamma, t_tests_T,
                                             t_kaasbjerg, t_grille_interne)}
 
 

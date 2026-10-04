@@ -136,6 +136,65 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | 6 | 12x12 aligné π–π* | 1.1~\% | 0.011178 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 6]` |
 | 6 | 12x12 aligné diag. | 0.87~\% | 0.0086769 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 6]` |
 
+## `tab:alignement` — `tables/alignement.tex` (§4.1.5, corps (bloc Alignement du potentiel))
+
+- Toutes les valeurs en meV, potentiels bruts. (A) = production (`config/production.json : alignment.C_N_eV`, contrôlé au bit) ; (B) Kumagai–Oba en 2D : cellule de Wigner-Seitz plane, sites hors du cercle inscrit ; (C) Kumagai–Oba 3D tel quel : hors de la sphère inscrite, de rayon c/2 = 7.94 Å dès N ≥ 7 (la hauteur de boîte borne la région) ; (D) site unique publié (Lu et al. 2019) ; (E) vide : moyenne de ΔV brut pour |z| > 5 Å (R10 C.6). Tailles 18, 24, 27 retirées (vide anormal, constat ouvert 1 de `NOTES_TGAMMA.md` ; décision G du 2026-10-04) ; colonne famille retirée (même décision).
+- rms = écart-type de population des potentiels de site de la région (ddof 0) ; pour le vide, écart-type sur la grille.
+- Les tailles 15, 21 et 10, 11 n'ont que le SCF (pas de matrice M).
+
+| ligne | colonne | affiché | valeur lue | source |
+|---|---|---|---|---|
+| 5 | (A) nous ± rms (meV) | $-57.6 \pm 94.1$ | (-57.562606201523394, 94.13647407375365) | `ch4/alignement_regions.npz : 5x5_meanA, 5x5_rmsA` |
+| 5 | (B) K–O 2D ± rms (meV) | $-38.6 \pm 99.8$ | (-38.60800042050485, 99.81638705329135) | `ch4/alignement_regions.npz : 5x5_meanB, 5x5_rmsB` |
+| 5 | (C) K–O 3D ± rms (meV) | $-38.6 \pm 99.8$ | (-38.60800042050485, 99.81638705329135) | `ch4/alignement_regions.npz : 5x5_meanC, 5x5_rmsC` |
+| 5 | (D) Lu et al., site unique (meV) | $-122.3$ | -122.32935833955594 | `ch4/alignement_regions.npz : 5x5_Lu` |
+| 5 | (E) vide ± écart-type (meV) | $-10.9 \pm 9.8$ | (-10.875890390256279, 9.75573484087051) | `alignement/r10_c6_results.json : sizes.5x5.vacuum_mean_meV, vacuum_std_meV` |
+| 6 | (A) nous ± rms (meV) | $-50.5 \pm 24.6$ | (-50.50914517629934, 24.55991723470971) | `ch4/alignement_regions.npz : 6x6_meanA, 6x6_rmsA` |
+| 6 | (B) K–O 2D ± rms (meV) | $-71.0 \pm 24.4$ | (-70.98821930466154, 24.39098121912376) | `ch4/alignement_regions.npz : 6x6_meanB, 6x6_rmsB` |
+| 6 | (C) K–O 3D ± rms (meV) | $-71.0 \pm 24.4$ | (-70.98821930466154, 24.39098121912376) | `ch4/alignement_regions.npz : 6x6_meanC, 6x6_rmsC` |
+| 6 | (D) Lu et al., site unique (meV) | $-98.6$ | -98.61571051991547 | `ch4/alignement_regions.npz : 6x6_Lu` |
+| 6 | (E) vide ± écart-type (meV) | $-16.2 \pm 20.4$ | (-16.182958340631842, 20.40574183453865) | `alignement/r10_c6_results.json : sizes.6x6.vacuum_mean_meV, vacuum_std_meV` |
+| 7 | (A) nous ± rms (meV) | $-26.9 \pm 18.5$ | (-26.914294254341268, 18.525932765631826) | `ch4/alignement_regions.npz : 7x7_meanA, 7x7_rmsA` |
+| 7 | (B) K–O 2D ± rms (meV) | $-24.6 \pm 17.9$ | (-24.6096920297954, 17.882510498957473) | `ch4/alignement_regions.npz : 7x7_meanB, 7x7_rmsB` |
+| 7 | (C) K–O 3D ± rms (meV) | $-22.1 \pm 20.8$ | (-22.07513794290269, 20.830423752845906) | `ch4/alignement_regions.npz : 7x7_meanC, 7x7_rmsC` |
+| 7 | (D) Lu et al., site unique (meV) | $-38.5$ | -38.538818440962075 | `ch4/alignement_regions.npz : 7x7_Lu` |
+| 7 | (E) vide ± écart-type (meV) | $-4.9 \pm 4.3$ | (-4.941153365015684, 4.284817712934956) | `alignement/r10_c6_results.json : sizes.7x7.vacuum_mean_meV, vacuum_std_meV` |
+| 8 | (A) nous ± rms (meV) | $-14.4 \pm 18.9$ | (-14.410274533323342, 18.868375924447076) | `ch4/alignement_regions.npz : 8x8_meanA, 8x8_rmsA` |
+| 8 | (B) K–O 2D ± rms (meV) | $-13.5 \pm 21.4$ | (-13.467137427624053, 21.383142748197834) | `ch4/alignement_regions.npz : 8x8_meanB, 8x8_rmsB` |
+| 8 | (C) K–O 3D ± rms (meV) | $-14.4 \pm 18.9$ | (-14.410274533323342, 18.868375924447076) | `ch4/alignement_regions.npz : 8x8_meanC, 8x8_rmsC` |
+| 8 | (D) Lu et al., site unique (meV) | $-23.0$ | -22.965857127417166 | `ch4/alignement_regions.npz : 8x8_Lu` |
+| 8 | (E) vide ± écart-type (meV) | $-5.3 \pm 5.3$ | (-5.3444260068764535, 5.339722616198683) | `alignement/r10_c6_results.json : sizes.8x8.vacuum_mean_meV, vacuum_std_meV` |
+| 9 | (A) nous ± rms (meV) | $-25.1 \pm 9.1$ | (-25.14371002267805, 9.050935331807374) | `ch4/alignement_regions.npz : 9x9_meanA, 9x9_rmsA` |
+| 9 | (B) K–O 2D ± rms (meV) | $-31.7 \pm 10.9$ | (-31.689940276878303, 10.94235019515723) | `ch4/alignement_regions.npz : 9x9_meanB, 9x9_rmsB` |
+| 9 | (C) K–O 3D ± rms (meV) | $-25.0 \pm 9.5$ | (-24.99179304092356, 9.520525759805464) | `ch4/alignement_regions.npz : 9x9_meanC, 9x9_rmsC` |
+| 9 | (D) Lu et al., site unique (meV) | $-24.7$ | -24.65140127665677 | `ch4/alignement_regions.npz : 9x9_Lu` |
+| 9 | (E) vide ± écart-type (meV) | $-7.0 \pm 8.7$ | (-7.006930797135127, 8.667051116821487) | `alignement/r10_c6_results.json : sizes.9x9.vacuum_mean_meV, vacuum_std_meV` |
+| 10 | (A) nous ± rms (meV) | $-9.3 \pm 6.1$ | (-9.341716029942202, 6.131955910896639) | `ch4/alignement_regions.npz : 10x10_meanA, 10x10_rmsA` |
+| 10 | (B) K–O 2D ± rms (meV) | $-9.0 \pm 5.7$ | (-8.980087449558312, 5.673402586492931) | `ch4/alignement_regions.npz : 10x10_meanB, 10x10_rmsB` |
+| 10 | (C) K–O 3D ± rms (meV) | $-10.2 \pm 7.2$ | (-10.150091109046677, 7.229559685456949) | `ch4/alignement_regions.npz : 10x10_meanC, 10x10_rmsC` |
+| 10 | (D) Lu et al., site unique (meV) | $-8.2$ | -8.223781758715631 | `ch4/alignement_regions.npz : 10x10_Lu` |
+| 10 | (E) vide ± écart-type (meV) | $-3.2 \pm 3.0$ | (-3.1704626871744415, 3.046920190743012) | `alignement/r10_c6_results.json : sizes.10x10.vacuum_mean_meV, vacuum_std_meV` |
+| 11 | (A) nous ± rms (meV) | $-9.6 \pm 5.8$ | (-9.550651557225422, 5.759586378469606) | `ch4/alignement_regions.npz : 11x11_meanA, 11x11_rmsA` |
+| 11 | (B) K–O 2D ± rms (meV) | $-7.6 \pm 6.5$ | (-7.570591079476501, 6.477458398223228) | `ch4/alignement_regions.npz : 11x11_meanB, 11x11_rmsB` |
+| 11 | (C) K–O 3D ± rms (meV) | $-10.4 \pm 6.8$ | (-10.39179625782327, 6.830624391463491) | `ch4/alignement_regions.npz : 11x11_meanC, 11x11_rmsC` |
+| 11 | (D) Lu et al., site unique (meV) | $-12.2$ | -12.163021491289783 | `ch4/alignement_regions.npz : 11x11_Lu` |
+| 11 | (E) vide ± écart-type (meV) | $-3.0 \pm 3.1$ | (-2.995786758389199, 3.0761740559575617) | `alignement/r10_c6_results.json : sizes.11x11.vacuum_mean_meV, vacuum_std_meV` |
+| 12 | (A) nous ± rms (meV) | $-18.7 \pm 5.4$ | (-18.689593100831818, 5.415014150579857) | `ch4/alignement_regions.npz : 12x12_meanA, 12x12_rmsA` |
+| 12 | (B) K–O 2D ± rms (meV) | $-20.5 \pm 6.2$ | (-20.47345063416279, 6.215241437932662) | `ch4/alignement_regions.npz : 12x12_meanB, 12x12_rmsB` |
+| 12 | (C) K–O 3D ± rms (meV) | $-17.4 \pm 6.0$ | (-17.37444537045997, 5.957593702299504) | `ch4/alignement_regions.npz : 12x12_meanC, 12x12_rmsC` |
+| 12 | (D) Lu et al., site unique (meV) | $-29.2$ | -29.235084249116028 | `ch4/alignement_regions.npz : 12x12_Lu` |
+| 12 | (E) vide ± écart-type (meV) | $-3.7 \pm 4.5$ | (-3.731764165627686, 4.51795845001777) | `alignement/r10_c6_results.json : sizes.12x12.vacuum_mean_meV, vacuum_std_meV` |
+| 15 | (A) nous ± rms (meV) | $-16.2 \pm 2.8$ | (-16.21854502926427, 2.7581903411269306) | `ch4/alignement_regions.npz : 15x15_meanA, 15x15_rmsA` |
+| 15 | (B) K–O 2D ± rms (meV) | $-17.8 \pm 3.1$ | (-17.77956457761482, 3.1137230586347275) | `ch4/alignement_regions.npz : 15x15_meanB, 15x15_rmsB` |
+| 15 | (C) K–O 3D ± rms (meV) | $-13.4 \pm 5.5$ | (-13.399074414678752, 5.482702295280982) | `ch4/alignement_regions.npz : 15x15_meanC, 15x15_rmsC` |
+| 15 | (D) Lu et al., site unique (meV) | $-15.6$ | -15.642378585788208 | `ch4/alignement_regions.npz : 15x15_Lu` |
+| 15 | (E) vide ± écart-type (meV) | $-7.1 \pm 8.6$ | (-7.122324562219972, 8.585177186616276) | `alignement/r10_c6_results.json : sizes.15x15.vacuum_mean_meV, vacuum_std_meV` |
+| 21 | (A) nous ± rms (meV) | $-14.2 \pm 1.0$ | (-14.234270413329362, 1.0319410741586257) | `ch4/alignement_regions.npz : 21x21_meanA, 21x21_rmsA` |
+| 21 | (B) K–O 2D ± rms (meV) | $-14.7 \pm 1.0$ | (-14.695064070252384, 1.0149768320376096) | `ch4/alignement_regions.npz : 21x21_meanB, 21x21_rmsB` |
+| 21 | (C) K–O 3D ± rms (meV) | $-8.8 \pm 7.9$ | (-8.803540881730315, 7.874132629446457) | `ch4/alignement_regions.npz : 21x21_meanC, 21x21_rmsC` |
+| 21 | (D) Lu et al., site unique (meV) | $-13.8$ | -13.771481369850846 | `ch4/alignement_regions.npz : 21x21_Lu` |
+| 21 | (E) vide ± écart-type (meV) | $-2.6 \pm 1.4$ | (-2.576598346932535, 1.4061320209102772) | `alignement/r10_c6_results.json : sizes.21x21.vacuum_mean_meV, vacuum_std_meV` |
+
 ## `tab:tests_M` — `tables/tests_M.tex` (§4.1.5 → annexe D)
 
 - Ligne « 16 → 20 bandes » retirée (non rejouable avec M2 ; TODO). Ajouts : application directe de V_ed (porte A.2, toutes les tailles ; valeur affichée = le plus grand des écarts L et NL) et convention intensive par famille (remplace la ligne sur six tailles).

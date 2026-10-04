@@ -1,9 +1,8 @@
-\chapter{Diffusion multiple par les défauts : matrice $T$ et taux d'amortissement}\label{chap:défauts2}
+\chapter{Diffusion multiple par les défauts : matrice $T$ et taux d'amortissement}\label{chap:T}
 
-\section{Théorie de la perturbation à plusieurs corps pour les défauts}\label{sec:mbt_défaut}
 Dans cette section, nous détaillons comment utiliser la théorie de la perturbation à plusieurs corps dans le contexte de l'interaction électron-défaut pour relier les éléments de matrice de couplage de la section précédente à la \textit{self}-énergie électronique due à la présence de défauts dans un matériau. Nous commençons avec le cas le plus simple où un seul et unique défaut est présent dans le matériau. Dans ce cas, le problème peut être résolu exactement dans le formalisme de la matrice $T$~\cite{bruusManyBodyQuantumTheory2004}. Ensuite, nous généralisons au cas d'un grand nombre de défauts répartis aléatoirement pour simuler un matériau réel. Les quantités mesurables par l'expérience ne dépendent pas de la réalisation microscopique des défauts et sont des moyennes sur toutes les positions des défauts. Cette moyenne ne peut pas être évaluée exactement, d'où l'utilité de la théorie de la perturbation.
 
-\subsection{Un défaut et la matrice $T$}\label{sec:mbt_T}
+\section{Un défaut et la matrice $T$}\label{sec:mbt_T}
 
 Commençons par le cas idéal où il n'y a qu'un seul défaut présent dans le matériau et ignorons toutes les autres perturbations. Supposons que le problème électronique a été résolu par la DFT dans le système parfait. Le couplage entre les électrons du système et le défaut se fait par l'entremise de l'Hamiltonien de couplage électron-défaut, et nous travaillons maintenant à température finie c'est-à-dire dans l'ensemble grand canonique, de sorte que l'Hamiltonien du système est
 \begin{equation}
@@ -83,7 +82,7 @@ où nous avons utilisé $\partial\mathcal{G}^{(0)}/\partial \omega = -(\mathcal{
 \end{equation}
 c'est-à-dire que le défaut déplace les états sans en changer le nombre.
 
-\subsection{Plusieurs défauts, la \textit{self}-énergie et le taux d'amortissement}\label{sec:mbt_sigma}
+\section{Plusieurs défauts, la \textit{self}-énergie et le taux d'amortissement}\label{sec:mbt_sigma}
 Bien que le formalisme de la matrice $T$ offre une solution exacte au problème de l'interaction entre les électrons d'un matériau et un seul défaut, n'importe quel matériau réaliste contient un très grand nombre de défauts. En effet, un matériau peut être pur à une partie par milliard ($10^9$) ; pour une quantité macroscopique de ce matériau ($10^{23}$ atomes), cela représente tout de même $10^{14}$ défauts. Nous devons donc généraliser au cas où il y a $N_d$ lacunes réparties aléatoirement dans le matériau. Le potentiel induit par cette collection de défauts est maintenant
 \begin{equation}
     V_\text{ed}(\rv) = \sum_{I=1}^{N_d}V_\text{ed}(\rv-\rv_I),
@@ -141,7 +140,7 @@ Dans la limite diluée de cette section, les défauts contribuent indépendammen
 \end{equation}
 où $\rho_0$ est la densité d'états du matériau parfait.
 
-\subsection{Schéma local pour la matrice $T$}\label{sec:T_local}
+\section{Schéma local pour la matrice $T$}\label{sec:T_local}
 
 La résolution directe de l'équation~\eqref{eqn:T_chap} requiert une inversion dans la base complète des états de Bloch et n'est pas possible sur les grilles ultra denses requises pour la convergence de l'intensité Raman (nous quantifions cet argument dans la section~\ref{sec:T_détails}). La localisation de la matrice de couplage dans l'espace réel permet de contourner cette limitation. En effet, la section~\ref{sec:M_results} montre que, dans la base des fonctions de Wannier, les éléments $M_{ij}(\Rv',\Rv)$ sont négligeables dès que $\Rv$ ou $\Rv'$ s'éloigne de la lacune. Or, en itérant l'équation récursive~\eqref{eqn:T_chap} pour la matrice $T$, elle s'écrit
 \begin{equation}
@@ -169,7 +168,7 @@ où $\ket{j\Rv}$ identifie la $j$-ième fonction de Wannier dans la cellule $\Rv
 \end{equation}
 où les sommes sur $\Rv$ et $\Rv'$ ne courent que sur les $N_L$ cellules retenues. Le facteur de $1/c$ provient de la normalisation intensive de $M$ : la matrice $t$ calculée vaut $N_\text{uc}$ fois la matrice $T$, de sorte que la \textit{self}-énergie vaut $\Sigma^{\text{ed}}=ct$ et que la quantité naturelle du schéma local est le taux d'amortissement \textit{par unité de concentration}.
 
-\subsection{Détails computationnels pour la matrice $T$ et le taux d'amortissement}\label{sec:T_détails}
+\section{Détails computationnels pour la matrice $T$ et le taux d'amortissement}\label{sec:T_détails}
 
 Nous décrivons ici les paramètres avec lesquels le schéma local de la section~\ref{sec:T_local} est évalué à partir de la matrice de couplage interpolée de la section~\ref{sec:interp_wannier_M}, la forme sous laquelle le taux d'amortissement est rapporté, ainsi que les contrôles qui protègent la chaîne de calcul.
 
@@ -193,7 +192,7 @@ Le taux d'amortissement doit être évalué à l'énergie $\varepsilon_{n\kv_f}$
 
 Enfin, toute la chaîne de calcul est protégée par une série de contrôles qui interrompent l'exécution. Les matrices de jauge $U^{(\kv)}$ qui servent à faire pivoter $M$ dans la base de Wannier, et l'Hamiltonien $H$, doivent provenir de la même procédure de Wannierisation et doivent être sur la même grille (cela est vérifié par les empreintes de fichiers). Les étiquettes de normalisation et d'unités des fichiers d'entrée (voir la section~\ref{sec:M_détails}) doivent être celles attendues. La grille de $M$ doit coïncider point par point avec celle utilisée pour calculer les fonctions de Wannier. Le poids de $M_{ij}(\Rv',\Rv)$ doit être maximal à l'origine après le recentrage (une condition nécessaire à la validité de la troncature au sous-espace local). La matrice de couplage locale $M_\text{loc}$ doit être hermitienne et $\Gamma_{n\kv}$ doit être positif partout. Le schéma local est en outre validé contre l'inversion directe de l'équation~\eqref{eqn:T_chap} sur les super-cellules $5\times 5$, $6\times 6$ et $12\times 12$, avec un seuil d'écart relatif de $10^{-8}$. Ces tests, rapportés dans la prochaine section, établissent la cohérence interne de la méthode. Toutefois, ils ne peuvent détecter une erreur commune aux deux membres comparés, telle une convention d'unité ou de normalisation. Ce rôle revient à la comparaison avec la littérature, que nous faisons également dans la prochaine section.
 
-\subsection{Résultats pour la matrice $T$ et le taux d'amortissement}\label{sec:T_results}
+\section{Résultats pour la matrice $T$ et le taux d'amortissement}\label{sec:T_results}
 
 Nous présentons ici le taux d'amortissement dû aux défauts dans le graphène calculé dans le formalisme de la matrice $T$. Nous commençons par la convergence des paramètres numériques du schéma local et par ses tests, puis nous présentons le taux d'amortissement lui-même, sa comparaison avec l'approximation de Born et les signatures spectrales des défauts. Toutes les quantités sont rapportées par unité de concentration sous la forme $\Gamma N_\text{cells}$ tel qu'expliqué dans la section~\ref{sec:T_détails}, et les énergies sont mesurées à partir du point de Dirac $E_D$ (qui coïncide avec le niveau de Fermi du graphène parfait). Sauf indication contraire, les résultats sont ceux de la super-cellule de référence $9\times 9$ et sa grille élargie $27\times 27$.
 

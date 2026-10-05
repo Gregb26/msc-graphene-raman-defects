@@ -463,20 +463,18 @@ def t_convergence_gamma():
 # tab:tests_T
 
 def t_tests_T():
-    ft, fn, fl, fr = (RES / "M_tests_summary.csv", RES / "nkint_check_9x9.csv", RES / "level1_summary.csv",
-                      RES / "resonance_9x9.npz")
+    ft, fr = RES / "M_tests_summary.csv", RES / "resonance_9x9.npz"
     rows = []
     name = "test d'or (local vs compute_T), 5×5 dense"
     r = csv_row(ft, test=name)
     v, s = first_float(r["valeur"]), first_float(r["seuil"])
     rows.append([L(r"Référence, $5\times5$"), L(r"$\max|\Gamma_\text{loc}-\Gamma_\text{dense}|/\max\Gamma$"),
                  Cell(sci(v), f"{rel(ft)} : valeur [{name}]", v), Cell(thr(s), f"{rel(ft)} : seuil", s)])
-    m300, m600 = (float(csv_row(fn, nk_int=n)["medG"]) for n in ("300", "600"))
-    prod = float(csv_row(fl, size="9x9", R_cut="3", grid="240", eta_eV="0.02")["median_Gamma_Ncells_meV"])
-    gate(abs(m300 - prod) < 1e-3, "nkint_check_9x9.csv nk 300 ≠ production (level1_summary.csv)")
-    d = abs(m300 - m600) / m600
-    rows.append([L(r"Grille interne, $300^2\to600^2$"), L("écart rel. sur la médiane"),
-                 Cell(sci(d), f"{rel(fn)} : |medG[300] − medG[600]| / medG[600]", d), L("---")])
+    name2 = "g0 par lots vs référence, R_cut 0–3"
+    r2 = csv_row(ft, test=name2)
+    v2, s2 = first_float(r2["valeur"]), first_float(r2["seuil"])
+    rows.append([L(r"$g^{(0)}$ par lots, $R_\text{cut}=0$--$3$"), L(r"$\max|g^{(0)}_\text{lots}-g^{(0)}|/\max|g^{(0)}|$"),
+                 Cell(sci(v2), f"{rel(ft)} : valeur [{name2}]", v2), Cell(thr(s2), f"{rel(ft)} : seuil", s2)])
     Z = read_npz(fr)
     E, G, ED = Z["E_out"], Z["G_T"], float(Z["E_D"])
     win = np.abs(E - ED) <= CFG["e_window_eV"]
@@ -490,6 +488,7 @@ def t_tests_T():
                  ["Lignes 6×6, 12×12 (non rejoués avec M2) et grille d'énergie (v1 seulement) retirées (TODO).",
                   "Ligne « Hermiticité de M_loc » retirée (décision du 2026-10-01) : l'hermiticité de M est déjà dans tab:tests_M "
                   "et aucune valeur de la 9×9 de production n'existe hors des journaux.",
+                  "Ligne « Grille interne 300² → 600² » retirée le 2026-10-05 (doublon de tab:grille_interne) ; ligne « g0 par lots » ajoutée (décision G, 2026-10-05).",
                   "Positivité : minimum réel sur les 41 266 états de la fenêtre (9×9 de production) au lieu de « ≥ 0 »."])
 
 
@@ -550,9 +549,9 @@ def t_kaasbjerg():
         x = Sp[f"{v}_c0.01"]["K_gap_eV"]
         cells.append(Cell(fixed(x, 3), f"{ss} : runs.{v}_c0.01.K_gap_eV", x))
     rows.append(cells)
-    head = [r"Grandeur & Kaasbjerg~\cite{kaasbjergAtomisticMatrixTheory2020} & non aligné & Kumagai--Oba \\"]
+    head = [r"Grandeur & Kaasbjerg~\cite{kaasbjergAtomisticMatrixTheory2020} & brut & aligné \\"]
     return Table("kaasbjerg", "tab:kaasbjerg", "§4.2.5, corps", "l c c c", head,
-                 ["grandeur", "Kaasbjerg", "non aligné", "Kumagai–Oba"], rows,
+                 ["grandeur", "Kaasbjerg", "brut", "aligné"], rows,
                  ["Colonne Kaasbjerg : Fig. 13 et 14 de l'article numérisées dans `r8_7a_results.json` (Fig. 13 : courbes vectorielles "
                   "du PDF interpolées au meV ; Fig. 14 : points sur des cellules de 10 meV). Seule cellule sans source lisible par "
                   "machine : A_cell|M| ~70 eV Å², lu sur sa Fig. 3.",

@@ -1,12 +1,12 @@
 % Généré par scripts/make_tables.py : ne pas éditer (python scripts/make_tables.py --only tests_T).
 % tab:tests_T, §4.2.5 → annexe D. Valeurs et sources cellule par cellule : tables/SOURCES.md.
-% Sources : M2_plateau/M_tests_summary.csv ; M2_plateau/nkint_check_9x9.csv ; M2_plateau/resonance_9x9.npz ; ch4/NOTES_TGAMMA.md
+% Sources : M2_plateau/M_tests_summary.csv ; M2_plateau/resonance_9x9.npz ; ch4/NOTES_TGAMMA.md
 \begin{tabular}{l l l l}
     \hline\hline
     Test & Quantité & Valeur & Seuil \\
     \hline
-    Référence, $5\times5$           & $\max|\Gamma_\text{loc}-\Gamma_\text{dense}|/\max\Gamma$ & $1.8\times10^{-13}$ & $10^{-8}$ \\
-    Grille interne, $300^2\to600^2$ & écart rel. sur la médiane                                & $9.1\times10^{-4}$  & --- \\
-    Positivité                      & $\min_{n\kv}\Gamma_{n\kv}N_\text{cells}$                 & $1.96$~eV           & $-10^{-8}$~eV \\
+    Référence, $5\times5$                     & $\max|\Gamma_\text{loc}-\Gamma_\text{dense}|/\max\Gamma$ & $1.8\times10^{-13}$ & $10^{-8}$ \\
+    $g^{(0)}$ par lots, $R_\text{cut}=0$--$3$ & $\max|g^{(0)}_\text{lots}-g^{(0)}|/\max|g^{(0)}|$        & $1.2\times10^{-14}$ & $10^{-12}$ \\
+    Positivité                                & $\min_{n\kv}\Gamma_{n\kv}N_\text{cells}$                 & $1.96$~eV           & $-10^{-8}$~eV \\
     \hline\hline
 \end{tabular}

@@ -5,12 +5,129 @@
 
 Cette section rassemble tous les tests de convergence des paramètres numériques du mémoire, dans l'ordre des chapitres.
 
+% ------------------------------------------------------------------------------------------------
+% SECTION PROVISOIRE (2026-10-03) : éléments déplacés du chapitre 4 pendant sa réécriture (chantier 1),
+% à ranger dans la chaîne « matrice M » à la restructuration de l'annexe (chantier 3). Légendes à revoir.
+% ------------------------------------------------------------------------------------------------
+\section{Vérifications de la matrice de couplage électron-défaut}\label{sec:annexe_M_tests}
+
+Cette section rassemble les vérifications de la chaîne de calcul de la matrice $M$ du chapitre~\ref{chap:défauts} qui justifient un paramètre numérique : la convergence de l'interpolation en $R_\text{cut}$ et les tests de cohérence interne.
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \setlength{\tabcolsep}{3pt}
+    % À REVOIR : légende provisoire du 2026-10-03
+    \caption[Erreur de troncature sur les éléments de
+    matrice interpolés.]{Écart relatif maximal entre les éléments de
+    matrice interpolés sur une grille de sortie $60\times60$ avec troncature de
+    la somme~\eqref{eqn:M_interp} à $R',R \le R_\text{cut}$, où $R$ et $R'$ sont des normes euclidiennes d'indices réduits, et ceux
+    obtenus avec toutes les cellules unitaires de la représentation réelle, pour les
+    super-cellules $9\times9$ et $12\times12$, sur les valeurs singulières
+    des blocs $\pi$--$\pi^*$ et sur les éléments
+    diagonaux $M_{nn}(\kv,\kv)$, avec les matrices brutes et alignées (section~\ref{sec:M_détails}). La deuxième colonne donne le nombre de
+    cellules unitaires retenues.}
+    \label{tab:rcut_M}
+    \input{tables/rcut_M}
+\end{table}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_ks_reconstruction.pdf}
+    \caption[Reconstruction des valeurs propres de Kohn-Sham.]{Écart
+    entre les valeurs propres de Kohn-Sham reconstruites par la chaîne
+    d'évaluation des éléments de matrice, appliquée au potentiel de la
+    super-cellule parfaite, et celles de \texttt{QuantumESPRESSO}.
+    La moyenne et le maximum sont sur toutes les bandes et tous les points $\kv$, après le retrait d'un décalage constant entre les deux références d'énergie. L'exercice est fait pour les grilles $N\times N$, où la densité convergée est la même pour les états et le potentiel, et pour les grilles élargies $pN\times pN$, où la densité autocohérente est différente.}
+    \label{fig:ks_reconstruction}
+\end{figure}
+Pour les grilles grossières $N\times N$, où les états de Bloch et le potentiel proviennent du même calcul autocohérent, les valeurs propres de \texttt{QuantumESPRESSO} sont reproduites à 1.5--32 $\mu$eV près et les éléments hors diagonaux sont inférieurs à $10^{-6}$ en valeur relative. Ce test valide contre une référence indépendante du code le repliement des vecteurs $\Gv$, les facteurs de forme, les phases atomiques, la normalisation et les préfacteurs communs aux deux parties de la matrice de couplage. Seule la soustraction des deux super-cellules lui échappe. Sur les grilles élargies $pN\times pN$, l'écart atteint 0.21 à 10 meV, ce qui est attendu puisque les états de Bloch proviennent de la cellule unitaire avec la grille élargie $pN\times pN$ tandis que le potentiel vient du calcul de la super-cellule, dont l'échantillonnage à $\Gamma$ équivaut à une grille $N\times N$. Les densités autocohérentes ne sont donc pas identiques, et le potentiel n'est pas exactement celui dont les états de Bloch sont les états propres. Cette incohérence est inhérente à toute approche par super-cellule et ne pose pas de problème pour notre méthode.
+
+Les autres tests sont des vérifications de cohérence interne. L'hermiticité des matrices de couplage est respectée à $10^{-14}$. Le remplissage par zéros préserve les coefficients de Fourier aux points coïncidents à $10^{-15}$. La transformée de Fourier $\kv\to\Rv\to\kv$ reproduit les éléments de matrice de départ à $10^{-14}$ près, et la transformée aller-retour Bloch$\to$Wannier$\to$Bloch (les équations~\eqref{eqn:M_wannier} et~\eqref{eqn:M_interp}) évaluée aux points de la grille grossière elle-même, à $10^{-15}$ près. Le seul écart supérieur au bruit numérique, de $10^{-3}$, apparaît en comparant les éléments de matrice des grilles grossières et élargies aux points $\kv$ communs. Cet écart a la même origine que l'écart de reconstruction sur les grilles élargies c'est-à-dire la différence entre les deux densités autocohérentes, et non la chaîne de calcul de $M$.
+\begin{table}[htbp]
+    \centering
+    \small
+    \setlength{\tabcolsep}{2pt}
+    % À REVOIR : légende provisoire du 2026-10-03
+    \caption[Vérifications de la chaîne de calcul de la matrice de
+    couplage.]{Vérifications de la chaîne de calcul de la matrice $M$ : les tests et la quantité qu'ils contrôlent, la valeur obtenue et le seuil d'acceptation. Sauf mention contraire la valeur est celle de la super-cellule de référence $9\times9$ ; les reconstructions de Kohn-Sham, l'hermiticité et l'application directe de $V_\text{ed}$ sont données en fourchette ou en maximum sur les six tailles, et le test de convention intensive porte sur chaque famille de tailles.}
+    \label{tab:tests_M}
+    \input{tables/tests_M}
+\end{table}
+
+\section{Convergence et vérifications de la matrice $T$}\label{sec:annexe_T_tests}
+
+Cette section rassemble les preuves de convergence du schéma de l'amas de la matrice $T$ du chapitre~\ref{chap:T} : le rayon de coupure, la grille de sortie, l'élargissement et la grille interne de la fonction de Green de l'amas. Le corps du chapitre (section~\ref{sec:T_results}) ne garde que les paramètres retenus et les variations mesurées.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_convergence.pdf}
+    \caption[Convergence du taux d'amortissement par unité de
+    concentration.]{Convergence de la médiane de $\Gamma N_\text{cells}$
+    sur $\pm3$~eV autour de $E_D$. (a) En fonction du rayon de coupure
+    $R_\text{cut}$ du schéma de l'amas pour les six tailles de super-cellule,
+    avec une grille de sortie $240\times240$ et un élargissement $\eta = 20$~meV. (b) En fonction de la grille de sortie et de $\eta$, pour la super-cellule de référence $9\times9$ à $R_\text{cut} = 3$. La couleur donne l'écart au point $(240^2, 20~\text{meV})$. La grille interne est de $300\times300$ ($N_{\tilde\kv}=300^2$) dans tous les cas.}
+    \label{fig:convergence}
+\end{figure}
+\begin{table}[htbp]
+    \centering
+    \caption[Convergence du taux d'amortissement en fonction du rayon de
+    coupure.]{Médiane de $\Gamma\,N_\text{cells}$ (meV) sur $\pm3$~eV
+    autour de $E_D$ en fonction du rayon de coupure $R_\text{cut}$, pour les
+    six tailles de super-cellule (grille de sortie $240\times240$,
+    $\eta = 20$~meV, grille interne $300\times300$). Nous distinguons les deux familles de super-cellules de la section~\ref{sec:M_détails}.}
+    \label{tab:convergence_gamma}
+    \input{tables/convergence_gamma}
+\end{table}
+\begin{table}[htbp]
+    \centering
+    % À REVOIR : légende provisoire du 2026-10-04
+    \caption[Convergence du taux d'amortissement en grille interne.]{Convergence en grille interne $N_{\tilde\kv}$ de la fonction de Green de l'amas~\eqref{eqn:g_loc}, pour la super-cellule de référence $9\times9$ et les paramètres de production ($R_\text{cut}=3$, grille de sortie $240^2$, $\eta=20$~meV) : médiane de $\Gamma N_\text{cells}$ sur la fenêtre $\pm3$~eV et sur la zone $|\varepsilon-E_D|\le0.3$~eV, taux d'amortissement des états situés au point de Dirac et position $E_\text{res}$ de la résonance, définie comme l'énergie de l'état de la grille de sortie où $\Gamma N_\text{cells}$ est maximal.}
+    \label{tab:grille_interne}
+    \input{tables/grille_interne}
+\end{table}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_resonance_vs_nkint_plateau.pdf}
+    % À REVOIR : légende provisoire du 2026-10-04 ; étiquettes « Kumagai–Oba » de la figure à renommer « aligné » (make_figures_controles.py)
+    \caption[Position de la résonance en fonction de la grille interne.]{Position de la résonance de la lacune en fonction de l'inverse de la grille interne $N_k^\text{int}=N_{\tilde\kv}$, pour les super-cellules (a) $9\times9$ et (b) $12\times12$ et les matrices alignées, avec les paramètres de production : pic de la courbe $\Gamma_T(\varepsilon)$ obtenue par la moyenne lorentzienne~\eqref{eqn:moyenne_lorentzienne}, pic de $-\mathrm{Im}\,\bar T(K;\varepsilon)$ et $E_\text{res}$ (état de la grille de sortie $240^2$ où $\Gamma N_\text{cells}$ est maximal). Pour $9\times9$, l'alignement appliqué aux blocs diagonaux de la base de Wannier (section~\ref{sec:M_détails}) et l'alignement exact du potentiel se superposent.}
+    \label{fig:resonance_vs_nkint_plateau}
+\end{figure}
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \setlength{\tabcolsep}{4pt}
+    % À REVOIR : légende provisoire du 2026-10-05
+    \caption[Vérifications du schéma de l'amas.]{Vérifications de la chaîne
+    de calcul de la matrice $T$ et du taux d'amortissement par le schéma de l'amas : les tests et la quantité qu'ils contrôlent, la valeur obtenue et le seuil d'acceptation. Le test de
+    référence compare le schéma de l'amas à l'inversion dense de
+    l'équation~\eqref{eqn:T_chap} dans le sous-espace des cinq fonctions
+    de Wannier, pour la super-cellule $5\times5$. Le test de $g^{(0)}$ par lots compare la fonction de Green de l'amas~\eqref{eqn:g_loc} construite par lots d'énergies à son évaluation directe ; la positivité est vérifiée sur les états de la fenêtre $\pm3$~eV de la super-cellule de référence $9\times9$.}
+    \label{tab:tests_T}
+    \input{tables/tests_T}
+\end{table}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_kaasbjerg_sensibilites.pdf}
+    % À REVOIR : légende provisoire du 2026-10-05
+    \caption[Sensibilité de la position du maximum de $\rho-\rho_0$.]{Position du maximum de $\rho-\rho_0$ de la densité d'états moyennée sur le désordre, à $c=1~\%$, en fonction de la grille interne, du rayon de coupure $R_\text{cut}$, de la taille de la super-cellule et de l'élargissement $\eta_G$, pour les matrices brutes et alignées. Les tirets marquent la valeur déduite de la figure 13 de Kaasbjerg~\cite{kaasbjergAtomisticMatrixTheory2020}, $-0.21$~eV.}
+    \label{fig:kaasbjerg_sensibilites}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_kaasbjerg_dos_c.pdf}
+    % À REVOIR : légende provisoire du 2026-10-05 ; étiquettes « non aligné » / « Kumagai–Oba » de la figure à renommer « brut » / « aligné »
+    \caption[Variation de la densité d'états moyennée sur le désordre.]{Variation $\rho-\rho_0$ de la densité d'états moyennée sur le désordre, grille $600^2$, $\eta_G=50$~meV, pour (a) $c=0.1~\%$ et (b) $c=1~\%$, matrices brutes et alignées de la super-cellule $9\times9$ ; c'est la quantité dont le tableau~\ref{tab:kaasbjerg} rapporte la position, la hauteur et la largeur du maximum.}
+    \label{fig:kaasbjerg_dos_c}
+\end{figure}
+
 \section{Paramètres}
 
 Cette section rassemble les paramètres numériques des six chaînes de calcul du mémoire, dans l'ordre des chapitres. Les calculs DFT et DFPT sont réalisés avec \texttt{QuantumESPRESSO} (version~7.4.1), l'interpolation par fonctions de Wannier avec \texttt{Wannier90} et \texttt{EPW}, et le post-traitement de la matrice de couplage électron-défaut en Python avec \texttt{NumPy} et \texttt{SciPy}.
 % TODO P23 : versions d'EPW, de Wannier90, de NumPy et de SciPy absentes du texte des chapitres.
-Tous les calculs ont été effectués sur la grappe Rorqual. Les fichiers d'entrée de chaque chaîne sont regroupés dans le dossier \texttt{calculs/} du dépôt \url{https://github.com/Gregb26/msc-graphene-raman-defects}, et le code de production dans \url{https://github.com/Gregb26/graphene-raman}.
-Dans chaque tableau, la colonne « Section » renvoie à l'endroit du texte où la valeur est donnée. Une valeur qui diffère d'une chaîne à l'autre est donnée dans chaque tableau avec sa propre valeur.
+Tous les calculs ont été effectués sur la grappe Rorqual. Les fichiers d'entrée de chaque chaîne sont regroupés dans le dossier \texttt{calculs/} du dépôt GitHub \href{https://github.com/Gregb26/msc-graphene-raman-defects}{\texttt{msc-graphene-raman-defects}}, et le code de production dans \texttt{src/} du dépôt GitHub \href{https://github.com/Gregb26/graphene-raman}{\texttt{graphene-raman}}.
+Dans chaque tableau, la colonne \og Section \fg{} renvoie à l'endroit du texte où la valeur est donnée. Une valeur qui diffère d'une chaîne à l'autre est donnée dans chaque tableau avec sa propre valeur.
 
 \begin{table}[htbp]
     \centering
@@ -121,7 +238,7 @@ Dans chaque tableau, la colonne « Section » renvoie à l'endroit du texte où 
 
 \begin{table}[htbp]
     \centering
-    \caption[Paramètres de la matrice $T$ et du taux d'amortissement $\Gamma^\text{ed}$.]{Paramètres du schéma local pour la matrice $T$ et le taux d'amortissement $\Gamma^\text{ed}$ (chapitre~\ref{chap:défauts}).}
+    \caption[Paramètres de la matrice $T$ et du taux d'amortissement $\Gamma^\text{ed}$.]{Paramètres du schéma de l'amas pour la matrice $T$ et le taux d'amortissement $\Gamma^\text{ed}$ (chapitre~\ref{chap:défauts}).}
     \label{tab:param_T}
     \small
     \setlength{\tabcolsep}{4pt}
@@ -168,92 +285,3 @@ Dans chaque tableau, la colonne « Section » renvoie à l'endroit du texte où 
         \hline\hline
     \end{tabular}
 \end{table}
-
-% ------------------------------------------------------------------------------------------------
-% SECTION PROVISOIRE (2026-10-03) : éléments déplacés du chapitre 4 pendant sa réécriture (chantier 1),
-% à ranger dans la chaîne « matrice M » à la restructuration de l'annexe (chantier 3). Légendes à revoir.
-% ------------------------------------------------------------------------------------------------
-\section{Vérifications de la matrice de couplage électron-défaut}\label{sec:annexe_M_tests}
-
-Cette section rassemble les vérifications de la chaîne de calcul de la matrice $M$ du chapitre~\ref{chap:défauts} qui justifient un paramètre numérique : la convergence de l'interpolation en $R_\text{cut}$ et les tests de cohérence interne.
-
-\begin{table}[htbp]
-    \centering
-    \small
-    \setlength{\tabcolsep}{3pt}
-    % À REVOIR : légende provisoire du 2026-10-03
-    \caption[Erreur de troncature sur les éléments de
-    matrice interpolés.]{Écart relatif maximal entre les éléments de
-    matrice interpolés sur une grille de sortie $60\times60$ avec troncature de
-    la somme~\eqref{eqn:M_interp} à $R',R \le R_\text{cut}$, où $R$ et $R'$ sont des normes euclidiennes d'indices réduits, et ceux
-    obtenus avec toutes les cellules unitaires de la représentation réelle, pour les
-    super-cellules $9\times9$ et $12\times12$, sur les valeurs singulières
-    des blocs $\pi$--$\pi^*$ et sur les éléments
-    diagonaux $M_{nn}(\kv,\kv)$, avec les matrices brutes et alignées (section~\ref{sec:M_détails}). La deuxième colonne donne le nombre de
-    cellules unitaires retenues.}
-    \label{tab:rcut_M}
-    \input{tables/rcut_M}
-\end{table}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{figures/fig_ks_reconstruction.pdf}
-    \caption[Reconstruction des valeurs propres de Kohn-Sham.]{Écart
-    entre les valeurs propres de Kohn-Sham reconstruites par la chaîne
-    d'évaluation des éléments de matrice, appliquée au potentiel de la
-    super-cellule parfaite, et celles de \texttt{QuantumESPRESSO}.
-    La moyenne et le maximum sont sur toutes les bandes et tous les points $\kv$, après le retrait d'un décalage constant entre les deux références d'énergie. L'exercice est fait pour les grilles $N\times N$, où la densité convergée est la même pour les états et le potentiel, et pour les grilles élargies $pN\times pN$, où la densité autocohérente est différente.}
-    \label{fig:ks_reconstruction}
-\end{figure}
-Pour les grilles grossières $N\times N$, où les états de Bloch et le potentiel proviennent du même calcul autocohérent, les valeurs propres de \texttt{QuantumESPRESSO} sont reproduites à 1.5--32 $\mu$eV près et les éléments hors diagonaux sont inférieurs à $10^{-6}$ en valeur relative. Ce test valide contre une référence indépendante du code le repliement des vecteurs $\Gv$, les facteurs de forme, les phases atomiques, la normalisation et les préfacteurs communs aux deux parties de la matrice de couplage. Seule la soustraction des deux super-cellules lui échappe. Sur les grilles élargies $pN\times pN$, l'écart atteint 0.21 à 10 meV, ce qui est attendu puisque les états de Bloch proviennent de la cellule unitaire avec la grille élargie $pN\times pN$ tandis que le potentiel vient du calcul de la super-cellule, dont l'échantillonnage à $\Gamma$ équivaut à une grille $N\times N$. Les densités autocohérentes ne sont donc pas identiques, et le potentiel n'est pas exactement celui dont les états de Bloch sont les états propres. Cette incohérence est inhérente à toute approche par super-cellule et ne pose pas de problème pour notre méthode.
-
-Les autres tests sont des vérifications de cohérence interne. L'hermiticité des matrices de couplage est respectée à $10^{-14}$. Le remplissage par zéros préserve les coefficients de Fourier aux points coïncidents à $10^{-15}$. La transformée de Fourier $\kv\to\Rv\to\kv$ reproduit les éléments de matrice de départ à $10^{-14}$ près, et la transformée aller-retour Bloch$\to$Wannier$\to$Bloch (les équations~\eqref{eqn:M_wannier} et~\eqref{eqn:M_interp}) évaluée aux points de la grille grossière elle-même, à $10^{-15}$ près. Le seul écart supérieur au bruit numérique, de $10^{-3}$, apparaît en comparant les éléments de matrice des grilles grossières et élargies aux points $\kv$ communs. Cet écart a la même origine que l'écart de reconstruction sur les grilles élargies c'est-à-dire la différence entre les deux densités autocohérentes, et non la chaîne de calcul de $M$.
-\begin{table}[htbp]
-    \centering
-    \small
-    \setlength{\tabcolsep}{2pt}
-    % À REVOIR : légende provisoire du 2026-10-03
-    \caption[Vérifications de la chaîne de calcul de la matrice de
-    couplage.]{Vérifications de la chaîne de calcul de la matrice $M$ : les tests et la quantité qu'ils contrôlent, la valeur obtenue et le seuil d'acceptation. Sauf mention contraire la valeur est celle de la super-cellule de référence $9\times9$ ; les reconstructions de Kohn-Sham, l'hermiticité et l'application directe de $V_\text{ed}$ sont données en fourchette ou en maximum sur les six tailles, et le test de convention intensive porte sur chaque famille de tailles.}
-    \label{tab:tests_M}
-    \input{tables/tests_M}
-\end{table}
-
-\section{Convergence et vérifications de la matrice $T$}\label{sec:annexe_T_tests}
-
-Cette section rassemble les preuves de convergence du schéma local de la matrice $T$ du chapitre~\ref{chap:T} : le rayon de coupure, la grille de sortie, l'élargissement et la grille interne de la fonction de Green locale. Le corps du chapitre (section~\ref{sec:T_results}) ne garde que les paramètres retenus et les variations mesurées.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{figures/fig_convergence.pdf}
-    \caption[Convergence du taux d'amortissement par unité de
-    concentration.]{Convergence de la médiane de $\Gamma N_\text{cells}$
-    sur $\pm3$~eV autour de $E_D$. (a) En fonction du rayon de coupure
-    $R_\text{cut}$ du schéma local pour les six tailles de super-cellule,
-    avec une grille de sortie $240\times240$ et un élargissement $\eta = 20$~meV. (b) En fonction de la grille de sortie et de $\eta$, pour la super-cellule de référence $9\times9$ à $R_\text{cut} = 3$. La couleur donne l'écart au point $(240^2, 20~\text{meV})$. La grille interne est de $300\times300$ ($N_{\tilde\kv}=300^2$) dans tous les cas.}
-    \label{fig:convergence}
-\end{figure}
-\begin{table}[htbp]
-    \centering
-    \caption[Convergence du taux d'amortissement en fonction du rayon de
-    coupure.]{Médiane de $\Gamma\,N_\text{cells}$ (meV) sur $\pm3$~eV
-    autour de $E_D$ en fonction du rayon de coupure $R_\text{cut}$, pour les
-    six tailles de super-cellule (grille de sortie $240\times240$,
-    $\eta = 20$~meV, grille interne $300\times300$). Nous distinguons les deux familles de super-cellules de la section~\ref{sec:M_détails}.}
-    \label{tab:convergence_gamma}
-    \input{tables/convergence_gamma}
-\end{table}
-\begin{table}[htbp]
-    \centering
-    % À REVOIR : légende provisoire du 2026-10-04
-    \caption[Convergence du taux d'amortissement en grille interne.]{Convergence en grille interne $N_{\tilde\kv}$ de la fonction de Green locale~\eqref{eqn:g_loc}, pour la super-cellule de référence $9\times9$ et les paramètres de production ($R_\text{cut}=3$, grille de sortie $240^2$, $\eta=20$~meV) : médiane de $\Gamma N_\text{cells}$ sur la fenêtre $\pm3$~eV et sur la zone $|\varepsilon-E_D|\le0.3$~eV, taux d'amortissement des états situés au point de Dirac et position $E_\text{res}$ de la résonance, définie comme l'énergie de l'état de la grille de sortie où $\Gamma N_\text{cells}$ est maximal.}
-    \label{tab:grille_interne}
-    \input{tables/grille_interne}
-\end{table}
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{figures/fig_resonance_vs_nkint_plateau.pdf}
-    % À REVOIR : légende provisoire du 2026-10-04 ; étiquettes « Kumagai–Oba » de la figure à renommer « aligné » (make_figures_controles.py)
-    \caption[Position de la résonance en fonction de la grille interne.]{Position de la résonance de la lacune en fonction de l'inverse de la grille interne $N_k^\text{int}=N_{\tilde\kv}$, pour les super-cellules (a) $9\times9$ et (b) $12\times12$ et les matrices alignées, avec les paramètres de production : pic de la courbe $\Gamma_T(\varepsilon)$ obtenue par la moyenne lorentzienne~\eqref{eqn:moyenne_lorentzienne}, pic de $-\mathrm{Im}\,\bar T(K;\varepsilon)$ et $E_\text{res}$ (état de la grille de sortie $240^2$ où $\Gamma N_\text{cells}$ est maximal). Pour $9\times9$, l'alignement appliqué aux blocs diagonaux de la base de Wannier (section~\ref{sec:M_détails}) et l'alignement exact du potentiel se superposent.}
-    \label{fig:resonance_vs_nkint_plateau}
-\end{figure}

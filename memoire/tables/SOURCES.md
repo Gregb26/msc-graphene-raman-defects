@@ -261,13 +261,15 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 
 - Lignes 6×6, 12×12 (non rejoués avec M2) et grille d'énergie (v1 seulement) retirées (TODO).
 - Ligne « Hermiticité de M_loc » retirée (décision du 2026-10-01) : l'hermiticité de M est déjà dans tab:tests_M et aucune valeur de la 9×9 de production n'existe hors des journaux.
+- Ligne « Grille interne 300² → 600² » retirée le 2026-10-05 (doublon de tab:grille_interne) ; ligne « g0 par lots » ajoutée (décision G, 2026-10-05).
 - Positivité : minimum réel sur les 41 266 états de la fenêtre (9×9 de production) au lieu de « ≥ 0 ».
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
 | Référence, $5\times5$ | valeur | $1.8\times10^{-13}$ | 1.8e-13 | `M2_plateau/M_tests_summary.csv : valeur [test d'or (local vs compute_T), 5×5 dense]` |
 | Référence, $5\times5$ | seuil | $10^{-8}$ | 1e-08 | `M2_plateau/M_tests_summary.csv : seuil` |
-| Grille interne, $300^2\to600^2$ | valeur | $9.1\times10^{-4}$ | 0.0009144248278094638 | `M2_plateau/nkint_check_9x9.csv : \|medG[300] − medG[600]\| / medG[600]` |
+| $g^{(0)}$ par lots, $R_\text{cut}=0$--$3$ | valeur | $1.2\times10^{-14}$ | 1.2e-14 | `M2_plateau/M_tests_summary.csv : valeur [g0 par lots vs référence, R_cut 0–3]` |
+| $g^{(0)}$ par lots, $R_\text{cut}=0$--$3$ | seuil | $10^{-12}$ | 1e-12 | `M2_plateau/M_tests_summary.csv : seuil` |
 | Positivité | valeur | $1.96$~eV | 1.955186878025845 | `M2_plateau/resonance_9x9.npz : min de G_T sur \|E_out − E_D\| ≤ 3.0 eV (eV)` |
 | Positivité | seuil | $-10^{-8}$~eV | -1e-8 | `ch4/NOTES_TGAMMA.md : l. 122 (C7)` |
 
@@ -281,23 +283,23 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
 | $A_\text{cell}\|M_{nn}\|$ près de $K$ (eV\,\AA$^2$) | Kaasbjerg | ${\sim}70$ | ~70 | `lit. : Kaasbjerg 2020 (PRB 101, 045433), Fig. 3, lu sur la figure (défauts.tex l. 327), aucune donnée numérisée` |
-| $A_\text{cell}\|M_{nn}\|$ près de $K$ (eV\,\AA$^2$) | non aligné | 77 / 78 | 76.956 / 78.168 | `kaasbjerg/r10_c2_results.json : kaasbjerg.D1.tel quel.{valence, conduction} \| K.mean` |
-| $A_\text{cell}\|M_{nn}\|$ près de $K$ (eV\,\AA$^2$) | Kumagai–Oba | 82 / 83 | 81.605 / 82.821 | `kaasbjerg/r10_c2_results.json : kaasbjerg.D1.plateau.{valence, conduction} \| K.mean` |
+| $A_\text{cell}\|M_{nn}\|$ près de $K$ (eV\,\AA$^2$) | brut | 77 / 78 | 76.956 / 78.168 | `kaasbjerg/r10_c2_results.json : kaasbjerg.D1.tel quel.{valence, conduction} \| K.mean` |
+| $A_\text{cell}\|M_{nn}\|$ près de $K$ (eV\,\AA$^2$) | aligné | 82 / 83 | 81.605 / 82.821 | `kaasbjerg/r10_c2_results.json : kaasbjerg.D1.plateau.{valence, conduction} \| K.mean` |
 | Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$ | Kaasbjerg | $-0.200$ | -0.2 | `kaasbjerg/r8_7a_results.json : fig13_metrics.0.1.drho_max_pos_eV` |
-| Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$ | non aligné | $-0.1625$ | -0.1624999999995529 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.001.drho_max_pos_eV` |
-| Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$ | Kumagai–Oba | $-0.1475$ | -0.14749999999955055 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.001.drho_max_pos_eV` |
+| Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$ | brut | $-0.1625$ | -0.1624999999995529 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.001.drho_max_pos_eV` |
+| Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$ | aligné | $-0.1475$ | -0.14749999999955055 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.001.drho_max_pos_eV` |
 | \quad $c = 1~\%$ | Kaasbjerg | $-0.210$ | -0.21 | `kaasbjerg/r8_7a_results.json : fig13_metrics.1.0.drho_max_pos_eV` |
-| \quad $c = 1~\%$ | non aligné | $-0.1650$ | -0.16499999999955328 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.01.drho_max_pos_eV` |
-| \quad $c = 1~\%$ | Kumagai–Oba | $-0.1500$ | -0.14999999999955094 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.01.drho_max_pos_eV` |
+| \quad $c = 1~\%$ | brut | $-0.1650$ | -0.16499999999955328 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.01.drho_max_pos_eV` |
+| \quad $c = 1~\%$ | aligné | $-0.1500$ | -0.14999999999955094 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.01.drho_max_pos_eV` |
 | Hauteur, $c = 1~\%$ (eV$^{-1}$) | Kaasbjerg | $0.031$ | 0.030746893024432773 | `kaasbjerg/r8_7a_results.json : fig13_metrics.1.0.drho_max` |
-| Hauteur, $c = 1~\%$ (eV$^{-1}$) | non aligné | $0.054$ | 0.05352573830058177 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.01.drho_max × 2 (spin)` |
-| Hauteur, $c = 1~\%$ (eV$^{-1}$) | Kumagai–Oba | $0.058$ | 0.05817516839179859 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.01.drho_max × 2 (spin)` |
+| Hauteur, $c = 1~\%$ (eV$^{-1}$) | brut | $0.054$ | 0.05352573830058177 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.01.drho_max × 2 (spin)` |
+| Hauteur, $c = 1~\%$ (eV$^{-1}$) | aligné | $0.058$ | 0.05817516839179859 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.01.drho_max × 2 (spin)` |
 | Largeur à mi-hauteur, $c = 1~\%$ (eV) | Kaasbjerg | $0.31$ | 0.30635758813655406 | `kaasbjerg/r8_7a_results.json : fig13_metrics.1.0.drho_fwhm_eV` |
-| Largeur à mi-hauteur, $c = 1~\%$ (eV) | non aligné | $0.20$ | 0.20124621847661056 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.01.drho_fwhm_eV` |
-| Largeur à mi-hauteur, $c = 1~\%$ (eV) | Kumagai–Oba | $0.19$ | 0.1870328301810967 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.01.drho_fwhm_eV` |
+| Largeur à mi-hauteur, $c = 1~\%$ (eV) | brut | $0.20$ | 0.20124621847661056 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.01.drho_fwhm_eV` |
+| Largeur à mi-hauteur, $c = 1~\%$ (eV) | aligné | $0.19$ | 0.1870328301810967 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.01.drho_fwhm_eV` |
 | Écart des maxima de $A_K$, $c = 1~\%$ (eV) | Kaasbjerg | $0.100$ | 0.10000404720303457 | `kaasbjerg/r8_7a_results.json : fig14.1.0.K_gap_eV` |
-| Écart des maxima de $A_K$, $c = 1~\%$ (eV) | non aligné | $0.118$ | 0.11762346994893341 | `kaasbjerg/r8_spec_results.json : runs.tel_quel_c0.01.K_gap_eV` |
-| Écart des maxima de $A_K$, $c = 1~\%$ (eV) | Kumagai–Oba | $0.118$ | 0.11824139676128233 | `kaasbjerg/r8_spec_results.json : runs.aligne_c0.01.K_gap_eV` |
+| Écart des maxima de $A_K$, $c = 1~\%$ (eV) | brut | $0.118$ | 0.11762346994893341 | `kaasbjerg/r8_spec_results.json : runs.tel_quel_c0.01.K_gap_eV` |
+| Écart des maxima de $A_K$, $c = 1~\%$ (eV) | aligné | $0.118$ | 0.11824139676128233 | `kaasbjerg/r8_spec_results.json : runs.aligne_c0.01.K_gap_eV` |
 
 ## `tab:grille_interne` — `tables/grille_interne.tex` (§4.2.5 → annexe D (chaîne T))
 

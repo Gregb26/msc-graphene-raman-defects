@@ -4,19 +4,13 @@ Le chapitre précédent a construit la matrice de couplage électron-défaut $M$
 
 \section{Un défaut et la matrice $T$}\label{sec:mbt_T}
 
-Commençons par le cas idéal où il n'y a qu'un seul défaut présent dans le matériau et ignorons toutes les autres perturbations. Supposons que le problème électronique a été résolu par la DFT dans le système parfait. Le couplage entre les électrons du système et le défaut se fait par l'entremise de l'Hamiltonien de couplage électron-défaut, et nous travaillons maintenant à température finie c'est-à-dire dans l'ensemble grand canonique, de sorte que l'Hamiltonien du système est
+Commençons par le cas idéal où il n'y a qu'un seul défaut présent dans le matériau et ignorons toutes les autres perturbations. Supposons le problème électronique a été résolu par la DFT dans le système parfait :  le couplage entre les électrons du système et le défaut se fait par l'entremise de l'Hamiltonien de couplage électron-défaut $\hat H_\text{ed}$. Nous travaillons à température fini, dans l'ensemble grand canonique, de sorte que l'Hamiltonien du système est
 \begin{equation}
     \hat{H}-\mu\hat{N} = \hat{H}_\text{e}+\hat{H}_\text{ed} = \sum_{n\kv}\xi_{n\kv}\hat{c}^\dag_{n\kv}\hat{c}_{n\kv}+\sum_{nm}\sum_{\kv\kv'}M_{mn}(\kv',\kv)\hat{c}^\dag_{m\kv'}\hat{c}_{n\kv},\quad\xi_{n\kv} \equiv \varepsilon_{n\kv}-\mu
 \end{equation}
-où la matrice $M$, qui représente physiquement l'amplitude de probabilité qu'un électron diffuse d'un état à l'autre à cause d'un défaut, a été traitée longuement au chapitre précédant. La quantité $\xi_{n\kv}\equiv\varepsilon_{ n\kv}-\mu$ est l'énergie électronique mesurée par rapport au potentiel chimique $\mu$. Pour résoudre ce problème, nous devons trouver la fonction de Green de Matsurbara 
+où la matrice $M$, qui représente physiquement l'amplitude de probabilité qu'un électron diffuse d'un état à l'autre à cause d'un défaut, a été traitée longuement au chapitre précédant. La quantité $\xi_{n\kv}$ est l'énergie électronique mesurée par rapport au potentiel chimique $\mu$. Nous souhaitons trouver la fonction de Green de Matsubara $\mathcal{G}$ du problème par la théorie de la perturbation à plusieurs corps. La connaissance de cette fonction donne accès à la plupart des quantités physiques d'intérêt comme le taux d'amortissement, la densité d'états ou la fonction spectrale. Ce problème, pour un seul défaut, peut être résolu exactement : l'Hamiltonien de couplage $\hat H_\text{ed}$ est quadratique dans les opérateurs de création et d'annihilation électroniques et le problème est effectivement un problème à un corps. La dérivation complète, qui suit le chapitre 11 de Bruus et Flensberg~\cite{bruusManyBodyQuantumTheory2004}, est donnée à l'annexe~\ref{annexe:défauts}. Nous reprenons ici les résultats centraux sous forme de diagrammes de Feynman et d'équations.
 
-
-
-Nous souhaitons employer la méthode de la théorie de la perturbation pour résoudre ce problème. Notre objectif est de déterminer la fonction de Green de Matsubara à température finie ; une fois celle-ci calculée, la grande majorité des propriétés physiques mesurables peuvent être extraites de cette fonction. 
-
-Pour calculer la fonction de Green de l'équation~\eqref{eqn:G_formel}, nous devons développer la matrice $S$ à l'aide de l'équation~\eqref{eqn:S} puis évaluer les moyennes thermiques. Comme ces moyennes sont faites par rapport à l'Hamiltonien libre $\hat{H}_\text{e}$, qui est quadratique dans les opérateurs de création et d'annihilation, elles peuvent être évaluées avec le théorème de Wick. Cependant, cette approche souffre du même problème que l'application de la théorie de la perturbation dans le cadre de la spectroscopie Raman : il n'est pas trivial d'énumérer tous les termes qui découlent du développement de la matrice $S$. Pour remédier à ce problème, nous employons à nouveau des diagrammes de Feynman, avec les règles de la figure~\ref{fig:règles_Raman}. En théorie, nous devons développer la matrice $S$ au numérateur et au dénominateur de l'équation~\eqref{eqn:G_formel} simultanément, ce qui devient rapidement problématique. En pratique, le théorème des amas connexes (de l'anglais \textit{linked-cluster theorem}) stipule que les diagrammes engendrés par le développement de la matrice $S$ au dénominateur annulent exactement les diagrammes déconnectés du développement au numérateur. Cela simplifie considérablement la tâche. Toute cette machinerie est présentée en détail dans l'annexe~\ref{annexe:défauts} et nous reprenons seulement les étapes importantes ici.
-
-Le résultat central de cette annexe est que la fonction de Green de Matsubara pour des électrons en interaction avec un seul défaut satisfait une équation de Dyson qui est illustrée diagrammatiquement dans la figure~\ref{fig:G_Dyson}.
+Le théorie de la perturbation à plusieurs corps et les diagrammes de Feynman permettent de dériver une équation pour la fonction de Green de Matsubara pour des électrons en interaction. Cette équation prend la forme d'une équation de Dyson et est représentée diagrammatiquement dans la figure~\ref{fig:G_Dyson}.
 \begin{center}
     \vspace{0.5\baselineskip}
     \input{tikz/dyson_serie.tex}
@@ -24,7 +18,7 @@ Le résultat central de cette annexe est que la fonction de Green de Matsubara p
     \label{fig:G_Dyson}
     \vspace{0.5\baselineskip}
 \end{center}
-Cette équation de Dyson est plus généralement réécrite en employant la matrice $T$ dans le contexte de la diffusion sur des défauts. Cette matrice $T$ est définie diagrammatiquement à la figure~\ref{fig:T_matrice} et joue un rôle similaire à la \textit{self}-énergie électronique.
+Les traits représentent la propagation d'un électron libre dans le temps imaginaire $\tau$ décrite par la fonction de Green de Matsubara du système non perturbée $\mathcal{G}^{(0)}$. Chaque cercle rempli d'une croix représente une diffusion de cet électron avec le défaut. Dans ce contexte, cette équation est plus généralement réécrite en employant la matrice $T$, qui est définie diagrammatiquement à la figure~\ref{fig:T_matrice}.
 \begin{center}
     \vspace{0.5\baselineskip}
     \input{tikz/matrice_T.tex}
@@ -32,7 +26,7 @@ Cette équation de Dyson est plus généralement réécrite en employant la matr
     \label{fig:T_matrice}
     \vspace{0.5\baselineskip}
 \end{center}
-À l'aide de la matrice $T$, l'équation de Dyson pour la fonction de Green prend la forme donnée diagrammatiquement à la figure~\ref{fig:dyson_T}.
+Dans le contexte de la diffusion d'un électron par un défaut, cette matrice joue le même rôle que la \textit{self}-énergie. À l'aide de la matrice $T$, l'équation de Dyson pour la fonction de Green prend la forme donnée diagrammatiquement à la figure~\ref{fig:dyson_T}.
 \begin{center}
     \vspace{0.5\baselineskip}
     \input{tikz/dyson_matrice_T.tex}
@@ -40,40 +34,43 @@ Cette équation de Dyson est plus généralement réécrite en employant la matr
     \label{fig:dyson_T}
     \vspace{0.5\baselineskip}
 \end{center}
-En traduisant ces diagrammes à l'aide des règles de Feynman, la deuxième ligne de la figure~\ref{fig:T_matrice} donne l'équation à résoudre pour la matrice $T$
-\begin{equation}
-    T = M + M\mathcal{G}^{(0)}T,\label{eqn:T_chap}
-\end{equation}
-et la première donne sa version itérative
-\begin{equation}
-    T = M + M\mathcal{G}^{(0)}M + M\mathcal{G}^{(0)}M\mathcal{G}^{(0)}M +\dots.\label{eqn:T_series}
-\end{equation}
-Ici, les produits sont matriciels sur les indices $(n\kv)$ et convolutifs en temps imaginaire. Nous obtenons une équation algébrique pour la fonction de Green du Matsubara en traduisant la figure~\ref{fig:dyson_T} :
-\begin{equation}
-    \mathcal{G} = \mathcal{G}^{(0)}+\mathcal{G}^{(0)}T\mathcal{G}^{(0)}.\label{eqn:G_chap}
-\end{equation}
-Les convolutions en temps imaginaire se démêlent dans l'espace des fréquences de Matsubara fermioniques $i\omega_j$, défini à l'annexe~\ref{annexe:défauts} dans l'équation~\eqref{eqn_G_tau}, où elles deviennent de simples produits. La quantité $\mathcal{G}^{(0)}$ est la fonction de Green de Matsubara pour le système non perturbé, soit en l'absence de défauts. Elle est connue analytiquement et prend la forme
-\begin{equation}
-    \mathcal{G}^{(0)}_{n\kv}(i\omega_j) = \frac{1}{i\omega_j-\xi_{n\kv}}.
-\end{equation}
-Dans l'espace des fréquences de Matsubara, la matrice $T$ prend la forme explicite 
-\begin{equation}
-    T_{mn}(\kv',\kv;i\omega_j) = M_{mn}(\kv',\kv)+\sum_{n'\kv''}M_{mn'}(\kv',\kv'')\mathcal{G}^{(0)}_{n'\kv''}(i\omega_j)T_{n'n}(\kv'',\kv;i\omega_j),\label{eqn:T_explicite}
-\end{equation}
-où la somme court sur tous les états de Bloch $n'\kv''$. Sous forme matricielle dans l'espace, nous avons
+Le problème du calcul de la fonction de Green se réduit alors au calcul de la matrice $T$. 
 
-Comme le défaut est statique, $M$ ne dépend pas de la fréquence et l'équation~\eqref{eqn:T_chap} se résout par une inversion de matrice à chaque fréquence
+Ces diagrammes se traduisent en équations à l'aide des règles de Feynman. Cela donne des équations pour $T$ et $\mathcal{G}$ dans le temps imaginaire où leur produits sont des convolutions. Leurs équivalents dans l'espace de fréquences de Matsubara s'obtiennent par transformée de Fourier (voir l'annexe~\ref{annexe:défauts}). Dans cet espace, les produits sont matriciels et la fonction de Green de Matsubara du système non perturbé est connue analytiquement
+\begin{equation}
+    \mathcal{G}^{(0)}_{n}(\kv;i\omega_j) = \frac{1}{\omega_j-\xi_{n\kv}},\qquad \omega_j = \frac{(2j+1)\pi}{\beta},\label{eqn:G0_chap}
+\end{equation}
+où $\omega_j$ sont les fréquences de Matsubara fermioniques. Nous travaillons exclusivement dans cet espace (et son équivalent réel) pour le reste du chapitre. La première ligne de la figure~\ref{fig:T_matrice} donne alors l'équation pour la matrice $T$
+\begin{equation}
+T_{mn}(\kv',\kv;i\omega_j) = M_{mn}(\kv',\kv)+\sum_{n'\kv''}M_{mn'}(\kv',\kv'')\,\mathcal{G}^{(0)}_{n'}(\kv'';i\omega_j)\,T_{n'n}(\kv'',\kv;i\omega_j),\label{eqn:T_explicite}
+\end{equation}
+où la sommes court sur tous les états de Bloch $n'\kv''$. Sous forme matricielle, cette équation devient
+\begin{equation}
+    \bm T(i\omega_j) = \bm M +\bm M \bm{\mathcal{G}}^{(0)}(i\omega_j)\bm T(i\omega_j),\label{eqn:T_chap}
+\end{equation}
+où $\bm T(i\omega_j)$, $\bm M$ et $\bm{\mathcal{G}}^{(0)}(i\omega_j)$, en gras, sont des matrices pleines dans l'indice composé $n\equiv n\kv$. Comme le défaut est statique, $\bm M$ ne dépend pas de la fréquence et seule la fonction de Green non perturbée est diagonale dans l'indice composé:
+\begin{equation}
+    \mathcal{G}^{(0)}_{mn}(i\omega_j) = \delta_{mn}\mathcal{G}^{(0)}_n(i\omega_j)=\delta_{mn}\delta_{\kv\kv'}\mathcal{G}^{(0)}_{n}(\kv;i\omega_j).\label{eqn:G0_bold}
+\end{equation}
+La deuxième ligne de la figure~\ref{fig:T_matrice} donne la version itérée de la matrice $T$
+\begin{equation}
+    \bm T(i\omega_j) = \bm M + \bm M \bm{\mathcal{G}}^{(0)}(i\omega_j)\bm M + \bm M \bm{\mathcal{G}}^{(0)}(i\omega_j)\bm M \bm{\mathcal{G}}^{(0)}(i\omega_j)\bm M +\dots .\label{eqn:T_series}
+\end{equation}
+La matrice $T$ se résout formellement par l'inversion de l'équation~\eqref{eqn:T_chap} à chaque fréquence
+\begin{equation}
+    \bm T(i\omega_j) = \bm M\left[\mathbb{I}-\bm{\mathcal{G}}^{(0)}(i\omega_j)\bm M\right]^{-1}.
+\end{equation}
+La figure~\ref{fig:dyson_T} donne enfin la fonction de Green, écrite en termes de la matrice $T$
+\begin{equation}
+    \bm{\mathcal{G}}^{(0)}(i\omega_j) = \bm{\mathcal{G}}^{(0)}(i\omega_j)+\bm{\mathcal{G}}^{(0)}(i\omega_j)\bm T(i\omega_j)\bm{\mathcal{G}}^{(0)}(i\omega_j),\label{eqn:G_chap}
+\end{equation}
+ou, en restorant les indices
+\begin{equation}
+    \mathcal{G}_{mn}(\kv',\kv;i\omega_j) =\delta_{mn}\delta_{\kv\kv'}\mathcal{G}^{(0)}_{n}(\kv;i\omega_j)+\mathcal{G}_{m}^{(0)}(\kv';i\omega_j)T_{mn}(\kv',\kv; i\omega_j)\mathcal{G}_{n}^{(0)}(\kv;i\omega_j),\label{eqn:G_explicite}
+\end{equation}
+Cette expression est \textit{exacte} : le problème est résolu exactement, sans approximation. Ceci n'est pas surprenant car si l'Hamiltonien est quadratique dans les opérateurs fermioniques $\hat c$ et $\hat c^\dag$, il existe toujours une transformation unitaire qui le diagonalise. Le plus intéressant ici est que la matrice $T$ contient les effets du défaut à tous les ordres en $\bm M$ et contient  \textit{toute} l'information sur le couplage. Ceci est essentiel pour la lacune considérée dans ce mémoire qui induit un potentiel si fort qu'il n'est pas justifier de tronquer la série~\eqref{eqn:T_series} à un ordre fini. Le formalisme de matrice $T$, qui resomme toute la série perturbative, est \textit{exacte} quelque soit la force du potentiel de défaut.
 
-\begin{equation}
-    T(i\omega_j) = \left[\mathbb{I}-M\mathcal{G}^{(0)}(i\omega_j)\right]^{-1}M.
-\end{equation}
-Une fois la matrice $T$ calculée, nous pouvons calculer la fonction de Green qui prend la forme explicite
-\begin{equation}
-    \mathcal{G}_{mn}(\kv',\kv;i\omega_j) =\delta_{mn}\delta_{\kv\kv'}\mathcal{G}^{(0)}_{n\kv}(i\omega_j)+\mathcal{G}_{m\kv'}^{(0)}(i\omega_j)T_{mn}(\kv',\kv; i\omega_j)\mathcal{G}_{n\kv}^{(0)}(i\omega_j),
-\end{equation}
-dans l'espace des fréquences de Matsubara. Notons que nous avons ici une expression analytique \textit{exacte} pour la fonction de Green : le problème est résolu exactement. Ceci ne devrait pas être trop surprenant, car il s'agit d'un problème à un corps. Notons également que le formalisme de la matrice $T$ inclut les effets du défaut sur les électrons à tous les ordres de la théorie de la perturbation. Cela est particulièrement intéressant pour les défauts considérés dans ce mémoire, les lacunes, qui induisent un potentiel de défaut si fort qu'il n'est pas justifié de tronquer la série de Dyson à un ordre fini. Le formalisme de la matrice $T$ demeure valide dans tous les régimes de force de potentiel de défaut.
-Enfin, notons que les quantités physiques mesurables sont les fonctions dites \textit{retardées}, définies
-sur l'axe des fréquences réelles, tandis que nous avons des expressions pour les quantités sur l'axe des fréquences imaginaires. Les quantités retardées s'obtiennent des fonctions de Matsubara par prolongement analytique, $i\omega_j \to \omega + i\eta$ avec $\eta \to 0^+$, qui est ici une simple substitution puisque nous disposons d'expressions analytiques fermées (voir la discussion sur la continuation analytique à la fin de l'annexe~\ref{annexe:défauts}). Généralement, les fonctions retardées sont identifiées par un exposant $R$. Or, dans tout ce mémoire, les quantités définies sur l'axe des fréquences réelles sont implicitement retardées et l'exposant $R$ est supprimé.
+Enfin, notons que les quantités mesurables sont les fonctions dites \textit{retardées}, définies sur l'axe des fréquences réelles. Elles s'obtiennent des fonctions de Matsubara par le prolongement analytique, $i\omega_j \to \omega + i\eta$ avec $\eta \to 0^+$, qui est ici une simple substitution dans les expressions analytiques fermées~\eqref{eqn:G0_chap} à~\eqref{eqn:G_explicite} (voir la fin de l'annexe~\ref{annexe:défauts}). Dans tout ce mémoire, les quantités définies sur l'axe des fréquences réelles sont implicitement retardées et l'exposant $R$ habituel est omis.
 
 La connaissance de la fonction de Green retardée dans l'espace des fréquences réelles nous donne accès à la densité d'états
 \begin{equation}
@@ -92,37 +89,42 @@ où nous avons utilisé $\partial\mathcal{G}^{(0)}/\partial \omega = -(\mathcal{
 
 \section{Plusieurs défauts et la \textit{self}-énergie}\label{sec:mbt_sigma}
 
-Bien que le formalisme de la matrice $T$ offre une solution exacte au problème de l'interaction entre les électrons d'un matériau et un seul défaut, n'importe quel matériau réaliste contient un très grand nombre de défauts. En effet, un matériau peut être pur à une partie par milliard ($10^9$) ; pour une quantité macroscopique de ce matériau ($10^{23}$ atomes), cela représente tout de même $10^{14}$ défauts. Nous devons donc généraliser au cas où il y a $N_d$ lacunes réparties aléatoirement dans le matériau. Le potentiel induit par cette collection de défauts est maintenant
+Bien que le formalisme de la matrice $T$ offre une solution exacte au problème de l'interaction entre les électrons d'un matériau et un seul défaut, n'importe quel matériau réaliste contient un très grand nombre de défauts. En effet, un matériau peut être pur à une partie par milliard ($10^9$) ; pour une quantité macroscopique de ce matériau ($10^{23}$ atomes), cela représente tout de même $10^{14}$ défauts. Nous généralisons donc au cas où un grand nombre défauts sont réparties aléatoirement dans le matériau. Il n'est pas requis que ces défauts soient tous des lacunes : nous généralisons à $N_i$ défauts de type $i$, de sorte que le nombres de défauts total est $N_d=\sum_i N_i$. Le potentiel induit par cette collection de défauts est
 \begin{equation}
-    V_\text{ed}(\rv) = \sum_{I=1}^{N_d}V_\text{ed}(\rv-\rv_I),
+    V_\text{ed}(\rv) = \sum_i \sum_j^{N_i} V_\text{ed}^{(i)}(\rv-\rv_j^{(i)}),
 \end{equation}
-où $V_\text{ed}(\rv-\rv_I)$ est le potentiel induit par la lacune à la position $\rv_I=\Rv_\ell+\bm\tau_\alpha$, de sorte que $I=(\alpha\ell)$ est un indice composé (ici encore $\ell$ identifie les cellules unitaires du matériau et $\alpha$ identifie les atomes dans une cellule unitaire). Puisque ce potentiel dépend de la position des défauts, il va de soi que la fonction de Green résultante dépend aussi de la position des défauts. En d'autres mots, les propriétés microscopiques du matériau dépendent de la réalisation exacte du désordre. Cependant, les propriétés macroscopiques mesurées par l'expérience (par exemple, la densité d'états, le spectre de quasi-particules ou bien l'intensité Raman) sont insensibles à la réalisation particulière du désordre : elles correspondent à la moyenne sur toutes les configurations de positions $\{\rv_I\}$ possibles, notée $\overline{\mathcal{G}}\equiv\langle\mathcal{G}\rangle_{\{\rv_I\}}.$ Cette moyenne sur les positions des lacunes restaure la symétrie de translation du système, brisée par chaque configuration individuelle, de sorte que $\overline{\mathcal{G}}$ est diagonale en $\kv$ et s'écrit sous la forme d'une équation de Dyson habituelle~\cite{mahanManyParticlePhysics2000}
+où $V_\text{ed}^{(i)}(\rv-\rv_j^{(i)})$ est le potentiel induit par le défaut de type $i$ à la position $\rv_j^{(i)}$. L'indice $i$ court sur tous les types de défauts et l'indice $j$ sur tous les défauts du même type. Pour le reste du chapitre, nous ne considérons qu'un seul type de défaut : les lacunes. Le potentiel d'une collection de $N_d$ lacunes est
 \begin{equation}
-    \overline{\bm{\mathcal{G}}}_{\kv}(\omega) = \left[\left(\bm{\mathcal{G}}^{(0)}_{\kv}(\omega)\right)^{-1}-\bm{\Sigma}_{\kv}^\text{ed}(\omega)\right]^{-1},\label{eqn:G_moyenne}
+    V_\text{ed}(\rv) = \sum_j^{N_d}V_\text{ed}(\rv-\rv_j),
 \end{equation}
-où $\bm{\Sigma}_{\kv}^\text{ed}$ est la \textit{self}-énergie électronique due aux défauts. Si la moyenne restaure la symétrie de translation, elle ne diagonalise pas la \textit{self}-énergie dans l'indice de bande. Le potentiel des lacunes couple toujours les bandes entre elles : $\overline{\bm{\mathcal{G}}}_{\kv}$, $\bm{\mathcal{G}}^{(0)}_{\kv}$ et $\bm{\Sigma}^\text{ed}_{\kv}$ sont des matrices dans cet indice et l'inverse est matriciel. Seule la fonction de Green non perturbée est toujours diagonale en bande : $\mathcal{G}^{(0)}_{mn\kv}(\omega)=\delta_{mn}[\omega-\xi_{n\kv}]^{-1}$. Contrairement au cas d'un défaut unique, cette moyenne ne peut pas être effectuée exactement, d'où l'utilité de la théorie de la perturbation. En suivant la même procédure qui conduit à l'expression analytique pour $\mathcal{G}$, nous obtenons une expansion perturbative pour la \textit{self}-énergie en série de puissances de la concentration de défauts $c\equiv N_d/N_\text{uc}$. Ce calcul n'est pas répété ici et le lecteur intéressé peut consulter le chapitre 11 de l'ouvrage de Bruus et Flensberg~\cite{bruusManyBodyQuantumTheory2004}.
+où $\rv_j=\Rv_\ell+\bm\tau_\alpha$ est la position de lacune $j$. Comme une lacune est atome supprimé, nous reprenons l'indice composé qui identifie les atomes du cristal, $j=(\ell\alpha)$, où $\ell$ identifie la cellule unitaires et $\alpha$ identifie l'atome supprimé dans cette cellule. Puisque ce potentiel dépend de la position des défauts, il va de soi que la fonction de Green résultante dépend aussi de la position des défauts : les propriétés microscopiques du matériau dépendent de la réalisation exacte du désordre. Toutefois, les propriétés macroscopiques mesurées par l'expérience (par exemple, la densité d'états, le spectre de quasi-particules ou bien l'intensité Raman) sont insensibles à la réalisation particulière du désordre. Elles correspondent à la moyenne sur toutes les configurations des positions de lacunes $\{\rv_j\}$ possibles, notée $\overline{\mathcal{G}}\equiv\langle\mathcal{G}\rangle_{\{\rv_j\}}$. Si chaque configuration individuelle de lacunes brise la symétrie de translation du système, cette moyenne sur toutes les configurations possibles la restaure : $\overline{\mathcal{G}}$ est diagonale en $\kv$ et s'écrit sous la forme d'une équation de Dyson habituelle~\cite{mahanManyParticlePhysics2000}
+\begin{equation}
+    \overline{\bm{\mathcal{G}}}(\omega) = \left[\left(\bm{\mathcal{G}}^{(0)}(\omega)\right)^{-1}-\bm{\Sigma}^\text{ed}(\omega)\right]^{-1},\label{eqn:G_moyenne}
+\end{equation}
+où $\bm{\Sigma}^\text{ed}$ est la \textit{self}-énergie électronique due aux défauts. Si la moyenne restaure la symétrie de translation, elle ne diagonalise pas la \textit{self}-énergie dans l'indice de bande. Le potentiel des lacunes couple toujours les bandes entre elles : $\overline{\bm{\mathcal{G}}}$, $\bm{\mathcal{G}}^{(0)}$ et $\bm{\Sigma}^\text{ed}$ sont des matrices dans cet indice et l'inverse est matriciel. Seule la fonction de Green non perturbée est toujours diagonale en bande~\eqref{eqn:G0_bold}. Contrairement au cas d'un défaut unique, cette moyenne ne peut pas être effectuée exactement, d'où l'utilité de la théorie de la perturbation. En suivant la même procédure qui conduit à l'expression analytique pour $\mathcal{G}$ de la section précédante, nous obtenons une expansion perturbative pour la \textit{self}-énergie en série de puissances de la concentration de défauts $c\equiv N_d/N_\text{uc}$. Ce calcul n'est pas répété ici et le lecteur intéressé peut consulter le chapitre 11 de l'ouvrage de Bruus et Flensberg~\cite{bruusManyBodyQuantumTheory2004}.
 
 \subsection{Limite diluée}
 
-Dans ce mémoire, nous travaillons dans la limite d'une concentration de défaut diluée, où les processus de diffusion sur des défauts différents sont indépendants les uns des autres. Cela correspond à une concentration de défauts de $c\ll$Cette limite couvre toutes les concentrations de défauts expérimentalement pertinentes : pour le graphène, une concentration de l'ordre de $c\sim 1~\%$ correspond à une densité de défauts de $\sim 2\times 10^{13}$ cm$^{-2}$, qui est un échantillon de piètre qualité. Les processus de diffusion impliquant $p$ défauts distincts sont d'ordre $c^p$ et sont supprimés pour $p>1$ dans cette limite. Ainsi, la \textit{self}-énergie se réduit, au premier ordre en $c$, à la somme des diffusions multiples sur chaque défaut pris isolément, ce qui correspond précisément à la matrice $T$ de la section~\ref{sec:mbt_T}, évaluée sur sa diagonale en $\kv$ et multipliée par le nombre de défauts~\cite{bruusManyBodyQuantumTheory2004}
+Dans ce mémoire, nous travaillons dans la limite d'une concentration de défaut diluée, où les processus de diffusion sur des défauts différents sont indépendants les uns des autres. Cela correspond à une concentration de défauts de $c\ll 1$. Cette limite couvre toutes les concentrations de défauts expérimentalement pertinentes : pour le graphène, une concentration de l'ordre de $c\approx 1~\%$ correspond à une densité de défauts de $\approx 2\times 10^{13}$ cm$^{-2}$, qui est un échantillon de piètre qualité. La plupart des systèmes pertinents ont donc une concentration de défauts en deça du pourcent, où la limite diluée est tout à fait valide. Les processus de diffusion impliquant $p$ défauts distincts sont d'ordre $c^p$ et sont supprimés pour $p>1$ dans cette limite. Ainsi, la \textit{self}-énergie se réduit, au premier ordre en $c$, à la somme des diffusions multiples sur chaque défaut pris isolément, ce qui correspond précisément à la matrice $T$ de la section~\ref{sec:mbt_T}, évaluée sur sa diagonale en $\kv$ et multipliée par le nombre de défauts~\cite{bruusManyBodyQuantumTheory2004}
 \begin{equation}
     \Sigma_{mn\kv }^\text{ed}(\omega) = N_d T_{mn}(\kv,\kv;\omega)+\mathcal{O}(c^2).\label{eqn:sigma_diluée}
 \end{equation}
-Cette approximation où la \textit{self}-énergie est proportionnelle à la matrice $T$, est  appelée Born complète (de l'anglais \textit{full Born approximation}) et est aussi connue sous le nom de l'approximation de la matrice $T$. Elle est exacte au premier ordre en concentration et demeure valide quelle que soit la force du potentiel de défaut.
+Cette approximation où la \textit{self}-énergie est proportionnelle à la matrice $T$, est appelée Born complète (de l'anglais \textit{full Born approximation}) et est aussi connue sous le nom de l'approximation de la matrice $T$. Elle est exacte au premier ordre en concentration et demeure valide quelle que soit la force du potentiel de défaut. Pour un seul défaut, $N_d=1$, et la matrice $T$ et la \textit{self}-énergie sont le même objet.
 
 Pour simplifier les calculs, nous ne retenons que la partie diagonale en bande de la matrice, $T_{n\kv}(\omega)\equiv T_{nn}(\kv,\kv;\omega)$, de sorte que la \textit{self}-énergie est elle aussi diagonale en bande $\Sigma^\text{ed}_{n\kv}=N_dT_{n\kv}$ et la fonction de Green moyennée pour plusieurs défauts prend la forme d'une équation de Dyson habituelle
 \begin{equation}
     \overline{\mathcal{G}}_{n\kv}(\omega)=\left[\omega-\xi_{n\kv}-\Sigma^\text{ed}_{n\kv}\right]^{-1}.\label{eqn:G_moyenne_diag}
 \end{equation}
-C'est approximation qui se justifie néanmoins en trois temps. D'abord, une lacune isolée sur un sous-réseau du graphène produit des éléments hors-diagonaux opposés entre les bandes $\pi$ et $\pi^*$ au voisinage des points $K$ et $K'$. Pour une distribution aléatoire de défauts également répartis sur les deux sous-réseaux comme nous le supposons, ces éléments s'annulent \textit{en moyenne}. Ensuite, entre les bandes non dégénérées, l'effet des éléments hors-diagonaux résiduels sur le spectre est d'ordre $|\Sigma^\text{ed}_{mn}|^2/|\xi_{m\kv}-\xi_{n\kv}|$ (obtenu au deuxième ordre dans la théorie de la perturbation ordinaire). Avec des \textit{self}-énergies de quelques dizaines de meV aux concentrations désirées (voir la section~\ref{sec:T_results}) et des séparations de bandes de l'ordre de l'eV, cet effet est négligeable. Enfin, aux points de dégénérescence $\pi/\pi^*$ où cet argument perturbatif échoue ($\xi_{\pi K}-\xi_{\pi^*K}=0$), la quantité que nous rapportons à la section~\ref{sec:T_results} est la demi-trace du bloc dégénéré, invariante sous sa diagonalisation et seule la répartition de l'amortissement au sein de la paire dépend de l'approximation. Le traitement complet de la structure en bande de la \textit{self}-énergie est laissé en perspective.
+
+Cette approximation se justifie en trois temps. D'abord, bien qu'une lacune isolée sur un sous-réseau du graphène produit des éléments hors-diagonaux entre les bandes $\pi$ et $\pi^*$ au voisinage des points $K$ et $K'$, ces éléments s'annulent \textit{en moyenne} pour une collection de lacunes réparties aléatoirement. Ensuite, entre les bandes non dégénérées, l'effet des éléments hors-diagonaux résiduels sur le spectre est d'ordre $|\Sigma^\text{ed}_{mn}|^2/|\xi_{m\kv}-\xi_{n\kv}|$ (obtenu au deuxième ordre dans la théorie de la perturbation ordinaire). Avec des \textit{self}-énergies de quelques dizaines de meV aux concentrations désirées (voir la section~\ref{sec:T_results}) et des séparations de bandes de l'ordre de l'eV, cet effet est négligeable. Enfin, aux points de dégénérescence $\pi/\pi^*$ où cet argument perturbatif échoue ($\xi_{\pi K}-\xi_{\pi^*K}=0$), la quantité que nous rapportons à la section~\ref{sec:T_results} est la demi-trace du bloc dégénéré, invariante sous sa diagonalisation et seule la répartition de l'amortissement au sein de la paire dépend de l'approximation. Le traitement complet de la structure en bande de la \textit{self}-énergie est laissé en perspective.
 
 Le membre de droite de l'équation~\eqref{eqn:sigma_diluée} est intensif : avec la convention de la section~\ref{sec:M_détails}, les états de Bloch sont normalisés sur la cellule unitaire et le facteur $1/N_\text{uc}$ qui accompagne la normalisation sur le cristal fait de $N_dT$ une quantité proportionnelle à $c$, qui est finie dans la limite thermodynamique. Nous rapportons donc les résultats dans la section~\ref{sec:T_results} sous la forme $\Sigma/c$, indépendante de la concentration.
 
-Une fois que la matrice $T$ est calculée en suivant les développements de la section~\ref{sec:mbt_T} et que le prolongement analytique est effectué, la \textit{self}-énergie s'obtient directement dans l'espace des fréquences réelles (c'est une quantité retardée) par une simple multiplication par un scalaire suivant l'équation~\eqref{eqn:sigma_diluée}. Cette \textit{self}-énergie se décompose en une partie réelle et une partie imaginaire
+Une fois que la matrice $T$ est calculée en suivant les développements de la section~\ref{sec:mbt_T} et que le prolongement analytique est effectué, la \textit{self}-énergie s'obtient directement dans l'espace des fréquences réelles (une quantité retardée) par une simple multiplication par un scalaire suivant l'équation~\eqref{eqn:sigma_diluée}. Cette \textit{self}-énergie se décompose en une partie réelle et une partie imaginaire
 \begin{equation}
     \Sigma_{n\kv}^\text{ed}(\omega) = \Sigma_{n\kv}^{\text{ed}'}(\omega) + i\Sigma_{n\kv}^{\text{ed}''}(\omega).
 \end{equation}
-La partie réelle $\Sigma_{n\kv}^{\text{ed}'}$ renormalise l'énergie des bandes et la partie imaginaire $\Sigma_{n\kv}^{\text{ed}''}$ définit le taux d'amortissement dû aux défauts
+La partie réelle $\Sigma_{n\kv}^{\text{ed}'}$ renormalise l'énergie des bandes et nous l'ignorons ici. La partie imaginaire $\Sigma_{n\kv}^{\text{ed}''}$ définit le taux d'amortissement dû aux défauts
 \begin{equation}
 \Gamma_{n\kv}^{\text{ed}} = -2\Sigma_{n\kv}^{\text{ed}''}.
 \end{equation}
@@ -142,58 +144,71 @@ Il est instructif de situer notre traitement dans la hiérarchie des approximati
 
 Premièrement, l'approximation de Born tronque la série pour la matrice $T$ à ses deux premiers termes, de sorte que la \textit{self}-énergie s'écrit
 \begin{equation}
-    \Sigma_{n\kv}^\text{ed,B}\approx N_d[M+M\mathcal{G}^{(0)}M],
+    \Sigma_{n\kv}^\text{ed,B}= N_d[M+M\mathcal{G}^{(0)}M],
 \end{equation}
 et le taux d'amortissement s'obtient de sa partie imaginaire
 \begin{equation}
     \Gamma^\text{ed,B}_{n\kv} = -2\mathrm{Im}\Sigma_{n\kv}^\text{ed,B}.
 \end{equation}
-Cette approximation est exacte au premier ordre dans le potentiel de défaut et ignore les diffusions multiples sur un même défaut. Elle n'est pas valable dans la limite où les potentiels induits par les défauts sont forts, comme c'est le cas pour les lacunes. Nous quantifions cet échec dans la section~\ref{sec:T_results}. C'est l'approximation de Lu \textit{et al.}~\cite{luEfficientInitioCalculations2019} utilisent pour leur temps de relaxation. 
+Cette approximation est exacte au premier ordre dans le potentiel de défaut et ignore les diffusions multiples sur un même défaut. Elle n'est pas valable dans la limite où les potentiels induits par les défauts sont forts, comme c'est le cas pour les lacunes. Nous quantifions cet échec dans la section~\ref{sec:T_results}. C'est l'approximation que Lu \textit{et al.}~\cite{luEfficientInitioCalculations2019} utilisent pour leur temps de relaxation. 
 
 \bloc{Approximation de la matrice $T$}
 
-Ensuite, nous avons l'approximation de Born complète (ou de la matrice $T$), qui inclut les diffusions multiples sur un même défaut à tous les ordres et est l'approximation dans laquelle nous travaillons. La \textit{self}-énergie prend la forme
+Ensuite, nous avons l'approximation que nous utilisons dans ce mémoire, celle de Born complète (ou de la matrice $T$), qui inclut les diffusions multiples sur un même défaut à tous les ordres. La \textit{self}-énergie est proportionnelle à la matrice $T$
 \begin{equation}
-    \Sigma_{n\kv}^{\text{ed,T}}\approx N_dT_{n\kv},
+    \Sigma_{n\kv}^{\text{ed,T}}= N_dT_{n\kv},
 \end{equation}
-et est exacte au premier ordre en concentration des défauts, quelle que soit la force du potentiel.
+et est exacte au premier ordre en concentration des défauts, quelle que soit la force du potentiel. Le taux s'obtient de sa partie imaginaire
+\begin{equation}
+        \Gamma^\text{ed,T}_{n\kv} = -2\mathrm{Im}\Sigma_{n\kv}^\text{ed,T}.
+\end{equation}
 
 \bloc{Approximation de la matrice $T$ autocohérente}
 
-Ensuite, l'approximation de la matrice $T$ autocohérente (SCTMA, de l'anglais \textit{Self-Consistent $T$-Matrix Approximation})~\cite{klauderModificationElectronEnergy1961,peresElectronicPropertiesDisordered2006} va un cran plus loin en calculant la matrice $T$ avec la fonction de Green moyennée $\overline{\mathcal{G}}$ plutôt qu'avec la fonction de Green non perturbée $\mathcal{G}^{(0)}$. Cela donne trois équations couplées à résoudre de manière autocohérente
+Ensuite, l'approximation de la matrice $T$ autocohérente (SCTMA, de l'anglais \textit{Self-Consistent $T$-Matrix Approximation})~\cite{klauderModificationElectronEnergy1961,peresElectronicPropertiesDisordered2006} va un cran plus loin en calculant la matrice $T$ avec la fonction de Green moyennée $\overline{\mathcal{G}}$ plutôt qu'avec la fonction de Green non perturbée $\mathcal{G}^{(0)}$ dans l'équation~\eqref{eqn:T_chap}. Cela donne trois équations couplées à résoudre de manière autocohérente
 \begin{equation}
-    \Sigma_{n\kv}^\text{ed,SCTMA} = N_d\overline{T}_{n\kv},\quad \overline{T} = M+M\overline{\mathcal{G}}\overline{T},\quad \overline{\mathcal{G}}_{n\kv} = \left[\omega-\xi_{n\kv}-\Sigma_{n\kv}^\text{ed,SCTMA} \right]^{-1}.
+    \bm\Sigma^\text{ed,SC} = N_d \bm T^\text{SC},\quad \bm T^\text{SC} =\bm M+\bm M\overline{\bm{\mathcal{G}}}\bm T^\text{SC},\quad \overline{\bm{\mathcal{G}}} = \left[\left(\bm{\mathcal{G}}^{(0)}\right)^{-1}-\bm\Sigma^\text{ed,SC} \right]^{-1}.
 \end{equation}
-La SCTMA inclut la rétroaction de l'élargissement de désordre sur la diffusion elle-même et apporte des corrections d'ordre $\mathcal{O}(c^2)$, donc négligeables dans la limite diluée, sauf au voisinage immédiat des points de Dirac du graphène où la densité d'états est nulle et l'autocohérence engendre une densité d'états finie induite par le désordre~\cite{peresElectronicPropertiesDisordered2006}. Les états électroniques intermédiaires pertinents pour la double résonance Raman se trouvent à plusieurs dixièmes d'eV du point de Dirac pour la lumière visible utilisée dans les expériences de spectroscopie Raman : les corrections apportées par la SCTMA sont négligeables ici et nous les laissons en perspective. Enfin, au-delà de ces approximations à un site, l'approximation du potentiel cohérent (CPA, de l'anglais \textit{Coherent Potential Approximation})~\cite{sovenCoherentPotentialModelSubstitutional1967} et l'inclusion de diagrammes croisés reliant plusieurs défauts deviennent nécessaires aux concentrations élevées ou pour les propriétés de transport cohérent, que nous ne considérons pas ici.
+La SCTMA inclut la rétroaction de l'élargissement de désordre sur la diffusion elle-même. Elle apporte des corrections négligeables dans la limite diluée, sauf au voisinage immédiat des points de Dirac du graphène où l'autocohérence engendre une densité d'états finie induite par le désordre~\cite{peresElectronicPropertiesDisordered2006}. Les états électroniques intermédiaires pertinents pour la double résonance Raman se trouvent à plusieurs dixièmes d'eV du point de Dirac pour la lumière visible utilisée dans les expériences de spectroscopie Raman : les corrections apportées par la SCTMA sont négligeables ici et nous les laissons en perspective. 
+
+\bloc{Au-delà}
+
+Au-delà de ces approximations à un site, l'approximation du potentiel cohérent (CPA, de l'anglais \textit{Coherent Potential Approximation})~\cite{sovenCoherentPotentialModelSubstitutional1967} et l'inclusion de diagrammes croisés reliant plusieurs défauts deviennent nécessaires aux concentrations élevées ou pour les propriétés de transport cohérent, que nous ne considérons pas ici.
 
 \section{Schéma de l'amas pour la matrice $T$}\label{sec:T_local}
 
-La résolution directe de l'équation~\eqref{eqn:T_chap} requiert une inversion dans la base complète des états de Bloch et n'est pas possible sur les grilles ultra denses requises pour la convergence de l'intensité Raman (nous quantifions cet argument dans la section~\ref{sec:T_détails}). La localisation de la matrice de couplage dans l'espace réel permet de contourner cette limitation. En effet, la section~\ref{sec:M_results} montre que, dans la base des fonctions de Wannier, les éléments $M_{ij}(\Rv',\Rv)$ sont négligeables dès que $\Rv$ ou $\Rv'$ s'éloigne de la lacune. Or, en itérant l'équation récursive~\eqref{eqn:T_chap} pour la matrice $T$, elle s'écrit
+La résolution directe de l'équation~\eqref{eqn:T_chap} requiert une inversion dans la base complète des états de Bloch et n'est pas possible sur les grilles ultra denses requises pour la convergence de l'intensité Raman (nous quantifions cet argument dans la section~\ref{sec:T_détails}). La localisation de la matrice de couplage dans l'espace réel permet de contourner cette limitation. En effet, la section~\ref{sec:M_results} montre que, dans la base des fonctions de Wannier, les éléments $M_{ij}(\Rv',\Rv)$ sont négligeables dès que $\Rv$ ou $\Rv'$ s'éloigne de la lacune. Or, dans l'équation itérée~\eqref{eqn:T_series} pour la matrice $T$, chaque terme est multiplié à gauche et à droite par $M$ : la matrice $T_{ij}(\Rv',\Rv)$, dans cette base, est donc elle aussi négligeable dès que $\Rv$ ou $\Rv'$ s'éloigne de la lacune. L'idée est donc de restreindre les calculs au sous-ensemble des cellules unitaires où $M$ n'est pas négligeable, que nous appelons l'\textit{amas} et notons $\mathcal{C}$ : 
 \begin{equation}
-    T = M+ M\mathcal{G}^{(0)}M+M\mathcal{G}^{(0)}M\mathcal{G}^{(0)}M+\dots,
+    \mathcal{C} = \{\Rv = n_1\av_1+n_2\av_2\, :\, n_1^2+n^2\leq R_\text{cut}^2\}
 \end{equation}
-dont chaque terme est multiplié à gauche et à droite par $M$ : la matrice $T_{ij}(\Rv',\Rv)$, dans cette base, est donc elle aussi négligeable dès que $\Rv$ ou $\Rv'$ s'éloigne de la lacune. L'idée est donc de restreindre les calculs au sous-ensemble des cellules unitaires où $M$ n'est pas négligeable, que nous appelons l'\textit{amas} et notons $\mathcal{C}$. Il suffit alors de travailler avec les $N_L$ cellules situées à distance $R\le R_\text{cut}$ de la lacune, recentrée à l'origine, où $R$ est la norme euclidienne des indices réduits de la maille et $R_\text{cut}$ est le même rayon de coupure que celui introduit pour l'interpolation de $M$. La base est alors de dimension $N_LN_W$, où $N_W=5$ est le nombre de fonctions de Wannier, et est indépendante de la grille dense sur laquelle les quantités seront finalement évaluées. Nous appelons $M_\mathcal{C}$ la matrice de couplage restreinte à l'amas et $\mathcal{G}^{(0)}_\mathcal{C}$ la fonction de Green du système non perturbé restreinte de la même façon. Dans ce sous-espace, l'équation~\eqref{eqn:T_chap} devient
-\begin{equation}
-    T_\mathcal{C}(\omega) = M_\mathcal{C}\left[\mathbb{I}-\mathcal{G}^{(0)}_\mathcal{C}(\omega)M_\mathcal{C}\right]^{-1},\label{eqn:t_loc}
-\end{equation}
-et requiert une inversion de dimension $N_LN_W$, beaucoup plus facile que l'inversion directe de l'équation~\eqref{eqn:T_chap} et ce, peu importe la densité de la grille de sortie. Cette réécriture est essentiellement exacte si $R_\text{cut}$ englobe toutes les cellules où $M$ est non négligeable.
 
-Il est important de souligner que $\mathcal{G}^{(0)}_\mathcal{C}$ est la fonction de Green du système infini, dont nous ne gardons que les éléments entre les fonctions de Wannier voisines de la lacune. Ce n'est pas la fonction de Green d'un morceau fini de graphène. Elle s'écrit, dans la base des fonctions de Wannier
+Il suffit alors de travailler avec les $N_\mathcal{C}$ cellules situées à distance $R\le R_\text{cut}$ de la lacune, recentrée à l'origine, où $R$ est la norme euclidienne des indices réduits de la maille et $R_\text{cut}$ est le même rayon de coupure que celui introduit pour la troncature de $M$ au chapitre précedant. La base est alors de dimension $N_\mathcal{lC}N_W$, où $N_W=5$ est le nombre de fonctions de Wannier, et est indépendante de la grille dense sur laquelle les quantités seront finalement évaluées. Nous appelons $M_\mathcal{C}$ la matrice de couplage restreinte à l'amas et $\mathcal{G}^{(0)}_\mathcal{C}$ la fonction de Green du système non perturbé restreinte de la même façon. Dans ce sous-espace, l'équation~\eqref{eqn:T_chap} devient
 \begin{equation}
-\mathcal{G}^{(0)}_{\mathcal{C},ij}(\Rv',\Rv;\omega) = \frac{1}{N_{\tilde\kv}}\sum_{\tilde \kv} e^{i\tilde\kv\cdot(\Rv'-\Rv)}\left[(\omega+i\eta)\mathbb{I}-H(\tilde\kv)\right]^{-1}_{ij},\label{eqn:g_loc}
+   \bm T_\mathcal{C}(\omega) = \bm M_\mathcal{C}\left[\mathbb{I}-\bm{\mathcal{G}}^{(0)}_\mathcal{C}(\omega)\bm M_\mathcal{C}\right]^{-1},\label{eqn:t_loc}
 \end{equation}
-où $H(\tilde\kv)=\sum_\Rv e^{i\tilde\kv\cdot\Rv}H(\Rv)$ est l'Hamiltonien interpolé par des fonctions de Wannier et la somme court sur une grille interne de $N_{\tilde\kv}$ points, indépendante de la grille de sortie sur laquelle $\Gamma^\text{ed}$ sera finalement évaluée. Chaque point ne coûte qu'une inversion de dimension $N_W$ de sorte que la grille interne $\tilde\kv$ peut être très dense et l'élargissement $\eta$ très petit. Ce schéma est celui de l'annexe B de la référence~\cite{kaasbjergAtomisticMatrixTheory2020}, formulé ici dans la base des fonctions de Wannier plutôt que dans une base d'orbitales atomiques.
+et requiert une inversion de dimension $N_\mathcal{C}N_W$, beaucoup plus facile que l'inversion directe de l'équation~\eqref{eqn:T_chap} et ce, peu importe la densité de la grille de sortie. Cette réécriture est essentiellement exacte si l'amas $\mathcal{C}$ englobe toutes les cellules où $M$ est non négligeable.
 
-Il ne reste qu'à relier $T_\mathcal{C}$ à la matrice $T$ pour calculer le taux d'amortissement de la section~\ref{sec:mbt_sigma}, ce qui requiert d'écrire l'état de Bloch $\ket{\psi_{n\kv}}$ sur la grille dense de sortie dans la base des fonctions de Wannier. La diagonalisation de l'Hamiltonien interpolé $H(\kv)$ sur cette grille fournit la matrice de transformation $V^{(\kv)}$ requise, et l'état de Bloch prend la forme
+Il est important de souligner que $\bm{\mathcal{G}}^{(0)}_\mathcal{C}$ est la fonction de Green du système infini, dont nous ne gardons que les éléments entre les fonctions de Wannier voisines de la lacune. Ce n'est pas la fonction de Green d'un morceau fini de graphène. Elle s'écrit, dans la base des fonctions de Wannier
+\begin{equation}
+[\mathcal{G}^{(0)}_{\mathcal{C}}]_{ij}(\Rv',\Rv;\omega) = \frac{1}{N_{\kv_\text{int}}}\sum_{\kv_\text{int}} e^{i\kv_\text{int}\cdot(\Rv'-\Rv)}\left[(\omega+i\eta)\mathbb{I}-H(\kv_\text{int})\right]^{-1}_{ij},\qquad \Rv,\Rv'\in\mathcal{C}\label{eqn:g_loc}
+\end{equation}
+où $H(\kv_\text{int})=\sum_\Rv e^{i\kv_\text{int}\cdot\Rv}H(\Rv)$ est l'Hamiltonien interpolé par des fonctions de Wannier sur une grille interne de $N_{\kv_\text{int}}$. Cette grille est indépendante de la grille de sortie sur laquelle $\Gamma^\text{ed}$ sera finalement évaluée et la somme dans l'interpolation de l'Hamiltonien court sur \textit{tous} les vecteurs $\Rv$. Le calcul de $\bm{\mathcal{G}}^{(0)}_\mathcal{C}$ à chaque énergie ne coûte qu'une inversion de dimension $N_W=5$, de sorte que la grille interne $\kv_\text{int}$ peut être très dense et l'élargissement $\eta$ très petit. Ce schéma est celui de l'annexe B de la référence~\cite{kaasbjergAtomisticMatrixTheory2020}, formulé ici dans la base des fonctions de Wannier plutôt que dans une base d'orbitales atomiques.
+
+Il ne reste qu'à relier $T_\mathcal{C}$ de l'amas à la matrice $T$ sur la grille dense de sortie. Cela requiert d'interpoler les états de Bloch $\ket{\psi_{n\kv}}$ sur cette grille
 \begin{equation}
     \ket{\psi_{n\kv}} = \sum_{j\Rv} e^{i\kv\cdot\Rv}V^{(\kv)}_{jn}\ket{j\Rv},\label{eqn:Bloch_Wannier}
 \end{equation}
-où $\ket{j\Rv}$ identifie la $j$-ième fonction de Wannier dans la cellule $\Rv$ et le facteur $1/\sqrt{N_\text{uc}}$ est omis conformément à la convention intensive de la section~\ref{sec:M_détails}. Nous devons interpoler le même Hamiltonien sur deux grilles différentes et indépendantes : une fois sur la grille interne $\tilde\kv$ pour calculer $\mathcal{G}^{(0)}_\mathcal{C}$, puis une autre fois sur la grille dense de sortie, c'est-à-dire celle utilisée pour calculer l'intensité Raman. Le taux d'amortissement s'obtient alors en prenant l'élément de matrice de $T_\mathcal{C}$ entre l'état $\ket{\psi_{n\kv}}$ et lui-même, évalué à l'énergie de l'état $\varepsilon_{n\kv}$
+où la diagonalisation de l'Hamiltonien interpolé $H(\kv)$ sur la grille de sortie fournit la matrice de transformation $V^{(\kv)}$ requise. La version diagonale de la matrice $T$ sur la grille de sortie est la matrice $\bm T_\mathcal{C}$ prise entre un état de Bloch interpolé et lui-même
 \begin{equation}
-    \Gamma_{n\kv}^\text{ed}/c = -2\mathrm{Im}\sum_{ij}\sum_{\Rv\Rv'}V_{in}^{(\kv)*}e^{-i\kv\cdot\Rv'}[T_\mathcal{C}]_{ij}(\Rv',\Rv;\varepsilon_{n\kv})V^{(\kv)}_{jn}e^{i\kv\cdot\Rv},\label{eqn:gamma_loc}
+    T_{n\kv}(\varepsilon) = \sum_{ij}\sum_{\Rv\in\mathcal{C}}\sum_{\Rv'\in\mathcal{C}}V_{in}^{(\kv)*}e^{-i\kv\cdot\Rv'}\left[T_\mathcal{C}\right]_{ij}(\Rv',\Rv; \varepsilon)V^{(\kv)}_{jn}e^{i\kv\cdot\Rv},\label{eqn:T_bloch}
 \end{equation}
-où les sommes sur $\Rv$ et $\Rv'$ ne courent que sur les $N_L$ cellules retenues. Le facteur de $1/c$ provient de la normalisation intensive de $M$ : la matrice $T_\mathcal{C}$ calculée vaut $N_\text{uc}$ fois la matrice $T$, de sorte que la \textit{self}-énergie vaut $\Sigma^{\text{ed}}=cT_\mathcal{C}$ et que la quantité naturelle du schéma de l'amas est le taux d'amortissement \textit{par unité de concentration}.
+qui est la \textit{self}-énergie par défaut.  Les sommes sur les vecteurs ne court que sur ceux dans l'amas, puisque $T_\mathcal{C}(\Rv',\Rv;\omega)$ est nulle en dehors des cellules de l'amas. Sa partie imaginaire est le taux d'amortissement électronique par unité de concentration
+\begin{equation}
+    \Gamma_{n\kv}^\text{ed}/c = -2\mathrm{Im}T_{n\kv}(\omega)\label{eqn:gamma_loc}
+\end{equation}
 
+
+ Nous devons interpoler le même Hamiltonien sur deux grilles différentes et indépendantes : une fois sur la grille interne $\tilde\kv$ pour calculer $\mathcal{G}^{(0)}_\mathcal{C}$, puis une autre fois sur la grille dense de sortie, c'est-à-dire celle utilisée pour calculer l'intensité Raman. 
 \section{Détails computationnels}\label{sec:T_détails}
 
 Nous décrivons ici les paramètres avec lesquels le schéma de l'amas de la section~\ref{sec:T_local} est évalué à partir de la matrice de couplage interpolée de la section~\ref{sec:interp_wannier_M}, la forme sous laquelle le taux d'amortissement est rapporté, ainsi que les contrôles qui protègent la chaîne de calcul.

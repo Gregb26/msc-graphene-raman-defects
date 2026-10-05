@@ -23,7 +23,7 @@ msc-graphene-raman-defects/
 ├── donnees/                   données derrière les figures, les tables et les chiffres (121 fichiers + MD5SUMS_2026-10-01.txt) ;
 │                              un dossier plat par sujet, voir « Dossiers de donnees/ » ci-dessous
 ├── calculs/                   fichiers d'entrée QE / Wannier90 / EPW (289 fichiers), rangés par chapitre
-├── figures/<chapitre>/        sortie des scripts (PDF + PNG), 33 figures (47 avant le tri du 2026-10-01)
+├── figures/<chapitre>/        sortie des scripts (PDF + PNG), 32 figures (47 avant le tri du 2026-10-01, `fig_M_map_final` retirée le 2026-10-05)
 ├── requirements.txt           versions exactes de l'environnement (matplotlib 3.10.5, numpy 2.3.5, scipy 1.16.1, pillow 11.3.0)
 └── pyproject.toml             paquet graphene_raman (numpy, scipy, matplotlib)
 ```
@@ -66,7 +66,7 @@ Installation (depuis la racine) :
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python -m pip install -e . --no-deps
-.venv/bin/python scripts/make_all_figures.py        # les 33 figures, ~25 s ; --only, --list
+.venv/bin/python scripts/make_all_figures.py        # les 32 figures, ~25 s ; --only, --list
 .venv/bin/python scripts/make_tables.py             # les huit tableaux du ch. 4 et leur index ; --only, --list, --check
 ```
 
@@ -116,9 +116,16 @@ point décimal dans la légende, marqueurs de famille en `MUTED` au lieu de `gra
 non aligné et Kumagai–Oba, 2 panneaux ; ρ total et grille 300² retirés) ; `spectral_GKM` réduite à Kumagai–Oba (6 → 2 panneaux), seuil d'affichage des maxima 1 → 2 % (retire cinq points isolés de la résonance à −0.17 eV) ; `superposition`
 réduite au spin compté (4 → 2 panneaux) ; `sensibilites` : ordonnée « position du max » et ligne de Kaasbjerg dans la légende ; point décimal partout.
 
+**2026-10-05** : vocabulaire « brut » / « aligné » (décision G du 2026-10-04) appliqué aux étiquettes de `make_figures_controles.py` (`FIG_LABEL`,
+`fig_rcut_aligned`, `fig_folded_vs_R7`, `fig_kaasbjerg_plateau_ws`), `make_figures_kaasbjerg.py` (`lab`, titres de `sigma_K`) et `make_tables.py`
+(`tab:kaasbjerg`) ; axe « Rayon de coupure $R_\mathrm{cut}$ (indices réduits) » au lieu de « (mailles) » (`make_figures_defaut.py`, `make_figures_controles.py`) ;
+`tab:tests_T` ramené à trois lignes (référence 5×5, $\mathcal{G}^{(0)}_\mathcal{C}$ par lots, positivité ; grille interne retirée, doublon de `tab:grille_interne`) ;
+notation de l'amas $M_\mathcal{C}$, $\mathcal{G}^{(0)}_\mathcal{C}$, $T_\mathcal{C}$ (G). **Les PDF de `memoire/figures/` et `figures/electron_defect/` n'ont pas encore été
+régénérés avec ces étiquettes** (à faire sur le Mac : `python scripts/make_all_figures.py`, puis copie dans `memoire/figures/`). `fig_M_map_final` retirée (bloc du script et PDF/PNG).
+
 ---
 
-## 1. Figures incluses dans le mémoire (20)
+## 1. Figures incluses dans le mémoire (32 ; ch. 4 → ch. M `défauts.tex` et ch. T `défauts2.tex` depuis la scission du 2026-10-04, annexe D = `annexes/Convergence et paramètres de calcul.tex`, lignes du 2026-10-05)
 
 État par rapport à `memoire/figures/` (comparaison au pixel, 100 ppp, contre les PDF du tag) :
 **même contenu** = seules les métadonnées diffèrent, rien à faire ; **R10** = le mémoire a la version R6, la
@@ -131,15 +138,25 @@ mémoire (taille et mise en page changent), à valider.
 | `fig:convergence_dft` | `fig_electron_convergence.pdf` | théorie:319 | `make_figures_electron.py` | `donnees/electron/{ecut,ecut_cross,kpoint,smearing}.dat` | ch. 2 refaite |
 | `fig:resultats_electrons` | `fig_ebands_edos.pdf` | théorie:326 | `make_figures_electron.py` | `donnees/electron/{ebands,edos}.dat` | ch. 2 refaite |
 | `fig:phonon_results` | `fig_epw_phonons.pdf` | théorie:447 | `make_figures_epw.py` (variante : `make_figures_phonons.py` → `fig_phfreq_phdos`, données `donnees/phonon/`) | `donnees/epw/{validation,phdos}_24k24q_mv0.02.npz` | même contenu |
-| `fig:Ved_zoom` | `fig_Ved_zoom.pdf` | défauts:268 | `make_figures_defaut.py` | `donnees/M2_plateau/ved_analysis.npz` | même contenu |
-| `fig:Ved` | `fig_Ved.pdf` | défauts:284 | `make_figures_defaut.py` | `ved_analysis.npz` + C_N de `config/production.json` | **R10** |
-| `fig:M_scaling` | `fig_M_scaling_final.pdf` | défauts:297 | `make_figures_defaut.py` | `M_analysis.npz` | **R10** |
-| `fig:M_map` | `fig_M_map_final.pdf` | défauts:306 | `make_figures_defaut.py` | `M_analysis.npz` | **R10** |
-| `fig:M_locality` | `fig_locality_final.pdf` | défauts:360 | `make_figures_defaut.py` | `mwr_locality.npz` | **R10** |
-| `fig:ks_reconstruction` | `fig_ks_reconstruction.pdf` | défauts:402 | `make_figures_defaut.py` | `ks_reconstruction.npz` | même contenu |
-| `fig:convergence` | `fig_convergence.pdf` | défauts:643 | `make_figures_defaut.py` | `specwd_{5x5,6x6,7x7,8x8,9x9,12x12}_prod.npz` | **R10** |
-| `fig:level2` | `fig_level2.pdf` | défauts:676 | `make_figures_defaut.py` | `specwd_*_prod.npz` | **R10** |
-| `fig:spectral` | `fig_spectral_final.pdf` | défauts:722 | `make_figures_defaut.py` | `resonance_9x9.npz`, `resonance_criteria_9x9.npz` | **R10** |
+| `fig:Ved_zoom` | `fig_Ved_zoom.pdf` | défauts:307 | `make_figures_defaut.py` | `donnees/M2_plateau/ved_analysis.npz` | même contenu |
+| `fig:Ved` | `fig_Ved.pdf` | défauts:322 | `make_figures_defaut.py` | `ved_analysis.npz` + C_N de `config/production.json` | **R10** |
+| `fig:M_scaling` | `fig_M_scaling_final.pdf` | défauts:370 | `make_figures_defaut.py` | `M_analysis.npz` | **R10** |
+| `fig:kaasbjerg_M` | `fig_kaasbjerg_plateau_ws.pdf` | défauts:390 | `make_figures_controles.py` (quatre panneaux : brut (a, b), aligné (c, d)) | `kaasbjerg/r10_c2_kaasbjerg_maps.npz` | installée le 2026-10-03 |
+| `fig:M_locality` | `fig_locality_final.pdf` | défauts:405 | `make_figures_defaut.py` | `mwr_locality.npz` | **R10** |
+| `fig:ks_reconstruction` | `fig_ks_reconstruction.pdf` | annexe D:46 | `make_figures_defaut.py` | `ks_reconstruction.npz` | même contenu |
+| `fig:rcut_aligned` | `fig_rcut_aligned.pdf` | annexe D:35 | `make_figures_controles.py` | `controles/r9_a3_results{,_plateau}.json` | installée le 2026-10-05 |
+| `fig:offset_profiles_13` | `fig_offset_profiles_13.pdf` | annexe D (chaîne M) | `make_figures_controles.py` | `alignement/r10_a1_results.json`, `alignement/profiles_<S>.npz` | installée le 2026-10-05 |
+| `fig:alignement_regions` | `fig_alignement_regions.pdf` | annexe D (chaîne M) | `make_figures_controles.py` (tracé seulement) | `donnees/ch4/alignement_regions.npz` | installée le 2026-10-05 |
+| `fig:convergence` | `fig_convergence.pdf` | annexe D:74 (depuis le 2026-10-04) | `make_figures_defaut.py` | `specwd_{5x5,6x6,7x7,8x8,9x9,12x12}_prod.npz` | **R10** |
+| `fig:level2` | `fig_level2.pdf` | défauts2:217 | `make_figures_defaut.py` | `specwd_*_prod.npz` | **R10** |
+| `fig:spectral` | `fig_spectral_final.pdf` | défauts2:246 | `make_figures_defaut.py` | `resonance_9x9.npz`, `resonance_criteria_9x9.npz` | **R10** |
+| `fig:folded_vs_R7` | `fig_folded_vs_R7.pdf` | défauts2:230 | `make_figures_controles.py` | `controles/r9_c_results.json` | installée le 2026-10-05 |
+| `fig:resonance_vs_nkint_plateau` | `fig_resonance_vs_nkint_plateau.pdf` | annexe D:98 | `make_figures_controles.py` | `controles/r9_b_results_plateau.json` | installée le 2026-10-04 |
+| `fig:kaasbjerg_superposition` | `fig_kaasbjerg_superposition.pdf` | défauts2:274 | `make_figures_kaasbjerg.py` | `kaasbjerg/r8_dos_9x9.npz`, `r8_fig13_VA_interp_1meV.csv` | installée le 2026-10-05 |
+| `fig:kaasbjerg_spectral_GKM` | `fig_kaasbjerg_spectral_GKM.pdf` | défauts2:281 | idem | `kaasbjerg/r8_spectral_GKM_9x9.npz` | installée le 2026-10-05 |
+| `fig:kaasbjerg_sigma_K` | `fig_kaasbjerg_sigma_K.pdf` | défauts2:288 | idem | `kaasbjerg/r8_sigma_K_9x9.npz`, `r8_sigeff_results.json` | installée le 2026-10-05 |
+| `fig:kaasbjerg_sensibilites` | `fig_kaasbjerg_sensibilites.pdf` | annexe D:119 | idem | `kaasbjerg/r8_sens_results.json`, `r8_7a_results.json` | installée le 2026-10-05 |
+| `fig:kaasbjerg_dos_c` | `fig_kaasbjerg_dos_c.pdf` | annexe D:126 | idem | `kaasbjerg/r8_dos_9x9.npz` | installée le 2026-10-05 |
 | `fig:epw_validation` | `fig_epw_validation.pdf` | eph:152 | `make_figures_epw.py` (options de production ci-dessous) | `donnees/epw/validation_24k24q_mv0.02.npz` | même contenu |
 | `fig:epw_g_control` | `fig_epw_g_control.pdf` | eph:158 | idem | `donnees/epw/validation_24k24q_mv0.02.npz` | même contenu |
 | `fig:epw_decay` | `fig_epw_decay.pdf` | eph:168 | idem | idem | même contenu |
@@ -164,30 +181,28 @@ de date, d'où des PDF reproductibles octet par octet sur une même machine.
 
 | Figure | Pour | Producteur | Données |
 |---|---|---|---|
-| `fig_kaasbjerg_{superposition,spectral_GKM,sigma_K}` (corps), `fig_kaasbjerg_sensibilites` (annexe D), `fig_kaasbjerg_dos_c` (place à décider) | ch. 4 (décision du 2026-10-01) | `make_figures_kaasbjerg.py` | `donnees/kaasbjerg/` ; chiffres à citer : `r8_{dos,gate,spec,fig,sens,sigeff}_results.json`, `r10_c2_results.json` |
-| `fig_alignement_regions` | annexe D (ch. 4), décision du 2026-10-01 | `make_figures_controles.py` (tracé seulement ; les statistiques du npz sont calculées par `GR:campagnes/M/ch4/ch4_chiffres.py regions`, qui lit les `scf.in` de Rorqual et ne tourne pas ici) | `donnees/ch4/alignement_regions.npz` (tableau : `alignement_regions.md`) |
 | `fig_em_coupling` | §2.5 électron-photon | `make_figures_em.py` | `donnees/electron_photon/` |
 | table `em_table` (pas une figure) | §2.5 électron-photon | — (produite dans GR par `campagnes/EM/M4_sigma/make_table.py` et `EM3/make_em3_data.py`) | `donnees/electron_photon/em_table.{csv,tex}`, `em_ring_stats.json`, `em3_table.{csv,md}` |
-| contrôles du ch. 4 : corps `fig_{kaasbjerg_plateau_ws,folded_vs_R7}` ; annexe D `fig_{offset_profiles_13,rcut_aligned,resonance_vs_nkint_plateau}` (décision du 2026-10-01 ; `fig_{levels_vs_invN,resonance_vs_nkint,size_3m,localized_3m}` écartées, PDF retirés le 2026-10-01) | ch. 4 et annexe D | `make_figures_controles.py` | `donnees/{controles,alignement,kaasbjerg}/` |
+| `fig_M_map_final` retirée le 2026-10-05 (figure supprimée du chapitre, décision G du 2026-10-04 ; bloc retiré de `make_figures_defaut.py`, PDF/PNG supprimés) ; tous les contrôles du ch. 4 retenus le 2026-10-01 sont installés le 2026-10-05 (voir §1). | — | — | — |
 
 ---
 
 ## 2. Tables
 
-Les huit tableaux du ch. 4 (six existants, deux nouveaux) sont générés par `scripts/make_tables.py` dans `memoire/tables/` ; chacun entre dans `défauts.tex` (`\input{tables/<nom>}`)
-à la réécriture de sa section, d'ici là le `.tex` garde l'ancienne version saisie à la main. Valeur et source de chaque cellule :
+Les dix tableaux des ch. M et T sont générés par `scripts/make_tables.py` dans `memoire/tables/` et entrent dans `défauts.tex`, `défauts2.tex` ou l'annexe D par `\input{tables/<nom>}` (tous installés au 2026-10-05 ; `make_tables.py --check` : 10/10 à jour). Valeur et source de chaque cellule :
 `memoire/tables/SOURCES.md`. Les tableaux du ch. 5 et de l'annexe D restent saisis à la main.
 
 | Label | .tex:ligne | Source |
 |---|---|---|
-| `tab:échantillonnage` | défauts:247 | `make_tables.py` → `tables/echantillonnage.tex` : `M2_plateau/sampling_table.csv` ; C_N : `config/production.json` |
-| `tab:L_NL` | défauts:337 | `make_tables.py` → `tables/L_NL.tex` : `M2_plateau/M_analysis.npz` (lnl_*), `M2_plateau/lnl_frobenius.csv` |
-| `tab:rcut_M` | défauts:370 | `make_tables.py` → `tables/rcut_M.tex` : `M2_plateau/m_rcut_convergence.csv` (= `kaasbjerg/r10_c2_results.json`, plateau_ws) |
-| `tab:tests_M` | défauts:415 | `make_tables.py` → `tables/tests_M.tex` : `M2_plateau/M_tests_summary.csv`, `M2_plateau/ks_reconstruction.npz` |
-| `tab:convergence_gamma` | défauts:653 | `make_tables.py` → `tables/convergence_gamma.tex` : `M2_plateau/level1_summary.csv` |
-| `tab:tests_T` | défauts:691 | `make_tables.py` → `tables/tests_T.tex` : `M2_plateau/{M_tests_summary.csv,nkint_check_9x9.csv,resonance_9x9.npz}` ; seuil de positivité : `ch4/NOTES_TGAMMA.md` |
-| `tab:kaasbjerg` | nouveau (§4.2.5) | `make_tables.py` → `tables/kaasbjerg.tex` : `kaasbjerg/r8_{dos,spec,7a}_results.json`, `kaasbjerg/r10_c2_results.json` ; A_cell\|M\| ~70 eV Å² de Kaasbjerg : lit. (sa Fig. 3, non numérisée) |
-| `tab:grille_interne` | nouveau (annexe D) | `make_tables.py` → `tables/grille_interne.tex` : `M2_plateau/nkint_check_9x9.csv` |
+| `tab:échantillonnage` | défauts:299 | `make_tables.py` → `tables/echantillonnage.tex` : `M2_plateau/sampling_table.csv` ; C_N : `config/production.json` |
+| `tab:L_NL` | défauts:360 (bloc Convention intensive, cinq colonnes) | `make_tables.py` → `tables/L_NL.tex` : `M2_plateau/M_analysis.npz` (lnl_*), `M2_plateau/lnl_frobenius.csv` |
+| `tab:alignement` | défauts:337 (nouveau, 2026-10-04) | `make_tables.py` → `tables/alignement.tex` : `donnees/ch4/alignement_regions.npz` ; décalage du vide : `alignement/r10_c6_results.json` |
+| `tab:rcut_M` | annexe D:27 (depuis le 2026-10-03) | `make_tables.py` → `tables/rcut_M.tex` : aligné `M2_plateau/m_rcut_convergence.csv` (= `kaasbjerg/r10_c2_results.json`, plateau_ws), brut `kaasbjerg/r10_c2_results.json` (tel_quel) |
+| `tab:tests_M` | annexe D:58 (depuis le 2026-10-03) | `make_tables.py` → `tables/tests_M.tex` : `M2_plateau/M_tests_summary.csv`, `M2_plateau/ks_reconstruction.npz` |
+| `tab:convergence_gamma` | annexe D:83 (depuis le 2026-10-04) | `make_tables.py` → `tables/convergence_gamma.tex` : `M2_plateau/level1_summary.csv` |
+| `tab:tests_T` | annexe D:111 (depuis le 2026-10-05 ; trois lignes : référence 5×5, g0 par lots, positivité) | `make_tables.py` → `tables/tests_T.tex` : `M2_plateau/{M_tests_summary.csv,resonance_9x9.npz}` ; seuil de positivité : `ch4/NOTES_TGAMMA.md` |
+| `tab:kaasbjerg` | défauts2:266 (colonnes brut / aligné depuis le 2026-10-05) | `make_tables.py` → `tables/kaasbjerg.tex` : `kaasbjerg/r8_{dos,spec,7a}_results.json`, `kaasbjerg/r10_c2_results.json` ; A_cell\|M\| ~70 eV Å² de Kaasbjerg : lit. (sa Fig. 3, non numérisée) |
+| `tab:grille_interne` | annexe D:90 | `make_tables.py` → `tables/grille_interne.tex` : `M2_plateau/nkint_check_9x9.csv` |
 | `tab:kohn_chaines` | eph:194 | `donnees/epw/d2_extract_24k24q{,_mv0.02}.npz`, `validation_24k24q{,_mv0.02}.npz` |
 | `tab:gamma_ep_conv` | eph:219 | `donnees/epw/selfen_*_T300.npz` |
 | `tab:gamma_ph_conv` | eph:254 | `donnees/epw/NOTES_EPW.md` (table de convergence de γ(A₁′, K), l. 295) : **aucun fichier de données** ne porte ces 18 valeurs, tirées des `epw.out` des runs `calculs/ch5_epw/24k-24q_mv0.02/epw6_phself_K_*` restés sur Rorqual ; un csv est à extraire des notes (TODO) |
@@ -195,8 +210,8 @@ Les huit tableaux du ch. 4 (six existants, deux nouveaux) sont générés par `s
 | `tab:param_dft` | annexes/paramètres:10 | `calculs/ch2_electrons/bandes_dos/{scf,nscf,dos}.in` ; convergence : `calculs/ch2_electrons/convergence/` |
 | `tab:param_dfpt` | paramètres:37 | `calculs/ch2_phonons/{scf,ph,q2r,matdyn,matdyn.dos}.in` |
 | `tab:param_wannier` | paramètres:62 | chaîne *M* : `calculs/ch4_mailles/27x27/wannier.win`, étalements dans `donnees/wannier/27x27/wannier.wout` ; chaîne *g* : `calculs/ch5_epw/24k-24q_mv0.02/epw1/{epw1.in,graphene.win}` (étalements : sortie d'EPW, sur Rorqual) |
-| `tab:param_M` | paramètres:86 | `config/production.json` ; `calculs/ch4_supercellules/<N>x<N>/{pristine,defective}/scf.in` ; `calculs/ch4_mailles/<N>x<N>/{scf,nscf}.in` |
-| `tab:param_T` | paramètres:117 | `config/production.json` ; `donnees/ch4/NOTES_TGAMMA.md` |
+| `tab:param_M` | annexe D:215 (lignes alignement, constantes et nombre de bandes ajoutées le 2026-10-05) | `config/production.json` ; `calculs/ch4_supercellules/<N>x<N>/{pristine,defective}/scf.in` ; `calculs/ch4_mailles/<N>x<N>/{scf,nscf}.in` |
+| `tab:param_T` | annexe D:248 (ligne comparaison Kaasbjerg ajoutée le 2026-10-05) | `config/production.json` ; `donnees/ch4/NOTES_TGAMMA.md` |
 | `tab:param_epw` | paramètres:143 | `calculs/ch5_epw/24k-24q_mv0.02/` (`phonons/`, `epw1/`, `epw2_selfen_*/`, `epw6_phself_*/`) ; `donnees/epw/NOTES_EPW.md` |
 
 Les sources des quatre tables du ch. 5 sont déduites des noms de fichiers ; l'appariement valeur par valeur reste à faire.
@@ -210,7 +225,7 @@ Les sources des quatre tables du ch. 5 sont déduites des noms de fichiers ; l'a
 | Introduction | 2 | lit. (l. 13 : 130 GPa, 97.7 %) | citées, pas de données |
 | Ch. 2 théorie | 25 | §2.2 : 2.466 Å, 5.46 eV, convergence 0.1 meV → `donnees/electron/`. §2.3 : 1550.5 et 1583 cm⁻¹, écart 2 %, 468/1394/1602 cm⁻¹ → `donnees/epw/phdos_24k24q_mv0.02.npz`, `validation_24k24q_mv0.02.npz` et lit. | 100 Ry et 0.01 Ry sont des paramètres, voir `tab:param_dft` |
 | Ch. 3 Raman | 8 | lit. (positions des pics G, D, 2D… ; 10 nm) | aucune donnée |
-| Ch. 4 défauts | 111 | `donnees/ch4/table_v1_final.md` (source des valeurs finales, avec fichier et clé de chaque valeur) ; valeurs absentes de la table (carte de `fig:M_map` sur toute la zone, grille interne, ordres de grandeur de `fig:Ved` et `fig:M_locality`, fraction locale et A_cell·M̄(K), dispersion de max\|M\|) : `donnees/ch4/chiffres_complementaires.{md,csv}`, produit par `scripts/chiffres_ch4.py` (propre à ce dépôt) ; appariement dans `donnees/ch4/defauts_nombres.md` | **le texte cite encore les valeurs v1** : à refaire avec la réécriture ; `defauts_nombres.md` ne se régénère que dans GR |
+| Ch. M et T (défauts, défauts2) | 111 (v1) | `donnees/ch4/table_v1_final.md` (source des valeurs finales, avec fichier et clé de chaque valeur) ; valeurs absentes de la table (grille interne, ordres de grandeur de `fig:Ved` et `fig:M_locality`, fraction locale et A_cell·M̄(K), dispersion de max\|M\|) : `donnees/ch4/chiffres_complementaires.{md,csv}`, produit par `scripts/chiffres_ch4.py` (propre à ce dépôt) ; appariement dans `donnees/ch4/defauts_nombres.md` | ch. M réécrit par G (2026-10-01 → 04) et ch. T par C (2026-10-05) sur les valeurs R10 ; `defauts_nombres.md` (appariement v1) est périmé et ne se régénère que dans GR : à refaire au verrouillage |
 | Ch. 5 EPW | 176 | `donnees/epw/*.npz` ; Γ^ed/Γ^ep (§5.3.5, l. 301–312) → `donnees/M2_plateau/ed_vs_ep_24k24q_mv0.02.npz` et `table_v1_final.md` | à apparier comme pour le ch. 4 ; l. 303–312 dépendent du ch. 4 (Γ^ed R6 → R10) |
 | Conclusion | 5 | reprend ch. 4–5 (300 K, 1 %, 3 eV, 0.6 %, 14 cm⁻¹) | à revoir après la réécriture du ch. 4 |
 | Résumé / abstract | 2 + 2 | reprend ch. 4–5 (300 K, 1 %) | idem |

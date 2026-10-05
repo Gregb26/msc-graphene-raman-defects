@@ -7,7 +7,7 @@ json/npz des campagnes copiés dans donnees/controles/, donnees/alignement/, don
   A: fig_offset_profiles_13                profils ΔV et plateau des 13 tailles ; alignement/r10_a1_results.json, alignement/profiles_<S>.npz
   A: fig_alignement_regions               C_N selon quatre régions d'échantillonnage (A)–(D), 13 tailles ; ch4/alignement_regions.npz
                                           (statistiques calculées par GR:campagnes/M/ch4/ch4_chiffres.py regions, qui lit les scf.in de Rorqual)
-  C: fig_kaasbjerg_plateau_ws              cartes A_cell|M_k'k| autour de K, non aligné (a, b) et aligné (c, d) (décision G du 2026-10-03) ; kaasbjerg/r10_c2_kaasbjerg_maps.npz
+  C: fig_kaasbjerg_plateau_ws              cartes A_cell|M_k'k| autour de K, brut (a, b) et aligné (c, d) (décision G du 2026-10-03) ; kaasbjerg/r10_c2_kaasbjerg_maps.npz
 
 Sortie : figures/electron_defect/fig_<nom>.{pdf,png} (reproductibles au bit, palette.save). Texte en français, panneaux (a), (b), …
 Usage : python scripts/make_figures_controles.py [--only nom,nom] [--outdir figures/electron_defect]
@@ -38,8 +38,8 @@ FAM3 = {6, 9, 12, 15, 18, 21, 24, 27}                 # famille N = 3m (K repli�
 ALL13 = ["5x5", "6x6", "7x7", "8x8", "9x9", "10x10", "11x11", "12x12", "15x15", "18x18", "21x21", "24x24", "27x27"]
 PLATEAU_FRAC = 0.75                                    # décision R9 : atomes à d >= 0,75 r_max
 K_RED = np.array([2 / 3, 1 / 3, 0.0])
-FIG_LABEL = {"aligne": "site unique", "exact": "site unique, exact", "aligne_lu": "site unique", "exact_lu": "site unique, exact",
-             "aligne_plateau": "Kumagai–Oba", "exact_plateau": "Kumagai–Oba, exact"}
+FIG_LABEL = {"aligne": "aligné, site unique", "exact": "aligné, site unique, exact", "aligne_lu": "aligné, site unique", "exact_lu": "aligné, site unique, exact",
+             "aligne_plateau": "aligné", "exact_plateau": "aligné, exact"}      # vocabulaire brut / aligné (décision G, 2026-10-04)
 
 
 def jload(p):
@@ -88,13 +88,13 @@ def fig_rcut_aligned(outdir):
     fig, axes = plt.subplots(1, 2, figsize=(6.5, 3.0), sharey=True)
     for ax, S, lab in zip(axes, ("9x9", "12x12"), "ab"):
         r9 = A9[f"rcut_{S}"]["rows"]; rp = AP[f"rcut_{S}"]["rows"]
-        series = [(r9["brut"], pal.NAVY, "-", "o", "non aligné"), (r9["aligne"], pal.ORANGE, "--", "s", "site unique"),
-                  (rp["aligne_plateau"], pal.GREEN, "-.", "D", "Kumagai–Oba")]
+        series = [(r9["brut"], pal.NAVY, "-", "o", "brut"), (r9["aligne"], pal.ORANGE, "--", "s", "aligné, site unique"),
+                  (rp["aligne_plateau"], pal.GREEN, "-.", "D", "aligné")]
         if "exact" in r9 and "exact_plateau" in rp:
-            series += [(r9["exact"], pal.ORANGE, ":", "^", "site unique, exact"), (rp["exact_plateau"], pal.GREEN, ":", "v", "Kumagai–Oba, exact")]
+            series += [(r9["exact"], pal.ORANGE, ":", "^", "aligné, site unique, exact"), (rp["exact_plateau"], pal.GREEN, ":", "v", "aligné, exact")]
         for rows, c, ls, mk, lb in series:
             ax.semilogy([r["R_cut"] for r in rows], [r["max_dM_over_maxM"] for r in rows], ls, marker=mk, ms=3, color=c, label=lb, mfc="none")
-        ax.set_xlabel(r"Rayon de coupure $R_\mathrm{cut}$ (mailles)"); ax.set_title(f"({lab}) {times(S)}", fontsize=9)
+        ax.set_xlabel(r"Rayon de coupure $R_\mathrm{cut}$ (indices réduits)"); ax.set_title(f"({lab}) {times(S)}", fontsize=9)
     axes[0].set_ylabel(r"$\max|\Delta M|/\max|M|$ (paire $\pi$)"); axes[0].legend(fontsize=5)
     fig.tight_layout(); save(fig, "fig_rcut_aligned", outdir); plt.close(fig)
 
@@ -107,13 +107,13 @@ def fig_folded_vs_R7(outdir):
     qe = [(N, out["C1"][str(N)]["QE"]["pi_quasi_bound"]["x"]) for N in N1 if out["C1"][str(N)]["QE"]]
     ax[0].plot([1 / N for N, _ in qe], [x for _, x in qe], "o", ms=3, color=pal.REF, label="QE (R7)")
     for var, c, mk in (("brut", pal.NAVY, "s"), ("aligne", pal.ORANGE, "^")):
-        lab = "modèle replié" + (" (site unique)" if var == "aligne" else "")
+        lab = "modèle replié, " + ("aligné" if var == "aligne" else "brut")
         ax[0].plot([1 / N for N in N1] + [1 / N for N in N2 if N > 27], [out["C1"][str(N)][var]["odd"]["quasi_bound"]["x"] for N in N1]
                    + [out["C2"][str(N)][var]["odd"]["quasi_bound"]["x"] for N in N2 if N > 27], mk, ms=3, mfc="none", color=c, label=lab)
         ax[1].plot([1 / N for N in N1] + [1 / N for N in N2 if N > 27], [out["C1"][str(N)][var]["ldos_max"]["at_eV"] for N in N1]
                    + [out["C2"][str(N)][var]["ldos_max"]["at_eV"] for N in N2 if N > 27], mk, ms=3, mfc="none", color=c, label=lab)
         if "C3" in out and "600" in out["C3"]:
-            ax[1].axhline(out["C3"]["600"][var]["at_eV"], color=c, lw=0.8, ls="--", label=r"matrice $T$" + (" (site unique)" if var == "aligne" else ""))
+            ax[1].axhline(out["C3"]["600"][var]["at_eV"], color=c, lw=0.8, ls="--", label=r"matrice $T$, " + ("aligné" if var == "aligne" else "brut"))
     Ns = N1 + [N for N in N2 if N > 27]
     for a_ in ax:
         a_.set_ylim(-1.12, 0.05)                                                # N = 6 : maximum de LDOS au bord de [−1, 0] (état π à −1,04 eV)
@@ -186,7 +186,7 @@ def fig_alignement_regions(outdir):
 
 
 def fig_kaasbjerg_plateau_ws(outdir):
-    """Cartes A_cell|M_k'k| (valence, conduction) autour de K, étiquettes de Wigner-Seitz : (a, b) non aligné (= convention
+    """Cartes A_cell|M_k'k| (valence, conduction) autour de K, étiquettes de Wigner-Seitz : (a, b) brut (= convention
     de Kaasbjerg, référence du vide), (c, d) aligné (Kumagai–Oba). Décision G du 2026-10-03 : les deux variantes."""
     Z = np.load(KAAS / "r10_c2_kaasbjerg_maps.npz"); Bc = Z["Bc"]; kc = Z["kc"]
     maps = {"tel quel": {"valence": Z["tel_quel_valence"], "conduction": Z["tel_quel_conduction"]},
@@ -197,7 +197,7 @@ def fig_kaasbjerg_plateau_ws(outdir):
     corners = corners[np.argsort(np.arctan2(corners[:, 1], corners[:, 0]))]; Kc = Bc @ K_RED
     labs = list(maps); fig, axes = plt.subplots(len(labs), 2, figsize=(6.5, 3.0 * len(labs)), squeeze=False)
     vmax = max(np.nanmax(maps[v][b]) for v in labs for b in ("valence", "conduction")); vmin = min(np.nanmin(maps[v][b]) for v in labs for b in ("valence", "conduction"))
-    tl = {"tel quel": "non aligné", "plateau": "aligné"}
+    tl = {"tel quel": "brut", "plateau": "aligné"}
     for i, lab in enumerate(labs):
         for j, (band, bl) in enumerate((("valence", r"valence ($\pi$)"), ("conduction", r"conduction ($\pi^*$)"))):
             ax = axes[i][j]; z = maps[lab][band]; m = np.isfinite(z)

@@ -268,8 +268,8 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 |---|---|---|---|---|
 | Référence, $5\times5$ | valeur | $1.8\times10^{-13}$ | 1.8e-13 | `M2_plateau/M_tests_summary.csv : valeur [test d'or (local vs compute_T), 5×5 dense]` |
 | Référence, $5\times5$ | seuil | $10^{-8}$ | 1e-08 | `M2_plateau/M_tests_summary.csv : seuil` |
-| $g^{(0)}$ par lots, $R_\text{cut}=0$--$3$ | valeur | $1.2\times10^{-14}$ | 1.2e-14 | `M2_plateau/M_tests_summary.csv : valeur [g0 par lots vs référence, R_cut 0–3]` |
-| $g^{(0)}$ par lots, $R_\text{cut}=0$--$3$ | seuil | $10^{-12}$ | 1e-12 | `M2_plateau/M_tests_summary.csv : seuil` |
+| $\mathcal{G}^{(0)}_\mathcal{C}$ par lots, $R_\text{cut}=0$--$3$ | valeur | $1.2\times10^{-14}$ | 1.2e-14 | `M2_plateau/M_tests_summary.csv : valeur [g0 par lots vs référence, R_cut 0–3]` |
+| $\mathcal{G}^{(0)}_\mathcal{C}$ par lots, $R_\text{cut}=0$--$3$ | seuil | $10^{-12}$ | 1e-12 | `M2_plateau/M_tests_summary.csv : seuil` |
 | Positivité | valeur | $1.96$~eV | 1.955186878025845 | `M2_plateau/resonance_9x9.npz : min de G_T sur \|E_out − E_D\| ≤ 3.0 eV (eV)` |
 | Positivité | seuil | $-10^{-8}$~eV | -1e-8 | `ch4/NOTES_TGAMMA.md : l. 122 (C7)` |
 

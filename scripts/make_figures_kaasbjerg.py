@@ -1,15 +1,15 @@
 """ Les cinq figures (DOS et A_k moyennées sur le désordre) de comparaison avec la littérature (Kaasbjerg PRB 101, 045433) retenues pour le chapitre 4,
 redessinées au style graphene_raman.plotting. C : figures dans le corps du texte. A : figures en annexe.
 
-    M : fig_kaasbjerg_dos_c           ρ − ρ₀ (grille 600²), non aligné et Kumagai–Oba, c_i = 0.1 % (a) et 1 % (b).
-    C : fig_kaasbjerg_spectral_GKM    fonction spectrale A_k(ε) sur Γ–K–M (chemin de la Fig. 14 de Kaasbjerg), Kumagai–Oba, c_i = 0.1 % (a) et 1 % (b) ;
+    M : fig_kaasbjerg_dos_c           ρ − ρ₀ (grille 600²), brut et aligné, c_i = 0.1 % (a) et 1 % (b).
+    C : fig_kaasbjerg_spectral_GKM    fonction spectrale A_k(ε) sur Γ–K–M (chemin de la Fig. 14 de Kaasbjerg), aligné, c_i = 0.1 % (a) et 1 % (b) ;
                                       points : deux plus hauts maxima de A_k par k, tracés là où A ≥ 2 % du maximum de la carte.
     A : fig_kaasbjerg_sensibilites    position du maximum de ρ − ρ₀ contre N_k^int, R_cut, taille, η_G ; tirets : valeur déduite de Kaasbjerg
                                       (Fig. 13, c_i = 1 %).
-    C : fig_kaasbjerg_superposition   nos DOS ρ (ρ₀ 1 200², η 15 meV ; non aligné et Kumagai–Oba) sur celles extraites de Kaasbjerg,
+    C : fig_kaasbjerg_superposition   nos DOS ρ (ρ₀ 1 200², η 15 meV ; brut et aligné) sur celles extraites de Kaasbjerg,
                                       c_i = 0.1 % (a) et 1 % (b), spin compté (× 2).
     C : fig_kaasbjerg_sigma_K         self-énergie de désordre intrabande Σ_nn = c_i T̄_nn et effective Σ^eff_nK (éq. 44–45 de Kaasbjerg) à k = K,
-                                      c_i = 1 %, non aligné (a) et Kumagai–Oba (b) ; tirets : ε − ε_nK (leurs croisements avec Re Σ^eff sont les
+                                      c_i = 1 %, brut (a) et aligné (b) ; tirets : ε − ε_nK (leurs croisements avec Re Σ^eff sont les
                                       solutions de quasi-particule). Base de bandes : celle de K + 10⁻⁶ x̂ (limite de K le long de la direction
                                       K + δx̂ de R9 D.1, comme Kaasbjerg) ; Σ(K) étant diagonal dans la base des sous-réseaux à 10⁻² près,
                                       Σ_nn = (Σ_AA + Σ_BB)/2 à 10⁻⁵ eV près, identique pour π et π* ; le terme interbande Σ_nn̄ (jusqu'à 0.27 eV)
@@ -42,7 +42,7 @@ C_LIST = (0.001, 0.01)                   # c_i, défauts par maille
 GRID_SENS, NK_MAIN = 600, 900
 P0 = 1200                                # ρ₀ des figures : 1 200², η 15 meV (Greg, 2026-09-29)
 col = {"tel_quel": NAVY, "aligne": ORANGE}
-lab = {"tel_quel": "non aligné", "aligne": "Kumagai–Oba"}
+lab = {"tel_quel": "brut", "aligne": "aligné"}      # vocabulaire brut / aligné (décision G, 2026-10-04)
 
 
 def clab(cv):
@@ -143,7 +143,7 @@ def fig_sigma_K(a):
         x.plot(eg, Se[:, 0].real, color=NAVY, lw=1.0, label=r"Re $\Sigma^\mathrm{eff}_{nK}$")
         x.plot(eg, Se[:, 0].imag, color=ORANGE, lw=1.0, label=r"Im $\Sigma^\mathrm{eff}_{nK}$")
         x.set_xlim(-1, 1); x.set_ylim(-0.35, 0.35); x.set_xlabel(r"Énergie $\varepsilon - E_D$ (eV)")
-        x.set_title(f"({'ab'[iv]}) " + ("non aligné" if var == "tel_quel" else "Kumagai–Oba") + r", $c_i$ = 1\,\%, $k = K$", fontsize=9)
+        x.set_title(f"({'ab'[iv]}) " + ("brut" if var == "tel_quel" else "aligné") + r", $c_i$ = 1\,\%, $k = K$", fontsize=9)
     axs[0].set_ylabel(r"$\Sigma$ (eV)"); axs[0].legend(fontsize=6, loc="lower left")
     fig.tight_layout(); save(fig, "fig_kaasbjerg_sigma_K", a.outdir); plt.close(fig)
 

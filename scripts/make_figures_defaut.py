@@ -6,7 +6,6 @@ C : figures dans le corps du texte. A : figures en annexe.
   A: fig_convergence        (a) Γ N_cells vs R_cut, six tailles ; (b) carte plateau (grille × η), référence     — 6.5 × 3.4 po
   C: fig_locality_final     (a) 5×5, (b) 8×8 avec grille aliasée ; (c) 9×9, (d) 12×12                 — 6.5 × 5.6 po
   C: fig_spectral_final     (a) Γ(ε) T vs Born (log) ; (b) δρ ; (c) T̄_ππ(K,K;ε) ; (d) critère det / λ_min       — 6.5 × 5.6 po
-  C: fig_M_map_final        (a) π, (b) π*, (c) partie locale projetée, (d) partie non locale projetée ; colorbars M̃ et M_∥ — 6.5 × 6.0 po
   C: fig_M_scaling_final    max|M| vs N, convention cellule unitaire (panneau unique)                           — 6.5 × 4.0 po
   C: fig_Ved                (a) carte 5×5, (b) carte 9×9 (colorbar commune) ; (c) profil radial masqué, + C_N (pointillés, R10) — 6.5 × 7.2 po
   C: fig_Ved_zoom           V_ed^L dans le plan, zoom ±3 Å : (a) 8×8, (b) 9×9 (reprise à l'identique de make_figures.py)
@@ -19,8 +18,6 @@ import argparse, os, numpy as np
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import SymLogNorm
-from matplotlib.patches import Polygon
-from scipy.spatial import Voronoi
 from graphene_raman.config import load_production, results_dir, alignment_C
 RES = results_dir(load_production(verbose=False))          # R10 : produits (results/M2_plateau) ; matrices par matrices_dir
 
@@ -50,7 +47,7 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6.5, 3.4), gridspec_kw=dict(width_
 rcs = sorted({k[0] for m in maps.values() for k in m})
 for S, m in maps.items():
     y = [m.get((rc, GRID, ETA), np.nan) for rc in rcs]; ax1.plot(rcs, y, "-o", color=COL[S], ms=5, label=famlab(S))
-ax1.set_xlabel(r"Rayon de coupure $R_\mathrm{cut}$ (mailles)"); ax1.set_ylabel(LBL_G); ax1.set_xticks(rcs)
+ax1.set_xlabel(r"Rayon de coupure $R_\mathrm{cut}$ (indices réduits)"); ax1.set_ylabel(LBL_G); ax1.set_xticks(rcs)
 ax1.set_title(rf"Grille $k$ {GRID}$\times${GRID}, $\eta$ = {ETA} eV", loc="left", fontsize=9); ax1.legend(title="Super-cellule", ncol=1, fontsize=7, title_fontsize=8, loc="upper right", borderaxespad=0.3); panel(ax1, "a")
 m = maps[REF]; grids = sorted({k[1] for k in m}); etas = sorted({k[2] for k in m}, reverse=True)
 Z = np.array([[m[(RC, N, e)] for e in etas] for N in grids]); ref = Z[grids.index(GRID), etas.index(ETA)]; D = (Z / ref - 1) * 100; vmax = max(5, np.abs(D).max())
@@ -91,26 +88,8 @@ a4.set_ylabel("Sans dimension"); a4.set_title("Critère de résonance", loc="lef
 for i, ax in enumerate(axs.ravel()): ax.set_xlabel(LBL_E); ax.axvline(0, color=MUTED, lw=0.8, ls=":"); panel(ax, "abcd"[i])
 fig.tight_layout(); save(fig, "fig_spectral_final")
 
-# ---------------- 4. fig_M_map_final
+# ---------------- 4. fig_M_map_final : retirée le 2026-10-05 (figure supprimée du chapitre, décision G du 2026-10-04) ; M_analysis.npz reste lu pour fig_M_scaling_final
 Zm = np.load(f"{RES}/M_analysis.npz", allow_pickle=True)
-def bz_vertices(B):
-    pts = np.array([i * B[:2, 0] + j * B[:2, 1] for i in range(-2, 3) for j in range(-2, 3)]); vor = Voronoi(pts)
-    v = vor.vertices[vor.regions[vor.point_region[np.argmin(np.linalg.norm(pts, axis=1))]]]; return v[np.argsort(np.arctan2(v[:, 1], v[:, 0]))]
-fig, axs = plt.subplots(2, 2, figsize=(6.5, 6.0), sharex=True, sharey=True, layout="constrained"); axs = axs.ravel()
-vmax = max(Zm["map_Vpi"].max(), Zm["map_Vpistar"].max()); hexa = bz_vertices(Zm["map_B"])
-lo = min(0.0, Zm["map_Lpar"].min(), Zm["map_Npar"].min()); hi = max(Zm["map_Lpar"].max(), Zm["map_Npar"].max())
-specs = ((0, "map_Vpi", r"$\pi$", 0, vmax), (1, "map_Vpistar", r"$\pi^*$", 0, vmax),
-         (2, "map_Lpar", r"partie locale projetée sur $M$", lo, hi), (3, "map_Npar", r"partie non locale projetée sur $M$", lo, hi))
-for i, key, title, vlo, vhi in specs:
-    ax = axs[i]; sc = ax.scatter(Zm["map_kx"], Zm["map_ky"], c=Zm[key], cmap=CMAP_SEQ, vmin=vlo, vmax=vhi, s=22, marker="h", linewidths=0)
-    ax.add_patch(Polygon(hexa, closed=True, fill=False, ec=MUTED, lw=0.8)); ax.plot(*Zm["map_K"], "o", mfc="none", mec=C_BORN, mew=1.2, ms=8)
-    ax.annotate("$K$", Zm["map_K"], xytext=(6, 4), textcoords="offset points", color=C_BORN, fontsize=10)
-    ax.set_aspect("equal"); ax.set_title(title, loc="left", fontsize=10); panel(ax, "abcd"[i])
-    if i >= 2: ax.set_xlabel(r"$k'_x$ (Å$^{-1}$)")
-    if i % 2 == 0: ax.set_ylabel(r"$k'_y$ (Å$^{-1}$)")
-    if i == 1: cb = fig.colorbar(sc, ax=axs[:2], shrink=0.85, pad=0.02); cb.set_label(r"$\tilde M$ (eV\,Å$^2$)")
-    if i == 3: cb = fig.colorbar(sc, ax=axs[2:], shrink=0.85, pad=0.02); cb.set_label(r"$M_\parallel$ (eV\,Å$^2$)")
-save(fig, "fig_M_map_final")
 
 # ---------------- 5. fig_M_scaling_final : panneau unique
 Ns = [int(S.split("x")[0]) for S in SIZES if f"scale_{S}_dense" in Zm]; dd = [float(Zm[f"scale_{S}_dense"]) for S in SIZES if f"scale_{S}_dense" in Zm]; cc_ = [float(Zm[f"scale_{S}_coarse"]) for S in SIZES if f"scale_{S}_dense" in Zm]

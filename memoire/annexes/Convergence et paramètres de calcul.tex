@@ -5,10 +5,7 @@
 
 Cette section rassemble tous les tests de convergence des paramètres numériques du mémoire, dans l'ordre des chapitres.
 
-% ------------------------------------------------------------------------------------------------
-% SECTION PROVISOIRE (2026-10-03) : éléments déplacés du chapitre 4 pendant sa réécriture (chantier 1),
-% à ranger dans la chaîne « matrice M » à la restructuration de l'annexe (chantier 3). Légendes à revoir.
-% ------------------------------------------------------------------------------------------------
+% Chaîne M (2026-10-03, rangée le 2026-10-05) ; légendes marquées « À REVOIR » à relire (G).
 \section{Vérifications de la matrice de couplage électron-défaut}\label{sec:annexe_M_tests}
 
 Cette section rassemble les vérifications de la chaîne de calcul de la matrice $M$ du chapitre~\ref{chap:défauts} qui justifient un paramètre numérique : la convergence de l'interpolation en $R_\text{cut}$ et les tests de cohérence interne.
@@ -30,6 +27,27 @@ Cette section rassemble les vérifications de la chaîne de calcul de la matrice
     \label{tab:rcut_M}
     \input{tables/rcut_M}
 \end{table}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_rcut_aligned.pdf}
+    % À REVOIR : légende provisoire du 2026-10-05 ; étiquettes « site unique » / « Kumagai–Oba » de la figure à renommer (make_figures_controles.py)
+    \caption[Erreur de troncature selon la référence du potentiel.]{Écart relatif maximal $\max|\Delta M|/\max|M|$ sur les blocs $\pi$--$\pi^*$ entre les éléments de matrice interpolés avec troncature à $R_\text{cut}$ et ceux obtenus avec toutes les cellules, pour (a) $9\times9$ et (b) $12\times12$, avec les matrices brutes, les matrices alignées de production (constante de Kumagai-Oba) et une variante alignée sur un seul site ; les courbes « exact » appliquent l'alignement au potentiel plutôt qu'aux blocs diagonaux de la base de Wannier et se superposent aux précédentes. C'est la quantité de la première ligne du tableau~\ref{tab:rcut_M}, pour tous les rayons de coupure.}
+    \label{fig:rcut_aligned}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_offset_profiles_13.pdf}
+    % À REVOIR : légende provisoire du 2026-10-05 ; étiquettes « Kumagai–Oba » / « site unique » de la figure (make_figures_controles.py)
+    \caption[Décalages de potentiel sur les sites atomiques pour treize tailles.]{Décalage du potentiel de la lacune $\Delta V_\alpha$ moyenné sur une sphère de $1.0$~\AA{} autour de chaque atome, en fonction de la distance à la lacune (image minimale), pour les treize tailles de super-cellule de $5\times5$ à $27\times27$. La zone grisée marque la région $d\ge0.75\,r_\text{max}$ dont la moyenne définit la constante d'alignement $\Delta V_\text{PA}^{(N)}$ (trait plein, prescription (A) du tableau~\ref{tab:alignement}) ; les tirets donnent la valeur du site unique le plus éloigné (prescription (D)) et les losanges marquent les atomes les plus éloignés.}
+    \label{fig:offset_profiles_13}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_alignement_regions.pdf}
+    % À REVOIR : légende provisoire du 2026-10-05
+    \caption[Constante d'alignement selon la région d'échantillonnage.]{Constante d'alignement $\Delta V_\text{PA}^{(N)}$ (moyenne et écart-type des décalages de sphère) en fonction de la taille $N$ de la super-cellule, pour les quatre prescriptions du tableau~\ref{tab:alignement} : (A) $d\ge0.75\,r_\text{max}$ (production), (B) Kumagai-Oba à deux dimensions, $d\ge Na/2$, (C) Kumagai-Oba à trois dimensions, $d\ge\min(Na/2, c/2)$, et (D) site unique.}
+    \label{fig:alignement_regions}
+\end{figure}
 
 \begin{figure}[htbp]
     \centering
@@ -103,7 +121,7 @@ Cette section rassemble les preuves de convergence du schéma de l'amas de la ma
     de calcul de la matrice $T$ et du taux d'amortissement par le schéma de l'amas : les tests et la quantité qu'ils contrôlent, la valeur obtenue et le seuil d'acceptation. Le test de
     référence compare le schéma de l'amas à l'inversion dense de
     l'équation~\eqref{eqn:T_chap} dans le sous-espace des cinq fonctions
-    de Wannier, pour la super-cellule $5\times5$. Le test de $g^{(0)}$ par lots compare la fonction de Green de l'amas~\eqref{eqn:g_loc} construite par lots d'énergies à son évaluation directe ; la positivité est vérifiée sur les états de la fenêtre $\pm3$~eV de la super-cellule de référence $9\times9$.}
+    de Wannier, pour la super-cellule $5\times5$. Le test de $\mathcal{G}^{(0)}_\mathcal{C}$ par lots compare la fonction de Green de l'amas~\eqref{eqn:g_loc} construite par lots d'énergies à son évaluation directe ; la positivité est vérifiée sur les états de la fenêtre $\pm3$~eV de la super-cellule de référence $9\times9$.}
     \label{tab:tests_T}
     \input{tables/tests_T}
 \end{table}
@@ -226,19 +244,21 @@ Dans chaque tableau, la colonne \og Section \fg{} renvoie à l'endroit du texte 
         Pseudo-potentiel & ONCV \textit{stringent} pour le carbone, forme de Kleinman-Bylander, bibliothèque PseudoDojo & \ref{sec:M_détails} \\
         Coupure $E_\text{cut}$ & $100$~Ry & \ref{sec:M_détails} \\
         Occupation & Marzari-Vanderbilt, $\sigma = 0.01$~Ry & \ref{sec:M_détails} \\
-        Seuil de convergence & $10^{-10}$~Ry sur l'énergie totale & \ref{sec:M_détails} \\
+        Seuil de convergence & $10^{-10}$~Ry sur l'énergie totale (super-cellules), $10^{-14}$~Ry (cellule unitaire) & \ref{sec:M_détails} \\
         Cellule de vide & $30$~Bohr & \ref{sec:M_détails} \\
         Troncature de Coulomb & bidimensionnelle & \ref{sec:M_détails} \\
         Rayon de coupure $R_\text{cut}$ & $3$, soit $29$ cellules unitaires & \ref{sec:M_results} \\
-        Grille fine du test de troncature & $60\times 60$ & \ref{sec:M_results} \\
-        Nombre de bandes & & \\
+        Grille de sortie du test de troncature & $60\times 60$ & \ref{sec:M_results} \\
+        Nombre de bandes & super-cellules : $2N^2$ bandes occupées et $30$ bandes vides ($N\le 18$) ou $5~\%$ de plus ($N\ge 21$), deux de moins avec la lacune ; cellule unitaire : $16$ (SCF) et $20$ (NSCF des grilles $\ge 24\times 24$) & \ref{sec:M_détails} \\
+        Alignement du potentiel & Kumagai-Oba : moyenne des décalages de sphères de $1.0$~\AA{} sur les atomes à distance $d \ge 0.75\,r_\text{max}$ de la lacune (image minimale) ; soustrait des blocs diagonaux $M(\Rv,\Rv)$ des $N^2$ cellules dans la base de Wannier & \ref{sec:M_détails} \\
+        Constante d'alignement $\Delta V_\text{PA}^{(N)}$ & $-57.6$, $-50.5$, $-26.9$, $-14.4$, $-25.1$, $-18.7$~meV pour $N = 5, 6, 7, 8, 9, 12$ ; incertitude $9.05$~meV pour $9\times 9$ & \ref{sec:M_results} \\
         \hline\hline
     \end{tabular}
 \end{table}
 
 \begin{table}[htbp]
     \centering
-    \caption[Paramètres de la matrice $T$ et du taux d'amortissement $\Gamma^\text{ed}$.]{Paramètres du schéma de l'amas pour la matrice $T$ et le taux d'amortissement $\Gamma^\text{ed}$ (chapitre~\ref{chap:défauts}).}
+    \caption[Paramètres de la matrice $T$ et du taux d'amortissement $\Gamma^\text{ed}$.]{Paramètres du schéma de l'amas pour la matrice $T$ et le taux d'amortissement $\Gamma^\text{ed}$ (chapitre~\ref{chap:T}).}
     \label{tab:param_T}
     \small
     \setlength{\tabcolsep}{4pt}
@@ -258,6 +278,7 @@ Dans chaque tableau, la colonne \og Section \fg{} renvoie à l'endroit du texte 
         Super-cellule de référence & $9\times 9$, grille élargie $27\times 27$ & \ref{sec:T_results} \\
         Moyenne lorentzienne & $\eta = 0.02$~eV & \ref{sec:T_results} \\
         Concentration de référence $c$ & $1~\%$ & \ref{sec:T_results} \\
+        Comparaison avec Kaasbjerg & grille interne $900^2$ ; $\eta_G = 50$~meV ($\rho - \rho_0$, grille $600^2$) et $25$~meV ($A_\kv$) ; $\rho_0$ sur $1200^2$ avec $15$~meV ; $c = 0.1$ et $1~\%$ & \ref{sec:T_results} \\
         \hline\hline
     \end{tabular}
 \end{table}

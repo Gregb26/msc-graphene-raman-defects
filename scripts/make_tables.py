@@ -468,12 +468,12 @@ def t_tests_T():
     name = "test d'or (local vs compute_T), 5×5 dense"
     r = csv_row(ft, test=name)
     v, s = first_float(r["valeur"]), first_float(r["seuil"])
-    rows.append([L(r"Référence, $5\times5$"), L(r"$\max|\Gamma_\text{loc}-\Gamma_\text{dense}|/\max\Gamma$"),
+    rows.append([L(r"Référence, $5\times5$"), L(r"$\max|\Gamma_\mathcal{C}-\Gamma_\text{dense}|/\max\Gamma$"),
                  Cell(sci(v), f"{rel(ft)} : valeur [{name}]", v), Cell(thr(s), f"{rel(ft)} : seuil", s)])
     name2 = "g0 par lots vs référence, R_cut 0–3"
     r2 = csv_row(ft, test=name2)
     v2, s2 = first_float(r2["valeur"]), first_float(r2["seuil"])
-    rows.append([L(r"$g^{(0)}$ par lots, $R_\text{cut}=0$--$3$"), L(r"$\max|g^{(0)}_\text{lots}-g^{(0)}|/\max|g^{(0)}|$"),
+    rows.append([L(r"$\mathcal{G}^{(0)}_\mathcal{C}$ par lots, $R_\text{cut}=0$--$3$"), L(r"$\max|\mathcal{G}^{(0)}_{\mathcal{C},\text{lots}}-\mathcal{G}^{(0)}_\mathcal{C}|/\max|\mathcal{G}^{(0)}_\mathcal{C}|$"),
                  Cell(sci(v2), f"{rel(ft)} : valeur [{name2}]", v2), Cell(thr(s2), f"{rel(ft)} : seuil", s2)])
     Z = read_npz(fr)
     E, G, ED = Z["E_out"], Z["G_T"], float(Z["E_D"])

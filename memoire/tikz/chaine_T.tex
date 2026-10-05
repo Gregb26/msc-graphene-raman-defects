@@ -1,0 +1,97 @@
+% Figure : chaîne de calcul de la matrice T et du taux d'amortissement électron-défaut (fig:chaine_T)
+% Même style que chaine_M.tex (boîtes grises, numéros en haut à gauche, boîtes latérales, cadres pointillés).
+% L'entrée (1) est la sortie (10) de chaine_M.tex ; les numéros repartent à (1) pour ce chapitre.
+% Ordre des étapes = ordre du code (scripts/t/compute_spectral_wannier.py, resonance_metrics.py, resonance_criteria.py ;
+% branche Kaasbjerg : defects/many_body/disorder_average.py). Dessinée par C le 2026-10-05, à relire par G.
+\begin{tikzpicture}[
+    box/.style={rectangle, draw=black, rounded corners, fill=gray!15,
+                text width=6.0cm, inner xsep=0.5cm, inner ysep=5pt,
+                minimum height=1.1cm, align=center, font=\linespread{1}\selectfont\small},
+    inbox/.style={box, text width=4.8cm},
+    sidebox/.style={rectangle, draw=black, rounded corners, fill=gray!15,
+                text width=2.9cm, inner ysep=4pt, minimum height=0.85cm,
+                align=center, font=\linespread{1}\selectfont\small},
+    arrow/.style={->, >=stealth, thick},
+    num/.style={font=\scriptsize\bfseries, anchor=north west, inner sep=2pt},
+    label/.style={font=\scriptsize},
+    cadre/.style={dashed, gray, rounded corners},
+    titre/.style={font=\small\itshape, gray},
+]
+
+% ---- Entrées ----
+\node[inbox] (MC) at (-3.2, 0)
+    {Matrice tronquée $\bm M_\mathcal{C}$\\
+    et amas de cellules $\mathcal{C}$};
+\node[num] at (MC.north west) {(1)};
+
+\node[inbox] (wan) at (3.2, 0)
+    {\texttt{Wannier90} \\[2pt]
+     $H(\Rv)$, $U^{(\kv)}$};
+\node[num] at (wan.north west) {(2)};
+
+% ---- Base de Wannier : fonction de Green et matrice T de l'amas ----
+\node[inbox] (Hint) at (3.2, -2.4)
+    {Interpolation sur grille interne\\[2pt]
+     $H(\kv_\text{int})$};
+\node[num] at (Hint.north west) {(3)};
+
+\node[box] (G0) at (0, -4.5)
+    {Fonction de Green de l'amas\\
+     $\bm{\mathcal{G}}^{(0)}$~\eqref{eqn:g_loc}};
+\node[num] at (G0.north west) {(4)};
+
+\node[box] (TC) at (0, -6.6)
+    {Matrice $T$ de l'amas\\
+     $\bm T_\mathcal{C}$~\eqref{eqn:t_loc}};
+\node[num] at (TC.north west) {(5)};
+
+% ---- Base de Bloch : grille de sortie et taux d'amortissement ----
+\node[inbox] (Hout) at (3.2, -9.0)
+    {Interpolation sur grille de sortie\\
+    $H(\kv)$};
+\node[num] at (Hout.north west) {(6)};
+
+\node[box] (gamma) at (0, -11.2)
+    {Matrice $\bm T$ à partir de $\bm T_\mathcal{C}$~\eqref{eqn:T_bloch};
+    Taux par état $\Gamma_{n\kv}^\text{ed}/c$~\eqref{eqn:gamma_loc}};
+\node[num] at (gamma.north west) {(7)};
+
+\node[box] (agg) at (0, -13.3)
+    {Quantités rapportées\\
+    Section~\ref{sec:T_results}};
+\node[num] at (agg.north west) {(8)};
+
+% ---- Boîtes latérales ----
+\node[sidebox] (born) at (5.6, -6.6)
+    {Approximation de Born\\
+    $\bm\Sigma^\text{ed,B}$~\eqref{eqn:born}};
+
+\node[sidebox] (dis) at (-5.6, -13.3)
+    {Moyenne sur le désordre\\
+    $\bar{\bm T}$, $\overline{\bm{\mathcal{G}}}$};
+
+% ---- Flèches ----
+\draw[arrow] (wan) -- (Hint);
+\draw[arrow] (Hint.south) -- ([xshift=1.8cm]G0.north);
+\draw[arrow] (G0) -- (TC);
+\draw[arrow] (MC.west) -- ++(-0.9, 0) |- ([yshift=0.3cm]TC.west);
+\draw[arrow] (TC) -- (gamma);
+\draw[arrow] (wan.east) -- ++(1.7, 0) |- (Hout.east);
+\draw[arrow] (Hout.south) -- ([xshift=1.8cm]gamma.north);
+\draw[arrow] (gamma) -- (agg);
+\draw[arrow] (TC.east) -- (born.west);
+\draw[arrow] ([yshift=-0.3cm]TC.west) -- ++(-1.0, 0) |- (dis.north);
+
+% ---- Sortie ----
+\draw[arrow] (agg.south) -- ++(0, -1.0)
+    node[below, font=\linespread{1}\selectfont\small, align=center]
+    {Raman résonant (chapitre~\ref{chap:Raman})};
+
+% ---- Cadres : base de Wannier puis base de Bloch ----
+\draw[cadre] (-3.85, -1.35) rectangle (7.3, -7.75);
+\node[titre, anchor=north west] at (-3.8, -1.4) {Base de Wannier};
+
+\draw[cadre] (-3.85, -8.05) rectangle (6.35, -14.3);
+\node[titre, anchor=north west] at (-3.8, -8.1) {Base de Bloch};
+
+\end{tikzpicture}

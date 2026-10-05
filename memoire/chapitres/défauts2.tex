@@ -38,54 +38,56 @@ Le problème du calcul de la fonction de Green se réduit alors au calcul de la 
 
 Ces diagrammes se traduisent en équations à l'aide des règles de Feynman. Cela donne des équations pour $T$ et $\mathcal{G}$ dans le temps imaginaire où leur produits sont des convolutions. Leurs équivalents dans l'espace de fréquences de Matsubara s'obtiennent par transformée de Fourier (voir l'annexe~\ref{annexe:défauts}). Dans cet espace, les produits sont matriciels et la fonction de Green de Matsubara du système non perturbé est connue analytiquement
 \begin{equation}
-    \mathcal{G}^{(0)}_{n}(\kv;i\omega_j) = \frac{1}{\omega_j-\xi_{n\kv}},\qquad \omega_j = \frac{(2j+1)\pi}{\beta},\label{eqn:G0_chap}
+    \mathcal{G}^{(0)}_{n}(\kv;i\omega_j) = \frac{1}{i\omega_j-\xi_{n\kv}},\qquad \omega_j = \frac{(2j+1)\pi}{\beta},\label{eqn:G0_chap}
 \end{equation}
-où $\omega_j$ sont les fréquences de Matsubara fermioniques. Nous travaillons exclusivement dans cet espace (et son équivalent réel) pour le reste du chapitre. La première ligne de la figure~\ref{fig:T_matrice} donne alors l'équation pour la matrice $T$
+où $\omega_j$ sont les fréquences de Matsubara fermioniques. Nous travaillons exclusivement dans cet espace (et son équivalent réel) pour le reste du chapitre. La deuxième ligne de la figure~\ref{fig:T_matrice} donne alors l'équation pour la matrice $T$
 \begin{equation}
 T_{mn}(\kv',\kv;i\omega_j) = M_{mn}(\kv',\kv)+\frac{1}{N_{\kv''}}\sum_{n'\kv''}M_{mn'}(\kv',\kv'')\,\mathcal{G}^{(0)}_{n'}(\kv'';i\omega_j)\,T_{n'n}(\kv'',\kv;i\omega_j),\label{eqn:T_explicite}
 \end{equation}
-où la sommes court sur tous les états de Bloch $n'\kv''$ sur une grille de $N_{\kv''}=N_\text{uc}$ points. Sous forme matricielle, cette équation devient
+où la somme court sur tous les états de Bloch $n'\kv''$ sur une grille de $N_{\kv''}=N_\text{uc}$ points. Dans sa forme matricielle, cette équation est
 \begin{equation}
     \bm T(i\omega_j) = \bm M +\bm M \bm{\mathcal{G}}^{(0)}(i\omega_j)\bm T(i\omega_j),\label{eqn:T_chap}
 \end{equation}
-où $\bm T(i\omega_j)$, $\bm M$ et $\bm{\mathcal{G}}^{(0)}(i\omega_j)$, en gras, sont des matrices pleines dans l'indice composé $n\equiv n\kv$. Comme le défaut est statique, $\bm M$ ne dépend pas de la fréquence et seule la fonction de Green non perturbée est diagonale dans l'indice composé:
+où $\bm T(i\omega_j)$, $\bm M$ et $\bm{\mathcal{G}}^{(0)}(i\omega_j)$, en gras, sont des matrices pleines dans l'indice composé $n\equiv n\kv$. Chaque somme sur un vecteur d'onde intermédiaire porte un facteur de $1/N_\kv=1/N_\text{uc}$, comme à l'équation~\eqref{eqn:T_explicite}. La première ligne de la figure~\ref{fig:T_matrice} donne la version itérée de cette équation
+\begin{equation}
+    \bm T(i\omega_j) = \bm M + \bm M \bm{\mathcal{G}}^{(0)}(i\omega_j)\bm M + \bm M \bm{\mathcal{G}}^{(0)}(i\omega_j)\bm M \bm{\mathcal{G}}^{(0)}(i\omega_j)\bm M +\dots .\label{eqn:T_series}
+\end{equation} 
+Seule la fonction de Green non perturbée est toujours diagonale dans l'indice composé:
 \begin{equation}
     \mathcal{G}^{(0)}_{mn}(i\omega_j) = \delta_{mn}\mathcal{G}^{(0)}_n(i\omega_j)=\delta_{mn}\delta_{\kv\kv'}\mathcal{G}^{(0)}_{n}(\kv;i\omega_j).\label{eqn:G0_bold}
 \end{equation}
-La deuxième ligne de la figure~\ref{fig:T_matrice} donne la version itérée de la matrice $T$
-\begin{equation}
-    \bm T(i\omega_j) = \bm M + \bm M \bm{\mathcal{G}}^{(0)}(i\omega_j)\bm M + \bm M \bm{\mathcal{G}}^{(0)}(i\omega_j)\bm M \bm{\mathcal{G}}^{(0)}(i\omega_j)\bm M +\dots .\label{eqn:T_series}
-\end{equation}
-La matrice $T$ se résout formellement par l'inversion de l'équation~\eqref{eqn:T_chap} à chaque fréquence
+Comme la lacune est supposée statique, la matrice $\bm M$ ne dépend pas de la fréquence et la matrice $T$ se résout formellement par l'inversion de l'équation~\eqref{eqn:T_chap} à chaque fréquence
 \begin{equation}
     \bm T(i\omega_j) = \bm M\left[\mathbb{I}-\bm{\mathcal{G}}^{(0)}(i\omega_j)\bm M\right]^{-1}.
 \end{equation}
 La figure~\ref{fig:dyson_T} donne enfin la fonction de Green, écrite en termes de la matrice $T$
 \begin{equation}
-    \bm{\mathcal{G}}^{(0)}(i\omega_j) = \bm{\mathcal{G}}^{(0)}(i\omega_j)+\frac{1}{N_\text{uc}}\bm{\mathcal{G}}^{(0)}(i\omega_j)\bm T(i\omega_j)\bm{\mathcal{G}}^{(0)}(i\omega_j),\label{eqn:G_chap}
+    \bm{\mathcal{G}}(i\omega_j) = \bm{\mathcal{G}}^{(0)}(i\omega_j)+\frac{1}{N_\text{uc}}\bm{\mathcal{G}}^{(0)}(i\omega_j)\bm T(i\omega_j)\bm{\mathcal{G}}^{(0)}(i\omega_j),\label{eqn:G_chap}
 \end{equation}
 ou, en restorant les indices
 \begin{equation}
     \mathcal{G}_{mn}(\kv',\kv;i\omega_j) =\delta_{mn}\delta_{\kv\kv'}\mathcal{G}^{(0)}_{n}(\kv;i\omega_j)+\frac{1}{N_\text{uc}}\mathcal{G}_{m}^{(0)}(\kv';i\omega_j)T_{mn}(\kv',\kv; i\omega_j)\mathcal{G}_{n}^{(0)}(\kv;i\omega_j),\label{eqn:G_explicite}
 \end{equation}
-Cette expression est \textit{exacte} : le problème est résolu exactement, sans approximation. Ceci n'est pas surprenant car si l'Hamiltonien est quadratique dans les opérateurs fermioniques $\hat c$ et $\hat c^\dag$, il existe toujours une transformation unitaire qui le diagonalise. Le plus intéressant ici est que la matrice $T$ contient les effets du défaut à tous les ordres en $\bm M$ et contient  \textit{toute} l'information sur le couplage. Ceci est essentiel pour la lacune considérée dans ce mémoire qui induit un potentiel si fort qu'il n'est pas justifier de tronquer la série~\eqref{eqn:T_series} à un ordre fini. Le formalisme de matrice $T$, qui resomme toute la série perturbative, est \textit{exacte} quelque soit la force du potentiel de défaut.
+Le facteur de $1/N_\text{uc}$ est celui de l'Hamiltonien $\hat H_\text{ed}$. Chaque diagramme d'ordre $p$ en porte $p$, dont $p-1$ sont absorbés par les sommes intermédiaires qui définissent $\bm T$~\eqref{eqn:T_explicite}, et le dernier reste devant ici. Il a un sens physique clair : $\bm T$ décrit la diffusion par une seule lacune et ne dépend pas de la taille du cristal, tandis que $\bm{\mathcal{G}}$ inclut l'effet de l'unique cellule contenant la lacune sur les électrons délocalisés dans $N_\text{uc}$ cellules. Cet effet s'annule dans la limite thermodynamique $N_\text{cells}\to \infty$.
+
+Les expressions pour la fonction de Green~\eqref{eqn:G_chap} et~\eqref{eqn:G_explicite} sont analytiques et \textit{exactes}. Le problème est alors résolu exactement, sans approximation. Ceci n'est pas surprenant car si l'Hamiltonien de couplage est quadratique dans les opérateurs fermioniques $\hat c$ et $\hat c^\dag$, il existe toujours une transformation unitaire qui le diagonalise. Le plus intéressant ici est que la matrice $T$ contient les effets du défaut à tous les ordres en $\bm M$ et contient \textit{toute} l'information sur le couplage. Ceci est essentiel pour la lacune considérée dans ce mémoire qui induit un potentiel si fort qu'il n'est pas justifier de tronquer la série~\eqref{eqn:T_series} à un ordre fini. Le formalisme de matrice $T$, qui resomme toute la série perturbative pour $\bm{\mathcal{G}}$, est \textit{exacte} quelque soit la force du potentiel de défaut.
 
 Enfin, notons que les quantités mesurables sont les fonctions dites \textit{retardées}, définies sur l'axe des fréquences réelles. Elles s'obtiennent des fonctions de Matsubara par le prolongement analytique, $i\omega_j \to \omega + i\eta$ avec $\eta \to 0^+$, qui est ici une simple substitution dans les expressions analytiques fermées~\eqref{eqn:G0_chap} à~\eqref{eqn:G_explicite} (voir la fin de l'annexe~\ref{annexe:défauts}). Dans tout ce mémoire, les quantités définies sur l'axe des fréquences réelles sont implicitement retardées et l'exposant $R$ habituel est omis.
 
-La connaissance de la fonction de Green retardée dans l'espace des fréquences réelles nous donne accès à la densité d'états
+La connaissance de la fonction de Green retardée dans l'espace des fréquences réelles nous donne accès notamment à la densité d'états
 \begin{equation}
     \rho(\omega) = -\frac{1}{\pi N_\text{uc}}\mathrm{Im}\,\mathrm{Tr}\,\bm{\mathcal{G}}(\omega).\label{eqn:rho}
 \end{equation}
-Nous pouvons séparer la densité d'états en une contribution dû au cristal parfait $\rho _0$ et une contribution dû au défaut $\delta\rho$, de sorte que la densité d'états totale devient $\rho=\rho_0+\delta\rho$. La densité d'états de cristal parfait s'obtient de la focntion de Green du cristal parfait
+Nous pouvons séparer la densité d'états en une contribution dû au cristal parfait $\rho _0$ et une contribution dû au défaut $\delta\rho$, de sorte que la densité d'états totale devient $\rho=\rho_0+\delta\rho/N_\text{uc}$ (il y a une seule lacune dans les $N_\text{uc}$ cellules du cristal). La densité d'états de cristal parfait s'obtient de la focntion de Green du cristal parfait
 \begin{equation}
-    \rho_0(\omega) = -\frac{1}{\pi}\mathrm{Im}\mathrm{Tr}\bm{\mathcal{G}}^{(0)}(\omega),
+    \rho_0(\omega) = -\frac{1}{\pi N_\text{uc}}\mathrm{Im}\mathrm{Tr}\,\bm{\mathcal{G}}^{(0)}(\omega),
 \end{equation}
 et utilisant l'équation pour la fonction de Green du système perturbé~\eqref{eqn:G_chap}, la contribution dû au défaut s'écrit
 \begin{align}
-    \delta\rho(\omega) &= -\frac{1}{\pi}\,\mathrm{Im}\,\mathrm{Tr}\!\left[\bm{\mathcal{G}}^{(0)}(\omega)\bm T(\omega)\bm{\mathcal{G}}^{(0)}(\omega)\right]\\
-    &= \frac{1}{\pi}\,\mathrm{Im}\,\mathrm{Tr}\!\left[\bm T(\omega)\frac{\partial\bm{\mathcal{G}}^{(0)}}{\partial\omega}\right],\label{eqn:delta_rho}
+    \delta\rho(\omega) &= -\frac{1}{\pi N_\text{uc}}\,\mathrm{Im}\,\mathrm{Tr}\!\left[\bm{\mathcal{G}}^{(0)}(\omega)\bm T(\omega)\bm{\mathcal{G}}^{(0)}(\omega)\right]\\
+    &= \frac{1}{\pi N_\text{uc}}\,\mathrm{Im}\,\mathrm{Tr}\left[\bm T(\omega)\frac{\partial\bm{\mathcal{G}}^{(0)}}{\partial\omega}\right],\label{eqn:delta_rho}
 \end{align}
-où nous avons utilisé $\partial\bm{\mathcal{G}}^{(0)}/\partial \omega = -\left(\bm{\mathcal{G}}^{(0)}(\omega)\right)^2$ et la propriété cyclique de la trace. La contribution dû au défaut est exprimée en états par unité d'énergie et par défaut, est positive là où le défaut crée des états et négative là où il en retire.
+où nous avons utilisé $\partial\bm{\mathcal{G}}^{(0)}/\partial \omega = -\left(\bm{\mathcal{G}}^{(0)}(\omega)\right)^2$ et la propriété cyclique de la trace. La contribution dû au défaut est exprimée en états par unité d'énergie et par défaut. Elle est positive là où le défaut crée des états et négative là où il en retire.
 
 \section{Plusieurs défauts et la \textit{self}-énergie}\label{sec:mbt_sigma}
 
@@ -109,11 +111,11 @@ Dans ce mémoire, nous travaillons dans la limite d'une concentration de défaut
 \begin{equation}
     \Sigma_{mn\kv }^\text{ed}(\omega) = \frac{N_d}{N_\text{uc}} T_{mn}(\kv,\kv;\omega)+\mathcal{O}(c^2) = c\,T_{mn}(\kv,\kv;\omega)+\mathcal{O}(c^2).\label{eqn:sigma_diluée}
 \end{equation}
-Comme la matrice $\bm M$, la matrice $\bm T$ est intensive, de sorte que $\bm\Sigma^\text{ed}$ est proportionnelle à la concentration et est finie dans la limite thermodynamique. Nous rapportons les résultats dans la section~\ref{sec:T_results} sous une forme indépendante de la concentration, soit $\bm\Sigma/c$, ou de façon équivalente, $\Gamma^\text{ed} N_\text{cells}$ pour une lacune par super-cellule de $N_\text{cells}=N^2$ cellules unitaires. Ne pas confondre $N_\text{cells}$, qui est le nombre de cellules dans la super-cellule, avec $N_\text{uc}$, le nombre de cellules dans le cristal \textit{entier}.
+Comme la matrice $\bm M$, la matrice $\bm T$ est intensive et $\bm\Sigma^\text{ed}$ est proportionnelle à la concentration et est finie dans la limite thermodynamique. Nous rapportons alors les résultats de la section~\ref{sec:T_results} sous une forme indépendante de la concentration, soit $\bm\Sigma/c$ pour la \textit{self}-énergie, ou de façon équivalente pour le taux d'amortissement, $\Gamma^\text{ed} N_\text{cells}$, pour une lacune par super-cellule de $N_\text{cells}=N^2$ cellules unitaires. Ne pas confondre $N_\text{cells}$, le nombre de cellules dans la super-cellule, avec $N_\text{uc}$, le nombre de cellules dans le cristal \textit{entier}.
 
 Cette approximation où la \textit{self}-énergie est proportionnelle à la matrice $T$, est appelée \og Born complète \fg{} (de l'anglais \textit{full Born approximation}) ou simple \og approximation de la matrice $T$ \fg{}. Elle est exacte au premier ordre en concentration et demeure valide quelle que soit la force du potentiel de défaut.
 
-Pour simplifier les calculs, nous ne retenons que la partie diagonale en bande de la matrice, $T_{n\kv}(\omega)\equiv T_{nn}(\kv,\kv;\omega)$, de sorte que la \textit{self}-énergie est elle aussi diagonale en bande $\Sigma^\text{ed}_{n\kv}=N_dT_{n\kv}$ et la fonction de Green moyennée pour plusieurs défauts prend la forme d'une équation de Dyson habituelle
+Pour simplifier les calculs, nous ne retenons que la partie diagonale en bande de la matrice, $T_{n\kv}(\omega)\equiv T_{nn}(\kv,\kv;\omega)$, de sorte que la \textit{self}-énergie est elle aussi diagonale en bande $\Sigma^\text{ed}_{n\kv}=c\,T_{n\kv}$ et la fonction de Green moyennée pour plusieurs défauts prend la forme d'une équation de Dyson habituelle
 \begin{equation}
     \overline{\mathcal{G}}_{n\kv}(\omega)=\left[\omega-\xi_{n\kv}-\Sigma^\text{ed}_{n\kv}\right]^{-1}.\label{eqn:G_moyenne_diag}
 \end{equation}
@@ -131,7 +133,7 @@ La partie réelle $\Sigma_{n\kv}^{\text{ed}'}$ renormalise l'énergie des bandes
 \end{equation}
 C'est ce taux d'amortissement, avec son homologue pour le couplage électron-phonon et pour les phonons advenant le cas où il y a un phonon créé dans l'état intermédiaire, qui fixe l'élargissement des états électroniques intermédiaires dans les dénominateurs résonants des amplitudes Raman du chapitre~\ref{chap:Raman}. 
 
-Dans la limite diluée, les défauts contribuent indépendamment à la densité d'états, de sorte que la variation de la densité d'états dû à une concentration $c$ de défauts est $c\delta\rho$ et la densité d'états totale devient
+Dans la limite diluée, les lacunes contribuent indépendamment à la densité d'états, de sorte que la variation de la densité d'états dû à $N_d$ lacunes est $N_d\delta\rho/N_\text{uc}=c\,\delta\rho$ et la densité d'états totale devient
 \begin{equation}
     \rho(\omega) = \rho_0(\omega) + c\delta\rho(\omega),
 \end{equation}
@@ -145,7 +147,7 @@ Il est instructif de situer notre traitement dans la hiérarchie des approximati
 
 Premièrement, l'approximation de Born tronque la série pour la matrice $T$ à ses deux premiers termes, de sorte que la \textit{self}-énergie s'écrit
 \begin{equation}
-    \Sigma_{n\kv}^\text{ed,B}= N_d[M+M\mathcal{G}^{(0)}M],
+    \Sigma_{n\kv}^\text{ed,B}= c\,[M+M\mathcal{G}^{(0)}M],\label{eqn:born}
 \end{equation}
 et le taux d'amortissement s'obtient de sa partie imaginaire
 \begin{equation}
@@ -157,7 +159,7 @@ Cette approximation est exacte au premier ordre dans le potentiel de défaut et 
 
 Ensuite, nous avons l'approximation que nous utilisons dans ce mémoire, celle de Born complète (ou de la matrice $T$), qui inclut les diffusions multiples sur un même défaut à tous les ordres. La \textit{self}-énergie est proportionnelle à la matrice $T$
 \begin{equation}
-    \Sigma_{n\kv}^{\text{ed,T}}= N_dT_{n\kv},
+    \Sigma_{n\kv}^{\text{ed,T}}= c\,T_{n\kv},
 \end{equation}
 et est exacte au premier ordre en concentration des défauts, quelle que soit la force du potentiel. Le taux s'obtient de sa partie imaginaire
 \begin{equation}
@@ -168,7 +170,7 @@ et est exacte au premier ordre en concentration des défauts, quelle que soit la
 
 Ensuite, l'approximation de la matrice $T$ autocohérente (SCTMA, de l'anglais \textit{Self-Consistent $T$-Matrix Approximation})~\cite{klauderModificationElectronEnergy1961,peresElectronicPropertiesDisordered2006} va un cran plus loin en calculant la matrice $T$ avec la fonction de Green moyennée $\overline{\mathcal{G}}$ plutôt qu'avec la fonction de Green non perturbée $\mathcal{G}^{(0)}$ dans l'équation~\eqref{eqn:T_chap}. Cela donne trois équations couplées à résoudre de manière autocohérente
 \begin{equation}
-    \bm\Sigma^\text{ed,SC} = N_d \bm T^\text{SC},\quad \bm T^\text{SC} =\bm M+\bm M\overline{\bm{\mathcal{G}}}\bm T^\text{SC},\quad \overline{\bm{\mathcal{G}}} = \left[\left(\bm{\mathcal{G}}^{(0)}\right)^{-1}-\bm\Sigma^\text{ed,SC} \right]^{-1}.
+    \bm\Sigma^\text{ed,SC} = c\, \bm T^\text{SC},\quad \bm T^\text{SC} =\bm M+\bm M\overline{\bm{\mathcal{G}}}\bm T^\text{SC},\quad \overline{\bm{\mathcal{G}}} = \left[\left(\bm{\mathcal{G}}^{(0)}\right)^{-1}-\bm\Sigma^\text{ed,SC} \right]^{-1}.
 \end{equation}
 La SCTMA inclut la rétroaction de l'élargissement de désordre sur la diffusion elle-même. Elle apporte des corrections négligeables dans la limite diluée, sauf au voisinage immédiat des points de Dirac du graphène où l'autocohérence engendre une densité d'états finie induite par le désordre~\cite{peresElectronicPropertiesDisordered2006}. Les états électroniques intermédiaires pertinents pour la double résonance Raman se trouvent à plusieurs dixièmes d'eV du point de Dirac pour la lumière visible utilisée dans les expériences de spectroscopie Raman : les corrections apportées par la SCTMA sont négligeables ici et nous les laissons en perspective. 
 
@@ -203,20 +205,30 @@ où la diagonalisation de l'Hamiltonien interpolé $H(\kv)$ sur la grille de sor
 \begin{equation}
     T_{n\kv}(\varepsilon) = \sum_{ij}\sum_{\Rv\in\mathcal{C}}\sum_{\Rv'\in\mathcal{C}}V_{in}^{(\kv)*}e^{-i\kv\cdot\Rv'}\left[T_\mathcal{C}\right]_{ij}(\Rv',\Rv; \varepsilon)V^{(\kv)}_{jn}e^{i\kv\cdot\Rv},\label{eqn:T_bloch}
 \end{equation}
-qui est la \textit{self}-énergie par unité de concentration ($T=\Sigma/c$). Les sommes sur les vecteurs ne courent que sur ceux de l'amas, puisque $T_\mathcal{C}(\Rv',\Rv;\omega)$ est nulle en dehors des cellules de l'amas. Sa partie imaginaire est le taux d'amortissement électronique par unité de concentration
+qui est la \textit{self}-énergie par unité de concentration ($T=\Sigma/c$). Les sommes sur les vecteurs ne courent que sur ceux de l'amas, puisque $T_\mathcal{C}(\Rv',\Rv;\omega)$ est nulle en dehors des cellules de l'amas. Sa partie imaginaire donne directement le taux d'amortissement électronique par unité de concentration
 \begin{equation}
     \Gamma_{n\kv}^\text{ed}(\omega)/c = -2\mathrm{Im}T_{n\kv}(\omega)\label{eqn:gamma_loc}
 \end{equation}
 
+Le schéma de l'amas requiert l'interpolation de l'Hamiltonien électronique sur deux grilles différentes et indépendantes : une fois sur la grille interne $\kv_\text{int}$ pour calculer $\bm{\mathcal{G}}^{(0)}_\mathcal{C}$, puis une autre fois sur la grille dense de sortie, c'est-à-dire celle utilisée pour calculer le taus d'amortissement. 
 
-Nous devons interpoler le même Hamiltonien sur deux grilles différentes et indépendantes : une fois sur la grille interne $\tilde\kv$ pour calculer $\mathcal{G}^{(0)}_\mathcal{C}$, puis une autre fois sur la grille dense de sortie, c'est-à-dire celle utilisée pour calculer l'intensité Raman. 
 \section{Détails computationnels}\label{sec:T_détails}
 
-Nous décrivons ici les paramètres avec lesquels le schéma de l'amas de la section~\ref{sec:T_local} est évalué à partir de la matrice de couplage interpolée de la section~\ref{sec:interp_wannier_M}, la forme sous laquelle le taux d'amortissement est rapporté, ainsi que les contrôles qui protègent la chaîne de calcul.
+Description de la chaîne de calcul pour la matrice $T$ et le taux d'amortissement. Faire une figure similaire à celle du chapitre précédant.
 
-\bloc{Le problème}
+\begin{figure}[t]
+    \centering
+    \hspace{2.5cm}
+    \input{tikz/chaine_T.tex}
+    \caption[Représentation schématique de la chaîne de calcul pour la matrice $T$ et le taux d'amortissement.]{Légende}
+    \label{fig:chaine_T}
+\end{figure}
 
-Nous donnons ici quelques chiffres qui justifient l'introduction du schéma de l'amas. La matrice $T$ de l'équation~\eqref{eqn:T_chap} est définie dans la base complète des états de Bloch. À titre d'exemple, sur une grille de sortie dense de $N_{\kv_f} = 240\times 240$ points et avec les $N_W=5$ fonctions de Wannier (trois $\sigma$ de lien et deux $p_z$ atomiques), il s'agit d'une matrice dense de dimension $N_{\kv_f}N_W=288\,000$, à inverser à chaque énergie. Son inversion coûte $\mathcal{O}((N_{\kv_f}N_W)^3)$ et le taux d'amortissement, qui requiert la matrice $T$ à l'énergie de chaque état sur la grille de sortie, porte le coût à $\mathcal{O}((N_{\kv_f}N_W)^4)$. Simplement la stocker occuperait $\sim 1.3$ To par énergie en mémoire, ce qui est complètement impraticable. Le schéma de l'amas de la section précédente réduit l'inversion à la dimension $N_LN_W=145$, indépendamment du nombre de points de la grille de sortie $N_{\kv_f}$.
+\bloc{Le problème de l'inversion de la matrice $T$}
+
+Commencçons par justifier l'introduction du schéma de l'amas en donnant quelques chiffres. Supposons une grille de sortie de $N_{\kv} = 240\times 240$ points et $N_W=5$ fonctions de Wannier (trois $\sigma$ de lien et deux $p_z$ atomiques). Comme la matrice $T$~\eqref{eqn:T_chap} est définie dans la base complète des états de Bloch sur la grille de sortie, c'est une matrice dense de dimension $N_\kv N_W\approx288\,000$ à inverser. Cette inversion coûte $\mathcal{O}(N_\kv^3N_W^3)$ et le taux d'amortissement, qui requiert la matrice $T$ à l'énergie de chaque état sur la grille de sortie, porte le coût à $\mathcal{O}(N_\kv^4N_W^4)$. Simplement la stocker en mémoire occuperait environ 1 téraoctets (1000 Go ou $10^{12}$ octets) \textit{par énergie} ! Pour un taux calculé sur une grille d'énergie de $1000$ points, ce qui n'est pas très dense, nous parlons alors de $1000$ téraoctets ou 1 pétaoctet ($10^{15}$ octets). Ceci est complètement déraisonnable et impraticable. Le schéma de l'amas de la section précédente réduit la dimension à $N_LN_W=145 \ll 288\,000$, et ce, indépendamment du nombre de points de la grille de sortie.
+
+
 
 \bloc{Paramètres du schéma de l'amas}
 

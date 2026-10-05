@@ -8,15 +8,12 @@ Commençons par le cas idéal où il n'y a qu'un seul défaut présent dans le m
 \begin{equation}
     \hat{H}-\mu\hat{N} = \hat{H}_\text{e}+\hat{H}_\text{ed} = \sum_{n\kv}\xi_{n\kv}\hat{c}^\dag_{n\kv}\hat{c}_{n\kv}+\sum_{nm}\sum_{\kv\kv'}M_{mn}(\kv',\kv)\hat{c}^\dag_{m\kv'}\hat{c}_{n\kv},\quad\xi_{n\kv} \equiv \varepsilon_{n\kv}-\mu
 \end{equation}
-où la matrice $M_{mn}(\kv',\kv)=\matrixel{\psi_{m\kv'}}{V_\text{ed}(\rv)}{\psi_{n\kv}}$ représente physiquement l'amplitude de probabilité qu'un électron dans l'état $n\kv$ diffuse vers l'état $m\kv'$ via le potentiel $V_\text{ed}(\rv)$ induit par le défaut dans le matériau, $\xi_{n\kv}\equiv\varepsilon_{ n\kv}-\mu$ et $\mu$ est le potentiel chimique. Nous souhaitons employer la méthode de la théorie de la perturbation pour résoudre ce problème. Notre objectif est de déterminer la fonction de Green de Matsubara à température finie ; une fois celle-ci calculée, la grande majorité des propriétés physiques mesurables peuvent être extraites de cette fonction. Dans le formalisme de Matsubara, nous travaillons avec un temps imaginaire $\tau\in[0,\beta]$, où $\beta=1/k_BT$ est l'inverse de la température et la fonction de Green est généralement calculée dans la représentation d'interaction en mécanique quantique~\cite{mahanManyParticlePhysics2000}
-\begin{equation}
-    \mathcal{G}_{mn}(\tau'-\tau) = -\frac{{}_0\langle\mathcal{T}_\tau\hat{c}_m(\tau')S(\beta,0)\hat{c}
-    _n^\dag(\tau)\rangle_0}{{}_0\langle S(\beta,0)\rangle_0}.\label{eqn:G_formel}
-\end{equation}
-Ici, les indices $m$ et $n$ de l'équation~\eqref{eqn:G_formel} sont des indices composés de bande et de vecteur d'onde, $m\equiv(m\kv')$ et $n\equiv(n\kv)$, ${}_0\langle\dots\rangle_0$ est une moyenne thermique par rapport à l'Hamiltonien non perturbé $\hat{H}_\text{e}$, $\mathcal{T}_\tau$ est l'opérateur d'ordonnancement dans le temps imaginaire, la dépendance en temps imaginaire des opérateurs $\hat{O}(\tau)$ est obtenue dans la représentation de l'interaction (donc déterminée par $\hat{H}_\text{e}$) et la matrice $S(\beta, 0)$ inclut les effets de couplage entre les électrons et le défaut et est définie formellement par
-\begin{equation}
-    S(\beta, 0) = \mathcal{T}_\tau\exp[-\int_0^\beta d\tau\,\hat{H}_\text{ed}(\tau)] = \sum_{p=0}^\infty\frac{(-1)^p}{p!}\int_0^\beta d\tau_1\dots\int_0^\beta d\tau_p\mathcal{T}_\tau\left[\hat{H}_\text{ed}(\tau_1)\cdots\hat{H}_\text{ed}(\tau_p)\right].\label{eqn:S}
-\end{equation}
+où la matrice $M$, qui représente physiquement l'amplitude de probabilité qu'un électron diffuse d'un état à l'autre à cause d'un défaut, a été traitée longuement au chapitre précédant. La quantité $\xi_{n\kv}\equiv\varepsilon_{ n\kv}-\mu$ est l'énergie électronique mesurée par rapport au potentiel chimique $\mu$. Pour résoudre ce problème, nous devons trouver la fonction de Green de Matsurbara 
+
+
+
+Nous souhaitons employer la méthode de la théorie de la perturbation pour résoudre ce problème. Notre objectif est de déterminer la fonction de Green de Matsubara à température finie ; une fois celle-ci calculée, la grande majorité des propriétés physiques mesurables peuvent être extraites de cette fonction. 
+
 Pour calculer la fonction de Green de l'équation~\eqref{eqn:G_formel}, nous devons développer la matrice $S$ à l'aide de l'équation~\eqref{eqn:S} puis évaluer les moyennes thermiques. Comme ces moyennes sont faites par rapport à l'Hamiltonien libre $\hat{H}_\text{e}$, qui est quadratique dans les opérateurs de création et d'annihilation, elles peuvent être évaluées avec le théorème de Wick. Cependant, cette approche souffre du même problème que l'application de la théorie de la perturbation dans le cadre de la spectroscopie Raman : il n'est pas trivial d'énumérer tous les termes qui découlent du développement de la matrice $S$. Pour remédier à ce problème, nous employons à nouveau des diagrammes de Feynman, avec les règles de la figure~\ref{fig:règles_Raman}. En théorie, nous devons développer la matrice $S$ au numérateur et au dénominateur de l'équation~\eqref{eqn:G_formel} simultanément, ce qui devient rapidement problématique. En pratique, le théorème des amas connexes (de l'anglais \textit{linked-cluster theorem}) stipule que les diagrammes engendrés par le développement de la matrice $S$ au dénominateur annulent exactement les diagrammes déconnectés du développement au numérateur. Cela simplifie considérablement la tâche. Toute cette machinerie est présentée en détail dans l'annexe~\ref{annexe:défauts} et nous reprenons seulement les étapes importantes ici.
 
 Le résultat central de cette annexe est que la fonction de Green de Matsubara pour des électrons en interaction avec un seul défaut satisfait une équation de Dyson qui est illustrée diagrammatiquement dans la figure~\ref{fig:G_Dyson}.
@@ -43,11 +40,15 @@ Cette équation de Dyson est plus généralement réécrite en employant la matr
     \label{fig:dyson_T}
     \vspace{0.5\baselineskip}
 \end{center}
-En traduisant ces diagrammes à l'aide des règles de Feynman, la matrice $T$ de la figure~\ref{fig:T_matrice} s'écrit
+En traduisant ces diagrammes à l'aide des règles de Feynman, la deuxième ligne de la figure~\ref{fig:T_matrice} donne l'équation à résoudre pour la matrice $T$
 \begin{equation}
     T = M + M\mathcal{G}^{(0)}T,\label{eqn:T_chap}
 \end{equation}
-où les produits sont matriciels sur les indices $(n\kv)$ et convolutifs en temps imaginaire, et la fonction de Green de la figure~\ref{fig:dyson_T} devient
+et la première donne sa version itérative
+\begin{equation}
+    T = M + M\mathcal{G}^{(0)}M + M\mathcal{G}^{(0)}M\mathcal{G}^{(0)}M +\dots.\label{eqn:T_series}
+\end{equation}
+Ici, les produits sont matriciels sur les indices $(n\kv)$ et convolutifs en temps imaginaire. Nous obtenons une équation algébrique pour la fonction de Green du Matsubara en traduisant la figure~\ref{fig:dyson_T} :
 \begin{equation}
     \mathcal{G} = \mathcal{G}^{(0)}+\mathcal{G}^{(0)}T\mathcal{G}^{(0)}.\label{eqn:G_chap}
 \end{equation}
@@ -55,7 +56,14 @@ Les convolutions en temps imaginaire se démêlent dans l'espace des fréquences
 \begin{equation}
     \mathcal{G}^{(0)}_{n\kv}(i\omega_j) = \frac{1}{i\omega_j-\xi_{n\kv}}.
 \end{equation}
+Dans l'espace des fréquences de Matsubara, la matrice $T$ prend la forme explicite 
+\begin{equation}
+    T_{mn}(\kv',\kv;i\omega_j) = M_{mn}(\kv',\kv)+\sum_{n'\kv''}M_{mn'}(\kv',\kv'')\mathcal{G}^{(0)}_{n'\kv''}(i\omega_j)T_{n'n}(\kv'',\kv;i\omega_j),\label{eqn:T_explicite}
+\end{equation}
+où la somme court sur tous les états de Bloch $n'\kv''$. Sous forme matricielle dans l'espace, nous avons
+
 Comme le défaut est statique, $M$ ne dépend pas de la fréquence et l'équation~\eqref{eqn:T_chap} se résout par une inversion de matrice à chaque fréquence
+
 \begin{equation}
     T(i\omega_j) = \left[\mathbb{I}-M\mathcal{G}^{(0)}(i\omega_j)\right]^{-1}M.
 \end{equation}
@@ -71,16 +79,16 @@ La connaissance de la fonction de Green retardée dans l'espace des fréquences 
 \begin{equation}
     \rho(\omega) = -\frac{1}{\pi}\mathrm{Im}\,\mathrm{Tr}\,\mathcal{G}(\omega).\label{eqn:rho}
 \end{equation}
-En séparant la densité d'états en une contribution dû au cristal parfait et une contribution dû au défaut $\rho=\rho_0+\delta\rho$ et utilisant l'équation pour la fonction de Green~\eqref{eqn:G_chap}, la contribution dû au défaut s'écrit
+Nous pouvons séparer la densité d'états en une contribution dû au cristal parfait $\rho _0$ et une contribution dû au défaut $\delta\rho$, de sorte que la densité d'états totale devient $\rho=\rho_0+\delta\rho$. La densité d'états de cristal parfait s'obtient de la focntion de Green du cristal parfait
+\begin{equation}
+    \rho_0(\omega) = -\frac{1}{\pi}\mathrm{Im}\mathrm{Tr}\mathcal{G}^{(0)}(\omega),
+\end{equation}
+et utilisant l'équation pour la fonction de Green du système perturbé~\eqref{eqn:G_chap}, la contribution dû au défaut s'écrit
 \begin{align}
     \delta\rho(\omega) &= -\frac{1}{\pi}\,\mathrm{Im}\,\mathrm{Tr}\!\left[\mathcal{G}^{(0)}T\mathcal{G}^{(0)}\right]\\
     &= \frac{1}{\pi}\,\mathrm{Im}\,\mathrm{Tr}\!\left[T(\omega)\frac{\partial\mathcal{G}^{(0)}}{\partial\omega}\right],\label{eqn:delta_rho}
 \end{align}
-où nous avons utilisé $\partial\mathcal{G}^{(0)}/\partial \omega = -(\mathcal{G}^{(0)})^2$ et la propriété cyclique de la trace. Elle est exprimée en états par unité d'énergie et par défaut, est positive là où le défaut crée des états et négative là où il en retire. Enfin, elle satisfait la règle de somme
-\begin{equation}
-    \int d\omega\,\delta\rho(\omega) = 0,
-\end{equation}
-c'est-à-dire que le défaut déplace les états sans en changer le nombre.
+où nous avons utilisé $\partial\mathcal{G}^{(0)}/\partial \omega = -(\mathcal{G}^{(0)})^2$ et la propriété cyclique de la trace. Elle est exprimée en états par unité d'énergie et par défaut, est positive là où le défaut crée des états et négative là où il en retire.
 
 \section{Plusieurs défauts et la \textit{self}-énergie}\label{sec:mbt_sigma}
 
@@ -134,13 +142,25 @@ Il est instructif de situer notre traitement dans la hiérarchie des approximati
 
 Premièrement, l'approximation de Born tronque la série pour la matrice $T$ à ses deux premiers termes, de sorte que la \textit{self}-énergie s'écrit
 \begin{equation}
-    \Sigma_{n\kv}^\text{ed,B}\approx N_d[M+M\mathcal{G}^{(0)}M].
+    \Sigma_{n\kv}^\text{ed,B}\approx N_d[M+M\mathcal{G}^{(0)}M],
 \end{equation}
-Cette approximation, qui ignore les diffusions multiples sur un même défaut, n'est pas valable dans la limite où les potentiels induits par les défauts sont forts, comme c'est le cas pour les lacunes. Nous quantifions cet échec dans la section~\ref{sec:T_results}. Ensuite, nous avons l'approximation de Born complète (ou de la matrice $T$), qui inclut les diffusions multiples sur un même défaut à tous les ordres et est l'approximation dans laquelle nous travaillons. La \textit{self}-énergie prend la forme
+et le taux d'amortissement s'obtient de sa partie imaginaire
+\begin{equation}
+    \Gamma^\text{ed,B}_{n\kv} = -2\mathrm{Im}\Sigma_{n\kv}^\text{ed,B}.
+\end{equation}
+Cette approximation est exacte au premier ordre dans le potentiel de défaut et ignore les diffusions multiples sur un même défaut. Elle n'est pas valable dans la limite où les potentiels induits par les défauts sont forts, comme c'est le cas pour les lacunes. Nous quantifions cet échec dans la section~\ref{sec:T_results}. C'est l'approximation de Lu \textit{et al.}~\cite{luEfficientInitioCalculations2019} utilisent pour leur temps de relaxation. 
+
+\bloc{Approximation de la matrice $T$}
+
+Ensuite, nous avons l'approximation de Born complète (ou de la matrice $T$), qui inclut les diffusions multiples sur un même défaut à tous les ordres et est l'approximation dans laquelle nous travaillons. La \textit{self}-énergie prend la forme
 \begin{equation}
     \Sigma_{n\kv}^{\text{ed,T}}\approx N_dT_{n\kv},
 \end{equation}
-et est exacte au premier ordre en concentration des défauts, quelle que soit la force du potentiel. Ensuite, l'approximation de la matrice $T$ autocohérente (SCTMA, de l'anglais \textit{Self-Consistent $T$-Matrix Approximation})~\cite{klauderModificationElectronEnergy1961,peresElectronicPropertiesDisordered2006} va un cran plus loin en calculant la matrice $T$ avec la fonction de Green moyennée $\overline{\mathcal{G}}$ plutôt qu'avec la fonction de Green non perturbée $\mathcal{G}^{(0)}$. Cela donne trois équations couplées à résoudre de manière autocohérente
+et est exacte au premier ordre en concentration des défauts, quelle que soit la force du potentiel.
+
+\bloc{Approximation de la matrice $T$ autocohérente}
+
+Ensuite, l'approximation de la matrice $T$ autocohérente (SCTMA, de l'anglais \textit{Self-Consistent $T$-Matrix Approximation})~\cite{klauderModificationElectronEnergy1961,peresElectronicPropertiesDisordered2006} va un cran plus loin en calculant la matrice $T$ avec la fonction de Green moyennée $\overline{\mathcal{G}}$ plutôt qu'avec la fonction de Green non perturbée $\mathcal{G}^{(0)}$. Cela donne trois équations couplées à résoudre de manière autocohérente
 \begin{equation}
     \Sigma_{n\kv}^\text{ed,SCTMA} = N_d\overline{T}_{n\kv},\quad \overline{T} = M+M\overline{\mathcal{G}}\overline{T},\quad \overline{\mathcal{G}}_{n\kv} = \left[\omega-\xi_{n\kv}-\Sigma_{n\kv}^\text{ed,SCTMA} \right]^{-1}.
 \end{equation}

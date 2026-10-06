@@ -524,7 +524,7 @@ def t_kaasbjerg():
         a, b = D1[w]["valence | K"]["mean"], D1[w]["conduction | K"]["mean"]
         cells.append(Cell(f"{a:.0f} / {b:.0f}", f"{sc} : kaasbjerg.D1.{w}.{{valence, conduction}} | K.mean", f"{a:.3f} / {b:.3f}"))
     rows.append(cells)
-    for c, tex in (("0.001", r"Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$"), ("0.01", r"\quad $c = 1~\%$")):
+    for c, tex in (("0.001", r"Maximum de $\bar\rho-\rho_0$ (eV), $c = 0.1~\%$"), ("0.01", r"\quad $c = 1~\%$")):
         a = k13[lit[c]]["drho_max_pos_eV"]
         cells = [L(tex), Cell(fixed(a, 3), f"{s7} : fig13_metrics.{lit[c]}.drho_max_pos_eV", a)]
         for v, _, _ in var:
@@ -544,7 +544,7 @@ def t_kaasbjerg():
         cells.append(Cell(fixed(x, 2), f"{sd} : metrics.{v}_{grid}_c0.01.drho_fwhm_eV", x))
     rows.append(cells)
     g0 = k14["1.0"]["K_gap_eV"]
-    cells = [L(r"Écart des maxima de $A_K$, $c = 1~\%$ (eV)"), Cell(fixed(g0, 3), f"{s7} : fig14.1.0.K_gap_eV", g0)]
+    cells = [L(r"Écart des maxima de $\bar A_K$, $c = 1~\%$ (eV)"), Cell(fixed(g0, 3), f"{s7} : fig14.1.0.K_gap_eV", g0)]
     for v, _, _ in var:
         x = Sp[f"{v}_c0.01"]["K_gap_eV"]
         cells.append(Cell(fixed(x, 3), f"{ss} : runs.{v}_c0.01.K_gap_eV", x))

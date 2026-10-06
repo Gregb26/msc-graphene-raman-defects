@@ -285,9 +285,9 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | $A_\text{cell}\|M_{nn}\|$ près de $K$ (eV\,\AA$^2$) | Kaasbjerg | ${\sim}70$ | ~70 | `lit. : Kaasbjerg 2020 (PRB 101, 045433), Fig. 3, lu sur la figure (défauts.tex l. 327), aucune donnée numérisée` |
 | $A_\text{cell}\|M_{nn}\|$ près de $K$ (eV\,\AA$^2$) | brut | 77 / 78 | 76.956 / 78.168 | `kaasbjerg/r10_c2_results.json : kaasbjerg.D1.tel quel.{valence, conduction} \| K.mean` |
 | $A_\text{cell}\|M_{nn}\|$ près de $K$ (eV\,\AA$^2$) | aligné | 82 / 83 | 81.605 / 82.821 | `kaasbjerg/r10_c2_results.json : kaasbjerg.D1.plateau.{valence, conduction} \| K.mean` |
-| Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$ | Kaasbjerg | $-0.200$ | -0.2 | `kaasbjerg/r8_7a_results.json : fig13_metrics.0.1.drho_max_pos_eV` |
-| Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$ | brut | $-0.1625$ | -0.1624999999995529 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.001.drho_max_pos_eV` |
-| Maximum de $\rho-\rho_0$ (eV), $c = 0.1~\%$ | aligné | $-0.1475$ | -0.14749999999955055 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.001.drho_max_pos_eV` |
+| Maximum de $\bar\rho-\rho_0$ (eV), $c = 0.1~\%$ | Kaasbjerg | $-0.200$ | -0.2 | `kaasbjerg/r8_7a_results.json : fig13_metrics.0.1.drho_max_pos_eV` |
+| Maximum de $\bar\rho-\rho_0$ (eV), $c = 0.1~\%$ | brut | $-0.1625$ | -0.1624999999995529 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.001.drho_max_pos_eV` |
+| Maximum de $\bar\rho-\rho_0$ (eV), $c = 0.1~\%$ | aligné | $-0.1475$ | -0.14749999999955055 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.001.drho_max_pos_eV` |
 | \quad $c = 1~\%$ | Kaasbjerg | $-0.210$ | -0.21 | `kaasbjerg/r8_7a_results.json : fig13_metrics.1.0.drho_max_pos_eV` |
 | \quad $c = 1~\%$ | brut | $-0.1650$ | -0.16499999999955328 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.01.drho_max_pos_eV` |
 | \quad $c = 1~\%$ | aligné | $-0.1500$ | -0.14999999999955094 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.01.drho_max_pos_eV` |
@@ -297,9 +297,9 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | Largeur à mi-hauteur, $c = 1~\%$ (eV) | Kaasbjerg | $0.31$ | 0.30635758813655406 | `kaasbjerg/r8_7a_results.json : fig13_metrics.1.0.drho_fwhm_eV` |
 | Largeur à mi-hauteur, $c = 1~\%$ (eV) | brut | $0.20$ | 0.20124621847661056 | `kaasbjerg/r8_dos_results.json : metrics.tel_quel_600_c0.01.drho_fwhm_eV` |
 | Largeur à mi-hauteur, $c = 1~\%$ (eV) | aligné | $0.19$ | 0.1870328301810967 | `kaasbjerg/r8_dos_results.json : metrics.aligne_600_c0.01.drho_fwhm_eV` |
-| Écart des maxima de $A_K$, $c = 1~\%$ (eV) | Kaasbjerg | $0.100$ | 0.10000404720303457 | `kaasbjerg/r8_7a_results.json : fig14.1.0.K_gap_eV` |
-| Écart des maxima de $A_K$, $c = 1~\%$ (eV) | brut | $0.118$ | 0.11762346994893341 | `kaasbjerg/r8_spec_results.json : runs.tel_quel_c0.01.K_gap_eV` |
-| Écart des maxima de $A_K$, $c = 1~\%$ (eV) | aligné | $0.118$ | 0.11824139676128233 | `kaasbjerg/r8_spec_results.json : runs.aligne_c0.01.K_gap_eV` |
+| Écart des maxima de $\bar A_K$, $c = 1~\%$ (eV) | Kaasbjerg | $0.100$ | 0.10000404720303457 | `kaasbjerg/r8_7a_results.json : fig14.1.0.K_gap_eV` |
+| Écart des maxima de $\bar A_K$, $c = 1~\%$ (eV) | brut | $0.118$ | 0.11762346994893341 | `kaasbjerg/r8_spec_results.json : runs.tel_quel_c0.01.K_gap_eV` |
+| Écart des maxima de $\bar A_K$, $c = 1~\%$ (eV) | aligné | $0.118$ | 0.11824139676128233 | `kaasbjerg/r8_spec_results.json : runs.aligne_c0.01.K_gap_eV` |
 
 ## `tab:grille_interne` — `tables/grille_interne.tex` (§4.2.5 → annexe D (chaîne T))
 

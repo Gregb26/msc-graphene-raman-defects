@@ -83,7 +83,7 @@ a2.plot(x, R["rho0"], color=C_REF, label=r"$\rho_0$ (cristal parfait)"); a2.plot
 a2.set_ylabel("Densité d'états (états/eV/cellule)"); a2.set_title(r"$\delta\rho = \rho_\mathrm{dis}-\rho_0$", loc="left", fontsize=9); a2.legend(fontsize=8)
 tr = R["Tbar_tr"]; a3.plot(xg, tr.real, color=C_T, label=r"Re $\bar T_{\pi\pi}(K,K;\varepsilon)$"); a3.plot(xg, tr.imag, color=C_BORN, label=r"Im $\bar T_{\pi\pi}(K,K;\varepsilon)$"); a3.axhline(0, color=MUTED, lw=0.8)
 a3.set_ylabel(r"$\bar T$ (eV, par défaut)"); a3.set_title(r"$\bar T_{\pi\pi}$ en $K$ (trace/2)", loc="left", fontsize=9); a3.legend(fontsize=8)
-xc = C["eg"] - float(C["E_D"]); a4.semilogy(xc, np.exp(C["logdet_rel"]), color=C_T, label=r"$|\det[1-Vg_0]|$ / max"); a4.semilogy(xc, C["minlam"], color=C_BORN, label=r"$\min_i|\lambda_i(1-Vg_0)|$")
+xc = C["eg"] - float(C["E_D"]); a4.semilogy(xc, np.exp(C["logdet_rel"]), color=C_T, label=r"$|\det\boldsymbol{\Lambda}_\mathcal{C}|$ / max"); a4.semilogy(xc, C["minlam"], color=C_BORN, label=r"$\min_i|\lambda_i|$, $\lambda_i$ valeurs propres de $\boldsymbol{\Lambda}_\mathcal{C}$")
 a4.set_ylabel("Sans dimension"); a4.set_title("Critère de résonance", loc="left", fontsize=9); a4.legend(fontsize=8)
 for i, ax in enumerate(axs.ravel()): ax.set_xlabel(LBL_E); ax.axvline(0, color=MUTED, lw=0.8, ls=":"); panel(ax, "abcd"[i])
 fig.tight_layout(); save(fig, "fig_spectral_final")

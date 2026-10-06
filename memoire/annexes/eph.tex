@@ -1,0 +1,28 @@
+% !TEX root = ../master_thesis.tex
+\chapter{Compléments au chapitre~\ref{chap:eph}}\label{annexe:eph}
+
+\section{Paramètres}\label{sec:annexe_param_epw}
+
+\begin{table}[htbp]
+    \centering
+    \caption[Paramètres de la chaîne \texttt{EPW}.]{Paramètres de la chaîne \texttt{EPW} pour la matrice $g$, le taux d'amortissement $\Gamma^\text{ep}$ et la largeur des phonons $\gamma_{\nu\qv}$ (chapitre~\ref{chap:eph}).}
+    \label{tab:param_epw}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{p{0.27\textwidth} p{0.46\textwidth} p{0.14\textwidth}}
+        \hline\hline
+        Paramètre & Valeur & Section \\
+        \hline
+        Grilles grossières $\kv$ et $\qv$ & $24\times 24$ et $24\times 24$ & \ref{sec:g_détails} \\
+        Occupation (DFT et DFPT) & Marzari-Vanderbilt, $\sigma = 0.02$~Ry & \ref{sec:g_détails} \\
+        Niveau de Fermi & $E_F = E_D = -4.2389$~eV & \ref{sec:g_détails} \\
+        Fenêtre d'énergie & $\pm 3.5$~eV autour de $E_F$ & \ref{sec:g_détails} \\
+        Grille de sortie pour $\Gamma^\text{ep}$ & $240^2$ points $\qv$, grille $\kv$ irréductible de même densité & \ref{sec:g_détails}, \ref{ssec:g_gamma_ep} \\
+        Grille de sortie pour $\gamma_{\nu\qv}$ & $1200^2$ points $\kv$, $\qv$ le long de $\Gamma\to K\to M\to\Gamma$ & \ref{sec:g_détails}, \ref{ssec:g_gamma_ph} \\
+        Élargissement gaussien $\sigma$ & $0.02$~eV & \ref{sec:g_détails} \\
+        Températures & $300$~K et $10$~K & \ref{sec:g_détails} \\
+        Moyenne lorentzienne de $\Gamma^\text{ep}(\varepsilon)$ & $\eta = 0.02$~eV & \ref{sec:g_détails} \\
+        Convention de largeur & largeur totale $\gamma_{\nu\qv} = -2\,\mathrm{Im}\,\Pi_{\nu\qv}$, quantité imprimée par \texttt{EPW} & \ref{sec:g_détails}, \ref{ssec:g_gamma_ph} \\
+        \hline\hline
+    \end{tabular}
+\end{table}

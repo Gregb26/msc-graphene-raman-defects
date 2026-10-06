@@ -71,9 +71,9 @@ def fig_dos_c(a):
     for i, cv in enumerate(C_LIST):
         for name in VARIANTS:
             ax[i].plot(egr, D[f"{name}_{GRID_SENS}_c{cv}"] - D[f"{name}_{GRID_SENS}_rho0"], color=col[name], lw=0.9, label=lab[name])
-        ax[i].set_title(f"({'ab'[i]}) " + r"$\rho - \rho_0$, " + clab(cv), fontsize=9)
+        ax[i].set_title(f"({'ab'[i]}) " + r"$\bar\rho - \rho_0$, " + clab(cv), fontsize=9)
         ax[i].set_xlabel(r"Énergie $\varepsilon - E_D$ (eV)"); ax[i].set_xlim(-1.2, 1.2)
-    ax[0].set_ylabel(r"$\rho - \rho_0$ (états/eV/maille/spin)"); ax[0].legend(fontsize=7)
+    ax[0].set_ylabel(r"$\bar\rho - \rho_0$ (états/eV/maille/spin)"); ax[0].legend(fontsize=7)
     fig.tight_layout(); save(fig, "fig_kaasbjerg_dos_c", a.outdir); plt.close(fig)
 
 def fig_spectral_GKM(a):
@@ -111,7 +111,7 @@ def fig_sensibilites(a):
                                        label=lab[var])
         x.axhline(K7["1.0"]["drho_max_pos_eV"], color=MUTED, lw=0.6, ls="--", label="Kaasbjerg (Fig. 13)")
         x.set_xlabel(xl)
-    ax[0].set_ylabel(r"Position du max de $\rho - \rho_0$ (eV)", fontsize=8); ax[0].legend(fontsize=6)
+    ax[0].set_ylabel(r"Position du max de $\bar\rho - \rho_0$ (eV)", fontsize=8); ax[0].legend(fontsize=6)
     fig.tight_layout(); save(fig, "fig_kaasbjerg_sensibilites", a.outdir); plt.close(fig)
 
 

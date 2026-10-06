@@ -456,7 +456,7 @@ def t_convergence_gamma():
     head = [r"$N$ & $N \bmod 3$ & $R_\text{cut}=0$ & 1 & 2 & 3 & 4 \\"]
     return Table("convergence_gamma", "tab:convergence_gamma", "§4.2.5 → annexe D", "c c ccccc", head,
                  ["N", "N mod 3", "R_cut 0", "R_cut 1", "R_cut 2", "R_cut 3", "R_cut 4"], rows,
-                 ["Médiane de Γ N_cells (meV), grille de sortie 240², η = 0.02 eV, grille interne 300², fenêtre ±3 eV ; "
+                 ["Médiane de Γ^ed/c (meV), grille de sortie 240², η = 0.02 eV, grille interne 300², fenêtre ±3 eV ; "
                   "colonne R_cut = 4 remplie pour les six tailles (TODO). Contrôle : R_cut 3 = `level2_summary.csv`."])
 
 
@@ -480,7 +480,7 @@ def t_tests_T():
     win = np.abs(E - ED) <= CFG["e_window_eV"]
     gate(abs(1e3 * np.nanmedian(G[win]) - float(Z["median_GT_states_meV"])) < 1e-6, f"{rel(fr)} : médiane de G_T ≠ median_GT_states_meV")
     gmin = float(np.nanmin(G[win]))
-    rows.append([L("Positivité"), L(r"$\min_{n\kv}\Gamma_{n\kv}N_\text{cells}$"),
+    rows.append([L("Positivité"), L(r"$\min_{n\kv}\Gamma^\text{ed}_{n\kv}/c$"),
                  Cell(f"${gmin:.2f}$~eV", f"{rel(fr)} : min de G_T sur |E_out − E_D| ≤ {CFG['e_window_eV']} eV (eV)", gmin),
                  Cell(r"$-10^{-8}$~eV", "ch4/NOTES_TGAMMA.md : l. 122 (C7)", "-1e-8")])
     return Table("tests_T", "tab:tests_T", "§4.2.5 → annexe D", "l l l l", [r"Test & Quantité & Valeur & Seuil \\"],
@@ -585,11 +585,11 @@ def t_grille_interne():
         x = float(r["E_res"])
         cells.append(Cell(fixed(x, 3), f"{rel(f)} : E_res [nk_int = {n}]", x))
         rows.append(cells)
-    head = [r"& \multicolumn{2}{c}{Médiane de $\Gamma N_\text{cells}$ (meV)} & $\Gamma N_\text{cells}(E_D)$ & $E_\text{res}-E_D$ \\",
+    head = [r"& \multicolumn{2}{c}{Médiane de $\Gamma^\text{ed}/c$ (meV)} & $\Gamma^\text{ed}/c\,(E_D)$ & $E_\text{res}-E_D$ \\",
             r"\cline{2-3}",
             r"$N_{\tilde\kv}$ & $\pm3$~eV & $\pm0.3$~eV & (meV) & (eV) \\"]
     return Table("grille_interne", "tab:grille_interne", "§4.2.5 → annexe D (chaîne T)", "c c c c c", head,
-                 ["N_k^int", "médiane ±3 eV (meV)", "médiane ±0.3 eV (meV)", "Γ N_cells(E_D) (meV)", "E_res − E_D (eV)"], rows,
+                 ["N_k^int", "médiane ±3 eV (meV)", "médiane ±0.3 eV (meV)", "Γ^ed/c (E_D) (meV)", "E_res − E_D (eV)"], rows,
                  ["9×9 de production (Kumagai–Oba), R_cut 3, grille de sortie 240², η = 20 meV. Fenêtre ±3 eV : 41 266 états ; "
                   "zone |ε − E_D| ≤ 0.3 eV : 280 états (`z_n`) ; Γ(E_D) : les 4 états au point de Dirac (`n_ED`). "
                   "Contrôle : 300² = production (`level1_summary.csv`).",

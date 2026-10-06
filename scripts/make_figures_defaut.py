@@ -3,14 +3,14 @@
 Figures du chapitre 4 du mémoire, style graphene_raman.plotting (memoire.mplstyle), français, données lues dans <results_dir>/*.npz.
 C : figures dans le corps du texte. A : figures en annexe.
 
-  A: fig_convergence        (a) Γ N_cells vs R_cut, six tailles ; (b) carte plateau (grille × η), référence     — 6.5 × 3.4 po
+  A: fig_convergence        (a) Γ^ed/c vs R_cut, six tailles ; (b) carte plateau (grille × η), référence     — 6.5 × 3.4 po
   C: fig_locality_final     (a) 5×5, (b) 8×8 avec grille aliasée ; (c) 9×9, (d) 12×12                 — 6.5 × 5.6 po
   C: fig_spectral_final     (a) Γ(ε) T vs Born (log) ; (b) δρ ; (c) T̄_ππ(K,K;ε) ; (d) critère det / λ_min       — 6.5 × 5.6 po
   C: fig_M_scaling_final    max|M| vs N, convention cellule unitaire (panneau unique)                           — 6.5 × 4.0 po
   C: fig_Ved                (a) carte 5×5, (b) carte 9×9 (colorbar commune) ; (c) profil radial masqué, + C_N (pointillés, R10) — 6.5 × 7.2 po
   C: fig_Ved_zoom           V_ed^L dans le plan, zoom ±3 Å : (a) 8×8, (b) 9×9 (reprise à l'identique de make_figures.py)
   C: fig_ks_reconstruction  |ε_calc − ε_QE| contre N, grilles N×N et denses, moyenne et max (reprise à l'identique de make_figures.py)
-  C: fig_level2             Γ N_cells contre N, paramètres de production (reprise à l'identique de make_figures.py)
+  C: fig_level2             Γ^ed/c contre N, paramètres de production (reprise à l'identique de make_figures.py)
 Usage : python scripts/make_figures_defaut.py [--outdir figures/electron_defect]
 """
 
@@ -25,7 +25,7 @@ from graphene_raman.plotting.palette import save as palette_save, use_style; use
 from graphene_raman.plotting.palette import NAVY, ORANGE, GREEN, GOLD, PINK, SKY, REF, INK, MUTED, LIGHT, COL, CMAP_SEQ, CMAP_DIV
 FAM3 = {"6x6", "9x9", "12x12"}
 C_T, C_BORN, C_REF, C_DIS = NAVY, ORANGE, REF, GREEN
-LBL_E = r"Énergie $\varepsilon - E_D$ (eV)"; LBL_G = r"$\Gamma\,N_\mathrm{cells}$ (meV)"
+LBL_E = r"Énergie $\varepsilon - E_D$ (eV)"; LBL_G = r"$\Gamma^\mathrm{ed}/c$ (meV)"
 ap = argparse.ArgumentParser(); ap.add_argument("--outdir", default="figures/electron_defect"); a = ap.parse_args()
 cfg = load_production(); RC, GRID, ETA = cfg["R_cut"], cfg["grid"], cfg["eta_eV"]; REF = cfg["reference_size"]
 SIZES = ["5x5", "6x6", "7x7", "8x8", "9x9", "12x12"]; DONE = []
@@ -55,7 +55,7 @@ im = ax2.imshow(np.abs(D), cmap=CMAP_SEQ, vmin=0, vmax=vmax, origin="lower", asp
 ax2.set_xticks(range(len(etas))); ax2.set_xticklabels([f"{e:g}" for e in etas]); ax2.set_yticks(range(len(grids))); ax2.set_yticklabels([rf"{N}$^2$" for N in grids]); ax2.grid(False)
 for i in range(len(grids)):
     for j in range(len(etas)): ax2.text(j, i, f"{Z[i,j]:.0f}\n({D[i,j]:+.1f}\\,\\%)", ha="center", va="center", fontsize=8, color=INK if abs(D[i, j]) < 0.6 * vmax else "white")
-ax2.set_xlabel(r"Élargissement $\eta$ (eV)"); ax2.set_ylabel(r"Grille $k$ de sortie"); ax2.set_title(rf"{lab(REF)}, $R_\mathrm{{cut}}$ = {RC} : $\Gamma N_\mathrm{{cells}}$ (meV)", loc="left", fontsize=9); panel(ax2, "b")
+ax2.set_xlabel(r"Élargissement $\eta$ (eV)"); ax2.set_ylabel(r"Grille $k$ de sortie"); ax2.set_title(rf"{lab(REF)}, $R_\mathrm{{cut}}$ = {RC} : $\Gamma^\mathrm{{ed}}/c$ (meV)", loc="left", fontsize=9); panel(ax2, "b")
 cb = fig.colorbar(im, ax=ax2, shrink=0.9, pad=0.02); cb.set_label(rf"Écart à ({GRID}$^2$, {ETA} eV) (\%)")
 fig.tight_layout(); save(fig, "fig_convergence")
 
@@ -118,7 +118,7 @@ axc.set_title("Moyenne du potentiel local dans le plan du graphène", loc="left"
 save(fig, "fig_Ved")
 
 # ---------------- 7. trois figures reprises à l'identique de make_figures.py (2026-10-01) : fig_level2, fig_ks_reconstruction, fig_Ved_zoom
-LBL_G_TAUX = r"Taux d'amortissement $\Gamma\,N_\mathrm{cells}$ (meV)"          # libellé de make_figures.py (fig_level2)
+LBL_G_TAUX = r"Taux d'amortissement $\Gamma^\mathrm{ed}/c$ (meV)"          # libellé de make_figures.py (fig_level2)
 if maps:
     fig, ax = plt.subplots(); Ns = [int(S.split("x")[0]) for S in maps]; ys = [maps[S][(RC, GRID, ETA)] for S in maps]
     for S, N, y in zip(maps, Ns, ys): ax.plot([N], [y], "o", color=COL[S], ms=7, label=famlab(S))

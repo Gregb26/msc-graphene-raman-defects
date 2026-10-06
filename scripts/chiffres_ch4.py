@@ -61,9 +61,9 @@ put("A", "nombre de points k' de la carte", kx.size, "", src)
 nk = list(csv.DictReader(open(RES / "nkint_check_9x9.csv")))
 by = {int(r["nk_int"]): r for r in nk}
 src = "M2_plateau/nkint_check_9x9.csv"
-for col, nom in (("medG", "médiane Γ N_cells, fenêtre ±3 eV"), ("medRe", "médiane Re Σ, fenêtre ±3 eV"),
-                 ("z_medG", "médiane Γ N_cells, zone |ε − E_D| ≤ 0.3 eV"), ("z_medRe", "médiane Re Σ, zone |ε − E_D| ≤ 0.3 eV"),
-                 ("G_ED", "Γ N_cells au point de Dirac (4 états en K)")):
+for col, nom in (("medG", "médiane Γ^ed/c, fenêtre ±3 eV"), ("medRe", "médiane Re Σ, fenêtre ±3 eV"),
+                 ("z_medG", "médiane Γ^ed/c, zone |ε − E_D| ≤ 0.3 eV"), ("z_medRe", "médiane Re Σ, zone |ε − E_D| ≤ 0.3 eV"),
+                 ("G_ED", "Γ^ed/c au point de Dirac (4 états en K)")):
     x300, x600 = float(by[300][col]), float(by[600][col])
     put("B", f"{nom} : 300² → 600²", f(100 * (x300 - x600) / x600, 3), "% (écart de 300² à 600²)", f"{src} : {col}")
     put("B", f"{nom} : valeurs 150² / 300² / 450² / 600²", " / ".join(f"{float(by[n][col]):.1f}" for n in (150, 300, 450, 600)), "meV", f"{src} : {col}")

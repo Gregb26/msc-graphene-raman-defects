@@ -37,7 +37,7 @@
 
 \node[box] (G0) at (0, -4.5)
     {Fonction de Green de l'amas\\
-     $\bm{\mathcal{G}}^{(0)}$~\eqref{eqn:g_loc}};
+     $\bm{\mathcal{G}}^{(0)}_\mathcal{C}$~\eqref{eqn:g_loc}};
 \node[num] at (G0.north west) {(4)};
 
 \node[box] (TC) at (0, -6.6)
@@ -57,18 +57,19 @@
 \node[num] at (gamma.north west) {(7)};
 
 \node[box] (agg) at (0, -13.3)
-    {Quantités rapportées\\
-    Section~\ref{sec:T_results}};
+    {Quantités rapportées : médiane et $\Gamma^\text{ed}(\varepsilon)$~\eqref{eqn:moyenne_lorentzienne},\\
+    $\bar T(K;\varepsilon)$~\eqref{eqn:T_bar}, critère de pôle};
 \node[num] at (agg.north west) {(8)};
 
 % ---- Boîtes latérales ----
 \node[sidebox] (born) at (5.6, -6.6)
     {Approximation de Born\\
-    $\bm\Sigma^\text{ed,B}$~\eqref{eqn:born}};
+    $\bm\Sigma^{\text{ed},\text{B}}_\mathcal{C}$~\eqref{eqn:born_amas}};
 
 \node[sidebox] (dis) at (-5.6, -13.3)
     {Moyenne sur le désordre\\
-    $\bar{\bm T}$, $\overline{\bm{\mathcal{G}}}$};
+    $\bar{\bm T}_\kv$~\eqref{eqn:T_bar_k}\\
+    $\overline{\bm{\mathcal{G}}}_\kv$~\eqref{eqn:G_moyenne_W}};
 
 % ---- Flèches ----
 \draw[arrow] (wan) -- (Hint);
@@ -80,7 +81,7 @@
 \draw[arrow] (Hout.south) -- ([xshift=1.8cm]gamma.north);
 \draw[arrow] (gamma) -- (agg);
 \draw[arrow] (TC.east) -- (born.west);
-\draw[arrow] ([yshift=-0.3cm]TC.west) -- ++(-1.0, 0) |- (dis.north);
+\draw[arrow] ([yshift=-0.3cm]TC.west) -| (dis.north);
 
 % ---- Sortie ----
 \draw[arrow] (agg.south) -- ++(0, -1.0)

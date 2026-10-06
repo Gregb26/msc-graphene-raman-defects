@@ -222,7 +222,7 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 
 ## `tab:convergence_gamma` — `tables/convergence_gamma.tex` (§4.2.5 → annexe D)
 
-- Médiane de Γ N_cells (meV), grille de sortie 240², η = 0.02 eV, grille interne 300², fenêtre ±3 eV ; colonne R_cut = 4 remplie pour les six tailles (TODO). Contrôle : R_cut 3 = `level2_summary.csv`.
+- Médiane de Γ^ed/c (meV), grille de sortie 240², η = 0.02 eV, grille interne 300², fenêtre ±3 eV ; colonne R_cut = 4 remplie pour les six tailles (TODO). Contrôle : R_cut 3 = `level2_summary.csv`.
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
@@ -310,17 +310,17 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 |---|---|---|---|---|
 | $150^2$ | médiane ±3 eV (meV) | 3210 | 3210.0181762526818 | `M2_plateau/nkint_check_9x9.csv : medG [nk_int = 150]` |
 | $150^2$ | médiane ±0.3 eV (meV) | 4289 | 4288.842027638511 | `M2_plateau/nkint_check_9x9.csv : z_medG [nk_int = 150]` |
-| $150^2$ | Γ N_cells(E_D) (meV) | 5662 | 5662.157507923787 | `M2_plateau/nkint_check_9x9.csv : G_ED [nk_int = 150]` |
+| $150^2$ | Γ^ed/c (E_D) (meV) | 5662 | 5662.157507923787 | `M2_plateau/nkint_check_9x9.csv : G_ED [nk_int = 150]` |
 | $150^2$ | E_res − E_D (eV) | $-0.238$ | -0.23822954795906082 | `M2_plateau/nkint_check_9x9.csv : E_res [nk_int = 150]` |
 | $300^2$ | médiane ±3 eV (meV) | 3189 | 3189.013588325133 | `M2_plateau/nkint_check_9x9.csv : medG [nk_int = 300]` |
 | $300^2$ | médiane ±0.3 eV (meV) | 3045 | 3045.276268611333 | `M2_plateau/nkint_check_9x9.csv : z_medG [nk_int = 300]` |
-| $300^2$ | Γ N_cells(E_D) (meV) | 4287 | 4287.112828533603 | `M2_plateau/nkint_check_9x9.csv : G_ED [nk_int = 300]` |
+| $300^2$ | Γ^ed/c (E_D) (meV) | 4287 | 4287.112828533603 | `M2_plateau/nkint_check_9x9.csv : G_ED [nk_int = 300]` |
 | $300^2$ | E_res − E_D (eV) | $-0.175$ | -0.17484882850105077 | `M2_plateau/nkint_check_9x9.csv : E_res [nk_int = 300]` |
 | $450^2$ | médiane ±3 eV (meV) | 3196 | 3196.1099873995636 | `M2_plateau/nkint_check_9x9.csv : medG [nk_int = 450]` |
 | $450^2$ | médiane ±0.3 eV (meV) | 3080 | 3079.7507187061265 | `M2_plateau/nkint_check_9x9.csv : z_medG [nk_int = 450]` |
-| $450^2$ | Γ N_cells(E_D) (meV) | 4120 | 4120.384973749112 | `M2_plateau/nkint_check_9x9.csv : G_ED [nk_int = 450]` |
+| $450^2$ | Γ^ed/c (E_D) (meV) | 4120 | 4120.384973749112 | `M2_plateau/nkint_check_9x9.csv : G_ED [nk_int = 450]` |
 | $450^2$ | E_res − E_D (eV) | $-0.175$ | -0.17484882850105077 | `M2_plateau/nkint_check_9x9.csv : E_res [nk_int = 450]` |
 | $600^2$ | médiane ±3 eV (meV) | 3192 | 3191.9323705334373 | `M2_plateau/nkint_check_9x9.csv : medG [nk_int = 600]` |
 | $600^2$ | médiane ±0.3 eV (meV) | 3039 | 3039.0595886407905 | `M2_plateau/nkint_check_9x9.csv : z_medG [nk_int = 600]` |
-| $600^2$ | Γ N_cells(E_D) (meV) | 4090 | 4090.1124522968867 | `M2_plateau/nkint_check_9x9.csv : G_ED [nk_int = 600]` |
+| $600^2$ | Γ^ed/c (E_D) (meV) | 4090 | 4090.1124522968867 | `M2_plateau/nkint_check_9x9.csv : G_ED [nk_int = 600]` |
 | $600^2$ | E_res − E_D (eV) | $-0.175$ | -0.17484882850105077 | `M2_plateau/nkint_check_9x9.csv : E_res [nk_int = 600]` |

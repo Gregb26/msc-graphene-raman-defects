@@ -130,7 +130,6 @@ Pour simplifier les calculs, nous ne retenons que la partie diagonale en bande d
 
 Cette approximation se justifie en trois temps. D'abord, bien qu'une lacune isolée sur un sous-réseau du graphène produit des éléments hors-diagonaux entre les bandes $\pi$ et $\pi^*$ au voisinage des points $K$ et $K'$, ces éléments s'annulent \textit{en moyenne} pour une collection de lacunes réparties aléatoirement. Ensuite, entre les bandes non dégénérées, l'effet des éléments hors-diagonaux résiduels sur le spectre est d'ordre $|\Sigma^\text{ed}_{mn}|^2/|\xi_{m\kv}-\xi_{n\kv}|$ (obtenu au deuxième ordre dans la théorie de la perturbation ordinaire). Avec des \textit{self}-énergies de quelques dizaines de meV aux concentrations désirées (voir la section~\ref{sec:T_results}) et des séparations de bandes de l'ordre de l'eV, cet effet est négligeable. Enfin, aux points de dégénérescence $\pi/\pi^*$ où cet argument perturbatif échoue ($\xi_{\pi K}-\xi_{\pi^*K}=0$), la quantité que nous rapportons à la section~\ref{sec:T_results} est la demi-trace du bloc dégénéré, invariante sous sa diagonalisation et seule la répartition de l'amortissement au sein de la paire dépend de l'approximation. Le traitement complet de la structure en bande de la \textit{self}-énergie est laissé en perspective.
 
-
 Une fois que la matrice $T$ est calculée en suivant les développements de la section~\ref{sec:mbt_T} et que le prolongement analytique est effectué, la \textit{self}-énergie s'obtient directement dans l'espace des fréquences réelles (une quantité retardée) par une simple multiplication par un scalaire suivant l'équation~\eqref{eqn:sigma_diluée}. Cette \textit{self}-énergie se décompose en une partie réelle et une partie imaginaire
 \begin{equation}
     \Sigma_{n\kv}^\text{ed}(\omega) = \Sigma_{n\kv}^{\text{ed}'}(\omega) + i\Sigma_{n\kv}^{\text{ed}''}(\omega).
@@ -306,7 +305,7 @@ Enfin, toute la chaîne de calcul est protégée par une série de contrôles. L
 
 Cette section livre le taux d'amortissement électronique dû à une lacune dans le graphène, calculé dans le formalisme de la matrice $T$ à partir de la matrice de couplage du chapitre~\ref{chap:défauts}. Le résultat central est que la lacune est un diffuseur résonant : la matrice $T$ révèle un état quasi-lié $\pi$ à $-0.18$~eV sous le point de Dirac. Cet état gouverne le taux d'amortissement, que l'approximation de Born sur-estime d'un facteur $46$. Le taux par unité de concentration vaut $3.19$~eV en médiane et culmine à $40.6$~eV à la résonance. Pour une concentration de $c=1~\%$, cela donne une médiane de $32$~meV. C'est du même ordre que le taux dû au couplage électron-phonon à $300$~K du chapitre~\ref{chap:eph} ($57$~meV) en médiane. La dépendance en énergie du taux dû à la lacune est beaucoup plus forte que celui dû aux phonons : à la résonance, le premier dépasse le second d'un facteur 35.
 
-Nous présentons d'abord les signatures spectrales de la lacune, le taux d'amortissement obtenu avec la matrice $T$ et sa comparaison avec l'approximation de Born, et enfin nous comparons nos résultats avec la littérature. Sauf indication contraire, les résultats sont ceux de la super-cellule de référence $9\times 9$ avec sa grille élargie $27\times 27$ et les paramètres de production : un rayon $R_\text{cut}=3$, une grille de sortie $240\times 240$, une grille interne de $300\times 300$, un élargissement $\eta = 20$ meV et une fenêtre de $\pm 3$~eV autour du point de Dirac. Ces paramètres sont convergés sous le pourcent. Seule la taille de la super-cellule n'est pas convergée et elle fixe une incertitude de $2.4~\%$. Les tests de convergence sont effectués à l'annexe~\ref{annexe:paramètres}.
+Nous présentons d'abord les signatures spectrales de la lacune, puis le taux d'amortissement obtenu avec la matrice $T$ et sa comparaison avec l'approximation de Born, les tests du schéma de l'amas, et enfin la comparaison avec la littérature. Sauf indication contraire, les résultats sont ceux de la super-cellule de référence $9\times 9$ avec sa grille élargie $27\times 27$ et les paramètres de production : un rayon $R_\text{cut}=3$, une grille de sortie $240\times 240$, une grille interne de $300\times 300$, un élargissement $\eta = 20$ meV et une fenêtre de $\pm 3$~eV autour du point de Dirac. Ces paramètres sont convergés sous le pourcent. Seule la taille de la super-cellule ayant servi à calculer $\bm M_\mathcal{C}$ n'est pas convergée : par l'effet de famille et d'alignement du chapitre~\ref{chap:défauts}, la médiane varie de $2.4~\%$ entre $9\times9$ et $12\times12$, et nous retenons cet écart comme incertitude. Les tests de convergence et la dépendance en taille sont rapportés à l'annexe~\ref{annexe:paramètres}.
 
 \bigskip
 \bloc{Diffusion résonante}
@@ -323,84 +322,14 @@ La figure~\ref{fig:spectral} rassemble toute l'information que la matrice $T$ co
 
 La \textit{self}-énergie de la paire de Dirac, $\bar T(K;\varepsilon)$ au panneau~(c) confirme ce diagnostic. Sa partie imaginaire est minimale à $-0.17$~eV, exactement là où le taux d'amortissement culmine au panneau~(a). C'est la signature classique d'une résonance. Sa partie réelle, qui renormalise l'énergie des bandes, vaut $12.6$~eV au point de Dirac, s'annule à $-0.21$~eV et devient négative sous la résonance. La lacune est répulsive au point de Dirac et attractive sous la résonance, ce qui est aussi cohérent avec un niveau résonant. Enfin, la règle de somme de Friedel $\int d\varepsilon\,\delta\rho(\varepsilon)$ sur toute la largeur de la bande vaut $-1.00$ état au lieu de zéro. L'état manquant est l'orbitale $p_z$ du site de la lacune. Les oscillations de $\pm 1$~état/eV dans la densité d'états sont dû au bruit d'échantillonnage de la grille interne.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\bloc{Taille de super-cellule}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{figures/fig_level2.pdf}
-    \caption[Convergence du taux d'amortissement en taille de
-    super-cellule.]{Médiane du taux d'amortissement $\Gamma^\text{ed}/c$ sur $\pm3$~eV autour de $E_D$ en fonction de la taille $N$ de la super-cellule, pour les matrices alignées et les paramètres de production déterminés~: $R_\text{cut} = 3$, une grille de sortie de $240\times240$, un élargissement $\eta = 20$~meV et une grille interne de $300\times 300$. Chaque couleur est une taille de super-cellule ; la famille $N=3m$ regroupe $6$, $9$ et $12$, l'autre $5$, $7$ et $8$. La zone grisée marque les tailles $N<7$, trop petites pour contenir le potentiel de la lacune (section~\ref{sec:M_results}).}
-    \label{fig:level2}
-\end{figure}
-
-Il reste la taille $N$ de la super-cellule, examinée au sein de chaque famille de la section~\ref{sec:M_détails} dans la figure~\ref{fig:level2}. La convergence n'est pas atteinte : aucun plateau n'apparaît et, dans la famille $N=3m$, la médiane croît de façon monotone, de $1.3~\%$ entre $6\times6$ et $9\times9$ et de $2.4~\%$ entre $9\times9$ et $12\times12$ ; la dispersion est de $3.6~\%$ sur cette famille et de $1.8~\%$ sur l'autre. Nous retenons $2.4~\%$, l'écart entre la référence et la plus grande super-cellule calculée, comme incertitude de taille sur $\Gamma^\text{ed}/c$ ; elle domine les erreurs de convergence numérique du bloc précédent.
-
-La référence du potentiel participe à cette dépendance. L'alignement ne modifie que les blocs sur site des 29 mailles de l'amas et déplace la médiane de la $9\times9$ de $3132.6$ à $3189.0$~meV ($+1.8~\%$), celle de la $12\times12$ de $+3.2~\%$ et celle de la $6\times6$ de $-0.2~\%$ ($-8.9$, $-3.6$ et $-1.5~\%$ pour $5$, $7$ et $8$). Les matrices brutes de la famille $3m$ donnent $3156$, $3133$ et $3163$~meV, soit $1.0~\%$ de dispersion sans tendance : la croissance monotone de la figure~\ref{fig:level2} vient de l'alignement. Le pic de $\Gamma^\text{ed}(\varepsilon)$ de la $9\times9$ reste à $-0.18$~eV ($6\times6$ : $-0.24\to-0.18$~eV ; $12\times12$ : $-0.18\to-0.175$~eV), et l'incertitude statistique de la constante d'alignement, $\pm\sigma=\pm9.05$~meV, se traduit par $\pm1.5~\%$ sur la médiane, pic inchangé. Des super-cellules plus grandes, que nous n'avons pas calculées faute de ressources, restent nécessaires et sont laissées en perspective.
-
-\bloc{Convergence}
-
-Quatre paramètres numériques contrôlent directement le taux d'amortissement : le rayon de coupure $R_\text{cut}$, la densité de la grille de sortie $N_\kv$, l'élargissement $\eta$ et la densité de la grille interne $N_{\kv_\text{int}}$ de la fonction de Green de l'amas~\eqref{eqn:g_loc}. De plus, la taille $N$ de la super-cellule contrôle la qualité de la matrice de couplage $\bm M$ et donc, indirectement, le taux d'amortissement. La convergence des quatre premiers est établie à l'annexe~\ref{annexe:paramètres} (figure~\ref{fig:convergence}, tableaux~\ref{tab:convergence_gamma} et~\ref{tab:grille_interne}). Nous rapportons ici les variations mesurées sur la médiane de $\Gamma^\text{ed}/c$ sur les états des bandes $\pi$ et $\pi^*$ situés dans une fenêtre de $\pm 3$~eV autour de $E_D$, et les comparons à la dispersion en taille de super-cellule de la figure~\ref{fig:level2}, $2.4~\%$ entre $9\times9$ et $12\times12$, qui domine toutes les autres.
-
-Le rayon de coupure est le paramètre le plus sensible : passer du site seul ($R_\text{cut}=0$) à $R_\text{cut}=1$ change la médiane de $7.7$ à $9.4~\%$ pour la famille $N=3m$ et de $0.6$ à $1.8~\%$ pour l'autre, puis chaque $R_\text{cut}$ supplémentaire la modifie de moins de $2~\%$, et de $0.34~\%$ seulement entre $R_\text{cut}=3$ et $4$ pour la référence $9\times9$ (tableau~\ref{tab:convergence_gamma}). Le taux converge ainsi plus vite que les éléments de matrice interpolés eux-mêmes (tableau~\ref{tab:rcut_M}). Comme $R_\text{cut}=4$ multiplie la dimension de l'amas par un facteur de presque $2$ pour une variation du quart de la dispersion en taille de super-cellule, nous retenons $R_\text{cut}=3$. 
-
-Réduire de moitié la grille de sortie ($240^2\to120^2$) ou l'élargissement $\eta$($20\to10$~meV) change la médiane de $0.4~\%$, et $\eta=50$~meV de $1.4~\%$. Nous retenons alors $N_\kv=240^2$ et $\eta=20$~meV. La grille interne, variée de $150^2$ à $600^2$, change la médiane de $0.1~\%$ entre $300^2$ et $600^2$ sur la fenêtre et de $0.2~\%$ sur la zone $|\varepsilon-E_D|\le0.3$~eV. La seule quantité sensible est le taux des états situés exactement au point de Dirac, surestimé de $4.8~\%$ à $300^2$, parce que dans $\pm\eta$ autour de $E_D$, la grille ne contient que les points $K$ et $K'$, et aucune quantité rapportée ne repose sur ces seuls deux états. Le maximum de $\Gamma^\text{ed}(\varepsilon)$, qui identifie La position de la résonance vaut $-0.238$~eV pour $N_{\kv_\text{nint}}=150^2$  et $-0.175$~eV dès que  $N_{\kv_\text{int}}=300^2$ (figure~\ref{fig:resonance_vs_nkint_plateau}). Nous retenons alors $N_{\kv_\text{int}}=300^2$.
-
-\bloc{Taille de super-cellule}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{figures/fig_level2.pdf}
-    \caption[Convergence du taux d'amortissement en taille de
-    super-cellule.]{Médiane du taux d'amortissement $\Gamma^\text{ed}/c$ sur $\pm3$~eV autour de $E_D$ en fonction de la taille $N$ de la super-cellule, pour les matrices alignées et
-    les paramètres de production déterminés~: $R_\text{cut} = 3$, une grille de sortie de $240\times240$, un élargissement $\eta = 20$~meV et une grille interne de $300\times 300$. Chaque couleur est une taille de super-cellule ; la famille $N=3m$ regroupe $6$, $9$ et $12$, l'autre $5$, $7$ et $8$. La zone grisée marque les tailles $N<7$, trop petites pour contenir le potentiel de la lacune (section~\ref{sec:M_results}).}
-    \label{fig:level2}
-\end{figure}
-
-Il reste la taille $N$ de la super-cellule, examinée au sein de chaque famille de la section~\ref{sec:M_détails} dans la figure~\ref{fig:level2}. La convergence n'est pas atteinte : aucun plateau n'apparaît et, dans la famille $N=3m$, la médiane croît de façon monotone, de $1.3~\%$ entre $6\times6$ et $9\times9$ et de $2.4~\%$ entre $9\times9$ et $12\times12$ ; la dispersion est de $3.6~\%$ sur cette famille et de $1.8~\%$ sur l'autre. Nous retenons $2.4~\%$, l'écart entre la référence et la plus grande super-cellule calculée, comme incertitude de taille sur $\Gamma^\text{ed}/c$ ; elle domine les erreurs de convergence numérique du bloc précédent.
-
-La référence du potentiel participe à cette dépendance. L'alignement ne modifie que les blocs sur site des 29 mailles de l'amas et déplace la médiane de la $9\times9$ de $3132.6$ à $3189.0$~meV ($+1.8~\%$), celle de la $12\times12$ de $+3.2~\%$ et celle de la $6\times6$ de $-0.2~\%$ ($-8.9$, $-3.6$ et $-1.5~\%$ pour $5$, $7$ et $8$). Les matrices brutes de la famille $3m$ donnent $3156$, $3133$ et $3163$~meV, soit $1.0~\%$ de dispersion sans tendance : la croissance monotone de la figure~\ref{fig:level2} vient de l'alignement. Le pic de $\Gamma^\text{ed}(\varepsilon)$ de la $9\times9$ reste à $-0.18$~eV ($6\times6$ : $-0.24\to-0.18$~eV ; $12\times12$ : $-0.18\to-0.175$~eV), et l'incertitude statistique de la constante d'alignement, $\pm\sigma=\pm9.05$~meV, se traduit par $\pm1.5~\%$ sur la médiane, pic inchangé. Des super-cellules plus grandes, que nous n'avons pas calculées faute de ressources, restent nécessaires et sont laissées en perspective.
-
-La chaîne repliée dans la super-cellule donne une seconde lecture de cette dépendance en taille. En repliant $H(\Rv)$ et la matrice $M$ interpolée dans une super-cellule $N\times N$ évaluée au seul point $\Gamma$, nous retrouvons l'état $\pi$ quasi-lié de la lacune calculé par \texttt{QuantumESPRESSO} de $6\times6$ à $27\times27$, à $60$~meV près pour $9\times9$ et à $3$~meV près pour $27\times27$ (figure~\ref{fig:folded_vs_R7}~(a)) : ce test valide, contre une référence indépendante, la matrice interpolée sur un niveau de défaut. Le même modèle, prolongé jusqu'à $81\times81$ ($c=0.015~\%$) où aucun calcul DFT n'est possible, montre que le niveau continue de monter vers $E_D$ en $1/N$ sans atteindre de plateau (panneau~(b)) ; il traverse la résonance de la matrice $T$ à $-0.18$~eV vers $N\approx 55$ et son extrapolation à $N\to\infty$ se situe à $-0.07$ à $-0.09$~eV. Au seul point $\Gamma$, ce niveau est un état discret repoussé par les états posés exactement en $E_D$, et sa limite est le niveau non hybridé avec le continuum, que la matrice $T$ seule décrit. C'est la raison de passer par la fonction de Green du cristal infini plutôt que par des super-cellules toujours plus grandes.
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{figures/fig_folded_vs_R7.pdf}
-    % À REVOIR : légende provisoire du 2026-10-05 ; étiquettes « site unique » / « non aligné » de la figure à renommer « aligné » / « brut » (make_figures_controles.py)
-    \caption[Chaîne repliée dans la super-cellule et limite du défaut isolé.]{État $\pi$ quasi-lié de la lacune dans la super-cellule $N\times N$ au seul point $\Gamma$, en fonction de $1/N$. (a) Niveau obtenu par \texttt{QuantumESPRESSO} et par le modèle replié ($H(\Rv)$ et $M$ interpolée, matrices brutes et alignées) pour $N=6$ à $27$. (b) Maximum de la densité d'états locale des voisins de la lacune dans le modèle replié, prolongé jusqu'à $N=81$ ; les lignes tiretées marquent la résonance de la matrice $T$ (grille interne $600^2$) et la ligne continue l'énergie de la première couronne d'états $\pi$ repliés sous $E_D$. La courbe alignée utilise la constante d'alignement à site unique $C_9=-24.65$~meV plutôt que celle de Kumagai-Oba ($-25.14$~meV), soit $0.5$~meV d'écart.}
-    \label{fig:folded_vs_R7}
-\end{figure}
-
-\newpage
-\bloc{Tests du schéma de l'amas}
-
-Les vérifications du schéma de l'amas sont rassemblées au tableau~\ref{tab:tests_T} de l'annexe~\ref{annexe:paramètres}. Le test de référence compare le taux d'amortissement obtenu par le schéma de l'amas à celui de l'inversion directe de l'équation~\eqref{eqn:T_chap}, dans le même sous-espace des cinq fonctions de Wannier, pour la super-cellule $5\times5$ : les deux coïncident à $1.8\times10^{-13}$. Le taux est positif pour tous les états, comme l'imposent les contrôles, avec un minimum de $\Gamma^\text{ed}/c=1.96$~eV sur la fenêtre. Comme à la section~\ref{sec:M_results}, ces tests établissent la cohérence interne de la méthode ; le contrôle externe vient de la comparaison avec la littérature, que nous effectuons plus bas.
-
 \newpage
 \bloc{Taux d'amortissement et approximation de Born}
 
 La figure~\ref{fig:spectral} (a) montre le taux d'amortissement $\Gamma^\text{ed}/c$ des bandes $\pi$ et $\pi^*$, calculé avec la matrice $T$ complète et l'approximation de Born, pour les paramètres de production déterminés plus haut. La courbe continue en $\varepsilon$ est la moyenne lorentzienne~\eqref{eqn:moyenne_lorentzienne} des taux individuels $\Gamma^\text{ed}_{n\kv}$ de la section~\ref{sec:T_détails} ; les médianes citées dans les blocs de convergence sont prises sur les états eux-mêmes. Par unité de concentration, le taux exact vaut $3.19$~eV en médiane sur les états de la fenêtre, $8.5$~eV au point de Dirac et culmine à $40.6$~eV à $-0.18$~eV, soit, à $c=0.1~\%$, $3.2$, $8.5$ et $41$~meV. L'approximation de Born suit la densité d'états : elle culmine à $+1.70$~eV, à la singularité de van Hove de la bande $\pi^*$, et dépasse le taux exact d'un facteur $46$ en médiane et jusqu'à $203$ à cette singularité ; les deux ne coïncident qu'au pic de $-0.18$~eV, où la matrice $T$ sature. C'est l'effondrement de l'approximation de Born pour un potentiel de défaut fort comme une lacune, tel que trouvé dans l'article de référence~\cite{kaasbjergAtomisticMatrixTheory2020}.
 
-\newpage
-\bloc{Signatures spectrales de la lacune}
+\bloc{Tests du schéma de l'amas}
 
-Les panneaux (b-d) de la figure~\ref{fig:spectral} examinent la structure de la matrice $T$ elle-même. La variation de densité d'états $\delta\rho$ au panneau (b) présente deux structures. La première est un pic étroit à $-0.79$~eV, de largeur à mi-hauteur $38$~meV, c'est-à-dire l'élargissement $2\eta$ : un état lié de la lacune, qui porte un état entier ($\int\delta\rho\,d\varepsilon = 0.98$ sur $[-1.1, -0.5]$~eV). Le critère de pôle du panneau (d) le confirme, $|\det[\mathbb{I}-\bm M_\mathcal{C}\bm{\mathcal{G}}^{(0)}_\mathcal{C}]|$ passant par un minimum de $1.3\times10^{-4}$ et la plus petite valeur propre par $0.002$ à $-0.787$~eV. Décomposé par bloc, ce zéro appartient au bloc $\sigma$ (dimension 87) ; le bloc $\pi$ (dimension 58) n'en présente aucun. C'est l'état des liaisons $\sigma$ pendantes de la lacune non reconstruite, qui tombe dans le gap des bandes $\sigma$ et ne se couple pas aux bandes $\pi$ par la symétrie de réflexion du plan. La seconde structure est une résonance large entre $-0.26$ et $-0.04$~eV, centrée vers $-0.15$~eV, qui porte $0.65$ état sur $[-0.4, 0]$~eV sans être un pôle : la plus petite valeur propre du bloc $\pi$ y reste à $0.34$. C'est l'état quasi-lié $\pi$ de la lacune, le mode quasi-nul de la monolacune~\cite{pereiraDisorderInducedLocalized2006} hybridé avec le cône de Dirac, et c'est lui qui gouverne le taux d'amortissement. La quantité $\bar T(K;\varepsilon)$~\eqref{eqn:T_bar} au panneau (c) a sa partie imaginaire minimale à $-0.172$~eV et son module maximal à $-0.170$~eV, là où la courbe $\Gamma^\text{ed}(\varepsilon)$ du panneau (a) culmine. La partie réelle, qui renormalise l'énergie des bandes, vaut $+12.6$~eV en $E_D$, s'annule à $-0.21$~eV et atteint $-6.2$~eV à $-0.32$~eV : la lacune est répulsive au point de Dirac et attractive sous la résonance, comme l'attend un niveau résonant. La règle de somme de Friedel $\int\delta\rho\,d\varepsilon$ sur toute la largeur de bande vaut $-1.00$ état, soit un état expulsé des bandes par le potentiel répulsif de la lacune. Les oscillations de $\pm 1$ état/eV ailleurs dans la fenêtre sont le bruit d'échantillonnage de la grille de sortie.
+Les vérifications du schéma de l'amas sont rassemblées au tableau~\ref{tab:tests_T} de l'annexe~\ref{annexe:paramètres}. Le test de référence compare le taux d'amortissement obtenu par le schéma de l'amas à celui de l'inversion directe de l'équation~\eqref{eqn:T_chap}, dans le même sous-espace des cinq fonctions de Wannier, pour la super-cellule $5\times5$ : les deux coïncident à $1.8\times10^{-13}$. Le taux est positif pour tous les états, comme l'imposent les contrôles, avec un minimum de $\Gamma^\text{ed}/c=1.96$~eV sur la fenêtre. Comme à la section~\ref{sec:M_results}, ces tests établissent la cohérence interne de la méthode ; le contrôle externe vient de la comparaison avec la littérature, que nous effectuons plus bas.
 
 \bloc{Comparaison avec la littérature}
 

@@ -98,14 +98,15 @@ La fonctionnelle de HK, $F_\text{HK}\equiv T+V_\text{int}$, ne dépend que de l'
 
 Quelques mois après la publication de l'article de HK, Walter Kohn et Lu Jeu Sham (KS) publient un article~\cite{kohnSelfConsistentEquationsIncluding1965} en 1965 dans lequel ils proposent une approche pratique pour contourner le problème de la fonctionnelle universelle $F_\text{HK}$ et posent les équations qui sont à la base des calculs DFT actuels.
 
+\bigskip
 \bloc{Système auxiliaire de Kohn-Sham}
 
 L'idée de KS est de remplacer le système réel en interaction pour un système auxiliaire de $N_e$ électrons sans interaction, soumis à un potentiel effectif local $V_\text{KS}(\rv)$ choisi de sorte que sa densité reproduise celle du système en interaction. Le premier théorème de HK garantit l'existence de ce potentiel. Ce système auxiliaire est beaucoup plus facile à traiter : sans interaction, la fonction d'onde à plusieurs corps est un déterminant de Slater de $N_e$ fonctions d'onde à un corps $\psi_{n\kv}(\rv)$ et la densité n'est que la somme de leurs carrés 
 \begin{equation}
     \label{eqn:c2_nKS}
-    n(\rv) = 2\sum_{n\kv} f_{n\kv}|\psi_{n\kv}(\rv)|^2=n_0(\rv),
+    n(\rv) = \frac{2}{N_\kv}\sum_{n\kv} f_{n\kv}|\psi_{n\kv}(\rv)|^2=n_0(\rv),
 \end{equation}
-où le facteur de 2 tient compte de la dégénérescence en spin des états électroniques pour un système non polarisé en spin et $f_{n\kv}$ est un facteur d'occupation qui s'assure que seuls les états électroniques occupés contribuent à la densité. L'énergie cinétique de ce système sans interaction $T_\text{S}[n]$ est aussi calculable exactement avec les fonctions d'onde à un corps. KS ont aussi inclus l'énergie d'interaction électron-électron de manière effective via l'énergie d'Hartree~\cite{hartreeWaveMechanicsAtom1928,hartreeWaveMechanicsAtom1928a,fockNaeherungsmethodeZurLoesung1930}
+où le facteur de 2 tient compte de la dégénérescence en spin des états électroniques pour un système non polarisé en spin, $N_\kv$ est le nombre de points $\kv$ et $f_{n\kv}$ est un facteur d'occupation qui s'assure que seuls les états électroniques occupés contribuent à la densité. L'énergie cinétique de ce système sans interaction $T_\text{S}[n]$ est aussi calculable exactement avec les fonctions d'onde à un corps. KS ont aussi inclus l'énergie d'interaction électron-électron de manière effective via l'énergie d'Hartree~\cite{hartreeWaveMechanicsAtom1928,hartreeWaveMechanicsAtom1928a,fockNaeherungsmethodeZurLoesung1930}
 \begin{equation}
     \label{eqn:c2_EH}
     E_\text{H}[n]=\frac{1}{2}\int d^3\rv\,d^3\rv'\,\frac{e^2}{4\pi\varepsilon_0}\frac{n(\rv)n(\rv')}{|\rv-\rv'|},
@@ -124,6 +125,7 @@ de sorte que l'énergie totale s'écrit maintenant
 \end{equation}
 Toute la complexité du problème à plusieurs corps a été reléguée dans $E_\text{XC}[n]$, dont la forme exacte n'est pas connue. La fonctionnelle XC regroupe deux types de corrections : la \textit{corrélation}, due à l'interaction coulombienne au-delà du champ moyen d'Hartree, et l'\textit{échange}, d'origine purement statistique liée à la nature fermionique des électrons. Des approximations efficaces pour $E_\text{XC}[n]$ existent et sont discutées à la section~\ref{sec:XC}.
 
+\bigskip
 \bloc{Équations de Kohn-Sham}
 
 Le deuxième théorème de HK garantit que l'énergie de l'état fondamental du système auxiliaire de KS est le minimum de la fonctionnelle d'énergie $E_\text{KS}[n]$ définie dans l'équation~\eqref{eqn:c2_EKS} et la densité qui la minimise est celle de l'état fondamental $n_0(\rv)$. En minimisant cette fonctionnelle par rapport aux fonctions d'onde sous la contrainte d'orthonormalisation $\braket{\psi_{n\kv}}{\psi_{n'\kv'}}=\delta_{nn'}\delta_{\kv\kv'}$, nous arrivons aux fameuses équations de KS
@@ -218,24 +220,24 @@ Nous aurons besoin de ces expressions lors du calcul des éléments de matrice d
 
 Dans cette section, nous voyons comment résoudre les équations de Kohn-Sham en pratique dans l'espace réciproque. À cet effet, il est nécessaire de faire l'expansion de la fonction d'onde dans une base complète. Pour les solides cristallins, une base naturelle est celle des ondes planes, puisqu'elle exploite la symétrie de translation discrète des cristaux.
 
+\clearpage
 \bloc{Base d'ondes planes}
 
 D'après le théorème de Bloch (cf. section~\ref{sec:symétries}), les fonctions d'onde de KS prennent la forme
 \begin{equation}
-    \psi_{n\kv}(\rv)=\frac{1}{\sqrt{N_\text{uc}}}e^{i\kv\cdot\rv}u_{n\kv}(\rv),
+    \psi_{n\kv}(\rv)=e^{i\kv\cdot\rv}u_{n\kv}(\rv),
     \label{eqn:c2_bloch_pt2}
 \end{equation}
-où $N_\text{uc}$ est le nombre de cellules unitaires dans le cristal et la fonction périodique de Bloch possède la même périodicité que le solide : $u_{n\kv}(\rv+\Rv_l) = u_{n\kv}(\rv)$. Grâce à cette invariance sous translation discrète par un vecteur du réseau cristallin, il est possible de faire son expansion en série de Fourier avec les vecteurs $\Gv$ du réseau réciproque seulement
+où la fonction périodique de Bloch possède la même périodicité que le solide : $u_{n\kv}(\rv+\Rv_l) = u_{n\kv}(\rv)$. Grâce à cette invariance sous translation discrète par un vecteur du réseau cristallin, il est possible de faire son expansion en série de Fourier avec les vecteurs $\Gv$ du réseau réciproque seulement
 \begin{equation}
     u_{n\kv}(\rv)=\frac{1}{\sqrt{\Omega_\text{uc}}}\sum_{\Gv}C_{n\kv}(\Gv)e^{i\Gv\cdot\rv},
     \label{eqn:c2_uPW}
 \end{equation}
 où $\Omega_\text{uc}$ est le volume de la cellule unitaire et $C_{n\kv}(\Gv)$ sont les coefficients de l'expansion en série de Fourier, de sorte que la fonction d'onde de KS s'écrit comme une combinaison linéaire d'ondes planes
 \begin{equation}
-    \psi_{n\kv}(\rv)=\frac{1}{\sqrt{\Omega_\text{BvK}}}\sum_{\Gv}C_{n\kv}(\Gv)e^{i(\kv+\Gv)\cdot\rv},
+    \psi_{n\kv}(\rv)=\frac{1}{\sqrt{\Omega_\text{uc}}}\sum_{\Gv}C_{n\kv}(\Gv)e^{i(\kv+\Gv)\cdot\rv}.
     \label{eqn:c2_psiPW}
 \end{equation}
-où $\Omega_\text{BvK}=N_\text{uc}\Omega_\text{uc}$ est le volume du cristal. Au chapitre~\ref{chap:défauts}, les états de Bloch sont plutôt normalisés sur la cellule unitaire (le facteur $1/\sqrt{N_\text{uc}}$ est omis), convention dite intensive (voir la section~\ref{sec:M_détails}).
 La base d'ondes planes est un choix naturel pour les solides périodiques~\cite{carUnifiedApproachMolecular1985,martinElectronicStructureBasic2004} : elle est complète, orthonormée, et compatible avec les transformées de Fourier rapides (FFT, de l'anglais \textit{Fast Fourier Transform}) qui permettent de passer efficacement entre l'espace réel et l'espace réciproque. Le problème se réduit donc à la détermination des coefficients $C_{n\kv}(\Gv)$.
 
 Formellement, il faut un nombre infini d'ondes planes pour représenter la fonction d'onde. En pratique, nous tronquons la série en introduisant une énergie de coupure $E_\text{cut}$ telle que seules les ondes planes satisfaisant
@@ -245,17 +247,18 @@ Formellement, il faut un nombre infini d'ondes planes pour représenter la fonct
 \end{equation}
 sont retenues. Une valeur de $E_\text{cut}$ plus élevée améliore la précision des calculs au prix d'un coût numérique plus grand.
 
-Finalement, nous souhaitons que les fonctions d'onde soient orthonormales sur l'ensemble du système, soit le volume du cristal $\Omega_\text{BvK}$ 
+Avec la convention de l'équation~\eqref{eqn:c2_bloch_pt2}, les fonctions d'onde sont normalisées dans une cellule unitaire et non dans le cristal entier
 \begin{equation}
-    \int_{\Omega_\text{BvK}}d^3\rv\,\psi_{n\kv}^*(\rv)\psi_{n'\kv'}(\rv)=\delta_{nn'}\delta_{\kv\kv'}.
+    \int_{\Omega_\text{uc}}d^3\rv\,\psi_{n\kv}^*(\rv)\psi_{n'\kv'}(\rv)=\delta_{nn'}\delta_{\kv\kv'},\qquad\int_{\Omega_\text{BvK}}d^3\rv\,\psi_{n\kv}^*(\rv)\psi_{n'\kv'}(\rv)=N_\text{uc}\delta_{nn'}\delta_{\kv\kv'},
     \label{eqn:c2_psi_norm}
 \end{equation}
-En remplaçant les fonctions d'onde par leur expansion en ondes planes~\eqref{eqn:c2_psiPW}, nous pouvons montrer que les coefficients d'expansion satisfont la relation
+où $N_\text{uc}$ est le nombre de cellules unitaires dans le cristal et $\Omega_\text{BvK}=N_\text{uc}\Omega_\text{uc}$ est le volume de celui-ci. En remplaçant les fonctions d'onde par leur expansion en ondes planes~\eqref{eqn:c2_psiPW}, nous pouvons montrer que les coefficients d'expansion satisfont la relation
 \begin{equation}
     \sum_\Gv C_{n\kv}^*(\Gv)C_{n'\kv}(\Gv)=\delta_{nn'}.
     \label{eqn:c2_C_norm}
 \end{equation}
 
+\clearpage
 \bloc{Équations de Kohn-Sham dans la base d'ondes planes}
 
 Nous écrivons maintenant les équations de KS~\eqref{eqn:c2_KS} dans la base d'ondes planes. Le potentiel $V_\text{KS}(\rv)$, périodique, se développe lui aussi en série de Fourier sur les vecteurs $\Gv$ du réseau réciproque $V_\text{KS}(\rv)=\sum_\Gv \tilde V_\text{KS}(\Gv)e^{i\Gv\cdot\rv}$. En substituant ce développement et celui de la fonction d'onde en ondes planes~\eqref{eqn:c2_psiPW} dans l'équation de KS, puis en projetant sur une onde plane, nous obtenons
@@ -291,20 +294,22 @@ où $\tilde{\beta}_{i\ell m_\ell}^{(\alpha)}(\kv+\Gv)$ est la transformée de Fo
 
 La résolution de ces équations suit le cycle SCF illustré à la figure~\ref{fig:scf_PW} : à partir d'une densité d'essai $n_\text{in}(\rv)$, le potentiel de KS est construit dans l'espace réciproque, la matrice Hamiltonienne~\eqref{eqn:c2_HGG} est diagonalisée pour chaque $\kv$, la nouvelle densité $n_\text{out}(\rv)$ est calculée à partir des fonctions d'onde obtenues, puis les densités d'entrée et de sortie sont combinées via un schéma de \textit{mixing} pour former la densité de l'itération suivante. Le cycle est répété jusqu'à ce que la variation de la densité passe sous une tolérance spécifiée, après quoi les propriétés de l'état fondamental sont calculées. Les passages entre l'espace réel et l'espace réciproque s'effectuent efficacement par FFT.
 
-\newpage
+\bigskip
 \bloc{Algorithmes de diagonalisation itératifs}
 
 Une diagonalisation directe de la matrice Hamiltonienne coûte $\mathcal{O}(N_\text{PW}^3)$, prohibitif pour des dizaines de milliers d'ondes planes, alors que seules les $N_\text{bandes}\ll N_\text{PW}$ valeurs propres les plus basses sont nécessaires pour construire la densité. Les méthodes itératives comme le gradient conjugué~\cite{hestenesMethodsConjugateGradients} et les méthodes itératives de sous-espace comme l'algorithme de Davidson~\cite{davidsonIterativeCalculationFew1975}, que nous utilisons, ou LOBPCG~\cite{OptimalPreconditionedEigensolver} ramènent le coût computationnel à $\mathcal{O}(N_\text{PW}N_\text{bandes}^2)$, une réduction considérable de la complexité.  
 
+\bigskip
 \bloc{Facteur d'occupation}
 
 Pour un isolant ou un semi-conducteur, le facteur d'occupation est une fonction Heaviside $f_{n\kv}=\Theta(E_F-\varepsilon_{n\kv})$, où $E_F$ est l'énergie de Fermi. Pour un métal ou un semi-métal, le niveau de Fermi traverse des bandes et cette discontinuité déstabilise le cycle SCF : un petit déplacement de $E_F$ entre deux itérations fait basculer des états d'occupés à inoccupés et introduit des discontinuités dans la densité. Nous remplaçons alors la fonction de Heaviside par une occupation lissée $f_{n\kv}(\sigma)$, paramétrée par un facteur d'élargissement $\sigma$ qui joue un rôle analogue à la température. Cette température n'est pas physique et introduit une erreur dans l'énergie totale, en échange d'une convergence plus rapide. Plusieurs schémas existent : la distribution de Fermi-Dirac et l'occupation gaussienne avec une erreur en $\sigma^2$, l'occupation de Methfessel-Paxton~\cite{methfesselHighprecisionSamplingBrillouinzone1989} qui réduit l'erreur à l'ordre $\sigma^4$ par des corrections polynomiales au prix d'occupations pouvant sortir de l'intervalle physique $[0,1]$ et l'occupation de Marzari-Vanderbilt (MV) ou \textit{cold smearing}~\cite{marzariThermalContractionDisordering1999} dont l'erreur est comparable à Methfessel-Paxton tout en gardant les occupations dans $[0,1]$. Il n'y a pas de prescription \textit{a priori} pour choisir le schéma. Nous devons les tester et retenir celui qui converge le plus vite vers la limite $\sigma\to 0$, ce que nous faisons à la section~\ref{sec:electron_results}.
 
-
+\bigskip
 \bloc{Schéma de mixing}
 
 À chaque itération du cycle SCF, la densité de sortie $n_\text{out}$ diffère de la densité d'entrée et la réinjecter telle quelle mène typiquement à des oscillations ou à la divergence du cycle. Pour éviter cela, nous construisons la nouvelle densité d'entrée comme un combinaison de $n_\text{in}$ et $n_\text{out}$ contrôlée par un paramètre $\beta\in[0,1]$. Un petit $\beta$ stabilise le cycle mais ralentit la convergence. En outre, les métaux et les semi-métaux comme le graphène sont sujets au \textit{charge sloshing}, une instabilité où la densité des états proche du niveau de Fermi oscille d'une itération à l'autre au lieu de converger. Les schémas de Pulay~\cite{pulayConvergenceAccelerationIterative1980} et Broyden~\cite{Broyden1965Class}, qui exploitent l'historique des itérations, atténuent ce problème. Ainsi, nous utilisons le schéma de Broyden avec $\beta=0.3$, une valeur relativement petite, pour diminuer le \textit{charge sloshing}.
 
+\bigskip
 \bloc{Échantillonnage de la zone de Brillouin}
 
 La matrice Hamiltonienne doit en principe être construite à chaque point $\kv$ de la BZ. En pratique, la BZ est discrétisée sur une grille finie de $N_\kv$ points et les sommes sur la BZ, comme celle pour la densité~\eqref{eqn:c2_nKS}, deviennent des moyennes sur cette grille. Nous employons les grilles uniformes de Monkhorst et Pack~\cite{monkhorstSpecialPointsBrillouinzone1976}, centrées sur $\Gamma$ et caractérisée par leur nombre de points $N_i$ dans chaque direction du réseau réciproque. Enfin, les symétries du cristal permettent de restreindre les sommes à la zone de Brillouin irréductible (voir la section~\ref{sec:symétries}), ce qui réduit le coût d'une facteur de 12 pour le graphène.
@@ -314,8 +319,8 @@ Nous avons maintenant tous les ingrédients nécessaires pour comprendre et réa
 \subsection{Résultats pour le graphène}\label{sec:electron_results}
 
 Tous les calculs de cette section ont été réalisés avec \texttt{QuantumESPRESSO}~\cite{giannozziQUANTUMESPRESSOModular2009,giannozziAdvancedCapabilitiesMaterials2017,giannozziQuantumESPRESSOExascale2020} qui implémente la DFT dans une base d'ondes planes, avec la fonctionnelle PBE~\cite{perdewGeneralizedGradientApproximation1996a}, le pseudo-potentiel ONCV~\cite{hamannOptimizedNormconservingVanderbilt2013} \textit{stringent} pour le carbone de la bibliothèque PseudoDojo~\cite{vansettenPseudoDojoTrainingGrading2018}, l'algorithme de Davidson~\cite{davidsonIterativeCalculationFew1975}, schéma de \textit{mixing} de Broyden avec $\beta=0.3$ pour limiter le \textit{charge sloshing} et un seuil de convergence SCF de $10^{-14}$ Ry.  Ces paramètres de contrôle n'affectent que la vitesse et la stabilité du cycle SCF. Les autres paramètres physiques comme la coupure $E_\text{cut}$, la densité de la grille $\kv$, le schéma d'occupation et son élargissement $\sigma$, affectent directement l'énergie totale et se fixent par un test de convergence : nous balayons chaque paramètre et retenons la première valeur pour laquelle la variation de l'énergie totale passe sous 0.1 meV par atome, un seuil plus stricte que le meV par atome usuel, qui est adapté à une quantité aussi sensible que l'intensité Raman. En outre, nous allons voir que l'état fondamental électronique est le point de départ pour virtuellement tout ce qui suit dans le mémoire : il est d'une importance capitale que nous obtenons des quantités électroniques les plus précises possibles. Nous trouvons un paramètre de maille $a = 2.466$~\AA, obtenu par relaxation structurelle avec la fonctionnelle PBE. L'écart de 0.006\,\AA~à la valeur expérimentale de 2.46\,\AA~\cite{bosakElasticitySinglecrystallineGraphite2007a} est typique de cette fonctionnelle~\cite{mounetFirstprinciplesDeterminationStructural2005a}.
+\clearpage
 
-Les tests de convergence de ces paramètres sont rapportés à l'annexe~\ref{annexe:théorie} (figure~\ref{fig:convergence_dft}). En résumé, nos paramètres optimaux pour les calculs DFT de l'état fondamental électronique sont : $E_\text{cut}=100$~Ry, une grille $27\times 27$ centrée sur $\Gamma$ et l'occupation de Marzari-Vanderbilt avec $\sigma=0.01$~Ry.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_ebands_edos.pdf}
@@ -323,9 +328,11 @@ Les tests de convergence de ces paramètres sont rapportés à l'annexe~\ref{ann
     \label{fig:resultats_electrons}
 \end{figure}
 
+Les tests de convergence de ces paramètres sont rapportés à l'annexe~\ref{annexe:théorie} (figure~\ref{fig:convergence_dft}). En résumé, nos paramètres optimaux pour les calculs DFT de l'état fondamental électronique sont : $E_\text{cut}=100$~Ry, une grille $27\times 27$ centrée sur $\Gamma$ et l'occupation de Marzari-Vanderbilt avec $\sigma=0.01$~Ry.
+
 Avec ces paramètres, la densité est convergée en suivant le cycle de la figure~\ref{fig:scf_PW}, puis l'Hamiltonien de KS est diagonalisé une dernière fois sur une grille ou un chemin arbitraire de l'espace $\kv$ pour obtenir $\varepsilon_{n\kv}$ et $\psi_{n\kv}$. La structure de bandes le long du chemin $\Gamma\to K\to M\to \Gamma$ (figure~\ref{fig:resultats_electrons} (a)) montre les trois bandes $\sigma$ ($sp^2$) les plus basses et la bande $\pi$ ($p_z$) qui touche linéairement la bande $\pi^*$ au point $K$ : c'est le cône de Dirac. La pente de cette dispersion linéaire définit la vitesse de Fermi : notre calcul donne $v_F=5.46$ eV\,\AA~$\approx 8.3\times 10^5$ m/s qui témoigne de la grande mobilité des électrons dans le graphène et c'est une valeur que nous réutilisons dans ce mémoire. La densité d'états
 \begin{equation}
-    \rho(\varepsilon) = \sum_{n\kv}\delta(\varepsilon-\varepsilon_{n\kv}),\label{eqn:dos}
+    \rho(\varepsilon) = \frac{1}{N_\kv}\sum_{n\kv}\delta(\varepsilon-\varepsilon_{n\kv}),\label{eqn:dos}
 \end{equation}
 où la fonction delta est remplacée numériquement par une gaussienne de largeur $\sigma=0.01$ Ry, est calculée sur une grille plus dense de $96\times 96$ (figure~\ref{fig:resultats_electrons} (b)). Elle s'annule à l'énergie de Fermi : le graphène est bien un semi-métal à gap nul, mais conducteur à température finie car n'importe quelle agitation thermique, aussi faible soit-elle, est suffisante pour peupler la bande $\pi^*$. Les singularités de van Hove~\cite{dresselhausPhysicalPropertiesCarbon1998,BassaniParraviciniElectronic} au point de selle à $M$ sont bien reproduites. Ces résultats sont en excellent accord avec les calculs DFT-PBE de la littérature~\cite{castronetoElectronicPropertiesGraphene2009}.
 
@@ -382,6 +389,7 @@ où la contribution ionique est la dérivée seconde de l'énergie d'interaction
 \end{equation}
 où $n(\rv)$ est la densité pour le système non perturbé. Calculer $\widetilde{C}^\text{el}$ requiert donc de connaître la correction au premier ordre à la densité $\Delta_{\qv\alpha\mu}n$, qui s'obtient à partir de la correction de premier ordre aux fonctions d'onde $\Delta_{\qv\alpha\mu}\psi_{n\kv}$. Le fait que les IFC,  dérivées secondes de l'énergie, ne nécessitent que des corrections au premier ordre aux fonctions d'onde est une instance du théorème $2n+1$~\cite{dalgarnoPerturbationCalculationProperties1958,gonzeDensityfunctionalApproachNonlinearresponse1989,gonzeAdiabaticDensityfunctionalPerturbation1995,baroniPhononsRelatedCrystal2001a}. 
 
+\bigskip
 \bloc{Résolution des équations de la DFPT}
 
 Le déplacement d'un ion brise la symétrie de translation du solide, rendant le théorème de Bloch invalide. La DFPT contourne cette difficulté en exploitant le caractère ondulatoire des vibrations. Pour $p$ atomes dans la cellule unitaire, nous appliquons $3p$ perturbations de la forme
@@ -409,7 +417,7 @@ L'avantage décisif de la DFPT est que $\ket{\Delta_{\qv\alpha\mu}\psi_{n\kv}}$ 
 \end{equation}
 La correction à la densité est donnée par
 \begin{equation}
-    \Delta_{\qv\alpha\mu} n(\rv) = 4\sum_{n\kv}f_{n\kv}\psi^*_{n\kv}(\rv)\Delta_{\qv\alpha\mu}\psi_{n\kv}(\rv),
+    \Delta_{\qv\alpha\mu} n(\rv) = \frac{4}{N_\kv}\sum_{n\kv}f_{n\kv}\psi^*_{n\kv}(\rv)\Delta_{\qv\alpha\mu}\psi_{n\kv}(\rv),
     \label{eqn:deltan}
 \end{equation}
 une quantité complexe pour $\qv\neq\mathbf{0}$ (la partie réelle n'est à prendre qu'à $\qv=\mathbf{0}$). Ces trois équations~\eqref{eqn:Sternheimer_projetée}--\eqref{eqn:deltan} sont à résoudre de manière autocohérente : en partant des quantités non perturbées $\ket{\psi_{n\kv}}$ et $n(\rv)$, nous construisons $\Delta_{\qv\alpha\mu}\hat{H}_\text{KS}$, nous résolvons l'équation de Sternheimer projetée pour $\ket{\Delta_{\qv\alpha\mu}\psi_{n\kv}}$ et nous mettons à jour $\Delta_{\qv\alpha\mu}n(\rv)$. Ce processus est itéré jusqu'à convergence et est illustré à la figure~\ref{fig:scf_phonon}.
@@ -446,7 +454,7 @@ Les calculs de cette section ont été réalisés avec \texttt{QuantumESPRESSO} 
 
 La densité d'états phononique est définie comme son homologue électronique~\eqref{eqn:dos}
 \begin{equation}
-    \rho(\omega) = \sum_{\nu\qv}\delta(\omega-\omega_{\nu\qv}),
+    \rho(\omega) = \frac{1}{N_\qv}\sum_{\nu\qv}\delta(\omega-\omega_{\nu\qv}),
 \end{equation}
 et est calculée sur une grille $\qv$ de $500\times 500$ points et avec un élargissement gaussien de $3$ cm$^{-1}$ pour la fonction delta (figure~\ref{fig:phonon_results} (b)). Ses pics de van Hove, aux extrema des branches, se lisent sur le panneau (a) : à 468 cm$^{-1}$ (au bord de la branche ZO), à 1394 cm$^{-1}$ (les modes LO et TO au point $M$) et à 1602 cm$^{-1}$. Le maximum de la branche LO dépasse la fréquence de $\Gamma$ par le \textit{overbending} caractéristique du graphène~\cite{mohrPhononDispersionGraphite2007}.
 
@@ -500,6 +508,7 @@ où $\bv$ relie $\kv$ à ses tous voisins sur la grille et $u_{n\kv}$ est la par
 \end{equation}
 dont la décomposition en valeurs singulières (SVD) fournit la jauge initiale. En pratique, le code DFT calcule les matrices $M^{(\kv,\bv)}$ et $A^{(\kv)}$ après quoi plus aucune interaction avec ce code n'est requise. Ensuite, un autre code spécialisé tel que \texttt{Wannier90}~\cite{mostofiWannier90ToolObtaining2008,mostofiUpdatedVersionWannier902014,pizziWannier90CommunityCode2020} minimise $\widetilde{\Omega}$ par descente de gradient dans l'espace des matrices unitaires pour obtenir le $U^{(\kv)}$ qui maximise la localisation des WF dans l'espace réel. Le choix des fonctions d'essai $g_n$ requiert une connaissance \textit{a priori} de la physique du système : pour le graphène, les MLWF pour les 3 bandes $\sigma$ requièrent des fonctions d'essai de type $sp^2$, tandis que les bandes $\pi$ et $\pi^*$ requièrent des orbitales $p_z$.
 
+\bigskip
 \bloc{Bandes enchevêtrées}
 
 Dans le cas d'un métal ou d'un semi-métal, les bandes d'intérêt (proches du niveau de Fermi) croisent d'autres bandes et il est impossible d'isoler proprement un sous-espace de $J$ bandes pour tous les $\kv$. Ceci est particulièrement important pour le graphène, dont la bande de conduction au niveau de Fermi ($\pi^*$) est enchevêtrée avec plusieurs bandes de plus haute énergie qui ne nous intéressent pas (voir la structure de bandes à la figure~\ref{fig:resultats_electrons} (a)). Pour pallier ce problème, Souza, Marzari et Vanderbilt~\cite{souzaMaximallylocalizedWannierFunctions2001} ont généralisé la procédure au cas de bandes enchevêtrées en introduisant une étape préalable de désenchevêtrement (\textit{disentanglement}).
@@ -559,7 +568,7 @@ où $\mathbf{e}_{\lambda\qv}$ est le vecteur de polarisation du photon $(\lambda
 
 Le champ électromagnétique se couple aux particules chargées d'un système, tels les électrons dans un solide. La prescription canonique est le couplage minimal qui revient à faire le remplacement $\hat{\mathbf{p}}\rightarrow \hat{\mathbf{p}}-e\hat{\mathbf{A}}$ dans l'Hamiltonien électronique. Au premier ordre en $\hat{\mathbf{A}}$, cela donne
 \begin{equation}
-    \hat{H}_\text{eem}=-e\hat{\mathbf{A}}\cdot\hat{\mathbf{v}}+\mathcal{O}(\hat{\bm{A}}^2),
+    \hat{H}_\text{eem}=-e\hat{\mathbf{A}}\cdot\hat{\mathbf{v}}+\mathcal{O}(\hat{\mathbf{A}}^2),
 \end{equation}
 où $\hat{\mathbf{v}}$ est l'opérateur vitesse. Pour un potentiel local, $\hat{\mathbf{v}}=\hat{\mathbf{p}}/m_e$, et nous retrouvons la forme usuelle en $\hat{\mathbf{A}}\cdot\hat{\mathbf{p}}$. Pour un potentiel avec une partie non locale, comme à la section~\ref{sec:PP}, celle-ci se couple aussi au champ et nous devons ajouter le commutateur $i[\hat{V}_\text{NL},\hat{\rv}]/\hbar$ à $\hat{\mathbf{v}}$~\cite{ismail-beigiCouplingNonlocalPotentials2001}. Nous négligeons les termes d'ordres $\hat{\mathbf{A}}^2$ car ils sont faibles aux intensités lumineuses utilisées en spectroscopie Raman et font intervenir la création/anihilation de deux photons (équation~\eqref{eqn:c2_A}), processus absents de la diffusion Raman. L'Hamiltonien de couplage en deuxième quantification est
 \begin{equation}
@@ -583,7 +592,7 @@ Dans la base des fonctions de Wannier, l'opérateur vitesse s'obtient de l'Hamil
 \end{equation}
 où $H(\kv)$ est l'Hamiltonien interpolé par fonctions de Wannier, $\partial H/\partial k_\mu$ est sa dérivée par rapport à la composante $\mu$ du vecteur $\kv$. Cette équation inclut automatiquement le commutateur de la partie non locale du pseudo-potentiel. La quantité $\bm{\mathcal{A}}$ est la connexion de Berry 
 \begin{equation}
-    \mathcal{A}_\mu(\kv) = \sum_\Rv e^{i\kv\cdot\Rv}r_\mu(\Rv),\qquad [r_\mu(\Rv)]_{ij}=\bra{i\bm 0}\hat{r}_\mu\ket{j\Rv}.
+    \mathcal{A}_\mu(\kv) = \sum_\Rv e^{i\kv\cdot\Rv}r_\mu(\Rv),\qquad [r_\mu(\Rv)]_{ij}=\matrixel{i\bm 0}{\hat{r}_\mu}{j\Rv}.
 \end{equation}
 Ici, les éléments $[r_\mu(\Rv)]_{ij}$ sont les éléments de matrice de l'opérateur position pris entre deux fonctions de Wannier, que \texttt{Wannier90} fournit avec $H(\Rv)$. Le premier terme est la dérivée des bandes usuelle pour la vitesse et le seconde est le terme de connexion de Berry. Ce deuxième terme est nul sur la diagonal et ne touche que les éléments interbandes, dont nous aurons besoin pour les intensité Raman du chapitre~\ref{chap:Raman}.
 
@@ -600,7 +609,7 @@ Nous évaluons l'opérateur vitesse avec les fonctions de Wannier qui seront uti
     \label{fig:op_vitesse}
 \end{figure}
 
-Le panneau (a) montre l'opérateur vitesse interbande $|\hbar \bm v_{\pi^*\pi}|$ sur l'anneau résonant d'un laser de $532$~nm, soit les états $\kv$ autour de $K$ où $\varepsilon_{\pi^*\kv}-\varepsilon_{\pi\kv}=2.33$~eV, contre les éléments de matrice $\bra{\psi_{\pi^*\kv}}\hat{\mathbf{v}}\ket{\psi_{\pi\kv}}$ évalués directement sur les fonctions d'ondes par \texttt{bands.x} de \texttt{QuantumESPRESSO}. commutateur non local compris (cercles, 48 points), pour les trois variantes. La vitesse complète les reproduit à $0.04~\%$, les centres seuls sont uniformément $2.5~\%$ trop bas, et sans connexion de Berry l'erreur atteint $-42~\%$ à $+28~\%$ et dépend de l'angle sur l'anneau.
+Le panneau (a) montre, pour les trois variantes, l'opérateur vitesse interbande $|\hbar \bm v_{\pi^*\pi}|$ sur l'anneau résonant d'un laser de $532$~nm, soit les états $\kv$ autour de $K$ où $\varepsilon_{\pi^*\kv}-\varepsilon_{\pi\kv}=2.33$~eV, contre les éléments de matrice $\matrixel{\psi_{\pi^*\kv}}{\hat{\mathbf{v}}}{\psi_{\pi\kv}}$ évalués directement sur les fonctions d'ondes par \texttt{bands.x} de \texttt{QuantumESPRESSO}, commutateur non local compris (cercles, 48 points). La vitesse complète les reproduit à $0.04~\%$, les centres seuls sont uniformément $2.5~\%$ trop bas, et sans connexion de Berry l'erreur atteint $-42~\%$ à $+28~\%$ et dépend de l'angle sur l'anneau.
 
 Pour s'assurer que l'opérateur vitesse reproduit bien les quantités physiques qui en découlent, nous l'utilisons pour calculer la conductivité optique du graphène. Cette dernière s'obtient par la formule de Kubo
 \begin{equation}
@@ -625,15 +634,15 @@ Les énergies et les fonctions d'onde proviennent de la DFT introduite dans sect
 \begin{equation}
     \begin{split}
     \hat{H}_\text{int} &= \underbrace{\sum_{mn\lambda}\sum_\kv g_{mn}^{(\lambda)}(\kv)\hat{c}^\dag_{m\kv}\hat{c}_{n\kv}(\hat{a}_\lambda+\hat{a}_\lambda^\dag)}_{\hat{H}_\text{eem}}\\
-    &+ \underbrace{\sum_{mn}\sum_{\kv\kv'}M_{mn}(\kv',\kv)\hat{c}^\dag_{m\kv'}\hat{c}_{n\kv}}_{\hat{H}_\text{ed}}\\
+    &+ \underbrace{\frac{1}{N_\text{uc}}\sum_{mn}\sum_{\kv\kv'}M_{mn}(\kv',\kv)\hat{c}^\dag_{m\kv'}\hat{c}_{n\kv}}_{\hat{H}_\text{ed}}\\
     &+ \underbrace{\sqrt{\frac{1}{N_\text{uc}}}\sum_{mn\nu}\sum_{\kv\qv}g_{mn}^{(\nu)}(\kv,\qv)\hat{c}^\dag_{m\kv+\qv}\hat{c}_{n\kv}\left(\hat{b}_{\nu\qv}+\hat{b}^\dag_{\nu-\qv}\right)}_{\hat{H}_\text{ep}},
     \end{split}
     \label{eqn:H_int}
 \end{equation}
-qui contient, dans l'ordre, le couplage entre les photons et les électrons du système ($\hat{H}_\text{eem}$), le couplage entre les électrons et les défauts du système ($\hat{H}_\text{ed}$), puis le couplage entre les électrons et les phonons ($\hat{H}_\text{ep}$). Les deux derniers termes sont les ingrédients que ce mémoire calcule : le couplage électron-défaut $M_{mn}(\kv',\kv)$ est construit à partir de zéro au chapitre~\ref{chap:défauts} et constitue la contribution originale de ce travail, tandis que le couplage électron-phonon $g_{mn}^{(\nu)}(\kv,\qv)$ est obtenu par les méthodes éprouvées du chapitre~\ref{chap:eph}.
+qui contient, dans l'ordre, le couplage entre les photons et les électrons du système ($\hat{H}_\text{eem}$), le couplage entre les électrons et les défauts du système ($\hat{H}_\text{ed}$), puis le couplage entre les électrons et les phonons ($\hat{H}_\text{ep}$). Ces trois couplages sont les ingrédients que ce mémoire calcule : le couplage électron-photon $g^{(\lambda)}_{mn}(\kv)$ vient d'être obtenu et validé à la section~\ref{sec:photon} ; le couplage électron-défaut $M_{mn}(\kv',\kv)$ est construit à partir de zéro au chapitre~\ref{chap:défauts} et constitue la contribution originale de ce travail ; le couplage électron-phonon $g_{mn}^{(\nu)}(\kv,\qv)$ est obtenu par les méthodes éprouvées du chapitre~\ref{chap:eph}.
 
 \section{Conclusion}
 
-Ce chapitre était un chapitre d'outils nécessaires à la compréhension et au développement du c\oe ur de ce mémoire. La DFT nous a donné l'état fondamental électronique du graphène parfait, avec des paramètres convergés à 0.1 meV par atome, et la structure de bandes qui en découle : les bandes $\sigma$, $\pi$ et $\pi^*$ ainsi que le cône de Dirac. La DFPT nous a donné les phonons, caractérisés par leurs fréquences et leur polarisation. Les fonctions de Wannier nous ont donné le moyen de porter tout cela, et bien plus, sur les grilles ultra-denses de plusieurs centaines de milliers de points $\kv$ et $\qv$ qu'exige la diffusion Raman résonante. Enfin, nous avons écrit le couplage entre la lumière incidente et les électrons, dont l'évaluation à l'aide des fonctions de Wannier est explicitée mais laissée hors du cadre de ce mémoire.
+Ce chapitre était un chapitre d'outils nécessaires à la compréhension et au développement du c\oe ur de ce mémoire. La DFT nous a donné l'état fondamental électronique du graphène parfait, avec des paramètres convergés à 0.1 meV par atome, et la structure de bandes qui en découle : les bandes $\sigma$, $\pi$ et $\pi^*$ ainsi que le cône de Dirac. La DFPT nous a donné les phonons, caractérisés par leurs fréquences et leur polarisation. Les fonctions de Wannier nous ont donné le moyen de porter tout cela, et bien plus, sur les grilles ultra-denses de plusieurs centaines de milliers de points $\kv$ et $\qv$ qu'exige la diffusion Raman résonante. Enfin, nous avons écrit le couplage entre la lumière incidente et les électrons, et nous l'avons évalué par interpolation de Wannier de l'opérateur vitesse, connexion de Berry comprise, en le validant contre un calcul DFT direct et contre \texttt{postw90}.
 
 Le prochain chapitre assemble tous ces outils en une théorie quantique de la spectroscopie Raman : à partir de la règle d'or de Fermi et des diagrammes de Feynman construit sur $\hat{H}_\text{int}$, il établit les équations qui déterminent les amplitudes de diffusion Raman au premier et deuxième ordre et dresse la liste exacte des quantités \textit{ab initio} qu'elles requièrent. Les chapitres~\ref{chap:défauts} à~\ref{chap:eph} les calculent : les deux premiers sont le c\oe ur de ce mémoire et construisent le couplage électron-défaut à partir des premiers principes, l'interpolent par fonctions de Wannier et en extraient les observables physiques requis, tandis que le dernier applique la machinerie déjà établie du couplage électron-phonon au graphène.

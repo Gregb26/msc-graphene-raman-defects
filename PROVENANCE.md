@@ -127,7 +127,7 @@ régénérés avec ces étiquettes** (à faire sur le Mac : `python scripts/make
 
 **Régénération du 2026-10-07 (Mac, `.venv`)** : `make_all_figures.py --only kaasbjerg,controles,defauts` après `$c_i$ → `$c$` dans `make_figures_kaasbjerg.py` et retrait du bloc `fig_level2` de `make_figures_defaut.py` ; dix PDF copiés dans `memoire/figures/` (`fig_kaasbjerg_{superposition,spectral_GKM,sigma_K,dos_c,sensibilites,plateau_ws}`, `fig_folded_vs_R7`, `fig_resonance_vs_nkint_plateau`, `fig_rcut_aligned`, `fig_convergence`) ; étiquettes « brut » / « aligné » désormais dans les PDF installés. La VM Linux de l'appareil ne peut plus tracer (`text.usetex` exige `cm-super`, absent, CTAN inaccessible) : recette sur le Mac seulement.
 
-## 1. Figures incluses dans le mémoire (32 ; ch. 4 → ch. M `défauts.tex` et ch. T `défauts2.tex` depuis la scission du 2026-10-04, annexe D = `annexes/Convergence et paramètres de calcul.tex`, lignes du 2026-10-05)
+## 1. Figures incluses dans le mémoire (33 ; ch. 4 → ch. M `défauts.tex` et ch. T `défauts2.tex` depuis la scission du 2026-10-04, annexe D = `annexes/Convergence et paramètres de calcul.tex`, lignes du 2026-10-05)
 
 État par rapport à `memoire/figures/` (comparaison au pixel, 100 ppp, contre les PDF du tag) :
 **même contenu** = seules les métadonnées diffèrent, rien à faire ; **R10** = le mémoire a la version R6, la
@@ -140,6 +140,7 @@ mémoire (taille et mise en page changent), à valider.
 | `fig:convergence_dft` | `fig_electron_convergence.pdf` | annexe A (`sec:annexe_conv_dft`, depuis le 2026-10-07 ; corps : renvoi théorie:318) | `make_figures_electron.py` | `donnees/electron/{ecut,ecut_cross,kpoint,smearing}.dat` | ch. 2 refaite |
 | `fig:resultats_electrons` | `fig_ebands_edos.pdf` | théorie:326 | `make_figures_electron.py` | `donnees/electron/{ebands,edos}.dat` | ch. 2 refaite |
 | `fig:phonon_results` | `fig_epw_phonons.pdf` | théorie:447 | `make_figures_epw.py` (variante : `make_figures_phonons.py` → `fig_phfreq_phdos`, données `donnees/phonon/`) | `donnees/epw/{validation,phdos}_24k24q_mv0.02.npz` | même contenu |
+| `fig:op_vitesse` | `fig_em_coupling.pdf` | théorie:598 (§2.5.4, incluse le 2026-10-07) | `make_figures_em.py` | `donnees/electron_photon/` : `em3_ring_2p33.npz`, `em2_A.npz` (DFT directe, `bands.x` `lp=.true.`), `em_sigma_{full,centres_only,no_berry}_N1200_eta0.04.npz`, `em2_postw90_sigma_ti.npz`, `em_scalars.json` | installée (PDF du 2026-10-01) |
 | `fig:Ved_zoom` | `fig_Ved_zoom.pdf` | défauts:307 | `make_figures_defaut.py` | `donnees/M2_plateau/ved_analysis.npz` | même contenu |
 | `fig:Ved` | `fig_Ved.pdf` | défauts:322 | `make_figures_defaut.py` | `ved_analysis.npz` + C_N de `config/production.json` | **R10** |
 | `fig:M_scaling` | `fig_M_scaling_final.pdf` | défauts:370 | `make_figures_defaut.py` | `M_analysis.npz` | **R10** |
@@ -182,8 +183,8 @@ de date, d'où des PDF reproductibles octet par octet sur une même machine.
 
 | Figure | Pour | Producteur | Données |
 |---|---|---|---|
-| `fig_em_coupling` | §2.5 électron-photon | `make_figures_em.py` | `donnees/electron_photon/` |
-| table `em_table` (pas une figure) | §2.5 électron-photon | — (produite dans GR par `campagnes/EM/M4_sigma/make_table.py` et `EM3/make_em3_data.py`) | `donnees/electron_photon/em_table.{csv,tex}`, `em_ring_stats.json`, `em3_table.{csv,md}` |
+| `fig_em_coupling` incluse le 2026-10-07 comme `fig:op_vitesse` (voir §1). | — | — | — |
+| table `em_table` (pas une figure ; non incluse, décision du 2026-10-07 : les chiffres clés sont dans le texte de §2.5.4) | §2.5 électron-photon | — (produite dans GR par `campagnes/EM/M4_sigma/make_table.py` et `EM3/make_em3_data.py`) | `donnees/electron_photon/em_table.{csv,tex}`, `em_ring_stats.json`, `em3_table.{csv,md}` |
 | `fig_M_map_final` retirée le 2026-10-05 (figure supprimée du chapitre, décision G du 2026-10-04 ; bloc retiré de `make_figures_defaut.py`, PDF/PNG supprimés) ; tous les contrôles du ch. 4 retenus le 2026-10-01 sont installés le 2026-10-05 (voir §1). | — | — | — |
 
 ---
@@ -224,7 +225,7 @@ Les sources des quatre tables du ch. 5 sont déduites des noms de fichiers ; l'a
 | Chapitre | Nb. | Provenance | Remarque |
 |---|---|---|---|
 | Introduction | 2 | lit. (l. 13 : 130 GPa, 97.7 %) | citées, pas de données |
-| Ch. 2 théorie | 25 | §2.2 : 2.466 Å, 5.46 eV, convergence 0.1 meV → `donnees/electron/`. §2.3 : 1550.5 et 1583 cm⁻¹, écart 2 %, 468/1394/1602 cm⁻¹ → `donnees/epw/phdos_24k24q_mv0.02.npz`, `validation_24k24q_mv0.02.npz` et lit. | 100 Ry et 0.01 Ry sont des paramètres, voir `tab:param_dft` |
+| Ch. 2 théorie | 25 + §2.5 (2026-10-07) | §2.2 : 2.466 Å, 5.46 eV, convergence 0.1 meV → `donnees/electron/`. §2.3 : 1550.5 et 1583 cm⁻¹, écart 2 %, 468/1394/1602 cm⁻¹ → `donnees/epw/phdos_24k24q_mv0.02.npz`, `validation_24k24q_mv0.02.npz` et lit. §2.5.4 : v_F = 8.31×10⁵ m/s (écart 10⁻⁴ à la DFT), ħv_F = 5.47 eV Å, anneau 2.33 eV : 0.04 % / 2.5 % / −42 à +28 %, σ : 5×10⁻⁴ σ₀ contre `postw90`, ħω_froz = 4.96 eV → `donnees/electron_photon/em3_table.md`, `em_scalars.json` | 100 Ry et 0.01 Ry sont des paramètres, voir `tab:param_dft` |
 | Ch. 3 Raman | 8 | lit. (positions des pics G, D, 2D… ; 10 nm) | aucune donnée |
 | Ch. M et T (défauts, défauts2) | 111 (v1) | `donnees/ch4/table_v1_final.md` (source des valeurs finales, avec fichier et clé de chaque valeur) ; valeurs absentes de la table (grille interne, ordres de grandeur de `fig:Ved` et `fig:M_locality`, fraction locale et A_cell·M̄(K), dispersion de max\|M\|) : `donnees/ch4/chiffres_complementaires.{md,csv}`, produit par `scripts/chiffres_ch4.py` (propre à ce dépôt) ; appariement dans `donnees/ch4/defauts_nombres.md` | ch. M réécrit par G (2026-10-01 → 04) et ch. T par C (2026-10-05) sur les valeurs R10 ; `defauts_nombres.md` (appariement v1) est périmé et ne se régénère que dans GR : à refaire au verrouillage |
 | Ch. 5 EPW | 163 (2026-10-07) | `donnees/epw/eph_nombres.md` (appariement ligne par ligne, produit par `scripts/chiffres_ch5.py` : `donnees/epw/*.npz`, notes de campagne, `config/production.json`) ; Γ^ed/Γ^ep (§5.3.5, l. 273) → `donnees/M2_plateau/ed_vs_ep_24k24q_mv0.02.npz` (R10, mis à jour le 2026-10-07) | 158 appariés ; non appariés : Lazzeri et al. (lit.), l'estimation $N_\kv\gg2.5\times10^4$, le plancher de $g$ (texte $5\times10^{-4}$ eV, données $5.5\times10^{-4}$) |
@@ -254,7 +255,7 @@ Liste détaillée par ligne (hors ch. 4) : annexe A.
 | `ch2_electrons/convergence/{ecut,ecut_cross,kpoint,smearing}/` | énergie totale en fonction de la coupure (grilles 12×12 et 24×24), de la grille **k** (9 à 42) et de l'élargissement (grille 27×27) | `donnees/electron/{ecut,ecut_cross,kpoint,smearing}.dat` |
 | `ch2_electrons/bandes_dos/` | SCF 27×27, NSCF 96×96, bandes, densité d'états | `donnees/electron/{ebands,edos}.dat` |
 | `ch2_phonons/` | SCF 24×24, DFPT 24×24, `q2r`, `matdyn` (dispersion et DOS) | `donnees/phonon/` |
-| `ch2_electron_photon/{EM1_tb,EM2}/` | éléments de position de Wannier (27×27) ; bandes DFT aux anneaux, `postw90` | `donnees/electron_photon/` |
+| `ch2_electron_photon/{EM1_tb,EM2}/` | EM1 : éléments de position de Wannier `r(R)` (27×27, `restart = plot`) ; EM2 : `pw.x bands` sur les 84 **k** des trois anneaux puis `bands.x` avec `lp = .true.` (⟨π*\|**v**\|π⟩, commutateur [V_NL, r] compris, `PP/src/compute_ppsi.f90`) → `em2_A.npz` ; `postw90` `kubo` (σ(ω), `transl_inv`) | `donnees/electron_photon/` |
 | `ch4_supercellules/<N>x<N>/{pristine,defective}/` | SCF au point Γ et `pp.x`, 13 tailles (5 à 12, 15, 18, 21, 24, 27) | potentiel de défaut, constantes d'alignement (`donnees/M2_plateau/`, `donnees/alignement/`) |
 | `ch4_mailles/<N>x<N>/` | cellule unitaire sur la grille complète : SCF, NSCF, `pw2wannier90`, Wannier90 ; grilles 5 à 12 et 24, 25, 27, 28, 32 | matrices *M* ; `donnees/wannier/27x27/wannier.wout` |
 | `ch5_epw/24k-24q_mv0.02/` | chaîne EPW de production (0,02 Ry) : phonons, `epw1`, auto-énergies, contrôles de *g* | `donnees/epw/*_mv0.02*.npz` |

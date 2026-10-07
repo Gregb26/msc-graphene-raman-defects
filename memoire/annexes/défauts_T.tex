@@ -234,13 +234,13 @@ ou encore, avec la forme explicite~\eqref{eqn:G0} des fonctions de Green du syst
     \label{eqn:G_T_explicite}
 \end{equation}
 
-Enfin, les fonctions de Matsubara, définies aux fréquences imaginaires $i\omega_j$, ne sont pas directement les quantités mesurées : les fonctions de réponse physiques sont les fonctions dites \emph{retardées}, définies sur l'axe des fréquences réelles. Les deux sont toutefois reliées par une continuation analytique. La fonction de Matsubara $\mathcal{G}(i\omega_j)$ et la fonction retardée $\mathcal{G}^R(\omega)$ sont les restrictions d'une même fonction $\mathcal{G}(z)$, analytique dans le demi-plan complexe supérieur, aux points $z=i\omega_j$ et $z=\omega+i0^+$ respectivement. Sous la condition $\mathcal{G}(z)\to 0$ lorsque $|z|\to \infty$ (le théorème de Baym-Mermin~\cite{baymDeterminationThermodynamicGreens1961}) cette continuation analytique est unique. Comme nous disposons ici d'expressions fermées dans l'espace des fréquences de Matsubara, elle se réduit à la simple substitution
+Enfin, les fonctions de Matsubara, définies aux fréquences imaginaires $i\omega_j$, ne sont pas directement les quantités mesurées : les fonctions de réponse physiques sont les fonctions dites \emph{retardées}, définies sur l'axe des fréquences réelles. Les deux sont toutefois reliées par une continuation analytique. La fonction de Matsubara $\mathcal{G}(i\omega_j)$ et la fonction retardée $\mathcal{G}^R(\varepsilon)$ sont les restrictions d'une même fonction $\mathcal{G}(z)$, analytique dans le demi-plan complexe supérieur, aux points $z=i\omega_j$ et $z=\varepsilon+i0^+$ respectivement. Sous la condition $\mathcal{G}(z)\to 0$ lorsque $|z|\to \infty$ (le théorème de Baym-Mermin~\cite{baymDeterminationThermodynamicGreens1961}) cette continuation analytique est unique. Comme nous disposons ici d'expressions fermées dans l'espace des fréquences de Matsubara, elle se réduit à la simple substitution
 \begin{equation}
-    i\omega_j\to \omega+i\eta, \quad\eta \to 0^+,
+    i\omega_j\to \varepsilon+i\eta, \quad\eta \to 0^+,
 \end{equation}
-qui produit les quantités retardées $\mathcal{G}^R(\omega)$ et $T^R(\omega)$. Dans tout le mémoire, les quantités exprimées dans l'espace des fréquences réelles sont implicitement retardées ; l'exposant $R$ est donc désormais omis.
+qui produit les quantités retardées $\mathcal{G}^R(\varepsilon)$ et $T^R(\varepsilon)$. Dans tout le mémoire, les quantités exprimées dans l'espace des fréquences réelles sont implicitement retardées ; l'exposant $R$ est donc désormais omis.
 
-Il convient de souligner que cette continuation analytique est triviale ici, alors qu'elle constitue généralement un problème numérique délicat. En effet, lorsque la fonction de Green n'est connue que numériquement, sur un ensemble fini de fréquences de Matsubara, la continuation analytique vers l'axe réel est un problème mal posé. L'information spectrale est exponentiellement atténuée sur l'axe imaginaire, de sorte qu'un faible bruit sur les données engendre de grandes incertitudes sur $\mathcal{G}(\omega)$. Des méthodes de régularisation telles que les approximants de Padé~\cite{vidbergSolvingEliashbergEquations1977} ou l'entropie maximale~\cite{jarrellBayesianInferenceAnalytic1996} sont alors nécessaires pour obtenir une fonction retardée physiquement admissible. Heureusement, rien de tel n'est requis ici, puisque nous disposons d'expressions analytiques fermées pour la fonction de Green~\eqref{eqn:G_T_explicite} et la matrice $T$~\eqref{eqn:T_fermee}.
+Il convient de souligner que cette continuation analytique est triviale ici, alors qu'elle constitue généralement un problème numérique délicat. En effet, lorsque la fonction de Green n'est connue que numériquement, sur un ensemble fini de fréquences de Matsubara, la continuation analytique vers l'axe réel est un problème mal posé. L'information spectrale est exponentiellement atténuée sur l'axe imaginaire, de sorte qu'un faible bruit sur les données engendre de grandes incertitudes sur $\mathcal{G}(\varepsilon)$. Des méthodes de régularisation telles que les approximants de Padé~\cite{vidbergSolvingEliashbergEquations1977} ou l'entropie maximale~\cite{jarrellBayesianInferenceAnalytic1996} sont alors nécessaires pour obtenir une fonction retardée physiquement admissible. Heureusement, rien de tel n'est requis ici, puisque nous disposons d'expressions analytiques fermées pour la fonction de Green~\eqref{eqn:G_T_explicite} et la matrice $T$~\eqref{eqn:T_fermee}.
 
 \section{Convergence et vérifications de la matrice $T$}\label{sec:annexe_T_tests}
 
@@ -256,7 +256,6 @@ La chaîne repliée dans la super-cellule donne une seconde lecture de cette dé
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_folded_vs_R7.pdf}
-    % À REVOIR : légende provisoire du 2026-10-05 ; étiquettes « site unique » / « non aligné » de la figure à renommer « aligné » / « brut » (make_figures_controles.py)
     \caption[Chaîne repliée dans la super-cellule et limite du défaut isolé.]{État $\pi$ quasi-lié de la lacune dans la super-cellule $N\times N$ au seul point $\Gamma$, en fonction de $1/N$. (a) Niveau obtenu par \texttt{QuantumESPRESSO} et par le modèle replié ($H(\Rv)$ et $M$ interpolée, matrices brutes et alignées) pour $N=6$ à $27$. (b) Maximum de la densité d'états locale des voisins de la lacune dans le modèle replié, prolongé jusqu'à $N=81$ ; les lignes tiretées marquent la résonance de la matrice $T$ (grille interne $600^2$) et la ligne continue l'énergie de la première couronne d'états $\pi$ repliés sous $E_D$. La courbe alignée utilise la constante d'alignement à site unique $C_9=-24.65$~meV plutôt que celle de Kumagai-Oba ($-25.14$~meV), soit $0.5$~meV d'écart.}
     \label{fig:folded_vs_R7}
 \end{figure}
@@ -292,7 +291,6 @@ Réduire de moitié la grille de sortie ($240^2\to120^2$) ou l'élargissement $\
 \end{table}
 \begin{table}[htbp]
     \centering
-    % À REVOIR : légende provisoire du 2026-10-04
     \caption[Convergence du taux d'amortissement en grille interne.]{Convergence en grille interne $N_{\tilde\kv}$ de la fonction de Green de l'amas~\eqref{eqn:g_loc}, pour la super-cellule de référence $9\times9$ et les paramètres de production ($R_\text{cut}=3$, grille de sortie $240^2$, $\eta=20$~meV) : médiane de $\Gamma^\text{ed}/c$ sur la fenêtre $\pm3$~eV et sur la zone $|\varepsilon-E_D|\le0.3$~eV, taux d'amortissement des états situés au point de Dirac et position $E_\text{res}$ de la résonance, définie comme l'énergie de l'état de la grille de sortie où $\Gamma^\text{ed}/c$ est maximal.}
     \label{tab:grille_interne}
     \input{tables/grille_interne}
@@ -300,7 +298,6 @@ Réduire de moitié la grille de sortie ($240^2\to120^2$) ou l'élargissement $\
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_resonance_vs_nkint_plateau.pdf}
-    % À REVOIR : légende provisoire du 2026-10-04 ; étiquettes « Kumagai–Oba » de la figure à renommer « aligné » (make_figures_controles.py)
     \caption[Position de la résonance en fonction de la grille interne.]{Position de la résonance de la lacune en fonction de l'inverse de la grille interne $N_k^\text{int}=N_{\tilde\kv}$, pour les super-cellules (a) $9\times9$ et (b) $12\times12$ et les matrices alignées, avec les paramètres de production : pic de la courbe $\Gamma_T(\varepsilon)$ obtenue par la moyenne lorentzienne~\eqref{eqn:moyenne_lorentzienne}, pic de $-\mathrm{Im}\,\bar T(K;\varepsilon)$ et $E_\text{res}$ (état de la grille de sortie $240^2$ où $\Gamma^\text{ed}/c$ est maximal). Pour $9\times9$, l'alignement appliqué aux blocs diagonaux de la base de Wannier (section~\ref{sec:M_détails}) et l'alignement exact du potentiel se superposent.}
     \label{fig:resonance_vs_nkint_plateau}
 \end{figure}
@@ -309,7 +306,6 @@ Réduire de moitié la grille de sortie ($240^2\to120^2$) ou l'élargissement $\
     \centering
     \small
     \setlength{\tabcolsep}{4pt}
-    % À REVOIR : légende provisoire du 2026-10-05
     \caption[Vérifications du schéma de l'amas.]{Vérifications de la chaîne
     de calcul de la matrice $T$ et du taux d'amortissement par le schéma de l'amas : les tests et la quantité qu'ils contrôlent, la valeur obtenue et le seuil d'acceptation. Le test de
     référence compare le schéma de l'amas à l'inversion dense de
@@ -321,14 +317,12 @@ Réduire de moitié la grille de sortie ($240^2\to120^2$) ou l'élargissement $\
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_kaasbjerg_sensibilites.pdf}
-    % À REVOIR : légende provisoire du 2026-10-05
     \caption[Sensibilité de la position du maximum de $\bar\rho-\rho_0$.]{Position du maximum de $\bar\rho-\rho_0$ de la densité d'états moyennée sur le désordre, à $c=1~\%$, en fonction de la grille interne, du rayon de coupure $R_\text{cut}$, de la taille de la super-cellule et de l'élargissement $\eta_G$, pour les matrices brutes et alignées. Les tirets marquent la valeur déduite de la figure 13 de Kaasbjerg~\cite{kaasbjergAtomisticMatrixTheory2020}, $-0.21$~eV.}
     \label{fig:kaasbjerg_sensibilites}
 \end{figure}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_kaasbjerg_dos_c.pdf}
-    % À REVOIR : légende provisoire du 2026-10-05 ; étiquettes « non aligné » / « Kumagai–Oba » de la figure à renommer « brut » / « aligné »
     \caption[Variation de la densité d'états moyennée sur le désordre.]{Variation $\bar\rho-\rho_0$ de la densité d'états moyennée sur le désordre, grille $600^2$, $\eta_G=50$~meV, pour (a) $c=0.1~\%$ et (b) $c=1~\%$, matrices brutes et alignées de la super-cellule $9\times9$ ; c'est la quantité dont le tableau~\ref{tab:kaasbjerg} rapporte la position, la hauteur et la largeur du maximum.}
     \label{fig:kaasbjerg_dos_c}
 \end{figure}

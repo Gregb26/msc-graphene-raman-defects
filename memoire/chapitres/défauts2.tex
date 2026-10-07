@@ -129,7 +129,7 @@ où $\bm{\Sigma}^\text{ed}$ est la \textit{self}-énergie électronique due aux 
 
 \subsection{Limite diluée}
 
-Dans ce mémoire, nous travaillons dans la limite d'une concentration de défaut diluée, où les processus de diffusion sur des défauts différents sont indépendants les uns des autres. Cela correspond à une concentration de défauts de $c\ll 1$. Cette limite couvre toutes les concentrations de défauts expérimentalement pertinentes : pour le graphène, une concentration de l'ordre de $c\approx 1~\%$ correspond à une densité de défauts de $\approx 2\times 10^{13}$~cm$^{-2}$, qui est un échantillon de piètre qualité. La plupart des systèmes pertinents ont donc une concentration de défauts en deçà du pourcent, où la limite diluée est tout à fait valide. Les processus de diffusion impliquant $p$ défauts distincts sont d'ordre $c^p$ et sont supprimés pour $p>1$ dans cette limite. Ainsi, au premier ordre en $c$, la \textit{self}-énergie se réduit à la somme des diffusions multiples sur chaque défaut pris isolément, ce qui correspond précisément à la matrice $T$ de la section~\ref{sec:mbt_T}, évaluée sur sa diagonale en $\kv$. Chaque défaut y entre avec le facteur $1/N_\text{uc}$ de l'équation~\eqref{eqn:G_explicite} et il y en a $N_d$, de sorte que la \textit{self}-énergie est~\cite{bruusManyBodyQuantumTheory2004}
+Dans ce mémoire, nous travaillons dans la limite d'une concentration de défauts diluée, où les processus de diffusion sur des défauts différents sont indépendants les uns des autres. Cela correspond à une concentration de défauts de $c\ll 1$. Cette limite couvre toutes les concentrations de défauts expérimentalement pertinentes : pour le graphène, une concentration de l'ordre de $c\approx 1~\%$ correspond à une densité de défauts de $\approx 2\times 10^{13}$~cm$^{-2}$, qui est un échantillon de piètre qualité. La plupart des systèmes pertinents ont donc une concentration de défauts en deçà du pourcent, où la limite diluée est tout à fait valide. Les processus de diffusion impliquant $p$ défauts distincts sont d'ordre $c^p$ et sont supprimés pour $p>1$ dans cette limite. Ainsi, au premier ordre en $c$, la \textit{self}-énergie se réduit à la somme des diffusions multiples sur chaque défaut pris isolément, ce qui correspond précisément à la matrice $T$ de la section~\ref{sec:mbt_T}, évaluée sur sa diagonale en $\kv$. Chaque défaut y entre avec le facteur $1/N_\text{uc}$ de l'équation~\eqref{eqn:G_explicite} et il y en a $N_d$, de sorte que la \textit{self}-énergie est~\cite{bruusManyBodyQuantumTheory2004}
 \begin{equation}
     \Sigma_{mn\kv }^\text{ed}(\varepsilon) = \frac{N_d}{N_\text{uc}} T_{mn}(\kv,\kv;\varepsilon)+\mathcal{O}(c^2) = c\,T_{mn}(\kv,\kv;\varepsilon)+\mathcal{O}(c^2).\label{eqn:sigma_diluée}
 \end{equation}
@@ -180,7 +180,7 @@ Cette approximation est exacte au premier ordre dans le potentiel de défaut et 
 \bigskip
 \bloc{Approximation de la matrice $T$}
 
-Ensuite, nous avons l'approximation que nous utilisons dans ce mémoire, celle de Born complète (ou de la matrice $T$), qui inclut les diffusions multiples sur un même défaut à tous les ordres. La \textit{self}-énergie est proportionnelle à la matrice $T$
+Deuxièmement, nous avons l'approximation que nous utilisons dans ce mémoire, celle de Born complète (ou de la matrice $T$), qui inclut les diffusions multiples sur un même défaut à tous les ordres. La \textit{self}-énergie est proportionnelle à la matrice $T$
 \begin{equation}
     \Sigma_{n\kv}^{\text{ed,T}}= c\,T_{n\kv},
 \end{equation}
@@ -192,7 +192,7 @@ et est exacte au premier ordre en concentration des défauts, quelle que soit la
 \bigskip
 \bloc{Approximation de la matrice $T$ autocohérente}
 
-Ensuite, l'approximation de la matrice $T$ autocohérente (SCTMA, de l'anglais \textit{Self-Consistent $T$-Matrix Approximation})~\cite{klauderModificationElectronEnergy1961,peresElectronicPropertiesDisordered2006} va un cran plus loin en calculant la matrice $T$ avec la fonction de Green moyennée $\overline{\bm{\mathcal{G}}}$ plutôt qu'avec la fonction de Green non perturbée $\bm{\mathcal{G}}^{(0)}$ dans l'équation~\eqref{eqn:T_chap}. Cela donne trois équations couplées à résoudre de manière autocohérente
+Troisièmement, l'approximation de la matrice $T$ autocohérente (SCTMA, de l'anglais \textit{Self-Consistent $T$-Matrix Approximation})~\cite{klauderModificationElectronEnergy1961,peresElectronicPropertiesDisordered2006} va un cran plus loin en calculant la matrice $T$ avec la fonction de Green moyennée $\overline{\bm{\mathcal{G}}}$ plutôt qu'avec la fonction de Green non perturbée $\bm{\mathcal{G}}^{(0)}$ dans l'équation~\eqref{eqn:T_chap}. Cela donne trois équations couplées à résoudre de manière autocohérente
 \begin{equation}
     \bm\Sigma^\text{ed,SC} = c\, \bm T^\text{SC},\quad \bm T^\text{SC} =\bm M+\bm M\overline{\bm{\mathcal{G}}}\bm T^\text{SC},\quad \overline{\bm{\mathcal{G}}} = \left[\left(\bm{\mathcal{G}}^{(0)}\right)^{-1}-\bm\Sigma^\text{ed,SC} \right]^{-1}.
 \end{equation}

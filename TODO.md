@@ -15,7 +15,8 @@ Liste de travail unique du dépôt.
 Tout ce qui touche la physique, les chiffres et les équations est fait et compile (chantiers 1 à 4 clos ; §2.5 écrit ; normalisation sur la cellule unitaire unifiée ch. 2 → ch. T). Restent, dans l'ordre suggéré :
 
 - [ ] **G** — `fig:level2` rétablie (2026-10-07, décision G) : `fig_level2.{pdf,png}` régénérés (bloc 7 de `make_figures_defaut.py` rétabli, étiquette $\Gamma^\text{ed}/c$) et installés dans `figures/electron_defect/` et `memoire/figures/` ; **reste à insérer** le `\begin{figure}` proposé par C dans `annexes/défauts_T.tex` après `tab:convergence_gamma`, puis compiler.
-- [ ] **G** — Ménage Mac : `memoire/build/{memoire6.tar, fe.*, fd.*, figdata.*}` (morceaux de transfert, ~110 Mo) ; `% À REVOIR` restants dans `annexes/défauts_T.tex` (3) ; légende de `fig:kaasbjerg_dos_c` (facteur 9.4).
+- [x] **C** — 2026-10-07 : convention $\bm M$ unifiée (règle énoncée au ch. M après $\hat H_\text{ed}$ : gras = matrice complète, maigre avec indices = éléments) ; 31 remplacements (`défauts.tex` 19 dont $\bm M(\Rv',\Rv)$ ×6 et $\bm M^\text{L/NL}$ ×4 ; `défauts2.tex` 5 ; `conclusion.tex` 1 ; `annexes/défauts_M.tex` 4 ; `annexes/défauts_T.tex` 2) ; `symboles.tex` : entrée $\bm M$, $\bm M_\mathcal{C}$. Gardés en maigre : « les éléments de matrice $M$ » (intro l. 79, conclusion l. 8, ch. T l. 412) et « électron-défaut $M$ » dans la liste des couplages (intro l. 77, parallèle à $g^{(\lambda)}$, $g^{(\nu)}$). Compile : 0 erreur.
+- [ ] **G** — Ménage Mac : `memoire/build/{memoire6.tar, memoire7.tar, memoire8.tar, fe.*, fd.*, figdata.*}` (morceaux de transfert, ~110 Mo) ; `% À REVOIR` restants dans `annexes/défauts_T.tex` (3) ; légende de `fig:kaasbjerg_dos_c` (facteur 9.4).
 - [ ] **G** — Les deux items **G** « Transversal » du chantier 1 (données orphelines, instructions du projet).
 
 

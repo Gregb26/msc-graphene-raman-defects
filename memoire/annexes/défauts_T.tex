@@ -198,7 +198,7 @@ où les produits sont matriciels sur les indices $n$ et convolutifs sur le temps
     T = M + M\,\mathcal{G}^{(0)}T.
     \label{eqn:T_recursive}
 \end{equation}
-Pour résoudre l'équation~\eqref{eqn:T_recursive}, il est commode de passer dans l'espace des fréquences de Matsubara~\cite{matsubaraNewApproachQuantumStatistical1955}, où les convolutions en temps imaginaire deviennent de simples produits. Comme le défaut est statique, $M$ ne dépend pas de la fréquence et la matrice $T$ est alors diagonale en fréquence de Matsubara. Les fonctions de Green de Matsubara fermioniques étant antipériodiques sur l'intervalle $[0,\beta]$, c.-à-d. $\mathcal{G}(\tau+\beta)=-\mathcal{G}(\tau)$, elles se développent en série de Fourier sur les fréquences de Matsubara fermioniques $\omega_j$
+Pour résoudre l'équation~\eqref{eqn:T_recursive}, il est commode de passer dans l'espace des fréquences de Matsubara~\cite{matsubaraNewApproachQuantumStatistical1955}, où les convolutions en temps imaginaire deviennent de simples produits. Comme le défaut est statique, $\bm M$ ne dépend pas de la fréquence et la matrice $T$ est alors diagonale en fréquence de Matsubara. Les fonctions de Green de Matsubara fermioniques étant antipériodiques sur l'intervalle $[0,\beta]$, c.-à-d. $\mathcal{G}(\tau+\beta)=-\mathcal{G}(\tau)$, elles se développent en série de Fourier sur les fréquences de Matsubara fermioniques $\omega_j$
 \begin{equation}
     \mathcal{G}(\tau) = \frac{1}{\beta}\sum_{j}e^{-i\omega_j\tau}\mathcal{G}(i\omega_j),\qquad \omega_j\equiv \frac{(2j+1)\pi}{\beta},\quad j \in\mathbb{Z},\label{eqn:G_tau}
 \end{equation}
@@ -251,7 +251,7 @@ Cette section rassemble la dépendance en taille de super-cellule et les preuves
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_folded_vs_R7.pdf}
-    \caption[Chaîne repliée dans la super-cellule et limite du défaut isolé.]{État $\pi$ quasi-lié de la lacune dans la super-cellule $N\times N$ au seul point $\Gamma$, en fonction de $1/N$. (a) Niveau obtenu par \texttt{QuantumESPRESSO} et par le modèle replié ($H(\Rv)$ et $M$ interpolée, matrices brutes et alignées) pour $N=6$ à $27$. (b) Maximum de la densité d'états locale des voisins de la lacune dans le modèle replié, prolongé jusqu'à $N=81$ ; les lignes tiretées marquent la résonance de la matrice $T$ (grille interne $600^2$) et la ligne continue l'énergie de la première couronne d'états $\pi$ repliés sous $E_D$. La courbe alignée utilise la constante d'alignement à site unique $C_9=-24.65$~meV plutôt que celle de Kumagai-Oba ($-25.14$~meV), soit $0.5$~meV d'écart.}
+    \caption[Chaîne repliée dans la super-cellule et limite du défaut isolé.]{État $\pi$ quasi-lié de la lacune dans la super-cellule $N\times N$ au seul point $\Gamma$, en fonction de $1/N$. (a) Niveau obtenu par \texttt{QuantumESPRESSO} et par le modèle replié ($H(\Rv)$ et $\bm M$ interpolée, matrices brutes et alignées) pour $N=6$ à $27$. (b) Maximum de la densité d'états locale des voisins de la lacune dans le modèle replié, prolongé jusqu'à $N=81$ ; les lignes tiretées marquent la résonance de la matrice $T$ (grille interne $600^2$) et la ligne continue l'énergie de la première couronne d'états $\pi$ repliés sous $E_D$. La courbe alignée utilise la constante d'alignement à site unique $C_9=-24.65$~meV plutôt que celle de Kumagai-Oba ($-25.14$~meV), soit $0.5$~meV d'écart.}
     \label{fig:folded_vs_R7}
 \end{figure}
 \vspace*{\fill}

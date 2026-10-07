@@ -1,8 +1,55 @@
 % !TEX root = ../master_thesis.tex
 \chapter{Compléments au chapitre~\ref{chap:eph}}\label{annexe:eph}
 
-\section{Paramètres}\label{sec:annexe_param_epw}
+\section{Convergence du taux d'amortissement électronique}\label{sec:annexe_conv_gamma_ep}
 
+Le tableau~\ref{tab:gamma_ep_conv} résume la convergence par les médianes de $\Gamma^\text{ep}(\varepsilon)$ sur les fenêtres $|\varepsilon-E_D|\leq 3$~eV et $\leq 1.2$~eV. La seconde fenêtre couvre les états résonants pour les lasers visibles utilisés dans les expériences de spectroscopie Raman. Sur la grille de $120^2$ points, la largeur gaussienne $\sigma$ fait varier la médiane de $-0.3~\%$ ($\sigma=0.01$~eV) à $+2.2~\%$ ($\sigma=0.05$~eV) par rapport à $\sigma=0.02$~eV. Le passage de $120^2$ à $240^2$ points à $\sigma$ fixé le déplace de $+2.8~\%$ (fenêtre $\pm 3$~eV) et $+1.7~\%$ (fenêtre $\pm 1.2$~eV), sous le critère de $5~\%$ que nous nous étions fixé. Nous retenons alors $240^2$ points et $\sigma=0.02$~eV. L'argument de la somme sur $\qv$ pour obtenir $\Sigma^\text{ep}$~\eqref{eqn:fan_migdal} est régulier en $\qv$ ce qui fait en sorte que cette convergence est bien plus rapide que celle pour la largeur des phonons de la sous-section suivante.
+\vspace*{\fill}
+\begin{table}[htbp]
+    \centering
+    \caption[Convergence du taux d'amortissement électronique $\Gamma^\text{ep}$.]{Convergence du taux d'amortissement électronique $\Gamma^\text{ep}$. Médianes de $\Gamma^\text{ep}(\varepsilon)$ sur deux fenêtres autour de $E_D$ en fonction de la grille de sortie $\kv=\qv$, de la largeur de la gaussienne $\sigma$ et de la température. Ces médianes sont prises sur la courbe moyennée $\Gamma^\text{ep}(\varepsilon)$ et non sur les taux individuels $\Gamma^\text{ep}_{n\kv}$, contrairement aux médianes des tableaux de convergence du chapitre~\ref{chap:défauts}. Les écarts sont donnés par rapport à la ligne de production à $300$~K, en gras.}
+    \label{tab:gamma_ep_conv}
+    \begin{tabular}{cccrr}
+        \hline\hline
+        grille & $\sigma$ (eV) & $T$ (K) & médiane $\pm 3$~eV (meV) & médiane $\pm 1.2$~eV (meV) \\
+        \hline
+        $120^2$ & $0.01$ & $300$ & $55.24$ ($-3.0~\%$) & $20.90$ ($-3.5~\%$) \\
+        $120^2$ & $0.02$ & $300$ & $55.39$ ($-2.8~\%$) & $21.29$ ($-1.7~\%$) \\
+        $120^2$ & $0.05$ & $300$ & $56.59$ ($-0.6~\%$) & $21.78$ ($+0.6~\%$) \\
+        $\mathbf{240^2}$ & $\mathbf{0.02}$ & $\mathbf{300}$ & $\mathbf{56.96}$ & $\mathbf{21.65}$ \\
+        $240^2$ & $0.02$ & $10$ & $54.99$ ($-3.5~\%$) & $20.77$ ($-4.1~\%$) \\
+        \hline\hline
+    \end{tabular}
+\end{table}
+\vspace*{\fill}
+
+\section{Convergence de la largeur des phonons}\label{sec:annexe_conv_gamma_ph}
+
+Le tableau~\ref{tab:gamma_ph_conv} montre la convergence en densité de la grille et en $\sigma$ du cas le plus exigeant, le mode $A_1'$ à $\qv=K$, et illustre le critère $2v_F\Delta k\lesssim\sigma$ de la section~\ref{sec:g_détails}. À $\sigma=0.02$~eV, la largeur est nulle à $120^2$ points, sous-estimée de $37~\%$ à $240^2$ et convergée à $0.4~\%$ à partir de $960^2$ points. La convergence n'est pas monotone puisque l'anneau résonant tombe tantôt entre les points de la grille et tantôt dessus, en fonction de l'échantillonnage. Les gaussiennes de $0.02$ et $0.05$~eV convergent vers la même limite ($2.798$~meV), ce qui montre que $\sigma$ ne biaise pas encore le résultat, tandis que $\sigma=0.01$~eV est encore à $5~\%$ de cette limite à $1200^2$ points. Nous retenons alors $1200^2$ points et $\sigma=0.02$~eV pour la production, qui résout la structure de $\gamma$ le long du chemin et garde le même élargissement que pour $\Gamma^\text{ep}$. Le mode $E_{2g}$ à $\Gamma$ converge de la même manière.
+\vspace*{\fill}
+\begin{table}[htbp]
+    \centering
+    \caption[Convergence de la largeur du mode $A_1'$ au point $K$.]{Convergence de la largeur totale $\gamma$ du mode $A_1'$ à $\qv=K$ et $T=10$~K (meV) en fonction de la grille fine $\kv$ et de la largeur de la gaussienne $\sigma$. Les écarts sont donnés par rapport à la valeur de production, soit $1200^2$ points $\kv$ et $\sigma=0.02$~eV.}
+    \label{tab:gamma_ph_conv}
+    \begin{tabular}{crrr}
+        \hline\hline
+        grille & $\sigma=0.01$~eV & $\sigma=0.02$~eV & $\sigma=0.05$~eV \\
+        \hline
+        $120^2$  & $0$ & $0$ & $0.093$ \\
+        $240^2$  & $0.048$ & $1.772$ ($-37~\%$) & $2.714$ \\
+        $480^2$  & $0.188$ & $1.940$ ($-31~\%$) & $2.797$ \\
+        $720^2$  & $4.512$ & $2.988$ ($+6.8~\%$) & $2.798$ \\
+        $960^2$  & $2.464$ & $2.787$ ($-0.4~\%$) & $2.798$ \\
+        $1200^2$ & $2.665$ ($-4.7~\%$) & $2.798$ & $2.798$ ($+0.01~\%$) \\
+        \hline\hline
+    \end{tabular}
+\end{table}
+\vspace*{\fill}
+
+\clearpage
+\section{Paramètres de calcul}\label{sec:annexe_param_epw}
+
+\vspace*{\fill}
 \begin{table}[htbp]
     \centering
     \caption[Paramètres de la chaîne \texttt{EPW}.]{Paramètres de la chaîne \texttt{EPW} pour la matrice $g$, le taux d'amortissement $\Gamma^\text{ep}$ et la largeur des phonons $\gamma_{\nu\qv}$ (chapitre~\ref{chap:eph}).}
@@ -26,3 +73,4 @@
         \hline\hline
     \end{tabular}
 \end{table}
+\vspace*{\fill}

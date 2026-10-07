@@ -213,33 +213,13 @@ Ce qui est important pour la suite est que le choix de l'élargissement et les a
 
 La figure~\ref{fig:epw_gamma} présente le taux d'amortissement électronique dû aux phonons de l'équation~\eqref{eqn:gamma_ep_explicite} sous la forme de la courbe $\Gamma^\text{ep}(\varepsilon)$ obtenue par la moyenne lorentzienne des taux individuels $\Gamma^\text{ep}_{n\kv}$ décrite à la section~\ref{sec:g_détails}. Le panneau (a) documente la convergence en densité de la grille de sortie et en $\sigma$ à $T=300$~K et le panneau (b) montre le résultat de production à $T=10$~K et $T=300$~K.
 
-\bloc{Convergence}
-
-Le tableau~\ref{tab:gamma_ep_conv} résume la convergence par les médianes de $\Gamma^\text{ep}(\varepsilon)$ sur les fenêtres $|\varepsilon-E_D|\leq 3$~eV et $\leq 1.2$~eV. La seconde fenêtre couvre les états résonants pour les lasers visibles utilisés dans les expériences de spectroscopie Raman. Sur la grille de $120^2$ points, la largeur gaussienne $\sigma$ fait varier la médiane de $-0.3~\%$ ($\sigma=0.01$~eV) à $+2.2~\%$ ($\sigma=0.05$~eV) par rapport à $\sigma=0.02$~eV. Le passage de $120^2$ à $240^2$ points à $\sigma$ fixé le déplace de $+2.8~\%$ (fenêtre $\pm 3$~eV) et $+1.7~\%$ (fenêtre $\pm 1.2$~eV), sous le critère de $5~\%$ que nous nous étions fixé. Nous retenons alors $240^2$ points et $\sigma=0.02$~eV. L'argument de la somme sur $\qv$ pour obtenir $\Sigma^\text{ep}$~\eqref{eqn:fan_migdal} est régulier en $\qv$ ce qui fait en sorte que cette convergence est bien plus rapide que celle pour la largeur des phonons de la sous-section suivante.
-\begin{table}[htbp]
-    \centering
-    \caption[Convergence du taux d'amortissement électronique $\Gamma^\text{ep}$.]{Convergence du taux d'amortissement électronique $\Gamma^\text{ep}$. Médianes de $\Gamma^\text{ep}(\varepsilon)$ sur deux fenêtres autour de $E_D$ en fonction de la grille de sortie $\kv=\qv$, de la largeur de la gaussienne $\sigma$ et de la température. Ces médianes sont prises sur la courbe moyennée $\Gamma^\text{ep}(\varepsilon)$ et non sur les taux individuels $\Gamma^\text{ep}_{n\kv}$, contrairement aux médianes des tableaux de convergence du chapitre~\ref{chap:défauts}. Les écarts sont donnés par rapport à la ligne de production à $300$~K, en gras.}
-    \label{tab:gamma_ep_conv}
-    \begin{tabular}{cccrr}
-        \hline\hline
-        grille & $\sigma$ (eV) & $T$ (K) & médiane $\pm 3$~eV (meV) & médiane $\pm 1.2$~eV (meV) \\
-        \hline
-        $120^2$ & $0.01$ & $300$ & $55.24$ ($-3.0~\%$) & $20.90$ ($-3.5~\%$) \\
-        $120^2$ & $0.02$ & $300$ & $55.39$ ($-2.8~\%$) & $21.29$ ($-1.7~\%$) \\
-        $120^2$ & $0.05$ & $300$ & $56.59$ ($-0.6~\%$) & $21.78$ ($+0.6~\%$) \\
-        $\mathbf{240^2}$ & $\mathbf{0.02}$ & $\mathbf{300}$ & $\mathbf{56.96}$ & $\mathbf{21.65}$ \\
-        $240^2$ & $0.02$ & $10$ & $54.99$ ($-3.5~\%$) & $20.77$ ($-4.1~\%$) \\
-        \hline\hline
-    \end{tabular}
-\end{table}
+La convergence en densité de la grille de sortie et en $\sigma$ est rapportée à l'annexe~\ref{annexe:eph} (tableau~\ref{tab:gamma_ep_conv}) ; nous retenons $240^2$ points et $\sigma=0.02$~eV, qui placent la médiane de $\Gamma^\text{ep}(\varepsilon)$ sous le critère de $5~\%$ que nous nous étions fixé.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_epw_gamma.pdf}
     \caption[Taux d'amortissement électronique dû aux phonons $\Gamma^\text{ep}(\varepsilon)$.]{Taux d'amortissement électronique dû aux phonons $\Gamma^\text{ep}(\varepsilon)$, calculé par la moyenne lorentzienne~\eqref{eqn:moyenne_lorentzienne}, avec $\eta=0.02$~eV, des taux individuels de l'équation~\eqref{eqn:gamma_ep_explicite}. (a) Convergence à $300$~K en fonction de la grille fine $\kv=\qv$ et de la largeur de la gaussienne $\sigma$. (b) Comparaison des taux à $T=10$~K et $T=300$~K avec les paramètres de production, soit une grille de $240^2$ points et $\sigma=0.02$~eV. La bosse à $E_D$ est un artefact de la moyenne dans une région de densité d'états nulle, discuté dans le corps du texte.}
     \label{fig:epw_gamma}
 \end{figure}
-
-\bloc{Résultats}
 
 Sur la fenêtre $|\varepsilon-E_D|\leq 3$~eV, $\Gamma^\text{ep}(\varepsilon)$ à $300$~K a une médiane de $57.0$~meV, qui tombe à $21.7$~meV sur $|\varepsilon-E_D|\leq 1.2$~eV. La courbe suit la densité d'états finals : elle est minimale près de $E_D$, elle croît avec $|\varepsilon-E_D|$ et culmine aux singularités de van Hove des bandes $\pi$ et $\pi^*$, à $\varepsilon-E_D=-2.55$ et $+1.88$~eV. Le passage à $10$~K l'abaisse de $3.5~\%$, par l'absorption des phonons acoustiques thermiques et le lissage des facteurs de Fermi. Le facteur de Bose des modes optiques est négligeable aux deux températures. La bosse à $E_D$ ($\approx 19$~meV de haut et $0.19$~eV de large) est un artefact de la moyenne lorentzienne dans une région de densité d'états nulle, où elle est dominée par les queues des états éloignés : les taux individuels y sont inférieurs à $1$~meV à $300$~K, par l'exclusion de Pauli. Elle est sans conséquence pour le chapitre~\ref{chap:Raman}, dont les états résonants sont à $|\varepsilon-E_D|\approx E_L/2\gtrsim 0.6$~eV, où $E_L$ est l'énergie du laser typiquement utilisé lors d'expériences de spectroscopie Raman.
 
@@ -248,28 +228,7 @@ Sur la fenêtre $|\varepsilon-E_D|\leq 3$~eV, $\Gamma^\text{ep}(\varepsilon)$ à
 
 La figure~\ref{fig:epw_phonselfen} (a) présente la largeur des phonons de l'équation~\eqref{eqn:gamma_phonon_explicite} le long du chemin $\Gamma\to K\to M\to\Gamma$ et (b) en détail pour les modes $E_{2g}$ à $\Gamma$ et $A_1'$ à $K$ qui portent la diffusion Raman.
 
-\bloc{Convergence}
-
-Le tableau~\ref{tab:gamma_ph_conv} montre la convergence en densité de la grille et en $\sigma$ du cas le plus exigeant, le mode $A_1'$ à $\qv=K$, et illustre le critère $2v_F\Delta k\lesssim\sigma$ de la section~\ref{sec:g_détails}. À $\sigma=0.02$~eV, la largeur est nulle à $120^2$ points, sous-estimée de $37~\%$ à $240^2$ et convergée à $0.4~\%$ à partir de $960^2$ points. La convergence n'est pas monotone puisque l'anneau résonant tombe tantôt entre les points de la grille et tantôt dessus, en fonction de l'échantillonnage. Les gaussiennes de $0.02$ et $0.05$~eV convergent vers la même limite ($2.798$~meV), ce qui montre que $\sigma$ ne biaise pas encore le résultat, tandis que $\sigma=0.01$~eV est encore à $5~\%$ de cette limite à $1200^2$ points. Nous retenons alors $1200^2$ points et $\sigma=0.02$~eV pour la production, qui résout la structure de $\gamma$ le long du chemin et garde le même élargissement que pour $\Gamma^\text{ep}$. Le mode $E_{2g}$ à $\Gamma$ converge de la même manière.
-\begin{table}[htbp]
-    \centering
-    \caption[Convergence de la largeur du mode $A_1'$ au point $K$.]{Convergence de la largeur totale $\gamma$ du mode $A_1'$ à $\qv=K$ et $T=10$~K (meV) en fonction de la grille fine $\kv$ et de la largeur de la gaussienne $\sigma$. Les écarts sont donnés par rapport à la valeur de production, soit $1200^2$ points $\kv$ et $\sigma=0.02$~eV.}
-    \label{tab:gamma_ph_conv}
-    \begin{tabular}{crrr}
-        \hline\hline
-        grille & $\sigma=0.01$~eV & $\sigma=0.02$~eV & $\sigma=0.05$~eV \\
-        \hline
-        $120^2$  & $0$ & $0$ & $0.093$ \\
-        $240^2$  & $0.048$ & $1.772$ ($-37~\%$) & $2.714$ \\
-        $480^2$  & $0.188$ & $1.940$ ($-31~\%$) & $2.797$ \\
-        $720^2$  & $4.512$ & $2.988$ ($+6.8~\%$) & $2.798$ \\
-        $960^2$  & $2.464$ & $2.787$ ($-0.4~\%$) & $2.798$ \\
-        $1200^2$ & $2.665$ ($-4.7~\%$) & $2.798$ & $2.798$ ($+0.01~\%$) \\
-        \hline\hline
-    \end{tabular}
-\end{table}
-
-\bloc{Résultats}
+La convergence du cas le plus exigeant, le mode $A_1'$ à $\qv=K$, est rapportée à l'annexe~\ref{annexe:eph} (tableau~\ref{tab:gamma_ph_conv}) ; nous retenons $1200^2$ points et $\sigma=0.02$~eV, qui convergent la largeur à $0.4~\%$ et gardent le même élargissement que pour $\Gamma^\text{ep}$.
 
 La largeur est nulle sur presque tout le chemin et n'est non nulle que pour $|\qv|\lesssim\hbar\omega/v_F$ autour de $\Gamma$ et $K$, les seules régions où un phonon peut créer une paire électron-trou interbande de quantité de mouvement $\qv$, comme l'imposent les discussions de la section~\ref{sec:g_kohn}. Le tableau~\ref{tab:gamma_ph_prod} donne les valeurs aux points d'intérêt : les largeurs totales de $11.1$~cm$^{-1}$ pour $E_{2g}$ à $\Gamma$ et de $22.6$~cm$^{-1}$ pour $A_1'$ à $K$ à $10$~K sont conformes à la littérature, qui les chiffre à $\approx 11$ et $\approx 22$~cm$^{-1}$~\cite{lazzeriPhononLinewidthsElectronphonon2006}. Elles diminuent de $5$ et $9~\%$ à $300$~K par les facteurs de Fermi sur l'anneau résonant, $f_{n\kv}-f_{m\kv+\qv}=\tanh(\hbar\omega/4k_BT)$, qui valent $0.95$ et $0.91$ à cette température pour $\hbar\omega=192$ et $158$~meV.
 \begin{table}[htbp]
@@ -294,8 +253,6 @@ La largeur est nulle sur presque tout le chemin et n'est non nulle que pour $|\q
     \label{fig:epw_phonselfen}
 \end{figure}
 
-\bloc{Contrôle de la convention}
-
 Sur l'anneau résonant, l'équation~\eqref{eqn:pi_phonon} s'évalue analytiquement pour le cône de Dirac à $T\to 0$. Seules les paires $\pi\to\pi^*$ contribuent et, pour une dispersion linéaire, l'intégrale de la fonction delta vaut $\pi\hbar\omega/2v_F^2$. Il ne reste que la moyenne des $|g^{(\nu)}_{\pi^*\pi}|^2$ interbandes sur l'anneau, que nous lisons directement des éléments interpolés. Avec $v_F=5.46$~eV\,\AA{}, deux vallées à $\qv=\Gamma$ et une à $\qv=K$, nous obtenons $-\mathrm{Im}\,\Pi=0.691$~meV à $\Gamma$ et $1.402$~meV à $K$, contre $1.379$ et $2.798$~meV imprimés par \texttt{EPW} : un rapport de $2.00$ aux deux points. La valeur imprimée est donc la largeur totale $-2\,\mathrm{Im}\,\Pi$, et la somme numérique reproduit l'intégrale analytique à $0.2~\%$. Ce calcul montre aussi que $\hbar\omega$ s'élimine de $\gamma$, le facteur $1/\omega$ de $|g|^2$ compensant celui de l'espace des phases, de sorte que $\gamma\propto\langle D^2\rangle/v_F^2$ : les largeurs ne dépendent pas de l'élargissement de la section~\ref{ssec:g_fréquences} autrement que par $\langle D^2\rangle$, qui y est constant à $1~\%$.
 
 \subsection{Comparaison des taux d'amortissement $\Gamma^\text{ed}$ et $\Gamma^\text{ep}$}\label{sec:g_comparaison}
@@ -307,7 +264,7 @@ La figure~\ref{fig:epw_vs_ed} compare le taux d'amortissement dû aux phonons, $
     \caption[Comparaison des taux d'amortissement dus aux phonons et aux défauts.]{Comparaison des taux d'amortissement électronique dus aux phonons et aux défauts. Le taux d'amortissement dû aux phonons, $\Gamma^\text{ep}$, est calculé avec \texttt{EPW} à $T=300$~K, sur une grille de $240^2$ points et un élargissement de $\sigma=0.02$~eV. Le taux d'amortissement dû à une monolacune, $\Gamma^\text{ed}$, est calculé avec la matrice $T$ du chapitre~\ref{chap:T}, une concentration de défauts de $c=1~\%$ et une super-cellule $9\times 9$. Les deux taux sont ceux calculés des taux individuels par la même moyenne lorentzienne de largeur $\eta=0.02$~eV et le même point de Dirac $E_D$.}
     \label{fig:epw_vs_ed}
 \end{figure}
-Le rapport $\Gamma^\text{ed}/\Gamma^\text{ep}$ pris point par point a une médiane de $0.36$ et reste entre $0.09$ et $2.0$ sur toute la fenêtre, ce qui indique qu'aucun des deux mécanismes n'est négligeable à cette température et concentration. Les deux taux se croisent à $\varepsilon-E_D=-1.62$ et $-0.215$~eV. Cependant, le taux dû aux défauts, $\Gamma^\text{ed}$, est linéaire en la concentration $c$ et les deux taux sont comparables pour des concentrations de l'ordre du pour cent. Pour une concentration de $c=0.1~\%$, $\Gamma^\text{ed}$ n'est qu'une fraction de $\Gamma^\text{ep}$ (environ un trentième) et seuls les phonons fixent la durée de vie électronique.
+Le rapport $\Gamma^\text{ed}/\Gamma^\text{ep}$ pris point par point a une médiane de $0.55$ et varie de $0.13$, à la singularité de van Hove de la bande $\pi^*$ ($+1.88$~eV), à $35$ à la résonance de la lacune ($-0.18$~eV) : aucun des deux mécanismes n'est négligeable à cette température et à cette concentration. Les deux taux se croisent à $\varepsilon-E_D=-1.49$ et $+0.74$~eV et, entre ces deux énergies, le défaut l'emporte ($2.7$ fois $\Gamma^\text{ep}$ au point de Dirac). Cependant, $\Gamma^\text{ed}$ est linéaire en la concentration $c$. Pour $c=0.1~\%$, la médiane du rapport tombe à $0.055$ et les phonons fixent la durée de vie électronique sur l'essentiel de la fenêtre, sauf dans la bande $[-0.45,-0.10]$~eV autour de la résonance, où la lacune dépasse encore les phonons d'un facteur $3.5$.
 
 Trois précisions encadrent cette comparaison. D'abord, $\Gamma^\text{ep}$ est calculé à $T=300$~K tandis que $\Gamma^\text{ed}$ ne dépend pas de la température pour un défaut statique. Le taux dû aux phonons varie de $3.5~\%$ de $300$ à $10$~K. Ensuite, la bosse de $\Gamma^\text{ep}$ à $E_D$ est l'artefact de moyenne de la section~\ref{ssec:g_gamma_ep}. Enfin, la fonctionnelle PBE sous-estime le couplage électron-phonon au point $K$ par rapport aux calculs $GW$~\cite{lazzeriImpactElectronelectronCorrelation2008}, mais la comparaison est faite ici à fonctionnelle égale, la PBE, pour les deux mécanismes. Une correction $GW$ cohérente devra s'appliquer aussi bien à $g$ qu'à $M$, ce que nous laissons en perspective.
 

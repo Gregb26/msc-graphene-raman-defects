@@ -15,7 +15,7 @@ Tous les chemins sont relatifs à la racine de ce dépôt, sauf `GR:` = `graphen
 ```
 msc-graphene-raman-defects/
 ├── memoire/                   LaTeX ; memoire/tables/ : tableaux générés (un tabular par fichier) et leur index SOURCES.md
-├── scripts/                   make_all_figures.py (lanceur) + les sept make_figures_*.py ; chiffres_ch4.py (chiffres complémentaires du ch. 4) ;
+├── scripts/                   make_all_figures.py (lanceur) + les sept make_figures_*.py ; chiffres_ch4.py (chiffres complémentaires du ch. 4) ; chiffres_ch5.py (appariement des chiffres du ch. 5 → donnees/epw/eph_nombres.md) ;
 │                              make_tables.py (les huit tableaux du ch. 4 → memoire/tables/)
 ├── src/graphene_raman/        sous-ensemble du paquet de GR, réduit à ce que les scripts importent :
 │                              config.py, plotting/ (style, palette, sauvegarde), io/pseudo_io.py, electron_phonon/phself.py
@@ -137,7 +137,7 @@ mémoire (taille et mise en page changent), à valider.
 | Label | Fichier du mémoire | .tex:ligne | Producteur | Données lues | État |
 |---|---|---|---|---|---|
 | `fig:KB` | `KB_projectors_C.pdf` | théorie:191 | `make_figures_electron.py` → `fig_kb_pseudo_C` (**nom différent**) | `donnees/electron/C.upf` | ch. 2 refaite |
-| `fig:convergence_dft` | `fig_electron_convergence.pdf` | théorie:319 | `make_figures_electron.py` | `donnees/electron/{ecut,ecut_cross,kpoint,smearing}.dat` | ch. 2 refaite |
+| `fig:convergence_dft` | `fig_electron_convergence.pdf` | annexe A (`sec:annexe_conv_dft`, depuis le 2026-10-07 ; corps : renvoi théorie:318) | `make_figures_electron.py` | `donnees/electron/{ecut,ecut_cross,kpoint,smearing}.dat` | ch. 2 refaite |
 | `fig:resultats_electrons` | `fig_ebands_edos.pdf` | théorie:326 | `make_figures_electron.py` | `donnees/electron/{ebands,edos}.dat` | ch. 2 refaite |
 | `fig:phonon_results` | `fig_epw_phonons.pdf` | théorie:447 | `make_figures_epw.py` (variante : `make_figures_phonons.py` → `fig_phfreq_phdos`, données `donnees/phonon/`) | `donnees/epw/{validation,phdos}_24k24q_mv0.02.npz` | même contenu |
 | `fig:Ved_zoom` | `fig_Ved_zoom.pdf` | défauts:307 | `make_figures_defaut.py` | `donnees/M2_plateau/ved_analysis.npz` | même contenu |
@@ -205,8 +205,8 @@ Les dix tableaux des ch. M et T sont générés par `scripts/make_tables.py` dan
 | `tab:kaasbjerg` | défauts2:266 (colonnes brut / aligné depuis le 2026-10-05) | `make_tables.py` → `tables/kaasbjerg.tex` : `kaasbjerg/r8_{dos,spec,7a}_results.json`, `kaasbjerg/r10_c2_results.json` ; A_cell\|M\| ~70 eV Å² de Kaasbjerg : lit. (sa Fig. 3, non numérisée) |
 | `tab:grille_interne` | annexe D:90 | `make_tables.py` → `tables/grille_interne.tex` : `M2_plateau/nkint_check_9x9.csv` |
 | `tab:kohn_chaines` | eph:194 | `donnees/epw/d2_extract_24k24q{,_mv0.02}.npz`, `validation_24k24q{,_mv0.02}.npz` |
-| `tab:gamma_ep_conv` | eph:219 | `donnees/epw/selfen_*_T300.npz` |
-| `tab:gamma_ph_conv` | eph:254 | `donnees/epw/NOTES_EPW.md` (table de convergence de γ(A₁′, K), l. 295) : **aucun fichier de données** ne porte ces 18 valeurs, tirées des `epw.out` des runs `calculs/ch5_epw/24k-24q_mv0.02/epw6_phself_K_*` restés sur Rorqual ; un csv est à extraire des notes (TODO) |
+| `tab:gamma_ep_conv` | annexe E (`sec:annexe_conv_gamma_ep`, depuis le 2026-10-07 ; corps : renvoi eph:216) | `donnees/epw/selfen_*_T300.npz` |
+| `tab:gamma_ph_conv` | annexe E (`sec:annexe_conv_gamma_ph`, depuis le 2026-10-07 ; corps : renvoi eph:233) | `donnees/epw/phself_K_convergence.csv` (extrait le 2026-10-07 de `NOTES_EPW.md` l. 295 ; 10 K et 300 K, six grilles × trois σ ; vérifié cellule par cellule contre le tableau) |
 | `tab:gamma_ph_prod` | eph:275 | `donnees/epw/phself_path_1200_dg0.02_mv0.02.npz` |
 | `tab:param_dft` | annexes/paramètres:10 | `calculs/ch2_electrons/bandes_dos/{scf,nscf,dos}.in` ; convergence : `calculs/ch2_electrons/convergence/` |
 | `tab:param_dfpt` | paramètres:37 | `calculs/ch2_phonons/{scf,ph,q2r,matdyn,matdyn.dos}.in` |
@@ -227,9 +227,9 @@ Les sources des quatre tables du ch. 5 sont déduites des noms de fichiers ; l'a
 | Ch. 2 théorie | 25 | §2.2 : 2.466 Å, 5.46 eV, convergence 0.1 meV → `donnees/electron/`. §2.3 : 1550.5 et 1583 cm⁻¹, écart 2 %, 468/1394/1602 cm⁻¹ → `donnees/epw/phdos_24k24q_mv0.02.npz`, `validation_24k24q_mv0.02.npz` et lit. | 100 Ry et 0.01 Ry sont des paramètres, voir `tab:param_dft` |
 | Ch. 3 Raman | 8 | lit. (positions des pics G, D, 2D… ; 10 nm) | aucune donnée |
 | Ch. M et T (défauts, défauts2) | 111 (v1) | `donnees/ch4/table_v1_final.md` (source des valeurs finales, avec fichier et clé de chaque valeur) ; valeurs absentes de la table (grille interne, ordres de grandeur de `fig:Ved` et `fig:M_locality`, fraction locale et A_cell·M̄(K), dispersion de max\|M\|) : `donnees/ch4/chiffres_complementaires.{md,csv}`, produit par `scripts/chiffres_ch4.py` (propre à ce dépôt) ; appariement dans `donnees/ch4/defauts_nombres.md` | ch. M réécrit par G (2026-10-01 → 04) et ch. T par C (2026-10-05) sur les valeurs R10 ; `defauts_nombres.md` (appariement v1) est périmé et ne se régénère que dans GR : à refaire au verrouillage |
-| Ch. 5 EPW | 176 | `donnees/epw/*.npz` ; Γ^ed/Γ^ep (§5.3.5, l. 301–312) → `donnees/M2_plateau/ed_vs_ep_24k24q_mv0.02.npz` et `table_v1_final.md` | à apparier comme pour le ch. 4 ; l. 303–312 dépendent du ch. 4 (Γ^ed R6 → R10) |
-| Conclusion | 5 | reprend ch. 4–5 (300 K, 1 %, 3 eV, 0.6 %, 14 cm⁻¹) | à revoir après la réécriture du ch. 4 |
-| Résumé / abstract | 2 + 2 | reprend ch. 4–5 (300 K, 1 %) | idem |
+| Ch. 5 EPW | 163 (2026-10-07) | `donnees/epw/eph_nombres.md` (appariement ligne par ligne, produit par `scripts/chiffres_ch5.py` : `donnees/epw/*.npz`, notes de campagne, `config/production.json`) ; Γ^ed/Γ^ep (§5.3.5, l. 273) → `donnees/M2_plateau/ed_vs_ep_24k24q_mv0.02.npz` (R10, mis à jour le 2026-10-07) | 158 appariés ; non appariés : Lazzeri et al. (lit.), l'estimation $N_\kv\gg2.5\times10^4$, le plancher de $g$ (texte $5\times10^{-4}$ eV, données $5.5\times10^{-4}$) |
+| Conclusion | 5 | reprend ch. 4–5 ; mise à jour du 2026-10-07 (77–82 %, −0.18 eV, 40.6 / 3.19 eV, 46 / 203, 0.55, 0.13–35, −1.49 / +0.74 eV, 2.4 %, 10 %, 45–60 meV) | chiffres de `table_v1_final.md`, `ed_vs_ep_*.npz`, `kaasbjerg/r8_*` |
+| Résumé / abstract | 2 + 2 | reprend ch. 4–5 ; mise à jour du 2026-10-07 (partie locale, −0.18 eV, facteur 46) | idem |
 
 Liste détaillée par ligne (hors ch. 4) : annexe A.
 

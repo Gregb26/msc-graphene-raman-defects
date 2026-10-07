@@ -164,6 +164,7 @@ où $\delta\rho$ est donné par l'équation~\eqref{eqn:delta_rho}.
 
 Il est instructif de situer notre traitement dans la hiérarchie des approximations usuelles pour la \textit{self}-énergie de désordre~\cite{elliottTheoryPropertiesRandomly1974}.
 
+\bigskip
 \bloc{Approximation de Born}
 
 Premièrement, l'approximation de Born tronque la série pour la matrice $T$ à ses deux premiers termes, de sorte que la \textit{self}-énergie s'écrit
@@ -176,6 +177,7 @@ et le taux d'amortissement s'obtient de sa partie imaginaire
 \end{equation}
 Cette approximation est exacte au premier ordre dans le potentiel de défaut et ignore les diffusions multiples sur un même défaut. Elle n'est pas valable dans la limite où les potentiels induits par les défauts sont forts, comme c'est le cas pour les lacunes. Nous quantifions cet échec dans la section~\ref{sec:T_results}. C'est l'approximation que Lu \textit{et al.}~\cite{luEfficientInitioCalculations2019} utilisent pour leur temps de relaxation.
 
+\bigskip
 \bloc{Approximation de la matrice $T$}
 
 Ensuite, nous avons l'approximation que nous utilisons dans ce mémoire, celle de Born complète (ou de la matrice $T$), qui inclut les diffusions multiples sur un même défaut à tous les ordres. La \textit{self}-énergie est proportionnelle à la matrice $T$
@@ -187,6 +189,7 @@ et est exacte au premier ordre en concentration des défauts, quelle que soit la
         \Gamma^\text{ed,T}_{n\kv} = -2\mathrm{Im}\Sigma_{n\kv}^\text{ed,T}.
 \end{equation}
 
+\bigskip
 \bloc{Approximation de la matrice $T$ autocohérente}
 
 Ensuite, l'approximation de la matrice $T$ autocohérente (SCTMA, de l'anglais \textit{Self-Consistent $T$-Matrix Approximation})~\cite{klauderModificationElectronEnergy1961,peresElectronicPropertiesDisordered2006} va un cran plus loin en calculant la matrice $T$ avec la fonction de Green moyennée $\overline{\bm{\mathcal{G}}}$ plutôt qu'avec la fonction de Green non perturbée $\bm{\mathcal{G}}^{(0)}$ dans l'équation~\eqref{eqn:T_chap}. Cela donne trois équations couplées à résoudre de manière autocohérente
@@ -195,6 +198,7 @@ Ensuite, l'approximation de la matrice $T$ autocohérente (SCTMA, de l'anglais \
 \end{equation}
 La SCTMA inclut la rétroaction de l'élargissement de désordre sur la diffusion elle-même. Elle apporte des corrections négligeables dans la limite diluée, sauf au voisinage immédiat des points de Dirac du graphène où l'autocohérence engendre une densité d'états finie induite par le désordre~\cite{peresElectronicPropertiesDisordered2006}. Les états électroniques intermédiaires pertinents pour la double résonance Raman se trouvent à plusieurs dixièmes d'eV du point de Dirac pour la lumière visible utilisée dans les expériences de spectroscopie Raman : les corrections apportées par la SCTMA sont négligeables ici et nous les laissons en perspective.
 
+\bigskip
 \bloc{Au-delà}
 
 Au-delà de ces approximations à un site, l'approximation du potentiel cohérent (CPA, de l'anglais \textit{Coherent Potential Approximation})~\cite{sovenCoherentPotentialModelSubstitutional1967} et l'inclusion de diagrammes croisés reliant plusieurs défauts deviennent nécessaires aux concentrations élevées ou pour les propriétés de transport cohérent, que nous ne considérons pas ici.
@@ -250,6 +254,7 @@ Commencçons par justifier l'introduction du schéma de l'amas en donnant quelqu
     \label{fig:chaine_T}
 \end{figure}
 
+\clearpage
 \bloc{Évaluation de la fonction de Green et de la matrice $T$ de l'amas}
 
 La chaîne débute par la matrice tronquée $\bm M_\mathcal{C}$ définissant l'amas $\mathcal{C}$. La première étape est de calculer la fonction de Green de cet amas $\bm{\mathcal{G}}^{(0)}_\mathcal{C}$ selon l'équation~\eqref{eqn:g_loc}. Elle requiert d'interpoler par fonctions de Wannier l'Hamiltonien électronique sur une grille interne $\kv_\text{int}$ servant uniquement à l'évaluation de $\bm{\mathcal{G}}^{(0)}_\mathcal{C}$. Il est requis que les fonctions de Wannier employée ici soient les mêmes que celles utilisées pour calculer $\bm M_\mathcal{C}$. Pour une énergie donnée, l'évaluation de la fonction de Green de l'amas ne requiert qu'une inversion de dimension $N_W=5$ par point de la grille interne, suivie d'une transformée de Fourier vers les $N_\mathcal{C}^2$ paires de l'amas. Le coût n'est que linéaire en $N_{\kv_\text{int}}$ : la grille interne peut être aussi dense que nécessaire pour que l'élargissement $\eta$ soit le seul paramètre de résolution.
@@ -333,7 +338,7 @@ Nous présentons d'abord les signatures spectrales de la lacune, puis le taux d'
 La figure~\ref{fig:spectral} rassemble toute l'information que la matrice $T$ contient à propos de la diffusion des électrons sur la lacune. La variation de la densité d'états $\delta\rho$ du panneau~(b) présente deux signatures absentes de la densité du cristal parfait $\rho_0$, que le critère de pôle du panneau~(d) permet d'identifier. La première est un pic étroit à $-0.79$~eV  de largeur $2\eta$ qui porte un état entier : l'intégrale de $\delta\rho$ sur la fenêtre d'énergie $[-1.1, -0.5]$~eV donne environ 1. Le déterminant $|\det \bm\Lambda_\mathcal{C}|$ et la plus petite valeur propre tombent à $1.3\times 10^{-4}$ et $0.002$ respectivement : c'est un état lié de la lacune. La décomposition par blocs $\bm\Lambda_\mathcal{C}$ nous montre que cet état appartient au bloc $\sigma$. C'est l'état des liaisons $\sigma$ pendantes, qui tombe dans le gap des bandes $\sigma$ et ne se couple pas aux bandes $\pi$ par la symétrie de réflexion du plan de la feuille de graphène. Il n'affecte pas le taux d'amortissement des bandes $\pi$. La seconde signature est un pic plus large, entre $-0.26$ et $-0.04$~eV, qui porte $0.51$ état, soit un nombre fractionnaire d'état. Ce n'est pas un pôle, puisque la plus petite valeur propre, qui appartient au bloc $\pi$, est $0.34$. C'est l'état quasi-lié, le mode $\pi$ à énergie nulle de la section~\ref{sec:mbt_T} de la monolacune~\cite{pereiraDisorderInducedLocalized2006}, hybridé avec le cône de Dirac et qui gouverne le taux d'amortissement.
 
 La \textit{self}-énergie de la paire de Dirac, $\bar T(K;\varepsilon)$ au panneau~(c) confirme ce diagnostic. Sa partie imaginaire est minimale à $-0.17$~eV, exactement là où le taux d'amortissement culmine au panneau~(a). C'est la signature classique d'une résonance. Sa partie réelle, qui renormalise l'énergie des bandes, vaut $12.6$~eV au point de Dirac, s'annule à $-0.21$~eV et est négative jusqu'à $-2$~eV. La lacune est répulsive au point de Dirac et attractive sous la résonance, ce qui est aussi cohérent avec un niveau résonant. Enfin, la règle de somme de Friedel~\eqref{eqn:friedel} sur toute la largeur de la bande vaut $-1.00$ état au lieu de zéro. L'état manquant est l'orbitale $p_z$ du site de la lacune. Les oscillations de l'ordre de $1$~état/eV dans la densité d'états sont dû au bruit d'échantillonnage de la grille interne.
-\newpage
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_spectral_final.pdf}
@@ -341,8 +346,8 @@ La \textit{self}-énergie de la paire de Dirac, $\bar T(K;\varepsilon)$ au panne
     dans le graphène.]{Taux d'amortissement et signatures spectrales d'une lacune dans le graphène, calculés pour la super-cellule de référence et les paramètres de production de la section. Les énergies sont mesurées à partir du point de Dirac $E_D$. (a) Taux d'amortissement sur couche $\Gamma^\text{ed}/c$ des bandes $\pi$ et $\pi^*$ avec la matrice $T$ complète et l'approximation de Born, obtenu par la moyenne lorentzienne~\eqref{eqn:moyenne_lorentzienne} des taux individuels $\Gamma^\text{ed}_{n\kv}$ (b) Densité d'états du cristal parfait $\rho_0$ et, au premier ordre en $c$, pour une concentration de lacunes de $c=1~\%$, $\rho = \rho_0+c\,\delta\rho$ (à distinguer de $\bar\rho$, figure~\ref{fig:kaasbjerg_superposition}). (c) Parties réelles et imaginaires de la demi-trace $\bar T(K;\varepsilon)$~\eqref{eqn:T_bar} sur la paire $\pi/\pi^*$ dégénérée en $K$. (d) Critère de résonance $\left|\det\bm \Lambda_\mathcal{C}\right|$ normalisé et les plus petites valeurs propres de $\bm\Lambda_\mathcal{C}$.}
     \label{fig:spectral}
 \end{figure}
+\clearpage
 
-\newpage
 \bloc{Taux d'amortissement et approximation de Born}
 
 La figure~\ref{fig:spectral} (a) montre le taux d'amortissement $\Gamma^\text{ed}/c$ des bandes $\pi$ et $\pi^*$, calculé avec la matrice $T$ complète~\eqref{eqn:gamma_loc} et l'approximation de Born~\eqref{eqn:born_amas}, pour les paramètres de production déterminés. Les courbes continues en $\varepsilon$ sont la moyenne lorentzienne~\eqref{eqn:moyenne_lorentzienne} des taux individuels $\Gamma^\text{ed}_{n\kv}$ de la section~\ref{sec:T_détails}. Par unité de concentration, le taux obtenu par la matrice $T$ vaut $3.19$~eV en médiane sur les états de la fenêtre, $8.5$~eV au point de Dirac et culmine à $40.6$~eV à $-0.18$~eV. Une fois multipliée par la concentration, ce taux physique vaut $32$ en médiane, $85$ au point de Dirac et $406$~meV à la résonance, à $c=1~\%$. Le taux obtenu dans l'approximation de Born suit la densité d'états : elle culmine à $+1.70$~eV, à la singularité de van Hove de la bande $\pi^*$, et dépasse le taux exact d'un facteur $46$ en médiane et jusqu'à $203$ à cette singularité. Les deux courbes ne se rejoignent qu'à la résonance, à $-0.18$~eV, où la matrice $T$ atteint sa limite unitaire. Partout ailleurs, la resommation des diffusions multiples écrante le potentiel de la lacune et le taux reste bien en dessous de l'approximation de Born. C'est l'effondrement de cette approximation pour un diffuseur résonant comme une lacune, tel que trouvé dans l'article de référence~\cite{kaasbjergAtomisticMatrixTheory2020}.

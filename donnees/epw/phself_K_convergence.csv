@@ -1,0 +1,21 @@
+# Convergence de la largeur totale gamma___ (FWHM, meV) du mode A1' a q = K, chaine mv0.02 (sigma_MV = 0.02 Ry), en fonction de la grille fine nkf x nkf et de la gaussienne sigma (eV), T = 10 K et 300 K.
+# Source : donnees/epw/NOTES_EPW.md l. 295 (campagne P7/P18, epw_selfen_post --table ; les npz phself_path_<nkf>_dg<sigma>_mv0.02 des grilles autres que 240 et 1200 ne sont pas conserves). Ecart en % par rapport a la production 1200^2, sigma 0.02, 10 K. Extrait le 2026-10-07 (scripts/chiffres_ch5.py ne le regenere pas).
+nkf,sigma_eV,gamma_10K_meV,gamma_300K_meV,ecart_prod_10K_pct
+120,0.01,0.0,0.0,
+120,0.02,0.0,0.0,
+120,0.05,0.093,0.092,
+240,0.01,0.048,0.041,
+240,0.02,1.772,1.526,-36.7
+240,0.05,2.714,2.378,
+480,0.01,0.188,0.175,
+480,0.02,1.94,1.782,-30.7
+480,0.05,2.797,2.535,
+720,0.01,4.512,4.114,
+720,0.02,2.988,2.721,+6.8
+720,0.05,2.798,2.536,
+960,0.01,2.464,2.229,
+960,0.02,2.787,2.533,-0.40
+960,0.05,2.798,2.536,
+1200,0.01,2.665,2.432,-4.7
+1200,0.02,2.798,2.544,
+1200,0.05,2.798,2.536,+0.01

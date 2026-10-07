@@ -7,6 +7,7 @@ Tout matériau réel est imparfait : un atome manque, un autre occupe la mauvais
 
 L'étude des défauts prend une importance particulière dans les matériaux bidimensionnels. Lorsqu'un matériau est réduit à une seule couche d'atomes, chaque atome est un atome de surface et chaque défaut est directement accessible à l'expérience. Ces matériaux, dont le plus connu est le graphène, sont ainsi un terrain idéal pour étudier les défauts et leurs effets sur les propriétés macroscopiques.
 
+\bigskip
 \bloc{Le graphène}
 
 Le graphène est une feuille de carbone d'un seul atome d'épaisseur, dont les atomes sont arrangés sur un réseau en nid d'abeille. Isolé pour la première fois en 2004 par l'exfoliation mécanique du
@@ -16,12 +17,14 @@ Sa richesse ne tient pas à la complexité de sa chimie, mais à sa géométrie 
 
 Ces propriétés font du graphène un système modèle pour l'étude des défauts pour deux raisons. D'abord, le graphène parfait est très étudié et exceptionnellement bien compris, de sorte que l'effet d'un défaut se mesure par rapport à une référence connue et solide et peut être quantifié efficacement. Ensuite, ses singularités en font un cas exigeant : les approximations physiques et les méthodes de calcul qui conviennent à un métal ou un semi-conducteur sont souvent mises à l'épreuve. Ainsi, une méthode qui traite correctement le graphène a de bonnes chances de se généraliser à des matériaux moins exigeants.
 
+\bigskip
 \bloc{Les défauts}
 
 Les défauts ne sont pas qu'une curiosité théorique : ils sont présents dans tous les échantillons, qu'on le veuille ou non. La croissance chimique en phase vapeur, le transfert d'un substrat à l'autre, l'exposition à un faisceau d'ions ou d'électrons en introduisent tous dans le graphène~\cite{banhartStructuralDefectsGraphene2011}. Les défauts sont aussi souvent voulus, car ils peuvent conférer au matériau des propriétés nouvelles : greffer de l'hydrogène au graphène lui ouvre un gap~\cite{eliasControlGraphenesProperties2009} ; des lacunes ou des atomes étrangers fixent plus fortement les molécules adsorbées~\cite{zhangImprovingGasSensing2009}, ce qui améliore des capteurs déjà capables de détecter une molécule unique~\cite{schedinDetectionIndividualGas2007} ; et des pores de quelques nanomètres font du graphène une membrane à travers laquelle des molécules d'ADN peuvent être détectées une à une~\cite{garajGrapheneSubnanometreTranselectrode2010}.
 
 Qu'ils soient accidentels ou introduits délibérément, les défauts peuvent modifier profondément les propriétés physiques et chimiques du matériau. Pour quantifier ce changement et l'attribuer à un type de défaut donné, il faut une sonde.
 
+\bigskip
 \bloc{La spectroscopie Raman}
 
 La lumière est une sonde de choix : éclairer un cristal avec un laser et regarder la lumière qui en ressort est, en apparence, la plus simple des expériences. Presque toute la lumière diffusée a la couleur du laser, sauf une infime fraction qui en ressort décalée en fréquence : elle a laissé dans le matériau un quantum de vibration, un phonon, et ce décalage en mesure l'énergie. C'est l'effet Raman~\cite{ramanNewTypeSecondary1928}, et le spectre de ces décalages est une véritable empreinte digitale du réseau cristallin du matériau.
@@ -50,6 +53,7 @@ Cette approche a un second avantage. Un spectre Raman résonant se calcule à pa
 
 Deux autres questions situent ce mémoire dans la littérature : jusqu'où le spectre Raman résonant des matériaux avec défauts se calcule-t-il aujourd'hui à partir des premiers principes, et quels sont les obstacles principaux ?
 
+\bigskip
 \bloc{Le spectre Raman résonant à partir des premiers principes}
 
 Pour un cristal parfait, loin de toute résonance, le spectre Raman se calcule de façon routinière~\cite{lazzeriFirstPrinciplesCalculationVibrational2003} et les principaux codes DFT l'implémentent. Toutefois, l'approche employée par ces codes suppose que le laser incident dans l'expérience Raman ne crée aucune excitation réelle dans le matériau. Cette hypothèse est systématiquement violée à toutes les énergies de laser dans le graphène en raison de son gap nul, et cette approche n'est pas applicable à notre cas.
@@ -58,6 +62,7 @@ Pour un cristal parfait, loin de toute résonance, le spectre Raman se calcule d
 
 Néanmoins, celui du graphène avec des défauts ne l'est toujours pas. La théorie complète du Raman résonant en présence de défauts a été formulée par Venezuela, Lazzeri et Mauri~\cite{venezuelaTheoryDoubleresonantRaman2011}, qui ont reproduit les pics D et 2D ainsi que leur dispersion avec l'énergie du laser. Leurs défauts sont toutefois modélisés en étant introduits dans un modèle de liaisons fortes où leur couplage aux électrons dépend de paramètres choisis plutôt que calculés. Même le code d'intensité Raman résonante le plus récent suppose un couplage électron-défaut constant~\cite{huangQR$^2$codeOpensourceProgram2026}. À notre connaissance, aucun spectre Raman résonant avec des défauts n'a été calculé, pour quelque matériau que ce soit, avec tous ses ingrédients issus des premiers principes. Le maillon manquant est le couplage \textit{ab initio} électron-défaut et ce mémoire le construit.
 
+\bigskip
 \bloc{Le couplage électron-défaut à partir des premiers principes}
 
 Le calcul \textit{ab initio} du couplage entre les électrons et un défaut n'est pas une opération de coutume en science des matériaux. Aucun code communautaire n'en fait une quantité de routine et la littérature regroupe quelques articles basés sur des implémentations spécialisées. Le contraste avec le couplage électron-phonon est frappant : ce dernier dispose d'un cadre théorique établi et validé~\cite{giustinoElectronphononInteractionsFirst2017,giustinoElectronphononInteractionUsing2007} et les codes qui l'implémentent sont distribués à la communauté depuis près de deux décennies~\cite{ponceEPWElectronphononCoupling2016,leeElectronPhononPhysics2023a,zhouPerturboSoftwarePackage2021,gonzeAbinitProjectImpact2020,bruninPhononlimitedElectronMobility2020}. La raison principale est que la présence d'un défaut brise explicitement la symétrie de translation du système, et que le moyen usuel est de contourner ce problème est de recourir à des super-cellules coûteuses.
@@ -75,4 +80,7 @@ Les chapitres~\ref{chap:défauts} et~\ref{chap:T} sont le c\oe ur du mémoire et
 
 Le chapitre~\ref{chap:eph} calcule le couplage électron-phonon $g^{(\nu)}$, le taux $\Gamma^\text{ep}_{n\kv}$ et la largeur $\gamma_{\nu\qv}$, avec le code \texttt{EPW}, appliqué au graphène parfait. Il est volontairement plus court : la méthode est déjà établie et le chapitre se concentre sur la validation des résultats. Il se termine par la comparaison des deux mécanismes d'amortissement électronique : phonons et défauts. Nous trouvons qu'ils sont du même ordre de grandeur à température ambiante et pour une concentration de défauts de l'ordre du pour cent, de sorte qu'aucun des deux mécanismes n'est négligeable.
 
+\bigskip
+\bigskip
+\bigskip
 Pour finir, le titre du mémoire commence par \og Vers \fg{} et ce n'est pas une faute de frappe : le spectre Raman résonant du graphène avec des défauts, dans toute sa gloire, n'est pas calculé ici. Seuls ses ingrédients, à un près, le sont ; ils sont validés, puis livrés sur les grilles denses que le spectre résonant exige. Outre le couplage électron-photon, trois étapes séparent encore ces ingrédients d'un calcul d'intensité en bonne et due forme. D'abord, les valeurs propres de Kohn-Sham ne sont pas des énergies d'excitation et la fonctionnelle que nous utilisons sous-estime le couplage électron-phonon  et électron-défaut dans le graphène~\cite{lazzeriImpactElectronelectronCorrelation2008} : tous requièrent une correction par l'approximation $GW$, qui traite la corrélation électronique au-delà de la DFT en combinant la fonction de Green des électrons $G$ et l'interaction de Coulomb écrantée $W$~\cite{hedinNewMethodCalculating1965}. Ensuite, la super-cellule doit être relaxée pour capturer la reconstruction de la lacune dans le graphène~\cite{el-barbaryStructureEnergeticsVacancy2003,banhartStructuralDefectsGraphene2011}. Enfin, le calcul de super-cellule doit être polarisé en spin, puisque la lacune induit un moment magnétique~\cite{yazyevDefectinducedMagnetismGraphene2007}. Les deux premièrent étapes relèvent du calcul et la troisième demande d'étendre le formalisme au spin. Nous les laissons à des études doctorales. La méthode, soit le calcul du couplage électron-défaut \textit{ab initio} et son insertion dans la théorie du Raman résonant, est ce que ce mémoire établit.

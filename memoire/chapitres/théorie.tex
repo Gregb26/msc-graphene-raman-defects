@@ -557,13 +557,11 @@ où $\mathbf{e}_{\lambda\qv}$ est le vecteur de polarisation du photon $(\lambda
 
 \subsection{Couplage électron-photon}
 
-Le champ électromagnétique se couple aux particules chargées d'un système, tels les électrons dans un solide. La prescription canonique est le couplage minimal qui revient à faire le remplacement $\hat{\mathbf{p}}\rightarrow \hat{\mathbf{p}}-e\hat{\mathbf{A}}$ dans l'Hamiltonien électronique. Cet ajout donne lieu à deux termes de couplage
+Le champ électromagnétique se couple aux particules chargées d'un système, tels les électrons dans un solide. La prescription canonique est le couplage minimal qui revient à faire le remplacement $\hat{\mathbf{p}}\rightarrow \hat{\mathbf{p}}-e\hat{\mathbf{A}}$ dans l'Hamiltonien électronique. Au premier ordre en $\hat{\mathbf{A}}$, cela donne
 \begin{equation}
-    \hat{H}_\text{eem}=-\frac{e}{m_e}\hat{\mathbf{A}}\cdot\hat{\mathbf{p}}+\frac{e^2}{2m_e}\hat{\mathbf{A}}^2,
+    \hat{H}_\text{eem}=-e\hat{\mathbf{A}}\cdot\hat{\mathbf{v}}+\mathcal{O}(\hat{\bm{A}}^2),
 \end{equation}
-où $e$ est la charge de l'électron et $m_e$ sa masse. Le deuxième terme, quadratique en $\hat{\mathbf{A}}$, est négligeable dans le régime des faibles intensités lumineuses et est souvent abandonné. De plus, en observant la forme du potentiel vecteur quantifié de l'équation~\eqref{eqn:c2_A}, nous voyons que ce terme est responsable des processus où il y a émission ou absorption de deux photons, ce qui ne se produit pas dans la diffusion Raman. Le premier terme, linéaire en $\hat{\mathbf{A}}$, est responsable de l'émission et de l'absorption d'un photon et entre directement dans la diffusion Raman.
-
-En ne gardant que ce premier terme et en l'écrivant en deuxième quantification, nous avons
+où $\hat{\mathbf{v}}$ est l'opérateur vitesse. Pour un potentiel local, $\hat{\mathbf{v}}=\hat{\mathbf{p}}/m_e$, et nous retrouvons la forme usuelle en $\hat{\mathbf{A}}\cdot\hat{\mathbf{p}}$. Pour un potentiel avec une partie non locale, comme à la section~\ref{sec:PP}, celle-ci se couple aussi au champ et nous devons ajouter le commutateur $i[\hat{V}_\text{NL},\hat{\rv}]/\hbar$ à $\hat{\mathbf{v}}$~\cite{ismail-beigiCouplingNonlocalPotentials2001}. Nous négligeons les termes d'ordres $\hat{\mathbf{A}}^2$ car ils sont faibles aux intensités lumineuses utilisées en spectroscopie Raman et font intervenir la création/anihilation de deux photons (équation~\eqref{eqn:c2_A}), processus absents de la diffusion Raman. L'Hamiltonien de couplage en deuxième quantification est
 \begin{equation}
     \hat{H}_\text{eem}=\sum_{mn\lambda}\sum_\kv g_{mn}^{(\lambda)}(\kv)\hat{c}^\dag_{m\kv}\hat{c}_{n\kv}(\hat{a}_\lambda+\hat{a}^\dag_\lambda),\label{eqn:H_eem}
 \end{equation}
@@ -571,17 +569,50 @@ où nous avons défini les éléments de matrice de couplage électron-photon en
 \begin{equation}
     g^{(\lambda)}_{mn}(\kv) = -e\sqrt{\frac{\hbar}{2\varepsilon_0 \omega \Omega_\text{BvK}}}\matrixel{\psi_{m\kv}}{\mathbf{e}_\lambda\cdot\hat{\mathbf{v}}}{\psi_{n\kv}},
 \end{equation}
-et où nous avons supposé que le vecteur d'onde du photon est négligeable par rapport à celui de l'électron (c'est l'approximation dipolaire électrique). Nous avons réécrit l'opérateur impulsion en termes de l'opérateur de vitesse $\hat{\mathbf{p}}=m_e\hat{\mathbf{v}}$. L'élément de matrice de couplage s'obtient en contractant l'opérateur vitesse avec la polarisation du photon
+et où nous avons supposé que le vecteur d'onde du photon est négligeable par rapport à celui de l'électron (l'approximation dipolaire électrique). L'élément de matrice de couplage s'obtient en contractant l'opérateur vitesse avec la polarisation du photon
 \begin{equation}
-    g^{(\lambda)}_{mn}(\kv) = -e\sqrt{\frac{\hbar}{2\varepsilon_0\omega \Omega_\text{BvK}}}\sum_\mu e_{\lambda\mu}v_{mn}^{(\mu)}(\kv),
+    g^{(\lambda)}_{mn}(\kv) = -e\sqrt{\frac{\hbar}{2\varepsilon_0\omega \Omega_\text{BvK}}}\sum_\mu e_{\lambda\mu}v_{mn}^{(\mu)}(\kv),\label{eqn:eem}
 \end{equation}
-où $\mu=x,y,z$ identifie les coordonnées cartésiennes des vecteurs. Nous ne calculons pas $v_{mn}(\kv)$ explicitement dans ce mémoire, mais la procédure est celle de l'interpolation par fonctions de Wannier de la section précédente. Dans la base des MLWF, l'opérateur vitesse $\hat{\mathbf{v}}=\nabla_\kv\hat{H}/\hbar$ s'obtient de l'Hamiltonien électronique lui-même interpolé par fonctions de Wannier
+où $\mu=x,y,z$ identifie les coordonnées cartésiennes des vecteurs. Calculer l'opérateur vitesse revient donc à calculer le couplage électron-photon et cela peut se faire très efficament avec les fonctions de Wannier.
+
+\subsection{Opérateur vitesse par interpolation de Wannier}
+
+Dans la base des fonctions de Wannier, l'opérateur vitesse s'obtient de l'Hamiltonien électronique interpolé et de la connexion de Berry~\cite{yatesSpectralFermiSurface2007}
 \begin{equation}
-    v_{mn}(\kv)\approx\frac{1}{\hbar}\left[V^{(\kv)\dag}\left(\sum_\Rv i\Rv e^{i\kv\cdot\Rv}H(\Rv)\right)V^{(\kv)}\right]_{mn},
+    \hbar v_{mn}^{(\mu)}(\kv) = \left[V^{(\kv)\dag}\left(\frac{\partial H(\kv)}{\partial k_\mu}+i[H(\kv),\mathcal{A}_\mu(\kv)]\right)V^{(\kv)}\right]_{mn},\label{eqn:op_vitesse}
 \end{equation}
-où les $V^{(\kv)}$ le ramènent dans la jauge de Bloch et où nous négligeons le terme de connexion de Berry, qui se corrige au besoin~\cite{yatesSpectralFermiSurface2007}. La quantité $\Rv H(\Rv)$ décroît rapidement avec $\Rv$ de sorte que $g_{mn}^{(\lambda)}(\kv)$ s'évalue sur une grille arbitrairement dense à un faible coût numérique.
+où $H(\kv)$ est l'Hamiltonien interpolé par fonctions de Wannier, $\partial H/\partial k_\mu$ est sa dérivée par rapport à la composante $\mu$ du vecteur $\kv$. Cette équation inclut automatiquement le commutateur de la partie non locale du pseudo-potentiel. La quantité $\bm{\mathcal{A}}$ est la connexion de Berry 
+\begin{equation}
+    \mathcal{A}_\mu(\kv) = \sum_\Rv e^{i\kv\cdot\Rv}r_\mu(\Rv),\qquad [r_\mu(\Rv)]_{ij}=\bra{i\bm 0}\hat{r}_\mu\ket{j\Rv}.
+\end{equation}
+Ici, les éléments $[r_\mu(\Rv)]_{ij}$ sont les éléments de matrice de l'opérateur position pris entre deux fonctions de Wannier, que \texttt{Wannier90} fournit avec $H(\Rv)$. Le premier terme est la dérivée des bandes usuelle pour la vitesse et le seconde est le terme de connexion de Berry. Ce deuxième terme est nul sur la diagonal et ne touche que les éléments interbandes, dont nous aurons besoin pour les intensité Raman du chapitre~\ref{chap:Raman}.
+
+Ce terme a une influence significative sur les résultats. Sans lui, la vitesse dépend de la cellule d'origine attribuée à chaque fonction de Wannier : déplacer une fonction d'un vecteur du réseau laisse les bandes inchangées, mais $H(\kv)$ acquière une phase qui change $\partial H/\partial k_\mu$, donc $v^{(\mu)}_{mn}(\kv)$ et le couplage. La connexion de Berry se transforme de façon à compenser exactement ce déplacement, ce qui rend les éléments interbandes invariants de jauge. Pour isoler cet effet, nous comparons trois variantes à la sous-section suivante : l'opérateur vitesse complet ; les \og centres seuls \fg{} où $r(\Rv)$ est réduit à sa diagonale dans la cellule d'origine, soit les centres $\bm\tau _i$ des fonctions de Wannier, de sorte que $\mathcal{A}_\mu =\text{diag}(\tau_{i\mu})$, qui correspond à l'approximation des liaisons fortes usuelles ; et sans connexion de Berry, soit $\mathcal{A}_\mu=0$. Comme les fonctions de Wannier sont localisées, $\Rv H(\Rv)$ et $r(\Rv)$ décroîssent rapidement avec $\Rv$, et les trois variantes s'évaluent sur une grille arbitrairement dense à un faible coût numérique. Le couplage $g_{mn}^{(\lambda)}$ s'obtient ensuite de l'opérateur vitesse par l'équation~\eqref{eqn:eem}.
+
+\subsection{Résultats pour le graphène}
+
+Nous évaluons l'opérateur vitesse avec les fonctions de Wannier qui seront utilisées partout dans le reste du mémoire. Cinq fonctions sont initialisées par trois orbitales hybrides $sp^2$ et une orbitale $p_z$ sur le premier atome dans la cellule et une autre $p_z$ sur le second, sur une grille $27\times 27$, avec une fenêtre externe de $-25$ à $15$~eV et une fenêtre gelée qui court jusqu'à $E_D+2.5$~eV, où $E_D$ est l'énergie du point de Dirac. Ces fonctions de Wannier sont calculées à partir des fonctions de Bloch obtenues avec les paramètres optimaux de la section~\ref{sec:electron_results}. La vitesse de Fermi interpolée, $v_F=8.31\times 10^{5}$~m/s, reproduit la pente des bandes DFT à $10^{-4}$ près. L'opérateur vitesse est ensuite calculé selon l'équation~\eqref{eqn:op_vitesse} et pour les trois variantes du paragraphe précédant. Les résultats se trouvent dans la figure~\ref{fig:op_vitesse}, où nous comparons notre opérateur vitesse avec deux références indépendantes de notre code.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_em_coupling.pdf}
+    \caption[Opérateur vitesse par interpolation de Wannier et conductivité optique du graphène.]{Opérateur vitesse par interpolation de Wannier et conductivité optique du graphène, pour les trois variantes. (a) Module de l'élément interbande $|\hbar\bm v_{\pi^*\pi}(\kv)|$ sur l'anneau résonant $\varepsilon_{\pi^*\kv}-\varepsilon_{\pi\kv}=2.33$~eV (532~nm), en fonction de l'angle $\theta$ autour de $K$ ; cercles : éléments de matrice DFT directs ; la ligne horizontale est $\hbar v_F=5.47$~eV~\AA. (b) Conductivité optique $\sigma_{xx}(\omega)$~\eqref{eqn:kubo} en unités de $\sigma_0=e^2/4\hbar$, sur $1200^2$ points $\kv$ avec $\eta=40$~meV ; carrés : \texttt{postw90}. L'encart agrandit les énergies des lasers de $633$, $532$ et $488$~nm ; la ligne pointillée marque la limite de la fenêtre gelée $\hbar\omega=4.96$~eV, au-delà de laquelle la bande $\pi^*$ interpolée n'est plus exacte.} 
+    \label{fig:op_vitesse}
+\end{figure}
+
+Le panneau (a) montre l'opérateur vitesse interbande $|\hbar \bm v_{\pi^*\pi}|$ sur l'anneau résonant d'un laser de $532$~nm, soit les états $\kv$ autour de $K$ où $\varepsilon_{\pi^*\kv}-\varepsilon_{\pi\kv}=2.33$~eV, contre les éléments de matrice $\bra{\psi_{\pi^*\kv}}\hat{\mathbf{v}}\ket{\psi_{\pi\kv}}$ évalués directement sur les fonctions d'ondes par \texttt{bands.x} de \texttt{QuantumESPRESSO}. commutateur non local compris (cercles, 48 points), pour les trois variantes. La vitesse complète les reproduit à $0.04~\%$, les centres seuls sont uniformément $2.5~\%$ trop bas, et sans connexion de Berry l'erreur atteint $-42~\%$ à $+28~\%$ et dépend de l'angle sur l'anneau.
+
+Pour s'assurer que l'opérateur vitesse reproduit bien les quantités physiques qui en découlent, nous l'utilisons pour calculer la conductivité optique du graphène. Cette dernière s'obtient par la formule de Kubo
+\begin{equation}
+    \sigma_{ab}(\omega) = \frac{2\pi e^2}{\hbar^2\omega\,N_\kv A_\text{cell}}
+    \sum_\kv\big(f_{\pi\kv}-f_{\pi^*\kv}\big)\,
+    \mathrm{Re}\!\left[\big(\hbar v^{(a)}_{\pi^*\pi}(\kv)\big)^{*}\,\hbar v^{(b)}_{\pi^*\pi}(\kv)\right]
+    \delta\!\left(\hbar\omega-\varepsilon_{\pi^*\kv}+\varepsilon_{\pi\kv}\right),\label{eqn:kubo}
+\end{equation}
+où le facteur de $2$ inclut le spin, $A_\text{cell}$ est l'aire de la cellule unitaire et seul le terme interbande est présent (pas de terme de Drude). Nous l'évaluons, pour les trois variantes, sur une grille de $1200^2$ points $\kv$, à $T=0$~K et la fonction delta est remplacée par une gaussienne d'écart-type $\eta=40$~meV. Nous l'exprimons en unités de la conductivité universelle $\sigma_0=e^2/4\hbar$ du cône de Dirac~\cite{nairFineStructureConstant2008} et comparons la composante $\sigma_{xx}(\omega)$ à celle calculée par \texttt{postw90} (carrés), l'outil de post-traitement de \texttt{Wannier90}, au panneau (b). La variante complète coïncide à $5\times 10^{-4}\,\sigma_0$ près avec \texttt{Wannier90}, tandis que les autres variantes s'en éloignent. Cela valide l'implémentaion complète de l'opérateur vitesse et c'est la variante que nous devons utiliser pour la diffusion Raman.
 
 \section{Hamiltonien complet en deuxième quantification}\label{sec:hamiltonien}
+
 Avant de conclure ce chapitre, il vaut la peine de faire une petite pause pour récapituler les nombreux concepts théoriques introduits jusqu'à maintenant. Le système que nous étudions est une feuille de graphène avec des défauts, illuminée par le laser d'une expérience de spectroscopie Raman, dans laquelle trois types de particules et de quasiparticules coexistent : les électrons, les phonons et les photons. Chacune a son Hamiltonien libre et chaque paire (sauf la paire phonon-photon) a son Hamiltonien de couplage. Tout ce chapitre se résume à l'Hamiltonien total
 \begin{equation}
     \hat{H} = \hat{H}_0+\hat{H}_\text{int}.

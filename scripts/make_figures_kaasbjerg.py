@@ -46,8 +46,8 @@ lab = {"tel_quel": "brut", "aligne": "aligné"}      # vocabulaire brut / align�
 
 
 def clab(cv):
-    """Étiquette de concentration, point décimal : « $c_i$ = 0.1 % »."""
-    return rf"$c_i$ = {cv * 100:g}" + r"\,\%"
+    """Étiquette de concentration, point décimal : « $c$ = 0.1 % » (c = c_i, défauts par maille ; symbole c du mémoire, décision G 2026-10-07)."""
+    return rf"$c$ = {cv * 100:g}" + r"\,\%"
 
 
 def jload(*p):
@@ -143,7 +143,7 @@ def fig_sigma_K(a):
         x.plot(eg, Se[:, 0].real, color=NAVY, lw=1.0, label=r"Re $\Sigma^\mathrm{eff}_{nK}$")
         x.plot(eg, Se[:, 0].imag, color=ORANGE, lw=1.0, label=r"Im $\Sigma^\mathrm{eff}_{nK}$")
         x.set_xlim(-1, 1); x.set_ylim(-0.35, 0.35); x.set_xlabel(r"Énergie $\varepsilon - E_D$ (eV)")
-        x.set_title(f"({'ab'[iv]}) " + ("brut" if var == "tel_quel" else "aligné") + r", $c_i$ = 1\,\%, $k = K$", fontsize=9)
+        x.set_title(f"({'ab'[iv]}) " + ("brut" if var == "tel_quel" else "aligné") + r", $c$ = 1\,\%, $k = K$", fontsize=9)
     axs[0].set_ylabel(r"$\Sigma$ (eV)"); axs[0].legend(fontsize=6, loc="lower left")
     fig.tight_layout(); save(fig, "fig_kaasbjerg_sigma_K", a.outdir); plt.close(fig)
 

@@ -10,7 +10,6 @@ C : figures dans le corps du texte. A : figures en annexe.
   C: fig_Ved                (a) carte 5×5, (b) carte 9×9 (colorbar commune) ; (c) profil radial masqué, + C_N (pointillés, R10) — 6.5 × 7.2 po
   C: fig_Ved_zoom           V_ed^L dans le plan, zoom ±3 Å : (a) 8×8, (b) 9×9 (reprise à l'identique de make_figures.py)
   C: fig_ks_reconstruction  |ε_calc − ε_QE| contre N, grilles N×N et denses, moyenne et max (reprise à l'identique de make_figures.py)
-  C: fig_level2             Γ^ed/c contre N, paramètres de production (reprise à l'identique de make_figures.py)
 Usage : python scripts/make_figures_defaut.py [--outdir figures/electron_defect]
 """
 
@@ -117,14 +116,8 @@ axc.set_xlabel(r"Distance au site $r$ (Å)"); axc.set_ylabel(r"$\bar V_\mathrm{e
 axc.set_title("Moyenne du potentiel local dans le plan du graphène", loc="left", fontsize=9); panel(axc, "c")
 save(fig, "fig_Ved")
 
-# ---------------- 7. trois figures reprises à l'identique de make_figures.py (2026-10-01) : fig_level2, fig_ks_reconstruction, fig_Ved_zoom
-LBL_G_TAUX = r"Taux d'amortissement $\Gamma^\mathrm{ed}/c$ (meV)"          # libellé de make_figures.py (fig_level2)
-if maps:
-    fig, ax = plt.subplots(); Ns = [int(S.split("x")[0]) for S in maps]; ys = [maps[S][(RC, GRID, ETA)] for S in maps]
-    for S, N, y in zip(maps, Ns, ys): ax.plot([N], [y], "o", color=COL[S], ms=7, label=famlab(S))
-    pts = sorted(zip(Ns, ys)); ax.plot([q[0] for q in pts], [q[1] for q in pts], "-", color=MUTED, lw=1, zorder=0); ax.axvspan(0, cfg["N_min"] - 0.5, color="#e6e6e3", alpha=0.5, lw=0)
-    ax.set_xlabel(r"Taille de la super-cellule $N$ ($N\times N$)"); ax.set_ylabel(LBL_G_TAUX); ax.set_xticks(Ns); ax.set_xlim(min(Ns) - 1, max(Ns) + 1)
-    ax.set_title(rf"$R_\mathrm{{cut}}$ = {RC}, grille {GRID}$^2$, $\eta$ = {ETA} eV", loc="left", fontsize=9); ax.legend(ncol=2, fontsize=8); save(fig, "fig_level2")
+# ---------------- 7. deux figures reprises à l'identique de make_figures.py (2026-10-01) : fig_ks_reconstruction, fig_Ved_zoom (fig_level2 retirée le 2026-10-07)
+# fig_level2 retirée du mémoire le 2026-10-05 (redondante avec tab:convergence_gamma) ; bloc supprimé le 2026-10-07.
 
 ks = f"{RES}/ks_reconstruction.npz"                      # reconstruction KS avec V_p (super-cellule parfaite), moyenne sur bandes et k
 if os.path.exists(ks):

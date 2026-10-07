@@ -105,7 +105,7 @@ elles sont remplacées chapitre par chapitre à la réécriture.
 elle sera refaite une fois, au verrouillage du mémoire, contre des sommes md5 enregistrées dans ce dépôt.
 
 Écarts volontaires avec GR au tag : `config/production.json` (chemins, dont `campaigns_results_dir` = `donnees`) ; `scripts/make_figures.py` **retiré le 2026-10-01** :
-ses trois figures du mémoire (`fig_Ved_zoom`, `fig_ks_reconstruction`, `fig_level2`) sont tracées par `make_figures_defaut.py`, code repris
+ses deux figures du mémoire (`fig_Ved_zoom`, `fig_ks_reconstruction` ; `fig_level2` retirée du mémoire le 2026-10-05 et du script le 2026-10-07) sont tracées par `make_figures_defaut.py`, code repris
 à l'identique (9 PDF identiques au bit avant / après dans la VM) ; ses onze figures de travail sont retirées de `figures/` ; `level{1,2}_summary.csv`
 restent produits par `GR:scripts/fig/make_figures.py --write-summaries` ; dans les huit scripts, la racine du dépôt est `parents[1]` au lieu de `parents[2]` ; `make_figures_{controles,em,kaasbjerg}.py`
 lisent les dossiers plats de `donnees/` (noms de fichiers préfixés, voir ci-dessus) ; `make_figures_controles.py` : quatre figures écartées
@@ -124,6 +124,8 @@ notation de l'amas $M_\mathcal{C}$, $\mathcal{G}^{(0)}_\mathcal{C}$, $T_\mathcal
 régénérés avec ces étiquettes** (à faire sur le Mac : `python scripts/make_all_figures.py`, puis copie dans `memoire/figures/`). `fig_M_map_final` retirée (bloc du script et PDF/PNG).
 
 ---
+
+**Régénération du 2026-10-07 (Mac, `.venv`)** : `make_all_figures.py --only kaasbjerg,controles,defauts` après `$c_i$ → `$c$` dans `make_figures_kaasbjerg.py` et retrait du bloc `fig_level2` de `make_figures_defaut.py` ; dix PDF copiés dans `memoire/figures/` (`fig_kaasbjerg_{superposition,spectral_GKM,sigma_K,dos_c,sensibilites,plateau_ws}`, `fig_folded_vs_R7`, `fig_resonance_vs_nkint_plateau`, `fig_rcut_aligned`, `fig_convergence`) ; étiquettes « brut » / « aligné » désormais dans les PDF installés. La VM Linux de l'appareil ne peut plus tracer (`text.usetex` exige `cm-super`, absent, CTAN inaccessible) : recette sur le Mac seulement.
 
 ## 1. Figures incluses dans le mémoire (32 ; ch. 4 → ch. M `défauts.tex` et ch. T `défauts2.tex` depuis la scission du 2026-10-04, annexe D = `annexes/Convergence et paramètres de calcul.tex`, lignes du 2026-10-05)
 
@@ -148,7 +150,6 @@ mémoire (taille et mise en page changent), à valider.
 | `fig:offset_profiles_13` | `fig_offset_profiles_13.pdf` | annexe D (chaîne M) | `make_figures_controles.py` | `alignement/r10_a1_results.json`, `alignement/profiles_<S>.npz` | installée le 2026-10-05 |
 | `fig:alignement_regions` | `fig_alignement_regions.pdf` | annexe D (chaîne M) | `make_figures_controles.py` (tracé seulement) | `donnees/ch4/alignement_regions.npz` | installée le 2026-10-05 |
 | `fig:convergence` | `fig_convergence.pdf` | annexe D:74 (depuis le 2026-10-04) | `make_figures_defaut.py` | `specwd_{5x5,6x6,7x7,8x8,9x9,12x12}_prod.npz` | **R10** |
-| `fig:level2` | `fig_level2.pdf` | défauts2:217 | `make_figures_defaut.py` | `specwd_*_prod.npz` | **R10** |
 | `fig:spectral` | `fig_spectral_final.pdf` | défauts2:246 | `make_figures_defaut.py` | `resonance_9x9.npz`, `resonance_criteria_9x9.npz` | **R10** |
 | `fig:folded_vs_R7` | `fig_folded_vs_R7.pdf` | défauts2:230 | `make_figures_controles.py` | `controles/r9_c_results.json` | installée le 2026-10-05 |
 | `fig:resonance_vs_nkint_plateau` | `fig_resonance_vs_nkint_plateau.pdf` | annexe D:98 | `make_figures_controles.py` | `controles/r9_b_results_plateau.json` | installée le 2026-10-04 |

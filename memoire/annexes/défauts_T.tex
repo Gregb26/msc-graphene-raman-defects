@@ -259,14 +259,13 @@ Cette section rassemble la dépendance en taille de super-cellule et les preuves
 \vspace*{\fill}
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{figures/fig_convergence.pdf}
-    \caption[Convergence du taux d'amortissement par unité de
-    concentration.]{Convergence de la médiane de $\Gamma^\text{ed}/c$
-    sur $\pm3$~eV autour de $E_D$. (a) En fonction du rayon de coupure
-    $R_\text{cut}$ du schéma de l'amas pour les six tailles de super-cellule,
-    avec une grille de sortie $240\times240$ et un élargissement $\eta = 20$~meV. (b) En fonction de la grille de sortie et de $\eta$, pour la super-cellule de référence $9\times9$ à $R_\text{cut} = 3$. La couleur donne l'écart au point $(240^2, 20~\text{meV})$. La grille interne est de $300\times300$ ($N_{\tilde\kv}=300^2$) dans tous les cas.}
-    \label{fig:convergence}
+    \includegraphics[width=\textwidth]{figures/fig_level2.pdf}
+    \caption[Dépendance en taille de super-cellule du taux d'amortissement.]{Médiane de $\Gamma^\text{ed}/c$ sur $\pm3$~eV autour de $E_D$ en fonction de la taille $N$ de la super-cellule ayant servi à calculer $\bm M_\mathcal{C}$, aux paramètres de production ($R_\text{cut}=3$, grille de sortie $240\times240$, $\eta=20$~meV ; colonne $R_\text{cut}=3$ du tableau~\ref{tab:convergence_gamma}). La zone grisée marque les tailles $N<7$ exclues de la production. La dépendance n'est pas monotone : les deux familles de la section~\ref{sec:M_détails} se séparent, $N=3m$ ($6$, $9$, $12$) au-dessus et les autres en dessous, et c'est au sein de la famille $3m$ que l'écart de $2.4~\%$ entre $9\times9$ et $12\times12$ retenu comme incertitude au chapitre~\ref{chap:T} se lit.}
+    \label{fig:level2}
 \end{figure}
+\vspace*{\fill}
+\clearpage
+\vspace*{\fill}
 \begin{table}[htbp]
     \centering
     \caption[Convergence du taux d'amortissement en fonction du rayon de
@@ -277,6 +276,16 @@ Cette section rassemble la dépendance en taille de super-cellule et les preuves
     \label{tab:convergence_gamma}
     \input{tables/convergence_gamma}
 \end{table}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fig_convergence.pdf}
+    \caption[Convergence du taux d'amortissement par unité de
+    concentration.]{Convergence de la médiane de $\Gamma^\text{ed}/c$
+    sur $\pm3$~eV autour de $E_D$. (a) En fonction du rayon de coupure
+    $R_\text{cut}$ du schéma de l'amas pour les six tailles de super-cellule,
+    avec une grille de sortie $240\times240$ et un élargissement $\eta = 20$~meV. (b) En fonction de la grille de sortie et de $\eta$, pour la super-cellule de référence $9\times9$ à $R_\text{cut} = 3$. La couleur donne l'écart au point $(240^2, 20~\text{meV})$. La grille interne est de $300\times300$ ($N_{\tilde\kv}=300^2$) dans tous les cas.}
+    \label{fig:convergence}
+\end{figure}
 \vspace*{\fill}
 
 \clearpage

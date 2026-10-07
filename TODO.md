@@ -2,13 +2,6 @@
 
 Liste de travail unique du dépôt.
 
----
-
-## Chantier 1 : réécriture du ch. 4
-
-- [ ] **C** — Campagne $\bm\Lambda$ (défini en T.1 `eqn:T_inv`, $\bm\Lambda=\mathbb I-\bm{\mathcal G}^{(0)}\bm M$) : T.3 l. ~200 ($\bm\Lambda_\mathcal{C}=\mathbb I-\bm{\mathcal G}^{(0)}_\mathcal{C}\bm M_\mathcal{C}$, ordre et indice $\mathcal{C}$ à corriger), T.4 Diagnostics (+ phrase « à η fini » : état lié = minimum profond + pic 2η portant un état entier ; résonance = minimum modéré + bosse > 2η), légende (d) de `fig:spectral`, boîte Born/critère de `chaine_T.tex`, entrée dans `symboles.tex`.
-- [ ] **C** — Passe en gras sur tout `défauts2.tex` (dont `eqn:born` en T.2 : $\bm\Sigma^{\text{ed},\text{B}}=c[\bm M+\bm M\bm{\mathcal G}^{(0)}\bm M]$, et Contrôles : $\bm M_\mathcal{C}$, $\Gamma^\text{ed}_{n\kv}$) ; restes $N_\text{uc}$ (l. 77 $\rho=\rho_0+\delta\rho/N_\text{uc}$, l. 114, légende `fig:dyson_T` « temps intégrés »).
-
 
 ### Transversal : figures, scripts, données
 
@@ -17,13 +10,13 @@ Liste de travail unique du dépôt.
 - [ ] **G** — Instructions du projet : « huit make_figures*.py » → sept (`make_figures.py` retiré, `make_figures_memoire.py` renommé `make_figures_defaut.py`), « 47 figures » → 33 ; préciser que les figures se régénèrent par `make_all_figures.py` (seul lanceur qui passe les options de production à `make_figures_epw.py`)
 
 
-## Chantier 3 : Annexe D, paramètres et convergence
+## Reste avant le chantier 5 (bilan C du 2026-10-07)
 
-Décision du 2026-10-01 : en annexe ce qui justifie seulement un paramètre numérique, dans le corps ce qui porte un résultat ou une limite. Restent dans le corps : `fig:level2`, `fig:M_locality`, `fig:epw_kohn_degauss`, `tab:gamma_ph_prod` (`fig:ks_reconstruction` passée en annexe le 2026-10-04, décision G). Vont en annexe : `fig:convergence_dft`, `fig:convergence`, `tab:convergence_gamma`, grille interne, `tab:rcut_M`, `tab:tests_M`, `tab:tests_T`, `tab:gamma_ep_conv`, `tab:gamma_ph_conv`, et (choix du 2026-10-01) `fig_offset_profiles_13`, `alignement_regions`, `fig_rcut_aligned`, `fig_resonance_vs_nkint_plateau`, `fig_kaasbjerg_sensibilites`.
+Tout ce qui touche la physique, les chiffres et les équations est fait et compile (chantiers 1 à 4 clos ; §2.5 écrit ; normalisation sur la cellule unitaire unifiée ch. 2 → ch. T). Restent, dans l'ordre suggéré :
 
-Annexe D réorganisée par chaîne (DFT, DFPT, Wannier, M, T, EPW) : pour chacune, tableau des paramètres puis preuves de convergence et tests. Le corps garde les valeurs retenues et un renvoi.
-
-- [ ] **C** — Vérifier tous les `\ref` vers les éléments déplacés (script du 2026-10-05 : 167 cibles, 0 manquante sur `memoire/`), compiler, `PROVENANCE.md` à jour — à refaire après le bloc ch. 2 / ch. 5.
+- [ ] **G** — `fig:level2` rétablie (2026-10-07, décision G) : `fig_level2.{pdf,png}` régénérés (bloc 7 de `make_figures_defaut.py` rétabli, étiquette $\Gamma^\text{ed}/c$) et installés dans `figures/electron_defect/` et `memoire/figures/` ; **reste à insérer** le `\begin{figure}` proposé par C dans `annexes/défauts_T.tex` après `tab:convergence_gamma`, puis compiler.
+- [ ] **G** — Ménage Mac : `memoire/build/{memoire6.tar, fe.*, fd.*, figdata.*}` (morceaux de transfert, ~110 Mo) ; `% À REVOIR` restants dans `annexes/défauts_T.tex` (3) ; légende de `fig:kaasbjerg_dos_c` (facteur 9.4).
+- [ ] **G** — Les deux items **G** « Transversal » du chantier 1 (données orphelines, instructions du projet).
 
 
 ## Chantier 5 (une fois tout le reste terminé) : corrections de la grammaire et orthographes. relecture complète.
@@ -64,11 +57,5 @@ Décision du 2026-10-03 : le mémoire garde les chiffres actuels et dit ce qui e
 
 Décision du 2026-10-03 : le mémoire garde les super-cellules au seul point Γ et ses chiffres actuels. Mise à jour du même jour : les tests sont lancés sur Rorqual **en parallèle de l'écriture** (plan à faire avec Fable). Règle proposée : un résultat obtenu avant le dépôt n'entre dans le mémoire qu'en conclusion ou en perspective, sauf s'il invalide un chiffre publié. Ordre suggéré (du moins cher au plus cher) : diagnostic σ au point Γ ; vide sur le potentiel électrostatique (pp.x seul, vérifier d'abord que les `.save` existent encore sur le scratch) ; rayon des sphères et moyenne pondérée π (post-traitement) ; 9×9 en 3×3 et 4×4 (σ, MV et FD) ; 9×9 sans troncature et c = 40 bohr ; tailles 30 et 33 ; MoS₂.
 
-## Anciens restes, statut à vérifier
 
-Notés avant le 2026-09-25 ; peut-être déjà faits (**ambigu**, non vérifiés par C le 2026-10-03).
-
-- [ ] Zotero : ajouter Yates 2007, Eckmann 2012, Polanco 2018, Chen 2009, Ugeda 2010, Guandalini 2025 (PRL), Perdew–Parr–Levy–Balduz 1982, Almbladh–von Barth 1985 ; doublon Ferrari 2006 / 2006a
-- [ ] C7 : 75 points k pour 27×27 (IBZ 1/12), à confirmer par `grep 'number of k points'` sur Rorqual
-- [ ] Normalisation de la DOS des phonons (intégrale matdyn 3.78 au lieu de 6)
 

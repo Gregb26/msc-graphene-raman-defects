@@ -105,7 +105,7 @@ elles sont remplacées chapitre par chapitre à la réécriture.
 elle sera refaite une fois, au verrouillage du mémoire, contre des sommes md5 enregistrées dans ce dépôt.
 
 Écarts volontaires avec GR au tag : `config/production.json` (chemins, dont `campaigns_results_dir` = `donnees`) ; `scripts/make_figures.py` **retiré le 2026-10-01** :
-ses deux figures du mémoire (`fig_Ved_zoom`, `fig_ks_reconstruction` ; `fig_level2` retirée du mémoire le 2026-10-05 et du script le 2026-10-07) sont tracées par `make_figures_defaut.py`, code repris
+ses deux figures du mémoire (`fig_Ved_zoom`, `fig_ks_reconstruction`, `fig_level2` ; cette dernière retirée le 2026-10-05 puis rétablie le 2026-10-07 pour l'annexe D) sont tracées par `make_figures_defaut.py`, code repris
 à l'identique (9 PDF identiques au bit avant / après dans la VM) ; ses onze figures de travail sont retirées de `figures/` ; `level{1,2}_summary.csv`
 restent produits par `GR:scripts/fig/make_figures.py --write-summaries` ; dans les huit scripts, la racine du dépôt est `parents[1]` au lieu de `parents[2]` ; `make_figures_{controles,em,kaasbjerg}.py`
 lisent les dossiers plats de `donnees/` (noms de fichiers préfixés, voir ci-dessus) ; `make_figures_controles.py` : quatre figures écartées
@@ -127,7 +127,7 @@ régénérés avec ces étiquettes** (à faire sur le Mac : `python scripts/make
 
 **Régénération du 2026-10-07 (Mac, `.venv`)** : `make_all_figures.py --only kaasbjerg,controles,defauts` après `$c_i$ → `$c$` dans `make_figures_kaasbjerg.py` et retrait du bloc `fig_level2` de `make_figures_defaut.py` ; dix PDF copiés dans `memoire/figures/` (`fig_kaasbjerg_{superposition,spectral_GKM,sigma_K,dos_c,sensibilites,plateau_ws}`, `fig_folded_vs_R7`, `fig_resonance_vs_nkint_plateau`, `fig_rcut_aligned`, `fig_convergence`) ; étiquettes « brut » / « aligné » désormais dans les PDF installés. La VM Linux de l'appareil ne peut plus tracer (`text.usetex` exige `cm-super`, absent, CTAN inaccessible) : recette sur le Mac seulement.
 
-## 1. Figures incluses dans le mémoire (33 ; ch. 4 → ch. M `défauts.tex` et ch. T `défauts2.tex` depuis la scission du 2026-10-04, annexe D = `annexes/Convergence et paramètres de calcul.tex`, lignes du 2026-10-05)
+## 1. Figures incluses dans le mémoire (34 ; ch. 4 → ch. M `défauts.tex` et ch. T `défauts2.tex` depuis la scission du 2026-10-04, annexe D = `annexes/Convergence et paramètres de calcul.tex`, lignes du 2026-10-05)
 
 État par rapport à `memoire/figures/` (comparaison au pixel, 100 ppp, contre les PDF du tag) :
 **même contenu** = seules les métadonnées diffèrent, rien à faire ; **R10** = le mémoire a la version R6, la
@@ -139,7 +139,7 @@ mémoire (taille et mise en page changent), à valider.
 | `fig:KB` | `KB_projectors_C.pdf` | théorie:191 | `make_figures_electron.py` → `fig_kb_pseudo_C` (**nom différent**) | `donnees/electron/C.upf` | ch. 2 refaite |
 | `fig:convergence_dft` | `fig_electron_convergence.pdf` | annexe A (`sec:annexe_conv_dft`, depuis le 2026-10-07 ; corps : renvoi théorie:318) | `make_figures_electron.py` | `donnees/electron/{ecut,ecut_cross,kpoint,smearing}.dat` | ch. 2 refaite |
 | `fig:resultats_electrons` | `fig_ebands_edos.pdf` | théorie:326 | `make_figures_electron.py` | `donnees/electron/{ebands,edos}.dat` | ch. 2 refaite |
-| `fig:phonon_results` | `fig_epw_phonons.pdf` | théorie:447 | `make_figures_epw.py` (variante : `make_figures_phonons.py` → `fig_phfreq_phdos`, données `donnees/phonon/`) | `donnees/epw/{validation,phdos}_24k24q_mv0.02.npz` | même contenu |
+| `fig:phonon_results` | `fig_epw_phonons.pdf` | théorie:447 | `make_figures_epw.py` (variante : `make_figures_phonons.py` → `fig_phfreq_phdos`, données `donnees/phonon/`) | `donnees/epw/{validation,phdos}_24k24q_mv0.02.npz` | même contenu ; 2026-10-07 : axe (b) « DOS » sans unité (intégrale matdyn 3.78 ≠ 6, voir TODO), régénérée dans le conteneur C |
 | `fig:op_vitesse` | `fig_em_coupling.pdf` | théorie:598 (§2.5.4, incluse le 2026-10-07) | `make_figures_em.py` | `donnees/electron_photon/` : `em3_ring_2p33.npz`, `em2_A.npz` (DFT directe, `bands.x` `lp=.true.`), `em_sigma_{full,centres_only,no_berry}_N1200_eta0.04.npz`, `em2_postw90_sigma_ti.npz`, `em_scalars.json` | installée (PDF du 2026-10-01) |
 | `fig:Ved_zoom` | `fig_Ved_zoom.pdf` | défauts:307 | `make_figures_defaut.py` | `donnees/M2_plateau/ved_analysis.npz` | même contenu |
 | `fig:Ved` | `fig_Ved.pdf` | défauts:322 | `make_figures_defaut.py` | `ved_analysis.npz` + C_N de `config/production.json` | **R10** |
@@ -151,7 +151,8 @@ mémoire (taille et mise en page changent), à valider.
 | `fig:offset_profiles_13` | `fig_offset_profiles_13.pdf` | annexe D (chaîne M) | `make_figures_controles.py` | `alignement/r10_a1_results.json`, `alignement/profiles_<S>.npz` | installée le 2026-10-05 |
 | `fig:alignement_regions` | `fig_alignement_regions.pdf` | annexe D (chaîne M) | `make_figures_controles.py` (tracé seulement) | `donnees/ch4/alignement_regions.npz` | installée le 2026-10-05 |
 | `fig:convergence` | `fig_convergence.pdf` | annexe D:74 (depuis le 2026-10-04) | `make_figures_defaut.py` | `specwd_{5x5,6x6,7x7,8x8,9x9,12x12}_prod.npz` | **R10** |
-| `fig:spectral` | `fig_spectral_final.pdf` | défauts2:246 | `make_figures_defaut.py` | `resonance_9x9.npz`, `resonance_criteria_9x9.npz` | **R10** |
+| `fig:level2` | `fig_level2.pdf` | annexe D (`sec:annexe_T_tests`, après `tab:convergence_gamma` ; rétablie le 2026-10-07, décision G) | `make_figures_defaut.py` (bloc 7, rétabli) | `M2_plateau/specwd_<N>_prod.npz` (6 tailles), même donnée que la colonne $R_\text{cut}=3$ de `tab:convergence_gamma` (`level1_summary.csv`) | régénérée dans le conteneur C, étiquette $\Gamma^\text{ed}/c$ |
+| `fig:spectral` | `fig_spectral_final.pdf` | défauts2:342 | `make_figures_defaut.py` | `resonance_9x9.npz`, `resonance_criteria_9x9.npz` | installée le 2026-10-07 (régénérée dans le conteneur C, étiquettes $\Gamma^\text{ed}/c$ et $\det\bm\Lambda_\mathcal{C}$ ; `\boldsymbol` → `\mathbf` dans le script, le préambule `usetex` de matplotlib n'a pas `bm`) |
 | `fig:folded_vs_R7` | `fig_folded_vs_R7.pdf` | défauts2:230 | `make_figures_controles.py` | `controles/r9_c_results.json` | installée le 2026-10-05 |
 | `fig:resonance_vs_nkint_plateau` | `fig_resonance_vs_nkint_plateau.pdf` | annexe D:98 | `make_figures_controles.py` | `controles/r9_b_results_plateau.json` | installée le 2026-10-04 |
 | `fig:kaasbjerg_superposition` | `fig_kaasbjerg_superposition.pdf` | défauts2:274 | `make_figures_kaasbjerg.py` | `kaasbjerg/r8_dos_9x9.npz`, `r8_fig13_VA_interp_1meV.csv` | installée le 2026-10-05 |

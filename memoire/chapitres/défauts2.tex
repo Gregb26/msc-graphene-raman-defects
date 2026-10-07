@@ -241,6 +241,8 @@ Avant de passer aux résultats de ce chapitre, nous détaillons la chaîne de ca
 
 Commencçons par justifier l'introduction du schéma de l'amas en donnant quelques chiffres. Supposons une grille de sortie de $N_{\kv} = 240\times 240$ points et $N_W=5$ fonctions de Wannier (trois $\sigma$ de lien et deux $p_z$ atomiques). Comme la matrice $T$~\eqref{eqn:T_chap} est définie dans la base complète des états de Bloch sur la grille de sortie, c'est une matrice dense de dimension $N_\kv N_W\approx288\,000$ à inverser. Cette inversion coûte $\mathcal{O}(N_\kv^3N_W^3)$ et le taux d'amortissement, qui requiert la matrice $T$ à l'énergie de chaque état sur la grille de sortie, porte le coût à $\mathcal{O}(N_\kv^4N_W^4)$. Simplement la stocker en mémoire occuperait environ 1 téraoctets (1000 Go ou $10^{12}$ octets) \textit{par énergie} ! Pour un taux calculé sur une grille d'énergie de $1000$ points, ce qui n'est pas très dense, nous parlons alors de $1000$ téraoctets ou 1 pétaoctet ($10^{15}$ octets). Ceci est complètement déraisonnable et impraticable. Heureusement, le schéma de l'amas de la section précédente réduit la dimension à $N_\mathcal{C}N_W=145 \ll 288\,000$, et ce, indépendamment du nombre de points de la grille de sortie.
 
+\clearpage
+\vspace*{\fill}
 \begin{figure}[htbp]
     \centering
     \hspace{2.5cm}
@@ -248,8 +250,9 @@ Commencçons par justifier l'introduction du schéma de l'amas en donnant quelqu
     \caption[Représentation schématique de la chaîne de calcul pour la matrice $T$ et le taux d'amortissement.]{Chaîne de calcul de la matrice $T$, du taux d'amortissement et des quantités dérivés. Les numéros renvoient aux étapes décrites au de cette section. Les cadres pointillés séparent les étapes dans la base de Wannier de celles dans la base de Bloch. Les boîtes latérales donnent les quantités auxiliaires calculées par la chaîne.}
     \label{fig:chaine_T}
 \end{figure}
-
+\vspace*{\fill}
 \clearpage
+
 \bloc{Évaluation de la fonction de Green et de la matrice $T$ de l'amas}
 
 La chaîne débute par la matrice tronquée $\bm M_\mathcal{C}$ définissant l'amas $\mathcal{C}$. La première étape est de calculer la fonction de Green de cet amas $\bm{\mathcal{G}}^{(0)}_\mathcal{C}$ selon l'équation~\eqref{eqn:g_loc}. Elle requiert d'interpoler par fonctions de Wannier l'Hamiltonien électronique sur une grille interne $\kv_\text{int}$ servant uniquement à l'évaluation de $\bm{\mathcal{G}}^{(0)}_\mathcal{C}$. Il est requis que les fonctions de Wannier employée ici soient les mêmes que celles utilisées pour calculer $\bm M_\mathcal{C}$. Pour une énergie donnée, l'évaluation de la fonction de Green de l'amas ne requiert qu'une inversion de dimension $N_W=5$ par point de la grille interne, suivie d'une transformée de Fourier vers les $N_\mathcal{C}^2$ paires de l'amas. Le coût n'est que linéaire en $N_{\kv_\text{int}}$ : la grille interne peut être aussi dense que nécessaire pour que l'élargissement $\eta$ soit le seul paramètre de résolution.

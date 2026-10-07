@@ -9,6 +9,7 @@ C : figures dans le corps du texte. A : figures en annexe.
   C: fig_M_scaling_final    max|M| vs N, convention cellule unitaire (panneau unique)                           — 6.5 × 4.0 po
   C: fig_Ved                (a) carte 5×5, (b) carte 9×9 (colorbar commune) ; (c) profil radial masqué, + C_N (pointillés, R10) — 6.5 × 7.2 po
   C: fig_Ved_zoom           V_ed^L dans le plan, zoom ±3 Å : (a) 8×8, (b) 9×9 (reprise à l'identique de make_figures.py)
+  A: fig_level2             Γ^ed/c (médiane ±3 eV) contre la taille N de la super-cellule, paramètres de production      — 6.5 × 3.6 po
   C: fig_ks_reconstruction  |ε_calc − ε_QE| contre N, grilles N×N et denses, moyenne et max (reprise à l'identique de make_figures.py)
 Usage : python scripts/make_figures_defaut.py [--outdir figures/electron_defect]
 """
@@ -82,7 +83,7 @@ a2.plot(x, R["rho0"], color=C_REF, label=r"$\rho_0$ (cristal parfait)"); a2.plot
 a2.set_ylabel("Densité d'états (états/eV/cellule)"); a2.set_title(r"$\delta\rho = \rho_\mathrm{dis}-\rho_0$", loc="left", fontsize=9); a2.legend(fontsize=8)
 tr = R["Tbar_tr"]; a3.plot(xg, tr.real, color=C_T, label=r"Re $\bar T_{\pi\pi}(K,K;\varepsilon)$"); a3.plot(xg, tr.imag, color=C_BORN, label=r"Im $\bar T_{\pi\pi}(K,K;\varepsilon)$"); a3.axhline(0, color=MUTED, lw=0.8)
 a3.set_ylabel(r"$\bar T$ (eV, par défaut)"); a3.set_title(r"$\bar T_{\pi\pi}$ en $K$ (trace/2)", loc="left", fontsize=9); a3.legend(fontsize=8)
-xc = C["eg"] - float(C["E_D"]); a4.semilogy(xc, np.exp(C["logdet_rel"]), color=C_T, label=r"$|\det\boldsymbol{\Lambda}_\mathcal{C}|$ / max"); a4.semilogy(xc, C["minlam"], color=C_BORN, label=r"$\min_i|\lambda_i|$, $\lambda_i$ valeurs propres de $\boldsymbol{\Lambda}_\mathcal{C}$")
+xc = C["eg"] - float(C["E_D"]); a4.semilogy(xc, np.exp(C["logdet_rel"]), color=C_T, label=r"$|\det\mathbf{\Lambda}_\mathcal{C}|$ / max"); a4.semilogy(xc, C["minlam"], color=C_BORN, label=r"$\min_i|\lambda_i|$, $\lambda_i$ valeurs propres de $\mathbf{\Lambda}_\mathcal{C}$")
 a4.set_ylabel("Sans dimension"); a4.set_title("Critère de résonance", loc="left", fontsize=9); a4.legend(fontsize=8)
 for i, ax in enumerate(axs.ravel()): ax.set_xlabel(LBL_E); ax.axvline(0, color=MUTED, lw=0.8, ls=":"); panel(ax, "abcd"[i])
 fig.tight_layout(); save(fig, "fig_spectral_final")
@@ -116,8 +117,16 @@ axc.set_xlabel(r"Distance au site $r$ (Å)"); axc.set_ylabel(r"$\bar V_\mathrm{e
 axc.set_title("Moyenne du potentiel local dans le plan du graphène", loc="left", fontsize=9); panel(axc, "c")
 save(fig, "fig_Ved")
 
-# ---------------- 7. deux figures reprises à l'identique de make_figures.py (2026-10-01) : fig_ks_reconstruction, fig_Ved_zoom (fig_level2 retirée le 2026-10-07)
-# fig_level2 retirée du mémoire le 2026-10-05 (redondante avec tab:convergence_gamma) ; bloc supprimé le 2026-10-07.
+# ---------------- 7. trois figures reprises de make_figures.py (2026-10-01) : fig_level2, fig_ks_reconstruction, fig_Ved_zoom
+# fig_level2 : Γ^ed/c (médiane sur ±3 eV) contre N aux paramètres de production ; retirée le 2026-10-05, rétablie le 2026-10-07 pour l'annexe D
+# (décision G ; même donnée que la colonne R_cut = 3 de tab:convergence_gamma, specwd_<N>_prod.npz). Étiquette Γ^ed/c, pas Γ N_cells.
+if maps:
+    fig, ax = plt.subplots(figsize=(6.5, 3.6)); Ns = [int(S.split("x")[0]) for S in maps]; ys = [maps[S][(RC, GRID, ETA)] for S in maps]
+    for S, N, y in zip(maps, Ns, ys): ax.plot([N], [y], "o", color=COL[S], ms=7, label=famlab(S))
+    pts = sorted(zip(Ns, ys)); ax.plot([q[0] for q in pts], [q[1] for q in pts], "-", color=MUTED, lw=1, zorder=0); ax.axvspan(0, cfg["N_min"] - 0.5, color="#e6e6e3", alpha=0.5, lw=0)
+    ax.set_xlabel(r"Taille de la super-cellule $N$ ($N\times N$)"); ax.set_ylabel(LBL_G); ax.set_xticks(Ns); ax.set_xlim(min(Ns) - 1, max(Ns) + 1)
+    ax.set_title(rf"$R_\mathrm{{cut}}$ = {RC}, grille {GRID}$^2$, $\eta$ = {ETA} eV", loc="left", fontsize=9); ax.legend(ncol=2, fontsize=8); save(fig, "fig_level2")
+
 
 ks = f"{RES}/ks_reconstruction.npz"                      # reconstruction KS avec V_p (super-cellule parfaite), moyenne sur bandes et k
 if os.path.exists(ks):

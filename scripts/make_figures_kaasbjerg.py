@@ -1,7 +1,7 @@
 """ Les cinq figures (DOS et A_k moyennées sur le désordre) de comparaison avec la littérature (Kaasbjerg PRB 101, 045433) retenues pour le chapitre 4,
 redessinées au style graphene_raman.plotting. C : figures dans le corps du texte. A : figures en annexe.
 
-    M : fig_kaasbjerg_dos_c           ρ − ρ₀ (grille 600²), brut et aligné, c_i = 0.1 % (a) et 1 % (b).
+    A : fig_kaasbjerg_dos_c           ρ − ρ₀ (grille 600²), brut et aligné, c_i = 0.1 % (a) et 1 % (b).
     C : fig_kaasbjerg_spectral_GKM    fonction spectrale A_k(ε) sur Γ–K–M (chemin de la Fig. 14 de Kaasbjerg), aligné, c_i = 0.1 % (a) et 1 % (b) ;
                                       points : deux plus hauts maxima de A_k par k, tracés là où A ≥ 2 % du maximum de la carte.
     A : fig_kaasbjerg_sensibilites    position du maximum de ρ − ρ₀ contre N_k^int, R_cut, taille, η_G ; tirets : valeur déduite de Kaasbjerg

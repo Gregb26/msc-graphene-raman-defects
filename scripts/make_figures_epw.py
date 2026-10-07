@@ -184,7 +184,7 @@ if os.path.exists(PD) and "ph_F_matdyn" in V.files:
     d1.set_ylabel(r"$\omega_{\nu\mathbf{q}}$ (cm$^{-1}$)"); d1.set_ylim(0, 1705); path_axis(d1)
     d1.set_title(rf"{nk[0]}$\times${nk[1]} $\mathbf{{k}}$, {nq[0]}$\times${nq[1]} $\mathbf{{q}}$, $\sigma_\mathrm{{MV}}$ = {float(P['sigma_mv_Ry']):g} Ry", loc="left", fontsize=9); panel(d1, "a")
     d2.plot(P["dos"], P["freq_cm"], color=NAVY, lw=1.0); d2.fill_betweenx(P["freq_cm"], 0, P["dos"], color=NAVY, alpha=0.12, lw=0)
-    d2.set_xlim(0, None); d2.set_xticks([]); d2.set_xlabel(r"DOS (états/cm$^{-1}$)", fontsize=9, labelpad=6)
+    d2.set_xlim(0, None); d2.set_xticks([]); d2.set_xlabel("DOS", fontsize=9, labelpad=6)   # sans unité : la DOS de matdyn s'intègre à 3.78 et non 3 n_at = 6 (TODO, 2026-10-07)
     d2.text(0.95, 0.66, rf"{nd[0]}$\times${nd[1]} $\mathbf{{q}}$" + "\n" + rf"$\Delta E$ = {float(P['deltaE_cm']):g} cm$^{{-1}}$" + "\n" + rf"$\sigma$ = {float(P['degauss_dos_cm']):g} cm$^{{-1}}$", transform=d2.transAxes, ha="right", va="center", fontsize=7); panel(d2, "b")
     d2.tick_params(axis="y", labelleft=False)
     dE = float(np.median(np.diff(P["freq_cm"])))

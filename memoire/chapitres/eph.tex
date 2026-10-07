@@ -34,14 +34,14 @@ calculé sur les grilles grossières $\kv_c$ et $\qv_c$ accessibles par la DFPT.
     g_{ij}^{(\alpha\mu)}(\Rv_e,\Rv_p) =
     \frac{1}{N_{\kv_c}N_{\qv_c}}\sum_{\kv_c\qv_c}
     e^{-i(\kv_c\cdot\Rv_e+\qv_c\cdot\Rv_p)}
-    \left[U^{\dag(\kv_c+\qv_c)}g^{(\alpha\mu)}(\kv_c,\qv_c)U^{(\kv_c)}\right]_{ij}.
+    \left[U^{(\kv_c+\qv_c)\dag}g^{(\alpha\mu)}(\kv_c,\qv_c)U^{(\kv_c)}\right]_{ij}.
     \label{eqn:g_wannier}
 \end{equation}
 L'interpolation vers des grilles de sortie $\kv_f$ et $\qv_f$ arbitrairement denses est l'inverse de l'équation~\eqref{eqn:g_wannier}
 \begin{equation}
     g_{mn}^{(\alpha\mu)}(\kv_f,\qv_f) = \sum_{\Rv_e\Rv_p}
     e^{i(\kv_f\cdot\Rv_e+\qv_f\cdot\Rv_p)}
-    \left[V^{\dag(\kv_f+\qv_f)}g^{(\alpha\mu)}(\Rv_e,\Rv_p)V^{(\kv_f)}\right]_{mn},
+    \left[V^{(\kv_f+\qv_f)\dag}g^{(\alpha\mu)}(\Rv_e,\Rv_p)V^{(\kv_f)}\right]_{mn},
     \label{eqn:g_interp}
 \end{equation}
 où, comme à la section~\ref{sec:interp_wannier_M}, les matrices $V^{(\kv_f)}$ proviennent de la diagonalisation de l'Hamiltonien électronique interpolé sur la même grille fine et ramènent le couplage dans la base des états propres. Comme au chapitre~\ref{chap:défauts}, ces matrices sont définies à une phase arbitraire près : les quantités physiques, qui ne dépendent que de $|g|^2$, en sont indépendantes, à condition que l'Hamiltonien électronique et le couplage soient interpolés avec les mêmes fonctions de Wannier. Enfin, nous obtenons le couplage physique interpolé de l'équation~\eqref{eqn:g} en passant de la base des déplacements ioniques individuels à celle des modes normaux en utilisant
@@ -124,13 +124,11 @@ Les équations~\eqref{eqn:gamma_ep_explicite} et~\eqref{eqn:gamma_phonon_explici
 
 Nous décrivons ici la chaîne de calcul qui produit les tables en représentation réelle de la section~\ref{sec:g_wannier}, puis les paramètres d'évaluation des \textit{self}-énergies et des taux d'amortissement de la section~\ref{sec:g_self}. La chaîne procède en quatre étapes : un calcul DFT autocohérent fournit l'état fondamental électronique sur une grille grossière, la DFPT produit les constantes de force et les perturbations $\Delta_{\qv\alpha\mu}V_\text{KS}$ sur une grille grossière, les fonctions de Wannier sont calculées à partir de l'état fondamental électronique et \texttt{EPW}~\cite{ponceEPWElectronphononCoupling2016,leeElectronPhononPhysics2023a} assemble les trois tables $H_{ij}(\Rv_e)$, $C(\Rv_p)$ et $g_{ij}^{(\alpha\mu)}(\Rv_e,\Rv_p)$ et évalue les observables sur les grilles denses à partir des équations de la section~\ref{sec:g_self}. La validation de la chaîne et les résultats principaux sont présentés dans la section~\ref{sec:g_results}.
 
-\subsection{Calculs DFT et DFPT}
+\subsection{Calculs DFT et fonctions de Wannier}
 
 Les calculs DFT et DFPT sont réalisés avec le logiciel \texttt{QuantumESPRESSO}~\cite{giannozziQUANTUMESPRESSOModular2009,giannozziAdvancedCapabilitiesMaterials2017,giannozziQuantumESPRESSOExascale2020}. Le point de départ est la cellule unitaire du graphène parfait avec un réseau hexagonal de paramètre de maille $2.466$~\AA, une cellule de vide de $30$~Bohr dans la direction perpendiculaire au plan du graphène et la troncature bidimensionnelle de l'interaction coulombienne~\cite{sohierDensityFunctionalPerturbation2017}. Nous utilisons le même pseudo-potentiel ONCV~\cite{hamannOptimizedNormconservingVanderbilt2013} de type Kleinman-Bylander~\cite{kleinmanEfficaciousFormModel1982} pour le carbone \textit{stringent} trouvé dans la bibliothèque PseudoDojo~\cite{vansettenPseudoDojoTrainingGrading2018}, la fonctionnelle d'échange-corrélation PBE~\cite{perdewGeneralizedGradientApproximation1996a}, une coupure d'énergie cinétique de $100$~Ry pour les ondes planes, ainsi qu'une occupation de type Marzari-Vanderbilt~\cite{marzariThermalContractionDisordering1999} avec un élargissement de $0.02$~Ry, deux fois celui du chapitre~\ref{chap:défauts}. Les deux calculs donnent un point de Dirac identique, $E_D=-4.2389$~eV, et des bandes occupées qui coïncident à moins de $0.01$~meV, de sorte que les deux chapitres partagent la même structure électronique. Le calcul DFT autocohérent converge à $10^{-14}$~Ry sur une grille de $24\times 24$ points $\kv$. Les calculs DFPT sont effectués sur une grille de $24\times 24$ points $\qv$ avec le même seuil de convergence et les constantes de force interatomiques obéissent aux règles de somme acoustiques.
 
-\subsection{Fonctions de Wannier}
-
-Les fonctions de Wannier sont calculées à partir des fonctions de Bloch de la cellule unitaire sur la grille $24\times 24$ avec le code \texttt{EPW}~\cite{ponceEPWElectronphononCoupling2016,leeElectronPhononPhysics2023a} qui, à l'interne, fait appel au logiciel \texttt{Wannier90}~\cite{mostofiWannier90ToolObtaining2008,mostofiUpdatedVersionWannier902014,pizziWannier90CommunityCode2020}, et suit la même construction que celle du chapitre~\ref{chap:défauts}. Les cinq fonctions de Wannier sont initialisées avec trois orbitales hybrides $sp^2$ et une orbitale $p_z$ sur le premier atome de carbone et une autre orbitale $p_z$ sur le second. La fenêtre externe est de $-25$~eV à $15$~eV et la fenêtre gelée court jusqu'à $E_D+2.5$~eV. Après la minimisation, les trois fonctions issues des projections $sp^2$ convergent vers les orbitales liantes $\sigma$ centrées à $(1.067745, \pm0.616462, 0)$~\AA~et $(2.135490, 0, 0)$~\AA~en coordonnées cartésiennes, ce qui correspond exactement au centre des trois liens entre les atomes de carbone. Les fonctions issues des projections $p_z$, elles, sont situées à $(1.423660, 0, 0)$~\AA~et $(2.847320, 0, 0)$~\AA{}, soit exactement sur les deux atomes de carbone. Les étalements convergés sont de $0.6106$~\AA$^2$ pour les orbitales $\sigma$ et de $0.9655$~\AA$^2$ pour les orbitales $p_z$, pour un total de $3.7627$~\AA$^2$, ce qui reproduit à $0.1~\%$ ceux obtenus au chapitre~\ref{chap:défauts} sur une grille $27\times 27$. Les deux chapitres décrivent donc le même sous-espace localisé.
+Les fonctions de Wannier utilisées sont les mêmes que celles de la section~\ref{sec:photon} pour l'opérateur vitesse et celles à la section~\ref{sec:M_results} pour le couplage électron-défaut.
 
 \subsection{Grilles denses et convergence}
 
@@ -149,30 +147,43 @@ Cette section vérifie d'abord que l'interpolation de la section~\ref{sec:g_wann
 La figure~\ref{fig:epw_validation} panneau (a) compare les bandes électroniques interpolées au calcul DFT direct et le panneau (b) compare les fréquences de phonon interpolées au calcul DFPT direct, sur le chemin $\Gamma\to K\to M\to \Gamma$. Pour les bandes électroniques, l'écart maximal sur la fenêtre $|\varepsilon-E_D|\leq 3$~eV est de $0.81$~meV pour la bande $\pi$ et sous les $4.1$~meV pour les bandes $\sigma$. La bande $\pi^*$ atteint les $20$~meV près du bord de la fenêtre gelée, qui s'arrête à $E_D+2.5$~eV. Au-delà de cette fenêtre, l'interpolation par fonctions de Wannier n'est pas contrainte de reproduire exactement les bandes et l'écart est attendu. Pour les phonons, l'écart maximal sur les six branches est de $4.7$~cm$^{-1}$, soit moins de $0.6$~meV pour la branche acoustique hors plan et sous $0.09$~meV pour les cinq autres. La forme des branches optiques les plus hautes en énergie et la discontinuité dans la pente à $\Gamma$ et $K$ sont discutées à la sous-section~\ref{ssec:g_fréquences}.
 
 En complément, la figure~\ref{fig:epw_g_control} compare les éléments de matrice de couplage interpolés par fonctions de Wannier au calcul DFPT direct en quelques points $\qv$ communs aux deux chaînes, pour (a) $\kv=\Gamma$ et (b) $\kv=K$ (au point de Dirac). Les éléments $g$ individuels ne sont pas comparables un à un : chaque code fixe ses propres phases et l'ordre des états dégénérés. Nous comparons donc des sommes $|g|^2$ par blocs d'états dégénérés à $\kv$ et $\kv+\qv$ et par groupes de modes, de sorte que nous comparons des quantités invariantes de jauge. La médiane des écarts relatifs est de $0.2~\%$ à $\Gamma$ et $0.4~\%$ à $K$. Cette validation établit que l'interpolation par fonctions de Wannier maximalement localisées reproduit fidèlement les quantités physiques requises pour la suite.
+
+\clearpage
+\vspace*{\fill}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_epw_validation.pdf}
     \caption[Validation de l'interpolation de Wannier pour les bandes électroniques et les fréquences de phonons.]{Validation de l'interpolation de Wannier pour les bandes électroniques et les fréquences de phonons. (a) Comparaison des bandes électroniques interpolées depuis la grille $24\times 24$ par fonctions de Wannier le long du chemin $\Gamma\to K\to M\to \Gamma$ à celles obtenues par calcul DFT direct. La ligne pointillée marque la limite de la fenêtre gelée à $E_D+2.5$~eV. (b) Comparaison des fréquences de phonons interpolées avec celles obtenues par transformée de Fourier directe des constantes de force interatomiques. Les calculs DFPT ont été réalisés sur des grilles $\kv$ et $\qv$ $24\times 24$.}
     \label{fig:epw_validation}
 \end{figure}
+\vspace*{\fill}
+\clearpage
+\vspace*{\fill}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_epw_g_control.pdf}
     \caption[Validation de l'interpolation de Wannier pour le couplage électron-phonon.]{Comparaison entre les éléments de matrice interpolés par \texttt{EPW} et ceux obtenus directement par la DFPT, pour (a) $\kv=\Gamma$ et (b) $\kv=K$. Chaque point est une somme $G=\sum |g|^2$ sur un bloc d'états dégénérés à $\kv$ et $\kv+\qv$ et un groupe de modes, de sorte que seules des quantités invariantes de jauge sont illustrées. Le point $\qv = M$, pourtant commun aux deux chaînes, est exclu : les deux codes y regroupent différemment les modes quasi dégénérés, ce qui rend l'appariement des sommes ambigu. La ligne droite représente l'accord parfait. La médiane des écarts relatifs est de $0.2\,\%$ à $\Gamma$ (9~sommes) et de $0.4\,\%$ à $K$ (18~sommes).}
     \label{fig:epw_g_control}
 \end{figure}
+\vspace*{\fill}
+\clearpage
 
 \subsection{Décroissance en représentation réelle}
 
 La condition critique pour que l'interpolation de Wannier produise des résultats physiquement cohérents est celle annoncée à la fin de la section~\ref{sec:g_wannier} : les trois tables $H_{ij}(\Rv_e)$, $C(\Rv_p)$ et $g_{ij}^{(\alpha\mu)}(\Rv_e,\Rv_p)$ doivent décroître rapidement en $\Rv_e$ et $\Rv_p$ simultanément. La figure~\ref{fig:epw_decay} vérifie cette condition sur l'ensemble des vecteurs $\Rv_e$ et $\Rv_p$ générés par la grille $24\times 24$. Dans le panneau (a), l'Hamiltonien électronique décroît de près de six ordres de grandeur, de $15$~eV à un plancher d'environ $2\times10^{-5}$~eV, ce qui illustre bien la localisation exponentielle des fonctions de Wannier maximalement localisées. Dans les panneaux (c) et (d), la matrice de couplage suit le même comportement dans ses deux arguments : elle chute de quatre ordres de grandeur jusqu'à un plancher de $5\times 10^{-4}$~eV identique du côté électron et du côté phonon. Les constantes de force interatomiques au panneau (b) décroissent un peu moins vite, de $17$~eV à un plancher de $6\times 10^{-4}$~eV. Ce plancher plus élevé est la composante de longue portée annoncée à la section~\ref{sec:g_kohn}, qui n'a pas d'équivalent du côté électronique. Ce plancher reste toutefois petit devant le maximum ($3\times 10^{-5}$ relativement) et la troncature des sommes~\eqref{eqn:g_interp} est justifiée. Une partie de ces planchers peut aussi provenir du repliement spectral (\textit{aliasing}) de la grille finie $24\times 24$, le même phénomène que pour la localisation des éléments de matrice électron-défaut du chapitre~\ref{chap:défauts}. Il faudrait des grilles plus denses pour séparer les contributions.
+
+De plus, la sensibilité de ces planchers aux anomalies de Kohn se mesure directement. Avec un élargissement de Marzari-Vanderbilt de $0.002$~Ry (au lieu du $0.02$~Ry employé partout dans le chapitre) qui exagère les anomalies, les planchers de $C(\Rv_p)$ et $g(\Rv_p)$ sont de dix et quatre fois plus élevés ($1.6\times 10^{-2}$ et $2.0\times 10^{-3}$~eV), tandis que ceux pour $H(\Rv_e)$ et $g(\Rv_e)$ sont inchangés. La partie résiduelle du côté phonon est donc bien celle de la réponse non analytique à $\qv=\Gamma$ et $K$ et elle est réduite à sa valeur physique par le choix de l'élargissement de la section~\ref{sec:g_détails}.
+
+\clearpage
+\vspace*{\fill}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_epw_decay.pdf}
     \caption[Décroissance des représentations réelles des quantités pour le couplage électron-phonon.]{Décroissance des représentations réelles des quantités pour le couplage électron-phonon : (a) Hamiltonien électronique $H(\Rv_e)$, (b) constantes de force interatomiques $C(\Rv_p)$, (c) matrice de couplage électron-phonon $g^{(\alpha\mu)}(\Rv_e,\Rv_p)$ selon son argument électronique $\Rv_e$ et (d) selon son argument phononique $\Rv_p$.}
     \label{fig:epw_decay}
 \end{figure}
-
-De plus, la sensibilité de ces planchers aux anomalies de Kohn se mesure directement. Avec un élargissement de Marzari-Vanderbilt de $0.002$~Ry (au lieu du $0.02$~Ry employé partout dans le chapitre) qui exagère les anomalies, les planchers de $C(\Rv_p)$ et $g(\Rv_p)$ sont de dix et quatre fois plus élevés ($1.6\times 10^{-2}$ et $2.0\times 10^{-3}$~eV), tandis que ceux pour $H(\Rv_e)$ et $g(\Rv_e)$ sont inchangés. La partie résiduelle du côté phonon est donc bien celle de la réponse non analytique à $\qv=\Gamma$ et $K$ et elle est réduite à sa valeur physique par le choix de l'élargissement de la section~\ref{sec:g_détails}.
+\vspace*{\fill}
+\clearpage
 
 \subsection{Fréquences des modes optiques et anomalies de Kohn}\label{ssec:g_fréquences}
 
@@ -255,20 +266,26 @@ La largeur est nulle sur presque tout le chemin et n'est non nulle que pour $|\q
 
 Sur l'anneau résonant, l'équation~\eqref{eqn:pi_phonon} s'évalue analytiquement pour le cône de Dirac à $T\to 0$. Seules les paires $\pi\to\pi^*$ contribuent et, pour une dispersion linéaire, l'intégrale de la fonction delta vaut $\pi\hbar\omega/2v_F^2$. Il ne reste que la moyenne des $|g^{(\nu)}_{\pi^*\pi}|^2$ interbandes sur l'anneau, que nous lisons directement des éléments interpolés. Avec $v_F=5.46$~eV\,\AA{}, deux vallées à $\qv=\Gamma$ et une à $\qv=K$, nous obtenons $-\mathrm{Im}\,\Pi=0.691$~meV à $\Gamma$ et $1.402$~meV à $K$, contre $1.379$ et $2.798$~meV imprimés par \texttt{EPW} : un rapport de $2.00$ aux deux points. La valeur imprimée est donc la largeur totale $-2\,\mathrm{Im}\,\Pi$, et la somme numérique reproduit l'intégrale analytique à $0.2~\%$. Ce calcul montre aussi que $\hbar\omega$ s'élimine de $\gamma$, le facteur $1/\omega$ de $|g|^2$ compensant celui de l'espace des phases, de sorte que $\gamma\propto\langle D^2\rangle/v_F^2$ : les largeurs ne dépendent pas de l'élargissement de la section~\ref{ssec:g_fréquences} autrement que par $\langle D^2\rangle$, qui y est constant à $1~\%$.
 
+\clearpage
 \subsection{Comparaison des taux d'amortissement $\Gamma^\text{ed}$ et $\Gamma^\text{ep}$}\label{sec:g_comparaison}
 
 La figure~\ref{fig:epw_vs_ed} compare le taux d'amortissement dû aux phonons, $\Gamma^\text{ep}(\varepsilon)$, à celui dû aux défauts, $\Gamma^\text{ed}(\varepsilon)$. Le taux dû aux phonons est évalué par \texttt{EPW} à $T=300$~K avec les paramètres de production déterminés plus haut et celui dû au défaut est pour une monolacune au centre d'une super-cellule $9\times 9$ et est obtenu dans le formalisme de la matrice $T$ du chapitre~\ref{chap:T} avec une concentration de défauts de $c=1~\%$. Pour que la comparaison soit valable nous comparons les taux totaux obtenus des taux individuels $\Gamma^\text{ep}_{n\kv}$ et $\Gamma^\text{ed}_{n\kv}$ par la même moyenne lorentzienne de largeur $\eta=0.02$~eV. Le point de Dirac $E_D$, les bandes électroniques et la fenêtre $|\varepsilon-E_D|\leq 3$~eV sont les mêmes dans les deux calculs. Au premier ordre, les deux taux s'additionnent $\Gamma_{n\kv}=\Gamma^\text{ep}_{n\kv}+\Gamma_{n\kv}^\text{ed}$ et c'est cette somme qui entre dans les dénominateurs du chapitre~\ref{chap:Raman} (avec la largeur des phonons $\gamma_{\nu\qv}$ s'il y a un phonon $\nu\qv$ dans l'état intermédiaire concerné).
+
+Le rapport $\Gamma^\text{ed}/\Gamma^\text{ep}$ pris point par point a une médiane de $0.55$ et varie de $0.13$, à la singularité de van Hove de la bande $\pi^*$ ($+1.88$~eV), à $35$ à la résonance de la lacune ($-0.18$~eV) : aucun des deux mécanismes n'est négligeable à cette température et à cette concentration. Les deux taux se croisent à $\varepsilon-E_D=-1.49$ et $+0.74$~eV et, entre ces deux énergies, le défaut l'emporte ($2.7$ fois $\Gamma^\text{ep}$ au point de Dirac). Cependant, $\Gamma^\text{ed}$ est linéaire en la concentration $c$. Pour $c=0.1~\%$, la médiane du rapport tombe à $0.055$ et les phonons fixent la durée de vie électronique sur l'essentiel de la fenêtre, sauf dans la bande $[-0.45,-0.10]$~eV autour de la résonance, où la lacune dépasse encore les phonons d'un facteur $3.5$.
+
+Trois précisions encadrent cette comparaison. D'abord, $\Gamma^\text{ep}$ est calculé à $T=300$~K tandis que $\Gamma^\text{ed}$ ne dépend pas de la température pour un défaut statique. Le taux dû aux phonons varie de $3.5~\%$ de $300$ à $10$~K. Ensuite, la bosse de $\Gamma^\text{ep}$ à $E_D$ est l'artefact de moyenne de la section~\ref{ssec:g_gamma_ep}. Enfin, la fonctionnelle PBE sous-estime le couplage électron-phonon au point $K$ par rapport aux calculs $GW$~\cite{lazzeriImpactElectronelectronCorrelation2008}, mais la comparaison est faite ici à fonctionnelle égale, la PBE, pour les deux mécanismes. Une correction $GW$ cohérente devra s'appliquer aussi bien à $g$ qu'à $M$, ce que nous laissons en perspective.
+
+\clearpage
+\vspace*{\fill}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_epw_vs_ed.pdf}
     \caption[Comparaison des taux d'amortissement dus aux phonons et aux défauts.]{Comparaison des taux d'amortissement électronique dus aux phonons et aux défauts. Le taux d'amortissement dû aux phonons, $\Gamma^\text{ep}$, est calculé avec \texttt{EPW} à $T=300$~K, sur une grille de $240^2$ points et un élargissement de $\sigma=0.02$~eV. Le taux d'amortissement dû à une monolacune, $\Gamma^\text{ed}$, est calculé avec la matrice $T$ du chapitre~\ref{chap:T}, une concentration de défauts de $c=1~\%$ et une super-cellule $9\times 9$. Les deux taux sont ceux calculés des taux individuels par la même moyenne lorentzienne de largeur $\eta=0.02$~eV et le même point de Dirac $E_D$.}
     \label{fig:epw_vs_ed}
 \end{figure}
-Le rapport $\Gamma^\text{ed}/\Gamma^\text{ep}$ pris point par point a une médiane de $0.55$ et varie de $0.13$, à la singularité de van Hove de la bande $\pi^*$ ($+1.88$~eV), à $35$ à la résonance de la lacune ($-0.18$~eV) : aucun des deux mécanismes n'est négligeable à cette température et à cette concentration. Les deux taux se croisent à $\varepsilon-E_D=-1.49$ et $+0.74$~eV et, entre ces deux énergies, le défaut l'emporte ($2.7$ fois $\Gamma^\text{ep}$ au point de Dirac). Cependant, $\Gamma^\text{ed}$ est linéaire en la concentration $c$. Pour $c=0.1~\%$, la médiane du rapport tombe à $0.055$ et les phonons fixent la durée de vie électronique sur l'essentiel de la fenêtre, sauf dans la bande $[-0.45,-0.10]$~eV autour de la résonance, où la lacune dépasse encore les phonons d'un facteur $3.5$.
+\vspace*{\fill}
+\clearpage
 
-Trois précisions encadrent cette comparaison. D'abord, $\Gamma^\text{ep}$ est calculé à $T=300$~K tandis que $\Gamma^\text{ed}$ ne dépend pas de la température pour un défaut statique. Le taux dû aux phonons varie de $3.5~\%$ de $300$ à $10$~K. Ensuite, la bosse de $\Gamma^\text{ep}$ à $E_D$ est l'artefact de moyenne de la section~\ref{ssec:g_gamma_ep}. Enfin, la fonctionnelle PBE sous-estime le couplage électron-phonon au point $K$ par rapport aux calculs $GW$~\cite{lazzeriImpactElectronelectronCorrelation2008}, mais la comparaison est faite ici à fonctionnelle égale, la PBE, pour les deux mécanismes. Une correction $GW$ cohérente devra s'appliquer aussi bien à $g$ qu'à $M$, ce que nous laissons en perspective.
-
-\newpage
 \section{Conclusion}\label{sec:g_conclusion}
 
 Ce chapitre a fourni les derniers ingrédients de l'intensité Raman résonante : les éléments de matrice de couplage électron-phonon $g^{(\nu)}_{mn}(\kv,\qv)$, le taux d'amortissement électronique $\Gamma^\text{ep}_{n\kv}$ et la largeur des phonons $\gamma_{\nu\qv}$ du graphène. La méthode est standard et nous l'avons prise comme telle : la DFT et la DFPT fournissent l'état fondamental électronique, les constantes de force interatomiques et les perturbations du potentiel par déplacement atomique sur des grilles grossières. Tout le reste de la machinerie est implémenté dans le code \texttt{EPW} qui interpole ces quantités par fonctions de Wannier et en construit les \textit{self}-énergies au plus bas ordre en théorie des perturbations.

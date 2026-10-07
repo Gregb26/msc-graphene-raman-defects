@@ -71,7 +71,7 @@ Cette section rassemble les vérifications de la chaîne de calcul de la matrice
     \setlength{\tabcolsep}{2pt}
     % À REVOIR : légende provisoire du 2026-10-03
     \caption[Vérifications de la chaîne de calcul de la matrice de
-    couplage.]{Vérifications de la chaîne de calcul de la matrice $\bm M$ : les tests et la quantité qu'ils contrôlent, la valeur obtenue et le seuil d'acceptation. Sauf mention contraire la valeur est celle de la super-cellule de référence $9\times9$ ; les reconstructions de Kohn-Sham, l'hermiticité et l'application directe de $V_\text{ed}$ sont données en fourchette ou en maximum sur les six tailles, et le test de convention intensive porte sur chaque famille de tailles.}
+    couplage.]{Vérifications de la chaîne de calcul de la matrice $\bm M$ : les tests et la quantité qu'ils contrôlent, la valeur obtenue et le seuil d'acceptation. Sauf mention contraire, la valeur est celle de la super-cellule de référence $9\times9$ ; les reconstructions de Kohn-Sham, l'hermiticité et l'application directe de $V_\text{ed}$ sont données en fourchette ou en maximum sur les six tailles, et le test de convention intensive porte sur chaque famille de tailles.}
     \label{tab:tests_M}
     \input{tables/tests_M}
 \end{table}
@@ -106,7 +106,7 @@ Cette section rassemble les vérifications de la chaîne de calcul de la matrice
 \vspace*{\fill}
 \begin{table}[htbp]
     \centering
-    \caption[Paramètres des super-cellules et de la matrice $\bm M$.]{Paramètres des calculs de super-cellules et de la matrice de couplage électron-défaut $M$ (chapitre~\ref{chap:défauts}).}
+    \caption[Paramètres des super-cellules et de la matrice $\bm M$.]{Paramètres des calculs de super-cellules et de la matrice de couplage électron-défaut $\bm M$ (chapitre~\ref{chap:défauts}).}
     \label{tab:param_M}
     \small
     \setlength{\tabcolsep}{4pt}
@@ -131,7 +131,7 @@ Cette section rassemble les vérifications de la chaîne de calcul de la matrice
         Rayon de coupure $R_\text{cut}$ & $3$, soit $29$ cellules unitaires & \ref{sec:M_results} \\
         Grille de sortie du test de troncature & $60\times 60$ & \ref{sec:M_results} \\
         Nombre de bandes & super-cellules : $2N^2$ bandes occupées et $30$ bandes vides ($N\le 18$) ou $5~\%$ de plus ($N\ge 21$), deux de moins avec la lacune ; cellule unitaire : $16$ (SCF) et $20$ (NSCF des grilles $\ge 24\times 24$) & \ref{sec:M_détails} \\
-        Alignement du potentiel & Kumagai-Oba : moyenne des décalages de sphères de $1.0$~\AA{} sur les atomes à distance $d \ge 0.75\,r_\text{max}$ de la lacune (image minimale) ; soustrait des blocs diagonaux $M(\Rv,\Rv)$ des $N^2$ cellules dans la base de Wannier & \ref{sec:M_détails} \\
+        Alignement du potentiel & Kumagai-Oba : moyenne des décalages de sphères de $1.0$~\AA{} sur les atomes à distance $d \ge 0.75\,r_\text{max}$ de la lacune (image minimale) ; soustrait des blocs diagonaux $\bm M(\Rv,\Rv)$ des $N^2$ cellules dans la base de Wannier & \ref{sec:M_détails} \\
         Constante d'alignement $\Delta V_\text{PA}^{(N)}$ & $-57.6$, $-50.5$, $-26.9$, $-14.4$, $-25.1$, $-18.7$~meV pour $N = 5, 6, 7, 8, 9, 12$ ; incertitude $9.05$~meV pour $9\times 9$ & \ref{sec:M_results} \\
         \hline\hline
     \end{tabular}

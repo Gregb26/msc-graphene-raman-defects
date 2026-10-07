@@ -184,9 +184,9 @@ Ces six appariements se traduisent par les six diagrammes de Feynman de la figur
 
 De ces six diagrammes, seuls (a) et (d) sont connectés. Ils diffèrent par l'ordre temporel des deux diffusions sur le défaut. Cet ordre est toutefois arbitraire, puisque les temps $\tau_1$ et $\tau_2$ sont intégrés : les deux diagrammes sont donc égaux et leur somme annule le $2!$ au dénominateur du préfacteur des termes de deuxième ordre.
 
-En théorie, nous devrions faire cet exercice pour tous les ordres. En pratique, les calculs deviennent lourds très rapidement, comme l'illustre déjà le deuxième ordre. Au lieu de nous perdre dans des calculs interminables, nous pouvons gagner du temps en reconnaissant une régularité : à l'ordre $N$, il y a $(N+1)!$ appariements et seuls $N!$ d'entre eux sont connectés. Qui plus est, ces $N!$ diagrammes connectés sont tous équivalents et annulent exactement le $N!$ au dénominateur du préfacteur de chaque ordre. Ainsi, en ne considérant que les diagrammes connectés, nous obtenons une série perturbative pour la fonction de Green de Matsubara du système perturbé, exprimée à l'aide de diagrammes de Feynman et illustrée à la figure~\ref{fig:G_Dyson} du chapitre~\ref{chap:défauts}.
+En théorie, nous devrions faire cet exercice pour tous les ordres. En pratique, les calculs deviennent lourds très rapidement, comme l'illustre déjà le deuxième ordre. Au lieu de nous perdre dans des calculs interminables, nous pouvons gagner du temps en reconnaissant une régularité : à l'ordre $N$, il y a $(N+1)!$ appariements et seuls $N!$ d'entre eux sont connectés. Qui plus est, ces $N!$ diagrammes connectés sont tous équivalents et annulent exactement le $N!$ au dénominateur du préfacteur de chaque ordre. Ainsi, en ne considérant que les diagrammes connectés, nous obtenons une série perturbative pour la fonction de Green de Matsubara du système perturbé, exprimée à l'aide de diagrammes de Feynman et illustrée à la figure~\ref{fig:G_Dyson} du chapitre~\ref{chap:T}.
 
-Cette série de diagrammes est l'équation de Dyson pour la diffusion sur un seul défaut et peut être sommée exactement, ce qui n'est pas surprenant, car il s'agit bien d'un problème de diffusion à un corps. Généralement, dans le contexte de la diffusion sur des défauts, l'équation de Dyson est résolue en introduisant la matrice $T$, définie diagrammatiquement à la figure~\ref{fig:T_matrice} du chapitre~\ref{chap:défauts}.
+Cette série de diagrammes est l'équation de Dyson pour la diffusion sur un seul défaut et peut être sommée exactement, ce qui n'est pas surprenant, car il s'agit bien d'un problème de diffusion à un corps. Généralement, dans le contexte de la diffusion sur des défauts, l'équation de Dyson est résolue en introduisant la matrice $T$, définie diagrammatiquement à la figure~\ref{fig:T_matrice} du chapitre~\ref{chap:T}.
 
 La matrice $T$ pour un seul défaut joue essentiellement le même rôle que la \textit{self}-énergie électronique dans le contexte de l'interaction électron-électron ou électron-phonon : elle regroupe l'ensemble des insertions irréductibles qui peuvent être greffées sur le propagateur libre. En traduisant la première ligne de la figure~\ref{fig:T_matrice} à l'aide des règles de Feynman, nous obtenons la série
 \begin{equation}
@@ -204,7 +204,7 @@ Pour résoudre l'équation~\eqref{eqn:T_recursive}, il est commode de passer dan
 \end{equation}
 où la fonction de Green de Matsubara fermionique dans l'espace des fréquences est définie par l'inverse de l'équation~\eqref{eqn:G_tau}
 \begin{equation}
-    \mathcal{G}(i\omega_j) = \int_0^\beta d\tau\, e^{i\omega_j\tau}\mathcal{G}(\tau)\label{eqn_G_w}.
+    \mathcal{G}(i\omega_j) = \int_0^\beta d\tau\, e^{i\omega_j\tau}\mathcal{G}(\tau).\label{eqn:G_w}
 \end{equation}
 En utilisant ce développement en série de Fourier, nous obtenons l'équation~\eqref{eqn:T_recursive} dans l'espace des fréquences de Matsubara
 \begin{equation}
@@ -216,8 +216,7 @@ qui se résout formellement par une inversion de matrice
     T(i\omega_j) = \left[\mathbb{I}-M\,\mathcal{G}^{(0)}(i\omega_j)\right]^{-1}M.
     \label{eqn:T_fermee}
 \end{equation}
-La matrice $T$ est ensuite employée pour resommer l'équation de Dyson, comme l'illustre la figure~\ref{fig:dyson_T} du chapitre~\ref{chap:défauts}.
-Cette resommation à tous les ordres n'est pas un simple raffinement formel : elle est indispensable pour les défauts considérés dans ce mémoire. En effet, le potentiel induit par une lacune est si fort qu'il n'existe aucun petit paramètre justifiant la troncature de la série de Dyson à un ordre fini. Le formalisme de la matrice $T$, exact pour un défaut unique, demeure valide dans cette limite de couplage fort puisqu'il inclut les effets du défaut à tous les ordres.
+La matrice $T$ est ensuite employée pour resommer l'équation de Dyson, comme l'illustre la figure~\ref{fig:dyson_T} du chapitre~\ref{chap:T}. Cette resommation à tous les ordres n'est pas un simple raffinement formel : elle est indispensable pour les défauts considérés dans ce mémoire. En effet, le potentiel induit par une lacune est si fort qu'il n'existe aucun petit paramètre justifiant la troncature de la série de Dyson à un ordre fini. Le formalisme de la matrice $T$, exact pour un défaut unique, demeure valide dans cette limite de couplage fort puisqu'il inclut les effets du défaut à tous les ordres.
 
 Il est également possible d'exprimer analytiquement la fonction de Green de Matsubara du système perturbé en fonction de la matrice $T$, en traduisant la série de diagrammes de la figure~\ref{fig:dyson_T} à l'aide des règles de Feynman. Cela donne
 \begin{equation}
@@ -234,7 +233,7 @@ ou encore, avec la forme explicite~\eqref{eqn:G0} des fonctions de Green du syst
     \label{eqn:G_T_explicite}
 \end{equation}
 
-Enfin, les fonctions de Matsubara, définies aux fréquences imaginaires $i\omega_j$, ne sont pas directement les quantités mesurées : les fonctions de réponse physiques sont les fonctions dites \emph{retardées}, définies sur l'axe des fréquences réelles. Les deux sont toutefois reliées par une continuation analytique. La fonction de Matsubara $\mathcal{G}(i\omega_j)$ et la fonction retardée $\mathcal{G}^R(\varepsilon)$ sont les restrictions d'une même fonction $\mathcal{G}(z)$, analytique dans le demi-plan complexe supérieur, aux points $z=i\omega_j$ et $z=\varepsilon+i0^+$ respectivement. Sous la condition $\mathcal{G}(z)\to 0$ lorsque $|z|\to \infty$ (le théorème de Baym-Mermin~\cite{baymDeterminationThermodynamicGreens1961}) cette continuation analytique est unique. Comme nous disposons ici d'expressions fermées dans l'espace des fréquences de Matsubara, elle se réduit à la simple substitution
+Enfin, les fonctions de Matsubara, définies aux fréquences imaginaires $i\omega_j$, ne sont pas directement les quantités mesurées : les fonctions de réponse physiques sont les fonctions dites \emph{retardées}, définies sur l'axe des fréquences réelles. Les deux sont toutefois reliées par une continuation analytique. La fonction de Matsubara $\mathcal{G}(i\omega_j)$ et la fonction retardée $\mathcal{G}^R(\varepsilon)$ sont les restrictions d'une même fonction $\mathcal{G}(z)$, analytique dans le demi-plan complexe supérieur, aux points $z=i\omega_j$ et $z=\varepsilon+i0^+$ respectivement. Sous la condition $\mathcal{G}(z)\to 0$ lorsque $|z|\to \infty$ (le théorème de Baym-Mermin~\cite{baymDeterminationThermodynamicGreens1961}), cette continuation analytique est unique. Comme nous disposons ici d'expressions fermées dans l'espace des fréquences de Matsubara, elle se réduit à la simple substitution
 \begin{equation}
     i\omega_j\to \varepsilon+i\eta, \quad\eta \to 0^+,
 \end{equation}
@@ -361,7 +360,7 @@ Cette section rassemble la dépendance en taille de super-cellule et les preuves
         Super-cellule de référence & $9\times 9$, grille élargie $27\times 27$ & \ref{sec:T_results} \\
         Moyenne lorentzienne & $\eta = 0.02$~eV & \ref{sec:T_results} \\
         Concentration de référence $c$ & $1~\%$ & \ref{sec:T_results} \\
-        Comparaison avec Kaasbjerg & grille interne $900^2$ ; $\eta_G = 50$~meV ($\rho - \rho_0$, grille $600^2$) et $25$~meV ($A_\kv$) ; $\rho_0$ sur $1200^2$ avec $15$~meV ; $c = 0.1$ et $1~\%$ & \ref{sec:T_results} \\
+        Comparaison avec Kaasbjerg & grille interne $900^2$ ; $\eta_G = 50$~meV ($\bar\rho - \rho_0$, grille $600^2$) et $25$~meV ($\bar A_\kv$) ; $\rho_0$ sur $1200^2$ avec $15$~meV ; $c = 0.1$ et $1~\%$ & \ref{sec:T_results} \\
         \hline\hline
     \end{tabular}
 \end{table}

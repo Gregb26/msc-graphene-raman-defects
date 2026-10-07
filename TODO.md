@@ -10,17 +10,25 @@ Liste de travail unique du dépôt.
 - [ ] **G** — Instructions du projet : « huit make_figures*.py » → sept (`make_figures.py` retiré, `make_figures_memoire.py` renommé `make_figures_defaut.py`), « 47 figures » → 33 ; préciser que les figures se régénèrent par `make_all_figures.py` (seul lanceur qui passe les options de production à `make_figures_epw.py`)
 
 
-## Reste avant le chantier 5 (bilan C du 2026-10-07)
+## Chantier 5 : passe de langue et relecture complète (ouvert le 2026-10-07)
 
-Tout ce qui touche la physique, les chiffres et les équations est fait et compile (chantiers 1 à 4 clos ; §2.5 écrit ; normalisation sur la cellule unitaire unifiée ch. 2 → ch. T). Restent, dans l'ordre suggéré :
+Décision G du 2026-10-07 (option B) : **C fait la passe de langue, un chapitre à la fois**, sur un chapitre que G déclare verrouillé et dont le fichier est commité (étape 0 de `thesis-section-pass`). Périmètre : orthographe, grammaire, accords, typographie française (`\og\fg{}`, espaces insécables, point décimal, `~\%`, unités), phrases cassées, répétitions et coquilles récurrentes ; corrections **appliquées directement**, résumées par catégorie, diff relisable, compilation à la fin. Hors périmètre : le fond — toute reformulation qui change un sens, une équation ou un chiffre est proposée, jamais appliquée. G relit le diff et commite, un commit par chapitre.
 
-- [ ] **G** — `fig:level2` rétablie (2026-10-07, décision G) : `fig_level2.{pdf,png}` régénérés (bloc 7 de `make_figures_defaut.py` rétabli, étiquette $\Gamma^\text{ed}/c$) et installés dans `figures/electron_defect/` et `memoire/figures/` ; **reste à insérer** le `\begin{figure}` proposé par C dans `annexes/défauts_T.tex` après `tab:convergence_gamma`, puis compiler.
-- [x] **C** — 2026-10-07 : convention $\bm M$ unifiée (règle énoncée au ch. M après $\hat H_\text{ed}$ : gras = matrice complète, maigre avec indices = éléments) ; 31 remplacements (`défauts.tex` 19 dont $\bm M(\Rv',\Rv)$ ×6 et $\bm M^\text{L/NL}$ ×4 ; `défauts2.tex` 5 ; `conclusion.tex` 1 ; `annexes/défauts_M.tex` 4 ; `annexes/défauts_T.tex` 2) ; `symboles.tex` : entrée $\bm M$, $\bm M_\mathcal{C}$. Gardés en maigre : « les éléments de matrice $M$ » (intro l. 79, conclusion l. 8, ch. T l. 412) et « électron-défaut $M$ » dans la liste des couplages (intro l. 77, parallèle à $g^{(\lambda)}$, $g^{(\nu)}$). Compile : 0 erreur.
-- [ ] **G** — Ménage Mac : `memoire/build/{memoire6.tar, memoire7.tar, memoire8.tar, fe.*, fd.*, figdata.*}` (morceaux de transfert, ~110 Mo) ; `% À REVOIR` restants dans `annexes/défauts_T.tex` (3) ; légende de `fig:kaasbjerg_dos_c` (facteur 9.4).
-- [ ] **G** — Les deux items **G** « Transversal » du chantier 1 (données orphelines, instructions du projet).
+Ordre : intro → ch. 2 → ch. 3 → ch. M → ch. T → ch. 5 → conclusion → annexes (A à E) → pages liminaires (résumé, abstract, remerciements, symboles, sigles) → relecture complète du PDF.
 
-
-## Chantier 5 (une fois tout le reste terminé) : corrections de la grammaire et orthographes. relecture complète.
+- [x] **C** — `introduction.tex` — 2026-10-07, 13 corrections (4 fautes, 4 accords/constructions, 3 répétitions, 2 typographie), compile 0 erreur ; relu par G.
+- [x] **C** — `théorie.tex` (ch. 2) — 2026-10-07, 39 corrections (orthographe 12, accords 14, constructions 9, typographie 4), compile 0 erreur ; 5.47 eV Å tranché par G.
+- [x] **C** — `raman.tex` (ch. 3) + `annexes/raman.tex` — 2026-10-07, 27 corrections de langue/typographie ; les 18 amplitudes $K$ (2 du corps, 16 de l'annexe B) coupées en `split` (deux dénominateurs sur la première ligne, le troisième sur la seconde) : plus aucun débordement d'équation ; restent les deux TikZ `pp`/`pd` (19 pt, item « Avant le dépôt »). Compile 0 erreur.
+- [x] **C** — `défauts.tex` (ch. M) — 2026-10-07, 139 corrections (orthographe ~55, accords ~35, constructions ~20, typographie des unités ~25, ponctuation d'équations 2), compile 0 erreur. Légende courte de `tab:alignement` : « cinq schémas » → « quatre » (A–D), cohérent avec la légende longue.
+- [x] **C** — `défauts2.tex` (ch. T) — 2026-10-07, 88 corrections (orthographe ~30, accords ~25, constructions ~20, typographie/ponctuation ~13), compile 0 erreur. Les 3 `% À REVOIR` sont dans `annexes/défauts_T.tex`, pas dans le chapitre (item annexes).
+- [x] **C** — `eph.tex` (ch. 5) — 2026-10-07, 31 corrections (constructions/virgules ~22, typographie math et `~\%` 6, registre 3), compile 0 erreur. $v_F$ passé à $5.47$ eV Å (×3) le 2026-10-07 sur décision de G.
+- [x] **C** — `conclusion.tex` — 2026-10-07, 11 corrections (orthographe 4, constructions 2, typographie 5) ; « pourcent » partout et $v_F=5.47$ eV Å dans `eph.tex` (décisions G du 2026-10-07), compile 0 erreur. À trancher par G : « à un ingrédient près » (conclusion l. 3) maintenant que le couplage électron-photon est calculé.
+- [x] **C** — annexes `théorie.tex`, `raman.tex`, `défauts_M.tex`, `défauts_T.tex`, `eph.tex` — 2026-10-07, 22 corrections (langue 10, typographie 8, renvois faux 4 : `fig:G_Dyson`, `fig:T_matrice`, `fig:dyson_T` attribuées au ch. M au lieu du ch. T dans l'annexe D, et « tableaux de convergence du ch. M » → annexe D dans l'annexe E ; label `eqn_G_w` → `eqn:G_w`), compile 0 erreur. Restent, pour G : les 4 `% À REVOIR` de `défauts_M.tex` (légendes provisoires des figures de contrôle, étiquettes de `make_figures_controles.py`) ; lignes vides « Cellule de vide » et « Troncature de Coulomb » de `tab:param_dft` (item `calculs/` ci-dessous) ; notation de l'annexe D à harmoniser avec le ch. T si voulu ($N_{\tilde\kv}$ vs $N_{\kv_\text{int}}$, $N_L$ vs $N_\mathcal{C}$, $\Gamma_T(\varepsilon)$).
+- [x] **C** — pages liminaires — 2026-10-07, 16 corrections : résumé 4 (elles-mêmes, le calcul, « l'inversion passe de », « et à une concentration ») ; sigles 8 (SCTA → SCTMA comme au ch. T, DMFT remis en ordre alphabétique, Born--von Kármán, autocohérent ×2, « points $\kv$ », virgule PAW) ; symboles 4 (unité de $k_B$ en J K$^{-1}$, Born--von Kármán, $\Sigma^\text{ep}(\varepsilon)$, ligne vide). `abstract.tex` et `remerciements.tex` : rien à corriger. Compile 0 erreur.
+- [ ] **G + C** — relecture complète du PDF (tous les `\include` actifs) : enchaînements entre chapitres, renvois, légendes, numérotation, table des matières et listes des figures/tableaux
+  - [x] **C** — 2026-10-07 : sigles DMFT et MP retirés ; symboles non utilisés retirés ($\ket{n\kv}$, $\mathcal{D}$, $\mathcal{D}^{(0)}$, $i\nu_j$, $\mathcal{G}^\text{ed}$, $\mathcal{G}^\text{ep}$, $\hat H_\text{i}$) ; $\mathbf{e}_{\nu\qv}$ → $e^{(\nu)}_{\alpha\mu}(\qv)$ et $\bar{\mathcal{G}}^\text{ed}$ → $\overline{\bm{\mathcal{G}}}$, $\overline{\mathcal{G}}_{n\kv}$ (notation du corps). Note : `théorie.tex` l. 483 emploie « DMFT » sans l'expliciter.
+  - [x] **C** — 2026-10-07 : vérification mécanique des renvois (mot ~ préfixe de label, « figure X du chapitre Y » ↔ fichier de X, `\ref` d'équations) : aucun renvoi faux restant après les 4 corrigés dans les annexes. Grep des coquilles récurrentes (Midgal, abritraires, méchanisme, absorbtion, inversions ed/ep, `\text{eph}`, `H_W`, virgule décimale, `\%` sans `~`) : rien ; deux suites « $N=5,7,8$ », « $\nu=5,6$ » espacées.
+  - [ ] **G** — relecture page par page du PDF : placement des flottants, pages blanches, légendes courtes dans les listes des figures/tableaux
 
 ## Avant le dépôt
 
@@ -32,7 +40,7 @@ Tout ce qui touche la physique, les chiffres et les équations est fait et compi
 - [ ] **G** — Fichier `LICENSE` à la racine (absent ; nécessaire avant l'archive publique)
 - [ ] **G** — Archive : release GitHub de msc- → Zenodo (DOI)
 - [ ] **C** — Décommenter tous les `\include` de `master_thesis.tex`, build complet, passe finale de mise en page (débordements > 10 pt : `tikz/pp`, `tikz/pd`, amplitudes de l'annexe B)
-- [ ] **C** — Grep des coquilles récurrentes (Midgal, abritraires, méchanisme, absorbtion, inversions ed/ep)
+- [x] **C** — Grep des coquilles récurrentes (Midgal, abritraires, méchanisme, absorbtion, inversions ed/ep) — fait le 2026-10-07, rien trouvé ; à refaire une dernière fois au dépôt
 - [ ] **G** — Ménage : supprimer `~/LaTeX/msc-graphene-raman-defects` (ancien clone, vérifier d'abord `git status` et `git log origin/main..`) et `~/projects/raman-graphene` (s'il est vide) ; supprimer `.git/index.lock.orphelin-claude-2026-10-01` et `-2026-10-03` (fichiers vides laissés par Claude : `git status` crée le verrou et la VM ne peut pas le supprimer ; C utilise `GIT_OPTIONAL_LOCKS=0` depuis le 2026-10-03)
 
 

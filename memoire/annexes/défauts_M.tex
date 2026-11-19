@@ -27,7 +27,6 @@ Cette section rassemble les vérifications de la chaîne de calcul de la matrice
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_rcut_aligned.pdf}
-    % À REVOIR : légende provisoire du 2026-10-05 ; étiquettes « site unique » / « Kumagai–Oba » de la figure à renommer (make_figures_controles.py)
     \caption[Erreur de troncature selon la référence du potentiel.]{Écart relatif maximal $\max|\Delta M|/\max|M|$ sur les blocs $\pi$--$\pi^*$ entre les éléments de matrice interpolés avec troncature à $R_\text{cut}$ et ceux obtenus avec toutes les cellules, pour (a) $9\times9$ et (b) $12\times12$, avec les matrices brutes, les matrices alignées de production (constante de Kumagai-Oba) et une variante alignée sur un seul site ; les courbes \og exact \fg{} appliquent l'alignement au potentiel plutôt qu'aux blocs diagonaux de la base de Wannier et se superposent aux précédentes.}
     \label{fig:rcut_aligned}
 \end{figure}
@@ -36,7 +35,6 @@ Cette section rassemble les vérifications de la chaîne de calcul de la matrice
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_offset_profiles_13.pdf}
-    % À REVOIR : légende provisoire du 2026-10-05 ; étiquettes « Kumagai–Oba » / « site unique » de la figure (make_figures_controles.py)
     \caption[Décalages de potentiel sur les sites atomiques pour treize tailles.]{Décalage du potentiel de la lacune $\Delta V_\alpha$ moyenné sur une sphère de $1.0$~\AA{} autour de chaque atome, en fonction de la distance à la lacune (image minimale), pour les treize tailles de super-cellule de $5\times5$ à $27\times27$. La zone grisée marque la région $d\ge0.75\,r_\text{max}$ dont la moyenne définit la constante d'alignement $\Delta V_\text{PA}^{(N)}$ (trait plein, prescription (A) du tableau~\ref{tab:alignement}) ; les tirets donnent la valeur du site unique le plus éloigné (prescription (D)) et les losanges marquent les atomes les plus éloignés.}
     \label{fig:offset_profiles_13}
 \end{figure}
@@ -45,7 +43,6 @@ Cette section rassemble les vérifications de la chaîne de calcul de la matrice
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_alignement_regions.pdf}
-    % À REVOIR : légende provisoire du 2026-10-05
     \caption[Constante d'alignement selon la région d'échantillonnage.]{Constante d'alignement $\Delta V_\text{PA}^{(N)}$ (moyenne et écart-type des décalages de sphère) en fonction de la taille $N$ de la super-cellule, pour les quatre prescriptions du tableau~\ref{tab:alignement} : (A) $d\ge0.75\,r_\text{max}$ (production), (B) Kumagai-Oba à deux dimensions, $d\ge Na/2$, (C) Kumagai-Oba à trois dimensions, $d\ge\min(Na/2, c/2)$, et (D) site unique.}
     \label{fig:alignement_regions}
 \end{figure}
@@ -69,7 +66,6 @@ Cette section rassemble les vérifications de la chaîne de calcul de la matrice
     \centering
     \small
     \setlength{\tabcolsep}{2pt}
-    % À REVOIR : légende provisoire du 2026-10-03
     \caption[Vérifications de la chaîne de calcul de la matrice de
     couplage.]{Vérifications de la chaîne de calcul de la matrice $\bm M$ : les tests et la quantité qu'ils contrôlent, la valeur obtenue et le seuil d'acceptation. Sauf mention contraire, la valeur est celle de la super-cellule de référence $9\times9$ ; les reconstructions de Kohn-Sham, l'hermiticité et l'application directe de $V_\text{ed}$ sont données en fourchette ou en maximum sur les six tailles, et le test de convention intensive porte sur chaque famille de tailles.}
     \label{tab:tests_M}

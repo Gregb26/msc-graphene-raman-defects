@@ -1,6 +1,4 @@
-"""Appariement des chiffres du chapitre 5 (memoire/chapitres/eph.tex) aux données de donnees/epw/ — l'équivalent, pour le
-ch. 5, de donnees/ch4/defauts_nombres.md (ch4_chiffres.py tex, graphene-raman). Aucun calcul physique : lectures et
-statistiques sur les npz de production, plus les nombres des notes de campagne.
+"""Appariement des chiffres du chapitre 5 (memoire/chapitres/eph.tex) aux données de donnees/epw/.
 
 Pool des valeurs (chaque entrée porte sa source « fichier : clé ») :
   - scalaires de tous les npz de donnees/epw/ (unités natives ; eV aussi offerts en meV, meV en cm⁻¹ et inversement) ;
@@ -8,15 +6,10 @@ Pool des valeurs (chaque entrée porte sa source « fichier : clé ») :
   - dérivés : médianes de Γ^ep des selfen_* en meV et écarts (%) à la ligne de production 240² / σ 0.02 / 300 K,
     écart 300 K → 10 K, positions des maxima de Γ^ep(ε) (van Hove), bosse à E_D (hauteur, largeur), Γ^ed/Γ^ep
     (ed_vs_ep_24k24q_mv0.02.npz), fréquences cm⁻¹ des modes E2g(Γ) et A1'(K) de dfpt_path_freq_* et phself_* ;
-  - nombres des notes : donnees/epw/NOTES_EPW.md, NOTES_EPW_REPERES.md (source « NOTES… l.N »), et config/production.json.
-
-Nombres du texte : extraits de eph.tex hors commentaires, \\label/\\ref/\\eqref/\\cite, années, indices/exposants ; les entiers
-< 100 hors tabular ne sont pas comparés (comme pour le ch. 4). Tolérance : ½ unité de la dernière décimale du texte
-(mantisse comprise, pour la notation scientifique) ; conversions ×10³ (eV ↔ meV), ×8.06554 (meV ↔ cm⁻¹) et ×100 (fraction ↔ %)
-marquées. Un appariement est mécanique : une coïncidence (0.02, 300, 240…) n'est pas une identification.
 
 Sortie : donnees/epw/eph_nombres.md. Usage : python scripts/chiffres_ch5.py
 """
+
 import json
 import re
 from pathlib import Path

@@ -1,16 +1,3 @@
-% Diagrammes de Feynman : les six termes du deuxième ordre de la série de Dyson
-% pour la fonction de Green électronique en présence d'un défaut.
-% L'ordre des panneaux suit celui des six appariements de Wick de l'annexe.
-%   (a) double diffusion, tau < tau_2 < tau_1 < tau'
-%   (b) une diffusion au temps tau_1 + boucle fermée au temps tau_2
-%   (c) une diffusion au temps tau_2 + boucle fermée au temps tau_1
-%   (d) double diffusion, tau < tau_1 < tau_2 < tau'
-%   (e) propagation libre + deux boucles fermées
-%   (f) propagation libre + boucle à deux vertex
-% Seuls (a) et (d) sont connectés ; les autres sont annulés par le dénominateur.
-% Style identique aux diagrammes du chapitre Raman (tikz/e1.tex, tikz/pd.tex).
-% Compatible pdflatex. Requiert : tikz, decorations.markings, arrows.meta, calc.
-
 % Vertex électron-défaut : cercle blanc + croix (cf. tikz/règles_Raman.tex)
 \providecommand{\vertexdefaut}[1]{%
   \draw[fill=white] (#1) circle (0.2);

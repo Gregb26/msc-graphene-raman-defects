@@ -1,4 +1,4 @@
-# Fichiers compilés LaTeX
+# fichiers compilés LaTeX
 *.aux
 *.log
 *.out
@@ -17,7 +17,7 @@
 *.vrb
 *.bbl-SAVE-ERROR
 
-# Dossier de build
+# dossier de build
 build/
 out/
 
@@ -27,16 +27,16 @@ out/
 # venv
 .venv 
 
-# IDE
+# ide
 .vscode
 
-# Python
+# python
 __pycache__/
 *.pyc
 *.egg-info/
 .pytest_cache/
 .ipynb_checkpoints/
 
-# Données calculées lourdes (jamais dans le dépôt)
+# données lourdes
 *.npy
 *.save/

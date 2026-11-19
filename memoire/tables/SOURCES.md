@@ -1,11 +1,10 @@
 # Sources des tableaux du mémoire
 
-Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur affichée : texte LaTeX, valeur lue et source (`fichier : clé [sélection]`, chemins relatifs à `donnees/`, sauf `config/`). Les remarques de chaque tableau notent les choix de présentation et les cellules sans source lisible par machine.
+Généré par `scripts/make_tables.py`. Une ligne par valeur affichée : texte LaTeX, valeur lue et source (`fichier : clé [sélection]`, chemins relatifs à `donnees/`, sauf `config/`).
 
 ## `tab:échantillonnage` — `tables/echantillonnage.tex` (§4.1.5, corps)
 
-- Toutes les valeurs en meV, **brutes** (référence du vide, décision G du 2026-10-03) : ni ΔE_F ni V̄^L(a_CC) ne sont alignés ; les valeurs alignées valent brut − C_N (`config/production.json : alignment.C_N_eV`).
-- N = 10 et 11 : SCF de super-cellules seulement (pas de matrice M).
+Toutes les valeurs en meV et couplage **brute** (référence du vide). Les valeurs alignées valent brut − C_N (`config/production.json : alignment.C_N_eV`).
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
@@ -26,12 +25,9 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | 11 | ΔE_F (meV) | $-209.3$ | -209.3 | `M2_plateau/sampling_table.csv : dE_F_meV [N = 11]` |
 | 11 | V̄^L(a_CC) brut (meV) | $-253.9$ | -253.9 | `M2_plateau/sampling_table.csv : Ved_radial_1.42A_meV [N = 11]` |
 
-## `tab:L_NL` — `tables/L_NL.tex` (§4.1.5, corps (bloc Convention intensive))
+## `tab:L_NL` — `tables/L_NL.tex` (§4.1.5, corps, bloc Convention intensive)
 
-- Toutes les valeurs en eV. Brut et aligné côte à côte (décision du 2026-10-01, R10 D6) ; colonne N²|ΔV_PA^(N)| ajoutée et colonnes de Frobenius retirées (décision G du 2026-10-04). M̄^NL ne dépend pas de l'alignement.
-- Contrôles : `level2_families.csv` = `M_analysis.npz` (ReML_K, ReML_K_aligned, ReMNL_K) ; aligné − brut = N²|C_N| à 1e-8 eV près pour les six tailles.
-- N = 5, 7, 8 : grilles élargies 25², 28², 32² sans K ; « K » y est le point de grille le plus proche (`lnl_<S>_dK` = 0.055, 0.050, 0.043 Å⁻¹) — à dire dans la légende.
-- Rapport de Frobenius NL/L sur toute la zone (pour le texte) : 0.252 à 0.258, brut comme aligné (`lnl_frobenius.csv`).
+Toutes les valeurs en eV. Brut et aligné côte à côte.
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
@@ -60,10 +56,8 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | 12 | N²|ΔV_PA| (eV) | $2.691$ | 2.691301406519782 | `config/production.json : alignment.C_N_eV [12x12] × N²` |
 | 12 | M̄^NL(K) (eV) | $3.103$ | 3.1029887069686977 | `M2_plateau/M_analysis.npz : lnl_12x12_ReNL` |
 
-## `tab:rcut_M` — `tables/rcut_M.tex` (§4.1.5 → annexe D)
+## `tab:rcut_M` — `tables/rcut_M.tex` (Annexe D)
 
-- Brut = matrices non alignées (`rcut.<S>.tel_quel`, étiquettes brutes) ; aligné = production finale (alignement de Kumagai–Oba, étiquettes de Wigner-Seitz), lu dans le csv et contrôlé contre `kaasbjerg/r10_c2_results.json` : rcut.<S>.plateau_ws à 1e-4 près (décision du 2026-10-03 : les deux côte à côte). Grille de sortie 60² (colonne `fine_grid`).
-- Deux chiffres significatifs.
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
@@ -131,11 +125,10 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | 6 | 12x12 aligné π–π* | 1.1~\% | 0.011178 | `M2_plateau/m_rcut_convergence.csv : sv_mismatch_pi_blocks [12x12, R_cut = 6]` |
 | 6 | 12x12 aligné diag. | 0.87~\% | 0.0086769 | `M2_plateau/m_rcut_convergence.csv : diag_max_dM_over_max [12x12, R_cut = 6]` |
 
-## `tab:alignement` — `tables/alignement.tex` (§4.1.5, corps (bloc Alignement du potentiel))
+## `tab:alignement` — `tables/alignement.tex` (§4.1.5, corps, bloc Alignement du potentiel)
 
-- Toutes les valeurs en meV, potentiels bruts. (A) = production (`config/production.json : alignment.C_N_eV`, contrôlé au bit) ; (B) Kumagai–Oba en 2D : cellule de Wigner-Seitz plane, sites hors du cercle inscrit ; (C) Kumagai–Oba 3D tel quel : hors de la sphère inscrite, de rayon c/2 = 7.94 Å dès N ≥ 7 (la hauteur de boîte borne la région) ; (D) site unique publié (Lu et al. 2019) ; (E) vide : moyenne de ΔV brut pour |z| > 5 Å (R10 C.6). Tailles 18, 24, 27 retirées (vide anormal, constat ouvert 1 de `NOTES_TGAMMA.md` ; décision G du 2026-10-04) ; colonne famille retirée (même décision).
+- Toutes les valeurs en meV, potentiels bruts. (A) production (`config/production.json : alignment.C_N_eV` ; (B) Kumagai–Oba en 2D : cellule de Wigner-Seitz plane, sites hors du cercle inscrit ; (C) Kumagai–Oba 3D ; (D) site unique (Lu et al. 2019) ; (E) vide : moyenne de ΔV brut pour |z| > 5 ) ; 
 - rms = écart-type de population des potentiels de site de la région (ddof 0) ; pour le vide, écart-type sur la grille.
-- Les tailles 15, 21 et 10, 11 n'ont que le SCF (pas de matrice M).
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
@@ -190,39 +183,35 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | 21 | (D) Lu et al., site unique (meV) | $-13.8$ | -13.771481369850846 | `ch4/alignement_regions.npz : 21x21_Lu` |
 | 21 | (E) vide ± écart-type (meV) | $-2.6 \pm 1.4$ | (-2.576598346932535, 1.4061320209102772) | `alignement/r10_c6_results.json : sizes.21x21.vacuum_mean_meV, vacuum_std_meV` |
 
-## `tab:tests_M` — `tables/tests_M.tex` (§4.1.5 → annexe D)
-
-- Ligne « 16 → 20 bandes » retirée (non rejouable avec M2 ; TODO). Ajouts : application directe de V_ed (porte A.2, toutes les tailles ; valeur affichée = le plus grand des écarts L et NL) et convention intensive par famille (remplace la ligne sur six tailles).
-- Hermiticité : maximum sur les six tailles (la légende actuelle dit « valeur de la 9×9 sauf mention »). Reconstruction KS : fourchette sur les six tailles. Deux chiffres significatifs.
-- Non repris (à trancher) : « g0 par lots vs référence » (1.2e-14) et « test d'or » (1.8e-13), qui sont des tests de la chaîne T (le second est dans `tab:tests_T`) ; portes D6 de l'alignement (`M_analysis.npz` : align_gate_*).
+## `tab:tests_M` — `tables/tests_M.tex` (Annexe D)
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
 | Reconstruction KS, grille $N\times N$ | valeur | 1.5--32~$\mu$eV | 1.533–32.04 µeV | `M2_plateau/ks_reconstruction.npz : <S>_coarse_max_meV, six tailles (min–max, × 10³)` |
-| \quad éléments hors diagonaux | valeur | $\le 1.3\times10^{-6}$ | 1.3198895695999441e-06 | `M2_plateau/ks_reconstruction.npz : <S>_coarse_offdiag_rel, six tailles (max)` |
+| Éléments hors diagonaux | valeur | $\le 1.3\times10^{-6}$ | 1.3198895695999441e-06 | `M2_plateau/ks_reconstruction.npz : <S>_coarse_offdiag_rel, six tailles (max)` |
 | Reconstruction KS, grille élargie | valeur | 0.21--10~meV | 0.2052–9.988 meV | `M2_plateau/ks_reconstruction.npz : <S>_dense_max_meV, six tailles (min–max)` |
 | Hermiticité ($M$ élargi, six tailles) | valeur | $\le 2.3\times10^{-14}$ | 2.29e-14 | `M2_plateau/M_tests_summary.csv : valeur [hermiticité M dense <S>, six tailles] (max)` |
 | Hermiticité ($M$ élargi, six tailles) | seuil | $10^{-12}$ | 1e-12 | `M2_plateau/M_tests_summary.csv : seuil` |
 | Application directe de $V_\text{ed}$, $N\times N$ | valeur | $\le 3.3\times10^{-14}$~eV | L 3.3e-14 ; NL 8.1e-15 | `M2_plateau/M_tests_summary.csv : valeur [porte A.2 : ΔV appliqué aux états de Bloch purs contre M2/N_cells, 8 fichiers grossiers (N = 5x5, 6x6, 7x7, 8x8, 9x9, 9x9 (128 b), 10x10, 12x12)] (max de L et NL)` |
 | Application directe de $V_\text{ed}$, $N\times N$ | seuil | $10^{-6}$~eV | 1e-6 eV | `M2_plateau/M_tests_summary.csv : seuil` |
-| \quad grilles élargies | valeur | $\le 1.2\times10^{-8}$~eV | L 1.2e-08 ; NL 4.0e-09 | `M2_plateau/M_tests_summary.csv : valeur [porte A.2 : ΔV appliqué aux états de Bloch purs contre M2/N_cells, 6 fichiers denses (N = 5x5, 6x6, 7x7, 8x8, 9x9, 12x12)] (max de L et NL)` |
-| \quad grilles élargies | seuil | $10^{-6}$~eV | 1e-6 eV | `M2_plateau/M_tests_summary.csv : seuil` |
+| Grilles élargies | valeur | $\le 1.2\times10^{-8}$~eV | L 1.2e-08 ; NL 4.0e-09 | `M2_plateau/M_tests_summary.csv : valeur [porte A.2 : ΔV appliqué aux états de Bloch purs contre M2/N_cells, 6 fichiers denses (N = 5x5, 6x6, 7x7, 8x8, 9x9, 12x12)] (max de L et NL)` |
+| Grilles élargies | seuil | $10^{-6}$~eV | 1e-6 eV | `M2_plateau/M_tests_summary.csv : seuil` |
 | Remplissage, coefficients coïncidents | valeur | $1.3\times10^{-15}$ | 1.3e-15 | `M2_plateau/M_tests_summary.csv : valeur [padding : noyau dense à p=1 vs noyau N×N, 9x9]` |
 | Remplissage, coefficients coïncidents | seuil | $10^{-10}$ | 1e-10 | `M2_plateau/M_tests_summary.csv : seuil [padding : noyau dense à p=1 vs noyau N×N, 9x9]` |
-| Remplissage, points $\kv$ communs | valeur | $1.3\times10^{-3}$ | 0.0013 | `M2_plateau/M_tests_summary.csv : valeur [padding : k coïncidents, bandes 1–15, 9x9]` |
-| Remplissage, points $\kv$ communs | seuil | $2\times10^{-3}$ | 2e-3 (tolérance nscf) | `M2_plateau/M_tests_summary.csv : seuil [padding : k coïncidents, bandes 1–15, 9x9]` |
-| Fourier $\kv\to\Rv\to\kv$ | valeur | $2.4\times10^{-14}$ | 2.4e-14 | `M2_plateau/M_tests_summary.csv : valeur [fermeture Fourier Wannier (k → R → k), 9x9]` |
-| Fourier $\kv\to\Rv\to\kv$ | seuil | $10^{-12}$ | 1e-12 | `M2_plateau/M_tests_summary.csv : seuil [fermeture Fourier Wannier (k → R → k), 9x9]` |
-| Bloch$\to$Wannier$\to$Bloch | valeur | $1.3\times10^{-15}$ | 1.3e-15 | `M2_plateau/M_tests_summary.csv : valeur [fermeture Bloch → Wannier → Bloch (5 bandes), 9x9]` |
-| Bloch$\to$Wannier$\to$Bloch | seuil | $10^{-12}$ | 1e-12 | `M2_plateau/M_tests_summary.csv : seuil [fermeture Bloch → Wannier → Bloch (5 bandes), 9x9]` |
+| Remplissage, points $\mathbf{k}$ communs | valeur | $1.3\times10^{-3}$ | 0.0013 | `M2_plateau/M_tests_summary.csv : valeur [padding : k coïncidents, bandes 1–15, 9x9]` |
+| Remplissage, points $\mathbf{k}$ communs | seuil | $2\times10^{-3}$ | 2e-3 (tolérance nscf) | `M2_plateau/M_tests_summary.csv : seuil [padding : k coïncidents, bandes 1–15, 9x9]` |
+| Fourier $\mathbf{k}\to\mathbf{R}\to\mathbf{k}$| valeur | $2.4\times10^{-14}$ | 2.4e-14 | `M2_plateau/M_tests_summary.csv : valeur [fermeture Fourier Wannier (k → R → k), 9x9]` |
+| Fourier $\mathbf{k}\to\mathbf{R}\to\mathbf{k}$ | seuil | $10^{-12}$ | 1e-12 | `M2_plateau/M_tests_summary.csv : seuil [fermeture Fourier Wannier (k → R → k), 9x9]` |
+| Bloch $\to$ Wannier $\to$ Bloch | valeur | $1.3\times10^{-15}$ | 1.3e-15 | `M2_plateau/M_tests_summary.csv : valeur [fermeture Bloch → Wannier → Bloch (5 bandes), 9x9]` |
+| Bloch $\to$ Wannier $\to$ Bloch | seuil | $10^{-12}$ | 1e-12 | `M2_plateau/M_tests_summary.csv : seuil [fermeture Bloch → Wannier → Bloch (5 bandes), 9x9]` |
 | Convention intensive, $N = 6, 9, 12$ | valeur | $2.3\times10^{-2}$ | 0.023 | `M2_plateau/M_tests_summary.csv : valeur [convention intensive (cellule unitaire), famille 3m (N = 6, 9, 12)]` |
 | Convention intensive, $N = 6, 9, 12$ | seuil | $5\times10^{-2}$ | 5e-2 | `M2_plateau/M_tests_summary.csv : seuil` |
-| \quad $N = 5, 7, 8$ | valeur | $2.1\times10^{-2}$ | 0.021 | `M2_plateau/M_tests_summary.csv : valeur [convention intensive (cellule unitaire), famille non-3m (N = 5, 7, 8)]` |
-| \quad $N = 5, 7, 8$ | seuil | $5\times10^{-2}$ | 5e-2 | `M2_plateau/M_tests_summary.csv : seuil` |
+|$N = 5, 7, 8$ | valeur | $2.1\times10^{-2}$ | 0.021 | `M2_plateau/M_tests_summary.csv : valeur [convention intensive (cellule unitaire), famille non-3m (N = 5, 7, 8)]` |
+|$N = 5, 7, 8$ | seuil | $5\times10^{-2}$ | 5e-2 | `M2_plateau/M_tests_summary.csv : seuil` |
 
-## `tab:convergence_gamma` — `tables/convergence_gamma.tex` (§4.2.5 → annexe D)
+## `tab:convergence_gamma` — `tables/convergence_gamma.tex` (Annexe D)
 
-- Médiane de Γ^ed/c (meV), grille de sortie 240², η = 0.02 eV, grille interne 300², fenêtre ±3 eV ; colonne R_cut = 4 remplie pour les six tailles (TODO). Contrôle : R_cut 3 = `level2_summary.csv`.
+- Médiane de Γ^ed/c (meV), grille de sortie 240², η = 0.02 eV, grille interne 300², fenêtre ±3 eV.
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
@@ -259,10 +248,6 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 
 ## `tab:tests_T` — `tables/tests_T.tex` (§4.2.5 → annexe D)
 
-- Lignes 6×6, 12×12 (non rejoués avec M2) et grille d'énergie (v1 seulement) retirées (TODO).
-- Ligne « Hermiticité de M_loc » retirée (décision du 2026-10-01) : l'hermiticité de M est déjà dans tab:tests_M et aucune valeur de la 9×9 de production n'existe hors des journaux.
-- Ligne « Grille interne 300² → 600² » retirée le 2026-10-05 (doublon de tab:grille_interne) ; ligne « g0 par lots » ajoutée (décision G, 2026-10-05).
-- Positivité : minimum réel sur les 41 266 états de la fenêtre (9×9 de production) au lieu de « ≥ 0 ».
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
@@ -277,8 +262,6 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 
 - Colonne Kaasbjerg : Fig. 13 et 14 de l'article numérisées dans `r8_7a_results.json` (Fig. 13 : courbes vectorielles du PDF interpolées au meV ; Fig. 14 : points sur des cellules de 10 meV). Seule cellule sans source lisible par machine : A_cell|M| ~70 eV Å², lu sur sa Fig. 3.
 - Nos colonnes (9×9, R_cut 3, η_t = 20 meV, N_k^int = 900) : ρ − ρ₀ sur la grille 600² avec η_G = 50 meV (`r8_dos_results.json`) ; A_K avec η_G = 25 meV (`r8_spec_results.json`) ; A_cell|M_nn| = moyenne sur un disque de 0.147 Å⁻¹ autour de K, état initial K + δx̂ (δ = 0.029 Å⁻¹), 512 points (`r10_c2_results.json` : kaasbjerg.meta). Nos DOS sont par spin : hauteur × 2 (spin compté, comme Kaasbjerg) ; unité : états/eV/maille. c = défauts par maille (convention de Kaasbjerg). A_cell|M_nn| : π / π* (valence / conduction), à dire dans la légende.
-- Nos positions tombent sur la grille d'énergie de pas 2.5 meV : quatre décimales (−0.1625 arrondi à trois décimales est ambigu). Kaasbjerg : trois décimales (lecture au meV).
-- Contrôles : positions de `r8_fig_results.json` (superposition_7b) = `r8_dos_results.json` ; pos_K = `r8_7a_results.json` ; C_N, η_t, η_G et N_k^int attendus.
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|
@@ -301,10 +284,9 @@ Généré par `scripts/make_tables.py` (ne pas éditer). Une ligne par valeur af
 | Écart des maxima de $\bar A_K$, $c = 1~\%$ (eV) | brut | $0.118$ | 0.11762346994893341 | `kaasbjerg/r8_spec_results.json : runs.tel_quel_c0.01.K_gap_eV` |
 | Écart des maxima de $\bar A_K$, $c = 1~\%$ (eV) | aligné | $0.118$ | 0.11824139676128233 | `kaasbjerg/r8_spec_results.json : runs.aligne_c0.01.K_gap_eV` |
 
-## `tab:grille_interne` — `tables/grille_interne.tex` (§4.2.5 → annexe D (chaîne T))
+## `tab:grille_interne` — `tables/grille_interne.tex` (Annexe D)
 
-- 9×9 de production (Kumagai–Oba), R_cut 3, grille de sortie 240², η = 20 meV. Fenêtre ±3 eV : 41 266 états ; zone |ε − E_D| ≤ 0.3 eV : 280 états (`z_n`) ; Γ(E_D) : les 4 états au point de Dirac (`n_ED`). Contrôle : 300² = production (`level1_summary.csv`).
-- E_res = argmax de Γ sur les états à ±1.5 eV : grandeur **retirée du ch. 4 par la décision R10 B.1** (argmax discret sur les états de la grille de sortie), remise ici à la demande de G (2026-10-01) ; à confirmer à la rédaction de l'annexe D. E_res = z_E_res dans le csv.
+- 9×9 de production (Kumagai–Oba), R_cut 3, grille de sortie 240², η = 20 meV. Fenêtre ±3 eV : 41 266 états ; zone |ε − E_D| ≤ 0.3 eV : 280 états (`z_n`) ; Γ(E_D) : les 4 états au point de Dirac (`n_ED`).
 
 | ligne | colonne | affiché | valeur lue | source |
 |---|---|---|---|---|

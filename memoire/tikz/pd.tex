@@ -1,14 +1,3 @@
-% Macro diagramme phonon-defaut, meme style que le code original.
-%  - boucle ellipse a=1.2 b=1.0
-%  - photons : dashed, labels omega_L / omega_S
-%  - vertex photon : cercle blanc rayon 0.18
-%  - VERTEX PHONON : cercle blanc rayon 0.18 + phonon snake sortant (label)
-%  - VERTEX DEFAUT : cercle blanc rayon 0.2 + croix (X), pas de ligne externe
-%
-% #1 cx  #2 cy
-% #3 angle vertex PHONON  #4 dir phonon (up/down)  #5 label phonon
-% #6 angle vertex DEFAUT  #7 dir cote du X label (up/down) -- ignore, pas de ligne
-% #8 (inutilise, garder vide)  #9 etiquette
 \newcommand{\diagpd}[9]{%
 \begin{scope}[shift={(#1,#2)},
     line/.style={thick},

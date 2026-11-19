@@ -2,7 +2,7 @@
 
 Grégoire Barrette, Université de Montréal, 2026. Directeur de recherche : Michel Côté.
 
-Ce dépôt contient le texte du mémoire et tout ce qui a servi à produire ses figures et ses résultats numériques.
+Ce repo contient les fichiers sources du mémoire ainsi que les données ayant servies à la génération des tableaux et des figures. 
 
 ## Structure
 
@@ -10,7 +10,7 @@ Ce dépôt contient le texte du mémoire et tout ce qui a servi à produire ses 
 |--------------------|----------------------------------------------------------------|
 | `calculs/`         | Inputs QE, Wannier90, EPW et scripts bash pour le lancement des calculs|
 | `config/`          | Paramètres de production                                       |
-| `donnees/`         | Données finales derrière les figures                           |
+| `donnees/`         | Données des figures et tableaux                      |
 | `memoire/`         | Source LaTeX du mémoire                                        |
 | `scripts/`         | Scripts de génération des figures et des tableaux à partir des données|
 | `src/`             | Partie du code source requise pour rouler les scripts. Le reste du code source est dans le repo `graphene-raman`|
@@ -21,7 +21,7 @@ Requiert TeX Live (LuaLaTeX, biber).
 
 ```bash
 cd memoire
-latexmk
+latexmk -g
 ```
 
 Le PDF est écrit à la racine du dépôt et les fichiers auxiliaires vont dans `memoire/build/`.
@@ -37,10 +37,10 @@ source .venv/bin/activate
 .venv/bin/python -m pip install -e . --no-deps
 ```
 
-**Scripts :**  *à venir*
+**Script pour générer les figures :**
 
-## Données lourdes
+```bash
+python scripts/make_all_figures.py
+```
 
-*À venir* 
 
-Les données intermédiaires volumineuses seront archivées séparément.

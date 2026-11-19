@@ -1,5 +1,5 @@
 from graphene_raman.config import load_production, results_dir
-RES = results_dir(load_production(verbose=False))          # R6 : results/M2 (results/M gelé)
+RES = results_dir(load_production(verbose=False))       
 #!/usr/bin/env python
 
 """

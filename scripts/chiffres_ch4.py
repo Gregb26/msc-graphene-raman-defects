@@ -1,5 +1,4 @@
-"""Chiffres complémentaires du chapitre 4, calculés depuis donnees/ (aucun calcul physique, seulement des lectures et des
-statistiques sur les npz/csv de production). Complète donnees/ch4/table_v1_final.md pour les valeurs que la table ne donne pas :
+"""Chiffres complémentaires du chapitre 4, calculés depuis donnees/. Complète donnees/ch4/table_v1_final.md.
 
   A. fig:M_map  : M̃_π, M̃_π*, M^L_∥ et M^NL_∥ sur toute la zone (grille élargie 27×27 de la 9×9), brut et aligné
   B. grille interne N_k^int : écarts 300 → 600 sur la fenêtre ±3 eV, la zone |ε − E_D| ≤ 0.3 eV et au point de Dirac
@@ -7,7 +6,7 @@ statistiques sur les npz/csv de production). Complète donnees/ch4/table_v1_fina
   D. fig:M_locality : poids sur le site, décroissance sur les premières mailles, plancher
   E. dérivés    : fraction locale à K (tab:L_NL), A_cell·M̄(K), dispersion de max|M| en N (fig:M_scaling)
 
-Sortie : donnees/ch4/chiffres_complementaires.csv (bloc, grandeur, valeur, unité, source) et .md (même contenu, lisible).
+Sortie : donnees/ch4/chiffres_complementaires.csv (bloc, grandeur, valeur, unité, source) et .md.
 Usage : python scripts/chiffres_ch4.py
 """
 import csv
@@ -84,9 +83,7 @@ for S in SIZES:
     put("C", f"{S} : V̄^L min / max pour 0.75 r_max ≤ r ≤ r_max", f"{f(v[far].min(), 3)} / {f(v[far].max(), 3)}", "eV", f"{src} : {S}_rad_masked")
     put("C", f"{S} : C_N (Kumagai–Oba)", f(alignment_C(CFG, S), 4), "eV", "config/production.json : alignment.C_N_eV")
 for S in ("5x5", "9x9"):
-    # Région la plus éloignée de la lacune ET de ses images (correction du 2026-10-03). L'ancienne statistique prenait
-    # la distance simple au site dans le losange tracé : ses « 5 % les plus éloignés » étaient les sommets aigus du
-    # losange, à 6.2 Å (5×5) d'une image, et non la région loin de toute lacune. La carte est tracée dans le losange
+    # Région la plus éloignée de la lacune ET de ses images. La carte est tracée dans le losange
     # a1, a2 à 60° avec a1 + a2 selon x (demi-diagonales (√3/2) L et L/2, L = N a) : le point le plus loin de toute
     # image est le sommet de la cellule de Wigner-Seitz, à L/√3 selon ±x, où se trouve un atome.
     X, Y, M = V[f"{S}_map_X"], V[f"{S}_map_Y"], V[f"{S}_map"]
@@ -110,7 +107,7 @@ for S in ("5x5", "9x9"):
     loin5 = dimg >= np.quantile(dimg, 0.95)
     put("C", f"{S} : carte, 5 % des points les plus loin de toute lacune (distance d'image minimale) : médiane / max", f"{f(np.median(M[loin5]), 3)} / {f(M[loin5].max(), 3)}", "eV", f"{src} : {S}_map")
 
-# vide hors du plan (R10 C.6, potentiels bruts) : référence commune des deux super-cellules, citée au bloc Taille (2026-10-03)
+# vide hors du plan : référence commune des deux super-cellules, citée au bloc Taille 
 import json
 c6 = json.load(open(ROOT / "donnees" / "alignement" / "r10_c6_results.json"))["sizes"]
 for S in ("5x5", "6x6", "7x7", "8x8", "9x9", "10x10", "11x11", "12x12"):
@@ -119,7 +116,7 @@ for S in ("5x5", "6x6", "7x7", "8x8", "9x9", "10x10", "11x11", "12x12"):
 vm = [c6[S]["vacuum_mean_meV"] for S in ("5x5", "6x6", "7x7", "8x8", "9x9", "10x10", "11x11", "12x12")]
 put("C", "ΔV brut dans le vide, N = 5 à 12 : min / max des moyennes", f"{min(vm):.1f} / {max(vm):.1f}", "meV", "alignement/r10_c6_results.json : sizes.<S>.vacuum_mean_meV")
 
-# dépendance en N de ΔV_PA (bloc Alignement du potentiel, 2026-10-03) : ajustement C_N = a + b/N² sur la famille 3m, N ≥ 9
+# dépendance en N de ΔV_PA (bloc Alignement du potentiel) : ajustement C_N = a + b/N² sur la famille 3m, N ≥ 9
 CN = CFG["alignment"]["C_N_eV"]
 S3 = ["9x9", "12x12", "15x15", "18x18", "21x21", "24x24", "27x27"]
 Nn = np.array([int(S.split("x")[0]) for S in S3], float); yy = np.array([1e3 * CN[S] for S in S3])

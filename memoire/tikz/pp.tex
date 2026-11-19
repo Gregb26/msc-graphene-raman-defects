@@ -1,14 +1,3 @@
-% Macro reproduisant EXACTEMENT le style du code original :
-%  - boucle = ellipse, centre (cx,cy), a=1.2, b=1.0
-%  - photons : \draw[line, dashed]
-%  - phonons : \draw[line, decorate, decoration={snake, amplitude=0.8mm, segment length=3mm}]
-%  - vertex photon : \draw[fill=white] ... circle (0.18)
-%  - vertex phonon : \draw[fill=white] ... rectangle (cote 0.36)
-%
-% #1 cx  #2 cy
-% #3 angle vertex phonon 1 (deg)  #4 dir phonon1 (up/down)  #5 label1
-% #6 angle vertex phonon 2 (deg)  #7 dir phonon2 (up/down)  #8 label2
-% #9 etiquette
 \newcommand{\diag}[9]{%
 \begin{scope}[shift={(#1,#2)},
     line/.style={thick},

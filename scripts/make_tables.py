@@ -224,8 +224,8 @@ class Table:
 # tab:échantillonnage 
 
 def t_echantillonnage():
-    """Décision G du 2026-10-03 : tableau dans la référence du vide (brut, tel que sorti de QE) — ΔE_F et V̄^L(a_CC) non
-    alignés, pas de colonne C_N ni d'écart-type du vide. Les valeurs alignées (brut − C_N) ne sont plus affichées."""
+    """tableau dans la référence du vide (brut, tel que sorti de QE) — ΔE_F et V̄^L(a_CC) non
+    alignés."""
     f = RES / "sampling_table.csv"
     rows = []
     for N in (6, 9, 12, 5, 7, 8, 10, 11):
@@ -240,18 +240,13 @@ def t_echantillonnage():
     return Table("echantillonnage", "tab:échantillonnage", "§4.1.5, corps", "c c r r",
                  [r"$N$ & $N \bmod 3$ & $\Delta E_F$ & $\bar V^\text{L}_\text{ed}(a_\text{CC})$ \\"],
                  ["N", "N mod 3", "ΔE_F (meV)", "V̄^L(a_CC) brut (meV)"], rows,
-                 ["Toutes les valeurs en meV, **brutes** (référence du vide, décision G du 2026-10-03) : ni ΔE_F ni V̄^L(a_CC) "
-                  "ne sont alignés ; les valeurs alignées valent brut − C_N (`config/production.json : alignment.C_N_eV`).",
-                  "N = 10 et 11 : SCF de super-cellules seulement (pas de matrice M)."])
+                 ["Toutes les valeurs en meV et couplage **brute** (référence du vide). Les valeurs alignées valent brut − C_N (`config/production.json : alignment.C_N_eV`)."])
 
 
 # tab:L_NL
 
 def t_L_NL():
-    """Décision G du 2026-10-04 : cinq colonnes, toutes en eV — M̄^L(K) brut, aligné, N²|ΔV_PA^(N)|, M̄^NL(K). Les deux colonnes de
-    Frobenius (NL/L sur toute la zone) sont retirées : brut et aligné y sont identiques (0.25 pour les six tailles), une phrase
-    dans le texte suffit (`lnl_frobenius.csv` reste la source). Le bloc Local / non local est supprimé ; le tableau sert au bloc
-    Convention intensive (vérification intensive partie par partie, identité aligné − brut = N²|ΔV_PA|)."""
+    """cinq colonnes, toutes en eV — M̄^L(K) brut, aligné, N²|ΔV_PA^(N)|, M̄^NL(K)."""
     fa, fl = RES / "M_analysis.npz", RES / "level2_families.csv"
     A = read_npz(fa)
     rows = []
@@ -272,15 +267,9 @@ def t_L_NL():
     head = [r"& \multicolumn{2}{c}{$\bar M^\text{L}(K)$} & & \\",
             r"\cline{2-3}",
             r"$N$ & brut & aligné & $N^2|\Delta V_\text{PA}^{(N)}|$ & $\bar M^\text{NL}(K)$ \\"]
-    return Table("L_NL", "tab:L_NL", "§4.1.5, corps (bloc Convention intensive)", "c c c c c", head,
+    return Table("L_NL", "tab:L_NL", "§4.1.5, corps, bloc Convention intensive", "c c c c c", head,
                  ["N", "M̄^L(K) brut (eV)", "M̄^L(K) aligné (eV)", "N²|ΔV_PA| (eV)", "M̄^NL(K) (eV)"], rows,
-                 ["Toutes les valeurs en eV. Brut et aligné côte à côte (décision du 2026-10-01, R10 D6) ; colonne N²|ΔV_PA^(N)| "
-                  "ajoutée et colonnes de Frobenius retirées (décision G du 2026-10-04). M̄^NL ne dépend pas de l'alignement.",
-                  "Contrôles : `level2_families.csv` = `M_analysis.npz` (ReML_K, ReML_K_aligned, ReMNL_K) ; aligné − brut = N²|C_N| "
-                  "à 1e-8 eV près pour les six tailles.",
-                  "N = 5, 7, 8 : grilles élargies 25², 28², 32² sans K ; « K » y est le point de grille le plus proche "
-                  "(`lnl_<S>_dK` = 0.055, 0.050, 0.043 Å⁻¹) — à dire dans la légende.",
-                  "Rapport de Frobenius NL/L sur toute la zone (pour le texte) : 0.252 à 0.258, brut comme aligné (`lnl_frobenius.csv`)."])
+                 ["Toutes les valeurs en eV. Brut et aligné côte à côte."])
 
 
 # tab:rcut_M
@@ -309,14 +298,10 @@ def t_rcut_M():
             r"\cline{3-6}\cline{7-10}",
             r"& & \multicolumn{2}{c}{brut} & \multicolumn{2}{c}{aligné} & \multicolumn{2}{c}{brut} & \multicolumn{2}{c}{aligné} \\",
             r"$R_\text{cut}$ & Cellules & $\pi$--$\pi^*$ & diag. & $\pi$--$\pi^*$ & diag. & $\pi$--$\pi^*$ & diag. & $\pi$--$\pi^*$ & diag. \\"]
-    return Table("rcut_M", "tab:rcut_M", "§4.1.5 → annexe D", "c c cc cc cc cc", head,
+    return Table("rcut_M", "tab:rcut_M", "Annexe D", "c c cc cc cc cc", head,
                  ["R_cut", "cellules", "9x9 brut π–π*", "9x9 brut diag.", "9x9 aligné π–π*", "9x9 aligné diag.",
                   "12x12 brut π–π*", "12x12 brut diag.", "12x12 aligné π–π*", "12x12 aligné diag."], rows,
-                 ["Brut = matrices non alignées (`rcut.<S>.tel_quel`, étiquettes brutes) ; aligné = production finale "
-                  "(alignement de Kumagai–Oba, étiquettes de Wigner-Seitz), lu dans le csv et contrôlé contre "
-                  "`kaasbjerg/r10_c2_results.json` : rcut.<S>.plateau_ws à 1e-4 près (décision du 2026-10-03 : les deux côte à côte). "
-                  "Grille de sortie 60² (colonne `fine_grid`).",
-                  "Deux chiffres significatifs."])
+                 [""])
 
 
 # tab:alignement (bloc Alignement du potentiel, §4.1.5 ; demandé par G le 2026-10-03)
@@ -350,13 +335,8 @@ def t_alignement():
     head = [r"$N$ & (A) Nous & (B) Kumagai-Oba 2D & (C) Kumagai-Oba 3D & (D) Lu \textit{et al.} & (E) Vide \\"]
     return Table("alignement", "tab:alignement", "§4.1.5, corps (bloc Alignement du potentiel)", "c r r r r r", head,
                  ["N", "(A) nous ± rms (meV)", "(B) K–O 2D ± rms (meV)", "(C) K–O 3D ± rms (meV)", "(D) Lu et al., site unique (meV)", "(E) vide ± écart-type (meV)"], rows,
-                 ["Toutes les valeurs en meV, potentiels bruts. (A) = production (`config/production.json : alignment.C_N_eV`, contrôlé au bit) ; "
-                  "(B) Kumagai–Oba en 2D : cellule de Wigner-Seitz plane, sites hors du cercle inscrit ; (C) Kumagai–Oba 3D tel quel : hors de la sphère "
-                  "inscrite, de rayon c/2 = 7.94 Å dès N ≥ 7 (la hauteur de boîte borne la région) ; (D) site unique publié (Lu et al. 2019) ; "
-                  "(E) vide : moyenne de ΔV brut pour |z| > 5 Å (R10 C.6). Tailles 18, 24, 27 retirées (vide anormal, constat ouvert 1 de "
-                  "`NOTES_TGAMMA.md` ; décision G du 2026-10-04) ; colonne famille retirée (même décision).",
-                  "rms = écart-type de population des potentiels de site de la région (ddof 0) ; pour le vide, écart-type sur la grille.",
-                  "Les tailles 15, 21 et 10, 11 n'ont que le SCF (pas de matrice M)."])
+                 ["TToutes les valeurs en meV, potentiels bruts. (A) production (`config/production.json : alignment.C_N_eV` ; (B) Kumagai–Oba en 2D : cellule de Wigner-Seitz plane, sites hors du cercle inscrit ; (C) Kumagai–Oba 3D ; (D) site unique (Lu et al. 2019) ; (E) vide : moyenne de ΔV brut pour |z| > 5 )",
+                  "rms = écart-type de population des potentiels de site de la région (ddof 0) ; pour le vide, écart-type sur la grille."])
 
 
 # tab:tests_M
@@ -425,15 +405,9 @@ def t_tests_M():
         rows.append([L(tex), L(r"$(\max-\min)/\text{moy.}$ de $\max|M|$" if fam is FAM_3M else "idem"),
                      Cell(sci(v), f"{rel(ft)} : valeur [{name}]", v),
                      Cell(thr(first_float(r["seuil"])), f"{rel(ft)} : seuil", r["seuil"])])
-    return Table("tests_M", "tab:tests_M", "§4.1.5 → annexe D", "l l l l", [r"Test & Quantité & Valeur & Seuil \\"],
+    return Table("tests_M", "tab:tests_M", "Annexe D", "l l l l", [r"Test & Quantité & Valeur & Seuil \\"],
                  ["test", "quantité", "valeur", "seuil"], rows,
-                 ["Ligne « 16 → 20 bandes » retirée (non rejouable avec M2 ; TODO). Ajouts : application directe de V_ed "
-                  "(porte A.2, toutes les tailles ; valeur affichée = le plus grand des écarts L et NL) et convention intensive par famille "
-                  "(remplace la ligne sur six tailles).",
-                  "Hermiticité : maximum sur les six tailles (la légende actuelle dit « valeur de la 9×9 sauf mention »). "
-                  "Reconstruction KS : fourchette sur les six tailles. Deux chiffres significatifs.",
-                  "Non repris (à trancher) : « g0 par lots vs référence » (1.2e-14) et « test d'or » (1.8e-13), qui sont des "
-                  "tests de la chaîne T (le second est dans `tab:tests_T`) ; portes D6 de l'alignement (`M_analysis.npz` : align_gate_*)."])
+                 [""])
 
 
 # tab:convergence_gamma 
@@ -454,10 +428,9 @@ def t_convergence_gamma():
         if S == "12x12":
             rows.append(HLINE)
     head = [r"$N$ & $N \bmod 3$ & $R_\text{cut}=0$ & 1 & 2 & 3 & 4 \\"]
-    return Table("convergence_gamma", "tab:convergence_gamma", "§4.2.5 → annexe D", "c c ccccc", head,
+    return Table("convergence_gamma", "tab:convergence_gamma", "Annexe D", "c c ccccc", head,
                  ["N", "N mod 3", "R_cut 0", "R_cut 1", "R_cut 2", "R_cut 3", "R_cut 4"], rows,
-                 ["Médiane de Γ^ed/c (meV), grille de sortie 240², η = 0.02 eV, grille interne 300², fenêtre ±3 eV ; "
-                  "colonne R_cut = 4 remplie pour les six tailles (TODO). Contrôle : R_cut 3 = `level2_summary.csv`."])
+                 ["Médiane de Γ^ed/c (meV), grille de sortie 240², η = 0.02 eV, grille interne 300², fenêtre ±3 eV."])
 
 
 # tab:tests_T
@@ -483,13 +456,9 @@ def t_tests_T():
     rows.append([L("Positivité"), L(r"$\min_{n\kv}\Gamma^\text{ed}_{n\kv}/c$"),
                  Cell(f"${gmin:.2f}$~eV", f"{rel(fr)} : min de G_T sur |E_out − E_D| ≤ {CFG['e_window_eV']} eV (eV)", gmin),
                  Cell(r"$-10^{-8}$~eV", "ch4/NOTES_TGAMMA.md : l. 122 (C7)", "-1e-8")])
-    return Table("tests_T", "tab:tests_T", "§4.2.5 → annexe D", "l l l l", [r"Test & Quantité & Valeur & Seuil \\"],
+    return Table("tests_T", "tab:tests_T", "Annexe D", "l l l l", [r"Test & Quantité & Valeur & Seuil \\"],
                  ["test", "quantité", "valeur", "seuil"], rows,
-                 ["Lignes 6×6, 12×12 (non rejoués avec M2) et grille d'énergie (v1 seulement) retirées (TODO).",
-                  "Ligne « Hermiticité de M_loc » retirée (décision du 2026-10-01) : l'hermiticité de M est déjà dans tab:tests_M "
-                  "et aucune valeur de la 9×9 de production n'existe hors des journaux.",
-                  "Ligne « Grille interne 300² → 600² » retirée le 2026-10-05 (doublon de tab:grille_interne) ; ligne « g0 par lots » ajoutée (décision G, 2026-10-05).",
-                  "Positivité : minimum réel sur les 41 266 états de la fenêtre (9×9 de production) au lieu de « ≥ 0 »."])
+                 [""])
 
 
 # tab:kaasbjerg 
@@ -552,18 +521,8 @@ def t_kaasbjerg():
     head = [r"Grandeur & Kaasbjerg~\cite{kaasbjergAtomisticMatrixTheory2020} & brut & aligné \\"]
     return Table("kaasbjerg", "tab:kaasbjerg", "§4.2.5, corps", "l c c c", head,
                  ["grandeur", "Kaasbjerg", "brut", "aligné"], rows,
-                 ["Colonne Kaasbjerg : Fig. 13 et 14 de l'article numérisées dans `r8_7a_results.json` (Fig. 13 : courbes vectorielles "
-                  "du PDF interpolées au meV ; Fig. 14 : points sur des cellules de 10 meV). Seule cellule sans source lisible par "
-                  "machine : A_cell|M| ~70 eV Å², lu sur sa Fig. 3.",
-                  "Nos colonnes (9×9, R_cut 3, η_t = 20 meV, N_k^int = 900) : ρ − ρ₀ sur la grille 600² avec η_G = 50 meV "
-                  "(`r8_dos_results.json`) ; A_K avec η_G = 25 meV (`r8_spec_results.json`) ; A_cell|M_nn| = moyenne sur un disque "
-                  "de 0.147 Å⁻¹ autour de K, état initial K + δx̂ (δ = 0.029 Å⁻¹), 512 points (`r10_c2_results.json` : kaasbjerg.meta). "
-                  "Nos DOS sont par spin : hauteur × 2 (spin compté, comme Kaasbjerg) ; unité : états/eV/maille. c = défauts par maille "
-                  "(convention de Kaasbjerg). A_cell|M_nn| : π / π* (valence / conduction), à dire dans la légende.",
-                  "Nos positions tombent sur la grille d'énergie de pas 2.5 meV : quatre décimales (−0.1625 arrondi à trois "
-                  "décimales est ambigu). Kaasbjerg : trois décimales (lecture au meV).",
-                  "Contrôles : positions de `r8_fig_results.json` (superposition_7b) = `r8_dos_results.json` ; pos_K = `r8_7a_results.json` ; "
-                  "C_N, η_t, η_G et N_k^int attendus."])
+                 ["Colonne Kaasbjerg : Fig. 13 et 14 de l'article numérisées dans `r8_7a_results.json` (Fig. 13 : courbes vectorielles du PDF interpolées au meV ; Fig. 14 : points sur des cellules de 10 meV). Seule cellule sans source lisible par machine : A_cell|M| ~70 eV Å², lu sur sa Fig. 3.",
+                "Nos colonnes (9×9, R_cut 3, η_t = 20 meV, N_k^int = 900) : ρ − ρ₀ sur la grille 600² avec η_G = 50 meV (`r8_dos_results.json`) ; A_K avec η_G = 25 meV (`r8_spec_results.json`) ; A_cell|M_nn| = moyenne sur un disque de 0.147 Å⁻¹ autour de K, état initial K + δx̂ (δ = 0.029 Å⁻¹), 512 points (`r10_c2_results.json` : kaasbjerg.meta). Nos DOS sont par spin : hauteur × 2 (spin compté, comme Kaasbjerg) ; unité : états/eV/maille. c = défauts par maille (convention de Kaasbjerg). A_cell|M_nn| : π / π* (valence / conduction), à dire dans la légende"])
 
 
 # tab:grille_interne 
@@ -588,15 +547,9 @@ def t_grille_interne():
     head = [r"& \multicolumn{2}{c}{Médiane de $\Gamma^\text{ed}/c$ (meV)} & $\Gamma^\text{ed}/c\,(E_D)$ & $E_\text{res}-E_D$ \\",
             r"\cline{2-3}",
             r"$N_{\tilde\kv}$ & $\pm3$~eV & $\pm0.3$~eV & (meV) & (eV) \\"]
-    return Table("grille_interne", "tab:grille_interne", "§4.2.5 → annexe D (chaîne T)", "c c c c c", head,
+    return Table("grille_interne", "tab:grille_interne", "Annexe D", "c c c c c", head,
                  ["N_k^int", "médiane ±3 eV (meV)", "médiane ±0.3 eV (meV)", "Γ^ed/c (E_D) (meV)", "E_res − E_D (eV)"], rows,
-                 ["9×9 de production (Kumagai–Oba), R_cut 3, grille de sortie 240², η = 20 meV. Fenêtre ±3 eV : 41 266 états ; "
-                  "zone |ε − E_D| ≤ 0.3 eV : 280 états (`z_n`) ; Γ(E_D) : les 4 états au point de Dirac (`n_ED`). "
-                  "Contrôle : 300² = production (`level1_summary.csv`).",
-                  "E_res = argmax de Γ sur les états à ±1.5 eV : grandeur **retirée du ch. 4 par la décision R10 B.1** (argmax discret "
-                  "sur les états de la grille de sortie), remise ici à la demande de G (2026-10-01) ; à confirmer à la rédaction "
-                  "de l'annexe D. E_res = z_E_res dans le csv."])
-
+                 ["9×9 de production (Kumagai–Oba), R_cut 3, grille de sortie 240², η = 20 meV. Fenêtre ±3 eV : 41 266 états ; zone |ε − E_D| ≤ 0.3 eV : 280 états (`z_n`) ; Γ(E_D) : les 4 états au point de Dirac (`n_ED`)."])
 
 TABLES = {f.__name__[2:]: f for f in (t_echantillonnage, t_L_NL, t_rcut_M, t_alignement, t_tests_M, t_convergence_gamma, t_tests_T,
                                             t_kaasbjerg, t_grille_interne)}

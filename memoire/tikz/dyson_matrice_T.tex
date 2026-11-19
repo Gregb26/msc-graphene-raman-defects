@@ -1,15 +1,3 @@
-% Série de Dyson resommée en termes de la matrice T :
-%   G_{mn}(tau'-tau) = G^(0) + G^(0) T G^(0)
-% Style identique aux diagrammes du chapitre Raman (tikz/e1.tex, tikz/pd.tex).
-% Compatible pdflatex. Requiert : tikz, decorations.markings, arrows.meta, calc.
-%
-% Convention temporelle : temps croissant de gauche à droite, donc
-% tau < tau_1 < tau_2 < tau'. Le deuxième terme se lit
-%   G^(0)_m(tau'-tau_2) T_{mn}(tau_2-tau_1) G^(0)_n(tau_1-tau).
-% Si l'équation du texte adopte l'ordre inverse, il suffit d'échanger les
-% étiquettes tau_1 et tau_2 ci-dessous.
-
-% Vertex électron-défaut : cercle blanc + croix (cf. tikz/règles_Raman.tex)
 \providecommand{\vertexdefaut}[1]{%
   \draw[fill=white] (#1) circle (0.2);
   \draw[line width=1pt] ($(#1)+(-0.14,-0.14)$) -- ($(#1)+(0.14,0.14)$);

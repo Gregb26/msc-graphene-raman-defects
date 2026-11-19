@@ -1,7 +1,7 @@
 {
-  "_comment": "Frozen production parameters (2026-09-05), declared after the Level 1-2 convergence on the nbnd=20 dense chain. Every production script must load this file via graphene_raman.config.load_production(); CLI flags may only widen a sweep, never silently change a frozen value.",
-  "M_normalization": "v2 : L et NL en norme unit_cell, 2026-09-25",
-  "M_normalization_note": "v1 (results/M, gele) : M^L des noyaux compute_ML_R* avec psi normee sur la super-cellule (facteur N_cells manquant) et M^NL en norme maille ; v2 : M2 = N_cells*M^L + M^NL, les deux parties en norme unit_cell ; (application directe de dV sur etats de Bloch purs, <= 1e-6 eV) sur chaque M utilise",
+  "_comment": "Paramètres de production",
+  "M_normalization": "v2 : M^L et M^NL avec les états de Bloch normalisés sur la cellule unitaire",
+  "M_normalization_note": "v1 : M^L avec les états de Bloch normalisés sur la super-cellule et M^NL sur la cellule unitaire ; v2 : M^L et M^NL avec les états de Bloch normalisés sur la cellule unitaire",
   "results_dir": "donnees/M2_plateau",
   "matrices_dir": "donnees/M2",
   "epw_results_dir": "donnees/epw",
@@ -11,8 +11,8 @@
   "campaigns_results_dir": "donnees",
   "results_dir_frozen": [],
   "alignment": {
-    "version": "alignement de Kumagai-Oba (PRB 89, 195205, 2014), approximation (i), R10, 2026-09-29 ; etiquette d archive : plateau (i)",
-    "method": "C_N = moyenne des decalages de sphere de 1,0 A (alignment.atom_sphere_shifts) sur les atomes a distance vraie >= 0,75 r_max de la lacune ; M_W(R,R) - C_N*I_5 sur les mailles R mod D dans [0,N)^2 (etiquettes brutes de Mwk_to_Mwr, defect_mwr), approximation (i), rien d'autre ; matrices M2 brutes (matrices_dir)",
+    "version": "alignement de Kumagai-Oba (PRB 89, 195205, 2014)",
+    "method": "C_N = moyenne des decalages de sphere de 1,0 AA sur les atomes a distance >= 0,75 r_max de la lacune ; M_W(R,R) - C_N*I_5 sur les mailles R mod D dans [0,N)^2",
     "C_N_eV": {
       "5x5": -0.0575626062015234,
       "6x6": -0.05050914517629934,

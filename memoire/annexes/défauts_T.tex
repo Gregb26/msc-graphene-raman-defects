@@ -11,7 +11,7 @@ Cette annexe présente la dérivation complète de la matrice $T$ introduite à 
 
 Conformément à la section~\ref{sec:hamiltonien}, l'Hamiltonien électronique en présence d'un seul défaut se décompose en une partie libre et une partie de couplage. Comme nous travaillons à température finie, il est naturel de se placer dans l'ensemble grand canonique et de mesurer les énergies à partir du potentiel chimique $\mu$
 \begin{equation}
-    \hat{H}-\mu\hat{N} = \hat{H}_\text{e}+\hat{H}_\text{ed} = \sum_{n}\xi_{n}\hat{c}^\dag_{n}\hat{c}_{n}+\sum_{mn}M_{mn}\hat{c}^\dag_{m}\hat{c}_{n},\qquad \xi_n\equiv\varepsilon_n-\mu,
+    \hat{H}-\mu\hat{N} = \hat{H}_\text{e}+\hat{H}_\text{ed} = \sum_{n}\xi_{n}\hat{c}^\dag_{n}\hat{c}_{n}+\frac{1}{N_\text{uc}}\sum_{mn}M_{mn}\hat{c}^\dag_{m}\hat{c}_{n},\qquad \xi_n\equiv\varepsilon_n-\mu,
     \label{eqn:ad_hamiltonien}
 \end{equation}
 où $\varepsilon_{n}$ sont les énergies propres de Kohn-Sham du cristal parfait et où les éléments de matrice électron-défaut $M_{mn}$ contiennent les contributions locale et non locale obtenues au chapitre~\ref{chap:défauts}. Pour alléger la notation, nous avons omis les indices de vecteur d'onde : dans toute cette annexe, un indice latin $n$ désigne collectivement la bande \emph{et} le vecteur d'onde, $n\equiv(n,\kv)$. Cette convention est essentielle, car le défaut brise la symétrie de translation et $M_{mn}$ n'est pas diagonale en $\kv$ ; l'Hamiltonien non perturbé $\hat{H}_\text{e}$, lui, demeure diagonal dans cette base. Nous allons utiliser la théorie de la perturbation en mécanique quantique sur l'Hamiltonien de couplage pour résoudre ce problème.
@@ -259,7 +259,7 @@ Cette section rassemble la dépendance en taille de super-cellule et les preuves
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{figures/fig_level2.pdf}
-    \caption[Dépendance en taille de super-cellule du taux d'amortissement.]{Médiane de $\Gamma^\text{ed}/c$ sur $\pm3$~eV autour de $E_D$ en fonction de la taille $N$ de la super-cellule ayant servi à calculer $\bm M_\mathcal{C}$, aux paramètres de production ($R_\text{cut}=3$, grille de sortie $240\times240$, $\eta=20$~meV ; colonne $R_\text{cut}=3$ du tableau~\ref{tab:convergence_gamma}). La zone grisée marque les tailles $N<7$ exclues de la production. La dépendance n'est pas monotone : les deux familles de la section~\ref{sec:M_détails} se séparent, $N=3m$ ($6$, $9$, $12$) au-dessus et les autres en dessous, et c'est au sein de la famille $3m$ que l'écart de $2.4~\%$ entre $9\times9$ et $12\times12$ retenu comme incertitude au chapitre~\ref{chap:T} se lit.}
+    \caption[Dépendance en taille de super-cellule du taux d'amortissement.]{Médiane de $\Gamma^\text{ed}/c$ sur $\pm3$~eV autour de $E_D$ en fonction de la taille $N$ de la super-cellule ayant servi à calculer $\bm M_\mathcal{C}$, aux paramètres de production ($R_\text{cut}=3$, grille de sortie $240\times240$, $\eta=20$~meV ; colonne $R_\text{cut}=3$ du tableau~\ref{tab:convergence_gamma}). La zone grisée marque les tailles $N<7$ exclues de la production. La dépendance n'est pas monotone : les deux familles de la section~\ref{sec:M_results} se séparent, $N=3m$ ($6$, $9$, $12$) au-dessus et les autres en dessous, et c'est au sein de la famille $3m$ que l'écart de $2.4~\%$ entre $9\times9$ et $12\times12$ retenu comme incertitude au chapitre~\ref{chap:T} se lit.}
     \label{fig:level2}
 \end{figure}
 \vspace*{\fill}
@@ -271,7 +271,7 @@ Cette section rassemble la dépendance en taille de super-cellule et les preuves
     coupure.]{Médiane de $\Gamma^\text{ed}/c$ (meV) sur $\pm3$~eV
     autour de $E_D$ en fonction du rayon de coupure $R_\text{cut}$, pour les
     six tailles de super-cellule (grille de sortie $240\times240$,
-    $\eta = 20$~meV, grille interne $300\times300$). Nous distinguons les deux familles de super-cellules de la section~\ref{sec:M_détails}.}
+    $\eta = 20$~meV, grille interne $300\times300$). Nous distinguons les deux familles de super-cellules de la section~\ref{sec:M_results}.}
     \label{tab:convergence_gamma}
     \input{tables/convergence_gamma}
 \end{table}

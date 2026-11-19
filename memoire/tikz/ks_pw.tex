@@ -34,37 +34,33 @@
                                            C_{n\kv}(\Gv),\;
                                            \varepsilon_{n\kv}$};
 \node[font=\scriptsize\bfseries, anchor=north west] 
-    at (H.north west) {(5)};
+    at (H.north west) {(4)};
 
 \node[box] (psi)    at (0, -4.6*\sep)    {$\psi_{n\kv}(\rv)$};
 \node[font=\scriptsize\bfseries, anchor=north west] 
-    at (psi.north west) {(6)};
+    at (psi.north west) {(5)};
 
 \node[box] (nout)   at (0, -5.6*\sep)    {$n_\text{out}(\rv)
                                            =\frac{2}{N_\kv}\sum_{n\kv}f_{n\kv}
                                            |\psi_{n\kv}(\rv)|^2$};
 \node[font=\scriptsize\bfseries, anchor=north west] 
-    at (nout.north west) {(7)};
+    at (nout.north west) {(6)};
 
 \node[box] (mix)    at (0, -6.6*\sep)    {Mixing $\;\longrightarrow\;
                                            n_\text{in}^{(i+1)}(\rv)$};
 \node[font=\scriptsize\bfseries, anchor=north west] 
-    at (mix.north west) {(8)};
+    at (mix.north west) {(7)};
 
 \node[decision](conv) at (0, -7.8*\sep)  {Convergé?};
 \node[box] (props)  at (0, -9.2*\sep)    {Propriétés de l'état fondamental};
 \node[font=\scriptsize\bfseries, anchor=north west] 
-    at (props.north west) {(10)};
+    at (props.north west) {(9)};
 
 % ---- Nœuds latéraux (précalculés) ----
 \node[sidebox] (VPPL) at (6.2, -2*\sep)
     {$\tilde{V}_\text{PPL}(\Gv)$\\(précalculé)};
-\node[font=\scriptsize\bfseries, anchor=north west] 
-    at (VPPL.north west) {(3)};
 \node[sidebox] (VNL)  at (6.2, -3.3*\sep)
     {$\tilde{V}_\text{NL}^{(\kv)}(\Gv,\Gv')$\\(précalculé)};
-\node[font=\scriptsize\bfseries, anchor=north west] 
-    at (VNL.north west) {(4)};
 
 % ---- Flèches flux principal ----
 \draw[arrow] (nin)   -- (ninG)

@@ -29,7 +29,7 @@ où
 \begin{equation}
     \mathbf{P}_0(\rv,t) = \chi_0(\qv_L,\omega_L)\mathbf{E}_0(\qv_L,\omega_L)\cos(\qv_L\cdot\rv -\omega_L t),
 \end{equation}
-est la polarisation due à la lumière incidente. Une polarisation oscillante de fréquence $\omega_L$ émet de la lumière de même fréquence $\omega_L$~\cite{JacksonJD1999} par rayonnement, ce qui correspond à la diffusion élastique de Rayleigh. Le deuxième terme
+est la polarisation due à la lumière incidente. Une polarisation oscillante de fréquence $\omega_L$ émet de la lumière de même fréquence $\omega_L$~\cite{jacksonClassicalElectrodynamics2012} par rayonnement, ce qui correspond à la diffusion élastique de Rayleigh. Le deuxième terme
 \begin{equation}
     \mathbf{P}_\text{ind}(\rv,t,\mathbf{Q})=\left(\frac{\partial \chi}{\partial\mathbf{Q}}\right)\bigg\rvert_{\mathbf{Q}=0}\cdot\mathbf{Q}(\rv,t)\mathbf{E}_0(\qv_L,\omega_L)\cos(\qv_L\cdot\rv-\omega_L t),
 \end{equation}
@@ -157,19 +157,19 @@ tandis que la partie imaginaire introduit un taux d'amortissement pour les excit
 \end{equation}
 relié au temps de vie par $\tau_a = \hbar/\Gamma_a$. Nous approximons le taux d'amortissement d'une paire électron-trou comme la somme du taux pour l'électron et de celui pour le trou. Nous avons
 \begin{equation}
-    \frac{\bra{a}\hat{H}_\text{eem}\ket{i}}{(\hbar\omega_L-\tilde{\varepsilon}_a-i\frac{\Gamma_a}{2})}.
+    \frac{\bra{a}\hat{H}_\text{eem}\ket{i}}{(\hbar\omega_L-\tilde{\varepsilon}_a+i\frac{\Gamma_a}{2})}.
 \end{equation}
 Le vertex de phonon et le propagateur entre ce vertex et le deuxième vertex de photon donnent un terme de la forme
 \begin{equation}
-    \frac{\bra{b}\hat{H}_\text{ep}\ket{a}\bra{a}\hat{H}_\text{eem}\ket{i}}{(\hbar\omega_L-\tilde{\varepsilon}_b-i\frac{\Gamma_b}{2})(\hbar\omega_L -\tilde{\varepsilon}_a-i\frac{\Gamma_a}{2})}.
+    \frac{\bra{b}\hat{H}_\text{ep}\ket{a}\bra{a}\hat{H}_\text{eem}\ket{i}}{(\hbar\omega_L-\tilde{\varepsilon}_b+i\frac{\Gamma_b}{2})(\hbar\omega_L -\tilde{\varepsilon}_a+i\frac{\Gamma_a}{2})}.
 \end{equation}
 Finalement, le dernier vertex de photon contribue
 \begin{equation}
-    \frac{\bra{f}\hat{H}_\text{eem}\ket{b}\bra{b}\hat{H}_\text{ep}\ket{a}\bra{a}\hat{H}_\text{eem}\ket{i}}{(\hbar\omega_L-\tilde{\varepsilon}_b-i\frac{\Gamma_b}{2})(\hbar\omega_L -\tilde{\varepsilon}_a-i\frac{\Gamma_a}{2})}.
+    \frac{\bra{f}\hat{H}_\text{eem}\ket{b}\bra{b}\hat{H}_\text{ep}\ket{a}\bra{a}\hat{H}_\text{eem}\ket{i}}{(\hbar\omega_L-\tilde{\varepsilon}_b+i\frac{\Gamma_b}{2})(\hbar\omega_L -\tilde{\varepsilon}_a+i\frac{\Gamma_a}{2})}.
 \end{equation}
 L'intensité Raman associée à ce diagramme s'obtient avec la règle d'or de Fermi~\eqref{eqn:fermi3}, en se souvenant qu'il faut faire la somme sur les états intermédiaires
 \begin{equation}
-    I(\omega_S) = \frac{2\pi}{\hbar}\left|\sum_{ab}\frac{\bra{f}\hat{H}_\text{eem}\ket{b}\bra{b}\hat{H}_\text{ep}\ket{a}\bra{a}\hat{H}_\text{eem}\ket{i}}{(\hbar\omega_L-\tilde{\varepsilon}_b-i\frac{\Gamma_b}{2})(\hbar\omega_L -\tilde{\varepsilon}_a-i\frac{\Gamma_a}{2})}\right|^2\delta(\varepsilon_f-\varepsilon_i),\label{eqn:I_general}
+    I(\omega_S) = \frac{2\pi}{\hbar}\left|\sum_{ab}\frac{\bra{f}\hat{H}_\text{eem}\ket{b}\bra{b}\hat{H}_\text{ep}\ket{a}\bra{a}\hat{H}_\text{eem}\ket{i}}{(\hbar\omega_L-\tilde{\varepsilon}_b+i\frac{\Gamma_b}{2})(\hbar\omega_L -\tilde{\varepsilon}_a+i\frac{\Gamma_a}{2})}\right|^2\delta(\varepsilon_f-\varepsilon_i),\label{eqn:I_general}
 \end{equation}
 où la somme sur les états finaux $\ket{f}$ a disparu, car l'état final est contraint par le processus Raman lui-même. L'expression~\eqref{eqn:I_general} est très générale et nous la spécialisons au cas du graphène dans ce qui suit. Premièrement, pour la fonction delta, l'état final avec un photon $\omega_S$, $N_{\nu\qv}+1_{\nu\bm 0}$ phonons et les électrons dans leur état fondamental a une énergie
 \begin{equation}
@@ -214,15 +214,15 @@ La partie phononique est trivialement l'unité. La partie photonique est non nul
 En regroupant toutes ces parties et en sommant sur les états intermédiaires, nous obtenons l'expression suivante pour l'intensité Raman en fonction de la fréquence de la lumière diffusée
 \begin{equation}
     \begin{split}
-    I(\omega_S) = &\sum_{\nu}\left|\frac{1}{N_\kv}\sum_{\kv}\frac{g_{\pi\pi^*}^{(\lambda_S)}(\kv)g_{\pi^*\pi^*}^{(\nu)}(\kv,\bm 0)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}-\hbar\omega_{\nu\bm 0}+\tilde{\varepsilon}_{\pi\kv}-i\frac{\Gamma_b}{2})(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}+\tilde{\varepsilon}_{\pi\kv}-i\frac{\Gamma_a}{2})}\right|^2\\
+    I(\omega_S) = &\sum_{\nu}\left|\frac{1}{N_\kv}\sum_{\kv}\frac{g_{\pi\pi^*}^{(\lambda_S)}(\kv)g_{\pi^*\pi^*}^{(\nu)}(\kv,\bm 0)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}-\hbar\omega_{\nu\bm 0}+\tilde{\varepsilon}_{\pi\kv}+i\frac{\Gamma_b}{2})(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}+\tilde{\varepsilon}_{\pi\kv}+i\frac{\Gamma_a}{2})}\right|^2\\
     &\times(N_{\nu\bm 0}+1)\delta(\hbar\omega_L-\hbar\omega_S-\hbar\omega_{\nu\bm 0}),
     \end{split}
 \end{equation}
 si le diagramme de la figure~\ref{fig:e1} était le seul qui contribuait à l'intensité Raman. En réalité, le diagramme de la figure~\ref{fig:h1} contribue également et son amplitude s'obtient de la même façon, la seule différence étant que c'est le trou qui émet le phonon. L'intensité Raman totale au premier ordre s'obtient comme la somme des amplitudes de ces deux diagrammes et s'écrit, à une constante globale près,
 \begin{equation}
     \begin{split}
-        I(\omega_S) = \sum_\nu\bigg\rvert&\frac{1}{N_\kv}\sum_\kv\frac{g_{\pi\pi^*}^{(\lambda_S)}(\kv)g_{\pi^*\pi^*}^{(\nu)}(\kv,\bm 0)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}-\hbar\omega_{\nu\bm 0}+\tilde{\varepsilon}_{\pi\kv}-i\frac{\Gamma_b}{2})(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}+\tilde{\varepsilon}_{\pi\kv}-i\frac{\Gamma_a}{2})}\\
-        +&\frac{1}{N_\kv}\sum_\kv\frac{g_{\pi\pi^*}^{(\lambda_S)}(\kv)g_{\pi\pi}^{(\nu)}(\kv,\bm 0)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}-\hbar\omega_{\nu\bm 0}+\tilde{\varepsilon}_{\pi\kv}-i\frac{\Gamma_b}{2})(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}+\tilde{\varepsilon}_{\pi\kv}-i\frac{\Gamma_a}{2})}\bigg\rvert^2\\
+        I(\omega_S) = \sum_\nu\bigg\rvert&\frac{1}{N_\kv}\sum_\kv\frac{g_{\pi\pi^*}^{(\lambda_S)}(\kv)g_{\pi^*\pi^*}^{(\nu)}(\kv,\bm 0)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}-\hbar\omega_{\nu\bm 0}+\tilde{\varepsilon}_{\pi\kv}+i\frac{\Gamma_b}{2})(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}+\tilde{\varepsilon}_{\pi\kv}+i\frac{\Gamma_a}{2})}\\
+        -&\frac{1}{N_\kv}\sum_\kv\frac{g_{\pi\pi^*}^{(\lambda_S)}(\kv)g_{\pi\pi}^{(\nu)}(\kv,\bm 0)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}-\hbar\omega_{\nu\bm 0}+\tilde{\varepsilon}_{\pi\kv}+i\frac{\Gamma_b}{2})(\hbar\omega_L-\tilde{\varepsilon}_{\pi^*\kv}+\tilde{\varepsilon}_{\pi\kv}+i\frac{\Gamma_a}{2})}\bigg\rvert^2\\
         \times&(N_{\nu\bm 0}+1)\delta(\hbar\omega_L-\hbar\omega_S-\hbar\omega_{\nu\bm 0}).\label{eqn:I_1phonon}
     \end{split}
 \end{equation}
@@ -250,19 +250,19 @@ où
 \end{equation}
 est l'intensité des diagrammes \textit{deux-phonons} de la figure~\ref{fig:pp} et
 \begin{equation}
-    I^{\text{pd}}_{\nu\qv} = N_d\left|\frac{1}{N_\kv}\sum_{\beta\kv}K^{\text{pd}}_\beta (\kv,\qv,\nu)\right|^2,\label{eqn:I_pd}
+    I^{\text{pd}}_{\nu\qv} = c\left|\frac{1}{N_\kv}\sum_{\beta\kv}K^{\text{pd}}_\beta (\kv,\qv,\nu)\right|^2,\label{eqn:I_pd}
 \end{equation}
-est l'intensité des diagrammes \textit{phonon-défaut} de la figure~\ref{fig:pd}. Ici, $N_d$ est le nombre moyen de défauts dans une cellule du matériau et nous supposons que les contributions de défauts sur des sites différents s'ajoutent de manière incohérente puisqu'ils sont distribués aléatoirement. Les indices $\alpha,\beta$ identifient les huit processus différents : \textit{ee1, ee2, hh1, hh2, eh1, eh2, he1, he2}, représentés dans les figures~\ref{fig:pp} et~\ref{fig:pd}. Les expressions explicites des amplitudes de diffusion Raman doublement résonante $K^{\text{pp}}(\kv,\qv,\nu,\mu)$ et $K^{\text{pd}}(\kv,\qv,\nu)$ sont données dans l'annexe~\ref{asec:amplitude} et nous donnons deux exemples ici :
+est l'intensité des diagrammes \textit{phonon-défaut} de la figure~\ref{fig:pd}. Ici, $c$ est le nombre moyen de défauts dans une cellule du matériau (une concentration) et nous supposons que les contributions de défauts sur des sites différents s'ajoutent de manière incohérente puisqu'ils sont distribués aléatoirement. Les indices $\alpha,\beta$ identifient les huit processus différents : \textit{ee1, ee2, hh1, hh2, eh1, eh2, he1, he2}, représentés dans les figures~\ref{fig:pp} et~\ref{fig:pd}. Les expressions explicites des amplitudes de diffusion Raman doublement résonante $K^{\text{pp}}(\kv,\qv,\nu,\mu)$ et $K^{\text{pd}}(\kv,\qv,\nu)$ sont données dans l'annexe~\ref{asec:amplitude} et nous donnons deux exemples ici :
 \begin{equation}
     \begin{split}
-    K_{ee1}^{\text{pp}} = &\frac{g^{(\lambda_S)}_{\pi\pi^*}(\kv)g^{(\mu)}_{\pi^*\pi^*}(\kv+\qv,-\qv)g_{\pi^*\pi^*}^{(\nu)}(\kv,\qv)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\varepsilon_L-\tilde{\varepsilon}_\kv^{\pi^*}+\tilde{\varepsilon}_\kv^\pi-\hbar\omega_{-\qv}^\nu-\hbar\omega_\qv^\mu-i\frac{\Gamma_c}{2})(\varepsilon_L-\tilde{\varepsilon}_{\kv+\qv}^{\pi^*}+\tilde{\varepsilon}_\kv^\pi-\hbar\omega_{-\qv}^\nu-i\frac{\Gamma_b}{2})}\\
-    &\times\frac{1}{(\varepsilon_L-\tilde{\varepsilon}_\kv^{\pi^*}+\tilde{\varepsilon}_{\kv}^\pi-i\frac{\Gamma_a}{2})},\label{eqn:K_ee1_pp}
+    K_{ee1}^{\text{pp}} = &\frac{g^{(\lambda_S)}_{\pi\pi^*}(\kv)g^{(\mu)}_{\pi^*\pi^*}(\kv+\qv,-\qv)g_{\pi^*\pi^*}^{(\nu)}(\kv,\qv)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\varepsilon_L-\tilde{\varepsilon}_\kv^{\pi^*}+\tilde{\varepsilon}_\kv^\pi-\hbar\omega_{-\qv}^\nu-\hbar\omega_\qv^\mu+i\frac{\Gamma_c}{2})(\varepsilon_L-\tilde{\varepsilon}_{\kv+\qv}^{\pi^*}+\tilde{\varepsilon}_\kv^\pi-\hbar\omega_{-\qv}^\nu+i\frac{\Gamma_b}{2})}\\
+    &\times\frac{1}{(\varepsilon_L-\tilde{\varepsilon}_\kv^{\pi^*}+\tilde{\varepsilon}_{\kv}^\pi+i\frac{\Gamma_a}{2})},\label{eqn:K_ee1_pp}
     \end{split}
 \end{equation}
 \begin{equation}
     \begin{split}
-    K_{ee1}^{\text{pd}} = &\frac{g^{(\lambda_S)}_{\pi\pi^*}(\kv)M_{\pi^*\pi^*}(\kv,\kv+\qv)g^{(\nu)}_{\pi^*\pi^*}(\kv,\qv)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\varepsilon_L-\tilde{\varepsilon}^{\pi^*}_\kv+\tilde{\varepsilon}^\pi_\kv-\hbar\omega_{-\qv}^\nu-i\frac{\Gamma_c}{2})(\varepsilon_L-\tilde{\varepsilon}_{\kv+\qv}^{\pi^*}+\tilde{\varepsilon}_\kv^\pi-\hbar\omega_{-\qv}^\nu-i\frac{\Gamma_b}{2})}\\
-    &\times\frac{1}{(\varepsilon_L-\tilde{\varepsilon}_\kv^{\pi^*}+\tilde{\varepsilon}_\kv^\pi-i\frac{\Gamma_a}{2})},\label{eqn:K_ee1_pd}
+    K_{ee1}^{\text{pd}} = &\frac{g^{(\lambda_S)}_{\pi\pi^*}(\kv)M_{\pi^*\pi^*}(\kv,\kv+\qv)g^{(\nu)}_{\pi^*\pi^*}(\kv,\qv)g_{\pi^*\pi}^{(\lambda_L)}(\kv)}{(\varepsilon_L-\tilde{\varepsilon}^{\pi^*}_\kv+\tilde{\varepsilon}^\pi_\kv-\hbar\omega_{-\qv}^\nu+i\frac{\Gamma_c}{2})(\varepsilon_L-\tilde{\varepsilon}_{\kv+\qv}^{\pi^*}+\tilde{\varepsilon}_\kv^\pi-\hbar\omega_{-\qv}^\nu+i\frac{\Gamma_b}{2})}\\
+    &\times\frac{1}{(\varepsilon_L-\tilde{\varepsilon}_\kv^{\pi^*}+\tilde{\varepsilon}_\kv^\pi+i\frac{\Gamma_a}{2})},\label{eqn:K_ee1_pd}
     \end{split}
 \end{equation}
 où nous avons changé légèrement la notation de $\varepsilon_{n\kv}=\varepsilon_\kv^n$ et $\omega_{\nu\qv} = \omega_\qv^\nu$ et avons défini $\varepsilon_L=\hbar\omega_L$ pour que les dénominateurs puissent tenir sur une ligne.

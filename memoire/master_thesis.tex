@@ -43,7 +43,7 @@
 \usepackage{ifthen}
 \usepackage{simpler-wick}
 \definecolor{darkblue}{rgb}{0.0, 0.0, 0.5}
-\hypersetup{colorlinks=true,allcolors=darkblue}
+\hypersetup{colorlinks=true,allcolors=teal}
 \usepackage{hypcap}   
 \usepackage{bookmark} 
 \usepackage{bm}
@@ -160,18 +160,18 @@
 
 \pdfbookmark[chapter]{Couverture}{PageUn}
 
-%\maketitle
-%\maketitle
+\maketitle
+\maketitle
 
 %%------------------------------------------------- %
 %%                Résumé.                           %
 %%------------------------------------------------- %
-%\include{pages_liminaires/résumé}
+\include{pages_liminaires/résumé}
 
 %%------------------------------------------------- %
 %%                  Abstract                        %
 %%------------------------------------------------- %
-%\include{pages_liminaires/abstract}
+\include{pages_liminaires/abstract}
 
 %%------------------------------------------------- %
 %%             Table des matières                   %
@@ -179,28 +179,28 @@
 \francais
 \cleardoublepage
 \pdfbookmark[chapter]{\contentsname}{toc} 
-%\tableofcontents
+\tableofcontents
 
 \cleardoublepage
-%\listoftables
+\listoftables
 
 \cleardoublepage
-%\listoffigures
+\listoffigures
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LISTE DES SIGLES ET ABRÉVIATION %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\include{pages_liminaires/sigles_abbréviations}
+\include{pages_liminaires/sigles_abbréviations}
 
 %%------------------------------------------------- %
 %%              liste des symboles                  %
 %%------------------------------------------------- %
-%\include{pages_liminaires/symboles}
+\include{pages_liminaires/symboles}
 
 %%------------------------------------------------- %
 %%            Remerciements                         %
 %%------------------------------------------------- %
-%\include{pages_liminaires/remerciements}
+\include{pages_liminaires/remerciements}
 
 \NoChapterPageNumber
 \cleardoublepage
@@ -212,13 +212,13 @@
 %%                                                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\include{chapitres/introduction}
-%\include{chapitres/théorie}
-%\include{chapitres/raman}
-%\include{chapitres/défauts}
+\include{chapitres/introduction}
+\include{chapitres/théorie}
+\include{chapitres/raman}
+\include{chapitres/défauts}
 \include{chapitres/défauts2}
-%\include{chapitres/eph}
-%\include{chapitres/conclusion}
+\include{chapitres/eph}
+\include{chapitres/conclusion}
 
 %%--------------%
 %%     index    %
@@ -236,12 +236,12 @@
 \counterwithout*{equation}{section}
 \counterwithin*{equation}{chapter}
 \renewcommand{\theequation}{\thechapter.\arabic{equation}}
-%\include{annexes/théorie}
-%\include{annexes/raman}
-%\include{annexes/défauts_M}
+\include{annexes/théorie}
+\include{annexes/raman}
+\include{annexes/défauts_M}
 \include{annexes/défauts_T}
-%\include{annexes/eph}
-%\include{annexes/ia}
+\include{annexes/eph}
+\include{annexes/ia}
 
 \printbibliography
 \end{document}

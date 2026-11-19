@@ -28,7 +28,7 @@ Cette section rassemble les vérifications de la chaîne de calcul de la matrice
     \centering
     \includegraphics[width=\textwidth]{figures/fig_rcut_aligned.pdf}
     % À REVOIR : légende provisoire du 2026-10-05 ; étiquettes « site unique » / « Kumagai–Oba » de la figure à renommer (make_figures_controles.py)
-    \caption[Erreur de troncature selon la référence du potentiel.]{Écart relatif maximal $\max|\Delta M|/\max|M|$ sur les blocs $\pi$--$\pi^*$ entre les éléments de matrice interpolés avec troncature à $R_\text{cut}$ et ceux obtenus avec toutes les cellules, pour (a) $9\times9$ et (b) $12\times12$, avec les matrices brutes, les matrices alignées de production (constante de Kumagai-Oba) et une variante alignée sur un seul site ; les courbes « exact » appliquent l'alignement au potentiel plutôt qu'aux blocs diagonaux de la base de Wannier et se superposent aux précédentes. C'est la quantité de la première ligne du tableau~\ref{tab:rcut_M}, pour tous les rayons de coupure.}
+    \caption[Erreur de troncature selon la référence du potentiel.]{Écart relatif maximal $\max|\Delta M|/\max|M|$ sur les blocs $\pi$--$\pi^*$ entre les éléments de matrice interpolés avec troncature à $R_\text{cut}$ et ceux obtenus avec toutes les cellules, pour (a) $9\times9$ et (b) $12\times12$, avec les matrices brutes, les matrices alignées de production (constante de Kumagai-Oba) et une variante alignée sur un seul site ; les courbes \og exact \fg{} appliquent l'alignement au potentiel plutôt qu'aux blocs diagonaux de la base de Wannier et se superposent aux précédentes.}
     \label{fig:rcut_aligned}
 \end{figure}
 \vspace*{\fill}
@@ -130,7 +130,7 @@ Cette section rassemble les vérifications de la chaîne de calcul de la matrice
         Troncature de Coulomb & bidimensionnelle & \ref{sec:M_détails} \\
         Rayon de coupure $R_\text{cut}$ & $3$, soit $29$ cellules unitaires & \ref{sec:M_results} \\
         Grille de sortie du test de troncature & $60\times 60$ & \ref{sec:M_results} \\
-        Nombre de bandes & super-cellules : $2N^2$ bandes occupées et $30$ bandes vides ($N\le 18$) ou $5~\%$ de plus ($N\ge 21$), deux de moins avec la lacune ; cellule unitaire : $16$ (SCF) et $20$ (NSCF des grilles $\ge 24\times 24$) & \ref{sec:M_détails} \\
+        Nombre de bandes & super-cellules : $4N^2$ bandes occupées et $30$ bandes vides ($N\le 18$) ou $5~\%$ de plus ($N\ge 21$), deux de moins avec la lacune ; cellule unitaire : $16$ (SCF) et $20$ (NSCF des grilles $\ge 24\times 24$) & \ref{sec:M_détails} \\
         Alignement du potentiel & Kumagai-Oba : moyenne des décalages de sphères de $1.0$~\AA{} sur les atomes à distance $d \ge 0.75\,r_\text{max}$ de la lacune (image minimale) ; soustrait des blocs diagonaux $\bm M(\Rv,\Rv)$ des $N^2$ cellules dans la base de Wannier & \ref{sec:M_détails} \\
         Constante d'alignement $\Delta V_\text{PA}^{(N)}$ & $-57.6$, $-50.5$, $-26.9$, $-14.4$, $-25.1$, $-18.7$~meV pour $N = 5, 6, 7, 8, 9, 12$ ; incertitude $9.05$~meV pour $9\times 9$ & \ref{sec:M_results} \\
         \hline\hline

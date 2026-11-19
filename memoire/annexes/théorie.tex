@@ -3,9 +3,9 @@
 
 \section{Codes et ressources de calcul}\label{sec:annexe_codes}
 
-Les paramètres numériques des calculs du mémoire sont rapportés à la fin des annexes de chaque chapitre. Dans chaque tableau, la colonne \og Section \fg{} renvoie à l'endroit du texte où la valeur est donnée. Une valeur qui diffère d'une chaîne à l'autre est donnée dans chaque tableau. Les calculs DFT et DFPT sont réalisés avec \texttt{QuantumESPRESSO} (version~7.4.1), l'interpolation par fonctions de Wannier avec \texttt{Wannier90} (version~3.1.0) et \texttt{EPW} (version~6.0), et le post-traitement des données est effectué en Python (version~3.11.5) avec \texttt{NumPy} (version~1.26.4) et \texttt{SciPy} (version~1.15.2).
+Les paramètres numériques des calculs du mémoire sont rapportés à la fin des annexes de chaque chapitre. Dans chaque tableau, la colonne \og Section \fg{} renvoie à l'endroit du texte où la valeur est donnée. Une valeur qui diffère d'une chaîne à l'autre est donnée dans chaque tableau. Les calculs DFT et DFPT sont réalisés avec \texttt{QuantumESPRESSO} (version~7.4.1), le calcul des fonctions de Wannier avec \texttt{Wannier90} (version~3.1.0) et \texttt{EPW} (version~6.0), et le post-traitement des données est effectué en Python (version~3.11.5) avec \texttt{NumPy} (version~1.26.4) et \texttt{SciPy} (version~1.15.2).
 
-Tous les calculs ont été effectués sur la grappe Rorqual de l'Alliance de recherche numérique du Canada et Calcul Québec. Le dépôt GitHub \href{https://github.com/Gregb26/msc-graphene-raman-defects}{\texttt{msc-graphene-raman-defects}} contient les fichiers d'entrée de chaque calcul dans le dossier \texttt{calculs/}, puis les scripts dans \texttt{scripts/} et les données dans \texttt{donnees/} servant à la génération des figures du mémoire. Le code de production se trouve dans le dossier \texttt{src/} du dépôt GitHub \href{https://github.com/Gregb26/graphene-raman}{\texttt{graphene-raman}}.
+Tous les calculs ont été effectués sur la grappe Rorqual de l'Alliance de recherche numérique du Canada et Calcul Québec. Le dépôt GitHub \href{https://github.com/Gregb26/msc-graphene-raman-defects}{\texttt{msc-graphene-raman-defects}} contient les fichiers d'entrée de chaque calcul dans le dossier \texttt{calculs/}, puis les scripts dans \texttt{scripts/} et les données dans \texttt{donnees/} servant à la génération des figures du mémoire. Le code de recherche ayant servi à générer les données se trouve dans un dépôt GitHub privé et est disponible sous demande.
 
 \clearpage
 \section{Expressions explicites de la fonctionnelle PBE}\label{annexe:pbe}
@@ -43,7 +43,7 @@ où le paramètre $s$ est proportionnel au gradient de la densité
 \end{equation}
 Ici, $\kappa$ et $\mu$ sont des paramètres à déterminer à partir des contraintes théoriques sur la fonctionnelle d'échange-corrélation et $k_F=(3\pi^2n)^{1/3}$ est le vecteur d'onde de Fermi pour un gaz d'électrons uniforme. Lorsque nous négligeons le gradient de la densité, c'est-à-dire quand $s=0$, nous avons que $F_\text{X}=1$ et nous retrouvons bien la LDA pour l'échange.
 
-La partie de corrélation de la densité d'énergie d'un gaz d'électrons homogène n'est pas connue analytiquement. Elle a plutôt été calculée numériquement, avec haute précision, par Ceperley et Alder~\cite{ceperleyGroundStateElectron1980} à l'aide de la méthode stochastique Monte-Carlo quantique puis paramétrée par Perdew et Zunger~\cite{perdewSelfinteractionCorrectionDensityfunctional1981}. Nous référons le lecteur à ce dernier article pour cette paramétrisation. Le facteur d'amplification pour la corrélation $F_\text{C}$ est donné par
+La partie de corrélation de la densité d'énergie d'un gaz d'électrons homogène n'est pas connue analytiquement. Elle a plutôt été calculée numériquement, avec haute précision, par Ceperley et Alder~\cite{ceperleyGroundStateElectron1980} à l'aide de la méthode stochastique Monte-Carlo quantique puis paramétrée par Perdew et Zunger~\cite{perdewAccurateSimpleAnalytic19921}. Nous référons le lecteur à ce dernier article pour cette paramétrisation. Le facteur d'amplification pour la corrélation $F_\text{C}$ est donné par
 \begin{equation}
     \label{eqn:a1_FC}
     F_\text{C}(n,\nabla n) = 1+H(t)/\varepsilon_\text{C}^\text{hom}(n).
@@ -69,7 +69,7 @@ où $\zeta=(n_\uparrow-n_\downarrow)/n$ est la polarisation en spin. Pour les sy
 
 La figure~\ref{fig:convergence_dft} rassemble les tests de convergence de l'état fondamental électronique du graphène parfait (section~\ref{sec:electron_results}) : coupure $E_\text{cut}$, grille $\kv$ et schéma d'occupation, avec le seuil de $0.1$~meV par atome.
 
-L'énergie est variationnelle par rapport à $E_\text{cut}$ et décroît de façon monotone. La première coupure sous le seuil est $E_\text{cut}=100$~Ry (panneau (a)). Toutefois, elle ne l'est pas par rapport à l'échantillonnage de la BZ (panneau (b)), qui a néanmoins une forte influence : dans un semi-métal, les états proches du niveau de Fermi dominent l'énergie et il est critique que le point de Dirac $K$ appartienne à la grille, ce qui impose des grilles dont la dimension est un multiple de trois. La grille $24\times 24$ est la première sous le seuil, mais nous retenons $27\times 27$, qui échantillonne plus densément au voisinage de $K$ pour un coût à peine supérieur. Le test de $E_\text{cut}$, repété sur cette grille (panneau (c)), converge vers la même valeur : les deux paramètres sont indépendants\footnote{Ce test est important car il n'est pas toujours vrai que la coupure et la grille soient indépendantes.}. Enfin, parmi les schémas d'occupation (panneau (d)), Fermi-Dirac ne passe jamais sous le seuil, le schéma gaussien s'en approche sans le franchir complètement et Methfessel-Paxton comme Marzari-Vanderbilt le franchissent à $\sigma=0.01$~Ry. Nous retenons celui de Marzari-Vanderbilt dont les occupations restent dans l'intervalle physique $[0,1]$, ce qui rend le cycle SCF plus robuste aux perturbations que nous introduirons dans le graphène.
+L'énergie est variationnelle par rapport à $E_\text{cut}$ et décroît de façon monotone. La première coupure sous le seuil est $E_\text{cut}=100$~Ry (panneau (a)). Toutefois, elle ne l'est pas par rapport à l'échantillonnage de la BZ (panneau (b)), qui a néanmoins une forte influence : dans un semi-métal, les états proches du niveau de Fermi dominent l'énergie et il est critique que le point de Dirac $K$ appartienne à la grille, ce qui impose des grilles dont la dimension est un multiple de trois. La grille $24\times 24$ est la première sous le seuil, mais nous retenons $27\times 27$, qui échantillonne plus densément au voisinage de $K$ pour un coût à peine supérieur. Le test de $E_\text{cut}$, répété sur cette grille (panneau (c)), converge vers la même valeur : les deux paramètres sont indépendants\footnote{Ce test est important car il n'est pas toujours vrai que la coupure et la grille soient indépendantes.}. Enfin, parmi les schémas d'occupation (panneau (d)), Fermi-Dirac ne passe jamais sous le seuil, le schéma gaussien s'en approche sans le franchir complètement et Methfessel-Paxton comme Marzari-Vanderbilt le franchissent à $\sigma=0.01$~Ry. Nous retenons celui de Marzari-Vanderbilt dont les occupations restent dans l'intervalle physique $[0,1]$, ce qui rend le cycle SCF plus robuste aux perturbations que nous introduirons dans le graphène.
 \clearpage
 \vspace*{\fill}
 \begin{figure}[H]
@@ -103,8 +103,8 @@ L'énergie est variationnelle par rapport à $E_\text{cut}$ et décroît de faç
         Seuil de convergence SCF & $10^{-14}$~Ry & \ref{sec:electron_results} \\
         Critère des tests de convergence & $0.1$~meV par atome & \ref{sec:electron_results} \\
         Paramètre de maille $a$ & $2.466$~\AA{}, par relaxation structurelle & \ref{sec:electron_results} \\
-        Cellule de vide & & \\
-        Troncature de Coulomb & & \\
+        Cellule de vide & 30 bohr & \ref{sec:electron_results}\\
+        Troncature de Coulomb & 2D & \ref{sec:electron_results}\\
         \hline\hline
     \end{tabular}
 \end{table}

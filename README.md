@@ -13,7 +13,7 @@ Ce repo contient les fichiers sources du mémoire ainsi que les données ayant s
 | `donnees/`         | Données des figures et tableaux                      |
 | `memoire/`         | Source LaTeX du mémoire                                        |
 | `scripts/`         | Scripts de génération des figures et des tableaux à partir des données|
-| `src/`             | Partie du code source requise pour rouler les scripts. Le reste du code source est dans le repo `graphene-raman`|
+| `src/`             | Partie du code source requise pour rouler les scripts. Le reste du code source est dans un repo privé |
 
 ## Compiler le mémoire
 

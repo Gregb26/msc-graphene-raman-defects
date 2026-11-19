@@ -23,17 +23,17 @@ def load_production(path=PRODUCTION_JSON, verbose=True):
 
 
 def results_dir(cfg, root=ROOT):
-    """Directory of the production products only (results/M2_plateau since R10; results/M and results/M2 are frozen). M files: matrices_dir."""
+    """Directory of the production products only. M files: matrices_dir."""
     return os.path.join(root, cfg["results_dir"])
 
 
 def matrices_dir(cfg, root=ROOT):
-    """Directory of the M files (results/M2: raw M2 matrices, read only; R10)."""
+    """Directory of the M files."""
     return os.path.join(root, cfg["matrices_dir"])
 
 
 def epw_dir(cfg, root=ROOT):
-    """Directory of the EPW post-processing products (chapter 5): results/epw."""
+    """Directory of the EPW post-processing products: results/epw."""
     return os.path.join(root, cfg.get("epw_results_dir", "results/epw"))
 
 
@@ -62,8 +62,8 @@ def campaigns_dir(cfg, *parts, root=ROOT):
 
 
 def alignment_C(cfg, size):
-    """Kumagai-Oba alignment constant C_N = Delta V_PA^(N) (eV) of a supercell size (config block "alignment", R10), subtracted as
-    M_W(R,R) - C_N on the N x N box (defect_mwr). Raises KeyError if the size has no C_N (no silent default)."""
+    """Kumagai-Oba alignment constant C_N = Delta V_PA^(N) (eV) of a supercell size, subtracted as
+    M_W(R,R) - C_N on the N x N box (defect_mwr). Raises KeyError if the size has no C_N."""
     C = cfg["alignment"]["C_N_eV"]
     if size not in C:
         raise KeyError(f"production config: no alignment C_N for size '{size}' (sizes: {', '.join(C)})")

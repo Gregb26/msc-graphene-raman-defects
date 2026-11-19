@@ -1,5 +1,5 @@
-"""Palette and matplotlib style of the thesis figures (2026-09-21; in the package since 2026-09-30, ex scripts/_palette.py and
-figures/memoire.mplstyle). Main colour: navy #000080 (= \\definecolor{darkblue}{rgb}{0,0,0.5}, the hyperlink colour of the PDF).
+"""Palette and matplotlib style of the thesis figures ex scripts/_palette.py and
+figures/memoire.mplstyle). Main colour: navy #000080 
 The cycler of memoire.mplstyle repeats CYCLE in the same order. One hue per category, never reused within a figure.
 Usage: `from graphene_raman.plotting.palette import use_style, NAVY, ...; use_style()` (the style is found from __file__, never from the cwd)."""
 from pathlib import Path
@@ -16,7 +16,7 @@ def use_style():
 
 
 # metadata that would otherwise make every PDF/PNG differ at each run (creation date, software version): removed so that a
-# regenerated figure is byte-identical to the tracked one (recette de la copie vers le dépôt du mémoire, 2026-09-30)
+# regenerated figure is byte-identical to the tracked one 
 PDF_METADATA = {"CreationDate": None, "ModDate": None, "Producer": None, "Creator": None}
 PNG_METADATA = {"Software": None}
 
